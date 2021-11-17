@@ -1,5 +1,24 @@
 ### Hi there 👋
 
+
+## TECH SPECS:: 
+- Languages // Ruby, JavaScript/HTML/CSS, Java. 
+- Frameworks // Sinatra, Rails, React
+- Libraries // Bootstrap, Devise
+- Databases // SQLite, PostgreSql
+- Education // the Flatiron School (Software Developement)
+
+## ONGOING PROJECTS:: 
+- Scamazon --> 
+- The Poverty Trail --> 
+
+## LEARNING GOALS::(always b)
+- Typescript
+
+## REACHME:: 
+horaciovelvetine@gmail.com
+
+
 <!--
 **horaciovelvetine/horaciovelvetine** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
