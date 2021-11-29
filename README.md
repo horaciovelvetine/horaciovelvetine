@@ -1,22 +1,24 @@
 ### Hi there 👋
 
 
-## TECH SPECS:: 
-- Languages // Ruby, JavaScript/HTML/CSS, Java. 
-- Frameworks // Sinatra, Rails, React
-- Libraries // Bootstrap, Devise
-- Databases // SQLite, PostgreSql
-- Education // the Flatiron School (Software Developement)
+## SPECIFICATIONS.TECHNICALLY:: 
+- Languages // Ruby, JavaScript/HTML/CSS, Java;
+- Frameworks // Sinatra, Rails, React;
+- Libraries // Bootstrap, Devise, OAuth;
+- Databases // SQLite, PostgreSql;
+- Education // the Flatiron School (Software Developement);
 
-## ONGOING PROJECTS:: 
-- Scamazon --> 
-- The Poverty Trail --> 
+## PROJECTS.ONGOING:: 
+- Scamazon --> (BACK: https://github.com/horaciovelvetine/scamazon_backend);
 
-## LEARNING GOALS::(always b)
-- Typescript
+## LEARNING.CURRENTLY:: 
+- Typescript;
 
-## REACHME:: 
+## ME.CONTACT:: 
 horaciovelvetine@gmail.com
+
+## FOR.LOOKING:: 
+- Oppurtunities to grow as a developer;
 
 
 <!--
