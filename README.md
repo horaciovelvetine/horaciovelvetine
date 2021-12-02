@@ -12,6 +12,8 @@
 - Scamazon --> (BACK: https://github.com/horaciovelvetine/scamazon_backend);
 
 ## LEARNING.CURRENTLY:: 
+- React;
+- Redux;
 - Typescript;
 
 ## ME.CONTACT:: 
