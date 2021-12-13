@@ -12,5 +12,7 @@ Fork and clone to run locally, this is currently in develop and not deployed to 
     rails db:seed 
 4) Run: To begin the developement server locally
     rails server <-or-> rails s
+5) In a seperate terminal in the parent directory concurrently run: to compile the JS needed. 
+    bin/webpack-dev-server 
 
 ## Notes Etc
