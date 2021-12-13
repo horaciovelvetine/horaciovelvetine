@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  def home
-		binding.pry
-  end
+  def home; end
 
 
 end
