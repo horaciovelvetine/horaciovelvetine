@@ -25,6 +25,15 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+#Adds preferred debugging gem
+gem 'pry', '~> 0.13.1'
+
+# For later LI/App Info updates
+gem 'faraday'
+
+## Adds FastSerializer API
+gem 'jsonapi-serializer'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
