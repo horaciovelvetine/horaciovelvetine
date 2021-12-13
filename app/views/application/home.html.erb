@@ -1,6 +1,48 @@
 <!--#Formatting wise, using ROOT as the parent directory wont work. the layoutting will still need to be done at this level using html and tailwind -->
-<div class="container">Look over here!</div>
+<!-- 3 column wrapper -->
+  <div class="flex-grow w-full mx-auto xl:px-8 lg:flex">
+
+    <!-- Left sidebar & main wrapper -->
+    <div class="flex-1 min-w-0 bg-white xl:flex">
+      <div class="border-b border-gray-200 xl:border-b-0 xl:flex-shrink-0 xl:w-64 xl:border-r xl:border-gray-200 bg-white">
+        <div class="h-full pl-4 pr-6 py-6 sm:pl-6 lg:pl-8 xl:pl-0">
+          
+          <!-- Start left column area -->
+          <div class="h-full relative" style="min-height: 12rem;">
+            <div class="absolute inset-0 border-2 border-gray-200 border-dashed rounded-lg">
+                  <div id="rootLeftContainer"></div>
+            </div>
+          </div>
+          <!-- End left column area -->
+        </div>
+      </div>
+
+      <div class="bg-white lg:min-w-0 lg:flex-1">
+        <div class="h-full py-6 px-4 sm:px-6 lg:px-8">
+          <!-- Start main area-->
+          <div class="relative h-full" style="min-height: 36rem;">
+            <div class="absolute inset-0 border-2 border-gray-200 border-dashed rounded-lg">
+                  <div id="rootMainContainer"></div>
+            </div>
+          </div>
+          <!-- End main area -->
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-50 pr-4 sm:pr-6 lg:pr-8 lg:flex-shrink-0 lg:border-l lg:border-gray-200 xl:pr-0">
+      <div class="h-full pl-6 py-6 lg:w-80">
+        <!-- Start right column area -->
+        <div class="h-full relative" style="min-height: 16rem;">
+          <div class="absolute inset-0 border-2 border-gray-200 border-dashed rounded-lg">
+            <div id="rootRightContainer"></div>
+          </div>
+        </div>
+        <!-- End right column area -->
+      </div>
+    </div>
+  </div>
 <div class = "container" id="root"></div>
-<div class="container">And Im over here!</div>
+
 
 <%= javascript_pack_tag 'home' %>

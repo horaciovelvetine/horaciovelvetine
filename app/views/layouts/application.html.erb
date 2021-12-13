@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
+    <!-- All necessary links for tailwind, where the last one is the total webpacker compiled application -->
     <%= stylesheet_link_tag "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
   </head>
 
   <body>
-    <!-- <main class="container mx-auto mt-28 px-5 flex"> -->
-    <main class="flex">
+    <!-- Original provided: <main class="container mx-auto mt-28 px-5 flex"> -->
+    <main class="container mx-auto ">
       <%= yield %>
     </main>
   </body>

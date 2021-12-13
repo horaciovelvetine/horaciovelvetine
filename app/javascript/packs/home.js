@@ -2,15 +2,29 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HomePageApp from '../containers/home/HomePageApp'
+import MainContainer from '../containers/home/MainContainer'
 // import thunk from 'redux-thunk';
 
 // const store = createStore(reducer, applyMiddleware(thunk))
+ReactDOM.render(
+    <React.StrictMode>
+        {/* <Provider store={store} */}
+        {/* </Provider> */}
+    </React.StrictMode>, document.getElementById('rootLeftContainer')
+);
 
 ReactDOM.render(
     <React.StrictMode>
         {/* <Provider store={store} */}
-            <HomePageApp />
         {/* </Provider> */}
-    </React.StrictMode>, document.getElementById('root')
+    </React.StrictMode>, document.getElementById('rootRightContainer')
+);
+
+
+ReactDOM.render(
+    <React.StrictMode>
+        {/* <Provider store={store} */}
+            <MainContainer />
+        {/* </Provider> */}
+    </React.StrictMode>, document.getElementById('rootMainContainer')
 );
