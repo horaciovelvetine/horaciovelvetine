@@ -352,6 +352,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        'Inter var',
         'ui-sans-serif',
         'system-ui',
         '-apple-system',
@@ -959,5 +960,6 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/forms'),
   ],
 }
