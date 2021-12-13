@@ -10,9 +10,9 @@ Fork and clone to run locally, this is currently in develop and not deployed to 
     rails db:migrate
 3) Run: To add seeded data where necasary
     rails db:seed 
-4) Run: To begin the developement server locally
-    rails server <-or-> rails s
-5) In a seperate terminal in the parent directory concurrently run: to compile the JS needed. 
+4) In a seperate terminal in the parent directory concurrently run: to compile the JS needed. 
     bin/webpack-dev-server 
+5) Run: To begin the developement server locally (Alternatively you can just run this step, on the first startup it will aut compile the JS which is happening above explicitly in step 4)
+    rails server <-or-> rails s
 
 ## Notes Etc
