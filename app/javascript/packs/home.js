@@ -16,14 +16,6 @@ ReactDOM.render(
 ReactDOM.render(
     <React.StrictMode>
         {/* <Provider store={store} */}
-        {/* </Provider> */}
-    </React.StrictMode>, document.getElementById('rootRightContainer')
-);
-
-
-ReactDOM.render(
-    <React.StrictMode>
-        {/* <Provider store={store} */}
             <MainContainer />
         {/* </Provider> */}
     </React.StrictMode>, document.getElementById('rootMainContainer')
