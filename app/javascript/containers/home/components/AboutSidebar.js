@@ -14,7 +14,7 @@ export default function AboutSidebar(props) {
                     <div>
                         <div className="relative sm:flex-1">
                             <svg
-                                className="h-3/4 w-3/4 object-cover rounded-full border border-gray-300 bg-white text-gray-300 rounded-full mx-auto" preserveAspectRatio="none" stroke="currentColor" fill="none" viewBox="0 0 200 200" aria-hidden="true" alt="profile picture"><path vectorEffect="non-scaling-stroke" strokeWidth={1} d="M0 0l200 200M0 200L200 0" />
+                                className="h-2/3 w-2/3 object-cover rounded-full border border-gray-300 bg-white text-gray-300 rounded-full mx-auto" preserveAspectRatio="none" stroke="currentColor" fill="none" viewBox="0 0 200 200" aria-hidden="true" alt="profile picture"><path vectorEffect="non-scaling-stroke" strokeWidth={1} d="M0 0l200 200M0 200L200 0" />
                             </svg>
                         </div>
                         <div className="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
