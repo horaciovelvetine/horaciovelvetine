@@ -32,5 +32,6 @@
 
   </div>
 
-
-<%= javascript_pack_tag 'home' %>
+<%= content_tag :div, id: "testingId1", data: @data.to_json do %>
+  <%= javascript_pack_tag 'home' do %>
+<% end %>
