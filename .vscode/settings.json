@@ -1,0 +1,23 @@
+
+{
+  "files.exclude": {
+    ".yarn": true,
+    "node_modules": true,
+    "tmp": true,
+    ".ruby-version": true,
+    "Gemfile.lock": true,
+    "bin": true,
+    ".browserslistrc": true,
+    "vendor": true,
+    ".yarnrc.yml": true,
+    "yarn.lock": true,
+    "test": true,
+    "lib": true,
+    "public": true,
+    "storage": true,
+    "log": true,
+    ".gitattributes": true,
+    "config.ru": true,
+    "README.md": true,
+  }
+}
