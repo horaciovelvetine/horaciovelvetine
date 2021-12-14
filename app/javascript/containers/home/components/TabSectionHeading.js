@@ -1,12 +1,7 @@
 import React from 'react';
-// const tabs = [
-//   { name: 'Resume', href: '#', current: false },
-//   { name: 'Bookmrkr', href: '#', current: false },
-//   { name: 'Kitchen', href: '#', current: false },
-//   { name: 'Projects', href: '#', current: false },
-// ]
 
 const tabs = [
+  { name: 'Home', href: '#', current: false },
   { name: 'Hired', href: '#', current: false },
   { name: 'Projects', href: '#', current: false },
   { name: 'Bookmrkr', href: '#', current: false },
@@ -20,18 +15,7 @@ function classNames(...classes) {
 export default function Example() {
   return (
     <div className="relative pb-5 border-b border-gray-200 sm:pb-0">
-      <div className="md:flex md:items-center md:justify-between">
-        <div className="mt-3 flex md:mt-0 md:absolute md:top-3 md:right-0">
-
-          <button
-            type="button"
-            className="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Create
-          </button>
-        </div>
-      </div>
-      <div className="mt-4">
+      <div className="mt-4 mx-4">
         <div className="sm:hidden">
           <label htmlFor="current-tab" className="sr-only">
             Select a tab
