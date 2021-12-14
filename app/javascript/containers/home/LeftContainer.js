@@ -1,15 +1,15 @@
 import React from 'react'
-import AboutSidebar from './components/AboutSidebar'
+// import componen from './components/componen'
 
 class LeftContainer extends React.Component {
 
-    render(){
-      return (
-        <div className="justify-center">
-          < AboutSidebar aboutInfo={this.props.aboutInfo}/>
-        </div>
-        )
-    }
-} 
+  render() {
+    return (
+      <div>
+        ready to rock
+      </div>
+    )
+  }
+}
 
 export default LeftContainer;

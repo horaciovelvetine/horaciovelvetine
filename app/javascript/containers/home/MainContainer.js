@@ -1,20 +1,14 @@
 import React from 'react'
-import TabSectionHeading from './components/TabSectionHeading'
+// import componen from './components/componen'
 class MainContainer extends React.Component {
-    state = {
-        is: "so stated"
-    }
 
-    render(){
-        return (
-            <div>
-              <div>
-                < TabSectionHeading />
-              </div>
-              
-            </div>
-        )
-    }
-} 
+  render() {
+    return (
+      <div>
+        rocked and loaded
+      </div>
+    )
+  }
+}
 
 export default MainContainer
