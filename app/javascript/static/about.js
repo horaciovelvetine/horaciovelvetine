@@ -1,0 +1,1 @@
+export let about = {firstname: "James", lastname: "Tillman", username: "@horaciovelvetine", email: "horaciovelvetine@gmail.com", location: "Denver, CO, USA" }
