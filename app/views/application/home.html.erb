@@ -1,4 +1,5 @@
-<!-- 2 column wrapper -->
+<!--#Formatting wise, using ROOT as the parent directory wont work. the layoutting will still need to be done at this level using html and tailwind -->
+<!-- 3 column wrapper -->
   <div class="flex-grow w-full mx-auto xl:px-8 md:flex">
 
     <!-- Left sidebar & main wrapper -->
@@ -31,10 +32,5 @@
 
   </div>
 
-  <%= content_tag :div,
-    id: "json",
-    type: "hidden",
-    data: @data.to_json do %>
-  <% end %>
 
   <%= javascript_pack_tag 'home' %>
