@@ -7,7 +7,8 @@
 - Education // the Flatiron School (Software Developement);
 
 ## PROJECTS.ONGOING:: 
-- Scamazon --> (BACK: https://github.com/horaciovelvetine/scamazon_backend);
+- Scamazon --> (https://github.com/horaciovelvetine/scamazon_backend);
+- self.plugin.Scraper --> (https://github.com/horaciovelvetine/self.plugin.Scraper);
 
 ## LEARNING.CURRENTLY:: 
 - React;
