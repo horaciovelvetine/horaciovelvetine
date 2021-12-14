@@ -8,21 +8,18 @@ import LeftContainer from '../containers/home/LeftContainer'
 
 //* would allow data to be setup on domcontent load
 // document.addEventListener('DOMContentLoaded', () => {
-  const node = document.getElementById('json')
-  const data = JSON.parse(node.getAttribute('data'))
-
-  debugger
-  
+const node = document.getElementById('json')
+const data = JSON.parse(node.getAttribute('data'))
 // })
 
 // const store = createStore(reducer, applyMiddleware(thunk))
 
 
 ReactDOM.render(
-    
+
     <React.StrictMode>
         {/* <Provider store={store} */}
-            <LeftContainer />
+        <LeftContainer />
         {/* </Provider> */}
     </React.StrictMode>, document.getElementById('rootLeftContainer')
 );
@@ -30,7 +27,7 @@ ReactDOM.render(
 ReactDOM.render(
     <React.StrictMode>
         {/* <Provider store={store} */}
-            <MainContainer />
+        <MainContainer />
         {/* </Provider> */}
     </React.StrictMode>, document.getElementById('rootMainContainer')
 );
