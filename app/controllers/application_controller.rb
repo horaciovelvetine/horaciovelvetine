@@ -1,20 +1,16 @@
 class ApplicationController < ActionController::Base
-  # before_action :authorized unless some params???? 
+  before_action :catch_visitors
 
   def home
-    #TODO ongoing => use a serializer to speed up the rendering and get all of this working
+    #TODO use a serializer to speed up the rendering and get all of this working
     # @data = "sample data"
   end
 
+  private 
 
-
-  private
-
-    #TODO Should be a one way valve to tick a binary, for self it should display all my apps/tools/dashboards and for everyone else should redirect them to a sandbox with walls. 
-    # def authorized
-    #   binding.pry
-    # end
-  
-
+  def catch_visitors
+    binding.pry
+    
+  end
 
 end
