@@ -34,6 +34,9 @@ gem 'faraday'
 ## Adds FastSerializer API
 gem 'jsonapi-serializer'
 
+## Add Support for Authorization self.access
+gem 'devise'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
