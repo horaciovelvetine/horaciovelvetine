@@ -1,25 +1,15 @@
 Rails.application.routes.draw do
   
-  
-  ##* STATIC: Path to main React application --> other links treat like API?? 
+  ##* STATIC: 
   root 'application#home'
+  get '/visitor', to: 'application#visitor'
   
-  ##* DEVISE: admin access
-  devise_for :admins
+  ##* DEVISE:
+  devise_for :admins, path: 'app', skip: :password
 
   ##* HIRED_APP fetch resume tree
   namespace :hired do
     get '/:com_attn', to: 'hired#show'
   end
 
-  # ##* HOME STUFF
-  # namespace :home do
-
-  #   ##* KTCHN
-  #   namespace :ktchn do
-
-  #   end
-  
-  # end
-  
 end
