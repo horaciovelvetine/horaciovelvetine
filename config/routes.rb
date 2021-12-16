@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
   ##* DEVISE:
   devise_for :admins, path: 'app', skip: :password
+  # devise_for :admins
 
   ##* HIRED_APP fetch resume tree
   namespace :hired do

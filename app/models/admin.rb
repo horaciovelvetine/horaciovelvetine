@@ -1,5 +1,5 @@
 class Admin < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable, :registerable and :omniauthable 
-  devise :database_authenticatable, :recoverable, :rememberable, :validatable
+  # :confirmable, :lockable, :timeoutable, :trackable, :registerable, :recoverable, and :omniauthable 
+  devise :database_authenticatable,  :rememberable, :validatable
 end
