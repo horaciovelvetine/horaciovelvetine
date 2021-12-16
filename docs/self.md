@@ -3,7 +3,8 @@ This repository also contains a functioning Rails App that I use for both my web
 
 ## Usage
 
-Fork and clone to run locally, this is currently in develop and not deployed to heroke. Though that is the future intention. 
+Fork and clone to run locally, this is currently in develop and not deployed. Though that is the future intention. 
+>>Local Deploy<<
 1) Run (parent dir): Should create a PostgreSql database locally to use
     rails db:create 
 2) Run: To setup the necasary tables
@@ -12,7 +13,7 @@ Fork and clone to run locally, this is currently in develop and not deployed to 
     rails db:seed 
 4) In a seperate terminal in the parent directory concurrently run: to compile the JS needed. 
     bin/webpack-dev-server 
-5) Run: To begin the developement server locally (Alternatively you can just run this step, on the first startup it will aut compile the JS which is happening above explicitly in step 4)
+5) Run: To begin the developement server locally
     rails server <-or-> rails s
 
 ## Notes Etc
