@@ -8,17 +8,18 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def about
+  def visitor
     binding.pry
-    #TODO should still send to the homepage front page but with no login data, to tell the React front end to register / redirect to the sandboxed front end
+    @json = {visitors_pass: "true"}
+    render :home
   end
 
 
   private 
 
   def catch_visitors
-    if current_admin.nil? 
-      redirect_to about_url
+    if current_admin.nil?
+      redirect_to visitor_url
     end
   end
 
