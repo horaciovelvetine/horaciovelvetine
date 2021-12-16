@@ -6,10 +6,9 @@ import MainContainer from '../containers/home/MainContainer'
 import LeftContainer from '../containers/home/LeftContainer'
 // import thunk from 'redux-thunk';
 
-//* would allow data to be setup on domcontent load
 // document.addEventListener('DOMContentLoaded', () => {
-const node = document.getElementById('json')
-const data = JSON.parse(node.getAttribute('data'))
+// const node = document.getElementById('json')
+const payload = JSON.parse(document.getElementById.getAttribute('payload'))
 // })
 
 // const store = createStore(reducer, applyMiddleware(thunk))
