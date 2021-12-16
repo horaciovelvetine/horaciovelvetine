@@ -2,16 +2,15 @@ class ApplicationController < ActionController::Base
   before_action :catch_visitors, only: :home
 
   def home
+  binding.pry
     #TODO use a serializer to speed up the rendering and get all of this working
-    binding.pry
-    # @data = "sample data"
+    ## @payload
   end
 
 
   def visitor
-    binding.pry
-    @json = {visitors_pass: "true"}
-    render :home
+  binding.pry
+    # @payload = {visitors_pass: "true"}
   end
 
 
