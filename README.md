@@ -9,7 +9,7 @@
 
 ## PROJECTS.ONGOING:: 
 - Scamazon --> (https://github.com/horaciovelvetine/scamazon_backend);
-- self.plugin.Scraper --> (https://github.com/horaciovelvetine/self.plugin.Scraper);
+- Bookmarkr --> (https://github.com/horaciovelvetine/bookmarkr_Scraper_Plugin);
 
 ## LEARNING.CURRENTLY:: 
 - React;
@@ -18,9 +18,6 @@
 
 ## ME.CONTACT:: 
 horaciovelvetine@gmail.com
-
-## FOR.LOOKING:: 
-- Oppurtunities to grow as a developer;
 
 ## DOCS.TECHNICAL::
 - This repository also functions as my portfolio website --> Looking for docs concerning that // it's operation? --> https://github.com/horaciovelvetine/horaciovelvetine/tree/main/docs
