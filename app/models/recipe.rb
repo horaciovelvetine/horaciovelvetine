@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-  belongs_to :context
+  # belongs_to :context
 
   has_one :link, as: :linkable
 
