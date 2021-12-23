@@ -1,0 +1,2 @@
+class DateUtil < ApplicationRecord
+end
