@@ -12,5 +12,7 @@ class CreateLinks < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index :links, :name
+    add_index :links, :text
   end
 end
