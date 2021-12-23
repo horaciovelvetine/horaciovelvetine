@@ -9,5 +9,6 @@ class CreateRecipes < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index :recipes, :name
   end
 end
