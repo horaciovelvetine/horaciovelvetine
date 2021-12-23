@@ -9,4 +9,5 @@ class Tag < ApplicationRecord
     has_and_belongs_to_many :journal_entries
     has_and_belongs_to_many :todos
 
+    validates :name, uniqueness: true
 end
