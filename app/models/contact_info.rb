@@ -1,3 +1,3 @@
 class ContactInfo < ApplicationRecord
-    has_many :links ##contexted
+    has_many :links, as: :linkable ##contexted
 end

@@ -1,7 +1,7 @@
 class JournalEntry < ApplicationRecord
   belongs_to :recipe
 
-  has_one :date
+  has_one :date, as: :dateable
   has_many :notes, as: :noteable
   has_many :ingredients
   has_many :steps
