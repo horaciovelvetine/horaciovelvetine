@@ -1,6 +1,6 @@
 class Resume < ApplicationRecord
 
-    has_many :links
+    has_many :links, as: :linkable
     has_many :skills
     has_many :educations
     has_many :experiences
