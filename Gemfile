@@ -7,6 +7,9 @@ ruby '2.7.5'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
+## Use pg_search to add searchability to pg
+gem 'pg_search'
+
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -25,7 +28,10 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-#Adds preferred debugging gem
+## Adds gon for passing data
+gem 'gon'
+
+## Adds preferred debugging gem
 gem 'pry', '~> 0.13.1'
 
 # For later LI/App Info updates

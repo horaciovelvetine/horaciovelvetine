@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   
   ##* DEVISE:
   devise_for :admins, path: 'app', skip: :password
-  # devise_for :admins
+  
+  ##? in case need to add backin the ability to sign_up for a new admin(user)   
+  ## devise_for :admins
 
   ##* HIRED_APP fetch resume tree
   namespace :hired do
