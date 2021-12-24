@@ -4,6 +4,8 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :desc
 
+      t.belongs_to :admin, null: false, foreign_key: true
+
       t.timestamps
     end
   end
