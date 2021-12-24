@@ -21,5 +21,3 @@ horaciovelvetine@gmail.com
 
 ## DOCS.TECHNICAL::
 - This repository also functions as my portfolio website --> Looking for docs concerning that // it's operation? --> https://github.com/horaciovelvetine/horaciovelvetine/tree/main/docs
-
-Thanks, self.
