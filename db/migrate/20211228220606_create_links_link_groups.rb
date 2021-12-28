@@ -1,6 +1,6 @@
 class CreateLinksLinkGroups < ActiveRecord::Migration[6.1]
   def change
-    create_table :links_link_groups do |t|
+    create_table :links_link_groups do, column_options: { null: false, foreign_key: true } |t|
       t.string :link
       t.string :link_group
 

@@ -1,6 +1,6 @@
 class CreateProjectsSkills < ActiveRecord::Migration[6.1]
   def change
-    create_table :projects_skills do |t|
+    create_table :projects_skills do, column_options: { null: false, foreign_key: true } |t|
       t.string :project
       t.string :skill
 
