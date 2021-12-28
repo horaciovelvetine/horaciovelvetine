@@ -1,7 +1,7 @@
 class CreateNotes < ActiveRecord::Migration[6.1]
   def change
     create_table :notes do |t|
-      t.string :text
+      t.text :text
       t.bigint :noteable_id
       t.string :noteable_type
 
