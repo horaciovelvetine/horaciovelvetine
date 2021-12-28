@@ -8,8 +8,6 @@ class CreateLinks < ActiveRecord::Migration[6.1]
       t.bigint :linkable_id
       t.string :linkable_type
 
-      t.belongs_to :context, null: false, foreign_key: true
-
       t.timestamps
     end
     add_index :links, :name
