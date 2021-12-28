@@ -1,7 +1,7 @@
 class Recipe < ApplicationRecord
   # belongs_to :context
 
-  has_one :link, as: :linkable
+  has_one :link, as: :linkable, optional: true
 
   has_many :steps
   has_many :ingredients
