@@ -74,7 +74,6 @@ module.exports = {
         },
       },
     },
-  },
     columns: {
       auto: 'auto',
       1: '1',
