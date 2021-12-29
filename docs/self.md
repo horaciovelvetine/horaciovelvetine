@@ -19,4 +19,30 @@ Fork and clone to run locally, this is currently in develop and not deployed. Th
 5. Run: To begin the developement server locally
    rails server <-or-> rails s
 
-## Notes Etc
+## Colors
+
+Original Palette :: 
+
+UI Component Grey Palette ::
+[] #221D28 <-- main content bg >
+[] #464348 <-- bg grey 1 (menu bg) >
+[] #5B626A <-- primary light grey (accents) >
+[] #69666B <-- bg grey 2 >
+[] #545055 <-- Search bg grey >
+
+UI Accent Palette ::
+[] #0C84FF <-- primary blue >
+[] #FF443A <-- primary red >
+[] #FF9F0B <-- tertiary orange >
+[] #FEBC2E <-- minimize yellow >
+[] #3F8CE6 <-- tab highlighted blue >
+[X] #FFFFFF <-- pure whirte svg outline/icon>
+
+Fonts Palette::
+[] #727E87 <-- header font grey >
+[] #C1BFC4 <-- secondary header font grey>
+[] #F0EFF0 <-- primary content font white >
+[] #858388 <-- secondary content font grey >
+[] #7D7C80 <-- greyed out text ("search...") >
+[] #3E9AFC <-- link font blue>
+
