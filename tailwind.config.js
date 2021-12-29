@@ -50,27 +50,27 @@ module.exports = {
     extend: {
       colors: {
         ui: {
-          100: '#69666B',
-          200:'#5B626A', 
-          400:'#545055',
-          600: '#464348',
-          800: '#221D28',
+          100: '#5B626A', // primary light gray
+          200: '#69666B', // secondary light gray
+          400: '#545055', // text input bg gray
+          600: '#464348', // menu bg 
+          800: '#221D28', // main bg
         },
         accent: {
-          50: '#FFFFFF',
-          100: '#0C84FF',
-          200: '#3F8CE6',
-          400: '#FEBC2E',
-          600: '#FF9F0B',
-          800:'#FF443A',
+          50: '#FFFFFF', //white 
+          100: '#0C84FF', //primary blue
+          200: '#3F8CE6', //obj highlighted blue
+          400: '#FEBC2E', //minimize yellow
+          600: '#FF9F0B', //flag orange
+          800:'#FF443A', //primary red
         },
         fonts: {
-          50: '#F0EFF0',
-          100: '#C1BFC4',
-          200: '#858388',
-          400: '#7D7C80',
-          600: '#727E87',
-          800: '#3E9AFC',
+          50: '#F0EFF0', //primary font
+          100: '#C1BFC4', //secondary herader font
+          200: '#858388', //secondary font
+          400: '#7D7C80', //grayed out text
+          600: '#727E87', //primary header font
+          800: '#3E9AFC', //link blue
         },
       },
     },
