@@ -15,15 +15,13 @@
 
 
   <body>
-    <div id="payload" type="hidden">
-      <%= content_tag :div, id: 'json', json: @payload.to_json do %><% end %>
-    </div>
+    <div class="hidden" type="hidden" id="payload-container"></div>
     <div id="devise-notice-container">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     </div>
     <!-- Original provided: <main class="container mx-auto mt-28 px-5 flex"> -->
-    <main class="container mx-auto pt-16" id="root">
+    <main class="container mx-auto pt-16">
       <%= yield %>
     </main>
   </body>
