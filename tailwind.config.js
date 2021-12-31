@@ -11,6 +11,33 @@ module.exports = {
   presets: [],
   darkMode: 'media', // or 'class'
   theme: {
+    extend: {
+      colors: {
+        'ui': {
+          100: '#5B626A', // primary light gray
+          200: '#69666B', // secondary light gray
+          400: '#545055', // text input bg gray
+          600: '#464348', // menu bg 
+          800: '#221D28', // main bg
+        },
+        'accent': {
+          50: '#FFFFFF', //white 
+          100: '#0C84FF', //primary blue
+          200: '#3F8CE6', //obj highlighted blue
+          400: '#FEBC2E', //minimize yellow
+          600: '#FF9F0B', //flag orange
+          800: '#FF443A', //primary red
+        },
+        'fonts': {
+          50: '#F0EFF0', //primary font
+          100: '#C1BFC4', //secondary herader font
+          200: '#858388', //secondary font
+          400: '#7D7C80', //grayed out text
+          600: '#727E87', //primary header font
+          800: '#3E9AFC', //link blue
+        },
+      },
+    },
     screens: {
       sm: '640px',
       md: '768px',
@@ -47,33 +74,6 @@ module.exports = {
       pink: colors.pink,
       rose: colors.rose,
     }),
-    extend: {
-      colors: {
-        ui: {
-          100: '#5B626A', // primary light gray
-          200: '#69666B', // secondary light gray
-          400: '#545055', // text input bg gray
-          600: '#464348', // menu bg 
-          800: '#221D28', // main bg
-        },
-        accent: {
-          50: '#FFFFFF', //white 
-          100: '#0C84FF', //primary blue
-          200: '#3F8CE6', //obj highlighted blue
-          400: '#FEBC2E', //minimize yellow
-          600: '#FF9F0B', //flag orange
-          800:'#FF443A', //primary red
-        },
-        fonts: {
-          50: '#F0EFF0', //primary font
-          100: '#C1BFC4', //secondary herader font
-          200: '#858388', //secondary font
-          400: '#7D7C80', //grayed out text
-          600: '#727E87', //primary header font
-          800: '#3E9AFC', //link blue
-        },
-      },
-    },
     columns: {
       auto: 'auto',
       1: '1',
