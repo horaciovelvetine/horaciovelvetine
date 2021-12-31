@@ -119,10 +119,10 @@ ActiveRecord::Schema.define(version: 2021_12_28_220659) do
   end
 
   create_table "grocery_lists", force: :cascade do |t|
-    t.bigint "todo_id", null: false
+    t.bigint "task_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["todo_id"], name: "index_grocery_lists_on_todo_id"
+    t.index ["task_id"], name: "index_grocery_lists_on_task_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -313,14 +313,14 @@ ActiveRecord::Schema.define(version: 2021_12_28_220659) do
     t.index ["name"], name: "index_tags_on_name"
   end
 
-  create_table "tags_todos", id: false, force: :cascade do |t|
-    t.bigint "todo_id", null: false
+  create_table "tags_tasks", id: false, force: :cascade do |t|
+    t.bigint "task_id", null: false
     t.bigint "tag_id", null: false
-    t.index ["tag_id", "todo_id"], name: "index_tags_todos_on_tag_id_and_todo_id"
-    t.index ["todo_id", "tag_id"], name: "index_tags_todos_on_todo_id_and_tag_id"
+    t.index ["tag_id", "task_id"], name: "index_tags_tasks_on_tag_id_and_task_id"
+    t.index ["task_id", "tag_id"], name: "index_tags_tasks_on_task_id_and_tag_id"
   end
 
-  create_table "todos", force: :cascade do |t|
+  create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.text "desc"
     t.boolean "flagged"
@@ -328,7 +328,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_220659) do
     t.bigint "context_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["context_id"], name: "index_todos_on_context_id"
+    t.index ["context_id"], name: "index_tasks_on_context_id"
   end
 
   add_foreign_key "companies", "contact_infos"
@@ -345,7 +345,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_220659) do
   add_foreign_key "date_utils", "contexts"
   add_foreign_key "educations", "admins"
   add_foreign_key "experiences", "admins"
-  add_foreign_key "grocery_lists", "todos"
+  add_foreign_key "grocery_lists", "tasks"
   add_foreign_key "ingredients", "grocery_lists"
   add_foreign_key "ingredients", "journal_entries"
   add_foreign_key "ingredients", "recipes"
@@ -370,7 +370,7 @@ ActiveRecord::Schema.define(version: 2021_12_28_220659) do
   add_foreign_key "steps", "journal_entries"
   add_foreign_key "steps", "recipes"
   add_foreign_key "tags", "admins"
-  add_foreign_key "tags_todos", "tags"
-  add_foreign_key "tags_todos", "todos"
-  add_foreign_key "todos", "contexts"
+  add_foreign_key "tags_tasks", "tags"
+  add_foreign_key "tags_tasks", "tasks"
+  add_foreign_key "tasks", "contexts"
 end

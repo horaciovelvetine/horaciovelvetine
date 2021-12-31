@@ -1,4 +1,4 @@
-class Todo < ApplicationRecord
+class Task < ApplicationRecord
   belongs_to :context
 
   has_one :link, optional: true
