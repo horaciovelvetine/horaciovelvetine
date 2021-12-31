@@ -2,7 +2,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom';
-import Main from '../containers/home/Main'
+import Main from '../containers/home/Main';
 
 // import thunk from 'redux-thunk';
 
@@ -20,5 +20,5 @@ ReactDOM.render(
         {/* <Provider store={store} */}
         <Main />
         {/* </Provider> */}
-    </React.StrictMode>, document.getElementById('rootLeftContainer')
+    </React.StrictMode>, document.getElementById('mainContainer')
 );
