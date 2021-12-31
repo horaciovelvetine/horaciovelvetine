@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :catch_visitors, only: :home
+  # before_action :catch_visitors, only: :home
 
   def home
     #TODO use a serializer to speed up the rendering and get all of this working
@@ -8,8 +8,7 @@ class ApplicationController < ActionController::Base
 
 
   def visitor
-  binding.pry
-    # @payload = {visitors_pass: "true"}
+    binding.pry
   end
 
 
