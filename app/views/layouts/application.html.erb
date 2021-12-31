@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full">
   <head>
     <title>Horaciovelvetine</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -14,14 +14,14 @@
   </head>
 
 
-  <body>
+  <body class="h-full" >
     <div class="hidden" type="hidden" id="payload-container"></div>
     <div id="devise-notice-container">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     </div>
     <!-- Original provided: <main class="container mx-auto mt-28 px-5 flex"> -->
-    <main class="container mx-auto pt-16">
+    <main id="root">
       <%= yield %>
     </main>
   </body>
