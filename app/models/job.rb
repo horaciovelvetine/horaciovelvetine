@@ -4,7 +4,7 @@ class Job < ApplicationRecord
 
   has_one :resume
 
-  has_many :tasks
+  has_many :to_dos
   has_many :notes, as: :noteable
   has_many :links, as: :linkable
   ##? Reference to issue #30 self

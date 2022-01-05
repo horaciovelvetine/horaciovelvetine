@@ -1,4 +1,4 @@
-class Task < ApplicationRecord
+class ToDo < ApplicationRecord
   belongs_to :context
 
   has_one :link, optional: true
@@ -7,4 +7,5 @@ class Task < ApplicationRecord
   has_one :contact_info, optional: true
 
   has_and_belongs_to_many :tags
+  has_and_belongs_to_many :contexts
 end
