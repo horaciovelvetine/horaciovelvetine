@@ -6,7 +6,7 @@
     "tmp": true,
     ".ruby-version": true,
     "Gemfile.lock": true,
-    "bin": true,
+    // "bin": true,
     ".browserslistrc": true,
     "vendor": true,
     ".yarnrc.yml": true,
