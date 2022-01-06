@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_06_204851) do
+ActiveRecord::Schema.define(version: 2022_01_06_213707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,13 @@ ActiveRecord::Schema.define(version: 2022_01_06_204851) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["admin_id"], name: "index_contexts_on_admin_id"
+  end
+
+  create_table "contexts_date_utils", id: false, force: :cascade do |t|
+    t.bigint "date_util_id", null: false
+    t.bigint "context_id", null: false
+    t.index ["context_id", "date_util_id"], name: "index_contexts_date_utils_on_context_id_and_date_util_id"
+    t.index ["date_util_id", "context_id"], name: "index_contexts_date_utils_on_date_util_id_and_context_id"
   end
 
   create_table "contexts_jobs", id: false, force: :cascade do |t|
@@ -340,6 +347,8 @@ ActiveRecord::Schema.define(version: 2022_01_06_204851) do
   add_foreign_key "companies", "contact_infos"
   add_foreign_key "contact_infos", "admins"
   add_foreign_key "contexts", "admins"
+  add_foreign_key "contexts_date_utils", "contexts"
+  add_foreign_key "contexts_date_utils", "date_utils"
   add_foreign_key "contexts_jobs", "contexts"
   add_foreign_key "contexts_jobs", "jobs"
   add_foreign_key "contexts_links", "contexts"
