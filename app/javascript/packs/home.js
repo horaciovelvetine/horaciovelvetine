@@ -2,13 +2,13 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom';
-import MainContainer from '../containers/home/MainContainer'
-import LeftContainer from '../containers/home/LeftContainer'
+import Main from '../containers/home/Main';
+
 // import thunk from 'redux-thunk';
 
 // document.addEventListener('DOMContentLoaded', () => {
 // const node = document.getElementById('json')
-const payload = JSON.parse(document.getElementById.getAttribute('payload'))
+// const payload = JSON.parse(document.getElementById.getAttribute('payload'))
 // })
 
 // const store = createStore(reducer, applyMiddleware(thunk))
@@ -18,15 +18,7 @@ ReactDOM.render(
 
     <React.StrictMode>
         {/* <Provider store={store} */}
-        <LeftContainer />
+        <Main />
         {/* </Provider> */}
-    </React.StrictMode>, document.getElementById('rootLeftContainer')
-);
-
-ReactDOM.render(
-    <React.StrictMode>
-        {/* <Provider store={store} */}
-        <MainContainer />
-        {/* </Provider> */}
-    </React.StrictMode>, document.getElementById('rootMainContainer')
+    </React.StrictMode>, document.getElementById('mainContainer')
 );

@@ -1,6 +1,6 @@
 import React from 'react'
 // import componen from './components/componen'
-class MainContainer extends React.Component {
+class Main extends React.Component {
 
   render() {
     return (
@@ -11,4 +11,4 @@ class MainContainer extends React.Component {
   }
 }
 
-export default MainContainer
+export default Main

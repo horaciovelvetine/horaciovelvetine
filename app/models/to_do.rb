@@ -1,10 +1,6 @@
-class Recipe < ApplicationRecord
-
-  has_many :steps
-  has_many :ingredients
-  has_many :journal_entries
-  
+class ToDo < ApplicationRecord
   has_many :links, as: :linkable
+  has_many :dates, as: :dateable
   has_many :notes, as: :noteable
 
   has_and_belongs_to_many :tags

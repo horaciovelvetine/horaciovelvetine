@@ -1,4 +1,4 @@
 class ContactInfo < ApplicationRecord
-    has_many :links, as: :linkable ##contexted
+    has_many :links, as: :linkable
     belongs_to :admin
 end

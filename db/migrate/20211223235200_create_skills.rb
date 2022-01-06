@@ -4,7 +4,7 @@ class CreateSkills < ActiveRecord::Migration[6.1]
       t.string :title
       t.string :description
 
-      t.belongs_too :admin, null: false, foreign_key: true
+      t.belongs_to :admin, null: false, foreign_key: true
 
       t.timestamps
     end

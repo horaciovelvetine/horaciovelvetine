@@ -5,9 +5,12 @@ class CreateDateUtils < ActiveRecord::Migration[6.1]
       t.date :end
       t.date :on
       t.boolean :ongoing
+      t.string :kind
 
       t.bigint :dateable_id
       t.string :dateable_type
+
+      t.belongs_to :context, null: false, foreign_key: true
 
       t.timestamps
     end
