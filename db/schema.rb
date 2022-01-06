@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_05_191331) do
+ActiveRecord::Schema.define(version: 2022_01_06_204851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,13 @@ ActiveRecord::Schema.define(version: 2022_01_05_191331) do
     t.index ["note_id", "context_id"], name: "index_contexts_notes_on_note_id_and_context_id"
   end
 
+  create_table "contexts_recipes", id: false, force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "context_id", null: false
+    t.index ["context_id", "recipe_id"], name: "index_contexts_recipes_on_context_id_and_recipe_id"
+    t.index ["recipe_id", "context_id"], name: "index_contexts_recipes_on_recipe_id_and_context_id"
+  end
+
   create_table "contexts_skills", id: false, force: :cascade do |t|
     t.bigint "skill_id", null: false
     t.bigint "context_id", null: false
@@ -126,10 +133,8 @@ ActiveRecord::Schema.define(version: 2022_01_05_191331) do
   end
 
   create_table "grocery_lists", force: :cascade do |t|
-    t.bigint "to_do_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["to_do_id"], name: "index_grocery_lists_on_to_do_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -328,10 +333,8 @@ ActiveRecord::Schema.define(version: 2022_01_05_191331) do
     t.text "desc"
     t.boolean "flagged"
     t.boolean "ongoing"
-    t.bigint "context_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["context_id"], name: "index_to_dos_on_context_id"
   end
 
   add_foreign_key "companies", "contact_infos"
@@ -343,6 +346,8 @@ ActiveRecord::Schema.define(version: 2022_01_05_191331) do
   add_foreign_key "contexts_links", "links"
   add_foreign_key "contexts_notes", "contexts"
   add_foreign_key "contexts_notes", "notes"
+  add_foreign_key "contexts_recipes", "contexts"
+  add_foreign_key "contexts_recipes", "recipes"
   add_foreign_key "contexts_skills", "contexts"
   add_foreign_key "contexts_skills", "skills"
   add_foreign_key "contexts_to_dos", "contexts"
@@ -350,7 +355,6 @@ ActiveRecord::Schema.define(version: 2022_01_05_191331) do
   add_foreign_key "date_utils", "contexts"
   add_foreign_key "educations", "admins"
   add_foreign_key "experiences", "admins"
-  add_foreign_key "grocery_lists", "to_dos"
   add_foreign_key "ingredients", "grocery_lists"
   add_foreign_key "ingredients", "journal_entries"
   add_foreign_key "ingredients", "recipes"
@@ -381,5 +385,4 @@ ActiveRecord::Schema.define(version: 2022_01_05_191331) do
   add_foreign_key "tags", "admins"
   add_foreign_key "tags_to_dos", "tags"
   add_foreign_key "tags_to_dos", "to_dos"
-  add_foreign_key "to_dos", "contexts"
 end
