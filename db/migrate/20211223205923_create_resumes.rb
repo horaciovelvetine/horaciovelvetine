@@ -3,8 +3,8 @@ class CreateResumes < ActiveRecord::Migration[6.1]
     create_table :resumes do |t|
       t.string :name
       t.string :version
-      t.bigint :content_id
-      t.string :content_type
+      t.bigint :content_id, null: true
+      t.string :content_type, null: true
 
       t.belongs_to :admin, null: false, foreign_key: true
       t.timestamps

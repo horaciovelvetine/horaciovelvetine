@@ -5,8 +5,8 @@ class CreateLinks < ActiveRecord::Migration[6.1]
       t.string :text
       t.string :desc
       t.boolean :pinned
-      t.bigint :linkable_id
-      t.string :linkable_type
+      t.bigint :linkable_id, null: true
+      t.string :linkable_type, null: true
 
       t.timestamps
     end

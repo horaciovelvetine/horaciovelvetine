@@ -7,8 +7,8 @@ class CreateDateUtils < ActiveRecord::Migration[6.1]
       t.boolean :ongoing
       t.string :kind
 
-      t.bigint :dateable_id
-      t.string :dateable_type
+      t.bigint :dateable_id, null: true
+      t.string :dateable_type, null: true
 
       t.belongs_to :context, null: false, foreign_key: true
 
