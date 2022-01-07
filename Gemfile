@@ -34,9 +34,6 @@ gem 'gon'
 ## Adds preferred debugging gem
 gem 'pry', '~> 0.13.1'
 
-# For later LI/App Info updates
-gem 'faraday'
-
 ## Adds FastSerializer API
 gem 'jsonapi-serializer'
 

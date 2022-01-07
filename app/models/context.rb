@@ -9,5 +9,7 @@ class Context < ApplicationRecord
     has_and_belongs_to_many :date_utils
 
     has_and_belongs_to_many :recipes
-    # has_and_belongs_to_many :journal_entries
+    
+    validates :name, uniqueness: true
+    validates_inclusion_of :name, in: Contexts['names']    # has_and_belongs_to_many :journal_entries
 end
