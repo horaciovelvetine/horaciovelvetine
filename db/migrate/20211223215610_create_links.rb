@@ -2,8 +2,8 @@ class CreateLinks < ActiveRecord::Migration[6.1]
   def change
     create_table :links do |t|
       t.string :name
-      t.string :text
-      t.string :desc
+      t.string :href
+      t.string :icon
       t.boolean :pinned
       t.bigint :linkable_id, null: true
       t.string :linkable_type, null: true
@@ -11,6 +11,5 @@ class CreateLinks < ActiveRecord::Migration[6.1]
       t.timestamps
     end
     add_index :links, :name
-    add_index :links, :text
   end
 end
