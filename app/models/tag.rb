@@ -10,4 +10,5 @@ class Tag < ApplicationRecord
     has_and_belongs_to_many :to_dos
 
     validates :name, uniqueness: true
+    validates_inclusion_of :name, in: Tags['names']
 end
