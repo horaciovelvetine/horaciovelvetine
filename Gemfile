@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+## For storing password to create admin locally
+gem "figaro"
+
 ## Adds gon for passing data
 gem 'gon'
 

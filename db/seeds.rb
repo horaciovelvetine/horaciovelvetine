@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+admin = Admin.create(email: "#{ENV["admin_email"]}", password: "#{ENV["admin_password"]}")
+
+contexts = Contexts['names'].map { |n| Context.create!(name: "#{n}", admin: admin)}
+tags = Tags['names'].map { |n| Tag.create!(name: "#{n}", admin: admin)}
