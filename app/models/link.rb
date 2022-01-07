@@ -1,5 +1,5 @@
 class Link < ApplicationRecord
-  belongs_to :linkable, polymorphic: true
+  belongs_to :linkable, polymorphic: true, optional: true
 
   has_and_belongs_to_many :tags
   has_and_belongs_to_many :link_groups
