@@ -26,6 +26,7 @@ ReactDOM.render(
         {/* </Provider> */}
     </React.StrictMode>, document.getElementById('mainContainer')
 );
+
 ReactDOM.render(
 
     <React.StrictMode>
@@ -34,6 +35,7 @@ ReactDOM.render(
         {/* </Provider> */}
     </React.StrictMode>, document.getElementById('footerContainer')
 );
+
 ReactDOM.render(
 
     <React.StrictMode>
@@ -42,6 +44,7 @@ ReactDOM.render(
         {/* </Provider> */}
     </React.StrictMode>, document.getElementById('menuContainer')
 );
+
 ReactDOM.render(
 
     <React.StrictMode>
