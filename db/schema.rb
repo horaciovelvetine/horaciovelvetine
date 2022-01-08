@@ -211,15 +211,14 @@ ActiveRecord::Schema.define(version: 2022_01_06_213707) do
 
   create_table "links", force: :cascade do |t|
     t.string "name"
-    t.string "text"
-    t.string "desc"
+    t.string "href"
+    t.string "icon"
     t.boolean "pinned"
     t.bigint "linkable_id"
     t.string "linkable_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_links_on_name"
-    t.index ["text"], name: "index_links_on_text"
   end
 
   create_table "links_tags", id: false, force: :cascade do |t|
