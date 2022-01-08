@@ -1,12 +1,10 @@
 import React from 'react'
-// import componen from './components/componen'
+// import componen from './components/example.js'
 class Main extends React.Component {
 
   render() {
     return (
-      <div>
-        rocked and loaded
-      </div>
+      <p>I made it here.</p>
     )
   }
 }
