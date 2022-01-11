@@ -1,4 +1,4 @@
-names:
+tags:
   - ruby
   - rails
   - js
@@ -107,3 +107,33 @@ names:
   - staple
   - dateidea
   - bored
+contexts:
+  - company
+  - recipe
+  - todo
+  - contact_info
+  - experience
+  - job
+  - skill
+  - project
+  - entry
+  - social
+  - home
+  - video
+  - reference
+  - archived
+  - flagged
+  - favorited
+  - application
+  - applied
+  - scheduled
+  - interviewed
+  - passed
+  - offered
+  - negotiating
+  - accepted
+  - done
+links:
+  - {name: "Google", href: "https://www.google.com", icon: "test", pinned: false }
+  - {name: "Sick Apron", href: "https://www.hedleyandbennett.com/products/the-big-apron-denver", icon: "covered", pinned: false }
+  - {name: "Where is Webb?", href: "https://www.gstatic.com/og/_/ss/k=og.qtm.HxoUAioIAQQ.L.W.O/m=qcwid/excm=qaaw,qadd,qaid,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhpr/d=1/ed=1/ct=zgms/rs=AA2YrTvrQeu0vR2dT9ScDnl4fHY3p_tRGg", icon: "thebigpicture", pinned: false }
