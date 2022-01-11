@@ -11,5 +11,4 @@ class Context < ApplicationRecord
     has_and_belongs_to_many :recipes
     
     validates :name, uniqueness: true
-    validates_inclusion_of :name, in: Contexts['names']    # has_and_belongs_to_many :journal_entries
 end
