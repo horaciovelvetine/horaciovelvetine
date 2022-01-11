@@ -2,12 +2,12 @@ import React from 'react';
 
 export default function searchField() {
 	return (
-		<div>
-			<div className='flex relative w-2/5 shrink m-3 items-center'>
-				<div className='flex absolute items-center'>
+		<div className=''>
+			<div className='flex relative m-3 items-center'>
+				<div className='flex absolute'>
 					<button
 						type='submit'
-						className='focus:outline-none focus:shadow-outline flex items-center'>
+						className='focus:outline-none flex focus:shadow-outlineflex'>
 						<svg
 							fill='none'
 							stroke='currentColor'
@@ -23,8 +23,8 @@ export default function searchField() {
 
 				<input
 					type='search'
-					name='q'
-					className=' text-lg rounded-md pl-10 w-full'
+					name='mainSearch'
+					className='text-lg rounded-md pl-10 w-full'
 					placeholder='Search...'
 					autoComplete='off'
 					autoFocus={true}></input>
