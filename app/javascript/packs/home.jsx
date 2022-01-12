@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
-import Layout from './../containers/home/Layout'
+import Layout from '../containers/home/Layout'
 
 // Needed for grabbing info 
 // import thunk from 'redux-thunk';
