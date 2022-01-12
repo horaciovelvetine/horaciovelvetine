@@ -1,3 +1,6 @@
+
+
+import React from 'react';
 import { Fragment, useState } from 'react';
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon, SearchIcon } from '@heroicons/react/solid';
@@ -20,18 +23,12 @@ const user = {
 		'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 };
 const navigation = [
-	{
-		name: 'Inboxes',
-		href: '#',
-		children: [
-			{ name: 'Technical Support', href: '#' },
-			{ name: 'Sales', href: '#' },
-			{ name: 'General', href: '#' },
-		],
-	},
-	{ name: 'Reporting', href: '#', children: [] },
+
+	{ name: '+Link', href: '#', children: [] },
 	{ name: 'Settings', href: '#', children: [] },
 ];
+
+{/* //! Needs to be replaced with a search bar!!! (on collapse**) */}
 const sidebarNavigation = [
 	{ name: 'Open', href: '#', icon: InboxIcon, current: true },
 	{ name: 'Archive', href: '#', icon: ArchiveIcon, current: false },
@@ -57,6 +54,8 @@ export default function Layout() {
 			<div className='h-full flex flex-col'>
 				{/* Top nav*/}
 				<header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
+					
+					
 					{/* Logo area */}
 					<div className='absolute inset-y-0 left-0 md:static md:flex-shrink-0'>
 						<a
@@ -70,11 +69,12 @@ export default function Layout() {
 						</a>
 					</div>
 
+					{/*//! This is the side menu associated with the search bar issue above */}
 					{/* Picker area */}
 					<div className='mx-auto md:hidden'>
 						<div className='relative'>
 							<label htmlFor='inbox-select' className='sr-only'>
-								Choose inbox
+								Choose context
 							</label>
 							<select
 								id='inbox-select'
@@ -90,6 +90,7 @@ export default function Layout() {
 						</div>
 					</div>
 
+					
 					{/* Menu button area */}
 					<div className='absolute inset-y-0 right-0 pr-4 flex items-center sm:pr-6 md:hidden'>
 						{/* Mobile menu button */}
@@ -112,7 +113,7 @@ export default function Layout() {
 								<input
 									id='desktop-search'
 									type='search'
-									placeholder='Search'
+									placeholder='Search...'
 									className='block w-full border-transparent pl-12 placeholder-gray-500 focus:border-transparent sm:text-sm focus:ring-0'
 								/>
 								<div className='pointer-events-none absolute inset-y-0 left-0 flex items-center justify-center pl-4'>
@@ -126,21 +127,10 @@ export default function Layout() {
 									Inboxes
 								</a>
 								<a href='#' className='text-sm font-medium text-gray-900'>
-									Reporting
-								</a>
-								<a href='#' className='text-sm font-medium text-gray-900'>
 									Settings
 								</a>
 							</nav>
 							<div className='flex items-center space-x-8'>
-								<span className='inline-flex'>
-									<a
-										href='#'
-										className='-mx-1 bg-white p-1 rounded-full text-gray-400 hover:text-gray-500'>
-										<span className='sr-only'>View notifications</span>
-										<BellIcon className='h-6 w-6' aria-hidden='true' />
-									</a>
-								</span>
 
 								<Menu as='div' className='relative inline-block text-left'>
 									<Menu.Button className='bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'>
@@ -189,6 +179,9 @@ export default function Layout() {
 							</div>
 						</div>
 					</div>
+
+					
+
 
 					{/* Mobile menu, show/hide this `div` based on menu open/closed state */}
 					<Transition.Root show={mobileMenuOpen} as={Fragment}>
@@ -266,49 +259,25 @@ export default function Layout() {
 											</Fragment>
 										))}
 									</div>
-									<div className='border-t border-gray-200 pt-4 pb-3'>
-										<div className='max-w-8xl mx-auto px-4 flex items-center sm:px-6'>
-											<div className='flex-shrink-0'>
-												<img className='h-10 w-10 rounded-full' src={user.imageUrl} alt='' />
-											</div>
-											<div className='ml-3 min-w-0 flex-1'>
-												<div className='text-base font-medium text-gray-800 truncate'>
-													{user.name}
-												</div>
-												<div className='text-sm font-medium text-gray-500 truncate'>
-													{user.email}
-												</div>
-											</div>
-											<a
-												href='#'
-												className='ml-auto flex-shrink-0 bg-white p-2 text-gray-400 hover:text-gray-500'>
-												<span className='sr-only'>View notifications</span>
-												<BellIcon className='h-6 w-6' aria-hidden='true' />
-											</a>
-										</div>
-										<div className='mt-3 max-w-8xl mx-auto px-2 space-y-1 sm:px-4'>
-											{userNavigation.map((item) => (
-												<a
-													key={item.name}
-													href={item.href}
-													className='block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-50'>
-													{item.name}
-												</a>
-											))}
-										</div>
-									</div>
+
 								</nav>
 							</Transition.Child>
 						</Dialog>
 					</Transition.Root>
 				</header>
 
+				
+
+
+
+
+
+
+
 				{/* Bottom section */}
 				<div className='min-h-0 flex-1 flex overflow-hidden'>
 					{/* Narrow sidebar*/}
-					<nav
-						aria-label='Sidebar'
-						className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
+					<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 						<div className='relative w-20 flex flex-col p-3 space-y-3'>
 							{sidebarNavigation.map((item) => (
 								<a
@@ -330,17 +299,17 @@ export default function Layout() {
 						{/* Primary column */}
 						<section
 							aria-labelledby='primary-heading'
-							className='min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-last'>
+							className='min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-first'>
 							<h1 id='primary-heading' className='sr-only'>
 								Home
 							</h1>
-							{/* Your content */}
+							{/* Your content */}<p>look some content</p>
 						</section>
 
 						{/* Secondary column (hidden on smaller screens) */}
-						<aside className='hidden lg:block lg:flex-shrink-0 lg:order-first'>
+						<aside className='hidden lg:block lg:flex-shrink-0'>
 							<div className='h-full relative flex flex-col w-96 border-r border-gray-200 bg-gray-100 overflow-y-auto'>
-								{/* Your content */}
+								{/* Your content */}<p>could be siome other content</p>
 							</div>
 						</aside>
 					</main>
