@@ -1,7 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
-import Search from '../containers/home/search';
-
 
 // Needed for grabbing info 
 // import thunk from 'redux-thunk';
@@ -17,33 +15,9 @@ ReactDOM.render(
 
     <React.StrictMode>
         {/* <Provider store={store} */}
-        <div className="mt-4 flex flex-row w-screen">
-            <Search />
+        <div className="">
+            <p>I made it home!</p>
         </div>
         {/* </Provider> */}
-    </React.StrictMode>, document.getElementById('searchBarContainer')
+    </React.StrictMode>, document.getElementById('homeContainer')
 );
-// ReactDOM.render(
-
-//     <React.StrictMode>
-//         {/* <Provider store={store} */}
-//         <Menu />
-//         {/* </Provider> */}
-//     </React.StrictMode>, document.getElementById('menuContainer')
-// );
-// ReactDOM.render(
-
-//     <React.StrictMode>
-//         {/* <Provider store={store} */}
-//         <Main />
-//         {/* </Provider> */}
-//     </React.StrictMode>, document.getElementById('mainContainer')
-// );
-// ReactDOM.render(
-
-//     <React.StrictMode>
-//         {/* <Provider store={store} */}
-//         <Footer />
-//         {/* </Provider> */}
-//     </React.StrictMode>, document.getElementById('footerContainer')
-// );
