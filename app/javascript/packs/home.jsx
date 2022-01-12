@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import ReactDOM from 'react-dom';
-import Layout from '../containers/home/Layout'
+import Layout from '../containers/home/Layout';
 
-// Needed for grabbing info 
+// Needed for grabbing info
 // import thunk from 'redux-thunk';
 
 // document.addEventListener('DOMContentLoaded', () => {
@@ -13,12 +13,10 @@ import Layout from '../containers/home/Layout'
 // const store = createStore(reducer, applyMiddleware(thunk))
 
 ReactDOM.render(
-
-    <React.StrictMode>
-        {/* <Provider store={store} */}
-        <div>
-            <Layout />
-        </div>
-        {/* </Provider> */}
-    </React.StrictMode>, document.getElementById('homeContainer')
+	<React.StrictMode>
+		{/* <Provider store={store} */}
+			<Layout />
+		{/* </Provider> */}
+	</React.StrictMode>,
+	document.getElementById('homeContainer')
 );
