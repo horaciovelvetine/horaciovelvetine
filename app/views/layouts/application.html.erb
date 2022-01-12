@@ -13,16 +13,18 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <body class="h-full overflow-hidden">
+    
+    <main>
+      <%= yield %>
+    </main>
 
-  <body class="h-full overflow-hidden" >
+
     <div class="hidden" type="hidden" id="payload-container"></div>
+    
     <div id="devise-notice-container">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     </div>
-    
-    <main id="root">
-      <%= yield %>
-    </main>
   </body>
 </html>
