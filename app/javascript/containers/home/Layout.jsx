@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { Fragment, useState } from 'react';
 import { Dialog, Menu, Transition } from '@headlessui/react';
@@ -15,6 +13,9 @@ import {
 	UserCircleIcon,
 	XIcon,
 } from '@heroicons/react/outline';
+
+import TagCloud from './components/TagCloud';
+import ResultsMain from './components/ResultsMain';
 
 const navigation = [
 	{ name: '+Link', href: '#', children: [] },
@@ -216,9 +217,10 @@ export default function Layout() {
 
 
 
-				{/* Bottom section */}
+				{/* //! ALL CONTENT BELOW TOP SEARCH/NAV BAR */}
 				<div className='min-h-0 flex-1 flex overflow-hidden'>
-					{/* Narrow sidebar*/}
+					
+					{/* //! SIDEBAR */}
 					<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 						<div className='relative w-20 flex flex-col p-3 space-y-3'>
 							{sidebarNavigation.map((item) => (
@@ -236,22 +238,22 @@ export default function Layout() {
 						</div>
 					</nav>
 
-					{/* Main area */}
+					{/* //! MAIN CONTENT */}
 					<main className='min-w-0 flex-1 border-t border-gray-200 lg:flex'>
-						{/* Primary column */}
+						{/* //! Primary column */}
 						<section
 							aria-labelledby='primary-heading'
 							className='min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-first'>
 							<h1 id='primary-heading' className='sr-only'>
 								Home
 							</h1>
-							{/* Your content */}<p>look some content</p>
+							<ResultsMain />
 						</section>
 
-						{/* Secondary column (hidden on smaller screens) */}
+						{/* //! Secondary column (hidden on smaller screens) */}
 						<aside className='hidden lg:block lg:flex-shrink-0'>
 							<div className='h-full relative flex flex-col w-96 border-r border-gray-200 bg-gray-100 overflow-y-auto'>
-								{/* Your content */}<p>dissapears on smaller screens</p>
+								<TagCloud />
 							</div>
 						</aside>
 					</main>
