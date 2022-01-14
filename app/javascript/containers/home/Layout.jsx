@@ -16,19 +16,12 @@ import {
 	XIcon,
 } from '@heroicons/react/outline';
 
-const user = {
-	name: 'Whitney Francis',
-	email: 'whitneyfrancis@example.com',
-	imageUrl:
-		'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-};
 const navigation = [
-
 	{ name: '+Link', href: '#', children: [] },
 	{ name: 'Settings', href: '#', children: [] },
 ];
 
-{/* //! Needs to be replaced with a search bar!!! (on collapse**) */}
+{/* //! SIDEBAR ITEMS/ICONS */}
 const sidebarNavigation = [
 	{ name: 'Open', href: '#', icon: InboxIcon, current: true },
 	{ name: 'Archive', href: '#', icon: ArchiveIcon, current: false },
@@ -51,7 +44,7 @@ export default function Layout() {
 
 	return (
 		<>
-			<div className='h-full flex flex-col'>
+			<div className='h-screen flex flex-col'>
 				{/* Top nav*/}
 				<header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
 					
@@ -59,17 +52,12 @@ export default function Layout() {
 					{/* Logo area */}
 					<div className='absolute inset-y-0 left-0 md:static md:flex-shrink-0'>
 						<a
-							href='#'
+							href='/'
 							className='flex items-center justify-center h-16 w-16 bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 md:w-20'>
-							<img
-								className='h-8 w-auto'
-								src='https://tailwindui.com/img/logos/workflow-mark.svg?color=white'
-								alt='Workflow'
-							/>
 						</a>
 					</div>
 
-					{/*//! This is the side menu associated with the search bar issue above */}
+					{/*//! Would be a good mobile dropdown to select context if needed */}
 					{/* Picker area */}
 					<div className='mx-auto md:hidden'>
 						<div className='relative'>
@@ -90,10 +78,10 @@ export default function Layout() {
 						</div>
 					</div>
 
-					
-					{/* Menu button area */}
+					{/* //! ALL MAIN SEARCH/NAV MENU RELATED BUTTONS*/}
+					{/* //! MENU BUTTONS */}
 					<div className='absolute inset-y-0 right-0 pr-4 flex items-center sm:pr-6 md:hidden'>
-						{/* Mobile menu button */}
+						{/* //! Mobile main nav show hide button */}
 						<button
 							type='button'
 							className='-mr-2 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600'
@@ -103,7 +91,8 @@ export default function Layout() {
 						</button>
 					</div>
 
-					{/* Desktop nav area */}
+					
+					{/* //! DESKTOP TOP NAVIGATION SEARCH + ADD/SETTINGS */}
 					<div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
 						<div className='min-w-0 flex-1'>
 							<div className='max-w-2xl relative text-gray-400 focus-within:text-gray-500'>
@@ -136,7 +125,7 @@ export default function Layout() {
 					
 
 
-					{/* Mobile menu, show/hide this `div` based on menu open/closed state */}
+					{/* //!MOBILE Drop down version of NAVBAR (search, add, settings), show/hide this `div` based on setMobileOpen state*/}
 					<Transition.Root show={mobileMenuOpen} as={Fragment}>
 						<Dialog as='div' className='fixed inset-0 z-40 md:hidden' onClose={setMobileMenuOpen}>
 							<Transition.Child
@@ -180,12 +169,12 @@ export default function Layout() {
 									<div className='mt-2 max-w-8xl mx-auto px-4 sm:px-6'>
 										<div className='relative text-gray-400 focus-within:text-gray-500'>
 											<label htmlFor='mobile-search' className='sr-only'>
-												Search all inboxes
+												Search...
 											</label>
 											<input
 												id='mobile-search'
 												type='search'
-												placeholder='Search all inboxes'
+												placeholder='Search...'
 												className='block w-full border-gray-300 rounded-md pl-10 placeholder-gray-500 focus:border-indigo-600 focus:ring-indigo-600'
 											/>
 											<div className='absolute inset-y-0 left-0 flex items-center justify-center pl-3'>
@@ -262,7 +251,7 @@ export default function Layout() {
 						{/* Secondary column (hidden on smaller screens) */}
 						<aside className='hidden lg:block lg:flex-shrink-0'>
 							<div className='h-full relative flex flex-col w-96 border-r border-gray-200 bg-gray-100 overflow-y-auto'>
-								{/* Your content */}<p>could be siome other content</p>
+								{/* Your content */}<p>dissapears on smaller screens</p>
 							</div>
 						</aside>
 					</main>
