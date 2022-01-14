@@ -1,7 +1,11 @@
 import React from 'react';
+import { useState, Fragment } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { ChevronDownIcon, SearchIcon } from '@heroicons/react/solid';
+import { XIcon, MenuIcon } from '@heroicons/react/outline';
+import { HomePage } from './HomePage';
 
-export default function SearchBar() {
-	// const [attr1, attr2] = destructuring()
+export default function SearchBar(props) {
 
 	return (
 		<>
@@ -23,9 +27,9 @@ export default function SearchBar() {
 						<select
 							id='inbox-select'
 							className='rounded-md border-0 bg-none pl-3 pr-8 text-base font-medium text-gray-900 focus:ring-2 focus:ring-indigo-600'
-							defaultValue={sidebarNavigation.find((item) => item.current).name}>
-							{sidebarNavigation.map((item) => (
-								<option key={item.name}>{item.name}</option>
+							defaultValue={props.contexts.find((context) => context.current).name}>
+							{props.contexts.map((context) => (
+								<option key={context.name}>{context.name}</option>
 							))}
 						</select>
 						<div className='pointer-events-none absolute inset-y-0 right-0 flex items-center justify-center pr-2'>
@@ -78,8 +82,8 @@ export default function SearchBar() {
 				</div>
 
 				{/* //!MOBILE Drop down version of NAVBAR (search, add, settings), show/hide this `div` based on setMobileOpen state*/}
-				<Transition.Root show={mobileMenuOpen} as={Fragment}>
-					<Dialog as='div' className='fixed inset-0 z-40 md:hidden' onClose={setMobileMenuOpen}>
+				<Transition.Root show={props.mobileMenuOpen} as={Fragment}>
+					<Dialog as='div' className='fixed inset-0 z-40 md:hidden' onClose={props.setMobileMenuOpen}>
 						<Transition.Child
 							as={Fragment}
 							enter='transition-opacity ease-linear duration-300'
@@ -135,7 +139,7 @@ export default function SearchBar() {
 									</div>
 								</div>
 								<div className='max-w-8xl mx-auto py-3 px-2 sm:px-4'>
-									{navigation.map((item) => (
+									{props.navigation.map((item) => (
 										<Fragment key={item.name}>
 											<a
 												href={item.href}
