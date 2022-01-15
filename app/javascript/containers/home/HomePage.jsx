@@ -16,17 +16,18 @@ export default function HomePage() {
 	]);
 
 	const [navigation, setNavigation] = useState([
-			{ name: '+Link', href: '#', children: [] },
-			{ name: 'Settings', href: '#', children: [] },
-		],
-	);
+		{ name: '+Link', href: '#', children: [] },
+		{ name: 'Settings', href: '#', children: [] },
+	]);
 
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
 	return (
 		<>
-			<SearchBar contexts={contexts} mobileMenuOpen={mobileMenuOpen} navigation={navigation} />
-			<MainContent contexts={contexts} mobileMenuOpen={mobileMenuOpen} navigation={navigation} />
+			<div className='h-screen flex flex-col'>
+				<SearchBar contexts={contexts} mobileMenuOpen={mobileMenuOpen} navigation={navigation} />
+				<MainContent contexts={contexts} mobileMenuOpen={mobileMenuOpen} navigation={navigation} />
+			</div>
 		</>
 	);
 }
