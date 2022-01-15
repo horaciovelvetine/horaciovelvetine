@@ -7,6 +7,8 @@ import { XIcon, HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon } from '@h
 import SearchBar from './SearchBar';
 import MainContent from './MainContent';
 
+
+
 export default function HomePage() {
 	const [contexts, setContexts] = useState([
 		{ name: 'Home', href: '#', icon: HomeIcon, current: true },
@@ -20,13 +22,11 @@ export default function HomePage() {
 		{ name: 'Settings', href: '#', children: [] },
 	]);
 
-	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
-				<SearchBar contexts={contexts} mobileMenuOpen={mobileMenuOpen} navigation={navigation} />
-				<MainContent contexts={contexts} mobileMenuOpen={mobileMenuOpen} navigation={navigation} />
+				<SearchBar contexts={contexts}  navigation={navigation} />
+				<MainContent contexts={contexts} navigation={navigation} />
 			</div>
 		</>
 	);
