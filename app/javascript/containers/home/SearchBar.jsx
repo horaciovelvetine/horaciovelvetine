@@ -6,6 +6,7 @@ import { XIcon, MenuIcon } from '@heroicons/react/outline';
 import { HomePage } from './HomePage';
 
 export default function SearchBar(props) {
+	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
 	return (
 		<>
@@ -14,10 +15,12 @@ export default function SearchBar(props) {
 				<div className='absolute inset-y-0 left-0 md:static md:flex-shrink-0'>
 					<a
 						href='/'
-						className='flex items-center justify-center h-16 w-16 bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 md:w-20'></a>
+						className='flex items-center justify-center h-16 w-16 bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 md:w-20'>
+						Logo
+					</a>
 				</div>
 
-				{/*//! Would be a good mobile dropdown to select context if needed */}
+				{/*//! dropdown to select context if needed */}
 				{/* Picker area */}
 				<div className='mx-auto md:hidden'>
 					<div className='relative'>
@@ -82,8 +85,8 @@ export default function SearchBar(props) {
 				</div>
 
 				{/* //!MOBILE Drop down version of NAVBAR (search, add, settings), show/hide this `div` based on setMobileOpen state*/}
-				<Transition.Root show={props.mobileMenuOpen} as={Fragment}>
-					<Dialog as='div' className='fixed inset-0 z-40 md:hidden' onClose={props.setMobileMenuOpen}>
+				<Transition.Root show={mobileMenuOpen} as={Fragment}>
+					<Dialog as='div' className='fixed inset-0 z-40 md:hidden' onClose={setMobileMenuOpen}>
 						<Transition.Child
 							as={Fragment}
 							enter='transition-opacity ease-linear duration-300'
