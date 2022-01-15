@@ -2,17 +2,20 @@ import React from 'react';
 import TagCloud from './components/TagCloud';
 import ResultsMain from './components/ResultsMain';
 
-export default function MainContent(sidebarNavigation) {
-	// const [attr1, attr2] = destructuring()
+function classNames(...classes) {
+	return classes.filter(Boolean).join(' ');
+}
 
-	{debugger}
+export default function MainContent(props) {
+	
+	
 	return (
 		<>
 			<div className='min-h-0 flex-1 flex overflow-hidden'>
 				{/* //! SIDEBAR */}
 				<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 					<div className='relative w-20 flex flex-col p-3 space-y-3'>
-						{sidebarNavigation.map((item) => (
+						{props.contexts.map((item) => (
 							<a
 								key={item.name}
 								href={item.href}
