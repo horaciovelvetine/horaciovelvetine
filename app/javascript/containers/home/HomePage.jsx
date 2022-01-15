@@ -1,8 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Dialog, Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon, SearchIcon } from '@heroicons/react/solid';
-import { XIcon, HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon } from '@heroicons/react/outline';
+import { HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon } from '@heroicons/react/outline';
 
 import SearchBar from './SearchBar';
 import MainContent from './MainContent';

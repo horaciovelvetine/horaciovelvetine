@@ -3,7 +3,6 @@ import { useState, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { ChevronDownIcon, SearchIcon } from '@heroicons/react/solid';
 import { XIcon, MenuIcon } from '@heroicons/react/outline';
-import { HomePage } from './HomePage';
 
 export default function SearchBar(props) {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
