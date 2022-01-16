@@ -40,7 +40,6 @@ export default function SearchBar(props) {
 					</div>
 				</div>
 
-				{/* //! ALL MAIN SEARCH/NAV MENU RELATED BUTTONS*/}
 				{/* //! MENU BUTTONS */}
 				<div className='absolute inset-y-0 right-0 pr-4 flex items-center sm:pr-6 md:hidden'>
 					{/* //! Mobile main nav show hide button */}
