@@ -1,6 +1,6 @@
 import React from 'react';
 import TagCloud from './components/TagCloud';
-import ResultsMain from './components/ResultsMain';
+import Results from './components/Results';
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
@@ -15,16 +15,16 @@ export default function MainContent(props) {
 				{/* //! SIDEBAR */}
 				<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 					<div className='relative w-20 flex flex-col p-3 space-y-3'>
-						{props.contexts.map((item) => (
+						{props.contexts.map((c) => (
 							<a
-								key={item.name}
-								href={item.href}
+								key={c.name}
+								href={c.href}
 								className={classNames(
-									item.current ? 'bg-gray-900 text-white' : 'text-gray-400 hover:bg-gray-700',
+									c.current ? 'bg-gray-900 text-white' : 'text-gray-400 hover:bg-gray-700',
 									'flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg'
 								)}>
-								<span className='sr-only'>{item.name}</span>
-								<item.icon className='h-6 w-6' aria-hidden='true' />
+								<span className='sr-only'>{c.name}</span>
+								<c.icon className='h-6 w-6' aria-hidden='true' />
 							</a>
 						))}
 					</div>
@@ -39,7 +39,9 @@ export default function MainContent(props) {
 						<h1 id='primary-heading' className='sr-only'>
 							Home
 						</h1>
-						<ResultsMain />
+						<div>
+							<Results />
+						</div>
 					</section>
 
 					{/* //! Secondary column (hidden on smaller screens) */}
