@@ -2,7 +2,6 @@ import React from 'react';
 import { SearchIcon } from '@heroicons/react/solid';
 
 export default function Search(props) {
-	console.log(props);
 	return (
 		<div className='min-w-0 flex-1'>
 			<div className='max-w-2xl relative text-gray-400 focus-within:text-gray-500'>
