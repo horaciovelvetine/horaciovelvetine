@@ -5,7 +5,8 @@ import { SearchIcon } from '@heroicons/react/solid';
 import { XIcon } from '@heroicons/react/outline';
 
 export default function SidebarNavMenu(props) {
-	const mobileMenuOpen = props.mobileMenuOpen
+	const mobileMenuOpen = props.mobileMenuOpen;
+
 	return (
 		<Transition.Root show={mobileMenuOpen} as={Fragment}>
 			<Dialog as='div' className='fixed inset-0 z-40 md:hidden' onClose={props.setMobileMenuOpen}>
@@ -70,16 +71,7 @@ export default function SidebarNavMenu(props) {
 										href={item.href}
 										className='block rounded-md py-2 px-3 text-base font-medium text-gray-900 hover:bg-gray-100'>
 										{item.name}
-									</a>'
-									'
-									{item.children.map((child) => (
-										<a
-											key={child.name}
-											href={child.href}
-											className='block rounded-md py-2 pl-5 pr-3 text-base font-medium text-gray-500 hover:bg-gray-100'>
-											{child.name}
-										</a>
-									))}
+									</a>
 								</Fragment>
 							))}
 						</div>
