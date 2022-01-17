@@ -9,10 +9,10 @@ import MainContent from './MainContent';
 
 export default function HomePage() {
 	const [contexts, setContexts] = useState([
-		{ name: 'Home', href: '#', icon: HomeIcon, current: true },
-		{ name: 'Hired', href: '#', icon: BriefcaseIcon, current: false },
-		{ name: 'Ktchn', href: '#', icon: FireIcon, current: false },
-		{ name: 'ToDos', href: '#', icon: ClipboardCheckIcon, current: false },
+		{ name: 'Home', href: '#', icon: HomeIcon, current: true, order: 1 },
+		{ name: 'Hired', href: '#', icon: BriefcaseIcon, current: false, order: 2 },
+		{ name: 'Ktchn', href: '#', icon: FireIcon, current: false, order: 3 },
+		{ name: 'ToDos', href: '#', icon: ClipboardCheckIcon, current: false, order: 4 },
 	]);
 
 	const [navigation, setNavigation] = useState([
