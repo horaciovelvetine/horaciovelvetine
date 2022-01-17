@@ -5,8 +5,6 @@ import { HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon } from '@heroicon
 import SearchBar from './SearchBar';
 import MainContent from './MainContent';
 
-
-
 export default function HomePage() {
 	const [contexts, setContexts] = useState([
 		{ name: 'Home', href: '#', icon: HomeIcon, current: true, order: 1 },
@@ -23,7 +21,7 @@ export default function HomePage() {
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
-				<SearchBar contexts={contexts}  navigation={navigation} />
+				<SearchBar contexts={contexts} navigation={navigation} />
 				<MainContent contexts={contexts} navigation={navigation} />
 			</div>
 		</>

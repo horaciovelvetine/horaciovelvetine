@@ -1,16 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
 
-import ContextsSelectorDropdown from './components/ContextsSelectorDropdown'
-import NavLinks from './components/NavLinks'
-import Search from './components/Search'
+import ContextsSelectorDropdown from './components/ContextsSelectorDropdown';
+import NavLinks from './components/NavLinks';
+import Search from './components/Search';
 import SidebarNavMenu from './components/SideBarNavMenu';
 import MobileNavBarToggleDisplayButton from './components/MobileNavBarToggleDisplayButton';
 
 export default function SearchBar(props) {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-	
 	return (
 		<>
 			<header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
@@ -25,7 +24,7 @@ export default function SearchBar(props) {
 
 				{/* //!Mobile Size Only Dropdown Context Picker */}
 				<ContextsSelectorDropdown contexts={props.contexts} />
-				
+
 				<div className='absolute inset-y-0 right-0 pr-4 flex items-center sm:pr-6 md:hidden'>
 					{/* //! Mobile main nav show hide button */}
 					<MobileNavBarToggleDisplayButton setMobileMenuOpen={setMobileMenuOpen} />
@@ -38,7 +37,11 @@ export default function SearchBar(props) {
 				</div>
 
 				{/* //!For Small & Mobile Screen Size Nav Menu Sidebar: see issue #53 */}
-				<SidebarNavMenu mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} navigation={props.navigation} />
+				<SidebarNavMenu
+					mobileMenuOpen={mobileMenuOpen}
+					setMobileMenuOpen={setMobileMenuOpen}
+					navigation={props.navigation}
+				/>
 			</header>
 		</>
 	);
