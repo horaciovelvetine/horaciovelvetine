@@ -1,6 +1,5 @@
 import React from 'react';
-import { useState, useReducer  } from 'react';
-
+import { useState, useReducer } from 'react';
 
 // * Sub-Components
 import ContextsSelectorDropdown from './components/ContextsSelectorDropdown';
@@ -10,13 +9,14 @@ import SidebarNavMenu from './components/SideBarNavMenu';
 import MobileNavBarToggleDisplayButton from './components/MobileNavBarToggleDisplayButton';
 
 // * Reducers
-import QueryReducer from '../../reducers/QueryReducer';	
+import QueryReducer from '../../reducers/QueryReducer';
 
 export default function SearchBar(props) {
+
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const [query, dispatch] = useReducer(QueryReducer, '');
 
-	console.log(query)
+	console.log(query);
 	return (
 		<>
 			<header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
@@ -32,14 +32,14 @@ export default function SearchBar(props) {
 				{/* //!Mobile Size Only Dropdown Context Picker */}
 				<ContextsSelectorDropdown contexts={props.contexts} />
 
+				{/* //! Mobile main nav show hide button */}
 				<div className='absolute inset-y-0 right-0 pr-4 flex items-center sm:pr-6 md:hidden'>
-					{/* //! Mobile main nav show hide button */}
 					<MobileNavBarToggleDisplayButton setMobileMenuOpen={setMobileMenuOpen} />
 				</div>
 
 				{/* //! DESKTOP TOP NAVIGATION SEARCH + ADD/SETTINGS */}
 				<div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
-					<Search setQuery={dispatch} context={props.contexts.filter(context => context['current'] == true)} />
+					<Search setQuery={dispatch} context={props.contexts.filter((context) => context['current'] == true)} />
 					<NavLinks navigation={props.navigation} />
 				</div>
 
