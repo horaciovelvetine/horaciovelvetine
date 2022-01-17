@@ -31,17 +31,17 @@ export default function SearchBar(props) {
 				
 				<div className='absolute inset-y-0 right-0 pr-4 flex items-center sm:pr-6 md:hidden'>
 					{/* //! Mobile main nav show hide button */}
-					<MobileNavBarToggleDisplayButton setMobileMenuOpen={ () => setMobileMenuOpen()} />
+					<MobileNavBarToggleDisplayButton setMobileMenuOpen={setMobileMenuOpen} />
 				</div>
 
 				{/* //! DESKTOP TOP NAVIGATION SEARCH + ADD/SETTINGS */}
 				<div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
 					<Search />
-					<NavLinks />
+					<NavLinks navigation={props.navigation}/>
 				</div>
 
 				{/* //!For /Small & Mobile Screen Nav Menu Sidebar: feature addressed later */}
-				<SidebarNavMenu mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={ () => setMobileMenuOpen()} navigation={props.navigation} />
+				<SidebarNavMenu mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} navigation={props.navigation} />
 			</header>
 		</>
 	);
