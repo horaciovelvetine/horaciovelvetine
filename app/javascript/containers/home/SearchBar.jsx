@@ -1,8 +1,5 @@
 import React from 'react';
-import { useState, Fragment } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import { SearchIcon } from '@heroicons/react/solid';
-import { XIcon, MenuIcon } from '@heroicons/react/outline';
+import { useState } from 'react';
 
 import ContextsSelectorDropdown from './components/ContextsSelectorDropdown'
 import NavLinks from './components/NavLinks'
@@ -37,10 +34,10 @@ export default function SearchBar(props) {
 				{/* //! DESKTOP TOP NAVIGATION SEARCH + ADD/SETTINGS */}
 				<div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
 					<Search />
-					<NavLinks navigation={props.navigation}/>
+					<NavLinks navigation={props.navigation} />
 				</div>
 
-				{/* //!For /Small & Mobile Screen Nav Menu Sidebar: feature addressed later */}
+				{/* //!For Small & Mobile Screen Size Nav Menu Sidebar: see issue #53 */}
 				<SidebarNavMenu mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} navigation={props.navigation} />
 			</header>
 		</>
