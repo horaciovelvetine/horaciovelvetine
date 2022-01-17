@@ -5,7 +5,7 @@ import { SearchIcon } from '@heroicons/react/solid';
 import { XIcon } from '@heroicons/react/outline';
 
 export default function SidebarNavMenu(props) {
-	const mobileMenuOpen = () => { return props.mobileMenuOpen}
+	const mobileMenuOpen = props.mobileMenuOpen
 	return (
 		<Transition.Root show={mobileMenuOpen} as={Fragment}>
 			<Dialog as='div' className='fixed inset-0 z-40 md:hidden' onClose={props.setMobileMenuOpen}>
