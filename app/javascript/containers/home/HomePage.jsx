@@ -5,7 +5,7 @@ import { HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon } from '@heroicon
 import SearchBar from './SearchBar';
 import MainContent from './MainContent';
 
-import ContextsReducer from '../../reducers/ContextsReducer';
+import ContextsReducer from '../../hooks/ContextsReducer';
 
 const baseUrl = 'https://127.0.0.1:3000';
 

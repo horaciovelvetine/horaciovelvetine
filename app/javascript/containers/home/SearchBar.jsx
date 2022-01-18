@@ -9,7 +9,7 @@ import SidebarNavMenu from './components/SideBarNavMenu';
 import MobileNavBarToggleDisplayButton from './components/MobileNavBarToggleDisplayButton';
 
 // * Reducers
-import SearchReducer from '../../reducers/SearchReducer';
+import SearchReducer from '../../hooks/SearchReducer';
 
 export default function SearchBar(props) {
 	const [context, setContext] = useState(props.contexts.filter((context) => context['current'] == true));
