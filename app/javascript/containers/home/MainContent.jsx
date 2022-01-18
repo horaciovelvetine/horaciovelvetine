@@ -7,12 +7,12 @@ import ContextsSelectorSidebar from './components/ContextsSelectorSidebar';
 
 export default function MainContent(props) {
 	
-	
+
 	return (
 		<>
 			<div className='min-h-0 flex-1 flex overflow-hidden'>
 				{/* //! SIDEBAR */}
-				<ContextsSelectorSidebar contexts={props.contexts}/>
+				<ContextsSelectorSidebar contexts={props.contexts} dispatchContexts={props.dispatchContexts}/>
 
 				{/* //! MAIN CONTENT */}
 				<main className='min-w-0 flex-1 border-t border-gray-200 lg:flex'>
