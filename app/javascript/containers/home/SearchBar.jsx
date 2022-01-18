@@ -24,7 +24,7 @@ export default function SearchBar(props) {
 					<a
 						href='/'
 						className='flex items-center justify-center h-16 w-16 bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 md:w-20'>
-						Logo
+						{context[0].name}
 					</a>
 				</div>
 
