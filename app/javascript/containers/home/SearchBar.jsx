@@ -12,11 +12,10 @@ import MobileNavBarToggleDisplayButton from './components/MobileNavBarToggleDisp
 import QueryReducer from '../../reducers/QueryReducer';
 
 export default function SearchBar(props) {
-
+	const [context, setContext] = useState(props.contexts.filter((context) => context['current'] == true));
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const [query, dispatch] = useReducer(QueryReducer, '');
+	const [query, dispatch] = useReducer(QueryReducer, { query: '' });
 
-	console.log(query);
 	return (
 		<>
 			<header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
@@ -39,7 +38,7 @@ export default function SearchBar(props) {
 
 				{/* //! DESKTOP TOP NAVIGATION SEARCH + ADD/SETTINGS */}
 				<div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
-					<Search setQuery={dispatch} context={props.contexts.filter((context) => context['current'] == true)} />
+					<Search dispatch={dispatch} query={query} context={context} contexts={props.contexts} />
 					<NavLinks navigation={props.navigation} />
 				</div>
 
