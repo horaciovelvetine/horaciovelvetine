@@ -14,7 +14,7 @@ import SearchReducer from '../../reducers/SearchReducer';
 export default function SearchBar(props) {
 	const [context, setContext] = useState(props.contexts.filter((context) => context['current'] == true));
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const [search, setSearch] = useReducer(SearchReducer, { query: '' });
+	const [search, dispatchSearch] = useReducer(SearchReducer, { query: '' });
 
 	return (
 		<>
@@ -38,7 +38,7 @@ export default function SearchBar(props) {
 
 				{/* //! DESKTOP TOP NAVIGATION SEARCH + ADD/SETTINGS */}
 				<div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
-					<Search setSearch={setSearch} query={search} context={context} contexts={props.contexts} />
+					<Search dispatchSearch={dispatchSearch} query={search} context={context} contexts={props.contexts} />
 					<NavLinks navigation={props.navigation} />
 				</div>
 

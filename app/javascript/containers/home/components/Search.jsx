@@ -16,7 +16,7 @@ export default function Search(props) {
 					className='block w-full border-transparent pl-12 placeholder-gray-500 focus:border-transparent sm:text-sm focus:ring-0'
 					autoFocus={true}
 					onChange={(e) => {
-						props.setSearch([e.target.value, props.context, props.contexts]);
+						props.dispatchSearch([e.target.value, props.context, props.contexts]);
 					}}
 				/>
 				<div className='pointer-events-none absolute inset-y-0 left-0 flex items-center justify-center pl-4'>
