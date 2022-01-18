@@ -5,6 +5,8 @@ import { HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon } from '@heroicon
 import SearchBar from './SearchBar';
 import MainContent from './MainContent';
 
+const baseUrl = 'https://127.0.0.1:3000/'
+
 export default function HomePage() {
 	const [contexts, setContexts] = useState([
 		{ name: 'Home', href: '#', icon: HomeIcon, current: false, order: 1 },
