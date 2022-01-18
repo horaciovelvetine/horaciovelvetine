@@ -9,12 +9,12 @@ import SidebarNavMenu from './components/SideBarNavMenu';
 import MobileNavBarToggleDisplayButton from './components/MobileNavBarToggleDisplayButton';
 
 // * Reducers
-import QueryReducer from '../../reducers/QueryReducer';
+import SearchReducer from '../../reducers/SearchReducer';
 
 export default function SearchBar(props) {
 	const [context, setContext] = useState(props.contexts.filter((context) => context['current'] == true));
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const [query, dispatch] = useReducer(QueryReducer, { text: '' });
+	const [search, setSearch] = useReducer(SearchReducer, { text: '' });
 
 	return (
 		<>
@@ -38,7 +38,7 @@ export default function SearchBar(props) {
 
 				{/* //! DESKTOP TOP NAVIGATION SEARCH + ADD/SETTINGS */}
 				<div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
-					<Search dispatch={dispatch} query={query} context={context} contexts={props.contexts} />
+					<Search setSearch={setSearch} query={search} context={context} contexts={props.contexts} />
 					<NavLinks navigation={props.navigation} />
 				</div>
 
