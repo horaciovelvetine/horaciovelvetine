@@ -14,7 +14,7 @@ import QueryReducer from '../../reducers/QueryReducer';
 export default function SearchBar(props) {
 	const [context, setContext] = useState(props.contexts.filter((context) => context['current'] == true));
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const [query, dispatch] = useReducer(QueryReducer, { query: '' });
+	const [query, dispatch] = useReducer(QueryReducer, { text: '' });
 
 	return (
 		<>
