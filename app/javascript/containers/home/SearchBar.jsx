@@ -9,12 +9,12 @@ import SidebarNavMenu from './components/SideBarNavMenu';
 import MobileNavBarToggleDisplayButton from './components/MobileNavBarToggleDisplayButton';
 
 // * Reducers
-import SearchReducer from '../../hooks/SearchReducer';
+import searchReducer from '../../hooks/searchReducer';
 
 export default function SearchBar(props) {
 	const [context, setContext] = useState(props.contexts.filter((context) => context['current'] == true));
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const [search, dispatchSearch] = useReducer(SearchReducer, { query: '' });
+	const [search, dispatchSearch] = useReducer(searchReducer, { query: '' });
 
 	return (
 		<>

@@ -5,13 +5,13 @@ import { HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon } from '@heroicon
 import SearchBar from './SearchBar';
 import MainContent from './MainContent';
 
-import ContextsReducer from '../../hooks/ContextsReducer';
+import contextReducer from '../../hooks/contextReducer';
 
 const baseUrl = 'https://127.0.0.1:3000';
 
 export default function HomePage() {
 
-	const [contexts, dispatchContexts] = useReducer(() => ContextsReducer, [
+	const [contexts, dispatchContexts] = useReducer(() => contextReducer, [
 		{ name: 'Home', href: `${baseUrl}/api/home`, icon: HomeIcon, current: false, order: 1 },
 		{ name: 'Hired', href: `${baseUrl}/api/hired`, icon: BriefcaseIcon, current: false, order: 2 },
 		{ name: 'Ktchn', href: `${baseUrl}/api/ktchn`, icon: FireIcon, current: true, order: 3 },
