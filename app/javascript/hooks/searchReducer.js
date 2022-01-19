@@ -1,8 +1,12 @@
 
 // Updates the complex state of query to return the correctectually contexed 
-export default function searchReducer(search, payload) {
+export default function searchReducer(searchPrev, payload) {
   const contexts = [payload[2].map((c) => c.name)]
-  return search = {query: payload[0]}
+  const query = payload[0]
+  const context = payload[1][0]
+  const previous = searchPrev
+
+  return search = { query: query, context: context }
 
   //! For later when this needs to be a little more complicated
   // switch (payload[1][0].name) {
