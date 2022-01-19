@@ -21,9 +21,8 @@ export default function SearchBar(props) {
 	
 	useEffectOnUpdate(() => {
 		useBounceDelay(() => {
-			const { loading, error, response } = useFetch(() => {
-				
-			})
+			// const { loading, error, response } = useFetch((`link`, {}, [search])
+			console.log("Search for this:", search)
 		}, 280, [search])
 	}, [search])
 	return (
