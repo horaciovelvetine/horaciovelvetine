@@ -7,9 +7,9 @@ export default function useEffectOnUpdate(callback, dependencies) {
 
   useEffect(() => {
     if (firstRender.current) {
-      firsRender.current = false
+      firstRender.current = false
       return
     }
     return callback()
-  }, depencies)
+  }, dependencies)
 }
