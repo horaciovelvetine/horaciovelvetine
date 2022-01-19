@@ -5,14 +5,22 @@ Rails.application.routes.draw do
   get '/visitor', to: 'application#visitor'
   
   ##* DEVISE:
-  # devise_for :admins, path: 'app', skip: :password
+  devise_for :admins, path: 'app', skip: :password
   
   ##? in case need to add backin the ability to sign_up for a new admin(user)   
-  devise_for :admins
+  # devise_for :admins
 
-  ##* HIRED_APP fetch resume tree
-  namespace :hired do
-    get '/:com_attn', to: 'hired#show'
+  ##* For All Front End Resource Related Requests 
+  scope module: 'api', path: 'api' do
+    
+    ##* Initial bookmarkr routing
+    get 'bookmarkr', to: 'bookmarkr#index'
+    get 'search', to: 'bookmarkr#search'
+    post 'add_bookmarkr', to: 'bookmarkr#new'
+
+    ##* Future Scaff for Settings Config
+    get 'settings', to: 'api#state'
   end
+  
 
 end

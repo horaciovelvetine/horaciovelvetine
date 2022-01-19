@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full">
+<html class="h-full bg-gray-100">
   <head>
     <title>Horaciovelvetine</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -13,16 +13,18 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <body class="h-full overflow-hidden">
+    
+    <main>
+      <%= yield %>
+    </main>
 
-  <body class="h-full" >
+
     <div class="hidden" type="hidden" id="payload-container"></div>
+    
     <div id="devise-notice-container">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     </div>
-    <!-- Original provided: <main class="container mx-auto mt-28 px-5 flex"> -->
-    <main id="root">
-      <%= yield %>
-    </main>
   </body>
 </html>

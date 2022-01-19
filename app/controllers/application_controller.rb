@@ -2,8 +2,7 @@ class ApplicationController < ActionController::Base
   # before_action :catch_visitors, only: :home
 
   def home
-    #TODO use a serializer to speed up the rendering and get all of this working
-    @payload = ["testingdetails", "test"] 
+    # @payload = ["testingdetails", "test"] 
   end
 
 
