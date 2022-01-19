@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useReducer } from 'react';
+import { useState, useReducer, useEffect } from 'react';
 
 // * Sub-Components
 import ContextsSelectorDropdown from './components/ContextsSelectorDropdown';
@@ -8,14 +8,24 @@ import Search from './components/Search';
 import SidebarNavMenu from './components/SideBarNavMenu';
 import MobileNavBarToggleDisplayButton from './components/MobileNavBarToggleDisplayButton';
 
-// * Reducers
+// * Hooks
 import searchReducer from '../../hooks/searchReducer';
+import useBounceDelay from '../../hooks/custom/useBounceDelay';
+import useFetch from '../../hooks/custom/useFetch';
+import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
 
 export default function SearchBar(props) {
 	const [context, setContext] = useState(props.contexts.filter((context) => context['current'] == true));
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const [search, dispatchSearch] = useReducer(searchReducer, { query: '' });
-
+	const [search, dispatchSearch] = useReducer(searchReducer, { query: '', context: '' });
+	
+	useEffectOnUpdate(() => {
+		useBounceDelay(() => {
+			const { loading, error, response } = useFetch(() => {
+				
+			})
+		}, 280, [search])
+	}, [search])
 	return (
 		<>
 			<header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
