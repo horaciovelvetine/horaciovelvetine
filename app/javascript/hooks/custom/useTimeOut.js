@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from "react"
 
+// #2: https://github.com/WebDevSimplified/useful-custom-react-hooks/tree/main/src/2-useTimeout
 export default function useTimeout(callback, delay) {
   const callbackRef = useRef(callback)
   const timeoutRef = useRef()

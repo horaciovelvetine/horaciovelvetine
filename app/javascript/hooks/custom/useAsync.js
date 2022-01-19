@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 
+// #9: https://github.com/WebDevSimplified/useful-custom-react-hooks/tree/main/src/5-useArray
 export default function useAsync(callback, dependencies = []) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState()

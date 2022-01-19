@@ -1,5 +1,6 @@
 import { useState } from "react"
 
+// #5: https://github.com/WebDevSimplified/useful-custom-react-hooks/tree/main/src/5-useArray
 export default function useArray(defaultValue) {
   const [array, setArray] = useState(defaultValue)
 
