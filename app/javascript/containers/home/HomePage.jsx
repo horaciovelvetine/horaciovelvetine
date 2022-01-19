@@ -23,10 +23,6 @@ export default function HomePage() {
 		{ name: 'Settings', href: `${baseUrl}/settings` },
 	]);
 
-	useEffect((e) => {
-		console.log('effective!')
-	}, [contexts])
-
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
