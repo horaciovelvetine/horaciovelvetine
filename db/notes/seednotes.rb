@@ -5,7 +5,7 @@ HTML.search("//dl").first.children.each do |node|
 
 
 
-  if node.name == "p" && node.children.length < 2
+  if (node.name == "p" || node.name =="dt" || node.name == "dl" ) && node.children.length < 2
     puts "Skip #1"
     puts "name:#{node.name}, said: #{node.text}"
     next
@@ -13,13 +13,26 @@ HTML.search("//dl").first.children.each do |node|
 
   if node.children.length > 2
     
-    
     node.children.each do |child|
+
+      ## Handles all tag elements
+      if child.name == "h3"
+        binding.pry
+      ## Handles all link elements
+      elsif child.name == "a"
+        binding.pry
+      ## Handles all exceptions
+      else
+        binding.pry
+      end
+
       binding.pry
+
     end
 
   end
 
+  ## Here the node.children length == 0 or ?? 
   binding.pry
 
 end
