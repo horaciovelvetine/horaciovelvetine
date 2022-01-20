@@ -14,12 +14,10 @@ contexts = Objects['contexts'].map { |n| Context.create!(name: "#{n}", admin: ad
 tags = Objects['tags'].map { |n| Tag.create!(name: "#{n}", admin: admin)}
 
 # Link {name: , href: , icon: , pinned: }
+
+
 links = HTML.search("//dl").first.children.map do |node| 
-  
   binding.pry
-
-  
-
 end
 
 
