@@ -12,6 +12,6 @@ admin = Admin.create(email: "#{ENV["admin_email"]}", password: "#{ENV["admin_pas
 
 contexts = Objects['contexts'].map { |n| Context.create!(name: "#{n}", admin: admin)}
 tags = Objects['tags'].map { |n| Tag.create!(name: "#{n}", admin: admin)}
-links = Objects["links"].map { |l| Link.create(name: l["name"], href: l["href"], icon: l["icon"], pinned:  l["pinned"]) }
+
 
 # binding.pry
