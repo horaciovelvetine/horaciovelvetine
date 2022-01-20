@@ -117,7 +117,7 @@ contexts:
   - job
   - skill
   - project
-  - entry
+  - journal_entry
   - social
   - home
   - video
@@ -134,3 +134,4 @@ contexts:
   - negotiating
   - accepted
   - done
+  - bookmarked
