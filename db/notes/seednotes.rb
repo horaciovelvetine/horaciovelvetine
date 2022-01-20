@@ -11,7 +11,7 @@ HTML.search("//dl").first.children.each do |node|
     next
   end
 
-  if node.children.length > 2
+  if node.children.length > 1
     
     node.children.each do |child|
 
