@@ -17,15 +17,11 @@ tags = Objects['tags'].map { |n| Tag.create!(name: "#{n}", admin: admin)}
 
 
 links = HTML.search("//dl").first.children.map do |node|
-  
+
   if node.name == "p" && node.children.length < 2
     puts "Skip #1"
     puts "name:#{node.name}, said: #{node.text}"
-    break
-  end
-
-  if node.children.length > 1 
-    binding.pry
+    next
   end
 
   binding.pry
