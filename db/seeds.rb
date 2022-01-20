@@ -13,5 +13,14 @@ admin = Admin.create(email: "#{ENV["admin_email"]}", password: "#{ENV["admin_pas
 contexts = Objects['contexts'].map { |n| Context.create!(name: "#{n}", admin: admin)}
 tags = Objects['tags'].map { |n| Tag.create!(name: "#{n}", admin: admin)}
 
+# Link {name: , href: , icon: , pinned: }
+links = HTML.search("//dl").first.children.map do |node| 
+  
+  binding.pry
 
-# binding.pry
+  
+
+end
+
+
+
