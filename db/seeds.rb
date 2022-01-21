@@ -30,69 +30,8 @@ HTML.search("//dl").first.children.each do |node|
       binding.pry
     end
     
-    child.children.each do |grandchild|
-      if grandchild.name == "text" || grandchild.name == "p"
-        puts "----------------------------------------------------------------"
-        puts " NODE EXCLUDED name:#{grandchild.name}, said:(#{grandchild.text}) step: 3"
-        puts "----------------------------------------------------------------"
-        next
-      end
 
-      if grandchild.name == "a"
-        binding.pry
-      elsif grandchild.name == "h3"
-        binding.pry
-      end
-
-      grandchild.children.each do |greatchild|
-        if greatchild.name == "text" || greatchild.name == "p"
-          puts "----------------------------------------------------------------"
-          puts " NODE EXCLUDED name:#{greatchild.name}, said:(#{greatchild.text}) step: 4"
-          puts "----------------------------------------------------------------"
-          next
-        end
-      
-        if greatchild.name == "a"
-          binding.pry
-        elsif greatchild.name == "h3"
-          binding.pry
-        end
-
-        greatchild.children.each do |greatestchild|
-          if greatestchild.name == "text" || greatestchild.name == "p"
-            puts "----------------------------------------------------------------"
-            puts " NODE EXCLUDED name:#{greatestchild.name}, said:(#{greatestchild.text}) step: 5"
-            puts "----------------------------------------------------------------"
-            next
-          end
-        
-          if greatestchild.name == "a"
-            binding.pry
-          elsif greatestchild.name == "h3"
-            binding.pry
-          end
-
-          greatestchild.children.each do |wunderkin|
-            if wunderkin.name == "text" || wunderkin.name == "p"
-              puts "----------------------------------------------------------------"
-              puts " NODE EXCLUDED name:#{wunderkin.name}, said:(#{wunderkin.text}) step: 6"
-              puts "----------------------------------------------------------------"
-              next
-            end
-
-            if wunderkin.name == "a"
-              binding.pry
-            elsif wunderkin.name == "h3"
-              binding.pry
-            else
-            ## the how are we related zone
-            binding.pry
-            end
-          
-          end
-        end
-      end
-    end
+    ##[CONTINUES RECURSIVELY]
   end
 end
 
