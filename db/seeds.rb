@@ -1,61 +1,90 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-
-
 admin = Admin.create(email: "#{ENV["admin_email"]}", password: "#{ENV["admin_password"]}")
 
 contexts = Objects['contexts'].map { |n| Context.create!(name: "#{n}", admin: admin)}
 tags = Objects['tags'].map { |n| Tag.create!(name: "#{n}", admin: admin)}
 
-# Link {name: , href: , icon: , pinned: }
 
+formatted_links = []
 
 HTML.search("//dl").first.children.each do |node|
-  formatted_links = []
-  tags_to_add_by_name = [] ## Should be an array of tag_names to find/create + add to
-  context = contexts##.find_by_name("bookmarked")
+  tags_to_add = [] ## Should be an array of tag_names to find/create + add to
 
-
-
-  if (node.name == "p" || node.name =="dt" || node.name == "dl" ) && node.children.length < 2
-    puts "Skip #1"
-    puts "name:#{node.name}, said: #{node.text}"
+  if ( node.name == "p" || node.name == "dl" ||node.name == "dt" ) && node.children.length < 2
+    puts "----------------------------------------------------------------"
+    puts " NODE EXCLUDED name:#{node.name}, said:(#{node.text}) step: 1"
+    puts "----------------------------------------------------------------"
     next
   end
-
-  if node.children.length > 1
+  
+  node.children.each do |child|
+    if child.text == "Bookmarks Bar" || child.name == "text" || child.name == "p" 
+      puts "----------------------------------------------------------------"
+      puts " NODE EXCLUDED name:#{child.name}, said:(#{child.text}) step: 2"
+      puts "----------------------------------------------------------------"
+      next
+    end
     
-    binding.pry
+    if child.name == "a"
+      binding.pry
+    elsif child.name == "h3"
+      binding.pry
+    end
     
-    node.children.each do |child|
+    child.children.each do |grandchild|
+      if grandchild.name == "text" || grandchild.name == "p"
+        puts "----------------------------------------------------------------"
+        puts " NODE EXCLUDED name:#{grandchild.name}, said:(#{grandchild.text}) step: 3"
+        puts "----------------------------------------------------------------"
+        next
+      end
 
-      ## Handles all tag elements
-      if child.name == "h3"
+      if grandchild.name == "a"
         binding.pry
-      ## Handles all link elements
-      elsif child.name == "a"
-        binding.pry
-      ## Handles all exceptions
-      else
+      elsif grandchild.name == "h3"
         binding.pry
       end
 
-      binding.pry
+      grandchild.children.each do |greatchild|
+        if greatchild.name == "text" || greatchild.name == "p"
+          puts "----------------------------------------------------------------"
+          puts " NODE EXCLUDED name:#{greatchild.name}, said:(#{greatchild.text}) step: 3"
+          puts "----------------------------------------------------------------"
+          next
+        end
+      
+        if greatchild.name == "a"
+          binding.pry
+        elsif greatchild.name == "h3"
+          binding.pry
+        end
 
+        greatchild.children.each do |greatestchild|
+          if greatestchild.name == "text" || greatestchild.name == "p"
+            puts "----------------------------------------------------------------"
+            puts " NODE EXCLUDED name:#{greatestchild.name}, said:(#{greatestchild.text}) step: 5"
+            puts "----------------------------------------------------------------"
+            next
+          end
+        
+          if greatestchild.name == "a"
+            binding.pry
+          elsif greatestchild.name == "h3"
+            binding.pry
+          end
+
+          ## the how are we related zone
+          binding.pry
+        end
+      end
     end
+  
+  ## something else went wrong
+  binding.pry
 
   end
 
-  ## Here the node.children length == 0 or ?? 
-  binding.pry
-
 end
 
-
-
+  # skip_p_element = (node.name == "p"||child.name == "p")
+  # skip_text_element = (node.name =="text" || child.name == "text")
+  # skip_nscape_element = (node.name == "dt" || node.name == "dl")
