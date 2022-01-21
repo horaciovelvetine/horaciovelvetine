@@ -1,8 +1,8 @@
 class seed < ApplicationRecord
 
-  # formatted = []
-  # history = { score: [0], prev: [""] }
-  # nodenames = ["dl", "p", "dt", "h3", "a"]
+  FORMATTED = []
+  HISTORY = { score: [0], prev: [""] }
+  NODENAMES = ["dl", "p", "dt", "h3", "a"]
 
   def digestsubnodes(parent_node)
     parent_node.children.each do |child|
@@ -13,7 +13,7 @@ class seed < ApplicationRecord
 
   def digestnode(node)
 
-    if !@nodenames.include?(node)
+    if !NODENAMES.include?(node)
       puts "<-- Note: -->"
       puts "Node Import not supported for: #{node.name}"
       puts "Text: #{node.text}"
