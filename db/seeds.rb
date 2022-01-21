@@ -47,7 +47,7 @@ HTML.search("//dl").first.children.each do |node|
       grandchild.children.each do |greatchild|
         if greatchild.name == "text" || greatchild.name == "p"
           puts "----------------------------------------------------------------"
-          puts " NODE EXCLUDED name:#{greatchild.name}, said:(#{greatchild.text}) step: 3"
+          puts " NODE EXCLUDED name:#{greatchild.name}, said:(#{greatchild.text}) step: 4"
           puts "----------------------------------------------------------------"
           next
         end
@@ -72,17 +72,28 @@ HTML.search("//dl").first.children.each do |node|
             binding.pry
           end
 
-          ## the how are we related zone
-          binding.pry
+          greatestchild.children.each do |wunderkin|
+            if wunderkin.name == "text" || wunderkin.name == "p"
+              puts "----------------------------------------------------------------"
+              puts " NODE EXCLUDED name:#{wunderkin.name}, said:(#{wunderkin.text}) step: 6"
+              puts "----------------------------------------------------------------"
+              next
+            end
+
+            if wunderkin.name == "a"
+              binding.pry
+            elsif wunderkin.name == "h3"
+              binding.pry
+            else
+            ## the how are we related zone
+            binding.pry
+            end
+          
+          end
         end
       end
     end
-  
-  ## something else went wrong
-  binding.pry
-
   end
-
 end
 
   # skip_p_element = (node.name == "p"||child.name == "p")
