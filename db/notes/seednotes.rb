@@ -34,11 +34,6 @@ HTML.search("//dl").first.children.each do |node|
     ##[CONTINUES RECURSIVELY]
   end
 end
-
-## This is the last call which needs to be made at end of loop
-links = formatted_links.map { |new_link_info| Link.create!(new_link_info)} 
-
-
   
   ## Example object needed to seed DB with links 
   # links = [{name: "Rails Docs", href: "https://guides.rubyonrails.org/", tags: ["ruby", "rails", "docs", "documentation", "resource", "reference", etc..], contexts: ["bookmarked"], admin_id: admin}]
@@ -68,35 +63,5 @@ HTML.search("//dl").first.children.each do |node|
   binding.pry
 end
 
-# def iterate_over_subnodes(parent_node)
-#   parent_node.children.each do |child|
-#     if child.children.length > 1 ? iterate_over_subnodes(child) : import_node(child)
-#   end  
-#   binding.pry
-# end
 
-# def import_node(node)
 
-#   if !@nodenames.include?(node)
-#     puts "<-- Note: -->"
-#     puts "Node Import not supported for: #{node.name}"
-#     puts "Text: #{node.text}"
-#     puts "<----------->"
-#     puts "#{node}"
-#     puts "<----------->"
-
-#     binding.pry
-#   end
-
-#   binding.pry
-
-#   if node.name == "a" ? link_digest(node) : tag_digest(node)
-# end
-
-# def link_digest(link)
-#   binding.pry
-# end
-
-# def tag_digest(tag)
-#   binding.pry
-# end
