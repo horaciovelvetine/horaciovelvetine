@@ -3,12 +3,31 @@ admin = Admin.create(email: "#{ENV["admin_email"]}", password: "#{ENV["admin_pas
 contexts = Objects['contexts'].map { |n| Context.create!(name: "#{n}", admin: admin)}
 tags = Objects['tags'].map { |n| Tag.create!(name: "#{n}", admin: admin)}
 
-lamb = lambda { puts "You got me!"}
+history = { score: [0], prev: [""] }
 
-binding.pry
+get_nodes_from_netscape = 
 
-# HTML.search("//dl").first.children.each do |node|
-#   binding.pry
-# #   node.children.length > 1 ? digestsubnodes(node) : digestnode(node)
-# end
+digest_node = -> do |node|
+  if !NODENAMES.include?(node.name) 
+    log_error_node(node)
+    binding.pry
+  elsif node.children.length > 1
+    node.children.each { |child| digest_NODE(child)}
+  elsif node.children.length == 1
+    node.name == "a" ? digest_link_info(node) : digest_tag_info(node)
+  elsif node.children
+    binding.pry
+  end
+end
 
+log_error_node = -> do |node|
+  puts "<-- Note: -->"
+  puts "Node Import not supported for: #{node.name}"
+  puts "Text: #{node.text}"
+  puts "<----------->"
+  puts "#{node}"
+  puts "<----------->"
+end
+
+
+links = FormattedLinks.map { |l| Link.create!(l.info)}## info should [appropriately]  be => ( name: l.name, href: l.href, tags: l.tags, content: l.content)}
