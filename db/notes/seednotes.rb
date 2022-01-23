@@ -8,8 +8,8 @@
   # skip_nscape_element = (node.name == "dt" || node.name == "dl")
 
   ##RULES:
-  ## --> dl: "increase current value of x by 1",
-  ## --> p: "if prev == 'a' then decrease current value of x by 1"
+  ## --> dl: "increase current value of score by 1",
+  ## --> p: "if prev == 'a' then decrease current value of score by 1"
   ## --> p: "if prev == 'p' then check next value of prev"
   ## --> dt: "if prev == 'p' then push new 0 to array" (signifies a "max" for that axis of x values) then should check for tag or link digest
 
