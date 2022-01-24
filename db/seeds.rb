@@ -3,41 +3,61 @@ admin = Admin.create(email: "#{ENV["admin_email"]}", password: "#{ENV["admin_pas
 contexts = Objects['contexts'].map { |n| Context.create!(name: "#{n}", admin: admin)}
 tags = Objects['tags'].map { |n| Tag.create!(name: "#{n}", admin: admin)}
 
-AcceptedTags = ["dl", "dt", "meta", "html"]
+AcceptedTags = ["dl", "dt", "meta", "html", "p"]
 Exceptions = ["bookmarks bar", "h1", "meta"]
 
 
+      ## child.parent (returns a nodes parent)
 
+  
 get_bookmarks_from_doc = lambda do |admin, contexts, tags|
-  doc = BookmarksDoc.search("//dl")
-  track = {score: [0], prev: [""] }
+  doc = BookmarksDoc.search("//dl") ## Grabs Body of Doc
+  track = {score: [0], prev: [] } ##=> track[:score] => [0]
   formatted_links = []
-  binding.pry
+  
+  
 
   doc.children.each do |child|
     if !AcceptedTags.include?(child.name)
-      log_error_node(node)
       binding.pry
+      log_error_node.call(child)
     elsif Exceptions.include?(child.name)
+      binding.pry
       puts "Exception Skipped!"
       next
     elsif child.name == "dl"
-      # Should increase score by 1
+      ## Increases score +1
+      binding.pry
+      # track[:score] += 1
+    
+    
     elsif child.name == "p"
       # track.prev.last.name == "a" ? decrease score by 1 : checks number of p's in history since last a, and subtracts the total number from the score @ index of self[n-1] where n is length of the array
+      binding.pry
+      # track[:prev] == "a" ? track[:score][track[:score].length-1] : track[:score]-= 1 : binding.pry
+      # track[:prev] << child
+    
+    
     elsif child.name == "dt"
       # track.score << 0 (Add a new column) if prev "p" if not do nothing, and check child for type (shoudl be either a tag or a link)
-    else
-      #I cant be sure whats going on here
-    end
+      binding.pry
+      # track[:prev][track[:prev].length] == "p" ? track[:score] << 0 : binding.pry
     
-  ##Grabs HTML From Netscape Formatted BookMark HTML Doc
+    
+    else
+      binding.pry
+    end
+
+    binding.pry
+    # digest_node.call(child)
+
+  end
+    
 
   binding.pry
   ## returns an array of freshly created links
-  return links = formatted_links.map { |link| Link.create!(link.info)}
+  # return links = formatted_links.map { |link| Link.create!(link.info)}
 end
-
 
   digest_node = lambda do |node|
     if node.children == 1
@@ -45,8 +65,6 @@ end
     end
     binding.pry
   end
-
-  
 
   digest_link = lambda do |ln|
     binding.pry
@@ -64,6 +82,8 @@ log_error_node = lambda do |node|
   puts "#{node}"
   puts "<----------->"
 end
+
+
 
 get_bookmarks_from_doc.call(admin, contexts, tags)
 
