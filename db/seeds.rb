@@ -25,31 +25,23 @@ get_bookmarks_from_doc = lambda do |admin, contexts, tags|
       binding.pry
       puts "Exception Skipped!"
       next
-    elsif child.name == "dl"
-      ## Increases score +1
+    elsif child.name == "dl" ##? INCREASE CUR_SCORE +1
+      track[:score] += 1
       binding.pry
-      # track[:score] += 1
-    
-    
-    elsif child.name == "p"
-      # track.prev.last.name == "a" ? decrease score by 1 : checks number of p's in history since last a, and subtracts the total number from the score @ index of self[n-1] where n is length of the array
+    elsif child.name == "p" ##? DECREASE CUR_SCORE -1 for ea consecutive repeating "P" element
+      track[:prev].last.name == "a" ? track[:score][track[:score].length-1] -= 1 : false
+      
       binding.pry
-      # track[:prev] == "a" ? track[:score][track[:score].length-1] : track[:score]-= 1 : binding.pry
-      # track[:prev] << child
-    
-    
-    elsif child.name == "dt"
-      # track.score << 0 (Add a new column) if prev "p" if not do nothing, and check child for type (shoudl be either a tag or a link)
+    elsif child.name == "dt" ##? PUSH A NEW COLUMN TO SCORE IF PREV "P", THEN DIGEST CHILD.
+      track[:prev].last.name == "p" ? track[:score] << 0
       binding.pry
-      # track[:prev][track[:prev].length] == "p" ? track[:score] << 0 : binding.pry
-    
-    
+      # child.children.first.name == "a" ? digest_link.call(child) : digest_tag.call(child)
     else
       binding.pry
     end
 
     binding.pry
-    # digest_node.call(child)
+    push_element_to_history.call(child)
 
   end
     
@@ -66,12 +58,14 @@ end
     binding.pry
   end
 
-  digest_link = lambda do |ln|
+  digest_link = lambda do |ele|
     binding.pry
   end
 
-  digest_tag = lambda do |ln|
+  digest_tag = lambda do |ele|
     binding.pry
+    
+    digest = Tag.find_or_create_by(name: ele.children.last.text)
   end
 
 log_error_node = lambda do |node|
@@ -82,6 +76,14 @@ log_error_node = lambda do |node|
   puts "#{node}"
   puts "<----------->"
 end
+
+push_element_to_history = lambda do |ele|
+  track[:prev] << ele 
+  binding.pry
+end
+
+
+
 
 
 
