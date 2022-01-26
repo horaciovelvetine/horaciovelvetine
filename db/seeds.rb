@@ -23,25 +23,39 @@ get_bookmarks_from_doc = lambda do |admin, contexts, tags|
       log_error_node.call(child)
     elsif Exceptions.include?(child.name)
       binding.pry
-      puts "Exception Skipped!"
+      puts "Exception Node Skipped"
       next
+    elsif track[:prev].empty?
+      puts "First Node Exception"
     elsif child.name == "dl" ##? INCREASE CUR_SCORE +1
-      track[:score] += 1
+      track[:score][track[:score].length-1] += 1
       binding.pry
     elsif child.name == "p" ##? DECREASE CUR_SCORE -1 for ea consecutive repeating "P" element
-      track[:prev].last.name == "a" ? track[:score][track[:score].length-1] -= 1 : false
+      track[:prev].last.name == "a" ? track[:score][track[:score].length-1] -= 1 : true
+      binding.pry
       
-      binding.pry
     elsif child.name == "dt" ##? PUSH A NEW COLUMN TO SCORE IF PREV "P", THEN DIGEST CHILD.
-      track[:prev].last.name == "p" ? track[:score] << 0
+      track[:prev].last.name == "p" ? track[:score] << 0 : true
+
       binding.pry
-      # child.children.first.name == "a" ? digest_link.call(child) : digest_tag.call(child)
+      
+      if child.children.first.name == "a"
+        ##creates a link
+        binding.pry
+        link = Link.new(name: "lname")
+      elsif child.children.first.name == "h3"
+        ##create a tag
+        binding.pry 
+        tag = Tag.find_or_create_by(name: child.children.first.children.last.text.downcase, admin: admin)
+      end
+    
     else
+      
       binding.pry
     end
 
+    track[:prev] << child
     binding.pry
-    push_element_to_history.call(child)
 
   end
     
@@ -75,11 +89,6 @@ log_error_node = lambda do |node|
   puts "<----------->"
   puts "#{node}"
   puts "<----------->"
-end
-
-push_element_to_history = lambda do |ele|
-  track[:prev] << ele 
-  binding.pry
 end
 
 
