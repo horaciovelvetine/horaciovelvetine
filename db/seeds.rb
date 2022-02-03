@@ -53,6 +53,7 @@ get_bookmarks_from_doc = lambda do |admin, contexts, tags|
       next
     elsif track[:prev_element].empty?
       puts "First Node Exception"
+      track[:prev_element] << child
     elsif child.name == "dl" ##? INCREASE CUR_SCORE +1
       track[:score][track[:score].length-1] += 1
       binding.pry
@@ -82,6 +83,7 @@ get_bookmarks_from_doc = lambda do |admin, contexts, tags|
 
     
     ##? ADDS TO DEPTH FOR REPEATING ELEMENTS, AND RESETS DEPTH NON REPEATING
+    binding.pry
     if track[:prev_element].name == child.name 
       track[prev_depth] += 1
       track[:prev_element] = child
@@ -89,8 +91,7 @@ get_bookmarks_from_doc = lambda do |admin, contexts, tags|
       track[:prev_depth] = 0
       track[:prev_element] = child
     end
-    binding.pry
-    
+
   end
     
 
