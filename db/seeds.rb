@@ -37,8 +37,9 @@ tags = Objects['tags'].map { |n| Tag.create!(name: "#{n}", admin: admin)}
   
 get_bookmarks_from_doc = lambda do |admin, contexts, tags|
   doc = BookmarksDoc.search("//dl") ## Grabs Body of Doc
-  track = {score: [0], prev: [] } ##=> track[:score] => [0]
-  formatted_links = []
+  track = {score: [0], prev_element: [], prev_depth: 0 } ##=> track[:score] => [0]
+  store = { link_info: [],  tag_info: [] } 
+  
   
   
 
@@ -50,35 +51,36 @@ get_bookmarks_from_doc = lambda do |admin, contexts, tags|
       binding.pry
       puts "Exception Node Skipped"
       next
-    elsif track[:prev].empty?
+    elsif track[:prev_element].empty?
       puts "First Node Exception"
     elsif child.name == "dl" ##? INCREASE CUR_SCORE +1
       track[:score][track[:score].length-1] += 1
       binding.pry
     elsif child.name == "p" ##? DECREASE CUR_SCORE -1 for ea consecutive repeating "P" element
-      track[:prev].last.name == "a" ? track[:score][track[:score].length-1] -= 1 : true
+      track[:prev_element].last.name == "a" ? track[:score][track[:score].length-1] -= 1 : true
       binding.pry
-      
     elsif child.name == "dt" ##? PUSH A NEW COLUMN TO SCORE IF PREV "P", THEN DIGEST CHILD.
-      track[:prev].last.name == "p" ? track[:score] << 0 : true
-
-      binding.pry
+      track[:prev_element].last.name == "p" ? track[:score] << 0 : true
       
-      if child.children.first.name == "a"
-        ##creates a link
+      ##? ADDS INFO FROM ELEMENTS INFO/ATTR TO ARRAY TO BE CREATED
+      if child.children.first.name ## add element info  
+        @ele = child.children.first
+        if ele.name == "h3"##adds to tag_info
+          store[:tag_info] << {name: @ele.children.first.name.downcase.strip, position: track[:score] }
+        else  ##adds to link_info
+          store[:link_info] << {name: @ele.attributes["name"], href: @ele.attributes["href"],  position: track[:score]}
+        end
         binding.pry
-        link = Link.new(name: "lname")
-      elsif child.children.first.name == "h3"
-        ##create a tag
-        binding.pry 
-        tag = Tag.find_or_create_by(name: child.children.first.children.last.text.downcase, admin: admin)
+      else ## Exception caatch
+        puts "Add Element Info Exception!"
+        binding.pry
       end
     
     else ##? CATCHES EDGE CASE
       binding.pry
     end
 
-    track[:prev] << child
+    track[:prev_element] << child
     binding.pry
 
   end
@@ -95,4 +97,4 @@ end
 
 
 
-get_bookmarks_from_doc.call(admin, contexts, tags)e
+get_bookmarks_from_doc.call(admin, contexts, tags)
