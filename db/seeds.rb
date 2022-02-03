@@ -65,8 +65,8 @@ get_bookmarks_from_doc = lambda do |admin, contexts, tags|
       ##? ADDS INFO FROM ELEMENTS INFO/ATTR TO ARRAY TO BE CREATED
       if child.children.first.name ## add element info  
         @ele = child.children.first
-        if ele.name == "h3"##adds to tag_info
-          store[:tag_info] << {name: @ele.children.first.name.downcase.strip, position: track[:score] }
+        if @ele.name == "h3"##adds to tag_info
+          store[:tag_info] << {name: @ele.children.first.text.downcase.strip, position: track[:score] }
         else  ##adds to link_info
           store[:link_info] << {name: @ele.attributes["name"], href: @ele.attributes["href"],  position: track[:score]}
         end
@@ -80,9 +80,17 @@ get_bookmarks_from_doc = lambda do |admin, contexts, tags|
       binding.pry
     end
 
-    track[:prev_element] << child
+    
+    ##? ADDS TO DEPTH FOR REPEATING ELEMENTS, AND RESETS DEPTH NON REPEATING
+    if track[:prev_element].name == child.name 
+      track[prev_depth] += 1
+      track[:prev_element] = child
+    else
+      track[:prev_depth] = 0
+      track[:prev_element] = child
+    end
     binding.pry
-
+    
   end
     
 
