@@ -1,48 +1,6 @@
 
 ## Helper methods for importing bookmarks for testing
-digest_node = lambda do |node|
-  if node.children == 1
-    node.name == "a" ? digest_link(node) : digest_link(node)
-  end
-  binding.pry
-end
-digest_link = lambda do |ele|
-  binding.pry
-end
-digest_tag = lambda do |ele|
-  binding.pry
-  
-  digest = Tag.find_or_create_by(name: ele.children.last.text)
-  end
-
-log_error_node = lambda do |node|
-  puts "<-- Note: -->"
-  puts "Node Import not supported for: #{node.name}"
-  puts "Text: #{node.text}"
-  puts "<----------->"
-  puts "#{node}"
-  puts "<----------->"
-end
-AcceptedTags = ["dl", "dt", "meta", "html", "p"]
-Exceptions = ["bookmarks bar", "h1", "meta"]
-
-## Creates the default admin w/ env credentials
-admin = Admin.create(email: "#{ENV["admin_email"]}", password: "#{ENV["admin_password"]}")
-
-## /config/initializers/object_config.yml for list 
-contexts = Objects['contexts'].map { |n| Context.create!(name: "#{n}", admin: admin)}
-tags = Objects['tags'].map { |n| Tag.create!(name: "#{n}", admin: admin)}
-
-
-  
-get_bookmarks_from_doc = lambda do |admin, contexts, tags|
-  doc = BookmarksDoc.search("//dl") ## Grabs Body of Doc
-  track = {score: [0], prev_element: false, prev_depth: 0 } ##=> track[:score] => [0]
-  store = { link_info: [],  tag_info: [] } 
-  
-  
-  
-
+digest_element = lambda do |element|
   doc.children.each do |child|
 
     if !AcceptedTags.include?(child.name) ##? UNRECOGNIZED TAG NAME
@@ -90,12 +48,39 @@ get_bookmarks_from_doc = lambda do |admin, contexts, tags|
     binding.pry
 
   end
-    
+end
+
+AcceptedTags = ["dl", "dt", "meta", "html", "p"]
+Exceptions = ["bookmarks bar", "h1", "meta"]
+
+## Creates the default admin w/ env credentials
+admin = Admin.create(email: "#{ENV["admin_email"]}", password: "#{ENV["admin_password"]}")
+
+## /config/initializers/object_config.yml for list 
+contexts = Objects['contexts'].map { |n| Context.create!(name: "#{n}", admin: admin)}
+tags = Objects['tags'].map { |n| Tag.create!(name: "#{n}", admin: admin)}
+
+
+  
+get_bookmarks_from_doc = lambda do |admin, contexts, tags, digest_element|
+  doc = BookmarksDoc.search("//dl") ## Grabs Body of Doc
+  track = {score: [0], prev_element: false, prev_depth: 0 } ##=> track[:score] => [0]
+  store = { link_info: [],  tag_info: [] } 
+  
+  
+  doc.children.each do |child|
+    binding.pry
+    digest_element.call(child)
+  end
 
   binding.pry
-  ## returns an array of freshly created links
-  # return links = formatted_links.map { |link| Link.create!(link.info)}
 end
+
+    
+
+
+##! GOALS
+  # links = formatted_links.map { |link| Link.create!(link.info)}
 
 
 
