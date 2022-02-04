@@ -49,19 +49,6 @@ digest_element = lambda do |element|
 
   end
 end
-
-AcceptedTags = ["dl", "dt", "meta", "html", "p"]
-Exceptions = ["bookmarks bar", "h1", "meta"]
-
-## Creates the default admin w/ env credentials
-admin = Admin.create(email: "#{ENV["admin_email"]}", password: "#{ENV["admin_password"]}")
-
-## /config/initializers/object_config.yml for list 
-contexts = Objects['contexts'].map { |n| Context.create!(name: "#{n}", admin: admin)}
-tags = Objects['tags'].map { |n| Tag.create!(name: "#{n}", admin: admin)}
-
-
-  
 get_bookmarks_from_doc = lambda do |admin, contexts, tags, digest_element|
   doc = BookmarksDoc.search("//dl") ## Grabs Body of Doc
   track = {score: [0], prev_element: false, prev_depth: 0 } ##=> track[:score] => [0]
@@ -75,9 +62,16 @@ get_bookmarks_from_doc = lambda do |admin, contexts, tags, digest_element|
 
   binding.pry
 end
+AcceptedTags = ["dl", "dt", "meta", "html", "p"]
 
-    
+## Creates the default admin w/ env credentials
+admin = Admin.create(email: "#{ENV["admin_email"]}", password: "#{ENV["admin_password"]}")
 
+## /config/initializers/object_config.yml for list 
+contexts = Objects['contexts'].map { |n| Context.create!(name: "#{n}", admin: admin)}
+tags = Objects['tags'].map { |n| Tag.create!(name: "#{n}", admin: admin)}
+
+get_bookmarks_from_doc.call(admin, contexts, tags, digest_element)
 
 ##! GOALS
   # links = formatted_links.map { |link| Link.create!(link.info)}
@@ -87,5 +81,3 @@ end
 
 
 
-
-get_bookmarks_from_doc.call(admin, contexts, tags)
