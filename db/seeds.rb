@@ -44,12 +44,11 @@ get_bookmarks_from_doc = lambda do |admin, contexts, tags|
   
 
   doc.children.each do |child|
+
     if !AcceptedTags.include?(child.name) ##? UNRECOGNIZED TAG NAME
       binding.pry
-    elsif Exceptions.include?(child.name)
+    elsif child.children.length > 1 ##? CATCH FOR FURTHER RECURSION
       binding.pry
-      puts "Exception Node Skipped"
-      next
     elsif track[:prev_element] == false
       puts "First Node Exception"
       track[:prev_element] = {name: "first_execption_ele", child: child}
