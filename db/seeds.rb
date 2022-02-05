@@ -1,16 +1,19 @@
 AcceptedTags = ["dl", "dt", "meta", "html", "p", "text", "h3", "a"]
 ## Helper methods for importing bookmarks for testing
 handle_nested_node = lambda do |node, cur_position, store, handle_nested_node|
+  @re_handle_nested_node = handle_nested_node
   node.children.each do |child|
     if child.children.length > 1
-      handle_nested_node(child, cur_position, store, handle_nested_node)
+      binding.pry
+      # handle_nested_node(child, cur_position, store, handle_nested_node)
     elsif child.name =="h3"
       store[:tag_info] << {name: child.children.text.downcase.strip, cur_position: cur_position[:pos]}
     elsif child.name =="a"
       store[:link_info] << {name: child.attributes["name"], href: child.attributes["href"], cur_position: cur_position[:pos]}
       binding.pry
+    elsif child.name == "text"
+      puts "skipped text element"
     end
-  binding.pry
   end
 end
 
@@ -33,26 +36,25 @@ get_bookmarks_from_doc = lambda do |admin, contexts, tags, handle_nested_node|
 
     ##? Traks and updates cur_position for info creation
     if child.name == "p" 
-      
       if cur_position[:prev_node][:name] ##jumps over first exception not being a noko obj
         true
+        puts "first node exception"
       elsif cur_position[:prev_node].name
         cur_position[:pos][cur_position[:pos].length-1] -= (1 + cur_position[:prev_depth])
+        binding.pry
       end
-
-      binding.pry
-
     elsif child.name == "dl" 
-      binding.pry
       cur_position[:pos][cur_position[:pos].length-1] += 1
     elsif child.name == "dt" 
-      binding.pry
       cur_position[:prev_node].name == "p" ? cur_position[:pos] << 0 : true
-    elsif child.children.length > 1 && child.name != "text" ##? catches nested nodes
-      handle_nested_node.call(child, cur_position, store, handle_nested_node)
     else
       puts "The Uh-Oh perimeter has been breached. All hands on Desk. Man your Workstations."
       binding.pry
+    end
+    
+    ##? catches nested nodes
+    if child.children.length > 1 && child.name != "text" 
+      handle_nested_node.call(child, cur_position, store, handle_nested_node)
     end
 
   puts (store)
