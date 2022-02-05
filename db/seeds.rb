@@ -1,31 +1,32 @@
-AcceptedTags = ["dl", "dt", "meta", "html", "p", "text", "h3", "a"]
 ## Helper methods for importing bookmarks for testing
 handle_nested_node = lambda do |node, cur_position, store, handle_nested_node|
   @re_handle_nested_node = handle_nested_node
+  non_info_nodes = ["text", "p", "dl", "dt", "meta"]
   node.children.each do |child|
-    if child.children.length > 1
-      binding.pry
-      # handle_nested_node(child, cur_position, store, handle_nested_node)
+    if non_info_nodes.include?(child.name)
+      true
     elsif child.name =="h3"
-      store[:tag_info] << {name: child.children.text.downcase.strip, cur_position: cur_position[:pos]}
+      store[:tag_info] << {name: child.children.text.downcase.strip, position: cur_position[:pos]} 
     elsif child.name =="a"
-      store[:link_info] << {name: child.attributes["name"], href: child.attributes["href"], cur_position: cur_position[:pos]}
+      store[:link_info] << {name: child.attributes["name"], href: child.attributes["href"], position: cur_position[:pos]}
+    elsif child.children.length > 1 && child.children.last.name != "text"
       binding.pry
-    elsif child.name == "text"
-      puts "skipped text element"
+      handle_nested_node(child, cur_position, store, @re_handle_nested_node)
     end
+    puts " => #{child.name} node handled <="
   end
 end
 
 
 get_bookmarks_from_doc = lambda do |admin, contexts, tags, handle_nested_node|
+  valid_nodes = ["dl", "dt", "meta", "html", "p", "text", "h3", "a"]
   doc = BookmarksDoc.search("//dl") ## Grabs Body of Doc
   cur_position = {pos: [0], prev_depth: 0, prev_node: false } 
   store = { link_info: [],  tag_info: [] } 
   
   ##? MAIN initial doc digest
   doc.children.each do |child|
-    if !AcceptedTags.include?(child.name) || cur_position[:prev_node] == false ##? Catches exceptions & errors 
+    if !valid_nodes.include?(child.name) || cur_position[:prev_node] == false ##? Catches exceptions & errors 
       if cur_position [:prev_node] == false
         cur_position[:prev_node] = {name: "First Element Excluded!", child: child}
       else
@@ -41,7 +42,6 @@ get_bookmarks_from_doc = lambda do |admin, contexts, tags, handle_nested_node|
         puts "first node exception"
       elsif cur_position[:prev_node].name
         cur_position[:pos][cur_position[:pos].length-1] -= (1 + cur_position[:prev_depth])
-        binding.pry
       end
     elsif child.name == "dl" 
       cur_position[:pos][cur_position[:pos].length-1] += 1
