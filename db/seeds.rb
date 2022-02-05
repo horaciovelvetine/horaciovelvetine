@@ -4,10 +4,10 @@ handle_nested_node = lambda do |node, history, store|
   node.children.each do |child|
     if child.children.length > 1
       handle_nested_node(child, history, store)
-    elsif child.name =="a"
+    elsif child.name =="h3"
       store[:tag_info] << {name: child.children.text.downcase.strip, position: history[:pos]}
       binding.pry
-    elsif child.name =="h3"
+    elsif child.name =="a"
       store[:link_info] << {name: child.attributes["name"], href: child.attributes["href"], position: history[:pos]}
       binding.pry
     end
