@@ -1,35 +1,32 @@
-
+AcceptedTags = ["dl", "dt", "meta", "html", "p"]
 ## Helper methods for importing bookmarks for testing
 digest_element = lambda do |element|
   doc.children.each do |child|
-
-    if !AcceptedTags.include?(child.name) ##? UNRECOGNIZED TAG NAME
+    if !AcceptedTags.include?(child.name) ##? invalid tag name 
       binding.pry
-    elsif child.children.length > 1 ##? CATCH FOR FURTHER RECURSION
+    elsif child.children.length > 1 ##? catches for recursive nodes
       binding.pry
-    elsif track[:prev_element] == false
+    elsif his[:prev_element] == false ##? First node exception
       puts "First Node Exception"
-      track[:prev_element] = {name: "first_execption_ele", child: child}
-    elsif child.name == "dl" ##? INCREASE CUR_SCORE +1
-      track[:score][track[:score].length-1] += 1
+      his[:prev_element] = {name: "first_execption_ele", child: child}
+    elsif child.name == "dl" ##? Increase postition by 1
+      his[:pos][his[:pos].length-1] += 1
+    elsif child.name == "p" ##? Decrease position -1 for consecutive repeating "P" elements
+      his[:prev_element].name == "a" ? his[:pos][his[:pos].length-1] -= (1 + his[:prev_depth]) : true
       binding.pry
-    elsif child.name == "p" ##? DECREASE CUR_SCORE -1 for ea consecutive repeating "P" element
-      track[:prev_element].name == "a" ? track[:score][track[:score].length-1] -= (1 + track[:prev_depth]) : true
-      binding.pry
-    elsif child.name == "dt" ##? PUSH A NEW COLUMN TO SCORE IF PREV "P", THEN DIGEST CHILD.
-      track[:prev_element].name == "p" ? track[:score] << 0 : true
+    elsif child.name == "dt" ##? Adds new column to position 
+      his[:prev_element].name == "p" ? his[:pos] << 0 : true
       
-      ##? ADDS INFO FROM ELEMENTS INFO/ATTR TO ARRAY TO BE CREATED
-      if child.children.first.name ## add element info  
+      if child.children.first.name ##? ELEMENT INFO SETUP  
         @ele = child.children.first
-        if @ele.name == "h3"##adds to tag_info
-          store[:tag_info] << {name: @ele.children.first.text.downcase.strip, position: track[:score] }
-        else  ##adds to link_info
+        if @ele.name == "h3" ##tag
+          store[:tag_info] << {name: @ele.children.first.text.downcase.strip, position: his[:pos] }
+        else ##link
           binding.pry
-          store[:link_info] << {name: @ele.attributes["name"], href: @ele.attributes["href"],  position: track[:score]}
+          store[:link_info] << {name: @ele.attributes["name"], href: @ele.attributes["href"],  position: his[:pos]}
         end
         binding.pry
-      else ## Exception caatch
+      else ##? Element info exception catch
         puts "Add Element Info Exception!"
         binding.pry
       end
@@ -38,12 +35,12 @@ digest_element = lambda do |element|
 
     
     ##? ADDS TO DEPTH FOR REPEATING ELEMENTS, AND RESETS DEPTH NON REPEATING
-    if track[:prev_element] == child 
-      track[:prev_depth] += 1
-      track[:prev_element] = child
+    if his[:prev_element] == child 
+      his[:prev_depth] += 1
+      his[:prev_element] = child
     else
-      track[:prev_depth] = 0
-      track[:prev_element] = child
+      his[:prev_depth] = 0
+      his[:prev_element] = child
     end
     binding.pry
 
@@ -51,7 +48,7 @@ digest_element = lambda do |element|
 end
 get_bookmarks_from_doc = lambda do |admin, contexts, tags, digest_element|
   doc = BookmarksDoc.search("//dl") ## Grabs Body of Doc
-  track = {score: [0], prev_element: false, prev_depth: 0 } ##=> track[:score] => [0]
+  his = {pos: [0], prev_element: false, prev_depth: 0 } 
   store = { link_info: [],  tag_info: [] } 
   
   
@@ -62,7 +59,6 @@ get_bookmarks_from_doc = lambda do |admin, contexts, tags, digest_element|
 
   binding.pry
 end
-AcceptedTags = ["dl", "dt", "meta", "html", "p"]
 
 ## Creates the default admin w/ env credentials
 admin = Admin.create(email: "#{ENV["admin_email"]}", password: "#{ENV["admin_password"]}")
