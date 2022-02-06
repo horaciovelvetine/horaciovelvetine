@@ -1,4 +1,7 @@
-## Helper methods for importing bookmarks for testing
+##! GOALS
+  # links = formatted_links.map { |link| Link.create!(link.info)}
+##! currently the loop runs into an issue of ordering when doing the recursion. Even though the Dt tag @ the first "folder" ("dev") is increasing the score, because the dev tag isnt being added first its mistakenly adding that value to the previous "folder" ("bookmarks bar"). Possible solution would be approaching each dt/dl so that they modify the cur_positioning still. But then inside of the get_bookmarks at ##! FUTURE JAMES LOOK HERE, pull apart their component pieces there. 
+
 # handle_nested_node = lambda do |node, cur_position, store, handle_nested_node|
 #   @re_handle_nested_node = handle_nested_node
 #   @node_pos = cur_position[:pos]
@@ -46,9 +49,10 @@
 #         cur_position[:pos][cur_position[:pos].length-1] -= (1 + cur_position[:prev_depth])
 #       end
 #     elsif child.name == "dl" 
-      
+        ##! FUTURE JAMES LOOK HERE
 #       # cur_position[:pos][cur_position[:pos].length-1] += 1
 #     elsif child.name == "dt" 
+        ##! FUTURE JAMES LOOK HERE
 #       cur_position[:prev_node].name == "p" ? cur_position[:pos] << 0 : true
 #     else
 #       puts "The Uh-Oh perimeter has been breached. All hands on Desk. Man your Workstations."
@@ -76,6 +80,7 @@
   
 #   end
 # end
+# get_bookmarks_from_doc.call(admin, contexts, tags, handle_nested_node)
 
 ## Creates the default admin w/ env credentials
 admin = Admin.create(email: "#{ENV["admin_email"]}", password: "#{ENV["admin_password"]}")
@@ -84,7 +89,3 @@ admin = Admin.create(email: "#{ENV["admin_email"]}", password: "#{ENV["admin_pas
 contexts = Objects['contexts'].map { |n| Context.create!(name: "#{n}", admin: admin)}
 tags = Objects['tags'].map { |n| Tag.create!(name: "#{n}", admin: admin)}
 
-# get_bookmarks_from_doc.call(admin, contexts, tags, handle_nested_node)
-
-##! GOALS
-  # links = formatted_links.map { |link| Link.create!(link.info)}
