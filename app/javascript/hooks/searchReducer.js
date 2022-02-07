@@ -1,5 +1,5 @@
 
-// Updates the complex state of query to return the correctectually contexed 
+// Updates the complex state of query to return the correct contex 
 export default function searchReducer(search, payload) {
   const contexts = [payload[2].map((c) => c.name)]
   const query = payload[0]
