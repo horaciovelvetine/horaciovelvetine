@@ -14,9 +14,7 @@ Rails.application.routes.draw do
   scope module: 'api', path: 'api' do
     
     ##* Initial bookmarkr routing
-    get 'bookmarkr', to: 'bookmarkr#index'
-    get 'search', to: 'bookmarkr#search'
-    post 'add_bookmarkr', to: 'bookmarkr#new'
+    resources :bookmarkr, path: 'bookmark', as: 'bookmark'
 
     ##* Future Scaff for Settings Config
     get 'settings', to: 'api#state'
