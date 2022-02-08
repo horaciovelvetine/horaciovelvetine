@@ -15,16 +15,10 @@ import useFetch from '../../hooks/custom/useFetch';
 import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
 
 export default function SearchBar(props) {
-	const [context, setContext] = useState(props.contexts.filter((context) => context['current'] == true));
+	const [context, setContext] = useState(props.contextInfo.contexts.filter((c) => c['current'] == true));
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const [search, dispatchSearch] = useReducer(searchReducer, { query: '', context: '' });
-	
-	useEffectOnUpdate(() => {
-		useBounceDelay(() => {
-			// const { loading, error, response } = useFetch((`link`, {}, [search])
-			console.log("Search for this:", search)
-		}, 280, [search])
-	}, [search])
+
 	return (
 		<>
 			<header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
