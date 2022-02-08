@@ -32,7 +32,7 @@ export default function SearchBar(props) {
 				</div>
 
 				{/* //!Mobile Size Only Dropdown Context Picker */}
-				<ContextsSelectorDropdown contexts={props.contextInfo.contexts} />
+				<ContextsSelectorDropdown contexts={context} />
 
 				{/* //! Mobile main nav show hide button */}
 				<div className='absolute inset-y-0 right-0 pr-4 flex items-center sm:pr-6 md:hidden'>
@@ -45,7 +45,7 @@ export default function SearchBar(props) {
 						dispatchSearch={dispatchSearch}
 						query={search}
 						context={context}
-						contexts={props.contextInfo.contexts}
+						contexts ={props.contextInfo.contexts}
 					/>
 					<NavLinks navigation={props.navigation} />
 				</div>

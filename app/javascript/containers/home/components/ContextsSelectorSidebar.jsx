@@ -6,11 +6,10 @@ function classNames(...classes) {
 
 export default function ContextsSelectorSidebar(props) {
 
-
 	return (
 		<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 			<div className='relative w-20 flex flex-col p-3 space-y-3'>
-				{props.contexts.map((context) => (
+				{props.contexts.contexts.map((context) => (
 					<a
 						key={context.name}
 						href={context.href}

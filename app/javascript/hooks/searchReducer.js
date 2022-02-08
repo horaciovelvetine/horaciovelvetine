@@ -5,6 +5,7 @@ export default function searchReducer(search, payload) {
   const query = payload[0]
   const context = payload[1][0]
   
+  console.log(query, context)
   return search = { query: query, context: context }
 
   //! For later when this needs to be a little more complicated
