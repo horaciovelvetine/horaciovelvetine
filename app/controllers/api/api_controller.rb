@@ -1,10 +1,12 @@
 module api
-  class ApiController < ActionController::Base
+  module v1
+    class ApiController < ActionController::Base
   
-    def state
-      binding.pry
+      def index
+        binding.pry
+      end
+
+
     end
-
-
   end
 end
