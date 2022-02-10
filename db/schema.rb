@@ -130,7 +130,6 @@ ActiveRecord::Schema.define(version: 2022_01_06_213707) do
   create_table "links", force: :cascade do |t|
     t.string "name"
     t.string "href"
-    t.string "icon"
     t.boolean "pinned"
     t.bigint "linkable_id"
     t.string "linkable_type"
