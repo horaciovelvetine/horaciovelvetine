@@ -7,11 +7,11 @@ import MainContent from './MainContent';
 
 import contextReducer from '../../hooks/contextReducer';
 
-const baseUrl = 'https://127.0.0.1:3000/api';
+const baseUrl = 'https://127.0.0.1:3000/api/v1/bookmark';
 
 export default function HomePage() {
 	const [contexts, dispatchContexts] = useReducer(() => contextReducer, {
-		getReqLink: `${baseUrl}/search`,
+		// getReqLink: `${baseUrl}/search`,
 		contexts: [
 			{ name: 'Home', icon: HomeIcon, current: false, order: 1 },
 			{ name: 'Hired', icon: BriefcaseIcon, current: false, order: 2 },
@@ -28,8 +28,8 @@ export default function HomePage() {
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
-				<SearchBar contexts={contexts} navigation={navigation} />
-				<MainContent contexts={contexts} dispatchContexts={dispatchContexts} navigation={navigation} />
+				<SearchBar contextInfo={contexts} navigation={navigation} />
+				<MainContent contextInfo={contexts} dispatchContexts={dispatchContexts} navigation={navigation} />
 			</div>
 		</>
 	);

@@ -13,10 +13,10 @@ Rails.application.routes.draw do
   ##* For All Front End Resource Related Requests 
   scope module: 'api', path: 'api' do
     
-    ##* Initial bookmarkr routing
-    get 'bookmarkr', to: 'bookmarkr#index'
-    get 'search', to: 'bookmarkr#search'
-    post 'add_bookmarkr', to: 'bookmarkr#new'
+    ##* All Api v1 routes
+    namespace :v1 do 
+      resources :bookmarkr, path: 'bookmark', as: 'bookmark'
+    end
 
     ##* Future Scaff for Settings Config
     get 'settings', to: 'api#state'

@@ -15,16 +15,10 @@ import useFetch from '../../hooks/custom/useFetch';
 import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
 
 export default function SearchBar(props) {
-	const [context, setContext] = useState(props.contexts.filter((context) => context['current'] == true));
+	const [context, setContext] = useState(props.contextInfo.contexts.filter((c) => c['current'] == true));
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const [search, dispatchSearch] = useReducer(searchReducer, { query: '', context: '' });
-	
-	useEffectOnUpdate(() => {
-		useBounceDelay(() => {
-			// const { loading, error, response } = useFetch((`link`, {}, [search])
-			console.log("Search for this:", search)
-		}, 280, [search])
-	}, [search])
+
 	return (
 		<>
 			<header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
@@ -38,7 +32,7 @@ export default function SearchBar(props) {
 				</div>
 
 				{/* //!Mobile Size Only Dropdown Context Picker */}
-				<ContextsSelectorDropdown contexts={props.contexts} />
+				<ContextsSelectorDropdown contexts={context} />
 
 				{/* //! Mobile main nav show hide button */}
 				<div className='absolute inset-y-0 right-0 pr-4 flex items-center sm:pr-6 md:hidden'>
@@ -47,7 +41,12 @@ export default function SearchBar(props) {
 
 				{/* //! DESKTOP TOP NAVIGATION SEARCH + ADD/SETTINGS */}
 				<div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
-					<Search dispatchSearch={dispatchSearch} query={search} context={context} contexts={props.contexts} />
+					<Search
+						dispatchSearch={dispatchSearch}
+						query={search}
+						context={context}
+						contexts ={props.contextInfo.contexts}
+					/>
 					<NavLinks navigation={props.navigation} />
 				</div>
 
