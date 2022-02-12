@@ -1,11 +1,11 @@
 export default function contextReducer(contexts, event) {
   event.preventDefault();
+  debugger
   //catches text of click event on sidebar buttons
   let targetName = event.target.text
   if (targetName == undefined) {
     targetName = event.target.parentNode.text
   }
-  debugger
 
   return ( 
     contexts.map((context) => {
