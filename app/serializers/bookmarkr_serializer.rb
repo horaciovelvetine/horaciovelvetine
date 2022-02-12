@@ -1,4 +1,6 @@
 class BookmarkrSerializer
   include JSONAPI::Serializer
-  attributes 
+  # 
+  binding.pry
+  # attributes 
 end
