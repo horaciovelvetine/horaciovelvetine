@@ -11,14 +11,17 @@ import MobileNavBarToggleDisplayButton from './components/MobileNavBarToggleDisp
 // * Hooks
 import searchReducer from '../../hooks/searchReducer';
 import useBounceDelay from '../../hooks/custom/useBounceDelay';
-import useFetch from '../../hooks/custom/useFetch';
-import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
 
+
+// * COMPONENT START
 export default function SearchBar(props) {
 	const [context, setContext] = useState(props.contextInfo.contexts.filter((c) => c['current'] == true));
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const [search, dispatchSearch] = useReducer(searchReducer, { query: '', context: '' });
-
+	const [search, dispatchSearch] = useReducer(searchReducer, { query: '', context: '', results: []});
+	
+	useBounceDelay(() => {
+		console.log('Bounce delay:', search)
+	}, 10000, [search])
 	return (
 		<>
 			<header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
@@ -45,7 +48,6 @@ export default function SearchBar(props) {
 						dispatchSearch={dispatchSearch}
 						query={search}
 						context={context}
-						contexts ={props.contextInfo.contexts}
 					/>
 					<NavLinks navigation={props.navigation} />
 				</div>
