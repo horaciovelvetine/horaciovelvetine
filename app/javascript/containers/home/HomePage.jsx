@@ -11,11 +11,10 @@ const baseUrl = 'https://127.0.0.1:3000/api/v1/bookmark';
 
 export default function HomePage() {
 	const [contexts, dispatchContexts] = useReducer(() => contextReducer, {
-		// getReqLink: `${baseUrl}/search`,
 		contexts: [
-			{ name: 'Home', icon: HomeIcon, current: false, order: 1 },
+			{ name: 'Home', icon: HomeIcon, current: true, order: 1 },
 			{ name: 'Hired', icon: BriefcaseIcon, current: false, order: 2 },
-			{ name: 'Ktchn', icon: FireIcon, current: true, order: 3 },
+			{ name: 'Ktchn', icon: FireIcon, current: false, order: 3 },
 			{ name: 'ToDos', icon: ClipboardCheckIcon, current: false, order: 4 },
 		],
 	});
