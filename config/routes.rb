@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     
     ##* All Api v1 routes
     namespace :v1 do 
-      resources :bookmarkr, path: 'bookmark', as: 'bookmark'
+      resources :bookmarkr, path: 'bookmark', as: 'bookmark', only: [:create, :edit, :update, :destroy]
+      get 'bookmark/search', to: 'bookmarkr#search'
+      
     end
 
     ##* Future Scaff for Settings Config
