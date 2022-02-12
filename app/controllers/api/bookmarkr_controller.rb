@@ -2,21 +2,23 @@ module api
   module v1
     class BookmarkrController < ApplicationController::Base
       
-      def index ##grabs all the bookmarks? 
+      def index ##call on dom load to serve up all bookmarks 
+        
         binding.pry
+        ## Creates Vars to Serialize
+        # bookmarks = Context.where(name: 'bookmarked').links
+        # link_groups = LinkGroup.all
+
+        ## Returns JSON to front end 
+        # redner json: BookmarkrSerializer.new(bookmarks, link_groups).serializable_hash.to_json
       end 
 
-      ##! Or 
-
-      def search ##returns array of searched for links? 
+      def search ## returns group of resultIds to FE 
         binding.pry
       end 
       
 
-      ##! CRUD
-      def new 
-        binding.pry 
-      end 
+      ##! CRUD    
       
       def create 
         binding.pry 
