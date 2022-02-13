@@ -1,5 +1,5 @@
-module api
-  module v1
+module API
+  module V1
     class ApiController < ActionController::Base
   
       def index

@@ -1,5 +1,5 @@
-module api
-  module v1
+module API
+  module V1
     class BookmarkrController < ApplicationController::Base
       
       def index ##call on dom load to serve up all bookmarks 
