@@ -8,10 +8,8 @@ export default function Search(props) {
 
 	useBounceDelay(
 		() => {
-			console.log('Bounce Delay!');
 			const search = { ...searchEvent };
-			debugger;
-			props.dispatchSearch(search);
+			search.dispatchSearch({query: search.query, context: search.context, results: []});
 		},
 		515,
 		[searchEvent]
@@ -30,7 +28,7 @@ export default function Search(props) {
 					className='block w-full border-transparent pl-12 placeholder-gray-500 focus:border-transparent sm:text-sm focus:ring-0'
 					autoFocus={true}
 					onChange={(e) => {
-						setSearchEvent([e.target.value, props]);
+						setSearchEvent({ query: e.target.value, context: props.context[0], dispatchSearch: props.dispatchSearch });
 					}}
 				/>
 				<div className='pointer-events-none absolute inset-y-0 left-0 flex items-center justify-center pl-4'>
