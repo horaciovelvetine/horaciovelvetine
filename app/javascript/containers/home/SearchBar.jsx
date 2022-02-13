@@ -23,11 +23,11 @@ export default function SearchBar(props) {
 	//* Sets Up search related effects
 	useEffectOnUpdate(() => {
 		console.log('search query change');
-	}, search.query);
+	}, [search.query]);
 
 	useEffectOnUpdate(() => {
 		console.log('search results changed', search);
-	}, search.results);
+	}, [search.results]);
 
 	return (
 		<>
