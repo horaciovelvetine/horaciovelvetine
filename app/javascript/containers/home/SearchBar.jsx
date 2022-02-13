@@ -20,8 +20,15 @@ export default function SearchBar(props) {
 	const [search, dispatchSearch] = useReducer(searchReducer, { query: '', context: '', results: []});
 	
 	useBounceDelay(() => {
-		console.log('Bounce delay:', search)
-	}, 10000, [search])
+		//Waits
+		//Initiates search process: setup payload(query, context), sends get for Search, awaits promise, sets searches results using results
+		// results should be array of bookmark id's that match
+	}, 515, [search])
+
+	useEffect(() => {
+		//When a searches results change, this should effect the results display and tag cloud 
+	}, [search.results])
+
 	return (
 		<>
 			<header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
