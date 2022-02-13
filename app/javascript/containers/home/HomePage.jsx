@@ -11,7 +11,7 @@ import MainContent from './MainContent';
 import contextReducer from '../../hooks/contextReducer';
 import useFetch from '../../hooks/custom/useFetch';
 
-const baseUrl = 'https://127.0.0.1:3000/api/v1/bookmark';
+const baseUrl = 'http://127.0.0.1:3000/bookmarks';
 
 export default function HomePage() {
 	const [contexts, dispatchContexts] = useReducer(() => contextReducer, {
@@ -28,7 +28,8 @@ export default function HomePage() {
 		{ name: 'Settings', href: `${baseUrl}/settings` },
 	]);
 
-	const { loading, error, cachedBookmarks } = useFetch(`link`, {}, [contexts]);
+	const { loading, error, cachedBookmarks } = useFetch(baseUrl, {}, []);
+	
 
 	return (
 		<>
