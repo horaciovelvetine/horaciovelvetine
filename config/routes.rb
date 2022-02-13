@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   
   ##* All Api v1 routes
   # namespace :api do    
-      resources :bookmarks, only: [:index, :create, :edit, :update, :destroy]
-      get 'bookmark/search', to: 'bookmark#search'
+      resources :bookmarkr, only: [:index, :create, :edit, :update, :destroy]
+      get 'bookmarkr/search', to: 'bookmarkr#search'
   # end
   
 

@@ -18,7 +18,7 @@ export default function SearchBar(props) {
 	const [context, setContext] = useState(props.contextInfo.contexts.filter((c) => c['current'] == true));
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const [search, dispatchSearch] = useReducer(searchReducer, {});
-	const searchLink = `http://127.0.0.1:3000/bookmarks/search`; // => useFetch(searchLink, payload, [payload]);
+	const searchLink = `http://127.0.0.1:3000/bookmarkr/search`; // => useFetch(searchLink, payload, [payload]);
 
 	//* Sets Up search related effects
 	useEffectOnUpdate(() => {

@@ -11,7 +11,7 @@ import MainContent from './MainContent';
 import contextReducer from '../../hooks/contextReducer';
 import useFetch from '../../hooks/custom/useFetch';
 
-const baseUrl = 'http://127.0.0.1:3000/bookmarks';
+const baseUrl = 'http://127.0.0.1:3000/bookmarkr';
 
 export default function HomePage() {
 	const [contexts, dispatchContexts] = useReducer(() => contextReducer, {
