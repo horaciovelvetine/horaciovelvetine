@@ -24,11 +24,18 @@ export default function HomePage() {
 		{ name: 'Settings', href: `${baseUrl}/settings` },
 	]);
 
+	const { loading, error, cachedBookmarks } = useFetch(`link`, { payload }, [contexts]);
+
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
-				<SearchBar contextInfo={contexts} navigation={navigation} />
-				<MainContent contextInfo={contexts} dispatchContexts={dispatchContexts} navigation={navigation} />
+				<SearchBar contextInfo={contexts} navigation={navigation} cache={cachedBookmarks} />
+				<MainContent
+					contextInfo={contexts}
+					dispatchContexts={dispatchContexts}
+					navigation={navigation}
+					cache={cachedBookmarks}
+				/>
 			</div>
 		</>
 	);
