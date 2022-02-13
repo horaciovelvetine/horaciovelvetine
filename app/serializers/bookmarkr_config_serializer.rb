@@ -1,4 +1,4 @@
-class BookmarkrSerializer
+class BookmarkrConfigSerializer
   include JSONAPI::Serializer
   set_type :all_bookmarks
   attribute :bookmarks do |context|
