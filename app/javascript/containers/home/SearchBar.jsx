@@ -11,22 +11,29 @@ import MobileNavBarToggleDisplayButton from './components/MobileNavBarToggleDisp
 // * Hooks
 import searchReducer from '../../hooks/searchReducer';
 import useBounceDelay from '../../hooks/custom/useBounceDelay';
+import useFetch from '../../hooks/custom/useFetch';
 
 
 // * COMPONENT START
 export default function SearchBar(props) {
 	const [context, setContext] = useState(props.contextInfo.contexts.filter((c) => c['current'] == true));
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const [search, dispatchSearch] = useReducer(searchReducer, { query: '', context: '', results: []});
+	const [search, dispatchSearch] = useReducer(searchReducer, { query: '', context: '', results: [] });
+	const searchLink = `http://127.0.0.1:3000/api/v1/bookmark/search`;
+	// const results = useFetch(searchLink, payload, [payload]);
 	
 	useBounceDelay(() => {
 		//Waits
 		//Initiates search process: setup payload(query, context), sends get for Search, awaits promise, sets searches results using results
 		// results should be array of bookmark id's that match
+		let payload = search
+		debugger
+		// dispatchSearch(search, results)
 	}, 515, [search])
 
 	useEffect(() => {
 		//When a searches results change, this should effect the results display and tag cloud 
+		console.log('search results changed')
 	}, [search.results])
 
 	return (
