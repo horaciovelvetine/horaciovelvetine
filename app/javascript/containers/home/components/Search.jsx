@@ -1,15 +1,21 @@
 import React from 'react';
-import { useState} from 'react';
+import { useState } from 'react';
 import { SearchIcon } from '@heroicons/react/solid';
 import useBounceDelay from '../../../hooks/custom/useBounceDelay';
 
 export default function Search(props) {
-	const [searchEvent, setSearchEvent] = useState(null)
+	const [searchEvent, setSearchEvent] = useState(null);
 
-	useBounceDelay(() => {
-		console.log('Bounce Delay!')
-		debugger
-	}, 515, [searchEvent] )
+	useBounceDelay(
+		() => {
+			console.log('Bounce Delay!');
+			const search = { ...searchEvent };
+			debugger;
+			props.dispatchSearch(search);
+		},
+		515,
+		[searchEvent]
+	);
 
 	return (
 		<div className='min-w-0 flex-1'>
@@ -34,6 +40,5 @@ export default function Search(props) {
 		</div>
 	);
 }
-
 
 //{ query: null, context: null, results: null }
