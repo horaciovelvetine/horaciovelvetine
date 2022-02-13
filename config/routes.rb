@@ -12,15 +12,10 @@ Rails.application.routes.draw do
 
   
   ##* All Api v1 routes
-  namespace :api do    
-    namespace :v1 do 
-      resources :bookmark, only: [:index, :create, :edit, :update, :destroy]
-      get 'bookmark/search', to: 'bookmarks#search'
-    end
-
-    ##* Future Scaff for Settings Config
-    get 'settings', to: 'api#state'
-  end
+  # namespace :api do    
+      resources :bookmarks, only: [:index, :create, :edit, :update, :destroy]
+      get 'bookmark/search', to: 'bookmark#search'
+  # end
   
 
 end
