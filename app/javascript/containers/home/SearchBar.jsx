@@ -10,9 +10,8 @@ import MobileNavBarToggleDisplayButton from './components/MobileNavBarToggleDisp
 
 // * Hooks
 import searchReducer from '../../hooks/searchReducer';
-import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate'
+import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
 import useFetch from '../../hooks/custom/useFetch';
-
 
 // * COMPONENT START
 export default function SearchBar(props) {
@@ -20,15 +19,15 @@ export default function SearchBar(props) {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const [search, dispatchSearch] = useReducer(searchReducer, {});
 	const searchLink = `http://127.0.0.1:3000/api/v1/bookmark/search`; // => useFetch(searchLink, payload, [payload]);
-	
-	
+
+	//* Sets Up search related effects
 	useEffectOnUpdate(() => {
-		console.log('search query change')
-	}, search.query)
+		console.log('search query change');
+	}, search.query);
 
 	useEffectOnUpdate(() => {
-		console.log('search results changed', search)
-	}, search.results)
+		console.log('search results changed', search);
+	}, search.results);
 
 	return (
 		<>
@@ -52,11 +51,7 @@ export default function SearchBar(props) {
 
 				{/* //! DESKTOP TOP NAVIGATION SEARCH + ADD/SETTINGS */}
 				<div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
-					<Search
-						dispatchSearch={dispatchSearch}
-						query={search}
-						context={context}
-					/>
+					<Search dispatchSearch={dispatchSearch} query={search} context={context} />
 					<NavLinks navigation={props.navigation} />
 				</div>
 
