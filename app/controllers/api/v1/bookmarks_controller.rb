@@ -1,6 +1,6 @@
 module API
   module V1
-    class BookmarkrController < ActionController::Base
+    class BookmarksController < ActionController::Base
       
       def index ##call on dom load to serve up all bookmarks 
         
