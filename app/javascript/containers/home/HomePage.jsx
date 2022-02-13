@@ -28,19 +28,24 @@ export default function HomePage() {
 		{ name: 'Settings', href: `${baseUrl}/settings` },
 	]);
 
-	const { loading, error, cachedBookmarks } = useFetch(baseUrl, {}, []);
+	//! Doing the same thing, start here. Possible that a useEffect for val could allow setting up initital state for this Homepage, which could incorporate a bit more of the info (nav, contexts) passsed behind the scenes so theres not so much clutter here. (Could define as global variables?? fn)
+	// const { loading, error, val} = useFetch(baseUrl, {}, [])
 	
+	// useEffect(() => {
+	// 	fetch(baseUrl)
+	// 		.then((res) => res.json())
+	// 		.then((json) => {
+	// 			const bookmarks = json.data[0].attributes.bookmarks
+	// 			debugger
+	// 		});
+	// }, []);
 
+	debugger
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
-				<SearchBar contextInfo={contexts} navigation={navigation} cache={cachedBookmarks} />
-				<MainContent
-					contextInfo={contexts}
-					dispatchContexts={dispatchContexts}
-					navigation={navigation}
-					cache={cachedBookmarks}
-				/>
+				<SearchBar contextInfo={contexts} navigation={navigation} />
+				<MainContent contextInfo={contexts} dispatchContexts={dispatchContexts} navigation={navigation} />
 			</div>
 		</>
 	);
