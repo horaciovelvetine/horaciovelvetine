@@ -51,7 +51,7 @@ export default function SearchBar(props) {
 
 				{/* //! DESKTOP TOP NAVIGATION SEARCH + ADD/SETTINGS */}
 				<div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
-					<Search dispatchSearch={dispatchSearch} query={search} context={context} />
+					<Search dispatchSearch={dispatchSearch} prevSearch={search} context={context} />
 					<NavLinks navigation={props.navigation} />
 				</div>
 
