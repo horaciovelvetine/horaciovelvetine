@@ -34,3 +34,6 @@ export default function Search(props) {
 		</div>
 	);
 }
+
+
+//{ query: null, context: null, results: null }

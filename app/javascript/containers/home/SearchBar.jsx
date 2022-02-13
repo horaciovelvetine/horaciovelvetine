@@ -10,6 +10,7 @@ import MobileNavBarToggleDisplayButton from './components/MobileNavBarToggleDisp
 
 // * Hooks
 import searchReducer from '../../hooks/searchReducer';
+import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate'
 import useFetch from '../../hooks/custom/useFetch';
 
 
@@ -17,18 +18,17 @@ import useFetch from '../../hooks/custom/useFetch';
 export default function SearchBar(props) {
 	const [context, setContext] = useState(props.contextInfo.contexts.filter((c) => c['current'] == true));
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const [search, dispatchSearch] = useReducer(searchReducer, { query: '', context: '', results: [] });
+	const [search, dispatchSearch] = useReducer(searchReducer, {});
 	const searchLink = `http://127.0.0.1:3000/api/v1/bookmark/search`; // => useFetch(searchLink, payload, [payload]);
 	
 	
-	useEffect(() => {
+	useEffectOnUpdate(() => {
 		console.log('search query change')
-	}, [search.query])
+	}, search.query)
 
-	useEffect(() => {
-		console.log('search results changed')
-		debugger
-	}, [search.results])
+	useEffectOnUpdate(() => {
+		console.log('search results changed', search)
+	}, search.results)
 
 	return (
 		<>
