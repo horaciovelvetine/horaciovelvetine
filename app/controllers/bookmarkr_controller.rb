@@ -1,9 +1,10 @@
 class BookmarkrController < ActionController::Base
     
     def index
-      bookmarks = Context.all.where(name: "bookmarked").first.links
-      link_groups = LinkGroup.all 
-      render json: 
+      context = Context.all.where(name: "bookmarked")
+      # link_groups = LinkGroup.all 
+      render json: BookmarkrSerializer.new(context).serializable_hash.to_json
+      
     end
 
     def search 
