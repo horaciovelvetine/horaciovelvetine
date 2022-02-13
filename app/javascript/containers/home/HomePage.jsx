@@ -1,11 +1,15 @@
+//* React & Tailwind Imports
 import React from 'react';
 import { useState, useReducer, useEffect } from 'react';
 import { HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon } from '@heroicons/react/outline';
 
+//* Page Imports
 import SearchBar from './SearchBar';
 import MainContent from './MainContent';
 
+//* Hook Imports
 import contextReducer from '../../hooks/contextReducer';
+import useFetch from '../../hooks/custom/useFetch';
 
 const baseUrl = 'https://127.0.0.1:3000/api/v1/bookmark';
 
@@ -24,7 +28,7 @@ export default function HomePage() {
 		{ name: 'Settings', href: `${baseUrl}/settings` },
 	]);
 
-	const { loading, error, cachedBookmarks } = useFetch(`link`, { payload }, [contexts]);
+	const { loading, error, cachedBookmarks } = useFetch(`link`, {}, [contexts]);
 
 	return (
 		<>
