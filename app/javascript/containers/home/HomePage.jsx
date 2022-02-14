@@ -15,7 +15,9 @@ import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
 const baseUrl = 'http://127.0.0.1:3000/bookmarkr';
 
 export default function HomePage() {
-	const { loading, error, val} = useFetch(baseUrl, {}, [])
+	
+	const { loading, error, val } = useFetch(baseUrl, {}, []);
+
 	const [contexts, dispatchContexts] = useReducer(() => contextReducer, {
 		contexts: [
 			{ name: 'Home', icon: HomeIcon, current: true, order: 1 },
@@ -31,10 +33,11 @@ export default function HomePage() {
 	]);
 
 	useEffectOnUpdate(() => {
-		const cache = val.data[0] 
-		debugger
-	}, [val != null || val != undefined])
+		const cache = val.data[0];
+		debugger;
+	}, [val != null || val != undefined]);
 
+	
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
