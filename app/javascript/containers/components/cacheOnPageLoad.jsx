@@ -9,8 +9,8 @@ export default function cacheOnPageLoad() {
     fetch(baseUrl)
       .then((res) => res.json())
       .then((json) => {
-        const bookmarks = json.data[0].attributes.bookmarks
         debugger
+        const bookmarks = json.data[0].attributes.bookmarks
       });
   }, []);
   
