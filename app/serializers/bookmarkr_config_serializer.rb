@@ -1,7 +1,7 @@
 class BookmarkrConfigSerializer
   include JSONAPI::Serializer
-  set_type :all_bookmarks
-  attribute :bookmarks do |context|
-    bookmarks = context.links.map { |link| link }
-  end
+  set_type :cache
+
+  attributes :bookmarks, :settings
+
 end
