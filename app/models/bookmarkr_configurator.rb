@@ -20,21 +20,3 @@ class BookmarkrConfigurator < ApplicationRecord
   end  
 end
 
-
-__END__
-## sort of a potential data structure to shoot for! 
-
-cache = {
-  bookmarks: {
-
-  },
-  contexts: {
-
-  }, 
-  navbarLinks: {
-
-  },
-  settings: {
-
-  }
-}
