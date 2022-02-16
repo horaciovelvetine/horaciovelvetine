@@ -10,7 +10,6 @@ export default function cacheOnPageLoad() {
       .then((res) => res.json())
       .then((json) => {
         debugger
-        const bookmarks = json.data[0].attributes.bookmarks
       });
   }, []);
   
