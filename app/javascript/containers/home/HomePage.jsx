@@ -16,19 +16,11 @@ import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
 const baseUrl = 'http://127.0.0.1:3000/bookmarkr';
 
 export default function HomePage() {
-	
-	const { loading, error, val } = useFetch(baseUrl, {}, []);
+	const { loading, error, response } = useFetch(baseUrl, {}, []);
 
-	//! Start Here! You should be able to grab these values from the cache fetch once the serializer is ready
 	const [cache, dispatchCache] = useReducer(() => cacheReducer, {})
 	const [contexts, dispatchContexts] = useReducer(() => contextReducer, {});
 	const [navigation, setNavigation] = useState([]);
-
-	// useEffectOnUpdate(() => {
-	// 	const cache = val.data[0];
-	// 	debugger;
-	// }, [val != null || val != undefined]);
-
 	
 	if (loading == true) {
 		<>
@@ -41,7 +33,7 @@ export default function HomePage() {
 				{console.log(error)}
 			</>
 		)
-	} else if (val != null || val != undefined) {
+	} else if (response != null || response != undefined) {
 		return (
 			<>
 				<div className='h-screen flex flex-col'>
