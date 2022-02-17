@@ -9,6 +9,7 @@ import MainContent from './MainContent';
 
 //* Hook Imports
 import contextReducer from '../../hooks/contextReducer';
+import cacheReducer from '../../hooks/cacheReducer';
 import useFetch from '../../hooks/custom/useFetch';
 import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
 
@@ -19,19 +20,9 @@ export default function HomePage() {
 	const { loading, error, val } = useFetch(baseUrl, {}, []);
 
 	//! Start Here! You should be able to grab these values from the cache fetch once the serializer is ready
-	// const [contexts, dispatchContexts] = useReducer(() => contextReducer, {
-	// 	contexts: [
-	// 		{ name: 'Home', icon: HomeIcon, current: true, order: 1 },
-	// 		{ name: 'Hired', icon: BriefcaseIcon, current: false, order: 2 },
-	// 		{ name: 'Ktchn', icon: FireIcon, current: false, order: 3 },
-	// 		{ name: 'ToDos', icon: ClipboardCheckIcon, current: false, order: 4 },
-	// 	],
-	// });
-
-	// const [navigation, setNavigation] = useState([
-	// 	{ name: '+Link', href: `${baseUrl}/addlink` },
-	// 	{ name: 'Settings', href: `${baseUrl}/settings` },
-	// ]);
+	const [cache, dispatchCache] = useReducer(() => cacheReducer, {})
+	const [contexts, dispatchContexts] = useReducer(() => contextReducer, {});
+	const [navigation, setNavigation] = useState([]);
 
 	// useEffectOnUpdate(() => {
 	// 	const cache = val.data[0];
