@@ -33,18 +33,31 @@ export default function HomePage() {
 	// 	{ name: 'Settings', href: `${baseUrl}/settings` },
 	// ]);
 
-	useEffectOnUpdate(() => {
-		const cache = val.data[0];
-		debugger;
-	}, [val != null || val != undefined]);
+	// useEffectOnUpdate(() => {
+	// 	const cache = val.data[0];
+	// 	debugger;
+	// }, [val != null || val != undefined]);
 
 	
-	return (
+	if (loading == true) {
 		<>
-			<div className='h-screen flex flex-col'>
-				<SearchBar contextInfo={contexts} navigation={navigation} />
-				<MainContent contextInfo={contexts} dispatchContexts={dispatchContexts} navigation={navigation} />
-			</div>
-		</>
-	);
+			<p>is Loading...</p>
+		</>;
+	} else if (error) {
+		return (
+			<>
+				<div>Error! Check Console</div>
+				{console.log(error)}
+			</>
+		)
+	} else if (val != null || val != undefined) {
+		return (
+			<>
+				<div className='h-screen flex flex-col'>
+					<SearchBar contextInfo={contexts} navigation={navigation} />
+					<MainContent contextInfo={contexts} dispatchContexts={dispatchContexts} navigation={navigation} />
+				</div>
+			</>
+		)
+	}
 }
