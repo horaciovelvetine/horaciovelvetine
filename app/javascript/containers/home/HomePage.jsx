@@ -42,5 +42,7 @@ export default function HomePage() {
 				</div>
 			</>
 		)
+	} else {
+		debugger
 	}
 }
