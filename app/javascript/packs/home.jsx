@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HomePage from '../containers/home/HomePage';
+import HomePage from '../containers/bookmarkr/HomePage';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
-
-// document.addEventListener('DOMContentLoaded', () => {
-// const node = document.getElementById('json')
-// const payload = JSON.parse(document.getElementById.getAttribute('payload'))
-// })
-
+const queryClient = new QueryClient()
 
 ReactDOM.render(
 	<React.StrictMode>
-			<HomePage />
+		<QueryClientProvider client={queryClient}>
+				<HomePage />
+			</QueryClientProvider>
 	</React.StrictMode>,
 	document.getElementById('homeContainer')
 );
