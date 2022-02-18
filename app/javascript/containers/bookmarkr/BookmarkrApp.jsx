@@ -1,10 +1,13 @@
-//* React & Tailwind Imports
+//* React Imports
 import React from 'react';
 import { useState, useReducer } from 'react';
-import { HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon } from '@heroicons/react/outline';
+
+//* TailWindCSS Imports
+import { HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
+import { SearchIcon, ChevronDownIcon } from '@heroicons/react/solid';
 
 //* Page Imports
-import SearchBar from './apreQueryStart/SearchBar';
+
 
 //* Hook Imports
 import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
@@ -12,12 +15,14 @@ import { useQuery, useMutation } from 'react-query';
 
 export default function BookmarkrApp() {
 	const { loading, data, error } = useQuery('getCacheConfig', fetchConfigCache);
-	const [cache, dispatchCache] = useReducer(cacheReducer, null);
+	const [stateConfig, dispatchStateConfig] = useReducer(stateConfigReducer, null); //* keeps track of all manners of state
+	const [resultsIdArray, setResultsArray] = useState([]); //* Stores Result of Search Fetch
+	const [results, setResults] = useState([]); //* Grab JS Objects from LStorage
 
 	useEffectOnUpdate(() => {
 		debugger;
-		const cacheConfigObject = data.data;
-		dispatch(cacheConfigObject);
+		const initialState = data.data;
+		dispatchStateConfig(initialState);
 	}, [data]);
 
 	return (
@@ -28,29 +33,52 @@ export default function BookmarkrApp() {
 					<div className='absolute inset-y-0 left-0 md:static md:flex-shrink-0'>
 						<a
 							href='/'
-							className='flex items-center justify-center h-16 w-16 bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 md:w-20'>
-							{context[0].name}
-						</a>
+							className='flex items-center justify-center h-16 w-16 bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 md:w-20'></a>
 					</div>
 					{cache && (
 						<>
-							<NavigationMenus configObject={cache} />
-							<Search configObject={cache} />
-							<MobileNavMenu configObject={cache} />
-						</>
-					)}
-					{!cache && (
-						<>
-							{console.log('!cache header')}
-							<span>loading cache object...</span>
+							<NavigationMenus configObject={stateConfig} updateConfigObject={dispatchStateConfig} />
+							<div className='absolute inset-y-0 right-0 pr-4 flex items-center sm:pr-6 md:hidden'>
+								<MobileNavBarToggleDisplayButton setMobileMenuOpen={setMobileMenuOpen} />
+							</div>
+							<Search configObject={stateConfig} updateConfigObject={dispatchStateConfig} />
+							<MobileNavMenu configObject={stateConfig} updateConfigObject={dispatchStateConfig} />
 						</>
 					)}
 				</header>
 				<div className='min-h-0 flex-1 flex overflow-hidden'>
+					{/* //! Desktop Context Sidebar */}
 					<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 						<div className='relative w-20 flex flex-col p-3 space-y-3'>
 							{cache && <ContextsSelectorSidebar configObject={cache} />}
 						</div>
+
+						{/* //! Results column */}
+						<main className='min-w-0 flex-1 border-t border-gray-200 lg:flex'>
+							<section
+								aria-labelledby='primary-heading'
+								className='min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-first'>
+								<h1 id='primary-heading' className='sr-only'>
+									Home
+								</h1>
+								<div>
+									{loading && (
+										<>
+											<span>Loading...</span>
+										</>
+									)}
+
+									{results && <Results />}
+								</div>
+							</section>
+
+							{/* //! Tag Cloud Column (hides on sizing) */}
+							<aside className='hidden lg:block lg:flex-shrink-0'>
+								<div className='h-full relative flex flex-col w-96 border-r border-gray-200 bg-gray-100 overflow-y-auto'>
+									<TagCloud />
+								</div>
+							</aside>
+						</main>
 					</nav>
 				</div>
 			</div>

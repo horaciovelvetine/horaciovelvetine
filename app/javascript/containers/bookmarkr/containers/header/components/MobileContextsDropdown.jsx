@@ -1,7 +1,7 @@
 import React from 'react';
-import { ChevronDownIcon} from '@heroicons/react/solid';
+import { ChevronDownIcon } from '@heroicons/react/solid';
 
-export default function ContextsSelectorSidebar(props) {
+export default function MobileContextsDropdown(props) {
 	
 	return (
 		<div className='mx-auto md:hidden'>
