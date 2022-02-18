@@ -32,15 +32,26 @@ export default function BookmarkrApp() {
 							{context[0].name}
 						</a>
 					</div>
-					{cache && <>
-						<NavigationMenus configObject={cache} />
-						<Search configObject={cache} />
-						<MobileNavMenu configObject={cache} />
-					</>}
-					{!cache && <>{console.log("!cache header")}<span>loading cache object...</span></>}
+					{cache && (
+						<>
+							<NavigationMenus configObject={cache} />
+							<Search configObject={cache} />
+							<MobileNavMenu configObject={cache} />
+						</>
+					)}
+					{!cache && (
+						<>
+							{console.log('!cache header')}
+							<span>loading cache object...</span>
+						</>
+					)}
 				</header>
 				<div className='min-h-0 flex-1 flex overflow-hidden'>
-
+					<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
+						<div className='relative w-20 flex flex-col p-3 space-y-3'>
+							{cache && <ContextsSelectorSidebar configObject={cache} />}
+						</div>
+					</nav>
 				</div>
 			</div>
 		</>
