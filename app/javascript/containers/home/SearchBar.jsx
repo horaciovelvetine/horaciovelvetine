@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useReducer, useEffect } from 'react';
+import { useState, useReducer } from 'react';
 
 // * Sub-Components
 import ContextsSelectorDropdown from './components/ContextsSelectorDropdown';
@@ -11,14 +11,13 @@ import MobileNavBarToggleDisplayButton from './components/MobileNavBarToggleDisp
 // * Hooks
 import searchReducer from '../../hooks/searchReducer';
 import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
-import useFetch from '../../hooks/custom/useFetch';
 
 // * COMPONENT START
 export default function SearchBar(props) {
 	const [context, setContext] = useState(props.contextInfo.contexts.filter((c) => c['current'] == true));
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const [search, dispatchSearch] = useReducer(searchReducer, {});
-	const searchLink = `http://127.0.0.1:3000/bookmarkr/search`; // => useFetch(searchLink, payload, [payload]);
+	const searchLink = `http://127.0.0.1:3000/bookmarkr/search`; 
 
 	//* Sets Up search related effects
 	useEffectOnUpdate(() => {
