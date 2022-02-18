@@ -5,10 +5,14 @@ const jsonHeader = {
 }
 // #10: https://github.com/WebDevSimplified/useful-custom-react-hooks/tree/main/src/10-useFetch
 export default function useFetch(url, options = {}, dependencies = []) {
+    
   return useAsync(() => {
     return fetch(url, { ...jsonHeader, ...options }).then(res => {
-      if (res.ok) return res.json()
+      const data = res.json()
+      debugger
+      if (res.ok) return data
       return res.json().then(json => Promise.reject(json))
+      
     })
   }, dependencies)
 }
