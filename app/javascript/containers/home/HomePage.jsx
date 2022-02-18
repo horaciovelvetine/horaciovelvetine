@@ -11,7 +11,9 @@ import MainContent from './MainContent';
 import contextReducer from '../../hooks/contextReducer';
 import fetchConfigCache from '../../hooks/fetchConfigCache.js';
 import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
-import { useQuery } from 'react-query';
+import { useQuery, useMutation, useQueryClient, QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 export default function HomePage() {
 	const { loading, data, error } = useQuery('cache', fetchConfigCache);
@@ -20,8 +22,8 @@ export default function HomePage() {
 	const [navigation, setNavigation] = useState([]);
 
 	useEffectOnUpdate(() => {
-		debugger
-	}, [data])
+		debugger;
+	}, [data]);
 
 	if (loading) {
 		return (
@@ -38,12 +40,13 @@ export default function HomePage() {
 		);
 	} else if (data) {
 		return (
-			<>
+			<QueryClientProvider client={queryClient}>
+				
 				<div className='h-screen flex flex-col'>
 					<SearchBar contextInfo={contexts} navigation={navigation} />
 					<MainContent contextInfo={contexts} dispatchContexts={dispatchContexts} navigation={navigation} />
 				</div>
-			</>
+			</QueryClientProvider>
 		);
 	} else {
 		debugger;
