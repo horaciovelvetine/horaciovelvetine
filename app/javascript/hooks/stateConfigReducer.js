@@ -1,5 +1,5 @@
 export default function stateConfigReducer() {
   return (
-    cache = {}
+    'Thats one small thing (now)!'
   )
 }
