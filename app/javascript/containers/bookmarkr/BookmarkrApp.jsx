@@ -5,30 +5,38 @@ import { HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon } from '@heroicon
 
 //* Page Imports
 import SearchBar from './apreQueryStart/SearchBar';
-import MainContent from './containers/MainContent';
 
 //* Hook Imports
-import contextReducer from '../../hooks/contextReducer';
-import fetchConfigCache from '../../hooks/fetchConfigCache.js';
 import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
 import { useQuery, useMutation } from 'react-query';
 
 export default function BookmarkrApp() {
 	const { loading, data, error } = useQuery('getCacheConfig', fetchConfigCache);
+	const [cache, setCache] = useState(null)
 
-	// const [contexts, dispatchContexts] = useReducer(() => contextReducer, {});
-	// const [navigation, setNavigation] = useState([]);
 	useEffectOnUpdate(() => {
-		debugger;
-		const cacheJson = data.data;
-		dispatchCache(cacheJson);
+		debugger
+		const cacheConfigObject = data.data
+		setCache(cacheConfigObject)
 	}, [data]);
-
-	console.log(loading, data, error);
 
 	return (
 		<>
-			<div className='h-screen flex flex-col'></div>
+			<div className='h-screen flex flex-col'>
+				<header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
+				{/* Logo area */}
+					<div className='absolute inset-y-0 left-0 md:static md:flex-shrink-0'>
+						<a
+							href='/'
+							className='flex items-center justify-center h-16 w-16 bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 md:w-20'>
+							{context[0].name}
+						</a>
+					</div>
+
+					<ContextSelector configObject={cache} />
+					
+				</header>
+			</div>
 		</>
 	);
 }
