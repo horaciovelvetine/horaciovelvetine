@@ -17,5 +17,5 @@ export default function Search() {
 	const [configInfo, setConfigInfo] = useState(props);
 	const [search, dispatchSearch] = useReducer(searchReducer, {});
 
-	return 'Look a search!';
+	return 'Look a search!' //don't forget to add <NavLinks />;
 }
