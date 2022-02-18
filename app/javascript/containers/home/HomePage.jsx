@@ -9,31 +9,36 @@ import MainContent from './MainContent';
 
 //* Hook Imports
 import contextReducer from '../../hooks/contextReducer';
-import cacheReducer from '../../hooks/cacheReducer';
-import useFetch from '../../hooks/custom/useFetch';
+import fetchBookmarks from '../../hooks/fetchBookmarks.jsx';
 import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
+import { useQuery } from 'react-query';
 
 const baseUrl = 'http://127.0.0.1:3000/bookmarkr';
 
 export default function HomePage() {
-	const { loading, error, response } = useFetch(baseUrl, {}, []);
+	const { loading, data, error } = useQuery('cache', fetchBookmarks);
 
-	const [cache, dispatchCache] = useReducer(() => cacheReducer, {})
 	const [contexts, dispatchContexts] = useReducer(() => contextReducer, {});
 	const [navigation, setNavigation] = useState([]);
-	
-	if (loading == true) {
-		<>
-			<p>is Loading...</p>
-		</>;
+
+	useEffectOnUpdate(() => {
+		debugger
+	}, [data])
+
+	if (loading) {
+		return (
+			<>
+				<p>is Loading...</p>
+			</>
+		);
 	} else if (error) {
 		return (
 			<>
 				<div>Error! Check Console</div>
 				{console.log(error)}
 			</>
-		)
-	} else if (response != null || response != undefined) {
+		);
+	} else if (data) {
 		return (
 			<>
 				<div className='h-screen flex flex-col'>
@@ -41,8 +46,8 @@ export default function HomePage() {
 					<MainContent contextInfo={contexts} dispatchContexts={dispatchContexts} navigation={navigation} />
 				</div>
 			</>
-		)
+		);
 	} else {
-		debugger
+		debugger;
 	}
 }
