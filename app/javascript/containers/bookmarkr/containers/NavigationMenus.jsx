@@ -8,6 +8,6 @@ import ContextsSelectorDropdown from './components/ContextsSelectorDropdown';
 
 import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
 
-export default function ContextSelector() {
-	return 'Context Selector';
+export default function NavigationMenus() {
+	return 'Navigation Menus';
 }
