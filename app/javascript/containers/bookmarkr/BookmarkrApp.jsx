@@ -8,16 +8,15 @@ import { SearchIcon, ChevronDownIcon } from '@heroicons/react/solid';
 
 //* (&Sub-)Component Imports
 //(containers)
-//main 
-import Results from './containers/main/Results'
-import TagCloud from './containers/main/components/TagCloud'
+//main
+import Results from './containers/main/Results';
+import TagCloud from './containers/main/components/TagCloud';
 
 //header
-import MobileContextsDropdown from './containers/header/components/MobileContextsDropdown'
+import MobileContextsDropdown from './containers/header/components/MobileContextsDropdown';
 import MobileNavMenu from './containers/header/components/MobileNavMenu';
-import MobileNavBarToggleDisplayButton from './containers/header/components/subComponents/MobileNavBarToggleDisplayButton'
-import Search from './containers/header/Search'
-
+import MobileNavBarToggleDisplayButton from './containers/header/components/subComponents/MobileNavBarToggleDisplayButton';
+import Search from './containers/header/Search';
 
 //* Hook Imports
 import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
@@ -25,19 +24,23 @@ import fetchConfigCache from '../../hooks/fetchConfigCache';
 import stateConfigReducer from '../../hooks/stateConfigReducer';
 import { useQuery, useMutation } from 'react-query';
 
-
 export default function BookmarkrApp() {
-	const { loading, data, error } = useQuery('getCacheConfig', fetchConfigCache);
+	const { loading, error, data } = useQuery('getCacheConfig', fetchConfigCache);
 	const [stateConfig, dispatchStateConfig] = useReducer(stateConfigReducer, null); //* keeps track of all manners of state
 	const [resultsIdArray, setResultsArray] = useState([]); //* Stores Result of Search Fetch
 	const [results, setResults] = useState([]); //* Grab JS Objects from LStorage
 
 	useEffectOnUpdate(() => {
-		debugger;
 		const initialState = data.data;
+		debugger;
 		dispatchStateConfig(initialState);
 	}, [data]);
 
+	if (error) {
+		debugger;
+	}
+
+	debugger;
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
@@ -52,7 +55,7 @@ export default function BookmarkrApp() {
 						<>
 							<MobileContextsDropdown configObject={stateConfig} updateConfigObject={dispatchStateConfig} />
 							<div className='absolute inset-y-0 right-0 pr-4 flex items-center sm:pr-6 md:hidden'>
-							<MobileNavBarToggleDisplayButton setMobileMenuOpen={setMobileMenuOpen} />
+								<MobileNavBarToggleDisplayButton setMobileMenuOpen={setMobileMenuOpen} />
 							</div>
 							<Search configObject={stateConfig} updateConfigObject={dispatchStateConfig} />
 							<MobileNavMenu configObject={stateConfig} updateConfigObject={dispatchStateConfig} />
