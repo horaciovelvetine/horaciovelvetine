@@ -4,7 +4,7 @@ import { useState, useReducer } from 'react';
 import { HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon } from '@heroicons/react/outline';
 
 //* Page Imports
-import SearchBar from './containers/SearchBar';
+import SearchBar from './apreQueryStart/SearchBar';
 import MainContent from './containers/MainContent';
 
 //* Hook Imports
@@ -19,39 +19,16 @@ export default function BookmarkrApp() {
 	// const [contexts, dispatchContexts] = useReducer(() => contextReducer, {});
 	// const [navigation, setNavigation] = useState([]);
 	useEffectOnUpdate(() => {
-		debugger
-		const cacheJson = data.data
-		dispatchCache(cacheJson)
-	}, [data])
-
-	useEffectOnUpdate(() => {
-		const test = [data, loading, error];
 		debugger;
+		const cacheJson = data.data;
+		dispatchCache(cacheJson);
 	}, [data]);
+
 	console.log(loading, data, error);
-
-	// if (loading) {
-	// 	debugger;
-	// }
-
-	// if (error) {
-	// 	console.log(error);
-	// 	return (
-	// 		<>
-	// 			<span>Looks Like there was an error:: {+error.message}</span>
-	// 		</>
-	// 	);
-	// }
-
-	// if (data) {
-	// 	debugger;
-	// }
 
 	return (
 		<>
-			<div className='h-screen flex flex-col'>
-				
-			</div>
+			<div className='h-screen flex flex-col'></div>
 		</>
-	)
+	);
 }
