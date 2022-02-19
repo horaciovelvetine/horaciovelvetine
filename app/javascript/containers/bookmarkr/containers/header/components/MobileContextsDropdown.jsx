@@ -3,6 +3,7 @@ import { ChevronDownIcon } from '@heroicons/react/solid';
 
 export default function MobileContextsDropdown(props) {
 	
+	debugger
 	return (
 		<div className='mx-auto md:hidden'>
 			<div className='relative'>
