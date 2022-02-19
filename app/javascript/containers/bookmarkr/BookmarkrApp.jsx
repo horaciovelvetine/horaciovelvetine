@@ -21,12 +21,9 @@ export default function BookmarkrApp() {
 	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig);
 
 	const setMobileMenuOpen = false
+	
+	debugger
 
-	useEffect(() => {
-		debugger
-	}, [data])
-	
-	
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
@@ -35,15 +32,13 @@ export default function BookmarkrApp() {
 					<div className='absolute inset-y-0 left-0 md:static md:flex-shrink-0'>
 						<a
 							href='/'
-							className='flex items-center justify-center h-16 w-16 bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 md:w-20'>Logo</a>
+							className='flex items-center justify-center h-16 w-16 bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 md:w-20'>
+							Logo
+						</a>
 					</div>
-					{!isLoading && (
-						<Search />
-					)}
+					{!isLoading && <Search config={data} />}
 				</header>
-
-
-				<Results />
+				{!isLoading && <Results config={data} />}
 			</div>
 		</>
 	);
