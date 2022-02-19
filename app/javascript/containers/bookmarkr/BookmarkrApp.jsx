@@ -19,9 +19,8 @@ import MobileNavBarToggleDisplayButton from './containers/header/components/subC
 import Search from './containers/header/Search';
 
 //* Hook Imports
-import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
+
 import fetchConfig from '../../hooks/fetchConfig';
-import stateConfigReducer from '../../hooks/stateConfigReducer';
 import { useQuery, useMutation } from 'react-query';
 
 export default function BookmarkrApp() {
@@ -46,12 +45,12 @@ export default function BookmarkrApp() {
 					</div>
 					{!isLoading && (
 						<>
-							<MobileContextsDropdown configObject={stateConfig} updateConfigObject={dispatchStateConfig} />
+							<MobileContextsDropdown configObject={data}/>
 							<div className='absolute inset-y-0 right-0 pr-4 flex items-center sm:pr-6 md:hidden'>
-								<MobileNavBarToggleDisplayButton setMobileMenuOpen={setMobileMenuOpen} />
+								<MobileNavBarToggleDisplayButton />
 							</div>
-							<Search configObject={stateConfig} updateConfigObject={dispatchStateConfig} />
-							<MobileNavMenu configObject={stateConfig} updateConfigObject={dispatchStateConfig} />
+							<Search />
+							<MobileNavMenu />
 						</>
 					)}
 				</header>
