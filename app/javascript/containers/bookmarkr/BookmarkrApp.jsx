@@ -47,7 +47,19 @@ export default function BookmarkrApp() {
 					</nav>
 
 					{/* //! ALL RESULTS */}
-					{!isLoading && <Results config={dataFormat(data)} />}
+					<main className='min-w-0 flex-1 border-t border-gray-200 lg:flex'>
+						<section
+							aria-labelledby='primary-heading'
+							className='min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-first'>
+							<h1 id='primary-heading' className='sr-only'>
+								Bookmarkr
+							</h1>
+						</section>
+						<div>
+							{!isLoading && <Results config={dataFormat(data)} />}
+						</div>
+						
+					</main>
 				</div>
 			</div>
 		</>
