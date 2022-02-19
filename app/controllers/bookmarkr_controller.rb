@@ -5,7 +5,7 @@ class BookmarkrController < ActionController::Base
       admin = Admin.all.first
       configObject = BookmarkrConfigurator.build_config_object(admin)
       
-      render json: BookmarkrConfigSerializer.new(cache).serializable_hash.to_json
+      render json: BookmarkrConfigSerializer.new(configObject).serializable_hash.to_json
     end
 
     def search 
