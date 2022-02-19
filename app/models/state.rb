@@ -3,7 +3,7 @@ class State < ApplicationRecord
 
   def self.default_settings
     defaults = {
-      settings: {
+      configInfo: {
         contexts: [
           { name: 'Home', icon: "HomeIcon", current: true, order: 1 },
           { name: 'Hired', icon: "BriefcaseIcon", current: false, order: 2 },
@@ -14,7 +14,8 @@ class State < ApplicationRecord
           { name: "+Link", href: "${baseUrl}/addlink" },
           { name: "Settings", href: "${baseUrl}/settings" },
         ]
-      }
+      },
+      mobileMenuOpen: false
     }
   end
 
