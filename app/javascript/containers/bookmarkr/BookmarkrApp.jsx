@@ -13,20 +13,17 @@ import ContextsSelectorSidebar from './containers/main/components/ContextsSelect
 
 //* Hook Imports
 import sharedConfigReducer from '../../hooks/sharedConfigReducer';
+import fetchConfig from '../../hooks/fetchConfig'
 
-import fetchConfig from '../../hooks/fetchConfig';
+// import fetchConfig from '../../hooks/fetchConfig';
 import { useQuery, useMutation } from 'react-query';
+
+
 
 export default function BookmarkrApp() {
 	const [sharedConfig, dispatchSharedConfig] = useReducer(sharedConfigReducer, {});
-	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig			);
-
-	// useEffect(() => {
-	// 	const test = data;
-	// 	if (!data) return;
-
-	// 	dispatchSharedConfig(test);
-	// }, [data]);
+	const { isLoading, error, data, isFetching } = useQuery(['stateConfig', dispatchSharedConfig], fetchConfig(dispatchSharedConfig));
+  
 
 
 	return (
@@ -44,14 +41,14 @@ export default function BookmarkrApp() {
 					</div>
 
 					{/* //! SEARCH */}
-					{!isLoading && <Search config={configPacker(data)} />}
+					{!isLoading && <Search config={data} />}
 				</header>
 
 				<div className='min-h-0 flex-1 flex overflow-hidden'>
 					{/* //! SIDEBAR */}
 					<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 						<div className='relative w-20 flex flex-col p-3 space-y-3'>
-							{!isLoading && <ContextsSelectorSidebar config={configPacker(data)} />}
+							{!isLoading && <ContextsSelectorSidebar config={data} />}
 						</div>
 					</nav>
 
