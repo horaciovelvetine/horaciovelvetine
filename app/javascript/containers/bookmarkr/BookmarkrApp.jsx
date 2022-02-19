@@ -45,7 +45,9 @@ export default function BookmarkrApp() {
 					{/* //! SIDEBAR */}
 					<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 						<div className='relative w-20 flex flex-col p-3 space-y-3'>
-							{!isLoading && <ContextsSelectorSidebar config={dataFormat(data, [sharedConfig, dispatchSharedConfig])} />}
+							{!isLoading && (
+								<ContextsSelectorSidebar config={dataFormat(data, [sharedConfig, dispatchSharedConfig])} />
+							)}
 						</div>
 					</nav>
 
@@ -58,10 +60,7 @@ export default function BookmarkrApp() {
 								Bookmarkr
 							</h1>
 						</section>
-						<div>
-							{!isLoading && <Results config={dataFormat(data, sharedConfig)} />}
-						</div>
-						
+						<div>{!isLoading && <Results config={dataFormat(data, [sharedConfig, dispatchSharedConfig])} />}</div>
 					</main>
 				</div>
 			</div>
