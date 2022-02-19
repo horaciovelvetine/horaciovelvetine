@@ -23,7 +23,7 @@ export default function BookmarkrApp() {
 	
 
 	//? Previously on State
-	// const configPacker = (d, s) => ({ data: d.data.attributes, shared: s });
+	// const configPacker = (d, s) => ({ data: d.data.attributes, shared: s }); where s was an the array above comparing sharedConfig and its dispatch
 
 	//? Sorta like...
 	/* 
