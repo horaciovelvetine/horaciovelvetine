@@ -8,7 +8,7 @@ const queryClient = new QueryClient();
 
 ReactDOM.render(
 	<React.StrictMode>
-		<QueryClientProvider client={queryClient}>
+			<QueryClientProvider client={queryClient}>
 				<BookmarkrApp />
 			</QueryClientProvider>
 	</React.StrictMode>,
