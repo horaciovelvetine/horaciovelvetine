@@ -28,9 +28,9 @@ export default function BookmarkrApp() {
 
 	const setMobileMenuOpen = false
 
-	if (error) {
-		debugger;
-	}
+	useEffect(() => {
+		debugger
+	}, [data])
 	
 	
 	return (
