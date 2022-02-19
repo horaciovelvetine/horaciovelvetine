@@ -1,6 +1,6 @@
 //* React Imports
 import React from 'react';
-import { useState, useReducer } from 'react';
+import { useState, useReducer, useEffect } from 'react';
 
 //* TailWindCSS Imports
 import { HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
@@ -11,7 +11,7 @@ import { SearchIcon, ChevronDownIcon } from '@heroicons/react/solid';
 //main
 import Results from './containers/main/Results';
 import TagCloud from './containers/main/components/TagCloud';
-
+import ContextsSelectorSidebar from './containers/main/components/ContextsSelectorSidebar';
 //header
 import MobileContextsDropdown from './containers/header/components/MobileContextsDropdown';
 import MobileNavMenu from './containers/header/components/MobileNavMenu';
@@ -20,27 +20,20 @@ import Search from './containers/header/Search';
 
 //* Hook Imports
 import useEffectOnUpdate from '../../hooks/custom/useEffectOnUpdate';
-import fetchConfigCache from '../../hooks/fetchConfigCache';
+import fetchConfig from '../../hooks/fetchConfig';
 import stateConfigReducer from '../../hooks/stateConfigReducer';
 import { useQuery, useMutation } from 'react-query';
 
 export default function BookmarkrApp() {
-	const { loading, error, data } = useQuery('getCacheConfig', fetchConfigCache);
-	const [stateConfig, dispatchStateConfig] = useReducer(stateConfigReducer, null); //* keeps track of all manners of state
-	const [resultsIdArray, setResultsArray] = useState([]); //* Stores Result of Search Fetch
-	const [results, setResults] = useState([]); //* Grab JS Objects from LStorage
+	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig);
 
-	useEffectOnUpdate(() => {
-		const initialState = data.data;
-		debugger;
-		dispatchStateConfig(initialState);
-	}, [data]);
+	const setMobileMenuOpen = false
 
 	if (error) {
 		debugger;
 	}
-
-	debugger;
+	
+	
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
@@ -51,7 +44,7 @@ export default function BookmarkrApp() {
 							href='/'
 							className='flex items-center justify-center h-16 w-16 bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 md:w-20'></a>
 					</div>
-					{stateConfig && (
+					{!isLoading && (
 						<>
 							<MobileContextsDropdown configObject={stateConfig} updateConfigObject={dispatchStateConfig} />
 							<div className='absolute inset-y-0 right-0 pr-4 flex items-center sm:pr-6 md:hidden'>
@@ -66,7 +59,7 @@ export default function BookmarkrApp() {
 					{/* //! Desktop Context Sidebar */}
 					<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 						<div className='relative w-20 flex flex-col p-3 space-y-3'>
-							{stateConfig && <ContextsSelectorSidebar configObject={stateConfig} />}
+							{!isLoading && <ContextsSelectorSidebar configObject={stateConfig} />}
 						</div>
 
 						{/* //! Results column */}
@@ -78,7 +71,7 @@ export default function BookmarkrApp() {
 									Home
 								</h1>
 								<div>
-									{loading && (
+									{isLoading && (
 										<>
 											<span>Loading...</span>
 										</>
