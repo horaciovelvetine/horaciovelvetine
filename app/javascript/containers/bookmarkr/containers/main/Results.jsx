@@ -8,5 +8,5 @@ import { useState, useReducer } from 'react';
 
 
 export default function Results() {
-	return 'Results';
+	return <></>;
 }
