@@ -12,13 +12,16 @@ import Search from './containers/header/Search';
 import ContextsSelectorSidebar from './containers/main/components/ContextsSelectorSidebar'
 
 //* Hook Imports
-
+import sharedConfigReducer from '../../hooks/sharedConfigReducer'
+	
 import fetchConfig from '../../hooks/fetchConfig';
 import { useQuery, useMutation } from 'react-query';
 
 export default function BookmarkrApp() {
 	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig);
-	const dataFormat = (d) => d.data.attributes
+	const configPacker = (d, s) => [d.data.attributes, s]
+	const [sharedConfig, dispatchSharedConfig] = useReducer(sharedConfigReducer, {})
+	
 
 	return (
 		<>
@@ -42,7 +45,7 @@ export default function BookmarkrApp() {
 					{/* //! SIDEBAR */}
 					<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 						<div className='relative w-20 flex flex-col p-3 space-y-3'>
-							{!isLoading && <ContextsSelectorSidebar config={dataFormat(data)} />}
+							{!isLoading && <ContextsSelectorSidebar config={dataFormat(data, [sharedConfig, dispatchSharedConfig])} />}
 						</div>
 					</nav>
 
@@ -56,7 +59,7 @@ export default function BookmarkrApp() {
 							</h1>
 						</section>
 						<div>
-							{!isLoading && <Results config={dataFormat(data)} />}
+							{!isLoading && <Results config={dataFormat(data, sharedConfig)} />}
 						</div>
 						
 					</main>
