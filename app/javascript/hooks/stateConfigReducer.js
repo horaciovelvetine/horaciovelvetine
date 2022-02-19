@@ -1,5 +1,6 @@
-export default function stateConfigReducer() {
+export default function stateConfigReducer(state) {
+  debugger
   return (
-    'Thats one small thing (now)!'
+    {setMobileMenuOpen: false}
   )
 }
