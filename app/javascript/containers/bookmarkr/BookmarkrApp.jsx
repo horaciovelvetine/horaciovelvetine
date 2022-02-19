@@ -9,19 +9,18 @@ import { SearchIcon, ChevronDownIcon } from '@heroicons/react/solid';
 //* (&Sub-)Component Imports
 import Results from './containers/main/Results';
 import Search from './containers/header/Search';
-import ContextsSelectorSidebar from './containers/main/components/ContextsSelectorSidebar'
+import ContextsSelectorSidebar from './containers/main/components/ContextsSelectorSidebar';
 
 //* Hook Imports
-import sharedConfigReducer from '../../hooks/sharedConfigReducer'
-	
+import sharedConfigReducer from '../../hooks/sharedConfigReducer';
+
 import fetchConfig from '../../hooks/fetchConfig';
 import { useQuery, useMutation } from 'react-query';
 
 export default function BookmarkrApp() {
 	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig);
-	const configPacker = (d, s) => [d.data.attributes, s]
-	const [sharedConfig, dispatchSharedConfig] = useReducer(sharedConfigReducer, {})
-	
+	const configPacker = (d, s) => ({ data: d.data.attributes, shared: s }) ;
+	const [sharedConfig, dispatchSharedConfig] = useReducer(sharedConfigReducer, {});
 
 	return (
 		<>
@@ -38,7 +37,9 @@ export default function BookmarkrApp() {
 					</div>
 
 					{/* //! SEARCH */}
-					{!isLoading && <Search config={configPacker(data, [sharedConfig, dispatchSharedConfig])} />}
+					{!isLoading && (
+						<Search config={configPacker(data, { sharedConfig: sharedConfig, sharedConfigDispatch: dispatchSharedConfig })} />
+					)}
 				</header>
 
 				<div className='min-h-0 flex-1 flex overflow-hidden'>
@@ -46,7 +47,9 @@ export default function BookmarkrApp() {
 					<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 						<div className='relative w-20 flex flex-col p-3 space-y-3'>
 							{!isLoading && (
-								<ContextsSelectorSidebar config={configPacker(data, [sharedConfig, dispatchSharedConfig])} />
+								<ContextsSelectorSidebar
+									config={configPacker(data, {sharedConfig: sharedConfig, sharedConfigDispatch: dispatchSharedConfig})}
+								/>
 							)}
 						</div>
 					</nav>
@@ -60,7 +63,11 @@ export default function BookmarkrApp() {
 								Bookmarkr
 							</h1>
 						</section>
-						<div>{!isLoading && <Results config={configPacker(data, [sharedConfig, dispatchSharedConfig])} />}</div>
+						<div>
+							{!isLoading && (
+								<Results config={configPacker(data, { sharedConfig: sharedConfig, sharedConfigDispatch: dispatchSharedConfig })} />
+							)}
+						</div>
 					</main>
 				</div>
 			</div>
