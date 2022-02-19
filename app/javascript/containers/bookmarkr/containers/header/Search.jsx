@@ -1,10 +1,11 @@
 //* All React Native
+import React from 'react';
 import { useState } from 'react';
 
 //* (&Sub-)Components
 import MobileContextsDropdown from './components/MobileContextsDropdown';
 import MobileNavMenu from './components/MobileNavMenu';
-import MobileNavBarToggleDisplayButton from './components/subcomponents';
+import MobileNavBarToggleDisplayButton from './components/subComponents/MobileNavBarToggleDisplayButton';
 import SearchForm from './components/subComponents/SearchForm';
 import NavLinks from './components/subComponents/NavLinks';
 

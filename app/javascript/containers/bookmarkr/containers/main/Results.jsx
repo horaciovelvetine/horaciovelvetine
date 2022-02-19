@@ -1,4 +1,5 @@
 //* All React Native
+import React from 'react';
 import { useState, useReducer } from 'react';
 
 //* Components
