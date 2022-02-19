@@ -1,7 +1,6 @@
 class BookmarkrConfigSerializer
   include JSONAPI::Serializer
-  set_type :cache
+  set_type :configObject
 
-  attributes :bookmarks, :settings
-
+  attributes :bookmarks, :tags, :settings
 end

@@ -3,20 +3,19 @@ class BookmarkrConfigurator < ApplicationRecord
 
   ##* Build Process for sending JSON object to the frontend with stateful config data stored in the backend to remember preferences
   def self.build_cache(admin)
+    tags = Tags.all
+    bookmarks = Context.where(name: 'bookmarked').first.links
+
     if admin.state.nil? 
-      cache = OpenStruct.new({
+      configObject = OpenStruct.new({
         id: SecureRandom.hex(2),
-        bookmarks: [Context.where(name: "bookmarked").first.links],
+        bookmarks: bookmarks,
+        tags: tags,
         settings: State.default_settings[:settings],
       })
-    elsif
-      cache = OpenStruct.new({
-        id: SecureRandom.hex(2),
-        bookmarks: [Context.where(name: "bookmarked").first.links],
-        settings: "~Needs to access admin's state!!~",
-      })
     end
-    cache
+    
+    return configObject
   end  
 end
 
