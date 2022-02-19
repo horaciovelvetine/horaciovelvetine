@@ -18,19 +18,16 @@ import fetchConfig from '../../hooks/fetchConfig';
 import { useQuery, useMutation } from 'react-query';
 
 export default function BookmarkrApp() {
-	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig);
-	const [sharedConfig, dispatchSharedConfig] = useReducer(sharedConfigReducer, {});
+	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConf)= useReducer(sharedConfigReducer, {});
 	
-	// const configPacker = (d, s) => ({ data: d.data.attributes, shared: s });
 
 	//? Sorta like...
-	/* 
-
-		const configPacker = (data) => {
-			return [dispatchSharedConfig(data.data.arrtributes), dispatchSharedConfig]
-			}
+	/*
+		const configPacker = (data) =)			}
 	*/
-
+	
+	//? previously sent in array and tried to have child update, which got shot back 
+	// const configPacker = (d, s) => ({ data: d.data.attributes, shared: s });
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
@@ -47,7 +44,7 @@ export default function BookmarkrApp() {
 
 					{/* //! SEARCH */}
 					{!isLoading && (
-						<Search config={configPacker(data, { sharedConfig: sharedConfig, sharedConfigDispatch: dispatchSharedConfig })} />
+						<Search config={configPacker(data)} />
 					)}
 				</header>
 
@@ -57,7 +54,7 @@ export default function BookmarkrApp() {
 						<div className='relative w-20 flex flex-col p-3 space-y-3'>
 							{!isLoading && (
 								<ContextsSelectorSidebar
-									config={configPacker(data, {sharedConfig: sharedConfig, sharedConfigDispatch: dispatchSharedConfig})}
+									config={configPacker(data)}
 								/>
 							)}
 						</div>
@@ -74,7 +71,7 @@ export default function BookmarkrApp() {
 						</section>
 						<div>
 							{!isLoading && (
-								<Results config={configPacker(data, { sharedConfig: sharedConfig, sharedConfigDispatch: dispatchSharedConfig })} />
+								<Results config={configPacker(data)} />
 							)}
 						</div>
 					</main>
