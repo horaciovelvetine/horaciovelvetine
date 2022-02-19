@@ -5,7 +5,7 @@ function classNames(...classes) {
 }
 
 export default function ContextsSelectorSidebar(props) {
-
+	debugger
 	return (
 			<>
 				{props.contexts.contexts.map((context) => (
