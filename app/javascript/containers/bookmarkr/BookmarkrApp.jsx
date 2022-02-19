@@ -18,16 +18,21 @@ import fetchConfig from '../../hooks/fetchConfig';
 import { useQuery, useMutation } from 'react-query';
 
 export default function BookmarkrApp() {
-	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConf)= useReducer(sharedConfigReducer, {});
+	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig);
+	// const [sharedConfig, dispatchSharedConfig] = useReducer(sharedConfigReducer, {});
 	
 
-	//? Sorta like...
-	/*
-		const configPacker = (data) =)			}
-	*/
-	
-	//? previously sent in array and tried to have child update, which got shot back 
+	//? Previously on State
 	// const configPacker = (d, s) => ({ data: d.data.attributes, shared: s });
+
+	//? Sorta like...
+	/* 
+
+		const configPacker = (data) => {
+			return [dispatchSharedConfig(data.data.arrtributes), dispatchSharedConfig]
+			}
+	*/
+
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
