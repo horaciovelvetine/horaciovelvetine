@@ -18,20 +18,16 @@ import fetchConfig from '../../hooks/fetchConfig';
 import { useQuery, useMutation } from 'react-query';
 
 export default function BookmarkrApp() {
-	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig);
-	// const [sharedConfig, dispatchSharedConfig] = useReducer(sharedConfigReducer, {});
-	
+	const [sharedConfig, dispatchSharedConfig] = useReducer(sharedConfigReducer, {});
+	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig			);
 
-	//? Previously on State
-	// const configPacker = (d, s) => ({ data: d.data.attributes, shared: s }); where s was an the array above comparing sharedConfig and its dispatch
+	// useEffect(() => {
+	// 	const test = data;
+	// 	if (!data) return;
 
-	//? Sorta like...
-	/* 
+	// 	dispatchSharedConfig(test);
+	// }, [data]);
 
-		const configPacker = (data) => {
-			return [dispatchSharedConfig(data.data.arrtributes), dispatchSharedConfig]
-			}
-	*/
 
 	return (
 		<>
@@ -48,20 +44,14 @@ export default function BookmarkrApp() {
 					</div>
 
 					{/* //! SEARCH */}
-					{!isLoading && (
-						<Search config={configPacker(data)} />
-					)}
+					{!isLoading && <Search config={configPacker(data)} />}
 				</header>
 
 				<div className='min-h-0 flex-1 flex overflow-hidden'>
 					{/* //! SIDEBAR */}
 					<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 						<div className='relative w-20 flex flex-col p-3 space-y-3'>
-							{!isLoading && (
-								<ContextsSelectorSidebar
-									config={configPacker(data)}
-								/>
-							)}
+							{!isLoading && <ContextsSelectorSidebar config={configPacker(data)} />}
 						</div>
 					</nav>
 
@@ -74,11 +64,7 @@ export default function BookmarkrApp() {
 								Bookmarkr
 							</h1>
 						</section>
-						<div>
-							{!isLoading && (
-								<Results config={configPacker(data)} />
-							)}
-						</div>
+						<div>{!isLoading && <Results config={configPacker(data)} />}</div>
 					</main>
 				</div>
 			</div>
