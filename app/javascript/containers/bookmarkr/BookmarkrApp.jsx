@@ -38,7 +38,7 @@ export default function BookmarkrApp() {
 					</div>
 
 					{/* //! SEARCH */}
-					{!isLoading && <Search config={dataFormat(data)} />}
+					{!isLoading && <Search config={configPacker(data, [sharedConfig, dispatchSharedConfig])} />}
 				</header>
 
 				<div className='min-h-0 flex-1 flex overflow-hidden'>
@@ -46,7 +46,7 @@ export default function BookmarkrApp() {
 					<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 						<div className='relative w-20 flex flex-col p-3 space-y-3'>
 							{!isLoading && (
-								<ContextsSelectorSidebar config={dataFormat(data, [sharedConfig, dispatchSharedConfig])} />
+								<ContextsSelectorSidebar config={configPacker(data, [sharedConfig, dispatchSharedConfig])} />
 							)}
 						</div>
 					</nav>
@@ -60,7 +60,7 @@ export default function BookmarkrApp() {
 								Bookmarkr
 							</h1>
 						</section>
-						<div>{!isLoading && <Results config={dataFormat(data, [sharedConfig, dispatchSharedConfig])} />}</div>
+						<div>{!isLoading && <Results config={configPacker(data, [sharedConfig, dispatchSharedConfig])} />}</div>
 					</main>
 				</div>
 			</div>
