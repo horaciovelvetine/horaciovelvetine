@@ -19,8 +19,17 @@ import { useQuery, useMutation } from 'react-query';
 
 export default function BookmarkrApp() {
 	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig);
-	const configPacker = (d, s) => ({ data: d.data.attributes, shared: s }) ;
 	const [sharedConfig, dispatchSharedConfig] = useReducer(sharedConfigReducer, {});
+	
+	// const configPacker = (d, s) => ({ data: d.data.attributes, shared: s });
+
+	//? Sorta like...
+	/* 
+
+		const configPacker = (data) => {
+			return [dispatchSharedConfig(data.data.arrtributes), dispatchSharedConfig]
+			}
+	*/
 
 	return (
 		<>

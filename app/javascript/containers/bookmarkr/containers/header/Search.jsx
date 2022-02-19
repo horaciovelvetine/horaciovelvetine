@@ -13,8 +13,8 @@ import NavLinks from './components/subComponents/NavLinks';
 
 //!! Search Container
 export default function Search(props) {
-	const [configInfo, setConfigInfo] = useState(props);
-
+	
+	//? How to define or set those props as state in the previous (see App Parent)
 	debugger;
 	return (
 		<>
