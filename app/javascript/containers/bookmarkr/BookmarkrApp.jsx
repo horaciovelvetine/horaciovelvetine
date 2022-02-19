@@ -19,8 +19,6 @@ import { useQuery, useMutation } from 'react-query';
 
 export default function BookmarkrApp() {
 	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig);
-
-	const setMobileMenuOpen = false
 	
 	debugger
 
