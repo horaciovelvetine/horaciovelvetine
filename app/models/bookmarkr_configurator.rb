@@ -1,7 +1,6 @@
 class BookmarkrConfigurator < ApplicationRecord
-  # self.abstract_class = true 
+  self.abstract_class = true 
 
-  ##* Build Process for sending JSON object to the frontend with stateful config data stored in the backend to remember preferences
   def self.build_config_object(admin)
     bookmarks = Context.where(name: 'bookmarked').first.links
 
