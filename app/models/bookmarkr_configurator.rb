@@ -7,7 +7,7 @@ class BookmarkrConfigurator < ApplicationRecord
     if admin.state.nil? 
       return configObject = OpenStruct.new({
         id: SecureRandom.hex(2),
-        settings: State.defaults,
+        configSettings: State.defaults,
         bookmarks: bookmarks,
         tags: Tag.all,
         contexts: Context.all,
