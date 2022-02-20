@@ -21,11 +21,10 @@ import { useQuery, useMutation } from 'react-query';
 
 
 export default function BookmarkrApp() {
-	const [sharedConfig, dispatchSharedConfig] = useReducer(sharedConfigReducer, {});
-	const { isLoading, error, data, isFetching } = useQuery(['stateConfig', dispatchSharedConfig], fetchConfig(dispatchSharedConfig));
+	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig);
   
 
-
+	
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
