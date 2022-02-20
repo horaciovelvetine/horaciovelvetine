@@ -1,10 +1,12 @@
-import {useState, useReducer, useMemo} from 'react'
+import { useState, useReducer, useMemo } from 'react'
 
-export default function sharedConfigReducer(props) {
-  const [settings, dispatchSettings] = useReducer(props.data.attributes.settings.config.stateful, settingsReducer )
-  const [configInfo, setConfigInfo] = useMemo(()=> props.data.attrbutes.settings.config.static)
+import settingsReducer from './settingsReducer'
+
+export default function sharedConfigReducer(response) {
   debugger
-  return ({})
+  // const [settings, dispatchSettings] = useReducer(settingsReducer, props.data.attributes.settings.config.stateful)
+  // const configInfo = props.data.attrbutes.settings.config.static
+  // return (settings, configInfo)
 }
 
 /*
