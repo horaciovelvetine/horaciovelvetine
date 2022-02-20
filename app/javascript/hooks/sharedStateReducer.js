@@ -2,7 +2,7 @@ import { useState, useReducer, useMemo } from 'react'
 
 import settingsReducer from './settingsReducer'
 
-export default function sharedConfigReducer(response) {
+export default function sharedStateReducer(prevState, setting) {
   debugger
   // const [settings, dispatchSettings] = useReducer(settingsReducer, props.data.attributes.settings.config.stateful)
   // const configInfo = props.data.attrbutes.settings.config.static
