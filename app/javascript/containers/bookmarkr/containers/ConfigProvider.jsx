@@ -4,14 +4,16 @@ import { useState, useReducer, useMemo } from 'react';
 import sharedStateReducer from '../../../hooks/sharedStateReducer';
 
 export default function ConfigProvider(props) {
-	const [sharedState, dispatchSharedState] = useReducer(sharedStateReducer, props.config[0].settings.config.stateful);
-	const contexts = props.config[0].settings.config.static.contexts;
-	const navBarLinks = props.config[0].settings.config.static.navBarLinks;
-	const bookmarks = props.config[1].bookmarks;
-	const tags = props.config[2].tags;
-	const allContexts = props.config[3].contexts;
+	// const [sharedState, dispatchSharedState] = useReducer(sharedStateReducer, props.config[0].settings.config.stateful);
+	// const contexts = props.config[0].settings.config.static.contexts;
+	// const navBarLinks = props.config[0].settings.config.static.navBarLinks;
+	// const bookmarks = props.config[1].bookmarks;
+	// const tags = props.config[2].tags;
+	// const allContexts = props.config[3].contexts;
 
-	
+	const [configSettings, bookmarks, tags, contexts] = [...props.config];
+	const [sharedState, dispatchSharedState] = useReducer(sharedStateReducer, props.config[0].settings.config.stateful);
+
 	debugger;
 	return (
 		<>
