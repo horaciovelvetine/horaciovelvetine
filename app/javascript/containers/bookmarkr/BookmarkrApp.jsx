@@ -7,34 +7,26 @@ import { HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon, MenuIcon, XIcon 
 import { SearchIcon, ChevronDownIcon } from '@heroicons/react/solid';
 
 //* (&Sub-)Component Imports
-import Results from './containers/main/Results';
-import Search from './containers/header/Search';
-import ContextsSelectorSidebar from './containers/main/components/ContextsSelectorSidebar';
+import ConfigProvider from './containers/ConfigProvider';
 
 //* Hook Imports
-import sharedConfigReducer from '../../hooks/sharedConfigReducer';
-import fetchConfig from '../../hooks/fetchConfig'
+import fetchConfig from '../../hooks/fetchConfig';
 
 // import fetchConfig from '../../hooks/fetchConfig';
 import { useQuery, useMutation } from 'react-query';
 
-
-
 export default function BookmarkrApp() {
 	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig);
-	
 
+	const sharedConfigFormatter = (data) => {
+		if (!data) return;
+		return Object.entries(data.data.attributes).map((obj) => ({ [obj[0]]: obj[1] }));
+	};
 
-	const contexts = (data) => {
-		if (!data) return		
-		
-		debugger
-	} 
-	
 	return (
 		<>
 			{isLoading && <>Loading...</>}
-			{!isLoading && <sharedConfigProvider contexts={contexts(data)} isLoading={isLoading} />}
+			{!isLoading && <ConfigProvider config={sharedConfigFormatter(data)} />}
 		</>
 	);
 }
