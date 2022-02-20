@@ -1,20 +1,14 @@
 import React from 'react';
 import { useState, useReducer, useMemo } from 'react';
 
-import sharedStateReducer from '../../../hooks/sharedStateReducer';
+import configReducer from '../../../hooks/configReducer';
 
 export default function ConfigProvider(props) {
-	// const [sharedState, dispatchSharedState] = useReducer(sharedStateReducer, props.config[0].settings.config.stateful);
-	// const contexts = props.config[0].settings.config.static.contexts;
-	// const navBarLinks = props.config[0].settings.config.static.navBarLinks;
-	// const bookmarks = props.config[1].bookmarks;
-	// const tags = props.config[2].tags;
-	// const allContexts = props.config[3].contexts;
-
-	const [configSettings, bookmarks, tags, contexts] = [...props.config];
-	const [sharedState, dispatchSharedState] = useReducer(sharedStateReducer, props.config[0].settings.config.stateful);
-
+	const [bookmarks, tags, contexts] = [...props.config.slice(1)];
+	const [configProvider, dispatchConfig] = useReducer(configReducer, props.config[0].configSettings.config)
+	
 	debugger;
+
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
