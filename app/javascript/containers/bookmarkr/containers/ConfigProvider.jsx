@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useReducer, useMemo } from 'react';
+import { useReducer } from 'react';
 
 import configReducer from '../../../hooks/configReducer';
 

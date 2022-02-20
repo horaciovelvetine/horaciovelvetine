@@ -1,12 +1,9 @@
 import { useState, useReducer, useMemo } from 'react'
 
-import settingsReducer from './settingsReducer'
-
 export default function configReducer(prevState, setting) {
   debugger
-  // const [settings, dispatchSettings] = useReducer(settingsReducer, props.data.attributes.settings.config.stateful)
-  // const configInfo = props.data.attrbutes.settings.config.static
-  // return (settings, configInfo)
+  // useMemo for props.static.contextMenuItems/navbarLinks 
+  // and useState for the boolean switch of whatever setting is passed in
 }
 
 /*
