@@ -1,8 +1,2 @@
-function buildInitialSharedState(props) {
-  const bookmarks = [...props.config.data.bookmarks];
-  const tags = [...props.config.data.tags];
-  const settings = props.config.data.settings;
-  const buildStateDispatch = props.config.shared.sharedConfigDispatch;
-
-  buildStateDispatch([bookmarks, tags, settings])
-}
+//Used two times to format passed props
+data = Object.entries(configSettings.configSettings.config.static).map((o) => ({ [o[0]]: [o[1]] }))
