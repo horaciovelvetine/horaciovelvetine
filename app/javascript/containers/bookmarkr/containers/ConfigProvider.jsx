@@ -8,7 +8,7 @@ import Results from './main/Results';
 import ContextsSelectorSidebar from './main/components/ContextsSelectorSidebar';
 
 //* Hooks & Reducers
-import configReducer from '../../../hooks/configReducer';
+import configReducer from './reducers/configReducer';
 
 export default function ConfigProvider(props) {
 	const [bookmarks, tags, contexts] = [...props.config.slice(1)];
