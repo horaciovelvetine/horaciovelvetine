@@ -3,6 +3,9 @@ import { Fragment } from 'react';
 import Clock from './Clock';
 
 export default function NavLinks(props) {
+
+	debugger
+	
 	return (
 		<div className='pr-4 flex-shrink-0 flex items-center space-x-10'>
 			<nav aria-label='Global' className='flex space-x-6'>
