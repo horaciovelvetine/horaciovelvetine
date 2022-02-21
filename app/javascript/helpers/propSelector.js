@@ -5,7 +5,7 @@ export default function propSelector(props, componentName) {
   // }
 
   switch (componentName) {
-    case "MobileContextDropdown":
+    case "Contexts":
       return props.config.config[0].static.contextsMenuItems
     case "MobileNavBarToggleDisplayButton":
       return props.config.config[0].stateful.mobileMenuOpen
