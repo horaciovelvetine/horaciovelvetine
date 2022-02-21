@@ -5,6 +5,8 @@ import { SearchIcon } from '@heroicons/react/solid';
 import { XIcon } from '@heroicons/react/outline';
 
 export default function MobileNavMenu(props) {
+
+	debugger
 	const mobileMenuOpen = props.mobileMenuOpen;
 
 	return (
