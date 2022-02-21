@@ -33,7 +33,7 @@ export default function ConfigProvider(props) {
 					{/* //! SIDEBAR */}
 					<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 						<div className='relative w-20 flex flex-col p-3 space-y-3'>
-							<ContextsSelectorSidebar config={configSidebar} />
+							<ContextsSelectorSidebar config={configPackage} />
 						</div>
 					</nav>
 
