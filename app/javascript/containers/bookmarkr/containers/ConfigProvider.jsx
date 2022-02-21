@@ -5,7 +5,7 @@ import { useReducer } from 'react';
 //* (&sub-)Components
 import Search from './header/Search';
 import Results from './main/Results';
-import ContextsSelectorSidebar from './main/components/Results';
+import ContextsSelectorSidebar from './main/components/ContextsSelectorSidebar';
 
 //* Hooks & Reducers
 import configReducer from '../../../hooks/configReducer';
