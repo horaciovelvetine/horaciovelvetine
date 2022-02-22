@@ -11,12 +11,13 @@ import ContextsSelectorSidebar from './main/components/ContextsSelectorSidebar';
 import configReducer from './reducers/configReducer';
 
 export default function ConfigProvider(props) {
+
 	const [bookmarks, tags, contexts] = [...props.config.slice(1)];
 	const [configProvider, dispatchConfig] = useReducer(configReducer, props.config[0].configSettings.config);
 	const configPackage = [configProvider, dispatchConfig];
 	
 
-	debugger
+
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
