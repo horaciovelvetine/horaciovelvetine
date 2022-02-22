@@ -1,9 +1,7 @@
 import { useState, useReducer, useMemo } from 'react'
 
-export default function configReducer(prevState, setting) {
+export default function configReducer(prevState, action) {
   debugger
-  // useMemo for props.static.contextMenuItems/navbarLinks 
-  // and useState for the boolean switch of whatever setting is passed in
 }
 
 /*
