@@ -17,7 +17,7 @@ export default function ConfigProvider(props) {
 	const configPackage = [configProvider, dispatchConfig];
 	
 
-	
+
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
@@ -34,11 +34,10 @@ export default function ConfigProvider(props) {
 
 				<div className='min-h-0 flex-1 flex overflow-hidden'>
 					{/* //! SIDEBAR */}
-					<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
-						<div className='relative w-20 flex flex-col p-3 space-y-3'>
-							<ContextsSelectorSidebar config={configPackage}/>
-						</div>
-					</nav>
+					<div>
+						<ContextsSelectorSidebar config={configPackage} />
+					</div>
+					
 
 					{/* //! ALL RESULTS */}
 					<main className='min-w-0 flex-1 border-t border-gray-200 lg:flex'>
