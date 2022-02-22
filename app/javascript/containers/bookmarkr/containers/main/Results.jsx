@@ -10,8 +10,6 @@ import ContextsSelectorSidebar from './components/ContextsSelectorSidebar';
 
 export default function Results(props) {
 	
-
-	debugger;
 	return (
 		<>
 			<div>

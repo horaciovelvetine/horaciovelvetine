@@ -15,7 +15,6 @@ import searchReducer from './reducers/searchReducer';
 //!! Search Container
 export default function Search(props) {
 	const [search, dispatchSearch] = useReducer(searchReducer, {});
-
 	return (
 		<>
 			<MobileContextsDropdown configObject={props} />
