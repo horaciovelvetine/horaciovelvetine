@@ -9,9 +9,10 @@ export default function propSelector(props, componentName) {
       return props.configObject.config[0].static.navbarLinks
     case "dispatch":
       return props.configObject.config[1]
+    case "selector":
+      return props.config[0].static.contextsMenuItems
     default:
       debugger
   }
 
-  debugger
 }

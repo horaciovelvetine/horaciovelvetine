@@ -12,9 +12,10 @@ function classNames(...classes) {
 }
 
 export default function ContextsSelectorSidebar(props) {
-	const contexts = propSelector(props, 'contexts');
+	const contexts = propSelector(props, 'selector');
 
-	debugger;
+	
+
 
 	return (
 		<>
