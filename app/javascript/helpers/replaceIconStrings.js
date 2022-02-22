@@ -1,22 +1,14 @@
-//* React Imports
-import React from 'react';
-
 export default function replaceIconStrings(resp, heroIcons) {
-  const response = resp.data.attributes
-  const icons = heroIcons
-  debugger
 
-  
+  const contexts = resp.data.attributes.configSettings.static.contextsMenuItems
+
+  for (let index = 0; index < contexts.length; index++) {
+    const element = contexts[index];
+    element.icon = heroIcons[`${element.icon}`]
+    
+  }
+
+  return resp
   
 }
-  
-  
-  
-  
-  
-  
-  
-  
-  // const contextsIconsFixed = (heroIcons) => response.configSettings.static.contextsMenuItems.map((context) => {
-  //   debugger
-  // })
+
