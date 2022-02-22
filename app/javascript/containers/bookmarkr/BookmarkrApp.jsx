@@ -10,7 +10,7 @@ import { SearchIcon, ChevronDownIcon } from '@heroicons/react/solid';
 import ConfigProvider from './containers/ConfigProvider';
 
 //* Hook Imports
-import fetchConfig from '../../hooks/fetchConfig';
+import fetchConfig from './containers/reducers/fetchConfig';
 
 // import fetchConfig from '../../hooks/fetchConfig';
 import { useQuery, useMutation } from 'react-query';
