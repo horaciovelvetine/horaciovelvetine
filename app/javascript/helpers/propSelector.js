@@ -1,4 +1,3 @@
-
 export default function propSelector(props, componentName) {
 
   switch (componentName) {
