@@ -9,7 +9,7 @@ import ContextsSelectorSidebar from './components/ContextsSelectorSidebar';
 //* Hooks, State & Misc Functions
 
 export default function Results(props) {
-	const [configInfo, setConfigInfo] = useState(props);
+	
 
 	debugger;
 	return (

@@ -1,6 +1,6 @@
 //* React Native
 import React from 'react';
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
 
 //* (&sub-)Components
 import Search from './header/Search';
@@ -14,7 +14,9 @@ export default function ConfigProvider(props) {
 	const [bookmarks, tags, contexts] = [...props.config.slice(1)];
 	const [configProvider, dispatchConfig] = useReducer(configReducer, props.config[0].configSettings.config);
 	const configPackage = [configProvider, dispatchConfig];
+	
 
+	debugger
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
@@ -33,7 +35,7 @@ export default function ConfigProvider(props) {
 					{/* //! SIDEBAR */}
 					<nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
 						<div className='relative w-20 flex flex-col p-3 space-y-3'>
-							<ContextsSelectorSidebar config={configPackage} />
+							<ContextsSelectorSidebar config={configPackage}/>
 						</div>
 					</nav>
 
