@@ -1,18 +1,21 @@
 import React from 'react';
 import { useState } from 'react';
 import { SearchIcon } from '@heroicons/react/solid';
-import useBounceDelay from '../../../../../../hooks/custom/useBounceDelay';
+
+
+//* Hooks, State & Misc Functions
+import useBounceDelay from '../../../../../../hooks/useBounceDelay'
+import propSelector from '../../../../../../helpers/propSelector';
 
 export default function SearchForm(props) {
-
-	debugger
-	
+	const contexts = propSelector(props, 'contexts')
+	const dispatchSearch = props.dispatchSearch
 	const [searchEvent, setSearchEvent] = useState(null);
 
 	useBounceDelay(
 		() => {
 			const search = { ...searchEvent };
-			search.dispatchSearch({query: search.query, context: search.context, results: []});
+			search.dispatchSearch({query: search.query, context: search.context});
 		},
 		515,
 		[searchEvent]
@@ -31,7 +34,7 @@ export default function SearchForm(props) {
 					className='block w-full border-transparent pl-12 placeholder-gray-500 focus:border-transparent sm:text-sm focus:ring-0'
 					autoFocus={true}
 					onChange={(e) => {
-						setSearchEvent({ query: e.target.value, context: props.context[0], dispatchSearch: props.dispatchSearch });
+						setSearchEvent({ query: e.target.value, dispatchSearch: dispatchSearch });
 					}}
 				/>
 				<div className='pointer-events-none absolute inset-y-0 left-0 flex items-center justify-center pl-4'>
