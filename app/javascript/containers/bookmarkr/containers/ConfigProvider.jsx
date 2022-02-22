@@ -11,12 +11,9 @@ import ContextsSelectorSidebar from './main/components/ContextsSelectorSidebar';
 import configReducer from './reducers/configReducer';
 
 export default function ConfigProvider(props) {
-
 	const [bookmarks, tags, contexts] = [...props.config.slice(1)];
 	const [configProvider, dispatchConfig] = useReducer(configReducer, props.config[0].configSettings);
 	const configPackage = [configProvider, dispatchConfig];
-	
-
 
 	return (
 		<>
@@ -37,7 +34,6 @@ export default function ConfigProvider(props) {
 					<div>
 						<ContextsSelectorSidebar config={configPackage} />
 					</div>
-					
 
 					{/* //! ALL RESULTS */}
 					<main className='min-w-0 flex-1 border-t border-gray-200 lg:flex'>

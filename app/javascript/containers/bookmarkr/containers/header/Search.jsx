@@ -11,10 +11,14 @@ import NavLinks from './components/subComponents/NavLinks';
 
 //* Hooks, State & Misc Functions
 import searchReducer from './reducers/searchReducer';
+import { useEffect } from 'react';
 
 //!! Search Container
 export default function Search(props) {
 	const [search, dispatchSearch] = useReducer(searchReducer, {});
+
+	useEffect(() => { console.log(search) },
+	[search])
 	return (
 		<>
 			<MobileContextsDropdown configObject={props} />
