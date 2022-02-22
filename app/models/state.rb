@@ -2,7 +2,7 @@ class State < ApplicationRecord
   belongs_to :admin
 
   def self.defaults
-    { config: {
+    {
       stateful: {
         mobileMenuOpen: false,
         bounceDelayDefault: 515
@@ -14,7 +14,7 @@ class State < ApplicationRecord
           { name: 'Ktchn', icon: "FireIcon", current: false, order: 3 },
           { name: 'ToDos', icon:  "ClipboardCheckIcon", current: false, order: 4 },],
         navbarLinks: [{ name: "+Link", href: "${baseUrl}/addlink" },{ name: "Settings", href: "${baseUrl}/settings" },],
-      }}
+      }
     }
   end
 
