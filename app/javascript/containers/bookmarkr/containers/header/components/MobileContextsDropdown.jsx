@@ -1,20 +1,25 @@
+//* All React Native
 import React from 'react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
+//* All (&Sub-)Components
+
+//* Hooks, State & Misc Functions
+import propSelector from '../../../../../helpers/propSelector';
 
 export default function MobileContextsDropdown(props) {
+	const contexts = propSelector(props, "Contexts")
 	
-	debugger
 	return (
 		<div className='mx-auto md:hidden'>
 			<div className='relative'>
 				<label htmlFor='inbox-select' className='sr-only'>
-					Choose context
+					Select context
 				</label>
 				<select
 					id='inbox-select'
 					className='rounded-md border-0 bg-none pl-3 pr-8 text-base font-medium text-gray-900 focus:ring-2 focus:ring-indigo-600'
-					defaultValue={props.contexts.find((context) => context.current).name}>
-					{props.contexts.map((context) => (
+					defaultValue={contexts.find((context) => context.current).name}>
+					{contexts.map((context) => (
 						<option key={context.name}>{context.name}</option>
 					))}
 				</select>
