@@ -13,11 +13,11 @@ import configReducer from './reducers/configReducer';
 export default function ConfigProvider(props) {
 
 	const [bookmarks, tags, contexts] = [...props.config.slice(1)];
-	const [configProvider, dispatchConfig] = useReducer(configReducer, props.config[0].configSettings.config);
+	const [configProvider, dispatchConfig] = useReducer(configReducer, props.config[0].configSettings);
 	const configPackage = [configProvider, dispatchConfig];
 	
 
-
+	
 	return (
 		<>
 			<div className='h-screen flex flex-col'>
