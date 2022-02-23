@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   ##* All Api v1 routes
   # namespace :api do    
       resources :bookmarkr, only: [:index, :create, :edit, :update, :destroy]
-      get 'bookmarkr/search', to: 'bookmarkr#search'
+      post 'bookmarkr/search', to: 'bookmarkr#search'
   # end
   
 
