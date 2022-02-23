@@ -6,7 +6,7 @@ import { useQuery, useMutation } from 'react-query';
 import ConfigProvider from './containers/ConfigProvider';
 
 //* Hook Imports
-import fetchConfig from './containers/reducers/fetchConfig';
+import fetchConfig from './containers/hooks/fetchConfig';
 
 export default function BookmarkrApp() {
 	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig);
