@@ -13,7 +13,7 @@ import resultsReducer from './hooks/resultsReducer';
 
 export default function ConfigProvider(props) {
 	const [bookmarks, tags, contexts] = [...props.config.slice(1)];
-	const [results, dispatchResults] = useReducer(resultsReducer, { resultsIds: [], results: {}, search: {}});
+	const [results, dispatchResults] = useReducer(resultsReducer, {});
 	const [configProvider, dispatchConfig] = useReducer(configReducer, props.config[0].configSettings);
 	const configPackage = [configProvider, dispatchConfig, results, dispatchResults];
 
