@@ -1,6 +1,8 @@
 import baseUrl from "./helpers/baseUrl"
 
 export default async function fetchResults(payload) {
+  //?originally the payload also included a context
+  
   const configOBj = {
     method: 'PATCH',
     headers: {
