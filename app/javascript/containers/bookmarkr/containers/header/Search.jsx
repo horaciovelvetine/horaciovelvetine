@@ -19,9 +19,7 @@ export default function Search(props) {
 
 	
 	useEffectOnUpdate(() => {
-		let payload = search 
-		console.log(payload)
-		dispatchResults(payload)
+		dispatchResults(search)
 	}, [search, dispatchResults]);
 
 	return (
