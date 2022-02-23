@@ -1,6 +1,6 @@
 //* React Imports
 import React from 'react';
-import { useQuery, useMutation } from 'react-query';
+import { useQuery  } from 'react-query';
 
 //* (&Sub-)Component Imports
 import ConfigProvider from './containers/ConfigProvider';
