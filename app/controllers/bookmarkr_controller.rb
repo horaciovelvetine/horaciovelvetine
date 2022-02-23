@@ -1,10 +1,9 @@
 class BookmarkrController < ActionController::Base
-    skip_before_action :verify_authenticity_token
-    ##* Only called on first time page load, includes app config & cache bookmarks
+    skip_before_action :verify_authenticity_token, only: [:search]
+    
     def index      
       admin = Admin.all.first
       configObject = BookmarkrConfigurator.build_config_object(admin)
-      
       render json: BookmarkrConfigSerializer.new(configObject).serializable_hash.to_json
     end
 
@@ -14,9 +13,9 @@ class BookmarkrController < ActionController::Base
 
     private
 
-    def bookmarkr_params
-      params.require(:bookmarkr).permit(:query)
-    end
+    # def bookmarkr_params
+    #   params.require(:bookmarkr).permit(:payload)
+    # end
 
 end
 
