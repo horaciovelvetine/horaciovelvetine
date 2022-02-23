@@ -17,7 +17,7 @@ class BookmarkrController < ActionController::Base
       binding.pry
     end
 
-    private
+    private 
 
     # def bookmarkr_params
     #   params.require(:bookmarkr).permit(:payload)
