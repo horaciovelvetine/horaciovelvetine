@@ -1,15 +1,17 @@
 import baseUrl from "./helpers/baseUrl"
+const axios = require('axios');
 
 export default async function fetchResults(payload) {
-  const configOBj = {
-    method: 'PATCH',
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    },
-    body: JSON.stringify(payload)
-  }
+  const test = payload 
+  const response = await axios.post(`${baseUrl("/search")}`, { test })
+    .then(function (response) {
+      console.log(response)
+      debugger
+    }).catch(function (error) {
+      console.log(error)
+    })
 
-  const postRes = await fetch(baseUrl() + "/search", configOBj).then((res) => res.json())
   debugger
+  return (response)
+
 }
