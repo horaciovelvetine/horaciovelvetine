@@ -1,6 +1,6 @@
 //* React Native
 import React from 'react';
-import { useReducer, useEffect } from 'react';
+import { useReducer } from 'react';
 
 //* (&sub-)Components
 import Search from './header/Search';
@@ -8,12 +8,14 @@ import Results from './main/Results';
 import ContextsSelectorSidebar from './main/components/ContextsSelectorSidebar';
 
 //* Hooks & Reducers
-import configReducer from './reducers/configReducer';
+import configReducer from './hooks/configReducer';
+import resultsReducer from './hooks/resultsReducer';
 
 export default function ConfigProvider(props) {
 	const [bookmarks, tags, contexts] = [...props.config.slice(1)];
+	const [results, dispatchResults] = useReducer(resultsReducer, { resultsIds: [], results: {}, search: {}});
 	const [configProvider, dispatchConfig] = useReducer(configReducer, props.config[0].configSettings);
-	const configPackage = [configProvider, dispatchConfig];
+	const configPackage = [configProvider, dispatchConfig, results, dispatchResults];
 
 	return (
 		<>
