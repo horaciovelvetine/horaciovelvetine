@@ -17,9 +17,8 @@ export default function Search(props) {
 	const dispatchResults = props.config.slice(3)[0];
 	const [search, dispatchSearch] = useReducer(searchReducer, {});
 
-	
 	useEffectOnUpdate(() => {
-		dispatchResults(search)
+		dispatchResults(search);
 	}, [search, dispatchResults]);
 
 	return (
