@@ -9,8 +9,7 @@ class BookmarkrController < ActionController::Base
 
     def search 
       query = params[:payload][:query]
-      results = Link.find_bookmarks(query)
-      binding.pry
+      results = Link.find_bookmarks(query).map{ |result| result }
       render json: BookmarkrResultsSerializer.new(results).serializable_hash.to_json
     end
 
