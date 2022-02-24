@@ -3,6 +3,6 @@ class BookmarkrResultsSerializer < ActionController::Base
   set_type :results_array
 
   attribute :resultIds do |results|
-    resultIds = results.map { |l| l.id}
+    resultIds = results.map { |link| link.id }
   end
 end
