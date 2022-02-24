@@ -7,8 +7,8 @@ import { ChevronDownIcon } from '@heroicons/react/solid';
 import propSelector from '../../../../../helpers/propSelector';
 
 export default function MobileContextsDropdown(props) {
-	const contexts = propSelector(props, "contexts")
-	
+	const contexts = props.configObject.config.static.contextsMenuItems;
+
 	return (
 		<div className='mx-auto md:hidden'>
 			<div className='relative'>

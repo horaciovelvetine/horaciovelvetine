@@ -9,7 +9,7 @@ import Clock from './Clock';
 import propSelector from '../../../../../../helpers/propSelector';
 
 export default function NavLinks(props) {
-	const navigation = propSelector(props, 'navbarLinks');
+	const navigation = props.configObject.config.static.navbarLinks;
 
 	return (
 		<div className='pr-4 flex-shrink-0 flex items-center space-x-10'>

@@ -12,10 +12,8 @@ import configReducer from './hooks/configReducer';
 import resultsReducer from './hooks/resultsReducer';
 
 export default function ConfigProvider(props) {
-	const [bookmarks, tags, contexts] = [...props.config.slice(1)];
 	const [results, dispatchResults] = useReducer(resultsReducer, {});
 	const [configProvider, dispatchConfig] = useReducer(configReducer, props.config[0].configSettings);
-	const configPackage = [configProvider, dispatchConfig, results, dispatchResults];
 
 	return (
 		<>
@@ -28,14 +26,14 @@ export default function ConfigProvider(props) {
 							className='flex items-center justify-center h-16 w-16 bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 md:w-20'></a>
 					</div>
 					{/* //! SEARCH */}
-					<Search config={configPackage} />
+					<Search config={configProvider} dispatchConfig={dispatchConfig} dispatchResults={dispatchResults}/>
 				</header>
 
 				<div className='h-screen flex-1 flex overflow-hidden'>
 					{/* //! SIDEBAR */}
-						<div>
-							<ContextsSelectorSidebar config={configPackage} />
-						</div>
+					<div>
+						<ContextsSelectorSidebar config={configProvider} dispatchConfig={dispatchConfig} />
+					</div>
 
 					{/* //! ALL RESULTS */}
 					<main className='min-w-0 flex-1 border-t border-gray-200 lg:flex h-screen'>
@@ -45,7 +43,7 @@ export default function ConfigProvider(props) {
 							<h1 id='primary-heading' className='sr-only'>
 								Bookmarkr
 							</h1>
-							<Results config={configPackage} />	
+							<Results config={configProvider} dispatchConfig={dispatchConfig} results={results} />
 						</section>
 					</main>
 				</div>

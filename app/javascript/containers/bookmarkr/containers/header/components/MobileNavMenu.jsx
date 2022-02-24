@@ -12,9 +12,9 @@ import propSelector from '../../../../../helpers/propSelector';
 
 export default function MobileNavMenu(props) {
 	
-	const mobileMenuOpen = propSelector(props, 'mobileNavMenuOpen')
-	const setMobileMenuOpen = propSelector(props, 'dispatch');
-	const navigation = propSelector(props, 'navbarLinks');
+	const mobileMenuOpen = props.configObject.config.stateful.mobileMenuOpen;
+	const setMobileMenuOpen = props.configObject.dispatchConfig;
+	const navigation = props.configObject.config.static.navbarLinks
 
 	return (
 		<Transition.Root show={mobileMenuOpen} as={Fragment}>

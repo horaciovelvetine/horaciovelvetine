@@ -8,14 +8,13 @@ import useBounceDelay from '../../../../../../hooks/useBounceDelay'
 import propSelector from '../../../../../../helpers/propSelector';
 
 export default function SearchForm(props) {
-	const contexts = propSelector(props, 'contexts')
 	const dispatchSearch = props.dispatchSearch
 	const [searchEvent, setSearchEvent] = useState(null);
 
 	useBounceDelay(
 		() => {
 			const search = { ...searchEvent };
-			search.dispatchSearch({query: search.query, context: search.context});
+			search.dispatchSearch({ query: search.query });
 		},
 		515,
 		[searchEvent]

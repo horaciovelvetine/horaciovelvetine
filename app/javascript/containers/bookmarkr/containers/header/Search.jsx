@@ -14,7 +14,7 @@ import searchReducer from './reducers/searchReducer';
 import useEffectOnUpdate from '../../../../hooks/useEffectOnUpdate';
 
 export default function Search(props) {
-	const dispatchResults = props.config.slice(3)[0];
+	const dispatchResults = props.dispatchResults
 	const [search, dispatchSearch] = useReducer(searchReducer, {});
 
 	useEffectOnUpdate(() => {
