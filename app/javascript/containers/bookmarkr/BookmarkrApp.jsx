@@ -9,7 +9,7 @@ import ConfigProvider from './containers/ConfigProvider';
 import fetchConfig from './containers/hooks/fetchConfig';
 
 export default function BookmarkrApp() {
-	const { isLoading, error, data, isFetching } = useQuery('stateConfig', fetchConfig);
+	const { isLoading, error, data } = useQuery('stateConfig', fetchConfig);
 
 	const sharedConfigFormatter = (data) => {
 		if (!data) return;
@@ -19,6 +19,7 @@ export default function BookmarkrApp() {
 	return (
 		<>
 			{isLoading && <>Loading...</>}
+			{error && <>Uh oh we done goofed...</>}
 			{!isLoading && <ConfigProvider config={sharedConfigFormatter(data)} />}
 		</>
 	);
