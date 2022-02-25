@@ -1,4 +1,4 @@
-//* React Native
+//* React
 import React from 'react';
 import { useReducer } from 'react';
 import { useMutation } from 'react-query';
