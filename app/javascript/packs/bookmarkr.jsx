@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import BookmarkrApp from '../containers/bookmarkr/BookmarkrApp';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 
+import fetchConfig from '../containers/bookmarkr/containers/hooks/fetchConfig';
+
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
