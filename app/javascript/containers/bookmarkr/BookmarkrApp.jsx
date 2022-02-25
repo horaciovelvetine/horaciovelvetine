@@ -1,6 +1,5 @@
 //* React Imports
 import React from 'react';
-import { useQuery  } from 'react-query';
 
 //* (&Sub-)Component Imports
 import ConfigProvider from './containers/ConfigProvider';
@@ -18,9 +17,11 @@ export default function BookmarkrApp() {
 
 	return (
 		<>
-			{isLoading && <>Loading...</>}
-			{error && <>Uh oh we done goofed...</>}
-			{!isLoading && <ConfigProvider config={sharedConfigFormatter(data)} />}
+			<div className='h-screen flex flex-col'>
+				{isLoading && <>Loading...</>}
+				{error && <>Uh oh we done goofed...</>}
+				{!isLoading && <ConfigProvider config={sharedConfigFormatter(data)} />}
+			</div>
 		</>
 	);
 }
