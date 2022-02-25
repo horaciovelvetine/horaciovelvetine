@@ -11,7 +11,7 @@ import fetchConfig from './containers/hooks/fetchConfig';
 export default function BookmarkrApp() {
 	const { isLoading, error, data } = useQuery('stateConfig', fetchConfig);
 
-	const sharedConfigFormatter = (data) => {
+	const configFormatter = (data) => {
 		if (!data) return;
 		return Object.entries(data.data.attributes).map((obj) => ({ [obj[0]]: obj[1] }));
 	};
@@ -21,7 +21,7 @@ export default function BookmarkrApp() {
 			<div className='h-screen flex flex-col'>
 				{isLoading && <>Loading...</>}
 				{error && <>Uh oh we done goofed...</>}
-				{!isLoading && <ConfigProvider config={sharedConfigFormatter(data)} />}
+				{!isLoading && <ConfigProvider config={configFormatter(data)} />}
 			</div>
 		</>
 	);
