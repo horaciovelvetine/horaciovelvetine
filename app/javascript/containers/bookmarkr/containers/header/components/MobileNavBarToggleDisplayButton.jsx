@@ -5,7 +5,6 @@ import { MenuIcon } from '@heroicons/react/outline';
 //* (&Sub-)Components
 
 //* Hooks, State & Misc Functions
-import propSelector from '../../../../../helpers/propSelector';
 
 export default function MobileNavBarToggleDisplayButton(props) {
 	const setMobileMenuOpen = props.configObject.dispatchConfig;

@@ -5,8 +5,6 @@ import { Fragment } from 'react';
 //* (&Sub-)Components
 import Clock from './Clock';
 
-//* Hooks, State & Misc Functions
-import propSelector from '../../../../../../helpers/propSelector';
 
 export default function NavLinks(props) {
 	const navigation = props.configObject.config.static.navbarLinks;
