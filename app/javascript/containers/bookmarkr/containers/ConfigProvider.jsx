@@ -17,7 +17,7 @@ export default function ConfigProvider(props) {
 	// Going to need to provide (React) _context here instead
 	// What is the best way to pull all elements up during the async fetch so that visually the page is "loaded" in a way that makes any kind of sense 
 	const searchMutation = useMutation((payload) => {
-		const response = await axios
+		const response = axios
 			.post(`${baseUrl('/search')}`, payload)
 			.then(function (response) {
 				return response;
