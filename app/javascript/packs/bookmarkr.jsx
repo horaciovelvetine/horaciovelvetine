@@ -1,8 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import BookmarkrApp from '../containers/bookmarkr/BookmarkrApp';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
+//Changes default refetch on window focus
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
