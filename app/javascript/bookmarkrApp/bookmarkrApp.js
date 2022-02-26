@@ -8,6 +8,7 @@ import { contextMenuSelections, navBarMenuItems, defaultSettings} from './config
 const BookmarkrContext = React.createContext({ contextMenuSelections: contextMenuSelections, navBarMenuItems: navBarMenuItems, defaultSettings: defaultSettings})
 
 export default function bookmarkrApp() {
+  debugger
 
   return (
     <>
