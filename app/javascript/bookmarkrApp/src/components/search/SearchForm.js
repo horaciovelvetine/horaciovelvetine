@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function SearchForm() {
+  debugger
   return (
       <div className='min-w-0 flex-1'>
         <div className='max-w-2xl relative text-gray-400 focus-within:text-gray-500'>
