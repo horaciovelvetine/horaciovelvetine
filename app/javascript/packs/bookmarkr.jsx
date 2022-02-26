@@ -1,5 +1,10 @@
+//React & Lib
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+
+//(&sub) Components
+import BookmarkrApp from '../bookmarkrApp/bookmarkrApp'
+
 
 //Changes default refetch on window focus
 const queryClient = new QueryClient({
