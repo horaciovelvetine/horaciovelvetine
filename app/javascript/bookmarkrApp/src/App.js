@@ -1,9 +1,25 @@
+// React & Libs
 import React from 'react'
+import { useQuery } from 'react-query'
+
+// (&sub) Comoponents
 import Results from './components/Results'
 import Search from './components/Search'
 
+
+function fetchCache() {
+  const cache = axios.get(`${baseUrl}`)
+    .then((response) => {
+      //handle the response => send to local?? 
+    })
+    .catch((error) => {
+      //handles an error
+    })
+  return cache
+}
+
 export default function App(props) {
-  debugger
+  const {isLoading, error, data} = useQueery('getCache', fetchCache)
 
   return (
     <div className='h-screen flex flex-col'>
