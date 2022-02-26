@@ -7,8 +7,8 @@ import SearchForm from './search/SearchForm'
 export default function Search() {
   return (
     <header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
-      <Logo/>
-      <MobileContextsDropdown />
+      <Logo/> //! done
+      <MobileContextsSelectorDropdown />
       <MobileNavBarToggleDisplayButton />
 
       <div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
