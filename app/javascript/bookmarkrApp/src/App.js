@@ -20,20 +20,18 @@ function fetchCache() {
 
 export default function App(props) {
   const { isLoading, error, data } = useQueery('getCache', fetchCache)
-  const SearchMutation = useMutation(queryPayload => {
-    // const results = axios.post(`${baseUrl("/search")}`, queryPayload)
-    //   .then((response) => {
-    //   //handles response info
-    //   }).catch((error) => {
-    //     console.log(error)
-    //   })
-    // return
-
-
-  })
+  // const SearchMutation = useMutation(queryPayload => {
+  //   // const results = axios.post(`${baseUrl("/search")}`, queryPayload)
+  //   //   .then((response) => {
+  //   //   //handles response info
+  //   //   }).catch((error) => {
+  //   //     console.log(error)
+  //   //   })
+  //   // return
+  // })
 
   //! props.setting is an assumption that the context supplied worked!!! 
-  const [settings, dispatchSettings] = useReducer( settingsReducer, props.settings)
+  // const [settings, dispatchSettings] = useReducer( settingsReducer, props.settings)
 
   return (
     <div className='h-screen flex flex-col'>
