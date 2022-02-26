@@ -19,7 +19,7 @@ function fetchCache() {
 }
 
 export default function App(props) {
-  const { isLoading, error, data } = useQueery('getCache', fetchCache)
+  const { isLoading, error, data } = useQuery('getCache', fetchCache)
   // const SearchMutation = useMutation(queryPayload => {
   //   // const results = axios.post(`${baseUrl("/search")}`, queryPayload)
   //   //   .then((response) => {
