@@ -6,20 +6,25 @@ import { useQuery } from 'react-query'
 import Results from './components/Results'
 import Search from './components/Search'
 
-
-function fetchCache() {
-  const cache = axios.get(`${baseUrl}`)
-    .then((response) => {
-      //handle the response => send to local?? 
-    })
-    .catch((error) => {
-      //handles an error
-    })
-  return cache
-}
+// Hooks and Defaults
+import fetchCache from '../config/fetchCache'
 
 export default function App(props) {
   const { isLoading, error, data } = useQuery('getCache', fetchCache)
+  const { defaultSettings, contexts, navigation } = { ...props }
+
+  
+  debugger
+  return (
+    <div className='h-screen flex flex-col'>
+      <Search defaultSettings={defaultSettings} contexts={contexts} navigation={navigation} />
+      <Results contexts={contexts} navigation={navigation} />
+    </div>
+  )
+}
+
+
+/* 
   // const SearchMutation = useMutation(queryPayload => {
   //   // const results = axios.post(`${baseUrl("/search")}`, queryPayload)
   //   //   .then((response) => {
@@ -30,35 +35,5 @@ export default function App(props) {
   //   // return
   // })
 
-  //! props.setting is an assumption that the context supplied worked!!! 
-  // const [settings, dispatchSettings] = useReducer( settingsReducer, props.settings)
-
-  return (
-    <div className='h-screen flex flex-col'>
-      {/* //! Logo area */}
-      <Search />
-      <Results />
-    </div>
-  )
-}
-
-
-/* 
-- Request Made
-- First up bookmarkr JS...
-- Init index request with application (No Async)
-  - 
-- While awaiting promise main DOM containers Render page Elements
-  - Search
-    - Contains All Menu Components (including mobile variants):
-      - Context Selector Dropdown (mobile)
-      - Mobile Navbar (mobile)
-      - Search Form 
-      - Navbar Links 
-      - Clock 
-  - Results
-    Contains the actual results & Tag cloud TBD
-
-
-
+  // const [settings, dispatchSettings] = useReducer( settingsReducer, {})
 */
