@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from './search/Logo'
-import MobileContextsDropdown from './search/mobileContextsDropdown'
+import MobileContextsDropdown from './search/MobileContextsDropdown'
 import MobileNavBarToggleDisplayButton from './search/MobileNavBarToggleDisplayButton'
 import SearchForm from './search/SearchForm'
 
