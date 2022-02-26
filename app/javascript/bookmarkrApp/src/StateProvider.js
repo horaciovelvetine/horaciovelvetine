@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function StateProvider() {
+export default function stateProvider() {
 
 
   return (
