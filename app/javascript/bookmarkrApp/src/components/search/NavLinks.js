@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function NavLinks() {
   debugger
+
+  // const navigation = 
   return (
     <div className='pr-4 flex-shrink-0 flex items-center space-x-10'>
       <nav aria-label='Global' className='flex space-x-6'>
