@@ -10,7 +10,7 @@ export function contextMenuSelections() {
   )
 }
 export function navBarMenuItems() {
-  return ([{ name: "+Link", href: "${baseUrl}/addlink" }, { name: "Settings", href: "${baseUrl}/settings" },]
+  return ([{ name: "+Link", href: "${baseUrl}/addlink" }, { name: "Settings", href: "${baseUrl}/settings" }]
   )
 }
 export function defaultSettings() {

@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function StateProvider() {
-
+export default function App(props) {
+  debugger
 
   return (
     <div className='h-screen flex flex-col'>
@@ -13,13 +13,13 @@ export default function StateProvider() {
             className='flex items-center justify-center h-16 w-16 bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600 md:w-20'></a>
         </div>
         {/* //! SEARCH */}
-        <Search config={configProvider} dispatchConfig={dispatchConfig} searchMutation={searchMutation} />
+        <Search />
       </header>
 
       <div className='h-screen flex-1 flex overflow-hidden'>
         {/* //! SIDEBAR */}
         <div>
-          <ContextsSelectorSidebar config={configProvider} dispatchConfig={dispatchConfig} />
+          <ContextsSelectorSidebar />
         </div>
 
         {/* //! ALL RESULTS */}
@@ -30,7 +30,7 @@ export default function StateProvider() {
             <h1 id='primary-heading' className='sr-only'>
               Bookmarkr
             </h1>
-            <Results config={configProvider} dispatchConfig={dispatchConfig} results={results} />
+            <Results />
           </section>
         </main>
       </div>

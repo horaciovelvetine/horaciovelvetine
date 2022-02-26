@@ -1,5 +1,6 @@
 //React + Lib Imports
 import React from 'react'
+import App from './src/App'
 
 //Import Default Config Information
 import { contextMenuSelections, navBarMenuItems, defaultSettings} from './config/defaultStateItems'
@@ -8,11 +9,10 @@ const BookmarkrContext = React.createContext({ contextMenuSelections: contextMen
 
 export default function bookmarkrApp() {
 
-
   return (
     <>
       <BookmarkrContext.Provider value={{ contextMenuSelections: contextMenuSelections, navBarMenuItems: navBarMenuItems, defaultSettings: defaultSettings }} >
-        <StateProvider />
+        <App/>
       </BookmarkrContext.Provider>
     </>
   )
