@@ -1,8 +1,8 @@
 import React from 'react'
-import Logo from './Search/Logo'
-import MobileContextsDropdown from './Search/mobileContextsDropdown'
-import MobileNavBarToggleDisplayButton from './Search/MobileNavBarToggleDisplayButton'
-import SearchForm from './Search/SearchForm'
+import Logo from './search/Logo'
+import MobileContextsDropdown from './search/mobileContextsDropdown'
+import MobileNavBarToggleDisplayButton from './search/MobileNavBarToggleDisplayButton'
+import SearchForm from './search/SearchForm'
 
 export default function Search() {
   return (

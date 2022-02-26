@@ -4,7 +4,8 @@ import React from 'react'
 //(&sub-) Components
 import CardResult from './results/CardResult'
 import ListResult from './results/ListResult'
-import TagCloud from './results/TagCloud'
+import TagCloud from './results/TagClouid'
+import ContextsSelectorSidebar from './results/ContextsSelectorSidebar'
 
 export default function Results() {
   return (
@@ -19,7 +20,7 @@ export default function Results() {
           <h1 id='primary-heading' className='sr-only'>
             Bookmarkr
           </h1>
-          <Results />
+            Results
         </section>
       </main>
     </div>
