@@ -21,7 +21,7 @@ export default function Search() {
         <SearchForm /> //! done
         <NavLinks /> //! done
       </div>
-      <MobileNavMenu />
+      <MobileNavigationMenu />
     </header>
   )
 }
