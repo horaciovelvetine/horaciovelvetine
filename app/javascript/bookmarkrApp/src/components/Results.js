@@ -1,12 +1,15 @@
+// All React & Lib
 import React from 'react'
+
+//(&sub-) Components
+import CardResult from './results/CardResult'
+import ListResult from './results/ListResult'
+import TagCloud from './results/TagCloud'
 
 export default function Results() {
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
-      {/* //! SIDEBAR */}
-      <div>
-        <ContextsSelectorSidebar />
-      </div>
+      <ContextsSelectorSidebar />
 
       {/* //! ALL RESULTS */}
       <main className='min-w-0 flex-1 border-t border-gray-200 lg:flex h-screen'>
