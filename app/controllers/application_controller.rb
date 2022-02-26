@@ -1,9 +1,7 @@
 class ApplicationController < ActionController::Base
   # before_action :catch_visitors, only: :home
 
-  def home
-    # @payload = ["testingdetails", "test"] 
-  end
+  def home; end
 
 
   def visitor

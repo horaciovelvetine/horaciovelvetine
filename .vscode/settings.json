@@ -1,20 +1,20 @@
 {
 	"files.exclude": {
-		// ".yarn": true,
-		// "node_modules": true,
-		// "tmp": true,
-		// ".ruby-version": true,
-		// "Gemfile.lock": true,
-		// ".browserslistrc": true,
-		// "vendor": true,
-		// ".yarnrc.yml": true,
-		// "yarn.lock": true,
-		// "test": true,
-		// "public": true,
-		// "storage": true,
-		// "log": true,
-		// ".gitattributes": true,
-		// "config.ru": true,
-		// "README.md": true
+		".yarn": true,
+		"node_modules": true,
+		"tmp": true,
+		".ruby-version": true,
+		"Gemfile.lock": true,
+		".browserslistrc": true,
+		"vendor": true,
+		".yarnrc.yml": true,
+		"yarn.lock": true,
+		"test": true,
+		"public": true,
+		"storage": true,
+		"log": true,
+		".gitattributes": true,
+		"config.ru": true,
+		"README.md": true
 	}
 }

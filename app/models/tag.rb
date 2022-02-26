@@ -7,7 +7,6 @@ class Tag < ApplicationRecord
     has_and_belongs_to_many :links
     has_and_belongs_to_many :link_groups
     has_and_belongs_to_many :journal_entries
-    has_and_belongs_to_many :to_dos
 
     validates :name, uniqueness: true
 end

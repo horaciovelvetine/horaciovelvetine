@@ -3,7 +3,6 @@ class CreateLinks < ActiveRecord::Migration[6.1]
     create_table :links do |t|
       t.string :name
       t.string :href
-      t.string :icon
       t.boolean :pinned
       t.bigint :linkable_id, null: true
       t.string :linkable_type, null: true
