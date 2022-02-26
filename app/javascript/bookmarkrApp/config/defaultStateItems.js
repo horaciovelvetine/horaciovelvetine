@@ -1,12 +1,12 @@
 import React from 'react';
-import { homeIcon, briefcaseIcon, fireIcon, clipboardCheckIcon } from '@heroicons/react/solid';
+import { HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 
 export function contextMenuSelections() {
   return ([
-      { name: 'Default', icon: homeIcon, current: true, order: 1 },
-      { name: 'Hired', icon: briefcaseIcon, current: false, order: 2 },
-      { name: 'Ktchn', icon: fireIcon, current: false, order: 3 },
-      { name: 'ToDos', icon: clipboardCheckIcon, current: false, order: 4 },]
+      { name: 'Default', icon: HomeIcon, current: true, order: 1 },
+      { name: 'Hired', icon: BriefcaseIcon, current: false, order: 2 },
+      { name: 'Ktchn', icon: FireIcon, current: false, order: 3 },
+      { name: 'ToDos', icon: ClipboardCheckIcon, current: false, order: 4 },]
   )
 }
 export function navBarMenuItems() {
