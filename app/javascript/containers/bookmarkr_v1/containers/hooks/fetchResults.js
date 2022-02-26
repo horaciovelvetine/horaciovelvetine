@@ -1,4 +1,4 @@
-import baseUrl from "./helpers/baseUrl"
+import baseUrl from "../../../../bookmarkrApp/config/baseUrl"
 const axios = require('axios');
 
 export default async function fetchResults(payload) {

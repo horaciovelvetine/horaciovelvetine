@@ -4,7 +4,7 @@ import { SearchIcon, ChevronDownIcon } from '@heroicons/react/solid';
 
 //* Hooks, State & Misc Functions
 import replaceIconStrings from "../../../../helpers/replaceIconStrings";
-import baseUrl from "./helpers/baseUrl"
+import baseUrl from "../../../../bookmarkrApp/config/baseUrl"
 
 export default async function fetchConfigCache() {
   const heroIcons = { homeIcon: HomeIcon, briefcaseIcon: BriefcaseIcon, fireIcon: FireIcon, clipboardCheckIcon: ClipboardCheckIcon, menuIcon: MenuIcon, xIcon: XIcon, searchIcon: SearchIcon, chvronIcon: ChevronDownIcon }

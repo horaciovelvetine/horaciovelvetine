@@ -11,7 +11,7 @@ import ContextsSelectorSidebar from './main/components/ContextsSelectorSidebar';
 //* Hooks & Reducers
 import configReducer from './hooks/configReducer';
 import resultsReducer from './hooks/resultsReducer';
-import baseUrl from './hooks/helpers/baseUrl';
+import baseUrl from '../../../bookmarkrApp/config/baseUrl';
 
 export default function ConfigProvider(props) {
 	// Going to need to provide (React) _context here instead
