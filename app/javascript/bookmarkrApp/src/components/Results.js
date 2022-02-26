@@ -2,9 +2,9 @@
 import React from 'react'
 
 //(&sub-) Components
-import CardResult from './results/CardResult'
-import ListResult from './results/ListResult'
-import TagCloud from './results/TagClouid'
+// import CardResult from './results/CardResult'
+// import ListResult from './results/ListResult'
+// import TagCloud from './results/TagClouid'
 import ContextsSelectorSidebar from './results/ContextsSelectorSidebar'
 
 export default function Results() {
