@@ -2,9 +2,8 @@ class BookmarkrController < ActionController::Base
     skip_before_action :verify_authenticity_token, only: [:search]
     
     def index      
-      admin = Admin.all.first
-      configObject = BookmarkrConfigurator.build_config_object(admin)
-      render json: BookmarkrConfigSerializer.new(configObject).serializable_hash.to_json
+      payload = ResponseObject.cache
+      render json: BookmarkrCacheSerializer.new(payload).serializable_hash.to_json
     end
 
     def search 

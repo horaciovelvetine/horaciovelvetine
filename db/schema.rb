@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_06_213707) do
+ActiveRecord::Schema.define(version: 2022_02_27_203025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -170,6 +170,11 @@ ActiveRecord::Schema.define(version: 2022_01_06_213707) do
     t.bigint "tag_id", null: false
     t.index ["recipe_id", "tag_id"], name: "index_recipes_tags_on_recipe_id_and_tag_id"
     t.index ["tag_id", "recipe_id"], name: "index_recipes_tags_on_tag_id_and_recipe_id"
+  end
+
+  create_table "response_objects", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "states", force: :cascade do |t|
