@@ -12,7 +12,6 @@ export default function bookmarkrApp() {
   const navigation = navBarMenuItems()
   const settings = defaultSettings()
 
-
   return (
     <>
       <App defaultSettings={settings} contexts={contexts} navigation={navigation} />

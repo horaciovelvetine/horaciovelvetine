@@ -14,5 +14,5 @@ export function navBarMenuItems() {
   )
 }
 export function defaultSettings() {
-  return ({ setMobileMenuOpen: false, searchDeBounceDelay: 515 })
+  return ({ mobileMenuOpen: false, searchDeBounceDelay: 515 })
 }
