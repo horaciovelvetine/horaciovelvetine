@@ -22,31 +22,6 @@ export default function App(props) {
   const [contextMenuSelections, dispatchContextMenu] = useReducer(contextsMenuSelectionReducer, contexts)
   const [sessionCache, setSessionCache, removeFromSessionCache] = useSessionStorage()
 
-  //ignores pageload evocation of useEffect hook... 
-  useEffectOnUpdate(() => {
-    if (isLoading) return
-    const cacheFetchData = data
-
-    //? ex: setSessionCache("key": "value")...
-    //? how to use sessionStoage effectively here with the response data??
-    //* wanted function:: setSessionCache(cacheFetchData)
-    //* currently has to have each key and value
-    //* iterating over an array of:
-    //
-    //* [{tag: {tagObj}, {bookmark: {bookmarkObj}, ... }]
-    //
-    //* is stored in...
-    //* {sessionStorage: { tags: [], bookmarks: [], ...}}
-    //
-    //* or can it all be set at once. 
-
-
-    debugger
-
-
-    return (console.log("Data cached in session storage"))
-  }, [isLoading])
-
   return (
     <div className='h-screen flex flex-col'>
       <Search navigation={navigation} settings={theSettings} setTheSettings={setTheSettings} contextsMenuSelections={contextMenuSelections} dispatchContextMenu={dispatchContextMenu} />
