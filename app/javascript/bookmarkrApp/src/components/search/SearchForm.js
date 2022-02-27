@@ -8,15 +8,15 @@ import { SearchIcon } from '@heroicons/react/solid';
 export default function SearchForm() {
   const [searchEvent, setSearchEvent] = useState(null)
   debugger
-  //const dispatch = props
-  
-  
-  useBounceDelay(
-    () => {
-      const search = { ...searchEvent };
-      search.dispatchSearch({ query: search.query });
+  const setSearch = props.setSearch
+  const bounceDelay = props.bounceDelay
+
+
+  useBounceDelay(() => {
+      const search = searchEvent;
+      setSearch({ query: search.query });
     },
-    515,
+    bounceDelay,
     [searchEvent]
   );
 
@@ -33,7 +33,7 @@ export default function SearchForm() {
           className='block w-full border-transparent pl-12 placeholder-gray-500 focus:border-transparent sm:text-sm focus:ring-0'
           autoFocus={true}
           onChange={(e) => {
-            setSearchEvent({ query: e.target.value, dispatchSearch: dispatchSearch });
+            setSearchEvent({ query: e.target.value });
           }}
         />
         <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center justify-center pl-4'>

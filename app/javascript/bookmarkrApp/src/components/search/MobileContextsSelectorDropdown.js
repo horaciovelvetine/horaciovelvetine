@@ -2,11 +2,11 @@
 import React from 'react'
 import { ChevronDownIcon } from '@heroicons/react/solid';
 
-export default function MobileContextsSelectorDropdown() {
-  debugger
+export default function MobileContextsSelectorDropdown(props) {
 
-  //const contexts = 
-  
+  const contexts = props.contextsMenuSelections
+  const dispatch = props.dispatchContextMenu
+
   return (
     <>
       <div className='mx-auto md:hidden'>

@@ -10,14 +10,16 @@ import { XIcon } from '@heroicons/react/outline';
 
 export default function MobileNavigationMenu() {
 
+  const mobileMenuOpen = props.settings["mobileMenuOpen"]
+  const setMobileMenuOpen = props.setTheSettings
+  const navigation = props.navigation
+
   debugger
-  //const mobileMenuOpen = 
-  //const setMovileMenuOpen = 
-  //const navigation = 
+
 
   return (
     <Transition.Root show={mobileMenuOpen} as={Fragment}>
-      <Dialog as='div' className='fixed inset-0 z-40 md:hidden' onClose={props.setMobileMenuOpen}>
+      <Dialog as='div' className='fixed inset-0 z-40 md:hidden' onClose={setMobileMenuOpen}>
         <Transition.Child
           as={Fragment}
           enter='transition-opacity ease-linear duration-300'
@@ -51,7 +53,7 @@ export default function MobileNavigationMenu() {
               <button
                 type='button'
                 className='-mr-2 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600'
-                onClick={() => props.setMobileMenuOpen(false)}>
+                onClick={() => setMobileMenuOpen(false)}>
                 <span className='sr-only'>Close main menu</span>
                 <XIcon className='block h-6 w-6' aria-hidden='true' />
               </button>
@@ -73,7 +75,7 @@ export default function MobileNavigationMenu() {
               </div>
             </div>
             <div className='max-w-8xl mx-auto py-3 px-2 sm:px-4'>
-              {props.navigation.map((item) => (
+              {navigation.map((item) => (
                 <Fragment key={item.name}>
                   <a
                     href={item.href}

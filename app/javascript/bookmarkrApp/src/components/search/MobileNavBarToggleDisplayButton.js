@@ -3,9 +3,9 @@ import React from 'react'
 import { MenuIcon } from '@heroicons/react/outline';
 
 
-export default function MobileNavBarToggleDisplayButton() {
+export default function MobileNavBarToggleDisplayButton(props) {
   debugger
-  // const setMobileMenuOpen = 
+  const setMobilemenuOpen = props.setTheSettings
 
   return (
     <div>
