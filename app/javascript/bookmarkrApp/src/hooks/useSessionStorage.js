@@ -1,6 +1,6 @@
 import { useCallback, useState, useEffect } from "react"
 
-export function useSessionStorage(key, defaultValue) {
+export default function useSessionStorage(key, defaultValue) {
   return useStorage(key, defaultValue, window.sessionStorage)
 }
 

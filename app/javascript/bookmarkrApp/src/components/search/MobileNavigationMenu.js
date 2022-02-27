@@ -8,14 +8,10 @@ import { XIcon } from '@heroicons/react/outline';
 //(&sub) Components 
 
 
-export default function MobileNavigationMenu() {
-
-  const mobileMenuOpen = props.settings["mobileMenuOpen"]
+export default function MobileNavigationMenu(props) {
+  const mobileMenuOpen = props.settings.mobileMenuOpen
   const setMobileMenuOpen = props.setTheSettings
   const navigation = props.navigation
-
-  debugger
-
 
   return (
     <Transition.Root show={mobileMenuOpen} as={Fragment}>

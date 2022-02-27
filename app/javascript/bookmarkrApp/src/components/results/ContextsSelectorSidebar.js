@@ -7,10 +7,9 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function ContextsSelectorSidebar() {
-  debugger
+export default function ContextsSelectorSidebar(props) {
+  const contexts = props.contextsMenuSelections
 
-  //const contexts = 
   return (
     <nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
       <div className='relative w-20 flex flex-col p-3 space-y-3'>

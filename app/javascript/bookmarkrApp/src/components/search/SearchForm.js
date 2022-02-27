@@ -3,11 +3,11 @@ import React from 'react'
 import { useState } from 'react';
 import { SearchIcon } from '@heroicons/react/solid';
 
+// Hooks and Funcions
+import useBounceDelay from '../../hooks/useBounceDelay'
 
-
-export default function SearchForm() {
+export default function SearchForm(props) {
   const [searchEvent, setSearchEvent] = useState(null)
-  debugger
   const setSearch = props.setSearch
   const bounceDelay = props.bounceDelay
 

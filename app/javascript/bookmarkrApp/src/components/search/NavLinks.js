@@ -1,11 +1,11 @@
 // React & Lib
 import React from 'react'
+import { Fragment } from 'react'
 
 // (&sub) Components
 import Clock from './subComponents/Clock'
 
-export default function NavLinks() {
-  debugger
+export default function NavLinks(props) {
 
   const navigation = props.navigation
   return (

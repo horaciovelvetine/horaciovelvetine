@@ -4,8 +4,8 @@ import { MenuIcon } from '@heroicons/react/outline';
 
 
 export default function MobileNavBarToggleDisplayButton(props) {
-  debugger
-  const setMobilemenuOpen = props.setTheSettings
+
+  const setMobileMenuOpen = props.setTheSettings
 
   return (
     <div>

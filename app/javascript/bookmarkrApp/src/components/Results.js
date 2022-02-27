@@ -7,10 +7,11 @@ import React from 'react'
 // import TagCloud from './results/TagClouid'
 import ContextsSelectorSidebar from './results/ContextsSelectorSidebar'
 
-export default function Results() {
+export default function Results(props) {
+  
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
-      <ContextsSelectorSidebar />
+      <ContextsSelectorSidebar contextsMenuSelections={props.contextsMenuSelections} dispatchContextMenu={props.dispatchContextMenu} />
 
       {/* //! ALL RESULTS */}
       <main className='min-w-0 flex-1 border-t border-gray-200 lg:flex h-screen'>
@@ -20,7 +21,7 @@ export default function Results() {
           <h1 id='primary-heading' className='sr-only'>
             Bookmarkr
           </h1>
-            Results
+          Results
         </section>
       </main>
     </div>

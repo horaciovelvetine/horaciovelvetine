@@ -14,20 +14,21 @@ import MobileNavigationMenu from './search/MobileNavigationMenu'
 
 export default function Search(props) {
   const [search, setSearch] = useState({ query: "" })
-  debugger
-  // const bounceDelay = props.settings["searchBounceDelay"]
+  const bounceDelay = props.settings.searchDeBounceDelay
+
+  // debugger
 
   return (
     <header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
       <Logo />
-      <MobileContextsSelectorDropdown contextsMenuSelections={props.contextsMenuSelection} dispatchContextMenu={props.dispatchContextMenu} />
+      <MobileContextsSelectorDropdown contextsMenuSelections={props.contextsMenuSelections} dispatchContextMenu={props.dispatchContextMenu} />
       <MobileNavBarToggleDisplayButton setTheSettings={props.setTheSettings} />
 
       <div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
-        <SearchForm setSearch={setSearch} bounceDelay={bounceDelay=515}/>
+        <SearchForm setSearch={setSearch} bounceDelay={bounceDelay}/>
         <NavLinks navigation={props.navigation} />
       </div>
-      <MobileNavigationMenu settings={props.settings} setTheSettings={props.setTheSettings} />
+      <MobileNavigationMenu settings={props.settings} setTheSettings={props.setTheSettings} navigation={props.navigation}/>
     </header>
   )
 }
