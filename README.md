@@ -1,4 +1,4 @@
-### Hi there 👋
+### Hi there 👋 Im @horaciovelvetine a Full Stack Web-Developer!  
 
 ## SPECIFICATIONS.TECHNICALLY:: 
 - Languages // Ruby, JavaScript/HTML/CSS, Java;
@@ -14,10 +14,16 @@
 
 ## LEARNING.CURRENTLY:: 
 - React;
+- React Query;
 - Typescript;
+- React Hooks;
+- Redux;
+- TailwindCSS;
 
 ## ME.CONTACT:: 
 horaciovelvetine@gmail.com
 
 ## DOCS.TECHNICALLY::
-- This repository also functions as my portfolio website --> Looking for docs concerning that // it's operation? --> https://github.com/horaciovelvetine/horaciovelvetine/tree/main/docs
+- This repository is also an ongoing personal project! Docs concerning that and it's operation can be found here --> https://github.com/horaciovelvetine/horaciovelvetine/tree/main/docs
+- You can also find quite a lot of information here:
+  - https://horaciovelvetine.medium.com/defining-a-developmental-narrative-fis-final-project-1-883db67c5fc2
