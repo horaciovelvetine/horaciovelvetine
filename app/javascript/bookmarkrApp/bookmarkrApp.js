@@ -14,9 +14,9 @@ import contextsMenuSelectionReducer from './src/hooks/reducers/contextsMenuSelec
 
 
 export default function bookmarkrApp(props) {
-  const { defaultSettings, contexts, navigation } = { ...props };  
+  const { defaultSettings, contexts, navigation } = { ...props };
 
-  const { isLoading, error, data } = useQuery('cacheLinksTags', fetchCache);
+  // const { isLoading, error, data } = useQuery('cacheLinksTags', fetchCache);
 
   const [theSettings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [contextMenuSelections, dispatchContextMenu] = useReducer(contextsMenuSelectionReducer, contexts)

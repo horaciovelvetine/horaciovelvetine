@@ -1,7 +1,7 @@
 // React & Lib
 import React from 'react'
-import { useState } from 'react'
-import { useQueryClient, QueryClient, QueryClientProvider } from 'react-query'
+import { useState, useEffect } from 'react'
+import { useQueryClient } from 'react-query'
 
 // (&sub) Components
 import Logo from './search/Logo'
@@ -15,8 +15,9 @@ export default function Search(props) {
   const queryClient = useQueryClient()
   const [search, setSearch] = useState({ query: "" })
 
-  debugger
-
+  useEffect(() => {
+    console.log(search)
+  }, [search])
 
   return (
     <header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
