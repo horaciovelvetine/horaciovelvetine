@@ -1,5 +1,7 @@
 //React + Lib Imports
 import React from 'react'
+import { useReducer } from 'react'
+import { useQuery } from 'react-query'
 
 // (&sub) Components
 import Results from './src/components/Results'
@@ -18,11 +20,12 @@ export default function bookmarkrApp(props) {
 
   const [theSettings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [contextMenuSelections, dispatchContextMenu] = useReducer(contextsMenuSelectionReducer, contexts)
+
   return (
     <>
       <div className='h-screen flex flex-col'>
-        <Search navigation={navigation} settings={theSettings} setTheSettings={setTheSettings} contextsMenuSelections={contextMenuSelections} dispatchContextMenu={dispatchContextMenu} setStoredLinks={setStoredLinks} setStoredTags={setStoredTags} storedLinks={storedLinks} storedTags={storedTags} />
-        <Results navigation={navigation} settings={theSettings} setTheSettings={setTheSettings} contextsMenuSelections={contextMenuSelections} dispatchContextMenu={dispatchContextMenu} setStoredLinks={setStoredLinks} setStoredTags={setStoredTags} storedLinks={storedLinks} storedTags={storedTags} />
+        <Search navigation={navigation} settings={theSettings} setTheSettings={setTheSettings} contextsMenuSelections={contextMenuSelections} dispatchContextMenu={dispatchContextMenu}/>
+        <Results navigation={navigation} settings={theSettings} setTheSettings={setTheSettings} contextsMenuSelections={contextMenuSelections} dispatchContextMenu={dispatchContextMenu}/>
       </div>
     </>
   )
