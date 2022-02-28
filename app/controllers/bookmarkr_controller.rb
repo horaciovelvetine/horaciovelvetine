@@ -1,7 +1,7 @@
 class BookmarkrController < ActionController::Base
     skip_before_action :verify_authenticity_token, only: [:search]
     
-    def index      
+    def index
       payload = ResponseObject.cache
       render json: BookmarkrCacheSerializer.new(payload).serializable_hash.to_json
     end
