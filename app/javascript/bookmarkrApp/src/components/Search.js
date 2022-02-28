@@ -1,6 +1,6 @@
 // React & Lib
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 // (&sub) Components
 import Logo from './search/Logo'
@@ -10,12 +10,19 @@ import SearchForm from './search/SearchForm'
 import NavLinks from './search/NavLinks'
 import MobileNavigationMenu from './search/MobileNavigationMenu'
 
+// Hooks, Utils & Misc
+import postSearch from '../requests/postSearch'
+import useEffectOnUpdate from '../hooks/useEffectOnUpdate'
+
+
 export default function Search(props) {
   const setMatchIds = props.setMatchIds
   const [search, setSearch] = useState({ query: "" })
   
-  useEffect(() => {
+  useEffectOnUpdate(() => {
     console.log(search)
+    const matchIds = postSearch(search)
+    setMatchIds(matchIds)
   }, [search])
 
   return (
