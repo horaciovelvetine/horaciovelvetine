@@ -21,8 +21,11 @@ export default function Search(props) {
   
   useEffectOnUpdate(() => {
     console.log(search)
-    const matchIds = postSearch(search)
-    setMatchIds(matchIds)
+    const results = async (search) => await (postSearch(search))
+    const test = results(search)
+    console.log(test)
+    debugger
+    
   }, [search])
 
   return (
