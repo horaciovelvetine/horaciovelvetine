@@ -1,7 +1,6 @@
 // React & Lib
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useQueryClient } from 'react-query'
 
 // (&sub) Components
 import Logo from './search/Logo'
@@ -12,9 +11,9 @@ import NavLinks from './search/NavLinks'
 import MobileNavigationMenu from './search/MobileNavigationMenu'
 
 export default function Search(props) {
-  const queryClient = useQueryClient()
+  const setMatchIds = props.setMatchIds
   const [search, setSearch] = useState({ query: "" })
-
+  
   useEffect(() => {
     console.log(search)
   }, [search])
