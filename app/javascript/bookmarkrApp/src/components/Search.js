@@ -1,6 +1,7 @@
 // React & Lib
 import React from 'react'
 import { useState } from 'react'
+import { useQueryClient, QueryClient, QueryClientProvider } from 'react-query'
 
 // (&sub) Components
 import Logo from './search/Logo'
@@ -10,13 +11,12 @@ import SearchForm from './search/SearchForm'
 import NavLinks from './search/NavLinks'
 import MobileNavigationMenu from './search/MobileNavigationMenu'
 
-
-
 export default function Search(props) {
+  const queryClient = useQueryClient()
   const [search, setSearch] = useState({ query: "" })
-  const bounceDelay = props.settings.searchDeBounceDelay
 
-  // debugger
+  debugger
+
 
   return (
     <header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
@@ -25,10 +25,10 @@ export default function Search(props) {
       <MobileNavBarToggleDisplayButton setTheSettings={props.setTheSettings} />
 
       <div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
-        <SearchForm setSearch={setSearch} bounceDelay={bounceDelay}/>
+        <SearchForm setSearch={setSearch} bounceDelay={props.settings.searchDeBounceDelay} />
         <NavLinks navigation={props.navigation} />
       </div>
-      <MobileNavigationMenu settings={props.settings} setTheSettings={props.setTheSettings} navigation={props.navigation}/>
+      <MobileNavigationMenu settings={props.settings} setTheSettings={props.setTheSettings} navigation={props.navigation} />
     </header>
   )
 }
