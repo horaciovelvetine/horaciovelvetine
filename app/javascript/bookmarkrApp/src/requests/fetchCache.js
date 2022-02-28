@@ -2,9 +2,14 @@ import baseUrl from "../../config/baseUrl"
 import axios from "axios"
 
 
-export default function fetchCache() {
-    return async () => await axios.get(`${baseUrl()}`)
-  }
+export default async function fetchCache() {
+
+  const { data } = await axios.get(`${baseUrl()}`)
+  debugger
+  // return data.data.attributes
+
+
+}
 
   // const request = async () => await axios.get(`${baseUrl()}`)
   //   .then((response) => {
