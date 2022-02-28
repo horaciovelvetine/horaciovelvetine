@@ -18,15 +18,15 @@ import useEffectOnUpdate from '../hooks/useEffectOnUpdate'
 export default function Search(props) {
   const setMatchIds = props.setMatchIds
   const [search, setSearch] = useState({ query: "" })
-  
-  useEffectOnUpdate(() => {
-    console.log(search)
-    const results = async (search) => await (postSearch(search))
-    const test = results(search)
-    console.log(test)
-    debugger
+  //! BEFORE YOU GET TO FAR, CONSIDER IF THIS IS A MUTATION WAITING TO HAPPEN.  
+  // useEffectOnUpdate(() => {
+  //   console.log(search)
+  //   const results = async (search) => await (postSearch(search))
+  //   const test = results(search)
+  //   console.log(test)
+  //   debugger
     
-  }, [search])
+  // }, [search])
 
   return (
     <header className='flex-shrink-0 relative h-16 bg-white flex items-center'>

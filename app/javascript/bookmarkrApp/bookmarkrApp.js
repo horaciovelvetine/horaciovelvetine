@@ -15,7 +15,7 @@ import useEffectOnUpdate from './src/hooks/useEffectOnUpdate'
 export default function bookmarkrApp(props) {
   const { defaultSettings, contexts, navigation } = { ...props };
 
-  // const { isLoading, error, data } = useQuery('cacheLinksTags', fetchCache);
+  //? build mutation here to pass down so that on search we rock a mutation for results
 
   const [theSettings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [contextMenuSelections, dispatchContextMenu] = useReducer(contextsMenuSelectionReducer, contexts)

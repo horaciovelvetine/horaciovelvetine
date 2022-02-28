@@ -8,7 +8,9 @@ import React from 'react'
 import ContextsSelectorSidebar from './results/ContextsSelectorSidebar'
 
 export default function Results(props) {
-  
+  //? data is what the ID's should be checked against (maybe even up a parent in the bookmarkrApp??)
+  // const { isLoading, error, data } = useQuery('cacheLinksTags', fetchCache);
+
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
       <ContextsSelectorSidebar contextsMenuSelections={props.contextsMenuSelections} dispatchContextMenu={props.dispatchContextMenu} />
