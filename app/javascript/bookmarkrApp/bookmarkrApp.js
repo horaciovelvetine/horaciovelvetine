@@ -1,20 +1,29 @@
 //React + Lib Imports
 import React from 'react'
-import App from './src/App'
 
-//Import Default Config Information
-import { contextMenuSelections, navBarMenuItems, defaultSettings } from './config/defaultStateItems'
+// (&sub) Components
+import Results from './src/components/Results'
+import Search from './src/components/Search'
 
-export const BookmarkrContext = React.createContext()
+// Hooks, Utils & Misc
+import fetchCache from './src/requests/fetchCache'
+import settingsReducer from './src/hooks/reducers/settingsReducer'
+import contextsMenuSelectionReducer from './src/hooks/reducers/contextsMenuSelectionReducer'
 
-export default function bookmarkrApp() {
-  const contexts = contextMenuSelections()
-  const navigation = navBarMenuItems()
-  const settings = defaultSettings()
 
+export default function bookmarkrApp(props) {
+  const { defaultSettings, contexts, navigation } = { ...props };  
+
+  const { isLoading, error, data } = useQuery('cacheLinksTags', fetchCache);
+
+  const [theSettings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
+  const [contextMenuSelections, dispatchContextMenu] = useReducer(contextsMenuSelectionReducer, contexts)
   return (
     <>
-      <App defaultSettings={settings} contexts={contexts} navigation={navigation} />
+      <div className='h-screen flex flex-col'>
+        <Search navigation={navigation} settings={theSettings} setTheSettings={setTheSettings} contextsMenuSelections={contextMenuSelections} dispatchContextMenu={dispatchContextMenu} setStoredLinks={setStoredLinks} setStoredTags={setStoredTags} storedLinks={storedLinks} storedTags={storedTags} />
+        <Results navigation={navigation} settings={theSettings} setTheSettings={setTheSettings} contextsMenuSelections={contextMenuSelections} dispatchContextMenu={dispatchContextMenu} setStoredLinks={setStoredLinks} setStoredTags={setStoredTags} storedLinks={storedLinks} storedTags={storedTags} />
+      </div>
     </>
   )
 }

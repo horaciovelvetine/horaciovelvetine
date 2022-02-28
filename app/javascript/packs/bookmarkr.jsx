@@ -3,9 +3,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-//(&sub) Components
-import BookmarkrApp from '../bookmarkrApp/bookmarkrApp'
+//Import Default Config Information
+import { contextMenuSelections, navBarMenuItems, defaultSettings } from '../bookmarkrApp/config/defaultStateItems';
 
+//and setup config vars to pass app
+const contexts = contextMenuSelections();
+const navigation = navBarMenuItems();
+const settings = defaultSettings();
+
+//(&sub) Components
+import BookmarkrApp from '../bookmarkrApp/bookmarkrApp';
 
 //Changes default refetch on window focus
 const queryClient = new QueryClient({
@@ -16,10 +23,11 @@ const queryClient = new QueryClient({
 	},
 });
 
+
 ReactDOM.render(
 	<React.StrictMode>
 		<QueryClientProvider client={queryClient}>
-			<BookmarkrApp/>
+			<BookmarkrApp defaultSettings={settings} contexts={contexts} navigation={navigation} />
 		</QueryClientProvider>
 	</React.StrictMode>,
 	document.getElementById('homeContainer')
