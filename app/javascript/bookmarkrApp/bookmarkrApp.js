@@ -8,7 +8,6 @@ import Results from './src/components/Results'
 import Search from './src/components/Search'
 
 // Hooks, Utils & Misc
-import fetchCache from './src/requests/fetchCache'
 import settingsReducer from './src/hooks/reducers/settingsReducer'
 import contextsMenuSelectionReducer from './src/hooks/reducers/contextsMenuSelectionReducer'
 
