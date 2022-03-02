@@ -5,26 +5,27 @@ import { BrowserRouter as ViewStyleRouter, Switch, Route, Link } from 'react-rou
 // Hooks, Utils & Misc
 
 export default function ResultsViewProvider(props) {
-  debugger
-  // const [LinkResult, CardResult] = [...props.chilren]
-  // cosnt [ tags, links ] = [...props.cache]
-  return (
+  const [tags, links] = [...props.cache]
+  const ListResult = props.children[0]
+  const CardResult = props.children[1]
+
+  if (props.results == null) return(<>Ready to roll</>)
+  if (props.results) return (
     <ViewStyleRouter>
       <ul>
         <li>
           <Link Link to="/viewOpt=list">List View</Link>
         </li>
         <li>
-          <Link Link to="/viewOpt=card">List View</Link>
+          <Link Link to="/viewOpt=card">Card View</Link>
         </li>
       </ul>
-
       <Switch>
         <Route exact path="/viewOpt=list">
-          {!isLoading && lookupResults(resultsIds).map((result) => (<ListResult data={result} />))}
+          {lookupResults(resultsIds).map((result) => (<ListResult data={result} />))}
         </Route>
         <Route exact path="/viewOpt=card">
-          {!isLoading && lookupResults(resultsIds).map((result) => (<CardResult data={result} />))}
+          {lookupResults(resultsIds).map((result) => (<CardResult data={result} />))}
         </Route>
       </Switch>
     </ViewStyleRouter>
