@@ -3,22 +3,33 @@ import React from 'react'
 import { useQuery } from 'react-query'
 
 //(&sub-) Components
+import ResultsViewProvider from './results/ResultsViewProvider'
 import CardResult from './results/subComponents/CardResult'
 import ListResult from './results/subComponents/ListResult'
-import TagCloud from './results/TagClouid'
+import TagCloud from './results/TagCloud'
+import SelectTagButton from './results/subComponents/SelectTagButton'
 import ContextsSelectorSidebar from './results/ContextsSelectorSidebar'
-import ResultsViewProvider from './results/ResultsViewProvider'
+
 
 // Hooks, Utils & Misc
 import fetchCache from '../requests/fetchCache'
 
 export default function Results(props) {
-  const digUpCacheData = (data) => data.data.data.attributes
+  
+  
+  const digUpCacheData = (data) => {
+    return ([data.data.data.attributes.tags, data.data.data.attributes.links])
+    
+  }
   const { isLoading, error, data } = useQuery('cashe', fetchCache);
   const resultsIds = props.resultIds
 
   function findResultInfo(resultIds) {
     // should return an array of results objects w/ info
+    if (resultsIds == undefined) {
+      return null
+    }
+
     debugger
   }
   return (
@@ -37,7 +48,7 @@ export default function Results(props) {
         {/*=> //!Hides on screen size shrink */}
         <aside className='hidden lg:block lg:flex-shrink-0'>
           <div className='h-full relative flex flex-col w-96 border-r border-gray-200 bg-gray-100 overflow-y-auto'>
-            {!isLoading && <TagCloud cache={digUpCacheData(data)} />}
+            {!isLoading && <TagCloud cache={digUpCacheData(data)} children={SelectTagButton} />}
           </div>
         </aside>
 
