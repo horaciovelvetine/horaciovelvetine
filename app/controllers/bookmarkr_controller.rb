@@ -9,6 +9,7 @@ class BookmarkrController < ActionController::Base
     def search 
       query = params[:query]
       results = ResponseObject.searchResults(query)
+    
       render json: BookmarkrResultsSerializer.new(results).serializable_hash.to_json
     end
 
