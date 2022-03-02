@@ -15,23 +15,9 @@ import ContextsSelectorSidebar from './results/ContextsSelectorSidebar'
 import fetchCache from '../requests/fetchCache'
 
 export default function Results(props) {
-  
-  
-  const digUpCacheData = (data) => {
-    return ([data.data.data.attributes.tags, data.data.data.attributes.links])
-    
-  }
+  const digUpCacheData = (data) => [data.data.data.attributes.tags, data.data.data.attributes.links]
   const { isLoading, error, data } = useQuery('cashe', fetchCache);
-  const resultsIds = props.resultIds
 
-  function findResultInfo(resultIds) {
-    // should return an array of results objects w/ info
-    if (resultsIds == undefined) {
-      return null
-    }
-
-    debugger
-  }
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
       <ContextsSelectorSidebar contextsMenuSelections={props.contextsMenuSelections} dispatchContextMenu={props.dispatchContextsMenu} />
@@ -42,7 +28,7 @@ export default function Results(props) {
           className='min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-first'>
           {isLoading && <>...Let me get that for you, just a second</>}
           {error && <>Hold on... that doesn't seem right</>}
-          {!isLoading && <ResultsViewProvider children={[ListResult, CardResult]} cache={digUpCacheData(data)} results={findResultInfo(resultsIds)} />}
+          {!isLoading && <ResultsViewProvider children={[ListResult, CardResult]} cache={digUpCacheData(data)} results={props.results} />}
         </section>
 
         {/*=> //!Hides on screen size shrink */}
