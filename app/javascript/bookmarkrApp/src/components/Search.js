@@ -15,11 +15,11 @@ import useEffectOnUpdate from '../hooks/useEffectOnUpdate'
 
 
 export default function Search(props) {
-  const searchResultsMutation = props.searchResultsMutation
+
   const [search, setSearch] = useState({ query: "" })
 
   useEffectOnUpdate(() => {
-    searchResultsMutation(search)
+    props.searchResultsMutation(search)
   }, [search])
 
   return (
