@@ -3,9 +3,9 @@ export default function getResultsDisplayInfo(ids, cache) {
   const results = []
   
   for (let index = 0; index < ids.length; index++) {
-    const idResult = ids[index];
+    const resultLookup = ids[index];
     debugger
-    // results.push(cache.find(o => o.id === id))
+    // results.push(cache.find(o => o.id === resultLookup.id))
   }
   debugger
   return results
