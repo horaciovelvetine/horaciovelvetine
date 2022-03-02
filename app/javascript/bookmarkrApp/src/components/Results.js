@@ -17,7 +17,6 @@ import fetchCache from '../requests/fetchCache'
 export default function Results(props) {
   const digUpCacheData = (data) => [data.data.data.attributes.tags, data.data.data.attributes.links]
   const { isLoading, error, data } = useQuery('cashe', fetchCache);
-
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
       <ContextsSelectorSidebar contextsMenuSelections={props.contextsMenuSelections} dispatchContextMenu={props.dispatchContextsMenu} />
