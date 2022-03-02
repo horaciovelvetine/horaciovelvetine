@@ -18,12 +18,11 @@ import useEffectOnUpdate from '../hooks/useEffectOnUpdate'
 export default function Search(props) {
   const setMatchIds = props.setMatchIds
   const [search, setSearch] = useState({ query: "" })
-  //! It is. Just saying -future james. 
 
   return (
     <header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
       <Logo />
-      <MobileContextsSelectorDropdown contextsMenuSelections={props.contextsMenuSelections} dispatchContextMenu={props.dispatchContextMenu} />
+      <MobileContextsSelectorDropdown contextsMenuSelections={props.contextsMenuSelections} dispatchContextsMenu={props.dispatchContextsMenu} />
       <MobileNavBarToggleDisplayButton setTheSettings={props.setTheSettings} />
 
       <div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
