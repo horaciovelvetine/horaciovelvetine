@@ -11,13 +11,16 @@ import NavLinks from './search/NavLinks'
 import MobileNavigationMenu from './search/MobileNavigationMenu'
 
 // Hooks, Utils & Misc
-import postSearch from '../requests/postSearch'
 import useEffectOnUpdate from '../hooks/useEffectOnUpdate'
 
 
 export default function Search(props) {
-  const setMatchIds = props.setMatchIds
+  const searchResultsMutation = props.searchResultsMutation
   const [search, setSearch] = useState({ query: "" })
+
+  useEffectOnUpdate(() => {
+    searchResultsMutation(search)
+  }, [search])
 
   return (
     <header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
