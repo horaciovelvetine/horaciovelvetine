@@ -19,28 +19,21 @@ export default function bookmarkrApp(props) {
   const { defaultSettings, contexts, navigation } = { ...props };
 
   // Search Results Mutation Stuff
-  const useGetResultsIds = () => {
-
+  const useGetResults = () => {
     return useMutation(getSearchResults, {
       onSuccess: (res) => {
-        console.log(res)
-        debugger
-        // setResultsIds(resultsIds)
+        setResults(res.data.data.attributes.results)
       }
     })
-    debugger
   }
-  const { mutate: searchResultsMutation, isLoading, isError, isSuccess, data, error } = useGetResultsIds()
+  const { mutate: searchResultsMutation, isLoading, isError, isSuccess, data, error } = useGetResults()
+  
 
   // State Related
   const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [contextsMenuSelections, dispatchContextsMenu] = useReducer(contextsMenuSelectionReducer, contexts)
-  const [resultsIds, setResultsIds] = useState(["test"])
+  const [results, setResults] = useState([])
 
-  useEffectOnUpdate(() => {
-    console.log("match ids!", resultsIds)
-    debugger
-  }, [resultsIds])
 
   const childProps = {
     navigation, settings, setTheSettings, dispatchContextsMenu, contextsMenuSelections, dispatchContextsMenu
@@ -49,8 +42,8 @@ export default function bookmarkrApp(props) {
   return (
     <>
       <div className='h-screen flex flex-col'>
-        <Search {...childProps} searchResultsMutation={searchResultsMutation} setResultsIds={setResultsIds} />
-        <Results {...childProps} resultsIds={resultsIds} />
+        <Search {...childProps} searchResultsMutation={searchResultsMutation} setResults={setResults} />
+        <Results {...childProps} results={results} resultsLoading={isLoading} resultsSuccess={isSuccess}/>
       </div>
     </>
   )
