@@ -1,0 +1,1 @@
+export const exampleLink = { name: "Wikipedia", href: "https://www.wikipedia.com", pinned: false }
