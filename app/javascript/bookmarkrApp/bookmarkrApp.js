@@ -12,23 +12,23 @@ import Search from './src/components/Search'
 import settingsReducer from './src/hooks/reducers/settingsReducer'
 import contextsMenuSelectionReducer from './src/hooks/reducers/contextsMenuSelectionReducer'
 import useEffectOnUpdate from './src/hooks/useEffectOnUpdate'
+import getSearchResults from './src/requests/getSearchResults'
 
 export default function bookmarkrApp(props) {
+  // config vars
   const { defaultSettings, contexts, navigation } = { ...props };
 
-  //? build mutation here to pass down so that on search we rock a mutation for results
-  const getSearchResults = (payload) => {
-    return axios.post(baseurl('/search'), payload)
-  }
+  // Search Results Mutation Stuff
   const useGetResultsIds = () => {
     return useMutation(getSearchResults)
     debugger
   }
+  const { mutate: searchResultsMutation, isLoading, isError, isSuccess, data, error } = useGetResultsIds()
 
-  const { mutate: searchResultsMutation, isLoading, isError, error } = useGetResultsIds()
+  // State Related
   const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [contextsMenuSelections, dispatchContextsMenu] = useReducer(contextsMenuSelectionReducer, contexts)
-  const [resultsIds, setResultsIds] = useState([])
+  const [resultsIds, setResultsIds] = useState(["test"])
 
   useEffectOnUpdate(() => {
     console.log("match ids!", resultsIds)
