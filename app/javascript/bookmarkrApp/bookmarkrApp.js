@@ -1,6 +1,7 @@
 //React + Lib Imports
 import React from 'react'
-import { useReducer, useState} from 'react'
+import { useMutation } from 'react-query'
+import { useReducer, useState } from 'react'
 
 
 // (&sub) Components
@@ -16,25 +17,33 @@ export default function bookmarkrApp(props) {
   const { defaultSettings, contexts, navigation } = { ...props };
 
   //? build mutation here to pass down so that on search we rock a mutation for results
+  const getSearchResults = (payload) => {
+    return axios.post(baseurl('/search'), payload)
+  }
+  const useGetResultsIds = () => {
+    return useMutation(getSearchResults)
+    debugger
+  }
 
+  const { mutate: searchResultsMutation, isLoading, isError, error } = useGetResultsIds()
   const [theSettings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [contextMenuSelections, dispatchContextMenu] = useReducer(contextsMenuSelectionReducer, contexts)
-  const [matchIds, setMatchIds] = useState([])
+  const [resultsIds, setResultsIds] = useState([])
 
   useEffectOnUpdate(() => {
-    console.log("match ids!", matchIds)
+    console.log("match ids!", resultsIds)
     debugger
-  }, [matchIds])
+  }, [resultsIds])
 
   const childProps = {
-    navigation, theSettings, setTheSettings, dispatchContextMenu, contextMenuSelections, dispatchContextMenu, setMatchIds, matchIds
+    navigation, theSettings, setTheSettings, dispatchContextMenu, contextMenuSelections, dispatchContextMenu
   }
-  
+
   return (
     <>
       <div className='h-screen flex flex-col'>
-        <Search {...childProps}/>
-        <Results {...childProps}/>
+        <Search {...childProps} searchResultsMutation={searchResultsMutation} />
+        <Results {...childProps} resultsIds={resultsIds} />
       </div>
     </>
   )
