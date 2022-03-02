@@ -3,10 +3,15 @@ import { HashtagIcon } from '@heroicons/react/solid'
 
 export default function SelectTagButton(props) {
   
+  function handleTagClick(e) {
+    e.preventDefault()
+    console.log(`Show only ${e.target.textContent} related results`)
+  }
+
   return (
     <button
       key={props.id}
-      onClick={(e) => console.log(e.target.text)}
+      onClick={(e) => handleTagClick(e)}
       type="button"
       className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-indigo-400 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
     >
