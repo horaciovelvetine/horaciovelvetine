@@ -20,7 +20,14 @@ export default function bookmarkrApp(props) {
 
   // Search Results Mutation Stuff
   const useGetResultsIds = () => {
-    return useMutation(getSearchResults)
+
+    return useMutation(getSearchResults, {
+      onSuccess: (res) => {
+        console.log(res)
+        debugger
+        // setResultsIds(resultsIds)
+      }
+    })
     debugger
   }
   const { mutate: searchResultsMutation, isLoading, isError, isSuccess, data, error } = useGetResultsIds()
@@ -42,7 +49,7 @@ export default function bookmarkrApp(props) {
   return (
     <>
       <div className='h-screen flex flex-col'>
-        <Search {...childProps} searchResultsMutation={searchResultsMutation} />
+        <Search {...childProps} searchResultsMutation={searchResultsMutation} setResultsIds={setResultsIds} />
         <Results {...childProps} resultsIds={resultsIds} />
       </div>
     </>
