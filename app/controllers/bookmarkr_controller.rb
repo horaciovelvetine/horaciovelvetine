@@ -9,9 +9,6 @@ class BookmarkrController < ActionController::Base
     def search 
       query = params[:query]
       results = ResponseObject.searchResults(query)
-      if results.links == "NA"
-        render json: {resultsIds: "noneMatching"}
-      end
       render json: BookmarkrResultsSerializer.new(results).serializable_hash.to_json
     end
 
