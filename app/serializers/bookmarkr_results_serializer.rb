@@ -6,7 +6,7 @@ class BookmarkrResultsSerializer < ActionController::Base
     if response.links == "NA"
       results = {resultsIds: [], id: "noResultsResponse" }
     else
-      results = response.links.map{ |l| {id: l.id, name: l.name, href: l.href, tagsIds: (l.tags.map{ |t| t.id }) } }
+      results = response.links.map{ |l| {id: l.id, tagsIds: (l.tags.map{ |t| t.id }) } }
     end
     results
   end
