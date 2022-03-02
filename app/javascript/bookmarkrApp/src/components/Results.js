@@ -14,9 +14,14 @@ import fetchCache from '../requests/fetchCache'
 export default function Results(props) {
   // const [resultsIds, ...? ] = [...props.data] => for getting resultIds or any add'l needed
   const { isLoading, error, data } = useQuery('cashe', fetchCache);
-
+  
   const digUpData = (data) => data.data.data.attributes
 
+  const results = (resultsIds) => {
+    //using results Ids, sorts through data
+    // should return an array of objects with all the needed data: name, href...? 
+    debugger
+  }
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
       <ContextsSelectorSidebar contextsMenuSelections={props.contextsMenuSelections} dispatchContextMenu={props.dispatchContextMenu} />
@@ -28,8 +33,8 @@ export default function Results(props) {
           {isLoading && <>...Let me get that for you, just a second</>}
           {error && <>Hold on... that doesn't seem right</>}
           {/* //! Eventually this should be iterating over and returning results for each of resultsIds */}
-          {!isLoading && <ListResult data={digUpData(data)} />}
-          {!isLoading && <CardResult data={data} />}
+          {!isLoading && results.map((result) => (<ListResult data={result} />))}
+          {!isLoading && results.map((result) => (<CardResult data={result} />))}
 
           {/* //! TagCloud should just rely on data and render as it gets tags, on click of a tag mutates results */}
           {!isLoading && <TagCloud data={data} />}
