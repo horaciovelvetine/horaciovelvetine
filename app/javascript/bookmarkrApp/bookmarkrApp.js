@@ -25,12 +25,16 @@ export default function bookmarkrApp(props) {
     console.log("match ids!", matchIds)
     debugger
   }, [matchIds])
+
+  const childProps = {
+    navigation, theSettings, setTheSettings, dispatchContextMenu, contextMenuSelections, dispatchContextMenu, setMatchIds, matchIds
+  }
   
   return (
     <>
       <div className='h-screen flex flex-col'>
-        <Search navigation={navigation} settings={theSettings} setTheSettings={setTheSettings} contextsMenuSelections={contextMenuSelections} dispatchContextMenu={dispatchContextMenu} setMatchIds={setMatchIds} matchIds={matchIds}/>
-        <Results navigation={navigation} settings={theSettings} setTheSettings={setTheSettings} contextsMenuSelections={contextMenuSelections} dispatchContextMenu={dispatchContextMenu} matchIds={matchIds}/>
+        <Search {...childProps}/>
+        <Results {...childProps}/>
       </div>
     </>
   )
