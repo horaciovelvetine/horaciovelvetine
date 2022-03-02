@@ -7,9 +7,12 @@ import ListResult from './results/ListResult'
 import TagCloud from './results/TagClouid'
 import ContextsSelectorSidebar from './results/ContextsSelectorSidebar'
 
+// Hooks, Utils & Misc
+import fetchCache from '../requests/fetchCache'
+
 export default function Results(props) {
   //? data is what the ID's should be checked against (maybe even up a parent in the bookmarkrApp??)
-  const { isLoading, error, data } = useQuery('cacheLinksTags', fetchCache);
+  const { isLoading, error, data } = useQuery('cashe', fetchCache);
 
   function checkData(data) {
     !data && puts('Data is falsey')
