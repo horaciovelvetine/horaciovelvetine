@@ -26,8 +26,8 @@ export default function bookmarkrApp(props) {
   }
 
   const { mutate: searchResultsMutation, isLoading, isError, error } = useGetResultsIds()
-  const [theSettings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
-  const [contextMenuSelections, dispatchContextMenu] = useReducer(contextsMenuSelectionReducer, contexts)
+  const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
+  const [contextsMenuSelections, dispatchContextsMenu] = useReducer(contextsMenuSelectionReducer, contexts)
   const [resultsIds, setResultsIds] = useState([])
 
   useEffectOnUpdate(() => {
@@ -36,7 +36,7 @@ export default function bookmarkrApp(props) {
   }, [resultsIds])
 
   const childProps = {
-    navigation, theSettings, setTheSettings, dispatchContextMenu, contextMenuSelections, dispatchContextMenu
+    navigation, settings, setTheSettings, dispatchContextsMenu, contextsMenuSelections, dispatchContextsMenu
   }
 
   return (

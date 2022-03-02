@@ -3,10 +3,10 @@ import React from 'react'
 import { ChevronDownIcon } from '@heroicons/react/solid';
 
 export default function MobileContextsSelectorDropdown(props) {
-  
+  debugger
   const contexts = props.contextsMenuSelections
-  //!unused until an even is added to the select menu
-  const dispatch = props.dispatchContextMenu
+  //!unused until an event is added to the select menu
+  const dispatch = props.dispatchContextsMenu
 
   return (
     <>
