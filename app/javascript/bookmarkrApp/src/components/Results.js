@@ -1,5 +1,6 @@
 // All React & Lib
 import React from 'react'
+import { useQuery } from 'react-query'
 
 //(&sub-) Components
 import CardResult from './results/CardResult'
@@ -11,16 +12,11 @@ import ContextsSelectorSidebar from './results/ContextsSelectorSidebar'
 import fetchCache from '../requests/fetchCache'
 
 export default function Results(props) {
-  //? data is what the ID's should be checked against (maybe even up a parent in the bookmarkrApp??)
+  // const [resultsIds, ...? ] = [...props.data] => for getting resultIds or any add'l needed
   const { isLoading, error, data } = useQuery('cashe', fetchCache);
 
-  function checkData(data) {
-    !data && puts('Data is falsey')
-    data == undefined && puts('Data is undefined')
-    puts(data)
-    debugger
-  }
-  
+  const digUpData = (data) => data.data.data.attributes
+
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
       <ContextsSelectorSidebar contextsMenuSelections={props.contextsMenuSelections} dispatchContextMenu={props.dispatchContextMenu} />
@@ -32,14 +28,14 @@ export default function Results(props) {
           {isLoading && <>...Let me get that for you, just a second</>}
           {error && <>Hold on... that doesn't seem right</>}
           {/* //! Eventually this should be iterating over and returning results for each of resultsIds */}
-          {!isLoading && <ListResult data={checkData(data)} />}
-          {!isLoading && <CardResult data={checkData(data)} />}
+          {!isLoading && <ListResult data={digUpData(data)} />}
+          {!isLoading && <CardResult data={data} />}
 
           {/* //! TagCloud should just rely on data and render as it gets tags, on click of a tag mutates results */}
-          {!isLoading && <TagCloud data={checkData(data)}/> }
-          
+          {!isLoading && <TagCloud data={data} />}
+
         </section>
-        
+
       </main>
     </div>
   )
