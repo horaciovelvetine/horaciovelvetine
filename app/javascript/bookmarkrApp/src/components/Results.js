@@ -3,10 +3,11 @@ import React from 'react'
 import { useQuery } from 'react-query'
 
 //(&sub-) Components
-import CardResult from './results/CardResult'
-import ListResult from './results/ListResult'
+import CardResult from './results/subComponents/CardResult'
+import ListResult from './results/subComponents/ListResult'
 import TagCloud from './results/TagClouid'
 import ContextsSelectorSidebar from './results/ContextsSelectorSidebar'
+import ResultsViewProvider from './results/ResultsViewProvider'
 
 // Hooks, Utils & Misc
 import fetchCache from '../requests/fetchCache'
