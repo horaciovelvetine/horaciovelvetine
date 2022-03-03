@@ -65,8 +65,7 @@ tags:
   - contact
   - whilom
 
-
-links: 
-  - {name: "Google", href: "https://www.google.com", pinned: false}
-  - {name: "Twitter", href: "https://www.twitter.com", pinned: false}
-  - {name: "Wikipedia", href: "https://www.wikipedia.com", pinned: false}
+links:
+  - { name: 'Google', href: 'https://www.google.com', pinned: false }
+  - { name: 'Twitter', href: 'https://www.twitter.com', pinned: false }
+  - { name: 'Wikipedia', href: 'https://www.wikipedia.com', pinned: false }
