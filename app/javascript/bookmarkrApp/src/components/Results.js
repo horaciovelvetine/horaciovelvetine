@@ -8,7 +8,7 @@ import CardResult from './results/subComponents/CardResult'
 import ListResult from './results/subComponents/ListResult'
 import TagCloud from './results/TagCloud'
 import SelectTagButton from './results/subComponents/SelectTagButton'
-import ContextsSelectorSidebar from './results/ApplicationSelectorSidebar'
+import ApplicationSelectorSidebar from './results/ApplicationSelectorSidebar'
 
 
 // Hooks, Utils & Misc
@@ -19,7 +19,7 @@ export default function Results(props) {
   const { isLoading, error, data } = useQuery('cashe', fetchCache);
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
-      <ContextsSelectorSidebar contextsMenuSelections={props.contextsMenuSelections} dispatchContextMenu={props.dispatchContextsMenu} />
+      <ApplicationSelectorSidebar applicationMenuSelections={props.applicationMenuSelections} dispatchApplicationMenu={props.dispatchApplicationMenu} />
 
       <main className='min-w-0 flex-1 border-t border-gray-200 lg:flex h-screen'>
         <section
