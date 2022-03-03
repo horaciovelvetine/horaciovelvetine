@@ -5,9 +5,9 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 
 
 //Import Default Config Information
-import { contextMenuSelections, navBarMenuItems, defaultSettings } from '../bookmarkrApp/config/defaultStateItems';
+import { applicationMenuSelections, navBarMenuItems, defaultSettings } from '../bookmarkrApp/config/defaultStateItems';
 //and setup config vars to pass app
-const contexts = contextMenuSelections();
+const applications = applicationMenuSelections();
 const navigation = navBarMenuItems();
 const settings = defaultSettings();
 
@@ -27,7 +27,7 @@ const queryClient = new QueryClient({
 ReactDOM.render(
 	<React.StrictMode>
 			<QueryClientProvider client={queryClient}>
-				<BookmarkrApp defaultSettings={settings} contexts={contexts} navigation={navigation} />
+				<BookmarkrApp defaultSettings={settings} applicationMenu={applications} navigationMenu={navigation} />
 			</QueryClientProvider>
 	</React.StrictMode>,
 	document.getElementById('homeContainer')

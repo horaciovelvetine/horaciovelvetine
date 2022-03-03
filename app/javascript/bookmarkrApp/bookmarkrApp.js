@@ -3,20 +3,18 @@ import React from 'react'
 import { useMutation } from 'react-query'
 import { useReducer, useState } from 'react'
 
-
 // (&sub) Components
 import Results from './src/components/Results'
 import Search from './src/components/Search'
 
 // Hooks, Utils & Misc
 import settingsReducer from './src/hooks/reducers/settingsReducer'
-import contextsMenuSelectionReducer from './src/hooks/reducers/contextsMenuSelectionReducer'
-import useEffectOnUpdate from './src/hooks/useEffectOnUpdate'
+import applicationMenuSelectionReducer from './src/hooks/reducers/applicationsMenuSelectionReducer'
 import getSearchResults from './src/requests/getSearchResults'
 
 export default function bookmarkrApp(props) {
   // config vars
-  const { defaultSettings, contexts, navigation } = { ...props };
+  const { defaultSettings, applicationMenu, navigation } = { ...props };
 
   // Search Results Mutation Stuff
   const useGetResults = () => {
@@ -27,23 +25,23 @@ export default function bookmarkrApp(props) {
     })
   }
   const { mutate: searchResultsMutation, isLoading, isError, isSuccess, data, error } = useGetResults()
-  
+
 
   // State Related
   const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
-  const [contextsMenuSelections, dispatchContextsMenu] = useReducer(contextsMenuSelectionReducer, contexts)
+  const [applicationMenuSelections, dispatchApplicationMenu] = useReducer(applicationMenuSelectionReducer, applicationMenu)
   const [results, setResults] = useState([])
 
 
   const childProps = {
-    navigation, settings, setTheSettings, dispatchContextsMenu, contextsMenuSelections, dispatchContextsMenu
+    navigation, settings, setTheSettings, dispatchApplicationMenu, applicationMenuSelections
   }
 
   return (
     <>
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchResultsMutation} setResults={setResults} />
-        <Results {...childProps} results={results}/>
+        <Results {...childProps} results={results} />
       </div>
     </>
   )

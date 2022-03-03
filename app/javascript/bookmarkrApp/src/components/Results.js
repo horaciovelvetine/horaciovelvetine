@@ -8,7 +8,7 @@ import CardResult from './results/subComponents/CardResult'
 import ListResult from './results/subComponents/ListResult'
 import TagCloud from './results/TagCloud'
 import SelectTagButton from './results/subComponents/SelectTagButton'
-import ContextsSelectorSidebar from './results/ContextsSelectorSidebar'
+import ContextsSelectorSidebar from './results/ApplicationSelectorSidebar'
 
 
 // Hooks, Utils & Misc

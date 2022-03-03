@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 // (&sub) Components
 import Logo from './search/Logo'
-import MobileContextsSelectorDropdown from './search/MobileContextsSelectorDropdown'
+import MobileApplicationSelectorDropdown from './search/MobileApplicationSelectorDropdown'
 import MobileNavBarToggleDisplayButton from './search/MobileNavBarToggleDisplayButton'
 import SearchForm from './search/SearchForm'
 import NavLinks from './search/NavLinks'
@@ -25,7 +25,7 @@ export default function Search(props) {
   return (
     <header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
       <Logo />
-      <MobileContextsSelectorDropdown contextsMenuSelections={props.contextsMenuSelections} dispatchContextsMenu={props.dispatchContextsMenu} />
+      <MobileApplicationSelectorDropdown applicationMenuSelections={props.applicationMenuSelections} dispatchApplicationMenu={props.dispatchApplicationMenu} />
       <MobileNavBarToggleDisplayButton setTheSettings={props.setTheSettings} />
 
       <div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>

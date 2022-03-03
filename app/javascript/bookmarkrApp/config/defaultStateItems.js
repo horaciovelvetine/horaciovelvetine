@@ -1,7 +1,7 @@
 import React from 'react';
 import { HomeIcon, BriefcaseIcon, FireIcon, ClipboardCheckIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 
-export function contextMenuSelections() {
+export function applicationMenuSelections() {
   return ([
       { name: 'Default', icon: HomeIcon, current: true, order: 1 },
       { name: 'Hired', icon: BriefcaseIcon, current: false, order: 2 },
