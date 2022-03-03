@@ -8,13 +8,22 @@ export default function ResultsViewProvider(props) {
   const ListResult = props.children[0]
   const CardResult = props.children[1]
 
+  function handleResultClick(e) {
+    e.preventDefault()
+    console.log(`Result Event: ${e}`)
+    debugger
+  }
+
   // const results = getResultsDisplayInfo(props.results, props.cache)
 
-    return (
-      <>
-        Example Results Components Rendering Test
-        <ListResult result={exampleLink} /> 
-      </>
-    )
+  return (
+    <>
+      Example Results Components Rendering Test
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <ListResult result={exampleLink} handleResultClick={handleResultClick} />
+        <ListResult result={exampleLink} handleResultClick={handleResultClick} />
+      </div>
+    </>
+  )
 
 }
