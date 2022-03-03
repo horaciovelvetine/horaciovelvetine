@@ -10,8 +10,6 @@ class CreateDateUtils < ActiveRecord::Migration[6.1]
       t.bigint :dateable_id, null: true
       t.string :dateable_type, null: true
 
-      t.belongs_to :context, null: false, foreign_key: true
-
       t.timestamps
     end
   end

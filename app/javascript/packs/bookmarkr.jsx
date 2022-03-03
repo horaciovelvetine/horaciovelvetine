@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
+
 //Import Default Config Information
 import { contextMenuSelections, navBarMenuItems, defaultSettings } from '../bookmarkrApp/config/defaultStateItems';
 //and setup config vars to pass app

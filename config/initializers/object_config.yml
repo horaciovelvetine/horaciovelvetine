@@ -65,19 +65,7 @@ tags:
   - contact
   - whilom
 
-contexts:
-  - contact_info
-  - experience
-  - social
-  - home
-  - video
-  - reference
-  - archived
-  - flagged
-  - favorited
-  - accepted
-  - done
-  - bookmarked
+
 links: 
   - {name: "Google", href: "https://www.google.com", pinned: false}
   - {name: "Twitter", href: "https://www.twitter.com", pinned: false}
