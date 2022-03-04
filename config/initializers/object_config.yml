@@ -15,7 +15,7 @@ tags:
   - bootstrap
   - tailwind
   - tutorial
-  - tool
+  - tools
   - testing
   - video
   - gem
@@ -61,31 +61,33 @@ tags:
   - auth
   - social
   - ref
+  - javascript
+
 links:
-  - { name: 'Twitter', href: 'https://www.twitter.com', pinned: false, tagNames: ['tool', 'social'] }
+  - { name: 'Twitter', href: 'https://www.twitter.com', pinned: false, tagNames: ['tools', 'social'] }
   - {
       name: 'Wikipedia',
       href: 'https://www.wikipedia.com',
       pinned: true,
-      tagNames: ['resources', 'references ', 'tools'],
+      tagNames: ['resources', 'references', 'tools'],
     }
   - {
       name: 'Rails Docs',
       href: 'https://guides.rubyonrails.org/',
       pinned: false,
-      tagNames: ['ruby', 'rails', 'references ', 'docs', 'documentations', 'setup', 'flagged', 'ref'],
+      tagNames: ['ruby', 'rails', 'references', 'docs', 'documentation', 'setup', 'flagged', 'ref'],
     }
   - {
       name: 'Stackoverflow',
       href: 'https://stackoverflow.com/',
       pinned: true,
-      tagNames: ['docs', 'references ', 'ref', 'resources', 'stack'],
+      tagNames: ['docs', 'references', 'ref', 'resources', 'stack'],
     }
   - {
       name: 'GitHub',
       href: 'https://agithub.com/',
       pinned: true,
-      tagNames: ['docs', 'references ', 'ref', 'resources', 'stack', 'work', 'tool', 'git', 'github'],
+      tagNames: ['docs', 'references', 'ref', 'resources', 'stack', 'work', 'tools', 'git', 'github'],
     }
   - {
       name: 'Faker',
@@ -95,9 +97,9 @@ links:
         [
           'ruby',
           'rails',
-          'references ',
+          'references',
           'docs',
-          'documentations',
+          'documentation',
           'setup',
           'ref',
           'db',
@@ -117,14 +119,14 @@ links:
         [
           'ruby',
           'rails',
-          'references ',
+          'references',
           'docs',
-          'documentations',
+          'documentation',
           'ref',
           'gem',
           'auth',
           'oauth',
-          'omnitauth',
+          'omniauth',
           'setup',
           'resources',
         ],
@@ -135,9 +137,9 @@ links:
       pinned: false,
       tagNames:
         [
-          'references ',
+          'references',
           'docs',
-          'documentations',
+          'documentation',
           'flagged',
           'ref',
           'setup',
@@ -154,9 +156,9 @@ links:
       pinned: false,
       tagNames:
         [
-          'references ',
+          'references',
           'docs',
-          'documentations',
+          'documentation',
           'flagged',
           'ref',
           'setup',
