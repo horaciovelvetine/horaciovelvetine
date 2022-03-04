@@ -16,13 +16,27 @@ export default function ResultsViewProvider(props) {
 
   // const results = getResultsDisplayInfo(props.results, props.cache)
 
-  return (
-    <>
-      Example Results Components Rendering Test
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <ListResult result={exampleLink} handleResultClick={handleResultClick} />
-      </div>
-    </>
-  )
+  if (props.results == []) {
+    return (
+      <>
+        Example Results Components Rendering Test
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <ListResult result={exampleLink} />
+        </div>
+      </>
+    )
+  }
+  
+  if (props.results.length >= 1) {
+    return (
+      <>
+        {props.results.map(result => {
+          <ListResult result={result}/>
+        })}
+      </>
+    )
+  }
+
+  debugger
 
 }
