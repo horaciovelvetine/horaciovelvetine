@@ -2,8 +2,8 @@ tags:
   - ruby
   - rails
   - js
-  - resource
-  - reference
+  - resources
+  - references
   - forlater
   - html
   - css
@@ -39,6 +39,9 @@ tags:
   - guide
   - homebrew
   - bash
+  - shell
+  - zshell
+  - zsh
   - scamazon
   - writing
   - setup
@@ -51,21 +54,119 @@ tags:
   - backend
   - database
   - db
-  - faker
-  - devise
   - java
   - typescript
   - ts
   - flagged
-  - medium
+  - auth
   - social
-  - favorite
-  - standby
-  - travel
-  - contact
-  - whilom
-
+  - ref
 links:
-  - { name: 'Google', href: 'https://www.google.com', pinned: false }
-  - { name: 'Twitter', href: 'https://www.twitter.com', pinned: false }
-  - { name: 'Wikipedia', href: 'https://www.wikipedia.com', pinned: false }
+  - { name: 'Twitter', href: 'https://www.twitter.com', pinned: false, tagNames: ['tool', 'social'] }
+  - {
+      name: 'Wikipedia',
+      href: 'https://www.wikipedia.com',
+      pinned: true,
+      tagNames: ['resources', 'references ', 'tools'],
+    }
+  - {
+      name: 'Rails Docs',
+      href: 'https://guides.rubyonrails.org/',
+      pinned: false,
+      tagNames: ['ruby', 'rails', 'references ', 'docs', 'documentations', 'setup', 'flagged', 'ref'],
+    }
+  - {
+      name: 'Stackoverflow',
+      href: 'https://stackoverflow.com/',
+      pinned: true,
+      tagNames: ['docs', 'references ', 'ref', 'resources', 'stack'],
+    }
+  - {
+      name: 'GitHub',
+      href: 'https://agithub.com/',
+      pinned: true,
+      tagNames: ['docs', 'references ', 'ref', 'resources', 'stack', 'work', 'tool', 'git', 'github'],
+    }
+  - {
+      name: 'Faker',
+      href: 'https://github.com/faker-ruby/faker',
+      pinned: false,
+      tagNames:
+        [
+          'ruby',
+          'rails',
+          'references ',
+          'docs',
+          'documentations',
+          'setup',
+          'ref',
+          'db',
+          'database',
+          'testing',
+          'gem',
+          'setup',
+          'sql',
+          'postgres',
+        ],
+    }
+  - {
+      name: 'Devise',
+      href: 'https://github.com/heartcombo/devise',
+      pinned: false,
+      tagNames:
+        [
+          'ruby',
+          'rails',
+          'references ',
+          'docs',
+          'documentations',
+          'ref',
+          'gem',
+          'auth',
+          'oauth',
+          'omnitauth',
+          'setup',
+          'resources',
+        ],
+    }
+  - {
+      name: 'MDN Mozilla Docs',
+      href: 'https://github.com/heartcombo/devise',
+      pinned: false,
+      tagNames:
+        [
+          'references ',
+          'docs',
+          'documentations',
+          'flagged',
+          'ref',
+          'setup',
+          'resources',
+          'js',
+          'javascript',
+          'frontend',
+          'mdn',
+        ],
+    }
+  - {
+      name: 'React Docs',
+      href: 'https://github.com/heartcombo/devise',
+      pinned: false,
+      tagNames:
+        [
+          'references ',
+          'docs',
+          'documentations',
+          'flagged',
+          'ref',
+          'setup',
+          'resources',
+          'js',
+          'javascript',
+          'frontend',
+          'mdn',
+          'react',
+          'ts',
+          'typescript',
+        ],
+    }
