@@ -21,7 +21,6 @@ export default function ResultsViewProvider(props) {
       Example Results Components Rendering Test
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <ListResult result={exampleLink} handleResultClick={handleResultClick} />
-        <ListResult result={exampleLink} handleResultClick={handleResultClick} />
       </div>
     </>
   )

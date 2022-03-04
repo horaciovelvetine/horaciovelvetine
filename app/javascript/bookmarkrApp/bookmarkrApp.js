@@ -9,12 +9,12 @@ import Search from './src/components/Search'
 
 // Hooks, Utils & Misc
 import settingsReducer from './src/hooks/reducers/settingsReducer'
-import applicationMenuSelectionReducer from './src/hooks/reducers/applicationsMenuSelectionReducer'
+import applicationMenuSelectionReducer from './src/hooks/reducers/applicationMenuSelectionReducer'
 import getSearchResults from './src/requests/getSearchResults'
 
 export default function bookmarkrApp(props) {
   // config vars
-  const { defaultSettings, applicationMenu, navigation } = { ...props };
+  const { defaultSettings, applicationMenu, navigationMenu } = { ...props };
 
   // Search Results Mutation Stuff
   const useGetResults = () => {
@@ -34,7 +34,7 @@ export default function bookmarkrApp(props) {
 
 
   const childProps = {
-    navigation, settings, setTheSettings, dispatchApplicationMenu, applicationMenuSelections
+    navigationMenu, settings, setTheSettings, dispatchApplicationMenu, applicationMenuSelections
   }
 
   return (

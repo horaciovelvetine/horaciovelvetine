@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 // (&sub) Components
 import Logo from './search/Logo'
-import MobileApplicationSelectorDropdown from './search/MobileApplicationSelectorDropdown'
+import MobileApplicationSelectorDropdown from './search/MobileAppplicationSelectorDropdown'
 import MobileNavBarToggleDisplayButton from './search/MobileNavBarToggleDisplayButton'
 import SearchForm from './search/SearchForm'
 import NavLinks from './search/NavLinks'
@@ -15,7 +15,6 @@ import useEffectOnUpdate from '../hooks/useEffectOnUpdate'
 
 
 export default function Search(props) {
-
   const [search, setSearch] = useState({ query: "" })
 
   useEffectOnUpdate(() => {
@@ -30,9 +29,9 @@ export default function Search(props) {
 
       <div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
         <SearchForm setSearch={setSearch} bounceDelay={props.settings.searchDeBounceDelay} />
-        <NavLinks navigation={props.navigation} />
+        <NavLinks navigation={props.navigationMenu} />
       </div>
-      <MobileNavigationMenu settings={props.settings} setTheSettings={props.setTheSettings} navigation={props.navigation} />
+      <MobileNavigationMenu settings={props.settings} setTheSettings={props.setTheSettings} navigation={props.navigationMenu} />
     </header>
   )
 }
