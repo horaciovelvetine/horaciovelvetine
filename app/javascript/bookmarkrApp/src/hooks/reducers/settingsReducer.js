@@ -8,6 +8,7 @@ export default function settingsReducer(prevState, settingKey) {
 
 
   switch (settingKey) {
+    //toggles bool of setting addLinkMenuOpen
     case '+Link':
       newStateObject[`${settingKey}`] = !prevState[`${settingKey}`]
       break;
