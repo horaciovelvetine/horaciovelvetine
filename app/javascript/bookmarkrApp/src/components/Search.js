@@ -29,7 +29,7 @@ export default function Search(props) {
 
       <div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
         <SearchForm setSearch={setSearch} bounceDelay={props.settings.searchDeBounceDelay} />
-        <NavLinks navigation={props.navigationMenu} />
+        <NavLinks navigation={props.navigationMenu} settings={props.settings} setTheSettings={props.setTheSettings} />
       </div>
       <MobileNavigationMenu settings={props.settings} setTheSettings={props.setTheSettings} navigation={props.navigationMenu} />
     </header>
