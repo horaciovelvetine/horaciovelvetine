@@ -10,29 +10,14 @@ import Search from './src/components/Search'
 // Hooks, Utils & Misc
 import settingsReducer from './src/hooks/reducers/settingsReducer'
 import applicationMenuSelectionReducer from './src/hooks/reducers/applicationMenuSelectionReducer'
-import getSearchResults from './src/requests/getSearchResults'
+import useGetResults from './src/hooks/mutations/useGetResults'
+import checkResultsMutationData from './src/hooks/utils/checkResultsMutationData'
 
 export default function bookmarkrApp(props) {
   // config vars
   const { defaultSettings, applicationMenu, navigationMenu } = { ...props };
 
-  //! Should be moved and used to import getSearch, and imported here
-  const useGetResults = () => {
-    return useMutation(getSearchResults, {
-      onSuccess: (res) => {
-        return res
-      }
-    })
-  }
-
   const { mutate: searchResultsMutation, isIdle, isLoading, isError, isSuccess, data, error } = useGetResults()
-
-  const resultsCheck = (data) => {
-    if (isIdle || isLoading) return false
-    if (data) return data.data.attributes
-    //uh-oh!
-    debugger
-  }
 
   // Define all state related 
   const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
@@ -46,7 +31,7 @@ export default function bookmarkrApp(props) {
     <>
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchResultsMutation} />
-        <Results {...childProps} resultIds={resultsCheck(data)} />
+        <Results {...childProps} resultIds={checkResultsMutationData(data, isIdle, isLoading)} />
       </div>
     </>
   )
