@@ -85,7 +85,7 @@ links:
     }
   - {
       name: 'GitHub',
-      href: 'https://agithub.com/',
+      href: 'https://github.com/',
       pinned: true,
       tagNames: ['docs', 'references', 'ref', 'resources', 'stack', 'work', 'tools', 'git', 'github'],
     }
