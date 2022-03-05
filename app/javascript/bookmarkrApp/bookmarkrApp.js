@@ -33,7 +33,7 @@ export default function bookmarkrApp(props) {
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchResultsMutation} />
         <Results {...childProps} resultIds={checkResultsMutationData(data, isIdle, isLoading)} />
-        <AddLink />
+        <AddLink settings={settings} setTheSettings={setTheSettings}/>
       </div>
     </>
   )
