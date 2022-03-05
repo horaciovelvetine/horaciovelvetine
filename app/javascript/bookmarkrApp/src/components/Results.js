@@ -19,7 +19,7 @@ export default function Results(props) {
 
   //Get deeply nested and needed info 
   const tagsInfo = (data) => {
-    return nest(data).tags
+    return nest(data).tags.sort((a, b) => (a.name > b.name) ? 1 : -1)
   }
   const linksInfo = (data) => {
     return nest(data).tags
@@ -30,10 +30,10 @@ export default function Results(props) {
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
       <ApplicationSelectorSidebar applicationMenuSelections={props.applicationMenuSelections} dispatchApplicationMenu={props.dispatchApplicationMenu} />
-      <main className='min-w-0 flex-1 border-t border-gray-200 lg:flex h-screen'>
+      <main className='min-w-0 flex-1 border-t border-gray-300 lg:flex h-screen'>
         <section
           aria-labelledby='primary-heading'
-          className='min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-first'>
+          className='min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-first m-2'>
           {isLoading && <>...Let me get that for you, just a second</>}
           {error && <>Hold on... that doesn't seem right</>}
           {!isLoading && <ResultsViewProvider children={[ListResult, CardResult]} results={getResultsObjectInfo(props.resultIds.results, data)} />}
@@ -41,7 +41,7 @@ export default function Results(props) {
 
         {/*=> //!Hides on screen size shrink */}
         <aside className='hidden lg:block lg:flex-shrink-0'>
-          <div className='h-full relative flex flex-col w-96 border-r border-gray-200 bg-gray-100 overflow-y-auto'>
+          <div className='h-full relative flex flex-col w-96 bg-gray-100'>
             {!isLoading && <TagCloud tags={tagsInfo(data)} children={SelectTagButton} />}
           </div>
         </aside>
