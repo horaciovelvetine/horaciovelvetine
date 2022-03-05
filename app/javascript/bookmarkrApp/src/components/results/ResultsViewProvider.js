@@ -25,7 +25,7 @@ export default function ResultsViewProvider(props) {
   if (props.results) {
     return (
       <div className="grid gap-4 mt-2"> 
-        {props.results.map(result => <ListResult result={result}/>)}
+        {props.results.map(result => <ListResult key={result.id} result={result}/>)}
       </div>
     )
   }
