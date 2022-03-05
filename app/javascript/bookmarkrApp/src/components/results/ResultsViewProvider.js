@@ -21,15 +21,12 @@ export default function ResultsViewProvider(props) {
       </>
     )
   }
-  
+
   if (props.results) {
     return (
-      <> many results found
-        {props.results.map(result => {
-          debugger
-          <ListResult result={result}/>
-        })}
-      </>
+      <div className="grid gap-4"> 
+        {props.results.map((result) => <ListResult result={result}/>)}
+      </div>
     )
   }
 
