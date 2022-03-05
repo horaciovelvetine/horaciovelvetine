@@ -1,4 +1,4 @@
-import baseUrl from "../../config/baseUrl"
+import baseUrl from "../../../config/baseUrl"
 import axios from "axios"
 
 

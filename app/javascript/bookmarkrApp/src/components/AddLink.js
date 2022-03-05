@@ -1,10 +1,10 @@
+import React from 'react'
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
-import { LinkIcon, PlusSmIcon, QuestionMarkCircleIcon } from '@heroicons/react/solid'
 
 
-export default function Example(props) {
+export default function AddLink(props) {
   const [open, setOpen] = useState(false)
 
   return (
