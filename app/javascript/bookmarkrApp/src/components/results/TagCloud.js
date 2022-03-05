@@ -7,12 +7,15 @@ export default function TagCloud(props) {
   
 
   return (
-    <div className="overflow-y-auto flex flex-col">
-      <ul role="tagList" className="grid ">
+    <div className="mt-2">
+      <h3 className="">Tags</h3>
+      <hr></hr>
+
+      <div role="tagList" className="mt-1">
         {props.tags.map((tag) => (
           props.children(tag))
         )}
-      </ul>
+      </div>
     </div>
 
   )
