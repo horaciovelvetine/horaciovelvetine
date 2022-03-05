@@ -10,5 +10,5 @@ export default async function getSearchResults(payload) {
       console.log(err)
       debugger
     })
-  return response
+  return response.data
 }
