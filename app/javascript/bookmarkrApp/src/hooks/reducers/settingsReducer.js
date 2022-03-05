@@ -2,10 +2,8 @@ import React from 'react'
 
 export default function settingsReducer(prevState, settingKey) {
   
-  //sets up new object for state
-  let newStateObject = Object.keys(prevState).map((key, index) => {
-    return prevState[key]
-  })
+  // should now create new !== object to allow modification
+  let newStateObject = Object.fromEntries(Object.entries(prevState).map(([k, v]) => [k, v]))
 
 
 
