@@ -11,7 +11,6 @@ export default function settingsReducer(prevState, settingKey) {
   switch (settingKey) {
     //toggles bool of setting addLinkMenuOpen
     case linkKey:
-      debugger
       newStateObject['addLinkModalOpen'] = !prevState['addLinkModalOpen']
       break;
     

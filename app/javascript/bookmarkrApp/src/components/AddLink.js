@@ -28,9 +28,9 @@ export default function AddLink(props) {
               <div className="pointer-events-auto w-screen max-w-md">
                 <form className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
                   <div className="h-0 flex-1 overflow-y-auto">
-                    <div className="bg-indigo-700 py-6 px-4 sm:px-6">
+                    <div className="bg-indigo-700 py-6 px-4 sm:px-6" onClick={() => props.setTheSettings(settingKey)}>
                       <div className="flex items-center justify-between">
-                        <Dialog.Title className="text-lg font-medium text-white"> New Project </Dialog.Title>
+                        <Dialog.Title className="text-lg font-medium text-white"> Add Link </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
