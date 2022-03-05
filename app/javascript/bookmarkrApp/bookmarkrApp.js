@@ -1,7 +1,7 @@
 //React + Lib Imports
 import React from 'react'
 import { useMutation } from 'react-query'
-import { useReducer, useState } from 'react'
+import { useReducer } from 'react'
 
 // (&sub) Components
 import Results from './src/components/Results'
@@ -16,7 +16,7 @@ export default function bookmarkrApp(props) {
   // config vars
   const { defaultSettings, applicationMenu, navigationMenu } = { ...props };
 
-  // Search Results Mutation Stuff
+  //! Should be moved and used to import getSearch, and imported here
   const useGetResults = () => {
     return useMutation(getSearchResults, {
       onSuccess: (res) => {
@@ -28,7 +28,7 @@ export default function bookmarkrApp(props) {
   const { mutate: searchResultsMutation, isIdle, isLoading, isError, isSuccess, data, error } = useGetResults()
 
   const resultsCheck = (data) => {
-    if (isIdle || data == undefined) return false
+    if (isIdle || isLoading) return false
     if (data) return data.data.attributes
     //uh-oh!
     debugger
