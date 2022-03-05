@@ -5,11 +5,13 @@ import { XIcon } from '@heroicons/react/outline'
 
 
 export default function AddLink(props) {
-  const [open, setOpen] = useState(false)
+  
+  const settingKey = '+Link'
+  const open = props.settings.addLinkModalOpen
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={setOpen}>
+      <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={props.setTheSettings}>
         <div className="absolute inset-0 overflow-hidden">
           <Dialog.Overlay className="absolute inset-0" />
 
@@ -33,7 +35,7 @@ export default function AddLink(props) {
                           <button
                             type="button"
                             className="rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
-                            onClick={() => setOpen(false)}
+                            onClick={() => props.setTheSettings(settingKey)}
                           >
                             <span className="sr-only">Close panel</span>
                             <XIcon className="h-6 w-6" aria-hidden="true" />
@@ -104,7 +106,7 @@ export default function AddLink(props) {
                     <button
                       type="button"
                       className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                      onClick={() => setOpen(false)}
+                      onClick={() => props.setTheSettings(settingKey)}
                     >
                       Cancel
                     </button>
