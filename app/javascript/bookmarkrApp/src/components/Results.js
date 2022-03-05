@@ -17,15 +17,17 @@ let nest = (data) => data.data.data.attributes
 
 export default function Results(props) {
 
-  //Get deeply nested and needed info 
+  // gets all links and assoc. objects to search against
+  const { isLoading, error, data } = useQuery('cashe', fetchCache);
+
+  //Get deeply nested and needed info
   const tagsInfo = (data) => {
     return nest(data).tags.sort((a, b) => (a.name > b.name) ? 1 : -1)
   }
   const linksInfo = (data) => {
-    return nest(data).tags
+    // on call should return ALL links from fetch
+    return nest(data).links
   }
-
-  const { isLoading, error, data } = useQuery('cashe', fetchCache);
 
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
