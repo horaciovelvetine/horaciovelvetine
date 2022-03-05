@@ -12,6 +12,7 @@ import settingsReducer from './src/hooks/reducers/settingsReducer'
 import applicationMenuSelectionReducer from './src/hooks/reducers/applicationMenuSelectionReducer'
 import useGetResults from './src/hooks/mutations/useGetResults'
 import checkResultsMutationData from './src/hooks/utils/checkResultsMutationData'
+import AddLink from './src/components/AddLink'
 
 export default function bookmarkrApp(props) {
   // config vars
@@ -32,6 +33,7 @@ export default function bookmarkrApp(props) {
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchResultsMutation} />
         <Results {...childProps} resultIds={checkResultsMutationData(data, isIdle, isLoading)} />
+        <AddLink />
       </div>
     </>
   )
