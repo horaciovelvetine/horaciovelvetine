@@ -20,18 +20,23 @@ export default function bookmarkrApp(props) {
   const useGetResults = () => {
     return useMutation(getSearchResults, {
       onSuccess: (res) => {
-        setResults(res.data.data.attributes.results)
+        return res
       }
     })
   }
-  const { mutate: searchResultsMutation, isLoading, isError, isSuccess, data, error } = useGetResults()
 
+  const { mutate: searchResultsMutation, isIdle, isLoading, isError, isSuccess, data, error } = useGetResults()
 
-  // State Related
+  const resultsCheck = (data) => {
+    if (isIdle || data == undefined) return false
+    if (data) return data.data.attributes
+    //uh-oh!
+    debugger
+  }
+
+  // Define all state related 
   const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [applicationMenuSelections, dispatchApplicationMenu] = useReducer(applicationMenuSelectionReducer, applicationMenu)
-  const [results, setResults] = useState([])
-
 
   const childProps = {
     navigationMenu, settings, setTheSettings, dispatchApplicationMenu, applicationMenuSelections
@@ -40,8 +45,8 @@ export default function bookmarkrApp(props) {
   return (
     <>
       <div className='h-screen flex flex-col'>
-        <Search {...childProps} searchResultsMutation={searchResultsMutation} setResults={setResults} />
-        <Results {...childProps} results={results} />
+        <Search {...childProps} searchResultsMutation={searchResultsMutation} />
+        <Results {...childProps} resultIds={resultsCheck(data)} />
       </div>
     </>
   )
