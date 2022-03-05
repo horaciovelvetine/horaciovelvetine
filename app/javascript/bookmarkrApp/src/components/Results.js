@@ -12,7 +12,7 @@ import ApplicationSelectorSidebar from './results/ApplicationSelectorSidebar'
 import getResultsObjectInfo from '../hooks/utils/getResultsObjectInfo'
 
 // Hooks, Utils & Misc
-import fetchCache from '../requests/fetchCache'
+import fetchCache from '../hooks/requests/fetchCache'
 let nest = (data) => data.data.data.attributes
 
 export default function Results(props) {
