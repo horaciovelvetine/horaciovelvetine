@@ -15,7 +15,7 @@ export default function ResultsViewProvider(props) {
   if (!props.results) {
     return (
       <>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-2">
           <ListResult result={exampleLink} />
         </div>
       </>
@@ -24,8 +24,8 @@ export default function ResultsViewProvider(props) {
 
   if (props.results) {
     return (
-      <div className="grid gap-4"> 
-        {props.results.map((result) => <ListResult result={result}/>)}
+      <div className="grid gap-4 mt-2"> 
+        {props.results.map(result => <ListResult result={result}/>)}
       </div>
     )
   }
