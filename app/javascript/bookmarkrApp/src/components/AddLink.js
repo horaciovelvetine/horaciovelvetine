@@ -7,16 +7,17 @@ import { Dialog, Transition } from '@headlessui/react'
 import TextAttributes from './addLink/TextAttributes'
 import BoolAttributes from './addLink/BoolAttributes'
 import FooterButtons from './addLink/FooterButtons'
-import TagSelector from './addLink/TagSelector'
-import TagButton from './addLink/subComponents/TagButton'
+import TagSelectorDropdown from './addLink/TagSelectorDropdown'
 import SliderHeader from './addLink/SliderHeader'
 
+//dep component for tag cloud
+import TagSelector from './addLink/TagSelector'
+import TagButton from './addLink/subComponents/TagButton'
 
 export default function AddLink(props) {
   //Default component config info
   const open = props.settings.addLinkSlideOverOpen
-  const tags = props.cacheData.data.data.attributes.tags
-  console.log(props.cacheData)
+  const tags = () => props.cacheData.data.data.attributes.tags
 
   // state items for input field values
   const [isNew, setIsNew] = useState(true) // => see comment below
@@ -28,12 +29,6 @@ export default function AddLink(props) {
 
   function handleLinkSaveClick(event) {
     debugger
-    //!!!!!need to get the values 
-    //TODO Start here getting values form submitted form add Link
-    // TODO add tag information and dispaly to addLink (selectabl buttons like above where on click name gets added to an array and toggle that)
-
-
-
     props.linkSaveMutation()
   }
 
@@ -72,7 +67,7 @@ export default function AddLink(props) {
                           <TextAttributes setName={setName} setUrl={setUrl} />
 
                           {/* //! HERE */}
-                          {props.cacheData && <TagSelector tags={tags} children={TagButton}/>}
+                          {props.cacheData && <TagSelectorDropdown tags={tags} />}
 
                           {/* //! HERE */}
                           <BoolAttributes isCurFlagged={isFlagged} isCurPinned={isPinned} setFlagged={setFlagged} setPinned={setPinned} />
