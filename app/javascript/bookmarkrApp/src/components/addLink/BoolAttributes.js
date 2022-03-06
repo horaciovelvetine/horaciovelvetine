@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function BoolAttributeInputs() {
+export default function BoolAttributes() {
   return (
     <></>
   )

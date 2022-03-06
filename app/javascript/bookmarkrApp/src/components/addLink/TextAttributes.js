@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function AttributeTextInputs() {
+export default function TextAttributes() {
   return (
     <></>
   )

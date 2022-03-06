@@ -5,8 +5,10 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
 //(&sub-) Components
-
-
+import TextAttributes from './addLink/TextAttributes'
+import BoolAttributes from './addLink/BoolAttributes'
+import FooterButtons from './addLink/FooterButtons'
+import TagSelector from './addLink/TagSelector'
 
 
 export default function AddLink(props) {
@@ -24,14 +26,14 @@ export default function AddLink(props) {
     //!!!!!need to get the values 
     //TODO Start here getting values form submitted form add Link
     // TODO add tag information and dispaly to addLink (selectabl buttons like above where on click name gets added to an array and toggle that)
-    
+
 
 
     props.linkSaveMutation()
   }
 
   useEffect(() => {
-    console.log(`Name:${name}`+ ' ' + `Url:${url}`)
+    console.log(`Name:${name}` + ' ' + `Url:${url}`)
   }, [name, url])
 
 
@@ -72,6 +74,9 @@ export default function AddLink(props) {
                     <div className="flex flex-1 flex-col justify-between">
                       <div className="divide-y divide-gray-200 px-4 sm:px-6">
                         <div className="space-y-6 pt-6 pb-5">
+
+                          {/* //! HERE */}
+                          <TextAttributes />
                           <div>
                             <label htmlFor="link-name" className="block text-sm font-medium text-gray-900">
                               {' '}
@@ -102,6 +107,14 @@ export default function AddLink(props) {
                               />
                             </div>
                           </div>
+
+                          {/* //! HERE */}
+                          <fieldset>
+                            <TagSelector />
+                          </fieldset>
+
+                          {/* //! HERE */}
+                          <BoolAttributes />
                           <fieldset>
                             <legend className="text-sm font-medium text-gray-900">Options</legend>
                             <div className="mt-2 space-y-5">
@@ -145,11 +158,13 @@ export default function AddLink(props) {
                               </div>
                             </div>
                           </fieldset>
+
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="flex flex-shrink-0 justify-end px-4 py-4">
+                    <FooterButtons />
                     <button
                       type="button"
                       className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
