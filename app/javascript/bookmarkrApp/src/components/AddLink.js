@@ -1,13 +1,24 @@
-import React from 'react'
+//React + Lib Imports
+import React, { Children, useState } from 'react'
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
+//(&sub-) Components
+
+
+
 
 export default function AddLink(props) {
-  
   const settingKey = '+Link'
-  const open = props.settings.addLinkModalOpen
+  const open = props.settings.addLinkSlideOverOpen
+
+  // set up state items for input field values
+  const [isNew, setIsNew] = useState(true) // => see comment below
+  const [linkName, setLinkname] = useState("") // => refactor to make also avail for edit link?? 
+  const [linkUrl, setLinkUrl] = useState("") // => ditto
+  const [isFlagged, setIsFlagged] = useState(false)
+
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -57,6 +68,7 @@ export default function AddLink(props) {
                                 name="link-name"
                                 id="link-name"
                                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                onChange={(e) => console.log(e)}
                               />
                             </div>
                           </div>
@@ -72,6 +84,7 @@ export default function AddLink(props) {
                                 rows={4}
                                 className="block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 defaultValue={''}
+                                onChange={(e) => console.log(e)}
                               />
                             </div>
                           </div>
@@ -82,17 +95,35 @@ export default function AddLink(props) {
                                 <div className="absolute flex h-5 items-center">
                                   <input
                                     id="flagged-boolean"
-                                    name="privacy"
+                                    name="flagged"
                                     aria-describedby="flagged-boolean"
                                     type="radio"
                                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                    defaultChecked
                                   />
                                 </div>
                                 <div className="pl-7 text-sm">
                                   <label htmlFor="flagged-boolean" className="font-medium text-gray-900">
                                     {' '}
-                                    Flagged{' '}
+                                    Flagged?{' '}
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="mt-2 space-y-5">
+                              <div className="relative flex items-start">
+                                <div className="absolute flex h-5 items-center">
+                                  <input
+                                    id="pinned-boolean"
+                                    name="pinned"
+                                    aria-describedby="pinned-boolean"
+                                    type="radio"
+                                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                  />
+                                </div>
+                                <div className="pl-7 text-sm">
+                                  <label htmlFor="flagged-boolean" className="font-medium text-gray-900">
+                                    {' '}
+                                    Pined?{' '}
                                   </label>
                                 </div>
                               </div>
@@ -113,6 +144,7 @@ export default function AddLink(props) {
                     <button
                       type="submit"
                       className="ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={props.settings.saveLinkModalPrompt ? (e) => props.setTheSettings(e, props.linkSaveMutation) : (e) => props.linkSaveMutation(e)}
                     >
                       Save
                     </button>
