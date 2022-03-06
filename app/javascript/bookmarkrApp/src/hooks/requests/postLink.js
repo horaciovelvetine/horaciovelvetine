@@ -1,7 +1,8 @@
 import baseUrl from '../../../config/baseUrl'
 import axios from "axios"
 
-export default function postLink(payload) {
+export default async function postLink(payload) {
+  debugger
   const response = await axios.post(baseUrl('/link'), payload)
     .then((res) => {
       return res
