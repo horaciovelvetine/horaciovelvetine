@@ -4,17 +4,17 @@ class BookmarkrCacheSerializer < ActionController::Base
   set_id :id
   # attributes :tags, :links
   attribute :tags do |obj|
-    tags = obj.tags.map { |tag| {id: tag.id, name: tag.name, links: only_ids(tag, "tags")}}
-    binding.pry
+    tags = obj.tags.map { |tag| {id: tag.id, name: tag.name, links: only_ids(tag, "links")}}
   end
 
   attribute :links do |obj|
-    links = obj.links.map{ |link| {id: link.id, name: link.name, href: link.href, tags: only_ids(link, "links") }}
-    binding.pry
+    links = obj.links.map{ |link| {id: link.id, name: link.name, href: link.href, tags: only_ids(link, "tags") }}
   end
 
+  ## takes in object, and using a string value calls method on that obj to return an array of associated
   def self.only_ids(obj, str)
-    ids = link.send(str).map { |o| {id: o.id}}
+    ids = obj.send(:"#{str}").map { |o| o.id }
+    ids.empty? ? ["empty"] : ids
   end
 
 end
