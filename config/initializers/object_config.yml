@@ -4,7 +4,6 @@ tags:
   - js
   - resources
   - references
-  - forlater
   - html
   - css
   - scss
@@ -12,7 +11,6 @@ tags:
   - stack
   - postgres
   - react
-  - bootstrap
   - tailwind
   - tutorial
   - tools
@@ -25,39 +23,27 @@ tags:
   - mdn
   - fis
   - node
-  - project
   - personal
   - work
-  - dom
-  - redux
-  - thunk
   - practice
   - github
   - git
-  - codecademy
-  - self
   - guide
-  - homebrew
   - bash
   - shell
-  - zshell
   - zsh
   - scamazon
   - writing
   - setup
   - shopping
-  - regex
   - oauth
   - omniauth
-  - bot
   - frontend
   - backend
   - database
   - db
-  - java
   - typescript
   - ts
-  - flagged
   - auth
   - social
   - ref
@@ -75,7 +61,7 @@ links:
       name: 'Rails Docs',
       href: 'https://guides.rubyonrails.org/',
       pinned: false,
-      tagNames: ['ruby', 'rails', 'references', 'docs', 'documentation', 'setup', 'flagged', 'ref'],
+      tagNames: ['ruby', 'rails', 'references', 'docs', 'documentation', 'setup', 'ref'],
     }
   - {
       name: 'Stackoverflow',
@@ -136,19 +122,7 @@ links:
       href: 'https://github.com/heartcombo/devise',
       pinned: false,
       tagNames:
-        [
-          'references',
-          'docs',
-          'documentation',
-          'flagged',
-          'ref',
-          'setup',
-          'resources',
-          'js',
-          'javascript',
-          'frontend',
-          'mdn',
-        ],
+        ['references', 'docs', 'documentation', 'ref', 'setup', 'resources', 'js', 'javascript', 'frontend', 'mdn'],
     }
   - {
       name: 'React Docs',
@@ -159,7 +133,6 @@ links:
           'references',
           'docs',
           'documentation',
-          'flagged',
           'ref',
           'setup',
           'resources',
