@@ -21,7 +21,7 @@ export default function AddLink(props) {
   const [name, setName] = useState("") // => refactor to make also avail for edit link?? 
   const [url, setUrl] = useState("") // => ditto
   const [isPinned, setPinned] = useState(false)
-  const [isFlagged] = useState(false)
+  const [isFlagged, setFlagged] = useState(false)
 
 
   function handleLinkSaveClick(event) {
@@ -73,7 +73,7 @@ export default function AddLink(props) {
                           <TagSelector />
 
                           {/* //! HERE */}
-                          <BoolAttributes />
+                          <BoolAttributes isCurFlagged={isFlagged} isCurPinned={isPinned} setFlagged={setFlagged} setPinned={setPinned}/>
 
                         </div>
                       </div>
