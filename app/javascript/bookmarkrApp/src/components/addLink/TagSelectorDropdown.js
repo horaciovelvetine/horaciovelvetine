@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
@@ -10,20 +11,23 @@ function classNames(...classes) {
 export default function TagSelectorDropdown(props) {
   // Default constants
   const tags = props.tags
-  const filteredTags =
-    query === '' ? tags
-      : tags.filter((tag) => {
-        rerturn(tag.name.toLowerCase().includes(query.toLowerCase()))
-      })
-
+  
   // State items
   const [query, setQuery] = useState('')
   const [selectedTags, setSelectedTags] = useState('') // #=> thinking this is going to require the use with previous custom hook?? 
 
+  const filteredTags =
+    query === ''
+      ? tags
+      : tags.filter((tag) => {
+        debugger
+        return tag.name.toLowerCase().includes(query.toLowerCase())
+      })
+  
 
   return (
     <Combobox as="div" value={selectedTags} onChange={setSelectedTags}>
-      <Combobox.Label className="block text-sm font-medium text-gray-700">Assigned to</Combobox.Label>
+      <Combobox.Label className="block text-sm font-medium text-gray-700">Tags</Combobox.Label>
       <div className="relative mt-1">
         <Combobox.Input
           className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
