@@ -1,8 +1,11 @@
 import React from 'react'
+import { Dialog } from '@headlessui/react'
+import { XIcon } from '@heroicons/react/outline'
 
-const settingKey = '+Link'
 
 export default function SliderHeader(props) {
+  const settingKey = '+Link'
+  
   return (
     <div className="bg-indigo-700 py-6 px-4 sm:px-6" onClick={() => props.setTheSettings(settingKey)}>
       <div className="flex items-center justify-between">

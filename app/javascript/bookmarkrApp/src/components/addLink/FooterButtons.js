@@ -1,7 +1,7 @@
 import React from 'react'
 
-const settingKey = '+Link'
-export default function FooterButtonActions(props) {
+export default function FooterButtons(props) {
+  const settingKey = '+Link'
   return (
     <div className="flex flex-shrink-0 justify-end px-4 py-4">
       <button
@@ -14,7 +14,7 @@ export default function FooterButtonActions(props) {
       <button
         type="submit"
         className="ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-        onClick={props.settings.saveLinkModalPrompt ? (e) => console.log("Modal appear!!!!") : (e) => props.handleLinkSaveClick(e)}
+        onClick={ props.settings.saveLinkModalPrompt ? (e) => console.log("Modal appear!!!!") : (e) => props.handleLinkSaveClick(e)}
       >
         Save
       </button>

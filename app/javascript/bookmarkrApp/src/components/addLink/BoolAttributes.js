@@ -14,7 +14,7 @@ export default function BoolAttributes(props) {
               aria-describedby="flagged-boolean"
               type="radio"
               className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-              onChange={props.setFlagged(!curFlagged)}
+              onChange={() => props.setFlagged(!curFlagged)}
 
             />
           </div>
@@ -35,7 +35,7 @@ export default function BoolAttributes(props) {
               aria-describedby="pinned-boolean"
               type="radio"
               className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-              onChange={props.setPinned(!curPinned)}
+              onChange={() => props.setPinned(!curPinned)}
 
             />
           </div>

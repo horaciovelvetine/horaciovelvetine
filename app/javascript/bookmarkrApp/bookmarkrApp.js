@@ -1,6 +1,6 @@
 //React + Lib Imports
 import React from 'react'
-import { useMutation } from 'react-query'
+import { useQuery, useMutation } from 'react-query'
 import { useReducer } from 'react'
 
 // (&sub) Components
@@ -14,10 +14,12 @@ import useGetResults from './src/hooks/mutations/useGetResults'
 import useLinkSave from './src/hooks/mutations/useLinkSave'
 import checkMutationData from './src/hooks/utils/checkMutationData'
 import AddLink from './src/components/AddLink'
+import fetchCache from './src/hooks/requests/fetchCache'
 
 export default function bookmarkrApp(props) {
-  // config vars
+  // config vars && cache info
   const { defaultSettings, applicationMenu, navigationMenu } = { ...props };
+  const { isLoading: cacheLoading, error: cacheError, data: cacheData } = useQuery('cashe', fetchCache);
 
   // config mutations
   const { mutate: searchResultsMutation, isIdle: resultsIdle, isLoading: resultsLoading, data: resultsData, error: resultsError } = useGetResults()
@@ -37,8 +39,8 @@ export default function bookmarkrApp(props) {
     <>
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchResultsMutation} />
-        <Results {...childProps} resultIds={checkMutationData(resultsData, resultsIdle, resultsLoading)} />
-        <AddLink settings={settings} setTheSettings={setTheSettings} linkSaveMutation={linkSaveMutation} />
+        <Results {...childProps} resultIds={checkMutationData(resultsData, resultsIdle, resultsLoading)} cacheData={cacheLoading ? false : cacheData}/>
+        <AddLink settings={settings} setTheSettings={setTheSettings} linkSaveMutation={linkSaveMutation} cacheData={cacheLoading ? false : cacheData}/>
       </div>
     </>
   )

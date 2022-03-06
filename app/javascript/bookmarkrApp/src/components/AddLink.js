@@ -2,7 +2,6 @@
 import React, { Children } from 'react'
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
 
 //(&sub-) Components
 import TextAttributes from './addLink/TextAttributes'
@@ -13,10 +12,10 @@ import SliderHeader from './addLink/SliderHeader'
 
 
 export default function AddLink(props) {
-  
+  //Default component config info
   const open = props.settings.addLinkSlideOverOpen
 
-  // set up state items for input field values
+  // state items for input field values
   const [isNew, setIsNew] = useState(true) // => see comment below
   const [name, setName] = useState("") // => refactor to make also avail for edit link?? 
   const [url, setUrl] = useState("") // => ditto
@@ -70,16 +69,16 @@ export default function AddLink(props) {
                           <TextAttributes setName={setName} setUrl={setUrl} />
 
                           {/* //! HERE */}
-                          <TagSelector />
+                          { props.cacheData && <TagSelector tags={props.cacheData} />}
 
                           {/* //! HERE */}
-                          <BoolAttributes isCurFlagged={isFlagged} isCurPinned={isPinned} setFlagged={setFlagged} setPinned={setPinned}/>
+                          <BoolAttributes isCurFlagged={isFlagged} isCurPinned={isPinned} setFlagged={setFlagged} setPinned={setPinned} />
 
                         </div>
                       </div>
                     </div>
                   </div>
-                  <FooterButtons setTheSettings={props.setTheSettings} handleLinkSaveClick={handleLinkSaveClick}/>
+                  <FooterButtons setTheSettings={props.setTheSettings} handleLinkSaveClick={handleLinkSaveClick} settings={props.settings}/>
 
                 </form>
               </div>

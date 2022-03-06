@@ -12,15 +12,15 @@ import ApplicationSelectorSidebar from './results/ApplicationSelectorSidebar'
 import getResultsObjectInfo from '../hooks/utils/getResultsObjectInfo'
 
 // Hooks, Utils & Misc
-import fetchCache from '../hooks/requests/fetchCache'
-let nest = (data) => data.data.data.attributes
 
 export default function Results(props) {
+  // gets all result information for use
+  const cacheData = props.cacheData
 
-  // gets all links and assoc. objects to search against
-  const { isLoading, error, data } = useQuery('cashe', fetchCache);
 
-  //Get deeply nested and needed info
+
+  //configures props and handles nesting of said props
+  const nest = (data) => data.data.data.attributes
   const tagsInfo = (data) => {
     return nest(data).tags.sort((a, b) => (a.name > b.name) ? 1 : -1)
   }
@@ -36,15 +36,14 @@ export default function Results(props) {
         <section
           aria-labelledby='primary-heading'
           className='min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-first m-2'>
-          {isLoading && <>...Let me get that for you, just a second</>}
-          {error && <>Hold on... that doesn't seem right</>}
-          {!isLoading && <ResultsViewProvider children={[ListResult, CardResult]} results={getResultsObjectInfo(props.resultIds.results, data)} />}
+          {!cacheData && <>Waiting on the server for a bit of info..</>}
+          {cacheData && <ResultsViewProvider children={[ListResult, CardResult]} results={getResultsObjectInfo(props.resultIds.results, cacheData)} />}
         </section>
 
         {/*=> //!Hides on screen size shrink */}
         <aside className='hidden lg:block lg:flex-shrink-0'>
           <div className='h-full relative flex flex-col w-96 bg-gray-100'>
-            {!isLoading && <TagCloud tags={tagsInfo(data)} children={SelectTagButton} />}
+            {cacheData && <TagCloud tags={tagsInfo(cacheData)} children={SelectTagButton} />}
           </div>
         </aside>
 
