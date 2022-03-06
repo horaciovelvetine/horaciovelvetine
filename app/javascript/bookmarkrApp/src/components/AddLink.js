@@ -1,6 +1,6 @@
 //React + Lib Imports
-import React, { Children, useState } from 'react'
-import { Fragment, useState } from 'react'
+import React, { Children} from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
@@ -15,11 +15,10 @@ export default function AddLink(props) {
 
   // set up state items for input field values
   const [isNew, setIsNew] = useState(true) // => see comment below
-  const [linkName, setLinkname] = useState("") // => refactor to make also avail for edit link?? 
-  const [linkUrl, setLinkUrl] = useState("") // => ditto
-  const [isFlagged, setIsFlagged] = useState(false)
-
-
+  const [name, setName] = useState("") // => refactor to make also avail for edit link?? 
+  const [url, setUrl] = useState("") // => ditto
+  
+  
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={props.setTheSettings}>
@@ -68,7 +67,7 @@ export default function AddLink(props) {
                                 name="link-name"
                                 id="link-name"
                                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                onChange={(e) => console.log(e)}
+                                onInput={(e) => setName(e.target.value)}
                               />
                             </div>
                           </div>
@@ -78,13 +77,12 @@ export default function AddLink(props) {
                               URL{' '}
                             </label>
                             <div className="mt-1">
-                              <textarea
-                                id="URL"
-                                name="URL"
-                                rows={4}
-                                className="block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                defaultValue={''}
-                                onChange={(e) => console.log(e)}
+                              <input
+                                type="text"
+                                name="link-url"
+                                id="link-url"
+                                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                onInput={(e) => setUrl(e.target.value)}
                               />
                             </div>
                           </div>
@@ -99,12 +97,13 @@ export default function AddLink(props) {
                                     aria-describedby="flagged-boolean"
                                     type="radio"
                                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    
                                   />
                                 </div>
                                 <div className="pl-7 text-sm">
                                   <label htmlFor="flagged-boolean" className="font-medium text-gray-900">
                                     {' '}
-                                    Flagged?{' '}
+                                    Flagged{' '}
                                   </label>
                                 </div>
                               </div>
@@ -118,12 +117,13 @@ export default function AddLink(props) {
                                     aria-describedby="pinned-boolean"
                                     type="radio"
                                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    
                                   />
                                 </div>
                                 <div className="pl-7 text-sm">
                                   <label htmlFor="flagged-boolean" className="font-medium text-gray-900">
                                     {' '}
-                                    Pined?{' '}
+                                    Pinned{' '}
                                   </label>
                                 </div>
                               </div>
