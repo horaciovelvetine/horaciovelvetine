@@ -1,5 +1,5 @@
 //React + Lib Imports
-import React, { Children} from 'react'
+import React, { Children } from 'react'
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
@@ -17,8 +17,24 @@ export default function AddLink(props) {
   const [isNew, setIsNew] = useState(true) // => see comment below
   const [name, setName] = useState("") // => refactor to make also avail for edit link?? 
   const [url, setUrl] = useState("") // => ditto
-  
-  
+
+
+  function handleLinkSaveClick(event) {
+    debugger
+    //!!!!!need to get the values 
+    //TODO Start here getting values form submitted form add Link
+    // TODO add tag information and dispaly to addLink (selectabl buttons like above where on click name gets added to an array and toggle that)
+    
+
+
+    props.linkSaveMutation()
+  }
+
+  useEffect(() => {
+    console.log(`Name:${name}`+ ' ' + `Url:${url}`)
+  }, [name, url])
+
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={props.setTheSettings}>
@@ -67,7 +83,7 @@ export default function AddLink(props) {
                                 name="link-name"
                                 id="link-name"
                                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                onInput={(e) => setName(e.target.value)}
+                                onChange={(e) => setName(e.target.value)}
                               />
                             </div>
                           </div>
@@ -82,7 +98,7 @@ export default function AddLink(props) {
                                 name="link-url"
                                 id="link-url"
                                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                onInput={(e) => setUrl(e.target.value)}
+                                onChange={(e) => setUrl(e.target.value)}
                               />
                             </div>
                           </div>
@@ -97,7 +113,7 @@ export default function AddLink(props) {
                                     aria-describedby="flagged-boolean"
                                     type="radio"
                                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                    
+
                                   />
                                 </div>
                                 <div className="pl-7 text-sm">
@@ -117,7 +133,7 @@ export default function AddLink(props) {
                                     aria-describedby="pinned-boolean"
                                     type="radio"
                                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                    
+
                                   />
                                 </div>
                                 <div className="pl-7 text-sm">
@@ -144,7 +160,7 @@ export default function AddLink(props) {
                     <button
                       type="submit"
                       className="ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                      onClick={props.settings.saveLinkModalPrompt ? (e) => props.setTheSettings(e, props.linkSaveMutation) : (e) => props.linkSaveMutation(e)}
+                      onClick={props.settings.saveLinkModalPrompt ? (e) => console.log("Modal appear!!!!") : (e, name, url) => handleLinkSaveClick(e, name, url)}
                     >
                       Save
                     </button>
