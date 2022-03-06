@@ -11,19 +11,23 @@ import Search from './src/components/Search'
 import settingsReducer from './src/hooks/reducers/settingsReducer'
 import applicationMenuSelectionReducer from './src/hooks/reducers/applicationMenuSelectionReducer'
 import useGetResults from './src/hooks/mutations/useGetResults'
-import checkResultsMutationData from './src/hooks/utils/checkResultsMutationData'
+import checkMutationData from './src/hooks/utils/checkMutationData'
 import AddLink from './src/components/AddLink'
 
 export default function bookmarkrApp(props) {
   // config vars
   const { defaultSettings, applicationMenu, navigationMenu } = { ...props };
 
-  const { mutate: searchResultsMutation, isIdle, isLoading, isError, isSuccess, data, error } = useGetResults()
+  // config mutations
+  const { mutate: searchResultsMutation, isIdle: resultsIdle, isLoading: resultsLoading, data: resultsData, error: resultsError } = useGetResults()
+  const { mutate: linkSaveMutation, isIdle: linkIdle, isLoading: linkLoading, data: linkData, error: linkError } = linkSaveMutation()
 
-  // Define all state related 
+  // config all state related 
   const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [applicationMenuSelections, dispatchApplicationMenu] = useReducer(applicationMenuSelectionReducer, applicationMenu)
 
+  
+    //buttons up and spreads shared props
   const childProps = {
     navigationMenu, settings, setTheSettings, dispatchApplicationMenu, applicationMenuSelections
   }
@@ -32,8 +36,8 @@ export default function bookmarkrApp(props) {
     <>
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchResultsMutation} />
-        <Results {...childProps} resultIds={checkResultsMutationData(data, isIdle, isLoading)} />
-        <AddLink settings={settings} setTheSettings={setTheSettings}/>
+        <Results {...childProps} resultIds={checkMutationData(resultsData, resultsIdle, resultsLoading)} />
+        <AddLink settings={settings} setTheSettings={setTheSettings} linkSaveMutation={linkSaveMutation} />
       </div>
     </>
   )
