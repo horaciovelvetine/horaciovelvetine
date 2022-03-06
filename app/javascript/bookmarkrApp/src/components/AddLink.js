@@ -15,6 +15,7 @@ import SliderHeader from './addLink/SliderHeader'
 export default function AddLink(props) {
   //Default component config info
   const open = props.settings.addLinkSlideOverOpen
+  const tags = props.cacheData.data.data.attributes.tags
   console.log(props.cacheData)
 
   // state items for input field values
@@ -71,7 +72,7 @@ export default function AddLink(props) {
                           <TextAttributes setName={setName} setUrl={setUrl} />
 
                           {/* //! HERE */}
-                          {props.cacheData && <TagSelector tags={props.cacheData.data.data.attributes.tags} children={TagButton}/>}
+                          {props.cacheData && <TagSelector tags={tags} children={TagButton}/>}
 
                           {/* //! HERE */}
                           <BoolAttributes isCurFlagged={isFlagged} isCurPinned={isPinned} setFlagged={setFlagged} setPinned={setPinned} />
