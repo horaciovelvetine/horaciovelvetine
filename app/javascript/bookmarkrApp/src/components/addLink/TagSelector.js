@@ -1,10 +1,15 @@
 import React from 'react'
 
 export default function TagSelector(props) {
-  debugger
+  
   return (
-    <fieldset>
-      I need tag info to make a bunch of buttons to press with ids!!!!
-    </fieldset>
+    <div className="mt-2">
+
+      <div role="tagList" className="mt-1">
+        {props.tags.map((tag) => (
+          props.children(tag))
+        )}
+      </div>
+    </div>
   )
 }

@@ -8,12 +8,14 @@ import TextAttributes from './addLink/TextAttributes'
 import BoolAttributes from './addLink/BoolAttributes'
 import FooterButtons from './addLink/FooterButtons'
 import TagSelector from './addLink/TagSelector'
+import TagButton from './addLink/subComponents/TagButton'
 import SliderHeader from './addLink/SliderHeader'
 
 
 export default function AddLink(props) {
   //Default component config info
   const open = props.settings.addLinkSlideOverOpen
+  console.log(props.cacheData)
 
   // state items for input field values
   const [isNew, setIsNew] = useState(true) // => see comment below
@@ -69,7 +71,7 @@ export default function AddLink(props) {
                           <TextAttributes setName={setName} setUrl={setUrl} />
 
                           {/* //! HERE */}
-                          { props.cacheData && <TagSelector tags={props.cacheData} />}
+                          {props.cacheData && <TagSelector tags={props.cacheData.data.data.attributes.tags} children={TagButton}/>}
 
                           {/* //! HERE */}
                           <BoolAttributes isCurFlagged={isFlagged} isCurPinned={isPinned} setFlagged={setFlagged} setPinned={setPinned} />
