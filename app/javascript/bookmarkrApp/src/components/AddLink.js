@@ -67,7 +67,7 @@ export default function AddLink(props) {
                           <TextAttributes setName={setName} setUrl={setUrl} />
 
                           {/* //! HERE */}
-                          {props.cacheData && <TagSelectorDropdown tags={tags} />}
+                          {props.cacheData && <TagSelectorDropdown tags={tags()} />}
 
                           {/* //! HERE */}
                           <BoolAttributes isCurFlagged={isFlagged} isCurPinned={isPinned} setFlagged={setFlagged} setPinned={setPinned} />
