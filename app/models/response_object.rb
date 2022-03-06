@@ -2,7 +2,10 @@ class ResponseObject < ApplicationRecord
   attr_accessor :admin, :tags, :links
 
   def self.cache
-    cache = ResponseObject.new(admin: Admin.all.first, tags: Tag.all, links: Link.all)
+    cache = ResponseObject.new(links: Link.all, tags: Tag.all)
+    cache.id = rand(1..999)
+
+    cache
   end
 
   def self.searchResults(query)
