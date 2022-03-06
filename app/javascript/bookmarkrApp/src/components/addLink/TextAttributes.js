@@ -1,38 +1,40 @@
 import React from 'react'
 
 export default function TextAttributes(props) {
-  
+
   return (
     <>
-      <div>
-        <label htmlFor="link-name" className="block text-sm font-medium text-gray-900">
-          {' '}
-          Link name{' '}
+      <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+        <label
+          htmlFor="new-link-name"
+          className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs font-medium text-gray-900"
+        >
+          Name:
         </label>
-        <div className="mt-1">
-          <input
-            type="text"
-            name="link-name"
-            id="link-name"
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-            onChange={(e) => props.setName(e.target.value)}
-          />
-        </div>
+        <input
+          type="text"
+          name="new-link-name"
+          id="new-link-name"
+          className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+          placeholder=""
+          onChange={(e) => props.setName(e.target.value)}
+        />
       </div>
-      <div>
-        <label htmlFor="URL" className="block text-sm font-medium text-gray-900">
-          {' '}
-          URL{' '}
+      <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+        <label
+          htmlFor="new-link-url"
+          className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs font-medium text-gray-900"
+        >
+          Url:
         </label>
-        <div className="mt-1">
-          <input
-            type="text"
-            name="link-url"
-            id="link-url"
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-            onChange={(e) => props.setUrl(e.target.value)}
-          />
-        </div>
+        <input
+          type="text"
+          name="new-link-url"
+          id="new-link-name"
+          className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+          placeholder=""
+          onChange={(e) => props.setUrl(e.target.value)}
+        />
       </div>
     </>
   )
