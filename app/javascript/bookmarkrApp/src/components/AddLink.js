@@ -1,6 +1,6 @@
 //React + Lib Imports
 import React from 'react'
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment, useState, useReducer } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
 //(&sub-) Components
@@ -9,6 +9,10 @@ import BoolAttributes from './addLink/BoolAttributes'
 import FooterButtons from './addLink/FooterButtons'
 import SliderHeader from './addLink/SliderHeader'
 import TagAutoComp from './addLink/TagAutoComp'
+
+// Hooks, Utils & Misc
+import linksTagsReducer from '../hooks/reducers/linksTagsReducer'
+
 
 export default function AddLink(props) {
   //Default component config info
@@ -19,6 +23,7 @@ export default function AddLink(props) {
   const [isNew, setIsNew] = useState(true) // => eventual change to also use slide over for Edit!~
   const [name, setName] = useState("")
   const [url, setUrl] = useState("")
+  const [linksTags, dispatchLinksTag] = useReducer(linksTagsReducer, [])
   const [isPinned, setPinned] = useState(false)
   const [isFlagged, setFlagged] = useState(false)
 
@@ -28,9 +33,7 @@ export default function AddLink(props) {
     props.linkSaveMutation()
   }
 
-  // useEffect(() => {
-  //   console.log(`Name:${name}` + ' ' + `Url:${url}`)
-  // }, [name, url])
+
 
 
   return (
@@ -63,7 +66,7 @@ export default function AddLink(props) {
                           <NameAndUrl setName={setName} setUrl={setUrl} />
 
                           {/* //! HERE */}
-                          {props.cacheData && <TagAutoComp tags={tags()} />}
+                          {props.cacheData && <TagAutoComp tags={tags()} dispatchLinksTags={dispatchLinksTag}/>}
 
                           {/* //! HERE */}
                           <BoolAttributes isCurFlagged={isFlagged} isCurPinned={isPinned} setFlagged={setFlagged} setPinned={setPinned} />
