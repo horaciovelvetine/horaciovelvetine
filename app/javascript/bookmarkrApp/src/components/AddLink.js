@@ -1,5 +1,5 @@
 //React + Lib Imports
-import React, { Children } from 'react'
+import React from 'react'
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
@@ -28,9 +28,9 @@ export default function AddLink(props) {
     props.linkSaveMutation()
   }
 
-  useEffect(() => {
-    console.log(`Name:${name}` + ' ' + `Url:${url}`)
-  }, [name, url])
+  // useEffect(() => {
+  //   console.log(`Name:${name}` + ' ' + `Url:${url}`)
+  // }, [name, url])
 
 
   return (
