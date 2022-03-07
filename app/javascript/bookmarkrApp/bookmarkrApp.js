@@ -6,8 +6,7 @@ import { useReducer } from 'react'
 // (&sub) Components
 import Results from './src/components/Results'
 import Search from './src/components/Search'
-import LinkUtil from './src/components/LinkUtil'
-import LinkGroupUtil from './src/components/LinkGroupUtil'
+import SlideOverMenus from './src/components/SlideOverMenus'
 
 // Hooks
 import settingsReducer from './src/hooks/reducers/settingsReducer'
@@ -46,8 +45,9 @@ export default function bookmarkrApp(props) {
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchResultsMutation} />
         <Results {...childProps} resultIds={checkMutationData(resultsData, resultsIdle, resultsLoading)} cacheData={cacheLoading ? false : cacheData} />
-        <LinkUtil {...childProps} linkUtilSaveMutation={linkUtilSaveMutation} cacheData={cacheLoading ? false : cacheData} />
-        <LinkGroupUtil {...childProps} linkGroupSaveMutation={linkGroupSaveMutation} cacheData={cacheLoading ? false : cacheData} />
+        <SlideOverMenus />
+        {/* <LinkUtil {...childProps} linkUtilSaveMutation={linkUtilSaveMutation} cacheData={cacheLoading ? false : cacheData} />
+        <LinkGroupUtil {...childProps} linkGroupSaveMutation={linkGroupSaveMutation} cacheData={cacheLoading ? false : cacheData} /> */}
       </div>
     </>
   )

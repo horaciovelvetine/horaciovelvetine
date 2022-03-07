@@ -5,12 +5,12 @@ import { Dialog, Transition } from '@headlessui/react'
 
 //(&sub-) Components
 import NameAndUrl from './linkUtil/NameAndUrl'
-import BoolAttributes from './slideOvers/BoolAttributes'
+import BoolAttributes from '../BoolAttributes'
 import SliderHeader from './linkUtil/SliderHeader'
 import TagAutoComp from './linkUtil/TagAutoComp'
 
 // Hooks, Utils & Misc
-import groupsLinksReducer from '../hooks/reducers/linksTagsReducer'
+import groupsLinksReducer from '../../../hooks/reducers/linksTagsReducer'
 
 
 export default function LinkGroupUtil() {
