@@ -8,10 +8,7 @@ import NameAndUrl from './addLink/NameAndUrl'
 import BoolAttributes from './addLink/BoolAttributes'
 import FooterButtons from './addLink/FooterButtons'
 import SliderHeader from './addLink/SliderHeader'
-
-//dep component for adding tags
-import TagSelector from './addLink/TagSelector'
-import TagButton from './addLink/subComponents/TagButton'
+import TagAutoComp from './addLink/TagAutoComp'
 
 export default function AddLink(props) {
   //Default component config info
@@ -19,9 +16,9 @@ export default function AddLink(props) {
   const tags = () => props.cacheData.data.data.attributes.tags
 
   // state items for input field values
-  const [isNew, setIsNew] = useState(true) // => see comment below
-  const [name, setName] = useState("") // => refactor to make also avail for edit link?? 
-  const [url, setUrl] = useState("") // => ditto
+  const [isNew, setIsNew] = useState(true) // => eventual change to also use slide over for Edit!~
+  const [name, setName] = useState("")
+  const [url, setUrl] = useState("")
   const [isPinned, setPinned] = useState(false)
   const [isFlagged, setFlagged] = useState(false)
 
@@ -56,7 +53,7 @@ export default function AddLink(props) {
                 <form className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
                   <div className="h-0 flex-1 overflow-y-auto">
                     { /* //! HERE */}
-                    <SliderHeader setTheSettings={props.setTheSettings}/>
+                    <SliderHeader setTheSettings={props.setTheSettings} />
 
                     <div className="flex flex-1 flex-col justify-between">
                       <div className="divide-y divide-gray-200 px-4 sm:px-6">
@@ -66,7 +63,7 @@ export default function AddLink(props) {
                           <NameAndUrl setName={setName} setUrl={setUrl} />
 
                           {/* //! HERE */}
-                          {props.cacheData && <TagAutoCompleteInput tags={tags()} />}
+                          {props.cacheData && <TagAutoComp tags={tags()} />}
 
                           {/* //! HERE */}
                           <BoolAttributes isCurFlagged={isFlagged} isCurPinned={isPinned} setFlagged={setFlagged} setPinned={setPinned} />
@@ -75,7 +72,7 @@ export default function AddLink(props) {
                       </div>
                     </div>
                   </div>
-                  <FooterButtons setTheSettings={props.setTheSettings} handleLinkSaveClick={handleLinkSaveClick} settings={props.settings}/>
+                  <FooterButtons setTheSettings={props.setTheSettings} handleLinkSaveClick={handleLinkSaveClick} settings={props.settings} />
 
                 </form>
               </div>
