@@ -7,6 +7,9 @@ import { createFilterOptions } from '@mui/material/Autocomplete';
 const filter = createFilterOptions();
 
 export default function TagAutoComp(props) {
+  // See dialog and wrap Autocomplete in a fragment to get "Add whatever this thing is??"
+  // => maybe start with some googling on dialog components from MUI
+  // => Next big hurle is swapping movies for tags! 
   return (
     <>
       <Autocomplete
