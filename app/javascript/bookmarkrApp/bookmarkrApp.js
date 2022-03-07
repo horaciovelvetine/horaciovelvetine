@@ -19,9 +19,9 @@ import fetchCache from './src/hooks/requests/fetchCache'
 export default function bookmarkrApp(props) {
   // config vars && cache info
   const { defaultSettings, applicationMenu, navigationMenu } = { ...props };
-  const { isLoading: cacheLoading, error: cacheError, data: cacheData } = useQuery('cashe', fetchCache);
+  const { isLoading: cacheLoading, data: cacheData } = useQuery('cashe', fetchCache);
 
-  // config mutations
+  // Mutations and Actions
   const { mutate: searchResultsMutation, isIdle: resultsIdle, isLoading: resultsLoading, data: resultsData, error: resultsError } = useGetResults()
   const { mutate: linkSaveMutation, isIdle: linkSaveIdle, isLoading: linkSaveLoading, data: linkSaveData, error: linkSaveError } = useLinkSave()
 
@@ -30,7 +30,7 @@ export default function bookmarkrApp(props) {
   const [applicationMenuSelections, dispatchApplicationMenu] = useReducer(applicationMenuSelectionReducer, applicationMenu)
 
   
-    //buttons up and spreads shared pro
+    // combine all shared props //=> candidates for removal to a "BookmarkrContext"
   const childProps = {
     navigationMenu, settings, setTheSettings, dispatchApplicationMenu, applicationMenuSelections
   }
