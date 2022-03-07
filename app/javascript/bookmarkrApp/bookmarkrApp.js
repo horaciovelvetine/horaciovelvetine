@@ -29,18 +29,19 @@ export default function bookmarkrApp(props) {
   const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [applicationMenuSelections, dispatchApplicationMenu] = useReducer(applicationMenuSelectionReducer, applicationMenu)
 
-  
-    // combine all shared props //=> candidates for removal to a "BookmarkrContext"
+
+  // combine all shared props //=> candidates for removal to a "BookmarkrContext"
   const childProps = {
     navigationMenu, settings, setTheSettings, dispatchApplicationMenu, applicationMenuSelections
   }
+
 
   return (
     <>
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchResultsMutation} />
-        <Results {...childProps} resultIds={checkMutationData(resultsData, resultsIdle, resultsLoading)} cacheData={cacheLoading ? false : cacheData}/>
-        <AddLink settings={settings} setTheSettings={setTheSettings} linkSaveMutation={linkSaveMutation} cacheData={cacheLoading ? false : cacheData}/>
+        <Results {...childProps} resultIds={checkMutationData(resultsData, resultsIdle, resultsLoading)} cacheData={cacheLoading ? false : cacheData} />
+        <AddLink {...childProps} linkSaveMutation={linkSaveMutation} cacheData={cacheLoading ? false : cacheData} />
       </div>
     </>
   )
