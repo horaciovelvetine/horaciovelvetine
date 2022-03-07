@@ -5,7 +5,7 @@ import { Dialog, Transition } from '@headlessui/react'
 
 //(&sub-) Components
 import NameAndUrl from './linkUtil/NameAndUrl'
-import BoolAttributes from './linkUtil/BoolAttributes'
+import BoolAttributes from './slideOvers/BoolAttributes'
 import SliderHeader from './linkUtil/SliderHeader'
 import TagAutoComp from './linkUtil/TagAutoComp'
 
@@ -28,7 +28,7 @@ export default function LinkUtilSlideOver(props) {
 
   function handleLinkSaveClick(event) {
     debugger
-    props.linkSaveMutation()
+    props.linkUtilSaveMutation()
   }
 
 
