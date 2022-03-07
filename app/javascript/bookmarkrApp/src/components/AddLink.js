@@ -4,13 +4,12 @@ import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
 //(&sub-) Components
-import TextAttributes from './addLink/TextAttributes'
+import NameAndUrl from './addLink/NameAndUrl'
 import BoolAttributes from './addLink/BoolAttributes'
 import FooterButtons from './addLink/FooterButtons'
-import TagSelectorDropdown from './addLink/TagSelectorDropdown'
 import SliderHeader from './addLink/SliderHeader'
 
-//dep component for tag cloud
+//dep component for adding tags
 import TagSelector from './addLink/TagSelector'
 import TagButton from './addLink/subComponents/TagButton'
 
@@ -64,10 +63,10 @@ export default function AddLink(props) {
                         <div className="space-y-6 pt-6 pb-5">
 
                           {/* //! HERE */}
-                          <TextAttributes setName={setName} setUrl={setUrl} />
+                          <NameAndUrl setName={setName} setUrl={setUrl} />
 
                           {/* //! HERE */}
-                          {props.cacheData && <TagSelectorDropdown tags={tags()} />}
+                          {props.cacheData && <TagAutoCompleteInput tags={tags()} />}
 
                           {/* //! HERE */}
                           <BoolAttributes isCurFlagged={isFlagged} isCurPinned={isPinned} setFlagged={setFlagged} setPinned={setPinned} />
