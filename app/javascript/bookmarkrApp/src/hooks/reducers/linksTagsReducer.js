@@ -1,6 +1,5 @@
 export default function linksTagsReducer(prev, tags) {
-  const theTagIdsArray = []
-  debugger
-
-  return theTagIdsArray
+  //=> Using a reducer as opposed to state for future "free solo" use
+  const tagIds = tags.map(t => t.id)
+  return tagIds
 }
