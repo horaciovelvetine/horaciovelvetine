@@ -25,12 +25,12 @@ export default function TagAutoComp(props) {
       id="tags-outlined"
       options={props.tags}
       getOptionLabel={(option) => option.name}
-      defaultValue={[props.tags[0]]}
+      defaultValue={[props.tags[3]]}
       filterSelectedOptions
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Add & Filter Tags:"
+          label="Tags:"
           placeholder="..."
         />
       )}

@@ -48,6 +48,7 @@ tags:
   - social
   - ref
   - javascript
+  - bkmrk
 
 links:
   - { name: 'Twitter', href: 'https://www.twitter.com', pinned: false, tagNames: ['tools', 'social'] }
