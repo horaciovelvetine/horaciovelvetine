@@ -6,7 +6,6 @@ import { Dialog, Transition } from '@headlessui/react'
 //(&sub-) Components
 import NameAndUrl from './addLink/NameAndUrl'
 import BoolAttributes from './addLink/BoolAttributes'
-import FooterButtons from './addLink/FooterButtons'
 import SliderHeader from './addLink/SliderHeader'
 import TagAutoComp from './addLink/TagAutoComp'
 
@@ -16,7 +15,6 @@ import linksTagsReducer from '../hooks/reducers/linksTagsReducer'
 
 export default function AddLink(props) {
   //Default component config info
-  const open = props.settings.addLinkSlideOverOpen
   const tags = () => props.cacheData.data.data.attributes.tags
 
   // state items for input field values
@@ -37,7 +35,7 @@ export default function AddLink(props) {
 
 
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition.Root show={props.settings.addLinkSlideOverOpen} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={props.setTheSettings}>
         <div className="absolute inset-0 overflow-hidden">
           <Dialog.Overlay className="absolute inset-0" />
@@ -66,7 +64,7 @@ export default function AddLink(props) {
                           <NameAndUrl setName={setName} setUrl={setUrl} />
 
                           {/* //! HERE */}
-                          {props.cacheData && <TagAutoComp tags={tags()} dispatchLinksTags={dispatchLinksTag}/>}
+                          {props.cacheData && <TagAutoComp tags={tags()} dispatchLinksTags={dispatchLinksTag} />}
 
                           {/* //! HERE */}
                           <BoolAttributes isCurFlagged={isFlagged} isCurPinned={isPinned} setFlagged={setFlagged} setPinned={setPinned} />
@@ -75,7 +73,22 @@ export default function AddLink(props) {
                       </div>
                     </div>
                   </div>
-                  <FooterButtons setTheSettings={props.setTheSettings} handleLinkSaveClick={handleLinkSaveClick} settings={props.settings} />
+                  <div className="flex flex-shrink-0 justify-end px-4 py-4">
+                    <button
+                      type="button"
+                      className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={() => props.setTheSettings(settingKey)}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={(e) => handleLinkSaveClick(e, name, url, linksTags, isPinned)}
+                    >
+                      Save
+                    </button>
+                  </div>
 
                 </form>
               </div>
