@@ -4,16 +4,16 @@ import { Fragment, useState, useReducer } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
 //(&sub-) Components
-import NameAndUrl from './addLink/NameAndUrl'
-import BoolAttributes from './addLink/BoolAttributes'
-import SliderHeader from './addLink/SliderHeader'
-import TagAutoComp from './addLink/TagAutoComp'
+import NameAndUrl from './linkUtil/NameAndUrl'
+import BoolAttributes from './linkUtil/BoolAttributes'
+import SliderHeader from './linkUtil/SliderHeader'
+import TagAutoComp from './linkUtil/TagAutoComp'
 
 // Hooks, Utils & Misc
 import linksTagsReducer from '../hooks/reducers/linksTagsReducer'
 
 
-export default function AddLink(props) {
+export default function LinkUtilSlideOver(props) {
   //Default component config info
   const tags = () => props.cacheData.data.data.attributes.tags
 
@@ -53,20 +53,15 @@ export default function AddLink(props) {
               <div className="pointer-events-auto w-screen max-w-md">
                 <form className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
                   <div className="h-0 flex-1 overflow-y-auto">
-                    { /* //! HERE */}
                     <SliderHeader setTheSettings={props.setTheSettings} />
 
                     <div className="flex flex-1 flex-col justify-between">
                       <div className="divide-y divide-gray-200 px-4 sm:px-6">
                         <div className="space-y-6 pt-6 pb-5">
-
-                          {/* //! HERE */}
                           <NameAndUrl setName={setName} setUrl={setUrl} />
 
-                          {/* //! HERE */}
                           {props.cacheData && <TagAutoComp tags={tags()} dispatchLinksTags={dispatchLinksTag} />}
 
-                          {/* //! HERE */}
                           <BoolAttributes isCurFlagged={isFlagged} isCurPinned={isPinned} setFlagged={setFlagged} setPinned={setPinned} />
 
                         </div>

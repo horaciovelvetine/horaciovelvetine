@@ -14,7 +14,6 @@ export default function SliderHeader(props) {
           <button
             type="button"
             className="rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
-            onClick={() => props.setTheSettings(settingKey)}
           >
             <span className="sr-only">Close panel</span>
             <XIcon className="h-6 w-6" aria-hidden="true" />

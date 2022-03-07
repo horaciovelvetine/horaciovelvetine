@@ -13,7 +13,7 @@ import applicationMenuSelectionReducer from './src/hooks/reducers/applicationMen
 import useGetResults from './src/hooks/mutations/useGetResults'
 import useLinkSave from './src/hooks/mutations/useLinkSave'
 import checkMutationData from './src/hooks/utils/checkMutationData'
-import AddLink from './src/components/AddLink'
+import LinkUtilSlideOver from './src/components/LinkUtilSlideOver'
 import fetchCache from './src/hooks/requests/fetchCache'
 
 export default function bookmarkrApp(props) {
@@ -41,7 +41,7 @@ export default function bookmarkrApp(props) {
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchResultsMutation} />
         <Results {...childProps} resultIds={checkMutationData(resultsData, resultsIdle, resultsLoading)} cacheData={cacheLoading ? false : cacheData} />
-        <AddLink {...childProps} linkSaveMutation={linkSaveMutation} cacheData={cacheLoading ? false : cacheData} />
+        <LinkUtilSlideOver {...childProps} linkSaveMutation={linkSaveMutation} cacheData={cacheLoading ? false : cacheData} />
       </div>
     </>
   )
