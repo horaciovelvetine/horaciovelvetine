@@ -29,22 +29,22 @@ export default function bookmarkrApp(props) {
   const [applicationMenuSelections, dispatchApplicationMenu] = useReducer(applicationMenuSelectionReducer, applicationMenu)
 
   //* Mutations and Actions
-  const { mutate: searchResultsMutation, isIdle: resultsIdle, isLoading: resultsLoading, data: resultsData, } = useGetResults()
-  const { mutate: linkUtilSaveMutation, isIdle: linkSaveIdle, isSuccess: linkSaveSuccess, data: linkSaveData } = useLinkSave()
-  const { mutate: linkGroupSaveMutation, isIdle: linkGroupIdle, isSuccess: linkGroupSaveSuccess, data: linkGroupData } = useLinkGroupSave()
+  const { mutate: searchMutation, isIdle: resultsIdle, isLoading: resultsLoading, data: resultsData, } = useGetResults()
+  const { mutate: linkMutation, isIdle: linkSaveIdle, isSuccess: linkSaveSuccess, data: linkSaveData } = useLinkSave()
+  const { mutate: linkGroupMutation, isIdle: linkGroupIdle, isSuccess: linkGroupSaveSuccess, data: linkGroupData } = useLinkGroupSave()
 
   //* Setup Props Objects
   const childProps = {
     navigationMenu, settings, setTheSettings, dispatchApplicationMenu, applicationMenuSelections
   }
   const slideOverMutationProps = {
-    linkUtilSaveMutation, linkGroupSaveMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess,
+    linkMutation, linkGroupMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess,
   }
 
   return (
     <>
       <div className='h-screen flex flex-col'>
-        <Search {...childProps} searchResultsMutation={searchResultsMutation} />
+        <Search {...childProps} searchResultsMutation={searchMutation} />
         <Results {...childProps} resultIds={checkMutationData(resultsData, resultsIdle, resultsLoading)} cacheData={cacheLoading ? false : cacheData} />
         <SlideOvers {...childProps} {...slideOverMutationProps} cacheData={cacheLoading ? false : cacheData} />
       </div>
