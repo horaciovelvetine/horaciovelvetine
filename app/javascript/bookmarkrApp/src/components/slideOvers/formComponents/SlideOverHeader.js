@@ -3,7 +3,7 @@ import { Dialog } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
 
-export default function SliderHeader(props) {
+export default function SlideOverHeader(props) {
   const settingKey = '+Link'
   
   return (

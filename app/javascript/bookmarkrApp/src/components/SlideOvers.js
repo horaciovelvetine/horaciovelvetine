@@ -10,7 +10,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import SlideOverBase from './slideOvers/SlideOverBase'
 import NameAndUrl from './slideOvers/formComponents/NameAndUrl'
 import BoolAttributes from './slideOvers/formComponents/BoolAttributes'
-import SliderHeader from './slideOvers/formComponents/SliderHeader'
+import SlideOverHeader from './slideOvers/formComponents/SlideOverHeader'
 import TagAutoComp from './slideOvers/formComponents/TagAutoComp'
 
 // Hooks, Utils & Misc
@@ -28,7 +28,7 @@ export default function SlideOverMenus() {
   const [addTags, dispatchAddTag] = useReducer(addTagsReducer, []) //==> Shared
   const [isPinned, setPinned] = useState(false) //==> Shared
   
-
+  const subComponent = { NameAndUrl, BoolAttributes, SlideOverHeader, TagAutoComp}
   
   return (
     <SlideOverBase />
