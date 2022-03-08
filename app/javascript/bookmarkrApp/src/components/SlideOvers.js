@@ -12,8 +12,8 @@ import TagAutoComp from './slideOvers/formComponents/TagAutoComp'
 import addTagsReducer from '../hooks/reducers/addTagsReducer'
 
 export default function SlideOverMenus(props) {
-  //* Types: '+Link', 'editLink', '+Group', 'editGroup'
-  const actionType = props.actionType
+  //* Types: '+Link', '+Group',
+  const actionType = props.settings.slideOverActionType
   const tagsInfo = () => props.data.data.attributes.tags
   const linksInfo = () => props.data.data.attributes.links
   const { linkMutation, linkGroupMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess
@@ -29,15 +29,14 @@ export default function SlideOverMenus(props) {
   
   //* Props objects
   const subComponents = { NameAndUrl, BoolAttributes, SlideOverHeader, TagAutoComp }
-  const nameProps = { name, setName, url, setUrl }
-  const boolProps = { isPinned, setPinned }
-  const autoCompProps = { tagsInfo, linksInfo, groupsLinks, addTags, dispatchAddTag, dispatchGroupsLinks }
+  const formComponentProps = {name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, tagsInfo, linksInfo, }
+  
   const slideOverMutationProps = {
     linkMutation, linkGroupMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess,
   }
 
 
   return (
-    <SlideOverBase children={...subComponents} actionType={actionType} {...slideOverMutationProps} {...nameProps} {...boolProps} {...autoCompProps} />
+    <SlideOverBase children={...subComponents} actionType={actionType} settings={props.settings} setTheSettings={props.setTheSettings} {...slideOverMutationProps} {...formComponentProps} />
   )
 }

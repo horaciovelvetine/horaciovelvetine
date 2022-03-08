@@ -30,7 +30,7 @@ export default function bookmarkrApp(props) {
 
   //* Mutations and Actions
   const { mutate: searchMutation, isIdle: resultsIdle, isLoading: resultsLoading, data: resultsData, } = useGetResults()
-  const { mutate: linkMutation, isIdle: linkSaveIdle, isSuccess: linkSaveSuccess, data: linkSaveData } = useLinkSave()
+  const { mutate: linkSaveMutation, isIdle: linkSaveIdle, isSuccess: linkSaveSuccess, data: linkSaveData } = useLinkSave()
   const { mutate: linkGroupMutation, isIdle: linkGroupIdle, isSuccess: linkGroupSaveSuccess, data: linkGroupData } = useLinkGroupSave()
 
   //* Setup Props Objects
@@ -38,7 +38,7 @@ export default function bookmarkrApp(props) {
     navigationMenu, settings, setTheSettings, dispatchApplicationMenu, applicationMenuSelections
   }
   const slideOverMutationProps = {
-    linkMutation, linkGroupMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess,
+    linkSaveMutation, linkGroupMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess, linkSaveData, linkGroupData
   }
 
   return (
@@ -46,7 +46,7 @@ export default function bookmarkrApp(props) {
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchMutation} />
         <Results {...childProps} resultIds={checkMutationData(resultsData, resultsIdle, resultsLoading)} cacheData={cacheLoading ? false : cacheData} />
-        <SlideOvers {...childProps} {...slideOverMutationProps} cacheData={cacheLoading ? false : cacheData} />
+        <SlideOvers settings={settings} setTheSettings={setTheSettings} {...slideOverMutationProps} cacheData={cacheLoading ? false : cacheData}/>
       </div>
     </>
   )
