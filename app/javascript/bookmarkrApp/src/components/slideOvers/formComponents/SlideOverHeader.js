@@ -4,7 +4,7 @@ import { XIcon } from '@heroicons/react/outline'
 
 
 export default function SlideOverHeader(props) {
-  const settingKey = '+Link'
+  const actionType = () => props.actionType == '+Link' ? '+Link' : '+Group' 
   
   return (
     <div className="bg-indigo-700 py-6 px-4 sm:px-6" onClick={() => props.setTheSettings(settingKey)}>
