@@ -1,15 +1,14 @@
 import React from 'react'
 import { Dialog } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
+import { slideOverSettingKey } from '../utils/defaultSlideOverVals'
 
 
 export default function SlideOverHeader(props) {
-  const actionType = () => props.actionType == '+Link' ? '+Link' : '+Group' 
-  
   return (
-    <div className="bg-indigo-700 py-6 px-4 sm:px-6" onClick={() => props.setTheSettings(settingKey)}>
+    <div className="bg-indigo-700 py-6 px-4 sm:px-6" onClick={() => props.setTheSettings(slideOverSettingKey)}>
       <div className="flex items-center justify-between">
-        <Dialog.Title className="text-lg font-medium text-white"> Add Link </Dialog.Title>
+        <Dialog.Title className="text-lg font-medium text-white"> { props.actionType }</Dialog.Title>
         <div className="ml-3 flex h-7 items-center">
           <button
             type="button"
