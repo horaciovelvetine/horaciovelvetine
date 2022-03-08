@@ -1,7 +1,12 @@
+//React + Lib Imports
 import React from 'react'
+import { Fragment } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+
 
 export default function SlideOverBase(props) {
-  const {NameAndUrl, BoolAttributes, SliderHeader, TagAutoComp} = {...props.children}
+  const { NameAndUrl, BoolAttributes, SlideOverHeader, TagAutoComp } = { ...props.children }
+
   return (
     <Transition.Root show={props.settings.addLinkSlideOverOpen} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={props.setTheSettings}>
@@ -21,16 +26,16 @@ export default function SlideOverBase(props) {
               <div className="pointer-events-auto w-screen max-w-md">
                 <form className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
                   <div className="h-0 flex-1 overflow-y-auto">
-                    <SliderHeader setTheSettings={props.setTheSettings} />
+                    <props.children.SlideOverHeader setTheSettings={props.setTheSettings} />
 
                     <div className="flex flex-1 flex-col justify-between">
                       <div className="divide-y divide-gray-200 px-4 sm:px-6">
                         <div className="space-y-6 pt-6 pb-5">
-                          <NameAndUrl setName={setName} setUrl={setUrl} />
+                          <props.children.NameAndUrl setName={setName} setUrl={setUrl} />
 
                           {props.cacheData && <TagAutoComp tags={tags()} dispatchLinksTags={dispatchLinksTag} />}
 
-                          <BoolAttributes isCurFlagged={isFlagged} isCurPinned={isPinned} setFlagged={setFlagged} setPinned={setPinned} />
+                          <props.children.BoolAttributes isCurPinned={isPinned} setPinned={setPinned} />
 
                         </div>
                       </div>
