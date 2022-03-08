@@ -6,7 +6,7 @@ import { useReducer } from 'react'
 // (&sub) Components
 import Results from './src/components/Results'
 import Search from './src/components/Search'
-import SlideOverMenus from './src/components/SlideOverMenus'
+import SlideOvers from './src/components/SlideOvers'
 
 // Hooks
 import settingsReducer from './src/hooks/reducers/settingsReducer'
@@ -28,26 +28,26 @@ export default function bookmarkrApp(props) {
 
   // Mutations and Actions
   const { mutate: searchResultsMutation, isIdle: resultsIdle, isLoading: resultsLoading, data: resultsData, } = useGetResults()
-  //* can these be refactored into a singlular "use save?"
-  const { mutate: linkUtilSaveMutation, isIdle: linkSaveIdle, isLoading: linkSaveLoading, data: linkSaveData } = useLinkSave()
-  const {mutate: linkGroupSaveMutation, isIdle: lingGroupIdle, isLoading, linkGrouLoading, data: linkGroupData} = useLinkGroupSave()
-  
+  const { mutate: linkUtilSaveMutation, isIdle: linkSaveIdle, isSuccess: linkSaveSuccess, data: linkSaveData } = useLinkSave()
+  const { mutate: linkGroupSaveMutation, isIdle: linkGroupIdle, isSuccess: linkGroupSaveSuccess, data: linkGroupData } = useLinkGroupSave()
+
 
 
   // combine all shared props //=> candidates for removal to a "BookmarkrContext"
   const childProps = {
     navigationMenu, settings, setTheSettings, dispatchApplicationMenu, applicationMenuSelections
   }
-
+  // Same for a SlideOverContext? 
+  const slideOverMutationProps = {
+    linkUtilSaveMutation, linkGroupSaveMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess,
+  }
 
   return (
     <>
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchResultsMutation} />
         <Results {...childProps} resultIds={checkMutationData(resultsData, resultsIdle, resultsLoading)} cacheData={cacheLoading ? false : cacheData} />
-        <SlideOverMenus />
-        {/* <LinkUtil {...childProps} linkUtilSaveMutation={linkUtilSaveMutation} cacheData={cacheLoading ? false : cacheData} />
-        <LinkGroupUtil {...childProps} linkGroupSaveMutation={linkGroupSaveMutation} cacheData={cacheLoading ? false : cacheData} /> */}
+        <SlideOvers {...childProps} {...slideOverMutationProps} cacheData={cacheLoading ? false : cacheData} />
       </div>
     </>
   )
