@@ -10,6 +10,7 @@ import TagAutoComp from './slideOvers/formComponents/TagAutoComp'
 
 // Hooks, Utils & Misc
 import addTagsReducer from '../hooks/reducers/addTagsReducer'
+import groupsLinksReducer from '../hooks/reducers/groupsLinksReducer'
 
 export default function SlideOverMenus(props) {
   //* Types: '+Link', '+Group',
@@ -28,15 +29,14 @@ export default function SlideOverMenus(props) {
   const [isPinned, setPinned] = useState(false) //==> Shared
   
   //* Props objects
-  const subComponents = { NameAndUrl, BoolAttributes, SlideOverHeader, TagAutoComp }
+  const childComponents = [ NameAndUrl, BoolAttributes, SlideOverHeader, TagAutoComp ]
   const formComponentProps = {name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, tagsInfo, linksInfo, }
-  
   const slideOverMutationProps = {
     linkMutation, linkGroupMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess,
   }
 
 
   return (
-    <SlideOverBase children={...subComponents} actionType={actionType} settings={props.settings} setTheSettings={props.setTheSettings} {...slideOverMutationProps} {...formComponentProps} />
+    <SlideOverBase children={childComponents} actionType={actionType} settings={props.settings} setTheSettings={props.setTheSettings} {...slideOverMutationProps} {...formComponentProps} />
   )
 }
