@@ -13,5 +13,5 @@ export function navBarMenuItems() {
   )
 }
 export function defaultSettings() {
-  return ({ mobileMenuOpen: false, searchDeBounceDelay: 515, addLinkSlideOverOpen: false, saveLinkModalPrompt: false, omitTagsFromCloudList: []})
+  return ({ mobileMenuOpen: false, searchDeBounceDelay: 515, slideOverOpen: false, saveLinkModalPrompt: false, omitTagsFromCloudList: []})
 }
