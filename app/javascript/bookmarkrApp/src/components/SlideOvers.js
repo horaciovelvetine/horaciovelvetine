@@ -1,25 +1,24 @@
 import React from 'react'
-
 import { Fragment, useState, useReducer } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-
-
-
 
 //(&sub-) Components
 import SlideOverBase from './slideOvers/SlideOverBase'
+//==> handleSubmit & payload information
 import NameAndUrl from './slideOvers/formComponents/NameAndUrl'
+//==> setName, setUrl, name, url
 import BoolAttributes from './slideOvers/formComponents/BoolAttributes'
+//==> isPinned, setPinned
 import SlideOverHeader from './slideOvers/formComponents/SlideOverHeader'
+//==> setTheSettings, actionType
 import TagAutoComp from './slideOvers/formComponents/TagAutoComp'
-
+//==> tags 
 // Hooks, Utils & Misc
 import addTagsReducer from '../hooks/reducers/addTagsReducer'
 
 
 export default function SlideOverMenus() {
-  
-  const actionType = () => props.actionTypeKey == "+Link" ? "newLink" : "newLinkGroup"
+  //* types: '+Link', 'editLink', '+Group', 'editGroup'
+  const actionType = props.actionType
 
   //==> "Parent Object" (from NavLinks)
   const [name, setName] = useState("") //=> Shared
@@ -28,9 +27,9 @@ export default function SlideOverMenus() {
   const [addTags, dispatchAddTag] = useReducer(addTagsReducer, []) //==> Shared
   const [isPinned, setPinned] = useState(false) //==> Shared
   
-  const subComponent = { NameAndUrl, BoolAttributes, SlideOverHeader, TagAutoComp}
+  const subComponents = { NameAndUrl, BoolAttributes, SlideOverHeader, TagAutoComp}
   
   return (
-    <SlideOverBase />
+    <SlideOverBase children={subComponents}/>
   )
 }
