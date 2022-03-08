@@ -11,19 +11,17 @@ const slideOverKey = () => settingKey == (linkKey || groupKey) ? true : false
   // creates a copy of object to modify
   let newStateObject = Object.fromEntries(Object.entries(prevState).map(([k, v]) => [k, v]))
   switch (settingKey) {
-    //==> slideover open and action state
+    
     case slideOverKey:
       newStateObject['slideOverOpen'] = !prevState['slideOverOpen']
       newStateObject['slideOverActionType'] = settingKey
       break;
     
-    case groupKey:
-
-      break
     case linkKey + initializer:
       break;
   
     default:
+      debugger
       break;
   }
   return newStateObject

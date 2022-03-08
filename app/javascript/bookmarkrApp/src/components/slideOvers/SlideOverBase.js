@@ -7,13 +7,17 @@ import { Dialog, Transition } from '@headlessui/react'
 export default function SlideOverBase(props) {
   const { NameAndUrl, BoolAttributes, SlideOverHeader, TagAutoComp } = { ...props.children }
 
+  function payload(actionType) {
+    //==> build payload with correct attributes according to actiontype
+  }
+
   function displayGroupsLinks(actionType) {
     debugger
     //==> if action type "group" ? true : false
   }
 
   return (
-    <Transition.Root show={props.settings.addLinkSlideOverOpen} as={Fragment}>
+    <Transition.Root show={props.settings.slideOverOpen} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={props.setTheSettings}>
         <div className="absolute inset-0 overflow-hidden">
           <Dialog.Overlay className="absolute inset-0" />
