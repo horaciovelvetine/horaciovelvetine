@@ -12,7 +12,6 @@ export default function NavLinks(props) {
   function handleAddLinkClick(event) {
     event.preventDefault()
     let action = event.target.innerText
-
     setTheSettings(action)
   }
 
@@ -23,7 +22,7 @@ export default function NavLinks(props) {
       <nav aria-label='Global' className='flex space-x-6'>
         {navigation.map((link) => (
           <Fragment key={link.name}>
-            <a href="/" className='text-sm font-medium text-gray-900' onClick={(e) => handleAddLinkClick(e)}>
+            <a href="/navigation" className='text-sm font-medium text-gray-900' onClick={(e) => handleAddLinkClick(e)}>
               {link.name}
             </a>
           </Fragment>

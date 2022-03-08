@@ -9,7 +9,7 @@ export function applicationMenuSelections() {
   )
 }
 export function navBarMenuItems() {
-  return ([{ name: "+Link", href: "${baseUrl}/addlink" }, { name: "Settings", href: "${baseUrl}/settings" }]
+  return ([{ name: "+Link", href: "/addlink" }, { name: "+LinkGroup", href: "/addLinkGroup" }, { name: "Settings", href: "/settings" }]
   )
 }
 export function defaultSettings() {
