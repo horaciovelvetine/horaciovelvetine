@@ -31,11 +31,13 @@ export default function SlideOverBase(props) {
               <div className="pointer-events-auto w-screen max-w-md">
                 <form className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
                   <div className="h-0 flex-1 overflow-y-auto">
+
                     <SlideOverHeader setTheSettings={props.setTheSettings} actionType={props.actionType} />
 
                     <div className="flex flex-1 flex-col justify-between">
                       <div className="divide-y divide-gray-200 px-4 sm:px-6">
                         <div className="space-y-6 pt-6 pb-5">
+
                           <NameAndUrl setName={setName} setUrl={setUrl} name={name} url={url} links={props.linksInfo} groupsLinks={props.groupsLinks} dispatchGroupsLinks={props.dispatchGroupsLinks} actionType={props.actionType} />
 
                           {props.cacheData && (displayGroupsLinks(props.actionType)) && <TagAutoComp tags={props.tagsInfo} addTags={props.addTags} dispatchAddTags={dispatchAddTags} actionType={props.actionType} />}

@@ -3,18 +3,13 @@ import { useState, useReducer } from 'react'
 
 //(&sub-) Components
 import SlideOverBase from './slideOvers/SlideOverBase'
-//==> handleSubmit & payload information
 import NameAndUrl from './slideOvers/formComponents/NameAndUrl'
-//==> setName, setUrl, name, url
 import BoolAttributes from './slideOvers/formComponents/BoolAttributes'
-//==> isPinned, setPinned
 import SlideOverHeader from './slideOvers/formComponents/SlideOverHeader'
-//==> setTheSettings, actionType
 import TagAutoComp from './slideOvers/formComponents/TagAutoComp'
-//==> tags 
+
 // Hooks, Utils & Misc
 import addTagsReducer from '../hooks/reducers/addTagsReducer'
-
 
 export default function SlideOverMenus(props) {
   //* Types: '+Link', 'editLink', '+Group', 'editGroup'
