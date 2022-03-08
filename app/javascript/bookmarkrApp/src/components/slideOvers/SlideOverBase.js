@@ -7,6 +7,11 @@ import { Dialog, Transition } from '@headlessui/react'
 export default function SlideOverBase(props) {
   const { NameAndUrl, BoolAttributes, SlideOverHeader, TagAutoComp } = { ...props.children }
 
+  function displayGroupsLinks(actionType) {
+    debugger
+    //==> if action type "group" ? true : false
+  }
+
   return (
     <Transition.Root show={props.settings.addLinkSlideOverOpen} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={props.setTheSettings}>
@@ -26,16 +31,18 @@ export default function SlideOverBase(props) {
               <div className="pointer-events-auto w-screen max-w-md">
                 <form className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
                   <div className="h-0 flex-1 overflow-y-auto">
-                    <props.children.SlideOverHeader setTheSettings={props.setTheSettings} />
+                    <SlideOverHeader setTheSettings={props.setTheSettings} actionType={props.actionType} />
 
                     <div className="flex flex-1 flex-col justify-between">
                       <div className="divide-y divide-gray-200 px-4 sm:px-6">
                         <div className="space-y-6 pt-6 pb-5">
-                          <props.children.NameAndUrl setName={setName} setUrl={setUrl} />
+                          <NameAndUrl setName={setName} setUrl={setUrl} name={name} url={url} links={props.linksInfo} groupsLinks={props.groupsLinks} dispatchGroupsLinks={props.dispatchGroupsLinks} actionType={props.actionType} />
 
-                          {props.cacheData && <TagAutoComp tags={tags()} dispatchLinksTags={dispatchLinksTag} />}
+                          {props.cacheData && (displayGroupsLinks(props.actionType)) && <TagAutoComp tags={props.tagsInfo} addTags={props.addTags} dispatchAddTags={dispatchAddTags} actionType={props.actionType} />}
 
-                          <props.children.BoolAttributes isCurPinned={isPinned} setPinned={setPinned} />
+                          {props.cacheData && <TagAutoComp tags={props.tagsInfo} addTags={props.addTags} dispatchAddTags={dispatchAddTags} actionType={props.actionType} />}
+
+                          <BoolAttributes isCurPinned={props.isPinned} setPinned={props.setPinned} actionType={props.actionType} />
 
                         </div>
                       </div>
