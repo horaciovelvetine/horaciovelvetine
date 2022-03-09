@@ -3,9 +3,13 @@ module Bookmarkr
   skip_before_action :verify_authenticity_token
   
     def create
+    
+      link = Link.new(name: params[:name], href: params[:href], pinned: params[:pinned])
+      params[:tags].each{ |tag| link.tags << Tag.find(tag[:id] }
+      
       binding.pry
-      @link = Link.new(link_params)
-      if @link.save
+
+      if link.save
         render json: {notice: "Item created successfully"}
       else
         render json: {notice: "Try again cowboy"}
