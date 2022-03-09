@@ -52,7 +52,7 @@ export default function NameUrlAndLinks(props) {
           id="add-tag-autocomplete"
           options={props.links}
           getOptionLabel={(option) => option.name}
-          defaultValue={props.groupsLinks.length < 1 ? [props.links[0]] : props.groupsLinks}
+          defaultValue={ [props.links[0]] }
           renderInput={(params) => (
             <TextField
               {...params}
@@ -61,7 +61,7 @@ export default function NameUrlAndLinks(props) {
               placeholder="add..."
             />
           )}
-          onChange={(val) => props.dispatchAddTag(val)}
+          onChange={(val) => props.dispatchGroupsLinks(val)}
         />}
     </>
   )
