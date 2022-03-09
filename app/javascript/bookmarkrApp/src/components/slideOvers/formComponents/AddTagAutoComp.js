@@ -1,10 +1,10 @@
 import React from 'react'
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { PinDropRounded } from '@mui/icons-material';
+
 
 export default function AddTagAutoComp(props) {
-  
+
   return (
     <Autocomplete
       multiple
@@ -22,7 +22,7 @@ export default function AddTagAutoComp(props) {
           {...params}
           variant="standard"
           label="Tags:"
-          placeholder="..."
+          placeholder="add..."
         />
       )}
       onChange={(val) => props.dispatchAddTag(val)}
