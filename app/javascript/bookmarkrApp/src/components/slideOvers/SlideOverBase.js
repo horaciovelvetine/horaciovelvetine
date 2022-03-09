@@ -12,10 +12,9 @@ export default function SlideOverBase(props) {
   const { name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings, cacheData } = { ...props }
   
   //Grabs information from nested cacheData
+  const tagsInfo = () => cacheData.data.data.attributes.tags
+  const linksInfo = () => cacheData.data.data.attributes.links
   
-  const tagsInfo = (cd) => {
-    return cd.data.data.attributes.tags
-  }
 
   function handleSubmitClick(e, payload) {
     e.preventDefault()
@@ -54,10 +53,10 @@ export default function SlideOverBase(props) {
                       <div className="divide-y divide-gray-200 px-4 sm:px-6">
                         <div className="space-y-6 pt-6 pb-5">
 
-                          <NameAndUrl setName={setName} setUrl={setUrl} name={name} url={url} cache={cacheData} groupsLinks={groupsLinks} dispatchGroupsLinks={dispatchGroupsLinks} settings={settings} />
+                          {cacheData && <NameAndUrl setName={setName} setUrl={setUrl} name={name} url={url} links={linksInfo()} groupsLinks={groupsLinks} dispatchGroupsLinks={dispatchGroupsLinks} settings={settings} />}
 
-                          {cacheData && <AddTagAutoComp tags={tagsInfo(cacheData)} addTags={addTags} dispatchAddTag={dispatchAddTag} />}
-                          {!cacheData && <>Falsey!!</>}
+                          {cacheData && <AddTagAutoComp tags={tagsInfo()} addTags={addTags} dispatchAddTag={dispatchAddTag} />}
+                          
 
                           <BoolAttributes isCurPinned={isPinned} setPinned={setPinned} />
 
