@@ -2,20 +2,19 @@
 import React from 'react'
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import { slideOverSettingKey } from './utils/defaultSlideOverVals'
 
 
 export default function SlideOverBase(props) {
-  const { NameAndUrl, BoolAttributes, SlideOverHeader, TagAutoComp } = { ...props.children }
-
-  function payload(actionType) {
-    //==> build payload with correct attributes according to actiontype
+  const [NameAndUrl, BoolAttributes, SlideOverHeader, TagAutoComp] = [...props.children]
+  
+  const linksInfo = (cd) => {
+    return cd.data.data.attributes.links
   }
-
-  function displayGroupsLinks(actionType) {
-    debugger
-    //==> if action type "group" ? true : false
+  const tagsInfo = (cd) => {
+    return cd.data.data.attributes.tags
   }
-
+  
   return (
     <Transition.Root show={props.settings.slideOverOpen} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={props.setTheSettings}>
@@ -42,11 +41,9 @@ export default function SlideOverBase(props) {
                       <div className="divide-y divide-gray-200 px-4 sm:px-6">
                         <div className="space-y-6 pt-6 pb-5">
 
-                          <NameAndUrl setName={setName} setUrl={setUrl} name={name} url={url} links={props.linksInfo} groupsLinks={props.groupsLinks} dispatchGroupsLinks={props.dispatchGroupsLinks} actionType={props.actionType} />
+                          <NameAndUrl setName={props.setName} setUrl={props.setUrl} name={props.name} url={props.url} links={props.linksInfo} groupsLinks={props.groupsLinks} dispatchGroupsLinks={props.dispatchGroupsLinks} actionType={props.actionType} />
 
-                          {props.cacheData && (displayGroupsLinks(props.actionType)) && <TagAutoComp tags={props.tagsInfo} addTags={props.addTags} dispatchAddTags={dispatchAddTags} actionType={props.actionType} />}
-
-                          {props.cacheData && <TagAutoComp tags={props.tagsInfo} addTags={props.addTags} dispatchAddTags={dispatchAddTags} actionType={props.actionType} />}
+                          {/* HERE GOES TAG AUTO && groupsLinks AUTO*/}
 
                           <BoolAttributes isCurPinned={props.isPinned} setPinned={props.setPinned} actionType={props.actionType} />
 
