@@ -11,8 +11,8 @@ export default function NavLinks(props) {
 
   function handleAddLinkClick(event) {
     event.preventDefault()
-    let action = event.target.innerText
-    setTheSettings(action)
+    let settingKey = event.target.text
+    setTheSettings(settingKey)
   }
 
 
