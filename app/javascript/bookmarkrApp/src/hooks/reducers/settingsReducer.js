@@ -28,6 +28,5 @@ const slideOverKey = (key) => key == (linkKey || groupKey) ? true : false
       debugger
       break;
   }
-  debugger
   return newStateObject
 }
