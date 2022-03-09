@@ -6,6 +6,7 @@ import SlideOverBase from './slideOvers/SlideOverBase'
 import NameAndUrl from './slideOvers/formComponents/NameAndUrl'
 import BoolAttributes from './slideOvers/formComponents/BoolAttributes'
 import SlideOverHeader from './slideOvers/formComponents/SlideOverHeader'
+import AddTagAutoComp from './slideOvers/formComponents/AddTagAutoComp'
 
 // Hooks, Utils & Misc
 import addTagsReducer from '../hooks/reducers/addTagsReducer'
