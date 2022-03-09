@@ -2,10 +2,10 @@ import baseUrl from '../../../config/baseUrl'
 import axios from "axios"
 
 export default async function postLink(payload) {
-  debugger
+
   const response = await axios.post(baseUrl('/link'), payload)
     .then((res) => {
-      return res
+      return res.data.data
     })
     .catch((err) => {
       console.log(err)

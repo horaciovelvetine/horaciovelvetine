@@ -5,14 +5,12 @@ module Bookmarkr
     def create
     
       link = Link.new(name: params[:name], href: params[:href], pinned: params[:pinned])
-      params[:tags].each{ |tag| link.tags << Tag.find(tag[:id] }
-      
-      binding.pry
+      params[:tags].each{ |tag| link.tags << Tag.find(tag[:id]) }
 
       if link.save
-        render json: {notice: "Item created successfully"}
+        render json: LinkSerializer.new(link).serializable_hash.to_json
       else
-        render json: {notice: "Try again cowboy"}
+        render json: {notice: "Try again cowboy, that link ain't gonna work round these parts"}
       end
 
     end
