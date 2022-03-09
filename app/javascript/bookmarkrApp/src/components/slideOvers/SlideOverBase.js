@@ -1,31 +1,42 @@
 //React + Lib Imports
 import React from 'react'
-import { useEffect } from 'react'
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { slideOverSettingKey } from './utils/defaultSlideOverVals'
+import { linkKey, groupKey } from './utils/defaultSlideOverVals'
 
 
 export default function SlideOverBase(props) {
-  
-  const [NameAndUrl, BoolAttributes, SlideOverHeader, AddTagAutoComp ] = [...props.children]
+  const [NameUrlAndLinks, BoolAttributes, SlideOverHeader, AddTagAutoComp] = [...props.children]
   const { name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings, cacheData, linkSaveMutation, linkGroupMutation } = { ...props }
-  
+
   //Grabs information from nested cacheData
   const tagsInfo = () => cacheData.data.data.attributes.tags
   const linksInfo = () => cacheData.data.data.attributes.links
-  
+
+  //==> to allow keyboard entry for entire form 
+  function preventDefaultFormSubmit(e) {
+    e.preventDefault()
+    console.log("form submission prevented")
+  }
 
   function handleSubmitClick(e) {
     e.preventDefault()
-    let payload = {name, url, groupsLinks, addTags, isPinned}
-    settings.slideOverActionType == '+Link' ? linkSaveMutation(payload) : linkGroupMutation(payload)
+
+    switch (settings.slideOverActionType) {
+
+      case linkKey:
+        linkSaveMutation( { name, href: url, pinned: isPinned, tags: addTags } )
+        break;
+
+      case groupKey:
+        groupSaveMutation({ name, groupsLinks, addTags, isPinned })
+        break;
+
+      default:
+        debugger
+    }
   }
-  //==> grabs statevals from props for post requests
-  const payload = () => {
-    return name, url, isPinned, groupsLinks, addTags
-  }
-  
+
 
   return (
     <Transition.Root show={settings.slideOverOpen} as={Fragment}>
@@ -44,7 +55,7 @@ export default function SlideOverBase(props) {
               leaveTo="translate-x-full"
             >
               <div className="pointer-events-auto w-screen max-w-md">
-                <form className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
+                <form className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl" >
                   <div className="h-0 flex-1 overflow-y-auto">
 
                     <SlideOverHeader setTheSettings={setTheSettings} settings={settings} />
@@ -53,12 +64,12 @@ export default function SlideOverBase(props) {
                       <div className="divide-y divide-gray-200 px-4 sm:px-6">
                         <div className="space-y-6 pt-6 pb-5">
 
-                          {cacheData && <NameAndUrl setName={setName} setUrl={setUrl} name={name} url={url} links={linksInfo()} groupsLinks={groupsLinks} dispatchGroupsLinks={dispatchGroupsLinks} settings={settings} />}
+                          {cacheData && <NameUrlAndLinks setName={setName} setUrl={setUrl} name={name} url={url} links={linksInfo()} groupsLinks={groupsLinks} dispatchGroupsLinks={dispatchGroupsLinks} settings={settings} />}
 
                           {cacheData && <AddTagAutoComp tags={tagsInfo()} addTags={addTags} dispatchAddTag={dispatchAddTag} />}
-                          
 
-                          <BoolAttributes isCurPinned={isPinned} setPinned={setPinned} />
+
+                          <BoolAttributes isPinned={isPinned} setPinned={setPinned} />
 
                         </div>
                       </div>
@@ -75,7 +86,7 @@ export default function SlideOverBase(props) {
                     <button
                       type="submit"
                       className="ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                      onClick={(e) => handleSubmitClick( e )}
+                      onClick={(e) => handleSubmitClick(e)}
                     >
                       Save
                     </button>
