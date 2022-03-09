@@ -6,7 +6,6 @@ import SlideOverBase from './slideOvers/SlideOverBase'
 import NameAndUrl from './slideOvers/formComponents/NameAndUrl'
 import BoolAttributes from './slideOvers/formComponents/BoolAttributes'
 import SlideOverHeader from './slideOvers/formComponents/SlideOverHeader'
-import TagAutoComp from './slideOvers/formComponents/TagAutoComp'
 
 // Hooks, Utils & Misc
 import addTagsReducer from '../hooks/reducers/addTagsReducer'
@@ -26,7 +25,7 @@ export default function SlideOvers(props) {
   const [isPinned, setPinned] = useState(null) //==> Shared
   
   //* Props objects
-  const childComponents = [ NameAndUrl, BoolAttributes, SlideOverHeader, TagAutoComp ]
+  const childComponents = [ NameAndUrl, BoolAttributes, SlideOverHeader ]
   const formComponentProps = {name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings }
   const slideOverMutationProps = {
     linkSaveMutation, linkGroupMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess,

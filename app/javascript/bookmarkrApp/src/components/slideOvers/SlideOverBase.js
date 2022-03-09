@@ -6,7 +6,7 @@ import { slideOverSettingKey } from './utils/defaultSlideOverVals'
 
 
 export default function SlideOverBase(props) {
-  const [NameAndUrl, BoolAttributes, SlideOverHeader, TagAutoComp] = [...props.children]
+  const [NameAndUrl, BoolAttributes, SlideOverHeader, ] = [...props.children]
   
   const linksInfo = (cd) => {
     return cd.data.data.attributes.links
@@ -17,7 +17,7 @@ export default function SlideOverBase(props) {
   
   return (
     <Transition.Root show={props.settings.slideOverOpen} as={Fragment}>
-      <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={props.setTheSettings}>
+      <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={props.setTheSettings(props.actionType)}>
         <div className="absolute inset-0 overflow-hidden">
           <Dialog.Overlay className="absolute inset-0" />
 
