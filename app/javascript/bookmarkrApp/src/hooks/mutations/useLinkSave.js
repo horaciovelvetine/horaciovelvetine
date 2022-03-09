@@ -1,9 +1,13 @@
+//* React + Lib Imports
+import { useMutation, useQueryClient } from 'react-query'
+
 import postLink from '../requests/postLink'
-import { useMutation } from 'react-query'
 
 export default function useLinkSave() {
+  const queryClient = useQueryClient()
   return useMutation(postLink, {
-    onSuccess: (res) => {
+    onSuccess: res => {
+      queryClient.invalidateQueries('cashe')
       return res
     }
   })
