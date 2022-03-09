@@ -17,7 +17,7 @@ export default function SlideOverBase(props) {
   
   return (
     <Transition.Root show={props.settings.slideOverOpen} as={Fragment}>
-      <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={props.setTheSettings(props.actionType)}>
+      <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={() => props.setTheSettings(props.actionType)}>
         <div className="absolute inset-0 overflow-hidden">
           <Dialog.Overlay className="absolute inset-0" />
 
