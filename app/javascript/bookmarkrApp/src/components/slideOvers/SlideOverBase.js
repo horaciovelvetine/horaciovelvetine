@@ -9,17 +9,17 @@ import { slideOverSettingKey } from './utils/defaultSlideOverVals'
 export default function SlideOverBase(props) {
   
   const [NameAndUrl, BoolAttributes, SlideOverHeader, AddTagAutoComp ] = [...props.children]
-  const { name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings, cacheData } = { ...props }
+  const { name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings, cacheData, linkSaveMutation } = { ...props }
   
   //Grabs information from nested cacheData
   const tagsInfo = () => cacheData.data.data.attributes.tags
   const linksInfo = () => cacheData.data.data.attributes.links
   
 
-  function handleSubmitClick(e, payload) {
+  function handleSubmitClick(e) {
     e.preventDefault()
-    console.log(payload)
-    debugger
+    let payload = {name, url, groupsLinks, addTags, isPinned}
+    settings.slideOverActionType == '+Link' ? linkSaveMutation(payload) : linkGroupMutation(payload)
   }
   //==> grabs statevals from props for post requests
   const payload = () => {
@@ -29,7 +29,7 @@ export default function SlideOverBase(props) {
 
   return (
     <Transition.Root show={settings.slideOverOpen} as={Fragment}>
-      <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={() => setTheSettings(settings.slideOverActionType)}>
+      <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={() => false}>
         <div className="absolute inset-0 overflow-hidden">
           <Dialog.Overlay className="absolute inset-0" />
 
@@ -75,7 +75,7 @@ export default function SlideOverBase(props) {
                     <button
                       type="submit"
                       className="ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                      onClick={() => handleSubmitClick(payload())}
+                      onClick={(e) => handleSubmitClick( e )}
                     >
                       Save
                     </button>

@@ -27,7 +27,7 @@ export default function SlideOvers(props) {
 
   //* Props objects
   const childComponents = [NameAndUrl, BoolAttributes, SlideOverHeader, AddTagAutoComp]
-  const formComponentProps = { name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings, cacheData }
+  const formComponentProps = { name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings, cacheData, linkSaveMutation, linkGroupMutation }
   
 
 
