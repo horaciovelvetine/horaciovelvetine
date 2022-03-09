@@ -6,6 +6,7 @@ import { slideOverSettingKey } from './utils/defaultSlideOverVals'
 
 
 export default function SlideOverBase(props) {
+  
   const [NameAndUrl, BoolAttributes, SlideOverHeader, ] = [...props.children]
   
   const linksInfo = (cd) => {
@@ -17,7 +18,7 @@ export default function SlideOverBase(props) {
   
   return (
     <Transition.Root show={props.settings.slideOverOpen} as={Fragment}>
-      <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={() => props.setTheSettings(props.actionType)}>
+      <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={() => props.setTheSettings(props.settings.actionType)}>
         <div className="absolute inset-0 overflow-hidden">
           <Dialog.Overlay className="absolute inset-0" />
 
@@ -35,17 +36,17 @@ export default function SlideOverBase(props) {
                 <form className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
                   <div className="h-0 flex-1 overflow-y-auto">
 
-                    <SlideOverHeader setTheSettings={props.setTheSettings} actionType={props.actionType} />
+                    <SlideOverHeader setTheSettings={props.setTheSettings} actionType={props.settings.actionType} />
 
                     <div className="flex flex-1 flex-col justify-between">
                       <div className="divide-y divide-gray-200 px-4 sm:px-6">
                         <div className="space-y-6 pt-6 pb-5">
 
-                          <NameAndUrl setName={props.setName} setUrl={props.setUrl} name={props.name} url={props.url} links={props.linksInfo} groupsLinks={props.groupsLinks} dispatchGroupsLinks={props.dispatchGroupsLinks} actionType={props.actionType} />
+                          <NameAndUrl setName={props.setName} setUrl={props.setUrl} name={props.name} url={props.url} links={props.linksInfo} groupsLinks={props.groupsLinks} dispatchGroupsLinks={props.dispatchGroupsLinks} actionType={props.settings.actionType} />
 
                           {/* HERE GOES TAG AUTO && groupsLinks AUTO*/}
 
-                          <BoolAttributes isCurPinned={props.isPinned} setPinned={props.setPinned} actionType={props.actionType} />
+                          <BoolAttributes isCurPinned={props.isPinned} setPinned={props.setPinned} actionType={props.settings.actionType} />
 
                         </div>
                       </div>
