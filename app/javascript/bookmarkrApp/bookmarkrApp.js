@@ -1,6 +1,6 @@
 //* React + Lib Imports
 import React from 'react'
-import { useQuery } from 'react-query'
+import { QueryClient, useQuery, QueryClientProvider } from 'react-query'
 import { useReducer } from 'react'
 
 //* (&sub) Components
@@ -21,12 +21,13 @@ import useGetResults from './src/hooks/mutations/useGetResults'
 import useLinkSave from './src/hooks/mutations/useLinkSave'
 import useLinkGroupSave from './src/hooks/mutations/useLinkGroupSave'
 
+const queryClient = new QueryClient()
 //! APPLICATION START !//
 export default function bookmarkrApp(props) {
   //* config  vars & state 
   const { defaultSettings, applicationMenu, navigationMenu } = { ...props };
   const { isLoading: cacheLoading, data: cacheData } = useQuery('cashe', fetchCache);
-  
+
   //* config all state related
   const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [applicationMenuSelections, dispatchApplicationMenu] = useReducer(applicationMenuSelectionReducer, applicationMenu)
@@ -45,12 +46,12 @@ export default function bookmarkrApp(props) {
   }
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchMutation} />
         <Results {...childProps} resultIds={handleResultsMutation(resultsData, resultsIdle, resultsLoading)} cacheData={cacheLoading ? false : cacheData} />
-        <SlideOvers settings={settings} setTheSettings={setTheSettings} {...slideOverMutationProps} cacheData={cacheLoading ? false : cacheData}/>
+        <SlideOvers settings={settings} setTheSettings={setTheSettings} {...slideOverMutationProps} cacheData={cacheLoading ? false : cacheData} />
       </div>
-    </>
+    </QueryClientProvider>
   )
 }
