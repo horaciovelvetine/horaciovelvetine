@@ -12,13 +12,14 @@ import SlideOvers from './src/components/SlideOvers'
 import settingsReducer from './src/hooks/reducers/settingsReducer'
 import applicationMenuSelectionReducer from './src/hooks/reducers/applicationMenuSelectionReducer'
 
-//* Request & Mutation Utils
+//* Requests 
 import fetchCache from './src/hooks/requests/fetchCache'
+import handleResultsMutation from './src/hooks/utils/handleResultsMutation'
+
+//* Mutations
 import useGetResults from './src/hooks/mutations/useGetResults'
 import useLinkSave from './src/hooks/mutations/useLinkSave'
 import useLinkGroupSave from './src/hooks/mutations/useLinkGroupSave'
-import checkMutationData from './src/hooks/utils/checkMutationData' //==> gets nested
-
 
 //! APPLICATION START !//
 export default function bookmarkrApp(props) {
@@ -47,7 +48,7 @@ export default function bookmarkrApp(props) {
     <>
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchMutation} />
-        <Results {...childProps} resultIds={checkMutationData(resultsData, resultsIdle, resultsLoading)} cacheData={cacheLoading ? false : cacheData} />
+        <Results {...childProps} resultIds={handleResultsMutation(resultsData, resultsIdle, resultsLoading)} cacheData={cacheLoading ? false : cacheData} />
         <SlideOvers settings={settings} setTheSettings={setTheSettings} {...slideOverMutationProps} cacheData={cacheLoading ? false : cacheData}/>
       </div>
     </>
