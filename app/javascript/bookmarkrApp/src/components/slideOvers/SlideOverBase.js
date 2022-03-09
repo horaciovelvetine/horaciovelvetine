@@ -25,7 +25,8 @@ export default function SlideOverBase(props) {
     switch (settings.slideOverActionType) {
 
       case linkKey:
-        linkSaveMutation( { name, href: url, pinned: isPinned, tags: addTags } )
+        linkSaveMutation({ name, href: url, pinned: isPinned, tags: addTags })
+        setTheSettings(settings.slideOverActionType)
         break;
 
       case groupKey:
@@ -40,7 +41,7 @@ export default function SlideOverBase(props) {
 
   return (
     <Transition.Root show={settings.slideOverOpen} as={Fragment}>
-      <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={() => false}>
+      <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={() => console.log("SlideOver OnClose Fire")}>
         <div className="absolute inset-0 overflow-hidden">
           <Dialog.Overlay className="absolute inset-0" />
 
