@@ -14,9 +14,9 @@ import groupsLinksReducer from '../hooks/reducers/groupsLinksReducer'
 
 export default function SlideOvers(props) {
   // const linksInfo = () => cacheData.data.data.attributes.links
-  const {cacheData, linkGroupData, linkGroupIdle, linkGroupMutation, linkGroupSaveSuccess, linkSaveData, linkSaveIdle, linkSaveMutation, linkSaveSuccess, setTheSettings, settings }= {...props}
+  const { cacheData, linkGroupData, linkGroupIdle, linkGroupMutation, linkGroupSaveSuccess, linkSaveData, linkSaveIdle, linkSaveMutation, linkSaveSuccess, setTheSettings, settings } = { ...props }
 
-  
+
   //* State Vals
   //==> "Parent Object" (from NavLinks)
   const [name, setName] = useState("") //=> Shared
@@ -24,16 +24,16 @@ export default function SlideOvers(props) {
   const [groupsLinks, dispatchGroupsLinks] = useReducer(groupsLinksReducer, []) //==> +Group
   const [addTags, dispatchAddTag] = useReducer(addTagsReducer, []) //==> Shared
   const [isPinned, setPinned] = useState(null) //==> Shared
-  
+
   //* Props objects
-  const childComponents = [ NameAndUrl, BoolAttributes, SlideOverHeader, AddTagAutoComp ]
-  const formComponentProps = {name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings }
+  const childComponents = [NameAndUrl, BoolAttributes, SlideOverHeader, AddTagAutoComp]
+  const formComponentProps = { name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings, cacheData }
   const slideOverMutationProps = {
-    linkSaveMutation, linkGroupMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess,
+    linkSaveMutation, linkGroupMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess, linkGroupData, linkSaveData
   }
 
 
   return (
-    <SlideOverBase children={childComponents} settings={props.settings} setTheSettings={props.setTheSettings} {...slideOverMutationProps} {...formComponentProps} cacheData={cacheData} />
+    <SlideOverBase children={childComponents} {...slideOverMutationProps} {...formComponentProps} />
   )
 }
