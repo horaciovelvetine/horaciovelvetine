@@ -2,6 +2,7 @@ import React from 'react'
 
 const linkKey = '+Link'
 const groupKey = '+LinkGroup'
+const settingsKey = ' Settings'
 const initializer = '_init'
 
 
@@ -9,7 +10,7 @@ export default function settingsReducer(prevState, settingKey) {
 
   // create a copy of object to modify and return
   let newStateObject = Object.fromEntries(Object.entries(prevState).map(([k, v]) => [k, v]))
-
+  
   switch (settingKey) {
 
     case linkKey:
@@ -19,8 +20,8 @@ export default function settingsReducer(prevState, settingKey) {
       newStateObject['slideOverActionType'] = settingKey
       break;
 
-    case linkKey + initializer:
-    case groupKey + initializer:
+    case settingsKey:
+    
       debugger
       break;
 
