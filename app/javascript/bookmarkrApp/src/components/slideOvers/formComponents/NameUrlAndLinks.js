@@ -1,11 +1,9 @@
 import React from 'react'
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import {linkKey, groupKey} from '../utils/defaultSlideOverVals'
 
-const linkKey = '+Link'
-const groupKey = '+LinkGroup'
-
-export default function NameAndUrl(props) {
+export default function NameUrlAndLinks(props) {
   
   return (
     <>
@@ -18,7 +16,7 @@ export default function NameAndUrl(props) {
         </label>
         <input
           type="text"
-          name="new-link-name"
+          name="new-name"
           id="new-link-name"
           className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
           placeholder=""
@@ -35,7 +33,7 @@ export default function NameAndUrl(props) {
         </label>
         <input
           type="text"
-          name="new-link-url"
+          name="new-url"
           id="new-link-name"
           className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
           placeholder=""
