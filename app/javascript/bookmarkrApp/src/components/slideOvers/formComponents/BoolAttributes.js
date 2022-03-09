@@ -1,7 +1,13 @@
 import React from 'react'
 
 export default function BoolAttributes(props) {
-  const { isCurPinned: curPinned } = { ...props }
+  const { isPinned, setPinned } = { ...props }
+
+  function handleChange(e) {
+    e.preventDefault()
+    setPinned(!isPinned)
+  }
+
   return (
     <fieldset>
       <legend className="text-sm font-medium text-gray-900">Additional Options:</legend>
@@ -14,8 +20,9 @@ export default function BoolAttributes(props) {
               aria-describedby="pinned-boolean"
               type="radio"
               className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-              onChange={() => props.setPinned(!curPinned)}
-
+              checked={isPinned}
+              onKeyPress={(e) => handleChange(e)}
+              onChange={(e) => handleChange(e)}
             />
           </div>
           <div className="pl-7 text-sm">
