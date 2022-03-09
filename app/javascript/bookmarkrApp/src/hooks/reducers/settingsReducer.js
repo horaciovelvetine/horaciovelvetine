@@ -6,23 +6,28 @@ const initializer = '_init'
 
 
 export default function settingsReducer(prevState, settingKey) {
-const slideOverKey = () => settingKey == (linkKey || groupKey) ? true : false
+const slideOverKey = (key) => key == (linkKey || groupKey) ? true : false
 
   // creates a copy of object to modify
   let newStateObject = Object.fromEntries(Object.entries(prevState).map(([k, v]) => [k, v]))
   switch (settingKey) {
     
-    case slideOverKey:
+    case linkKey:
+    case groupKey:
+      
       newStateObject['slideOverOpen'] = !prevState['slideOverOpen']
       newStateObject['slideOverActionType'] = settingKey
       break;
     
     case linkKey + initializer:
+    case groupKey + initializer:
+      debugger
       break;
   
     default:
       debugger
       break;
   }
+  debugger
   return newStateObject
 }
