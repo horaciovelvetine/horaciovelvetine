@@ -5,15 +5,15 @@ import { slideOverSettingKey } from '../utils/defaultSlideOverVals'
 
 
 export default function SlideOverHeader(props) {
-
+  
   function closeSlideOver(e, props) {
     e.preventDefault()
-    props.setTheSettings(props.settings.actionType)
+    props.setTheSettings(props.settings.slideOverActionType)
   }
   return (
     <div className="bg-indigo-700 py-6 px-4 sm:px-6" >
       <div className="flex items-center justify-between">
-        <Dialog.Title className="text-lg font-medium text-white"> {props.settings.actionType}</Dialog.Title>
+        <Dialog.Title className="text-lg font-medium text-white"> {props.settings.slideOverActionType}</Dialog.Title>
         <div className="ml-3 flex h-7 items-center">
           <button
             type="button"
