@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function BoolAttributes(props) {
-  const { isCurFlagged: curFlagged, isCurPinned: curPinned } = { ...props }
+  const { isCurPinned: curPinned } = { ...props }
   return (
     <fieldset>
       <legend className="text-sm font-medium text-gray-900">Additional Options:</legend>
