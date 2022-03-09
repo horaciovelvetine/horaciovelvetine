@@ -1,7 +1,12 @@
 import React from 'react'
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+
+const linkKey = '+Link'
+const groupKey = '+LinkGroup'
 
 export default function NameAndUrl(props) {
-
+  
   return (
     <>
       <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
@@ -20,7 +25,8 @@ export default function NameAndUrl(props) {
           onChange={(e) => props.setName(e.target.value)}
         />
       </div>
-      <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+
+      {props.settings.slideOverActionType == linkKey && <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
         <label
           htmlFor="new-link-url"
           className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs font-medium text-gray-900"
@@ -35,7 +41,30 @@ export default function NameAndUrl(props) {
           placeholder=""
           onChange={(e) => props.setUrl(e.target.value)}
         />
-      </div>
+      </div>}
+
+      {props.settings.slideOverActionType == groupKey &&
+        <Autocomplete
+          multiple
+          autoComplete
+          autoHighlight
+          handleHomeEndKeys
+          limitTags={3}
+          filterSelectedOptions
+          id="add-tag-autocomplete"
+          options={props.links}
+          getOptionLabel={(option) => option.name}
+          defaultValue={props.groupsLinks.length < 1 ? [props.links[0]] : props.groupsLinks}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              variant="standard"
+              label="Links:"
+              placeholder="add..."
+            />
+          )}
+          onChange={(val) => props.dispatchAddTag(val)}
+        />}
     </>
   )
 }
