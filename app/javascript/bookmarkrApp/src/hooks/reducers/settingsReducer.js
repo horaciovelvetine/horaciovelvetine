@@ -6,10 +6,11 @@ const initializer = '_init'
 
 
 export default function settingsReducer(prevState, settingKey) {
-const slideOverKey = (key) => key == (linkKey || groupKey) ? true : false
 
-  // creates a copy of object to modify
+  // create a copy of object to modify and return
   let newStateObject = Object.fromEntries(Object.entries(prevState).map(([k, v]) => [k, v]))
+
+  debugger
   switch (settingKey) {
     
     case linkKey:
