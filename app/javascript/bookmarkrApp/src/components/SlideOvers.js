@@ -26,7 +26,7 @@ export default function SlideOvers(props) {
   const [isPinned, setPinned] = useState(null) //==> Shared
   
   //* Props objects
-  const childComponents = [ NameAndUrl, BoolAttributes, SlideOverHeader ]
+  const childComponents = [ NameAndUrl, BoolAttributes, SlideOverHeader, AddTagAutoComp ]
   const formComponentProps = {name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings }
   const slideOverMutationProps = {
     linkSaveMutation, linkGroupMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess,
