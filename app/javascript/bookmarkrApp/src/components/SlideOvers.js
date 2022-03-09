@@ -28,12 +28,10 @@ export default function SlideOvers(props) {
   //* Props objects
   const childComponents = [NameAndUrl, BoolAttributes, SlideOverHeader, AddTagAutoComp]
   const formComponentProps = { name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings, cacheData }
-  const slideOverMutationProps = {
-    linkSaveMutation, linkGroupMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess, linkGroupData, linkSaveData
-  }
+  
 
 
   return (
-    <SlideOverBase children={childComponents} {...slideOverMutationProps} {...formComponentProps} />
+    <SlideOverBase children={childComponents} {...formComponentProps} />
   )
 }
