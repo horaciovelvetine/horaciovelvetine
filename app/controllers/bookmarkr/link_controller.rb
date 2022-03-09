@@ -30,8 +30,8 @@ class LinkController < ActionController::Base
 
   private 
   
-  def link_params
-    params.require(:link).permit(:name, :href, :tags)
-  end
+  # def link_params
+  #   params.require(:link).permit(:name, :href, :tags)
+  # end
 
 end
