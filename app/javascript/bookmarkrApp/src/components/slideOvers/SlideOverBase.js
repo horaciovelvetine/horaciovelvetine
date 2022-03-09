@@ -9,7 +9,7 @@ import { slideOverSettingKey } from './utils/defaultSlideOverVals'
 export default function SlideOverBase(props) {
   
   const [NameAndUrl, BoolAttributes, SlideOverHeader, AddTagAutoComp ] = [...props.children]
-  const { name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings, cacheData, linkSaveMutation } = { ...props }
+  const { name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings, cacheData, linkSaveMutation, linkGroupMutation } = { ...props }
   
   //Grabs information from nested cacheData
   const tagsInfo = () => cacheData.data.data.attributes.tags
