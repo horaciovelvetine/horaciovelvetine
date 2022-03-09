@@ -1,5 +1,5 @@
 class BookmarkrController < ActionController::Base
-    skip_before_action :verify_authenticity_token, only: [:search]
+    skip_before_action :verify_authenticity_token, only: [:search, :index]
     
     def index
       payload = ResponseObject.cache
