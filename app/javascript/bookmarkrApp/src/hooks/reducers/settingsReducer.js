@@ -10,21 +10,20 @@ export default function settingsReducer(prevState, settingKey) {
   // create a copy of object to modify and return
   let newStateObject = Object.fromEntries(Object.entries(prevState).map(([k, v]) => [k, v]))
 
-  debugger
   switch (settingKey) {
-    
+
     case linkKey:
     case groupKey:
-      
+
       newStateObject['slideOverOpen'] = !prevState['slideOverOpen']
       newStateObject['slideOverActionType'] = settingKey
       break;
-    
+
     case linkKey + initializer:
     case groupKey + initializer:
       debugger
       break;
-  
+
     default:
       debugger
       break;
