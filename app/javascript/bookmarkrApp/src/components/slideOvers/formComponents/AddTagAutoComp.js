@@ -4,11 +4,22 @@ import TextField from '@mui/material/TextField';
 
 
 export default function AddTagAutoComp(props) {
+  
+  //==> ! Supposed to server up current add tags or the default add tag
+  //TODO: setDefaultTag(s): possible setting // for edit should pass in curTags/Links
+  const defaultValuePick = () => {
+    if (props.addTags.length < 1) return [props.tags[3]]
+    return props.addTags.map( t => t )
+  }
 
+  function handleChange(e, val) { 
+    e.preventDefault()
+    props.dispatchAddTag(val)
+  }
+  
   return (
     <Autocomplete
       multiple
-      autoComplete
       autoHighlight
       handleHomeEndKeys
       limitTags={3}
@@ -16,7 +27,7 @@ export default function AddTagAutoComp(props) {
       id="add-tag-autocomplete"
       options={props.tags}
       getOptionLabel={(option) => option.name}
-      defaultValue={ props.addTags.length < 1 ? [props.tags[3]] : props.addTags }
+      defaultValue={ [props.tags[3]] }
       renderInput={(params) => (
         <TextField
           {...params}
@@ -25,7 +36,7 @@ export default function AddTagAutoComp(props) {
           placeholder="add..."
         />
       )}
-      onChange={(val) => props.dispatchAddTag(val)}
+      onChange={(e, val) => handleChange(e, val)}
     />
   )
 }
