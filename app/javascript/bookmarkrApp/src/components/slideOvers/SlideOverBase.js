@@ -30,7 +30,8 @@ export default function SlideOverBase(props) {
         break;
 
       case groupKey:
-        groupSaveMutation({ name, groupsLinks, addTags, isPinned })
+        groupSaveMutation({ name, groupsLinks, tags: addTags, pinned: isPinned })
+        setTheSettings(settings.slideOverActionType)
         break;
 
       default:
