@@ -18,7 +18,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Main(props) {
+export default function MainContents(props) {
   //* Main Page Container Component
 
   //configures cache and related helpers

@@ -4,7 +4,7 @@ import { QueryClient, useQuery, QueryClientProvider } from 'react-query'
 import { useReducer } from 'react'
 
 //* (&sub) Components
-import MainContentsContainer from './src/components/MainContentsContainer'
+import MainContents from './src/components/MainContents'
 import Search from './src/components/Search'
 import SlideOvers from './src/components/SlideOvers'
 
@@ -14,7 +14,6 @@ import applicationMenuSelectionReducer from './src/hooks/reducers/applicationMen
 
 //* Requests 
 import fetchCache from './src/hooks/requests/fetchCache'
-import handleResultsMutation from './src/hooks/utils/handleResultsMutation'
 
 //* Mutations
 import useGetResults from './src/hooks/mutations/useGetResults'
@@ -49,7 +48,7 @@ export default function bookmarkrApp(props) {
     <QueryClientProvider client={queryClient}>
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchMutation} />
-        <MainContentsContainer {...childProps} results={(resultsIdle || resultsLoading) ? false : resultsData.data.attributes} cacheData={cacheLoading ? false : cacheData} />
+        <MainContents {...childProps} results={(resultsIdle || resultsLoading) ? false : resultsData.data.attributes} cacheData={cacheLoading ? false : cacheData} />
         <SlideOvers settings={settings} setTheSettings={setTheSettings} {...slideOverMutationProps} cacheData={cacheLoading ? false : cacheData} />
       </div>
     </QueryClientProvider>
