@@ -1,4 +1,4 @@
-export default function getResultsObjectInfo(resultIds, cache) {
+export default function getResultsInfo(resultIds, cache) {
   if (!resultIds) return resultIds
 
   const { tags, links } = { ...cache.data.data.attributes }
