@@ -21,14 +21,18 @@ import sortByAttr from '../utils/sortByAttr'
 
 // Hooks, Utils & Misc
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
 export default function Results(props) {
   //* Main Page Container Component
 
   //configures cache and related helpers
   const cacheData = props.cacheData //? { links: [{linkObj}], tags: [{tagObj}]} (query: 'cashe')
-  const tagsInfo = () => { 
-    debugger
-    sortByAttr('name', cacheData.tags) 
+  const tagsInfo = () => sortByAttr('name', cacheData.tags)
+  function intercept(menuSelection, baseUrl) {
+
   }
 
   return (
@@ -36,18 +40,18 @@ export default function Results(props) {
       <Router>
         <nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
           <div className='relative w-20 flex flex-col p-3 space-y-3'>
-            <ul>
-              {props.applicationMenuSelections.map((menuSelection) => {
+            {props.applicationMenuSelections.map((menuSelection) => {
+              return (
+                <Link to={`${menuSelection.url}`} key={menuSelection.name + '-' + menuSelection.order} className={classNames(
+                  menuSelection.current ? 'bg-gray-900 text-white' : 'text-gray-400 hover:bg-gray-700',
+                  'flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg'
+                )} >
+                  <span className='sr-only'>{menuSelection.name}</span>
+                  <menuSelection.icon className='h-6 w-6' aria-hidden='true' />
 
-                <li key={menuSelection.name + '-' + menuSelection.order}>
-
-                  { /* Links//!=> ['/', '/ktchn', 'portfolio', 'settings'] */}
-                  <Link to={baseUrl(`${menuSelection.url}`)}>
-                    <SidebarSelectionLink menuSelection={menuSelection} />
-                  </Link>
-                </li>
-              })}
-            </ul>
+              </Link>
+              )
+            })}
           </div>
         </nav>
 
@@ -59,19 +63,19 @@ export default function Results(props) {
 
             <Routes>
               {/* HOME (bookmarkr) */}
-              <Route path={baseUrl('/')}>
-                {!cacheData && <>Waiting on the server for a bit of info..</>}
-                {cacheData && <ResultsViewProvider children={[ListResult]} results={getResultsObjectInfo(props.resultIds.results, cacheData)} />}
-              </Route>
+              <Route path={'/'} element={<>ResultsViewProvider</>} />
+
+              {/* {!cacheData && <>Waiting on the server for a bit of info..</>}
+                {cacheData && <><ResultsViewProvider children={[ListResult]} results={getResultsObjectInfo(props.resultIds.results, cacheData)} /></>} */}
 
               {/* PORTFOLIO */}
-              <Route path={baseUrl('/portfolio')} element={<>Portfolio Page</>} />
+              <Route path={'/portfolio'} element={<>Portfolio Page</>} />
 
               {/* KTCHN */}
-              <Route path={baseUrl('/ktchn')} element={<p>KTCHN Page</p>} />
+              <Route path={'/ktchn'} element={<p>KTCHN Page</p>} />
 
               {/* SETTINGS */}
-              <Route path={baseUrl('/settings')} element={<p>Settings Page</p>} />
+              <Route path={'/settings'} element={<p>Settings Page</p>} />
 
             </Routes>
 
