@@ -3,7 +3,9 @@ import axios from "axios"
 
 export default async function postLink(payload) {
   debugger
-  const response = await axios.post(baseUrl('/linkGroup'), payload)
+
+  //==> Create Post Action for Link Groups
+  const response = await axios.post(baseUrl('/bookmarkr/linkGroup'), payload)
     .then((res) => {
       return res
     })

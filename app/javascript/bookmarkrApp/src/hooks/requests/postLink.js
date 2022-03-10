@@ -3,7 +3,8 @@ import axios from "axios"
 
 export default async function postLink(payload) {
 
-  const response = await axios.post(baseUrl('/link'), payload)
+  //==> Submits Create Link info to persist
+  const response = await axios.post(baseUrl('/bookmarkr/link'), payload)
 
     .then((res) => {
       return res.data.data
