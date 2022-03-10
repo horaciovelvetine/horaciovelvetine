@@ -9,16 +9,6 @@ export default function SlideOverBase(props) {
   const [NameUrlAndLinks, BoolAttributes, SlideOverHeader, AddTagAutoComp] = [...props.children]
   const { name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings, cacheData, linkSaveMutation, linkGroupMutation } = { ...props }
 
-  //Grabs information from nested cacheData
-  const tagsInfo = () => cacheData.data.data.attributes.tags
-  const linksInfo = () => cacheData.data.data.attributes.links
-
-  //==> to allow keyboard entry for entire form 
-  function preventDefaultFormSubmit(e) {
-    e.preventDefault()
-    console.log("form submission prevented")
-  }
-
   function handleSubmitClick(e) {
     e.preventDefault()
 
@@ -38,7 +28,6 @@ export default function SlideOverBase(props) {
         debugger
     }
   }
-
 
   return (
     <Transition.Root show={settings.slideOverOpen} as={Fragment}>
@@ -66,9 +55,9 @@ export default function SlideOverBase(props) {
                       <div className="divide-y divide-gray-200 px-4 sm:px-6">
                         <div className="space-y-6 pt-6 pb-5">
 
-                          {cacheData && <NameUrlAndLinks setName={setName} setUrl={setUrl} name={name} url={url} links={linksInfo()} groupsLinks={groupsLinks} dispatchGroupsLinks={dispatchGroupsLinks} settings={settings} />}
+                          {cacheData && <NameUrlAndLinks setName={setName} setUrl={setUrl} name={name} url={url} links={cacheData.links} groupsLinks={groupsLinks} dispatchGroupsLinks={dispatchGroupsLinks} settings={settings} />}
 
-                          {cacheData && <AddTagAutoComp tags={tagsInfo()} addTags={addTags} dispatchAddTag={dispatchAddTag} />}
+                          {cacheData && <AddTagAutoComp tags={cacheData.tags} addTags={addTags} dispatchAddTag={dispatchAddTag} />}
 
 
                           <BoolAttributes isPinned={isPinned} setPinned={setPinned} />
