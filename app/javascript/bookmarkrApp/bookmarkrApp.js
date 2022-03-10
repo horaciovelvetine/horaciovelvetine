@@ -49,7 +49,7 @@ export default function bookmarkrApp(props) {
     <QueryClientProvider client={queryClient}>
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchMutation} />
-        <MainContents {...childProps} results={(resultsIdle || resultsLoading) ? false : resultsData.data.attributes} cacheData={cacheLoading ? false : cacheData} />
+        <MainContents {...childProps} resultsIds={(resultsIdle || resultsLoading) ? false : resultsData.data.attributes} cacheData={cacheLoading ? false : cacheData} />
         <SlideOvers settings={settings} setTheSettings={setTheSettings} {...slideOverMutationProps} cacheData={cacheLoading ? false : cacheData} />
       </div>
     </QueryClientProvider>
