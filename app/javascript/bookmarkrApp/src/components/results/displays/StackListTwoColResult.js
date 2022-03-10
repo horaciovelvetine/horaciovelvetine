@@ -1,28 +1,27 @@
 import React from 'react'
-import { CalendarIcon, ChevronRightIcon } from '@heroicons/react/solid'
+import { ChevronRightIcon } from '@heroicons/react/solid'
 import { exampleLinks } from '../../../../config/exampleData'
 
 export default function StackListTwoColResult(props) {
-  debugger
-  //==> info needed to display const [id, name, url] = [...props]
+  
+  // debugger
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-md">
       <ul role="list" className="divide-y divide-gray-200">
+        <div className="grid grid-cols-3 gap-4 p-2" >
         {exampleLinks.map((link) => (
-          <li key={link.id}>
-            <a href="#" className="block hover:bg-gray-50">
+          <li key={link.id} className="bg-gray-100 bg-origin-content">
+            <a href={`${link.href}`} className="block hover:bg-gray-50">
               <div className="px-4 py-4 flex items-center sm:px-6">
                 <div className="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
                   <div className="truncate">
                     <div className="flex text-sm">
                       <p className="font-medium text-indigo-600 truncate">{link.name}</p>
-                      <p className="ml-1 flex-shrink-0 font-normal text-gray-500">in {link.name}</p>
                     </div>
                     <div className="mt-2 flex">
                       <div className="flex items-center text-sm text-gray-500">
-                        <CalendarIcon className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
                         <p>
-                          Date Details
+                          {link.href}
                         </p>
                       </div>
                     </div>
@@ -40,6 +39,8 @@ export default function StackListTwoColResult(props) {
             </a>
           </li>
         ))}
+        </div>
+
       </ul>
     </div>
   )
