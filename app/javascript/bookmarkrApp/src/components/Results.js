@@ -17,21 +17,19 @@ import SelectTagButton from './results/subComponents/SelectTagButton'
 import getResultsObjectInfo from '../hooks/utils/getResultsObjectInfo'
 import SidebarSelectionLink from './results/subComponents/SidebarSelectionLink';
 import baseUrl from '../../config/baseUrl';
+import sortByAttr from '../utils/sortByAttr'
 
 // Hooks, Utils & Misc
 
 export default function Results(props) {
   //* Main Page Container Component
 
-  // cacheData == { links: [{linkObj}], tags: [{tagObj}]} // from 'cashe' query
-  const cacheData = props.cacheData
-
-  //configures handles nesting said props
-  const nest = (data) => data.data.data.attributes
-  const tagsInfo = (data) => nest(data).tags.sort((a, b) => (a.name > b.name) ? 1 : -1)
-  const linksInfo = (data) => nest(data).links
-
-
+  //configures cache and related helpers
+  const cacheData = props.cacheData //? { links: [{linkObj}], tags: [{tagObj}]} (query: 'cashe')
+  const tagsInfo = () => { 
+    debugger
+    sortByAttr('name', cacheData.tags) 
+  }
 
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
@@ -40,6 +38,7 @@ export default function Results(props) {
           <div className='relative w-20 flex flex-col p-3 space-y-3'>
             <ul>
               {props.applicationMenuSelections.map((menuSelection) => {
+
                 <li key={menuSelection.name + '-' + menuSelection.order}>
 
                   { /* Links//!=> ['/', '/ktchn', 'portfolio', 'settings'] */}
@@ -60,7 +59,7 @@ export default function Results(props) {
 
             <Routes>
               {/* HOME (bookmarkr) */}
-              <Route path={ baseUrl('/') }>
+              <Route path={baseUrl('/')}>
                 {!cacheData && <>Waiting on the server for a bit of info..</>}
                 {cacheData && <ResultsViewProvider children={[ListResult]} results={getResultsObjectInfo(props.resultIds.results, cacheData)} />}
               </Route>
