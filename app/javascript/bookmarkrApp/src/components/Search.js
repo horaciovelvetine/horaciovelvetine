@@ -23,15 +23,18 @@ export default function Search(props) {
 
   return (
     <header className='flex-shrink-0 relative h-16 bg-white flex items-center'>
+
       <Logo />
-      <MobileApplicationSelectorDropdown applicationMenuSelections={props.applicationMenuSelections} dispatchApplicationMenu={props.dispatchApplicationMenu} />
-      <MobileNavBarToggleDisplayButton setTheSettings={props.setTheSettings} />
+      {/* <MobileApplicationSelectorDropdown applicationMenuSelections={props.applicationMenuSelections} dispatchApplicationMenu={props.dispatchApplicationMenu} /> */}
+      {/* <MobileNavBarToggleDisplayButton setTheSettings={props.setTheSettings} /> */}
 
       <div className='hidden md:min-w-0 md:flex-1 md:flex md:items-center md:justify-between'>
         <SearchForm setSearch={setSearch} bounceDelay={props.settings.searchDeBounceDelay} />
         <NavLinks navigation={props.navigationMenu} settings={props.settings} setTheSettings={props.setTheSettings} />
       </div>
+
       <MobileNavigationMenu settings={props.settings} setTheSettings={props.setTheSettings} navigation={props.navigationMenu} />
+
     </header>
   )
 }
