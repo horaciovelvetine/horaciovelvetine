@@ -18,6 +18,7 @@ import getResultsObjectInfo from '../hooks/utils/getResultsObjectInfo'
 import SidebarSelectionLink from './results/subComponents/SidebarSelectionLink';
 import baseUrl from '../../config/baseUrl';
 import sortByAttr from '../utils/sortByAttr'
+import SidebarLink from './results/subComponents/SidebarLink';
 
 // Hooks, Utils & Misc
 
@@ -31,27 +32,14 @@ export default function Results(props) {
   //configures cache and related helpers
   const cacheData = props.cacheData //? { links: [{linkObj}], tags: [{tagObj}]} (query: 'cashe')
   const tagsInfo = () => sortByAttr('name', cacheData.tags)
-  function intercept(menuSelection, baseUrl) {
 
-  }
 
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
       <Router>
         <nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
           <div className='relative w-20 flex flex-col p-3 space-y-3'>
-            {props.applicationMenuSelections.map((menuSelection) => {
-              return (
-                <Link to={`${menuSelection.url}`} key={menuSelection.name + '-' + menuSelection.order} className={classNames(
-                  menuSelection.current ? 'bg-gray-900 text-white' : 'text-gray-400 hover:bg-gray-700',
-                  'flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg'
-                )} >
-                  <span className='sr-only'>{menuSelection.name}</span>
-                  <menuSelection.icon className='h-6 w-6' aria-hidden='true' />
-
-              </Link>
-              )
-            })}
+            {props.applicationMenuSelections.map((menuSelection) => <SidebarLink menuSelection={menuSelection}/>)}
           </div>
         </nav>
 
