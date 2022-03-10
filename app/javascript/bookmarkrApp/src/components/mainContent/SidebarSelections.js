@@ -21,18 +21,20 @@ export default function SidebarSelections(props) {
 
         {/* //Maps over menu items (/config/defaultStateItems) */}
         {props.sidebarSelections.map((selection) => {
-          <Link
-            onClick={e => setCurrentSelection(e)}
-            key={selection.name + '-' + selection.order}
-            to={`${selection.url}`}
-            className={classNames(
-              selection.current ? 'bg-gray-900 text-white' : 'text-gray-400 hover:bg-gray-700',
-              'flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg'
-            )} >
-            <span className='sr-only'>{selection.name}</span>
-            <selection.icon className='h-6 w-6' aria-hidden='true' />
-          </Link>
-        })}z
+          return (
+            <Link
+              onClick={(e) => setCurrentSelection(e)}
+              key={selection.name + '-' + selection.order}
+              to={`${selection.url}`}
+              className={classNames(
+                selection.current ? 'bg-gray-900 text-white' : 'text-gray-400 hover:bg-gray-700',
+                'flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg'
+              )} >
+              <span className='sr-only'>{selection.name}</span>
+              <selection.icon className='h-6 w-6' aria-hidden='true' />
+            </Link>
+          )
+        })}
 
       </div>
     </nav>
