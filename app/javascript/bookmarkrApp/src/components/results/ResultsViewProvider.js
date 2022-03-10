@@ -1,5 +1,13 @@
 // All React & Lib
 import React from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams,
+  useRouteMatch
+} from "react-router-dom";
 
 import { exampleLink } from '../../../config/exampleData'
 
@@ -15,17 +23,15 @@ export default function ResultsViewProvider(props) {
   if (!props.results) {
     return (
       <>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-2">
-          <ListResult result={exampleLink} />
-        </div>
+        No Results to show
       </>
     )
   }
 
   if (props.results) {
     return (
-      <div className="grid gap-4 mt-2"> 
-        {props.results.map(result => <ListResult key={result.id} result={result}/>)}
+      <div>
+        <>We got Results bois</>
       </div>
     )
   }
