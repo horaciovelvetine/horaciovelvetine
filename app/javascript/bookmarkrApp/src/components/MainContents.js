@@ -36,7 +36,7 @@ export default function MainContents(props) {
 
             <Routes>
               {/* HOME (bookmarkr) */}
-            <Route path={'/*'} element={<ResultsViewProvider results={getResultsInfo(props, cacheData)}/>} />
+              <Route path={'/*'} element={<ResultsViewProvider results={getResultsInfo(props, cacheData)} />} />
 
               {/* {!cacheData && <>Waiting on the server for a bit of info..</>}
                 {cacheData && <><ResultsViewProvider children={[ListResult]} results={getResultsObjectInfo(props.resultIds.results, cacheData)} /></>} */}
