@@ -21,6 +21,7 @@ export default function AddTagAutoComp(props) {
   return (
     <Autocomplete
       multiple
+      autoComplete
       autoHighlight
       handleHomeEndKeys
       limitTags={3}
