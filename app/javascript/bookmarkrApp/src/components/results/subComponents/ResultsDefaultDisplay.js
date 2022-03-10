@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function NoResultsDefaultDisplay(props) {
+export default function ResultsDefaultDisplay(props) {
   
   
   return (
