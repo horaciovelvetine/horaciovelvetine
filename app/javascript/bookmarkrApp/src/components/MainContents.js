@@ -9,7 +9,7 @@ import SelectTagButton from './results/subComponents/SelectTagButton'
 
 
 //* Hooks, Utils & Misc
-import getResultsObjectInfo from '../hooks/utils/getResultsObjectInfo'
+import getResultsInfo from '../hooks/utils/getResultsInfo'
 import sortByAttr from '../utils/sortByAttr'
 import SidebarSelections from './mainContent/SidebarSelections';
 
@@ -20,6 +20,8 @@ export default function MainContents(props) {
   //configures cache and related helpers
   const cacheData = props.cacheData //? { links: [{linkObj}], tags: [{tagObj}]} (query: 'cashe')
   const tagsInfo = () => sortByAttr('name', cacheData.tags)
+
+  debugger
 
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
@@ -34,7 +36,7 @@ export default function MainContents(props) {
 
             <Routes>
               {/* HOME (bookmarkr) */}
-              <Route path={'/*'} element={<ResultsViewProvider />} />
+              <Route path={'/*'} element={<ResultsViewProvider results={getResultsInfo(props.resultIds.results, cacheData)}/>} />
 
               {/* {!cacheData && <>Waiting on the server for a bit of info..</>}
                 {cacheData && <><ResultsViewProvider children={[ListResult]} results={getResultsObjectInfo(props.resultIds.results, cacheData)} /></>} */}
