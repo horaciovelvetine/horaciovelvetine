@@ -21,7 +21,7 @@ export default function MainContents(props) {
   const cacheData = props.cacheData //? { links: [{linkObj}], tags: [{tagObj}]} (query: 'cashe')
   const tagsInfo = () => sortByAttr('name', cacheData.tags)
 
-  debugger
+  // debugger
 
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
@@ -36,7 +36,7 @@ export default function MainContents(props) {
 
             <Routes>
               {/* HOME (bookmarkr) */}
-              <Route path={'/*'} element={<ResultsViewProvider results={getResultsInfo(props.resultIds.results, cacheData)}/>} />
+              <Route path={'/*'} element={<ResultsViewProvider results={getResultsInfo(props, cacheData)}/>} />
 
               {/* {!cacheData && <>Waiting on the server for a bit of info..</>}
                 {cacheData && <><ResultsViewProvider children={[ListResult]} results={getResultsObjectInfo(props.resultIds.results, cacheData)} /></>} */}
