@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import ResultsViewProvider from './results/ResultsViewProvider'
 import TagCloud from './results/TagCloud'
 import SelectTagButton from './results/subComponents/SelectTagButton'
-import SidebarMenuSelection from './results/subComponents/SidebarMenuSelection';
 
 
 //* Hooks, Utils & Misc
@@ -14,12 +13,9 @@ import getResultsObjectInfo from '../hooks/utils/getResultsObjectInfo'
 import sortByAttr from '../utils/sortByAttr'
 import SidebarSelections from './mainContent/SidebarSelections';
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
+//* Main Page Container Component
 export default function MainContents(props) {
-  //* Main Page Container Component
 
   //configures cache and related helpers
   const cacheData = props.cacheData //? { links: [{linkObj}], tags: [{tagObj}]} (query: 'cashe')
@@ -28,7 +24,7 @@ export default function MainContents(props) {
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
       <Router>
-        <SidebarSelections sidebarSelection={props.SidebarSelections} dispatchSidebarSelection={props.dispatchSidebarSelection}/>
+        <SidebarSelections sidebarSelections={props.sidebarSelections} dispatchSidebarSelection={props.dispatchSidebarSelection} />
 
         <main className='min-w-0 flex-1 border-t border-gray-300 lg:flex h-screen'>
 
@@ -38,7 +34,7 @@ export default function MainContents(props) {
 
             <Routes>
               {/* HOME (bookmarkr) */}
-              <Route path={'/'} element={<ResultsViewProvider />} />
+              <Route path={'/*'} element={<ResultsViewProvider />} />
 
               {/* {!cacheData && <>Waiting on the server for a bit of info..</>}
                 {cacheData && <><ResultsViewProvider children={[ListResult]} results={getResultsObjectInfo(props.resultIds.results, cacheData)} /></>} */}
