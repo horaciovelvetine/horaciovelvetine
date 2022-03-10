@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function SidebarLink(props) {
+export default function SidebarMenuSelection(props) {
 
   let menuSelection = props.menuSeleciton
 

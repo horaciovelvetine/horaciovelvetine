@@ -18,7 +18,7 @@ import getResultsObjectInfo from '../hooks/utils/getResultsObjectInfo'
 import SidebarSelectionLink from './results/subComponents/SidebarSelectionLink';
 import baseUrl from '../../config/baseUrl';
 import sortByAttr from '../utils/sortByAttr'
-import SidebarLink from './results/subComponents/SidebarLink';
+import SidebarMenuSelection from './results/subComponents/SidebarMenuSelection';
 
 // Hooks, Utils & Misc
 
@@ -39,7 +39,7 @@ export default function Results(props) {
       <Router>
         <nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
           <div className='relative w-20 flex flex-col p-3 space-y-3'>
-            {props.applicationMenuSelections.map((menuSelection) => <SidebarLink menuSelection={menuSelection}/>)}
+            {props.applicationMenuSelections.map((menuSelection) => <SidebarMenuSelection menuSelection={menuSelection}/>)}
           </div>
         </nav>
 
