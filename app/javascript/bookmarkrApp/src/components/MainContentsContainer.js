@@ -1,45 +1,48 @@
 // All React & Lib
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  useParams,
-  useRouteMatch
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 //(&sub-) Components
 import ResultsViewProvider from './results/ResultsViewProvider'
-import ListResult from './results/subComponents/ListResult'
 import TagCloud from './results/TagCloud'
 import SelectTagButton from './results/subComponents/SelectTagButton'
-import getResultsObjectInfo from '../hooks/utils/getResultsObjectInfo'
-import SidebarSelectionLink from './results/subComponents/SidebarSelectionLink';
-import baseUrl from '../../config/baseUrl';
-import sortByAttr from '../utils/sortByAttr'
 import SidebarMenuSelection from './results/subComponents/SidebarMenuSelection';
 
-// Hooks, Utils & Misc
+
+//* Hooks, Utils & Misc
+import getResultsObjectInfo from '../hooks/utils/getResultsObjectInfo'
+import baseUrl from '../../config/baseUrl';
+import sortByAttr from '../utils/sortByAttr'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Results(props) {
+export default function Main(props) {
   //* Main Page Container Component
 
   //configures cache and related helpers
   const cacheData = props.cacheData //? { links: [{linkObj}], tags: [{tagObj}]} (query: 'cashe')
   const tagsInfo = () => sortByAttr('name', cacheData.tags)
 
-
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
       <Router>
         <nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
           <div className='relative w-20 flex flex-col p-3 space-y-3'>
-            {props.applicationMenuSelections.map((menuSelection) => <SidebarMenuSelection menuSelection={menuSelection}/>)}
+            {props.applicationMenuSelections.map((menuSelection) => {
+              return (
+                <Link
+                  key={menuSelection.name + '-' + menuSelection.order}
+                  to={`${menuSelection.url}`}
+                  className={classNames(
+                    menuSelection.current ? 'bg-gray-900 text-white' : 'text-gray-400 hover:bg-gray-700',
+                    'flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg'
+                  )} >
+                  <span className='sr-only'>{menuSelection.name}</span>
+                  <menuSelection.icon className='h-6 w-6' aria-hidden='true' />
+                </Link>)
+            })}
           </div>
         </nav>
 
@@ -51,7 +54,7 @@ export default function Results(props) {
 
             <Routes>
               {/* HOME (bookmarkr) */}
-              <Route path={'/'} element={<>ResultsViewProvider</>} />
+              <Route path={'/'} element={<ResultsViewProvider />} />
 
               {/* {!cacheData && <>Waiting on the server for a bit of info..</>}
                 {cacheData && <><ResultsViewProvider children={[ListResult]} results={getResultsObjectInfo(props.resultIds.results, cacheData)} /></>} */}
