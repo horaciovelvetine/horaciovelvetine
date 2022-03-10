@@ -1,4 +1,5 @@
 import React from 'react'
+import makeObjectCopy from '../utils/makeObjectCopy'
 
 const linkKey = '+Link'
 const groupKey = '+LinkGroup'
@@ -9,7 +10,7 @@ const initializer = '_init'
 export default function settingsReducer(prevState, settingKey) {
 
   // create a copy of object to modify and return
-  let newStateObject = Object.fromEntries(Object.entries(prevState).map(([k, v]) => [k, v]))
+  const newStateObject = makeObjectCopy(prevState)
   
   switch (settingKey) {
 
