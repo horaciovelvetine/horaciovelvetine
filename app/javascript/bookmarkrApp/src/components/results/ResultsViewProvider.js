@@ -8,7 +8,7 @@ import {
 
 
 //* (&sub) Components
-import { exampleLink } from '../../../config/exampleData'
+import { exampleLinks } from '../../../config/exampleData'
 import ResultsDefaultDisplay from './subComponents/ResultsDefaultDisplay';
 import CardGridResults from './displays/CardGridResults'
 import StackListTwoColResult from './displays/StackListTwoColResult'
@@ -42,7 +42,7 @@ export default function ResultsViewProvider(props) {
         </>
       }
       <>
-        <StackListTwoColResult data={exampleLink} />
+        <StackListTwoColResult data={exampleLinks} />
       </>
     </>
 
