@@ -32,29 +32,29 @@ export default function ResultsViewProvider(props) {
         aria-labelledby='primary-heading'
         className='min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-first m-2'>
         <div>Bookmarkr:
-          <Link to={results ? listStackResult : disableLink}>list</Link>
-          <Link to={results ? gridResult : disableLink}>grid</Link>
+          <Link to={results ? listView : disableLink}>list</Link>
+          <Link to={results ? gridView : disableLink}>grid</Link>
         </div>
 
 
-        
-        {!results && <ResultsDefaultDisplay links={linksInfo()}/>}
+
+        {cacheData && <ResultsDefaultDisplay links={linksInfo()} />}
         {results &&
           <>
             <Routes>
               <div>
-              <Route path={listView} element={<StackListTwoColResult  />
+                <Route path={listView} element={<StackListTwoColResult {...displayProps} />} />
               </div>
 
               <div>
-                <Route path={gridView} element={<CardGridResults />} />
+                <Route path={gridView} element={<CardGridResults {...displayProps} />} />
               </div>
             </Routes>
           </>
         }
-        
+
       </section>
-      
+
       <aside className='hidden lg:block lg:flex-shrink-0'>
         <div className='h-full relative flex flex-col w-96 bg-gray-100'>
           {cacheData && <TagCloud tags={tagsInfo(cacheData)} children={SelectTagButton} />}
