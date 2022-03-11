@@ -1,8 +1,7 @@
 export default function getResultsInfo(props, cache) {
   if (!props.resultsIds) return false
 
-  debugger //==> check links/tags spread
-  // const { tags, links } = { ...cache.data.data.attributes }
+  const { tags, links } = { ...cache }
   const resultObjects = []
 
   for (let index = 0; index < resultIds.length; index++) {
