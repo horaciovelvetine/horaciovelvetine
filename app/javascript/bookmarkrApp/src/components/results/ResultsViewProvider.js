@@ -1,14 +1,12 @@
-// All React & Lib
+//* All React & Lib
 import React from 'react'
 import { Routes, Route, Link } from "react-router-dom";
 
-
 //* (&sub) Components
-import { exampleLinks } from '../../../config/exampleData'
 import ResultsDefaultDisplay from './subComponents/ResultsDefaultDisplay';
 import CardGridResults from './displays/CardGridResults'
 import StackListTwoColResult from './displays/StackListTwoColResult'
-import TagCloud from './TagCloud';
+import TagCloud from './subComponents/TagCloud';
 import SelectTagButton from './subComponents/SelectTagButton';
 
 //* Hooks, Utils & Misc
@@ -22,6 +20,11 @@ export default function ResultsViewProvider(props) {
   const results = props.results
   const cacheData = props.cacheData
   const tagsInfo = () => sortByAttr('name', cacheData.tags)
+  const linksInfo = () => sortByAttr('name', cacheData.links)
+
+  const displayProps = {
+    results, cacheData
+  }
 
   return (
     <>
@@ -35,12 +38,12 @@ export default function ResultsViewProvider(props) {
 
 
         
-        {!results && <ResultsDefaultDisplay />}
+        {!results && <ResultsDefaultDisplay links={linksInfo()}/>}
         {results &&
           <>
             <Routes>
               <div>
-                <Route path={listView} element={<StackListTwoColResult />} />
+              <Route path={listView} element={<StackListTwoColResult  />
               </div>
 
               <div>
@@ -49,9 +52,7 @@ export default function ResultsViewProvider(props) {
             </Routes>
           </>
         }
-        <>
-          <StackListTwoColResult data={exampleLinks} />
-        </>
+        
       </section>
       
       <aside className='hidden lg:block lg:flex-shrink-0'>
