@@ -8,7 +8,7 @@ class BookmarkrCacheSerializer < ActionController::Base
   end
 
   attribute :links do |obj|
-    links = obj.links.map{ |link| {id: link.id, name: link.name, href: link.href, tags: only_ids(link, "tags") }}
+    links = obj.links.map{ |link| {id: link.id, name: link.name, href: link.href, tags: only_ids(link, "tags") isPinned: link.pinned }}
   end
 
   ## takes in object, and using a string value calls method on that obj to return an array of associated
