@@ -29,7 +29,7 @@ export default function MainContents(props) {
 
             <Routes>
               {/* HOME (bookmarkr) */}
-              <Route path={'/*'} element={<ResultsViewProvider results={getResultsInfo(props, cacheData)} cacheData={cacheData} />} />
+              <Route path={'/*'} element={<ResultsViewProvider results={getResultsInfo(props, cacheData)} cacheData={cacheData} settings={props.settings} setTheASettings={props.setTheSettings} />} />
 
               {/* PORTFOLIO */}
               <Route path={'/portfolio'} element={<>Portfolio Page</>} />
