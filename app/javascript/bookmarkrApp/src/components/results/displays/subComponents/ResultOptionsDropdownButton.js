@@ -10,12 +10,14 @@ function classNames(...classes) {
 
 export default function ResultOptionsDrowdownButton(props) {
 
-  function editLinkHandler(e) {
+  const { setTheSettings, linkDelMutation, id } = { ...props }
+  
+  function editLinkHandler(e, id) {
     e.preventDefault()
     debugger
   }
 
-  function delLinkHandler(e) {
+  function delLinkHandler(e, id) {
     e.preventDefault()
     debugger
   }
@@ -40,7 +42,7 @@ export default function ResultOptionsDrowdownButton(props) {
       >
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            <Menu.Item onClick={(e) => editLinkHandler(e)}>
+            <Menu.Item onClick={(e) => editLinkHandler(e, id)}>
               {({ active }) => (
                 <span
 
@@ -53,7 +55,7 @@ export default function ResultOptionsDrowdownButton(props) {
                 </span>
               )}
             </Menu.Item>
-            <Menu.Item onClick={(e) => delLinkHandler(e)}>
+            <Menu.Item onClick={(e) => delLinkHandler(e, id)}>
               {({ active }) => (
                 <span
                   className={classNames(
