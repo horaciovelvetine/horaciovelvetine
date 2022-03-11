@@ -14,15 +14,14 @@ import groupsLinksReducer from '../hooks/reducers/groupsLinksReducer'
 
 export default function SlideOvers(props) {
 
-  const { cacheData, linkGroupMutation, linkSaveMutation, setTheSettings, settings } = { ...props }
+  const { cacheData, linkGroupMutation, linkSaveMutation, setTheSettings, settings, fillInfo } = { ...props }
 
-  //* State Vals
-  //==> "Parent Object" (from NavLinks)
-  const [name, setName] = useState("") //=> Shared
-  const [url, setUrl] = useState("") //=> +Link
-  const [groupsLinks, dispatchGroupsLinks] = useReducer(groupsLinksReducer, []) //==> +Group
-  const [addTags, dispatchAddTag] = useReducer(addTagsReducer, []) //==> Shared
-  const [isPinned, setPinned] = useState(settings.addLinkDefPinned) //==> Shared
+  //* State Vals (links & groups)
+  const [name, setName] = useState((!fillInfo ? '' : fillInfo.name )) //=> Shared
+  const [url, setUrl] = useState((!fillInfo ? '' : fillInfo.url)) //=> +Link
+  const [groupsLinks, dispatchGroupsLinks] = useReducer(groupsLinksReducer, (!fillInfo ? [] : fillInfo.groupsLinks)) //==> +Group
+  const [addTags, dispatchAddTag] = useReducer(addTagsReducer, (!fillInfo ? [] : fillInfo.addTags)) //==> Shared
+  const [isPinned, setPinned] = useState((!fillInfo ? settings.addLinkDefPinned : fillInfo.isPinned)) //==> Shared
 
   //* Props objects
   const childComponents = [NameUrlAndLinks, BoolAttributes, SlideOverHeader, AddTagAutoComp]
