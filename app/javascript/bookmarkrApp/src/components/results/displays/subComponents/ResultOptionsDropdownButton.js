@@ -14,12 +14,12 @@ export default function ResultOptionsDrowdownButton(props) {
     e.preventDefault()
     debugger
   }
-  
-  function deleteLinkHandler(e) {
+
+  function delLinkHandler(e) {
     e.preventDefault()
     debugger
   }
-  
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -40,10 +40,10 @@ export default function ResultOptionsDrowdownButton(props) {
       >
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            <Menu.Item onClick={(e)=> editLinkHandler(e)}>
+            <Menu.Item onClick={(e) => editLinkHandler(e)}>
               {({ active }) => (
                 <span
-                  
+
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -53,10 +53,9 @@ export default function ResultOptionsDrowdownButton(props) {
                 </span>
               )}
             </Menu.Item>
-            <Menu.Item onClick={(e) => editLinkHandler(e)}>
+            <Menu.Item onClick={(e) => delLinkHandler(e)}>
               {({ active }) => (
                 <span
-                  href="#"
                   className={classNames(
                     active ? 'bg-gray-100 text-red-900' : 'text-red-700',
                     'block px-4 py-2 text-sm'
