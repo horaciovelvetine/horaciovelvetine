@@ -1,4 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
+import React from 'react'
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { DotsVerticalIcon } from '@heroicons/react/solid'
@@ -8,6 +9,17 @@ function classNames(...classes) {
 }
 
 export default function ResultOptionsDrowdownButton(props) {
+
+  function editLinkHandler(e) {
+    e.preventDefault()
+    debugger
+  }
+  
+  function deleteLinkHandler(e) {
+    e.preventDefault()
+    debugger
+  }
+  
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -28,60 +40,32 @@ export default function ResultOptionsDrowdownButton(props) {
       >
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            <Menu.Item>
+            <Menu.Item onClick={(e)=> editLinkHandler(e)}>
               {({ active }) => (
-                <a
-                  href="#"
+                <span
+                  
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
                   )}
                 >
-                  Account settings
-                </a>
+                  Edit
+                </span>
               )}
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item onClick={(e) => editLinkHandler(e)}>
               {({ active }) => (
-                <a
+                <span
                   href="#"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                    active ? 'bg-gray-100 text-red-900' : 'text-red-700',
                     'block px-4 py-2 text-sm'
                   )}
                 >
-                  Support
-                </a>
+                  Delete
+                </span>
               )}
             </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  License
-                </a>
-              )}
-            </Menu.Item>
-            <form method="POST" action="#">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="submit"
-                    className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block w-full text-left px-4 py-2 text-sm'
-                    )}
-                  >
-                    Sign out
-                  </button>
-                )}
-              </Menu.Item>
-            </form>
           </div>
         </Menu.Items>
       </Transition>
