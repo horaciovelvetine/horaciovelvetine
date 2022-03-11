@@ -18,13 +18,13 @@ const disableLink = '#'
 
 export default function ResultsViewProvider(props) {
 
-  const { results, linkDelMutation, cacheData, settings, setTheSettings } = { ...props }
+  const { results, linkDelMutation, linkEditMutation, cacheData, settings, setTheSettings } = { ...props }
   
   const linksInfo = () => sortByAttr('name', cacheData.links)
   const tagsInfo = () => sortByAttr('name', cacheData.tags)
 
   const displayProps = {
-    results, cacheData, settings, setTheSettings, linkDelMutation
+    results, cacheData, settings, setTheSettings, linkDelMutation, linkEditMutation
   }
   
   return (

@@ -10,7 +10,7 @@ function classNames(...classes) {
 
 export default function ResultOptionsDrowdownButton(props) {
 
-  const { setTheSettings, linkDelMutation, id } = { ...props }
+  const { setTheSettings, linkDelMutation, id, linkEditMutation } = { ...props }
   
   function editLinkHandler(e, id) {
     e.preventDefault()

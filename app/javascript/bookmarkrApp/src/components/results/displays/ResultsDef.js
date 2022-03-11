@@ -2,7 +2,7 @@ import React from 'react'
 import ResultOptionsDrowdownButton from './subComponents/ResultOptionsDropdownButton'
 
 export default function ResultsDef(props) {
-  const { links, setTheSettings, linkDelMutation } = { ...props }
+  const { links, setTheSettings, linkDelMutation, linkEditMutation } = { ...props }
 
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-md">
@@ -30,7 +30,7 @@ export default function ResultsDef(props) {
 
                   <div className="ml-5 flex-shrink-0">
                     <span className="h-5 w-5 text-gray-400" aria-hidden="true" >
-                      <ResultOptionsDrowdownButton setTheSettings={setTheSettings} linkDelMutation={linkDelMutation} id={link.id} />
+                      <ResultOptionsDrowdownButton setTheSettings={setTheSettings} linkDelMutation={linkDelMutation} id={link.id} linkEditMutation={linkEditMutation} />
                     </span>
                   </div>
 

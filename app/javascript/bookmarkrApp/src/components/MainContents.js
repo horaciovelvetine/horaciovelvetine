@@ -11,7 +11,7 @@ import SidebarSelections from './mainContent/SidebarSelections';
 //* Main Page Container Component
 export default function MainContents(props) {
 
-  const { cacheData, dispatchSidebarSelection, results, setTheSettings, settings, sidebarSelections, linkDelMutation } = { ...props }
+  const { cacheData, dispatchSidebarSelection, results, setTheSettings, settings, sidebarSelections, linkDelMutation, linkEditMutation } = { ...props }
 
   const bookmarkrProps = { cacheData, settings, setTheSettings }
   const devHubProps = { sidebarSelections, dispatchSidebarSelection }
@@ -25,7 +25,7 @@ export default function MainContents(props) {
 
           <Routes>
             {/* HOME (bookmarkr) */}
-            <Route path={'/*'} element={<ResultsViewProvider results={results} linkDelMutation={linkDelMutation} { ...bookmarkrProps} />} />
+            <Route path={'/*'} element={<ResultsViewProvider results={results} linkDelMutation={linkDelMutation} linkEditMutation={linkEditMutation} { ...bookmarkrProps} />} />
 
             {/* PORTFOLIO */}
             <Route path={'/portfolio'} element={<p>Portfolio</p>} />

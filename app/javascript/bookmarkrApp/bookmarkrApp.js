@@ -19,6 +19,7 @@ import fetchCache from './src/hooks/requests/fetchCache'
 import useGetResults from './src/hooks/mutations/useGetResults'
 import useLinkSave from './src/hooks/mutations/useLinkSave'
 import useDelLink from './src/hooks/mutations/useDelLink'
+import useEditLink from './src/hooks/mutations/useEditLink'
 import useLinkGroupSave from './src/hooks/mutations/useLinkGroupSave'
 
 //* Util 
@@ -40,6 +41,7 @@ export default function bookmarkrApp(props) {
   const { mutate: searchMutation, isIdle: resultsIdle, isLoading: resultsLoading, data: resultsData, } = useGetResults()
   const { mutate: linkSaveMutation, isIdle: linkSaveIdle, isSuccess: linkSaveSuccess, data: linkSaveData } = useLinkSave()
   const { mutate: linkDelMutation, isIdle: delIdle, isSuccess: delSuccess, data: delData } = useDelLink()
+  const { mutate: linkEditMutation, isIdle: editIdle, isSuccess: editSuccess, data: editData } = useEditLink()
   const { mutate: linkGroupMutation, isIdle: linkGroupIdle, isSuccess: linkGroupSaveSuccess, data: linkGroupData } = useLinkGroupSave()
 
   //* Setup Props Objects
@@ -59,7 +61,7 @@ export default function bookmarkrApp(props) {
     <QueryClientProvider client={queryClient}>
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchMutation} />
-        <MainContents {...childProps} results={resultsIdPropFix()} cacheData={cacheLoading ? false : cacheData} linkDelMutation={linkDelMutation}/>
+        <MainContents {...childProps} results={resultsIdPropFix()} cacheData={cacheLoading ? false : cacheData} linkDelMutation={linkDelMutation} linkEditMutation={linkEditMutation} />
         <SlideOvers settings={settings} setTheSettings={setTheSettings} {...slideOverMutationProps} cacheData={cacheLoading ? false : cacheData} />
       </div>
     </QueryClientProvider>
