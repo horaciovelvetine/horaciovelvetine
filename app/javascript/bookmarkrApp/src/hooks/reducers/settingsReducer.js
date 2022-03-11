@@ -12,11 +12,6 @@ export default function settingsReducer(prevState, settingKey) {
 
     case linkKey:
     case groupKey:
-
-      newStateObject['slideOverOpen'] = !prevState['slideOverOpen']
-      newStateObject['slideOverActionType'] = settingKey
-      break;
-
     case editKey:
     case editGroupKey:
 
