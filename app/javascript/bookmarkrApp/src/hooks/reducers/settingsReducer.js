@@ -1,11 +1,6 @@
 import React from 'react'
 import makeObjectCopy from '../utils/makeObjectCopy'
-
-const linkKey = '+Link'
-const groupKey = '+LinkGroup'
-const editKey = 'Edit Link'
-const editGroupKey = 'Edit Group'
-const settingsKey = 'Settings'
+import {linkKey, groupKey, editKey, editGroupKey, settingsKey} from '../../components/slideOvers/utils/defaultSlideOverVals'
 
 
 export default function settingsReducer(prevState, settingKey) {
@@ -22,12 +17,12 @@ export default function settingsReducer(prevState, settingKey) {
       newStateObject['slideOverActionType'] = settingKey
       break;
 
-    // case editKey:
-    // case editGroupKey:
+    case editKey:
+    case editGroupKey:
 
-    //   newStateObject['slideOverOpen'] = !prevState['slideOverOpen']
-    //   newStateObject['slideOverActionType'] = settingKey
-    //   break;
+      newStateObject['slideOverOpen'] = !prevState['slideOverOpen']
+      newStateObject['slideOverActionType'] = settingKey
+      break;
 
     case settingsKey:
     
