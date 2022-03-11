@@ -40,7 +40,7 @@ export default function bookmarkrApp(props) {
   //* Mutations and Actions
   const { mutate: searchMutation, isIdle: resultsIdle, isLoading: resultsLoading, data: resultsData, } = useGetResults()
   const { mutate: linkSaveMutation, isIdle: linkSaveIdle, isSuccess: linkSaveSuccess, data: linkSaveData } = useLinkSave()
-  const { mutate: linkDelMutation, isIdle: delIdle, isSuccess: delSuccess, data: delData } = useDelLink()
+  const { mutate: linkDelMutation } = useDelLink()
   const { mutate: linkEditMutation, isIdle: editIdle, isSuccess: editSuccess, data: editData } = useEditLink()
   const { mutate: linkGroupMutation, isIdle: linkGroupIdle, isSuccess: linkGroupSaveSuccess, data: linkGroupData } = useLinkGroupSave()
 
