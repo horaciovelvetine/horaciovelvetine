@@ -15,7 +15,7 @@ export default function ResultOptionsDrowdownButton(props) {
   const { setTheSettings, linkDelMutation, link, setSoFill } = { ...props }
 
   const soFillObj = (d) => {
-    const tempFillObj = { id: d.id, name: d.name, url: d.url, addTags: d.tags, isPinned: d.isPinned }
+    const tempFillObj = { id: d.id, name: d.name, url: d.href, addTags: d.tags, isPinned: d.isPinned }
     return tempFillObj
   }
 
