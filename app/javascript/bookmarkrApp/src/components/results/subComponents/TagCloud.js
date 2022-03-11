@@ -4,9 +4,8 @@ import sortByAttr from '../../../utils/sortByAttr'
 
 
 export default function TagCloud(props) {
-  const cacheData = props.cacheData
-  const tags = sortByAttr('name', cacheData.tags)
 
+  const tags = props.tags
 
   return (
     <div className="mt-2">
