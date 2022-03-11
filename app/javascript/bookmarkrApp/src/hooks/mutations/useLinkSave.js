@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from 'react-query'
-
 import postLink from '../requests/postLink'
 
 export default function useLinkSave() {
