@@ -30,7 +30,7 @@ export default function ResultsDef(props) {
 
                   <div className="ml-5 flex-shrink-0">
                     <span className="h-5 w-5 text-gray-400" aria-hidden="true" >
-                      <ResultOptionsDrowdownButton setTheSettings={setTheSettings} linkDelMutation={linkDelMutation} />
+                      <ResultOptionsDrowdownButton setTheSettings={setTheSettings} linkDelMutation={linkDelMutation} id={link.id} />
                     </span>
                   </div>
 
