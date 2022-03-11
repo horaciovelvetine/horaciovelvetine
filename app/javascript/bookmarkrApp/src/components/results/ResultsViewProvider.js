@@ -11,6 +11,7 @@ import SelectTagButton from './subComponents/SelectTagButton';
 
 //* Hooks, Utils & Misc
 import sortByAttr from '../../utils/sortByAttr'
+import getResultsInfo from '../../hooks/utils/getResultsInfo';
 
 const gridView = '/view/cardGridResults'
 const listView = '/view/listStackResults'
@@ -18,14 +19,16 @@ const disableLink = '#'
 
 export default function ResultsViewProvider(props) {
   
-  const { results, cacheData, settings, setTheSettings } = { ...props }
+  const { resultsIds, cacheData, settings, setTheSettings } = { ...props }
   
   const linksInfo = () => sortByAttr('name', cacheData.links)
   const tagsInfo = () => sortByAttr('name', cacheData.tags)
   
   const displayProps = {
-    results, cacheData, settings, setTheSettings
+    cacheData, settings, setTheSettings
   }
+
+  const results = () => getResultsInfo(resultsIds, cacheData)
   
   return (
     <>
@@ -38,15 +41,15 @@ export default function ResultsViewProvider(props) {
         </div>
 
         {cacheData && <ResultsDef tags={tagsInfo()} links={linksInfo()} settings={settings} setTheSettings={setTheSettings} />}
-        {results &&
+        {resultsIds &&
           <>
             <Routes>
               <div>
-                <Route path={listView} element={<StackListTwoColResult { ...displayProps } />} />
+              <Route path={listView} element={<StackListTwoColResult {...displayProps} results={getResultsInfo(resultsIds, cacheData)}/>} />
               </div>
 
               <div>
-                <Route path={gridView} element={<CardGridResults { ...displayProps } />} />
+              <Route path={gridView} element={<CardGridResults {...displayProps} results={getResultsInfo(resultsIds, cacheData)}/>} />
               </div>
             </Routes>
           </>
