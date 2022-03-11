@@ -15,16 +15,15 @@ export default function ResultOptionsDrowdownButton(props) {
   const { setTheSettings, linkDelMutation, link, setSoFill } = { ...props }
 
   const soFillObj = (d) => {
-    const tempFillObj = { id: d.id, name: d.name, url: d.url, addTags: d.tags, isPinned }
+    const tempFillObj = { id: d.id, name: d.name, url: d.url, addTags: d.tags, isPinned: d.isPinned }
     return tempFillObj
   }
 
   function editLinkHandler(e, link) {
     e.preventDefault()
-    debugger
-    //==> check link for: name, url, addTags, groupsLinks, isPinned
     setSoFill(soFillObj(link))
     setTheSettings(editKey)
+    debugger
   }
 
   function delLinkHandler(e, link) {
