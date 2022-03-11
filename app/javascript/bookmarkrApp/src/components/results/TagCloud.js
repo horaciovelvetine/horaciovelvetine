@@ -1,10 +1,12 @@
-//React + Lib Imports
+//* React + Lib Imports
 import React from 'react'
+import sortByAttr from '../../utils/sortByAttr'
 
-// (&sub) Components
 
 export default function TagCloud(props) {
-  
+  const cacheData = props.cacheData
+  const tags = sortByAttr('name', cacheData.tags)
+
 
   return (
     <div className="mt-2">
@@ -12,7 +14,7 @@ export default function TagCloud(props) {
       <hr></hr>
 
       <div role="tagList" className="mt-1">
-        {props.tags.map((tag) => (
+        {tags.map((tag) => (
           props.children(tag))
         )}
       </div>
