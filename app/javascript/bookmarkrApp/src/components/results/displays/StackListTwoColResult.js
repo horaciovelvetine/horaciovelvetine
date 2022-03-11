@@ -26,11 +26,6 @@ export default function StackListTwoColResult(props) {
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 flex-shrink-0 sm:mt-0 sm:ml-5">
-                    <div className="flex overflow-hidden -space-x-1">
-                      <>Button</>
-                    </div>
-                  </div>
                 </div>
                 <div className="ml-5 flex-shrink-0">
                   <ChevronRightIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
