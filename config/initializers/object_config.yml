@@ -127,7 +127,7 @@ links:
     }
   - {
       name: 'React Docs',
-      href: 'https://github.com/heartcombo/devise',
+      href: 'https://reactjs.org/docs/getting-started.html',
       pinned: false,
       tagNames:
         [
