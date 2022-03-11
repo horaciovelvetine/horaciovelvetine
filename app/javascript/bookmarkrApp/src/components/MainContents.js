@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 //* (&sub-) Components
 import ResultsViewProvider from './results/ResultsViewProvider'
-import TagCloud from './results/TagCloud'
-import SelectTagButton from './results/subComponents/SelectTagButton'
 
 //* Hooks, Utils & Misc
 import getResultsInfo from '../hooks/utils/getResultsInfo'
