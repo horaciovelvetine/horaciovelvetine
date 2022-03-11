@@ -7,6 +7,7 @@ import { DotsVerticalIcon } from '@heroicons/react/solid'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+const editKey = 'Edit Link'
 
 export default function ResultOptionsDrowdownButton(props) {
 
@@ -14,7 +15,7 @@ export default function ResultOptionsDrowdownButton(props) {
 
   function editLinkHandler(e, id) {
     e.preventDefault()
-    debugger
+    setTheSettings(editKey)
   }
 
   function delLinkHandler(e, id) {

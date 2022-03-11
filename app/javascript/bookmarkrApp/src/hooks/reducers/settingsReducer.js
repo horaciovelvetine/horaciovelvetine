@@ -3,8 +3,9 @@ import makeObjectCopy from '../utils/makeObjectCopy'
 
 const linkKey = '+Link'
 const groupKey = '+LinkGroup'
-const settingsKey = ' Settings'
-const initializer = '_init'
+const editKey = 'Edit Link'
+const editGroupKey = 'Edit Group'
+const settingsKey = 'Settings'
 
 
 export default function settingsReducer(prevState, settingKey) {
@@ -16,6 +17,13 @@ export default function settingsReducer(prevState, settingKey) {
 
     case linkKey:
     case groupKey:
+
+      newStateObject['slideOverOpen'] = !prevState['slideOverOpen']
+      newStateObject['slideOverActionType'] = settingKey
+      break;
+
+    case editKey:
+    case editGroupKey:
 
       newStateObject['slideOverOpen'] = !prevState['slideOverOpen']
       newStateObject['slideOverActionType'] = settingKey
