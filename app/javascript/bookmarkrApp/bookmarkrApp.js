@@ -20,6 +20,9 @@ import useGetResults from './src/hooks/mutations/useGetResults'
 import useLinkSave from './src/hooks/mutations/useLinkSave'
 import useLinkGroupSave from './src/hooks/mutations/useLinkGroupSave'
 
+//* Util 
+import getResultsInfo from './src/hooks/utils/getResultsInfo'
+
 const queryClient = new QueryClient()
 
 //! APPLICATION START !//
@@ -45,11 +48,16 @@ export default function bookmarkrApp(props) {
     linkSaveMutation, linkGroupMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess, linkSaveData, linkGroupData
   }
 
+  function resultsIdPropFix() {
+    if (resultsIdle || resultsLoading) return false
+    return getResultsInfo(resultsData.data.attributes.results, cacheData)
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchMutation} />
-        <MainContents {...childProps} resultsIds={(resultsIdle || resultsLoading) ? false : resultsData.data.attributes} cacheData={cacheLoading ? false : cacheData} />
+        <MainContents {...childProps} results={resultsIdPropFix()} cacheData={cacheLoading ? false : cacheData} />
         <SlideOvers settings={settings} setTheSettings={setTheSettings} {...slideOverMutationProps} cacheData={cacheLoading ? false : cacheData} />
       </div>
     </QueryClientProvider>
