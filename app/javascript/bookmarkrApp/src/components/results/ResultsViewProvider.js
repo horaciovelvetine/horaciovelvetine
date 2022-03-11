@@ -3,7 +3,7 @@ import React from 'react'
 import { Routes, Route, Link } from "react-router-dom";
 
 //* (&sub) Components
-import ResultsDefaultDisplay from './subComponents/ResultsDefaultDisplay';
+import ResultsDef from './displays/ResultsDef';
 import CardGridResults from './displays/CardGridResults'
 import StackListTwoColResult from './displays/StackListTwoColResult'
 import TagCloud from './subComponents/TagCloud';
@@ -17,15 +17,13 @@ const listView = '/view/listStackResults'
 const disableLink = '#'
 
 export default function ResultsViewProvider(props) {
-  const results = props.results
-  const cacheData = props.cacheData
+  
+  const { results, cacheData, settings, setTheSettings } = { ...props }
   const tagsInfo = () => sortByAttr('name', cacheData.tags)
-  const linksInfo = () => sortByAttr('name', cacheData.links)
-
   const displayProps = {
-    results, cacheData
+    results, cacheData, settings, setTheSettings
   }
-
+  
   return (
     <>
       <section
@@ -38,16 +36,16 @@ export default function ResultsViewProvider(props) {
 
 
 
-        {cacheData && <ResultsDefaultDisplay links={linksInfo()} />}
+        {cacheData && <ResultsDef cacheData={cacheData} settings={settings} setTheSettings={setTheSettings} />}
         {results &&
           <>
             <Routes>
               <div>
-                <Route path={listView} element={<StackListTwoColResult {...displayProps} />} />
+                <Route path={listView} element={<StackListTwoColResult { ...displayProps } />} />
               </div>
 
               <div>
-                <Route path={gridView} element={<CardGridResults {...displayProps} />} />
+                <Route path={gridView} element={<CardGridResults { ...displayProps } />} />
               </div>
             </Routes>
           </>
