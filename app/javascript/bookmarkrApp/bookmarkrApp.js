@@ -37,10 +37,6 @@ export default function bookmarkrApp(props) {
   const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [sidebarSelections, dispatchSidebarSelection] = useReducer(sidebarSelectionReducer, applicationMenu)
   const [soFill, setSoFill] = useState(false)
-  
-  useEffect(() => {
-    console.log(soFill)
-  }, [soFill])
 
   //* Mutations and Actions
   const { mutate: searchMutation, isIdle: resultsIdle, isLoading: resultsLoading, data: resultsData, } = useGetResults()
