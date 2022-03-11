@@ -16,7 +16,9 @@ module Bookmarkr
     end
 
     def update
+      
       binding.pry
+      
       if @link.update(link_params)
         render json: {notice: "Link was updated successfully"}
       else
@@ -25,8 +27,10 @@ module Bookmarkr
     end
 
     def destroy
-      binding.pry
-      if @link.destroy
+
+      link = Link.find(params[:id])
+
+      if link.destroy
         render json: {notice: "Link deleted"}
       else
         render json: {notice: "Unprocessable Delete", status: :unprocessable_entity, errors: @link.errors }

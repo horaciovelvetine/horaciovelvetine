@@ -1,11 +1,11 @@
-import getSearchResults from '../requests/getSearchResults'
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
+import deleteLink from '../requests/deleteLink'
 
 export default function useDelLink() {
-  return useMutation(getSearchResults, {
+  const queryClient = useQueryClient()
+  return useMutation(deleteLink, {
     onSuccess: (res) => {
-      console.log(res)
-      debugger
+      queryClient.invalidateQueries('cashe')
       return res
     }
   })
