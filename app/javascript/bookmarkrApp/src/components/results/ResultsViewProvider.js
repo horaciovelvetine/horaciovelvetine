@@ -18,13 +18,13 @@ const disableLink = '#'
 
 export default function ResultsViewProvider(props) {
 
-  const { results, cacheData, settings, setTheSettings } = { ...props }
+  const { results, linkDelMutation, cacheData, settings, setTheSettings } = { ...props }
   
   const linksInfo = () => sortByAttr('name', cacheData.links)
   const tagsInfo = () => sortByAttr('name', cacheData.tags)
 
   const displayProps = {
-    results, cacheData, settings, setTheSettings
+    results, cacheData, settings, setTheSettings, linkDelMutation
   }
   
   return (
@@ -35,10 +35,10 @@ export default function ResultsViewProvider(props) {
         <div>Bookmarkr:</div>
         {cacheData &&
           <>
-            {(!results || results.length == 0) && <ResultsDef tags={tagsInfo()} links={linksInfo()} settings={settings} setTheSettings={setTheSettings} />}
+          {(!results || results.length == 0) && <ResultsDef links={linksInfo()} tags={tagsInfo()} {...displayProps } />}
           </>}
         
-        {results && <StackListTwoColResult {...displayProps} />}
+        {results && <StackListTwoColResult { ...displayProps } />}
 
       </section>
 
