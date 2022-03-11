@@ -36,7 +36,7 @@ export default function bookmarkrApp(props) {
   //* config all state related
   const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [sidebarSelections, dispatchSidebarSelection] = useReducer(sidebarSelectionReducer, applicationMenu)
-  const [ soFill, setSoFill ] = useState()
+  const [ soFill, setSoFill ] = useState(false)
 
   //* Mutations and Actions
   const { mutate: searchMutation, isIdle: resultsIdle, isLoading: resultsLoading, data: resultsData, } = useGetResults()
@@ -50,7 +50,7 @@ export default function bookmarkrApp(props) {
     navigationMenu, settings, setTheSettings, dispatchSidebarSelection, sidebarSelections, setSoFill
   }
   const slideOverMutationProps = {
-    linkSaveMutation, linkGroupMutation, linkGroupIdle, linkSaveIdle, linkEditMutation
+  linkSaveMutation, linkGroupMutation, linkGroupIdle, linkSaveIdle, linkEditMutation
   }
 
   function resultsIdPropFix() {
