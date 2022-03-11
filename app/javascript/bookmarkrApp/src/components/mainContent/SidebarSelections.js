@@ -33,7 +33,6 @@ export default function SidebarSelections(props) {
                 selection.current ? 'bg-gray-900 text-white' : 'text-gray-400 hover:bg-gray-700',
                 'flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg'
               )} >
-              <span className='sr-only'>{selection.name}</span>
               <selection.icon className='h-6 w-6' aria-hidden='true' id={`${selection.name}`} onChange={(e) => intervene(e)} />
             </Link>
           )
