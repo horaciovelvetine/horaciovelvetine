@@ -23,7 +23,6 @@ export default function ResultOptionsDrowdownButton(props) {
     e.preventDefault()
     setSoFill(soFillObj(link))
     setTheSettings(editKey)
-    debugger
   }
 
   function delLinkHandler(e, link) {
