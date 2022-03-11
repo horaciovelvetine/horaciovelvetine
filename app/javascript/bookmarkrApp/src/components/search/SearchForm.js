@@ -7,16 +7,14 @@ import { SearchIcon } from '@heroicons/react/solid';
 import useBounceDelay from '../../hooks/useBounceDelay'
 
 export default function SearchForm(props) {
-  const [searchEvent, setSearchEvent] = useState(null)
-  const setSearch = props.setSearch
-  const bounceDelay = props.bounceDelay
-
-
+  const [searchEvent, setSearchEvent] = useState('')
+  const delay = props.settings.searchDeBounceDelay
+  
   useBounceDelay(() => {
-      const search = searchEvent;
-      setSearch({ query: search.query });
-    },
-    bounceDelay,
+      
+    props.setSearch({ query: searchEvent.query });
+  },
+    delay,
     [searchEvent]
   );
 
