@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useReducer } from 'react'
+import { useState, useReducer, useEffect } from 'react'
 
 //(&sub-) Components
 import SlideOverBase from './slideOvers/SlideOverBase'
@@ -16,17 +16,19 @@ export default function SlideOvers(props) {
 
   const { cacheData, linkGroupMutation, linkSaveMutation, setTheSettings, settings, fillInfo } = { ...props }
 
-  debugger
   //* State Vals (links & groups)
-  const [name, setName] = useState((!fillInfo ? '' : fillInfo.name )) //=> Shared
-  const [url, setUrl] = useState((!fillInfo ? '' : fillInfo.url)) //=> +Link
-  const [groupsLinks, dispatchGroupsLinks] = useReducer(groupsLinksReducer, (!fillInfo ? [] : fillInfo.groupsLinks)) //==> +Group
-  const [addTags, dispatchAddTag] = useReducer(addTagsReducer, (!fillInfo ? [] : fillInfo.addTags)) //==> Shared
-  const [isPinned, setPinned] = useState((!fillInfo ? settings.addLinkDefPinned : fillInfo.isPinned)) //==> Shared
+  const [name, setName] = useState(fillInfo.name) //=> Shared
+  const [url, setUrl] = useState(fillInfo.url)//=> +Link
+  const [groupsLinks, dispatchGroupsLinks] = useReducer(groupsLinksReducer, []) //==> +Group
+  const [addTags, dispatchAddTag] = useReducer(addTagsReducer, fillInfo.addTags) //==> Shared
+  const [isPinned, setPinned] = useState(settings.addLinkDefPinned) //==> Shared
 
   //* Props objects
   const childComponents = [NameUrlAndLinks, BoolAttributes, SlideOverHeader, AddTagAutoComp]
   const formComponentProps = { name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings, cacheData, linkSaveMutation, linkGroupMutation }
+
+  //TODO:: Figure out how to setall states off of Fill info when != false
+  console.log('fix me here!!!')
 
   return (
     <SlideOverBase children={childComponents} {...formComponentProps} />
