@@ -36,8 +36,8 @@ module Bookmarkr
 
     private 
     
-    def link_params
-      params.require(:link).permit(:name, :href, :addTags, :isPinned, :tags)
-    end
+    # def link_params
+    #   params.require(:link).permit(:name, :href, :addTags, :isPinned, :tags)
+    # end
   end
 end
