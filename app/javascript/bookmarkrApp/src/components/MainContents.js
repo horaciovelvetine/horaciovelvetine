@@ -11,28 +11,30 @@ import SidebarSelections from './mainContent/SidebarSelections';
 //* Main Page Container Component
 export default function MainContents(props) {
 
-  const { cacheData, dispatchSidebarSelection, resultsIds, setTheSettings, settings, sidebarSelections } = { ...props }
+  const { cacheData, dispatchSidebarSelection, results, setTheSettings, settings, sidebarSelections } = { ...props }
 
+  const bookmarkrProps = { cacheData, settings, setTheSettings }
+  const devHubProps = { sidebarSelections, dispatchSidebarSelection }
   
   return (
     <div className='h-screen flex-1 flex overflow-hidden'>
       <Router>
-        <SidebarSelections sidebarSelections={sidebarSelections} dispatchSidebarSelection={dispatchSidebarSelection} />
+        <SidebarSelections { ...devHubProps } { ...bookmarkrProps } />
 
         <main className='min-w-0 flex-1 border-t border-gray-300 lg:flex h-screen'>
 
           <Routes>
             {/* HOME (bookmarkr) */}
-            <Route path={'/*'} element={<ResultsViewProvider results={resultsIds} cacheData={cacheData} settings={settings} setTheASettings={setTheSettings} />} />
+            <Route path={'/*'} element={<ResultsViewProvider results={(results)} { ...bookmarkrProps} />} />
 
             {/* PORTFOLIO */}
-            <Route path={'/portfolio'} element={<>Portfolio Page</>} />
+            <Route path={'/portfolio'} element={<p>Portfolio</p>} />
 
             {/* KTCHN */}
-            <Route path={'/ktchn'} element={<p>KTCHN Page</p>} />
+            <Route path={'/ktchn'} element={<p>KTCHN</p>} />
 
             {/* SETTINGS */}
-            <Route path={'/settings'} element={<p>Settings Page</p>} />
+            <Route path={'/settings'} element={<p>Settings</p>} />
 
           </Routes>
 

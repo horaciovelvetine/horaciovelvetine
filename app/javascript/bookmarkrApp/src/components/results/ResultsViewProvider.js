@@ -1,5 +1,5 @@
 //* All React & Lib
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route, Link } from "react-router-dom";
 
 //* (&sub) Components
@@ -19,38 +19,26 @@ const disableLink = '#'
 export default function ResultsViewProvider(props) {
 
   const { results, cacheData, settings, setTheSettings } = { ...props }
-
+  
   const linksInfo = () => sortByAttr('name', cacheData.links)
   const tagsInfo = () => sortByAttr('name', cacheData.tags)
 
   const displayProps = {
     results, cacheData, settings, setTheSettings
   }
-
+  
   return (
     <>
       <section
         aria-labelledby='primary-heading'
         className='min-w-0 flex-1 h-full flex flex-col overflow-y-auto lg:order-first m-2'>
-        <div>Bookmarkr:
-          <Link to={results ? listView : disableLink}>list</Link>
-          <Link to={results ? gridView : disableLink}>grid</Link>
-        </div>
-
-        {cacheData && <ResultsDef tags={tagsInfo()} links={linksInfo()} settings={settings} setTheSettings={setTheSettings} />}
-        {results &&
+        <div>Bookmarkr:</div>
+        {cacheData &&
           <>
-            <Routes>
-              <div>
-                <Route path={listView} element={<StackListTwoColResult {...displayProps} />} />
-              </div>
-
-              <div>
-                <Route path={gridView} element={<CardGridResults {...displayProps} />} />
-              </div>
-            </Routes>
-          </>
-        }
+            {(!results || results.length == 0) && <ResultsDef tags={tagsInfo()} links={linksInfo()} settings={settings} setTheSettings={setTheSettings} />}
+          </>}
+        
+        {results && <StackListTwoColResult {...displayProps} />}
 
       </section>
 
