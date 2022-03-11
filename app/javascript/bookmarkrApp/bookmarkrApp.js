@@ -1,7 +1,7 @@
 //* React + Lib Imports
 import React from 'react'
 import { QueryClient, useQuery, QueryClientProvider } from 'react-query'
-import { useReducer } from 'react'
+import { useReducer, useState } from 'react'
 
 //* (&sub) Components
 import MainContents from './src/components/MainContents'
