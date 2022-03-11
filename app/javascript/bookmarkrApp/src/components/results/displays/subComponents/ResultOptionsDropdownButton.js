@@ -11,7 +11,7 @@ function classNames(...classes) {
 export default function ResultOptionsDrowdownButton(props) {
 
   const { setTheSettings, linkDelMutation, id, linkEditMutation } = { ...props }
-  
+
   function editLinkHandler(e, id) {
     e.preventDefault()
     debugger
@@ -19,7 +19,7 @@ export default function ResultOptionsDrowdownButton(props) {
 
   function delLinkHandler(e, id) {
     e.preventDefault()
-    debugger
+    linkDelMutation({ id: id })
   }
 
   return (
