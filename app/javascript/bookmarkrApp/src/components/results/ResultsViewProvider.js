@@ -19,7 +19,10 @@ const disableLink = '#'
 export default function ResultsViewProvider(props) {
   
   const { results, cacheData, settings, setTheSettings } = { ...props }
+  
+  const linksInfo = () => sortByAttr('name', cacheData.links)
   const tagsInfo = () => sortByAttr('name', cacheData.tags)
+  
   const displayProps = {
     results, cacheData, settings, setTheSettings
   }
@@ -34,9 +37,7 @@ export default function ResultsViewProvider(props) {
           <Link to={results ? gridView : disableLink}>grid</Link>
         </div>
 
-
-
-        {cacheData && <ResultsDef cacheData={cacheData} settings={settings} setTheSettings={setTheSettings} />}
+        {cacheData && <ResultsDef tags={tagsInfo()} links={linksInfo()} settings={settings} setTheSettings={setTheSettings} />}
         {results &&
           <>
             <Routes>
