@@ -1,7 +1,7 @@
 //* React + Lib Imports
 import React from 'react'
 import { QueryClient, useQuery, QueryClientProvider } from 'react-query'
-import { useReducer, useState } from 'react'
+import { useReducer, useState, useEffect } from 'react'
 
 //* (&sub) Components
 import MainContents from './src/components/MainContents'
@@ -36,7 +36,11 @@ export default function bookmarkrApp(props) {
   //* config all state related
   const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [sidebarSelections, dispatchSidebarSelection] = useReducer(sidebarSelectionReducer, applicationMenu)
-  const [ soFill, setSoFill ] = useState(false)
+  const [soFill, setSoFill] = useState(false)
+  
+  useEffect(() => {
+    console.log(soFill)
+  }, [soFill])
 
   //* Mutations and Actions
   const { mutate: searchMutation, isIdle: resultsIdle, isLoading: resultsLoading, data: resultsData, } = useGetResults()
