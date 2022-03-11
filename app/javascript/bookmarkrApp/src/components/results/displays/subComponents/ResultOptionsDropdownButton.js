@@ -3,6 +3,7 @@ import React from 'react'
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { DotsVerticalIcon } from '@heroicons/react/solid'
+import { RestaurantMenu } from '@mui/icons-material'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -13,9 +14,16 @@ export default function ResultOptionsDrowdownButton(props) {
 
   const { setTheSettings, linkDelMutation, link, setSoFill } = { ...props }
 
+  const soFillObj = (d) => {
+    const tempFillObj = { id: d.id, name: d.name, url: d.url, addTags: d.tags, isPinned }
+    return tempFillObj
+  }
+
   function editLinkHandler(e, link) {
     e.preventDefault()
-    setSoFill(link)
+    debugger
+    //==> check link for: name, url, addTags, groupsLinks, isPinned
+    setSoFill(soFillObj(link))
     setTheSettings(editKey)
   }
 
