@@ -1,16 +1,14 @@
 import React from 'react'
-import { ChevronRightIcon } from '@heroicons/react/solid'
-import { exampleLinks } from '../../../../config/exampleData'
 import ResultOptionsDrowdownButton from './subComponents/ResultOptionsDropdownButton'
 
 export default function StackListTwoColResult(props) {
+  const results = props.results
   
-  // debugger
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-md">
       <ul role="list" className="divide-y divide-gray-200">
         <div className="grid grid-cols-3 gap-4 p-2" >
-        {exampleLinks.map((link) => (
+        {results.map((link) => (
           <li key={link.id} className="bg-gray-100 bg-origin-content">
             
             <a href={`${link.href}`} className="block hover:bg-gray-50">
