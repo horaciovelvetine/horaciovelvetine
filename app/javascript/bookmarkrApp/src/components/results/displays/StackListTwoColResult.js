@@ -3,7 +3,7 @@ import ResultOptionsDrowdownButton from './subComponents/ResultOptionsDropdownBu
 
 export default function StackListTwoColResult(props) {
   
-  const { results, cacheData, settings, setTheSettings, linkDelMutation } = { ...props }
+  const { results, cacheData, settings, setTheSettings, linkDelMutation, setSoFill } = { ...props }
   
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-md">
@@ -31,7 +31,7 @@ export default function StackListTwoColResult(props) {
 
                 <div className="ml-5 flex-shrink-0">
                   <span className="h-5 w-5 text-gray-400" aria-hidden="true" >
-                    <ResultOptionsDrowdownButton setTheSettings={setTheSettings} linkDelMutation={linkDelMutation} id={link.id} />
+                    <ResultOptionsDrowdownButton setTheSettings={setTheSettings} linkDelMutation={linkDelMutation} link={link} setSoFill={setSoFill} />
                   </span>
                 </div>
 

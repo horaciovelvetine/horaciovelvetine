@@ -36,20 +36,21 @@ export default function bookmarkrApp(props) {
   //* config all state related
   const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [sidebarSelections, dispatchSidebarSelection] = useReducer(sidebarSelectionReducer, applicationMenu)
+  const [ soFill, setSoFill ] = useState()
 
   //* Mutations and Actions
   const { mutate: searchMutation, isIdle: resultsIdle, isLoading: resultsLoading, data: resultsData, } = useGetResults()
-  const { mutate: linkSaveMutation, isIdle: linkSaveIdle, isSuccess: linkSaveSuccess, data: linkSaveData } = useLinkSave()
+  const { mutate: linkSaveMutation, isLidle: linkSaveIdle } = useLinkSave()
   const { mutate: linkDelMutation } = useDelLink()
-  const { mutate: linkEditMutation, isIdle: editIdle, isSuccess: editSuccess, data: editData } = useEditLink()
-  const { mutate: linkGroupMutation, isIdle: linkGroupIdle, isSuccess: linkGroupSaveSuccess, data: linkGroupData } = useLinkGroupSave()
+  const { mutate: linkEditMutation, isIdle: editIdle, data: editData } = useEditLink()
+  const { mutate: linkGroupMutation, isIdle: linkGroupIdle } = useLinkGroupSave()
 
   //* Setup Props Objects
   const childProps = {
-    navigationMenu, settings, setTheSettings, dispatchSidebarSelection, sidebarSelections
+    navigationMenu, settings, setTheSettings, dispatchSidebarSelection, sidebarSelections, setSoFill
   }
   const slideOverMutationProps = {
-    linkSaveMutation, linkGroupMutation, linkSaveIdle, linkGroupIdle, linkSaveSuccess, linkGroupSaveSuccess, linkSaveData, linkGroupData
+    linkSaveMutation, linkGroupMutation, linkGroupIdle, linkSaveIdle, linkEditMutation
   }
 
   function resultsIdPropFix() {
@@ -61,8 +62,8 @@ export default function bookmarkrApp(props) {
     <QueryClientProvider client={queryClient}>
       <div className='h-screen flex flex-col'>
         <Search {...childProps} searchResultsMutation={searchMutation} />
-        <MainContents {...childProps} results={resultsIdPropFix()} cacheData={cacheLoading ? false : cacheData} linkDelMutation={linkDelMutation} linkEditMutation={linkEditMutation} />
-        <SlideOvers settings={settings} setTheSettings={setTheSettings} {...slideOverMutationProps} cacheData={cacheLoading ? false : cacheData} />
+        <MainContents {...childProps} results={resultsIdPropFix()} cacheData={cacheLoading ? false : cacheData} linkDelMutation={linkDelMutation} />
+        <SlideOvers settings={settings} setTheSettings={setTheSettings} {...slideOverMutationProps} cacheData={cacheLoading ? false : cacheData} fillInfo={soFill} />
       </div>
     </QueryClientProvider>
   )

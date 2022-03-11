@@ -11,16 +11,17 @@ const editKey = 'Edit Link'
 
 export default function ResultOptionsDrowdownButton(props) {
 
-  const { setTheSettings, linkDelMutation, id, linkEditMutation } = { ...props }
+  const { setTheSettings, linkDelMutation, link, setSoFill } = { ...props }
 
-  function editLinkHandler(e, id) {
+  function editLinkHandler(e, link) {
     e.preventDefault()
+    setSoFill(link)
     setTheSettings(editKey)
   }
 
-  function delLinkHandler(e, id) {
+  function delLinkHandler(e, link) {
     e.preventDefault()
-    linkDelMutation({ id: id })
+    linkDelMutation({ id: link.id })
   }
 
   return (
@@ -43,7 +44,7 @@ export default function ResultOptionsDrowdownButton(props) {
       >
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            <Menu.Item onClick={(e) => editLinkHandler(e, id)}>
+            <Menu.Item onClick={(e) => editLinkHandler(e, link)}>
               {({ active }) => (
                 <span
 
@@ -56,7 +57,7 @@ export default function ResultOptionsDrowdownButton(props) {
                 </span>
               )}
             </Menu.Item>
-            <Menu.Item onClick={(e) => delLinkHandler(e, id)}>
+            <Menu.Item onClick={(e) => delLinkHandler(e, link)}>
               {({ active }) => (
                 <span
                   className={classNames(

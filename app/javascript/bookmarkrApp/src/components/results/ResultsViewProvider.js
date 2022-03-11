@@ -4,7 +4,6 @@ import { Routes, Route, Link } from "react-router-dom";
 
 //* (&sub) Components
 import ResultsDef from './displays/ResultsDef';
-import CardGridResults from './displays/CardGridResults'
 import StackListTwoColResult from './displays/StackListTwoColResult'
 import TagCloud from './subComponents/TagCloud';
 import SelectTagButton from './subComponents/SelectTagButton';
@@ -18,13 +17,13 @@ const disableLink = '#'
 
 export default function ResultsViewProvider(props) {
 
-  const { results, linkDelMutation, linkEditMutation, cacheData, settings, setTheSettings } = { ...props }
+  const { results, linkDelMutation, linkEditMutation, cacheData, settings, setTheSettings, setSoFill } = { ...props }
   
   const linksInfo = () => sortByAttr('name', cacheData.links)
   const tagsInfo = () => sortByAttr('name', cacheData.tags)
 
   const displayProps = {
-    results, cacheData, settings, setTheSettings, linkDelMutation, linkEditMutation
+    results, cacheData, settings, setTheSettings, linkDelMutation, setSoFill
   }
   
   return (

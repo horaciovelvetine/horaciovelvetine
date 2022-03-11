@@ -11,11 +11,10 @@ import AddTagAutoComp from './slideOvers/formComponents/AddTagAutoComp'
 // Hooks, Utils & Misc
 import addTagsReducer from '../hooks/reducers/addTagsReducer'
 import groupsLinksReducer from '../hooks/reducers/groupsLinksReducer'
-import { linkKey, groupKey } from './slideOvers/utils/defaultSlideOverVals'
 
 export default function SlideOvers(props) {
 
-  const { cacheData, linkGroupData, linkGroupIdle, linkGroupMutation, linkGroupSaveSuccess, linkSaveData, linkSaveIdle, linkSaveMutation, linkSaveSuccess, setTheSettings, settings } = { ...props }
+  const { cacheData, linkGroupMutation, linkSaveMutation, setTheSettings, settings } = { ...props }
 
   //* State Vals
   //==> "Parent Object" (from NavLinks)
