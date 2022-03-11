@@ -31,7 +31,7 @@ const queryClient = new QueryClient()
 export default function bookmarkrApp(props) {
   //* config  vars & state 
   const { defaultSettings, applicationMenu, navigationMenu } = { ...props };
-  const { isLoading: cacheLoading, data: cacheData } = useQuery('cashe', fetchCache);
+  const { isLoading: cacheLoading, data: cacheData } = useQuery('cashe', fetchCache); 
 
   //* config all state related
   const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
