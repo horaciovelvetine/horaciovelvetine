@@ -29,23 +29,23 @@ const queryClient = new QueryClient()
 
 //! APPLICATION START !//
 export default function bookmarkrApp(props) {
-  //* config  vars & state 
+  // config vars 
   const { defaultSettings, applicationMenu, navigationMenu } = { ...props };
-  const { isLoading: cacheLoading, data: cacheData } = useQuery('cashe', fetchCache); 
 
-  //* config all state related
+  // config all state related
   const [settings, setTheSettings] = useReducer(settingsReducer, defaultSettings)
   const [sidebarSelections, dispatchSidebarSelection] = useReducer(sidebarSelectionReducer, applicationMenu)
   const [soFill, setSoFill] = useState(false)
 
-  //* Mutations and Actions
+  // mutations and Actions
+  const { isLoading: cacheLoading, data: cacheData } = useQuery('cashe', fetchCache); 
   const { mutate: searchMutation, isIdle: resultsIdle, isLoading: resultsLoading, data: resultsData, } = useGetResults()
   const { mutate: linkSaveMutation, isLidle: linkSaveIdle } = useLinkSave()
   const { mutate: linkDelMutation } = useDelLink()
   const { mutate: linkEditMutation, isIdle: editIdle, data: editData } = useEditLink()
   const { mutate: linkGroupMutation, isIdle: linkGroupIdle } = useLinkGroupSave()
 
-  //* Setup Props Objects
+  // prop objects
   const childProps = {
     navigationMenu, settings, setTheSettings, dispatchSidebarSelection, sidebarSelections, setSoFill
   }
@@ -53,16 +53,25 @@ export default function bookmarkrApp(props) {
   linkSaveMutation, linkGroupMutation, linkGroupIdle, linkSaveIdle, linkEditMutation
   }
 
+  // no results returns false, else provides resultInfo from cacheData
   function resultsIdPropFix() {
     if (resultsIdle || resultsLoading) return false
     return getResultsInfo(resultsData.data.attributes.results, cacheData)
   }
 
+  //*
   return (
     <QueryClientProvider client={queryClient}>
       <div className='h-screen flex flex-col'>
+
         <Search {...childProps} searchResultsMutation={searchMutation} />
+        
+        {/* //* MAIN CONTAINER: 
+          Results (w/ Default) & Tag Cloud
+        */}
         <MainContents {...childProps} results={resultsIdPropFix()} cacheData={cacheLoading ? false : cacheData} linkDelMutation={linkDelMutation} />
+        
+        
         <SlideOvers settings={settings} setTheSettings={setTheSettings} {...slideOverMutationProps} cacheData={cacheLoading ? false : cacheData} fillInfo={soFill} />
       </div>
     </QueryClientProvider>

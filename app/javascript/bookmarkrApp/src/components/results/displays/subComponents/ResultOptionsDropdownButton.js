@@ -1,9 +1,9 @@
-/* This example requires Tailwind CSS v2.0+ */
+//* React + Lib Imports
 import React from 'react'
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { DotsVerticalIcon } from '@heroicons/react/solid'
-import { RestaurantMenu } from '@mui/icons-material'
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')

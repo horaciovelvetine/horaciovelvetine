@@ -1,23 +1,26 @@
+//* 
 import React from 'react'
 import { Link } from 'react-router-dom'
 import sidebarTargetFinder from './utils/sidebarTargetFinder'
 
+// filterrs class names for current selection styling
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function SidebarSelections(props) {
 
+  //config vars
   const sidebarSelections = props.sidebarSelections
 
+  // intercept router action and set curSelection to true
   function handleSelectionClick(e) {
-    //==> finds target name and sets curSelection to target
     const target = sidebarTargetFinder(e.target)
-    props.dispatchSidebarSelection(target)    
+    props.dispatchSidebarSelection(target)
   }
 
+  //*
   return (
-
     <nav aria-label='Sidebar' className='hidden md:block md:flex-shrink-0 md:bg-gray-800 md:overflow-y-auto'>
       <div className='relative w-20 flex flex-col p-3 space-y-3'>
 

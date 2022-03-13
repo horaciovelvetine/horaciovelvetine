@@ -1,24 +1,28 @@
-// React & Lib
+//* React & Lib
 import React from 'react'
 import { useState } from 'react'
 
-// (&sub) Components
+//* (&sub) Components
 import Logo from './search/Logo'
-import MobileApplicationSelectorDropdown from './search/MobileAppplicationSelectorDropdown'
-import MobileNavBarToggleDisplayButton from './search/MobileNavBarToggleDisplayButton'
 import SearchForm from './search/SearchForm'
 import NavLinks from './search/NavLinks'
-import MobileNavigationMenu from './search/MobileNavigationMenu'
 
-// Hooks, Utils & Misc
+//* Hooks, Utils & Misc
 import useEffectOnUpdate from '../hooks/useEffectOnUpdate'
 
+//* disabled for var issue
+import MobileApplicationSelectorDropdown from './search/MobileAppplicationSelectorDropdown'
+import MobileNavBarToggleDisplayButton from './search/MobileNavBarToggleDisplayButton'
+import MobileNavigationMenu from './search/MobileNavigationMenu'
 
+//!
 export default function Search(props) {
   
+  // config vars and state
   const { dispatchSidebarSelection, navigationMenu, searchResultsMutation, setTheSettings, settings, sidebarSelections } = { ...props }
   const [search, setSearch] = useState({ query: "" })
 
+  // sets up results and search request
   useEffectOnUpdate(() => {
     searchResultsMutation(search)
   }, [search])

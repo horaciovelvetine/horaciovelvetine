@@ -14,23 +14,27 @@ import groupsLinksReducer from '../hooks/reducers/groupsLinksReducer'
 
 export default function SlideOvers(props) {
 
+  // config vars
   const { cacheData, linkGroupMutation, linkSaveMutation, setTheSettings, settings, fillInfo } = { ...props }
 
-  //* State Vals (links & groups)
+  // state Vals (links & groups)
   const [name, setName] = useState(fillInfo.name) //=> Shared
   const [url, setUrl] = useState(fillInfo.url)//=> +Link
   const [groupsLinks, dispatchGroupsLinks] = useReducer(groupsLinksReducer, []) //==> +Group
   const [addTags, dispatchAddTag] = useReducer(addTagsReducer, fillInfo.addTags) //==> Shared
   const [isPinned, setPinned] = useState(settings.addLinkDefPinned) //==> Shared
 
-  //* Props objects
+  // props objects
   const childComponents = [NameUrlAndLinks, BoolAttributes, SlideOverHeader, AddTagAutoComp]
   const formComponentProps = { name, setName, url, setUrl, groupsLinks, dispatchGroupsLinks, addTags, dispatchAddTag, isPinned, setPinned, settings, setTheSettings, cacheData, linkSaveMutation, linkGroupMutation }
 
-  //TODO:: Figure out how to setall states off of Fill info when != false
-  console.log('fix me here!!!')
 
+  //!
   return (
+    <>
+    {/* //* SLIDE OVER MENUS
+      add and edit forms for links and groups */}
     <SlideOverBase children={childComponents} {...formComponentProps} />
+    </>
   )
 }

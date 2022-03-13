@@ -1,7 +1,4 @@
-import { applicationMenuSelections } from "../../../../config/defaultStateItems"
-
-// const menuSelections = applicationMenuSelections.map(s => s.name)
-
+//* modifies event handler to always return a target ID to act on
 export default function sidebarTargetFinder(target) {
   //==> Finds the nearest menu value for target.id to affect UI switch. 
   const acquired = (typeof target === 'string') ? checkValidTaraget(target) : searchNearest(target)

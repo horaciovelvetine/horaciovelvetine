@@ -6,18 +6,20 @@ import { SearchIcon } from '@heroicons/react/solid';
 // Hooks and Funcions
 import useBounceDelay from '../../hooks/useBounceDelay'
 
+//!
 export default function SearchForm(props) {
   const [searchEvent, setSearchEvent] = useState('')
   const delay = props.settings.searchDeBounceDelay
   
+  // delays post request by { delay } milliseconds
   useBounceDelay(() => {
-      
     props.setSearch({ query: searchEvent.query });
   },
     delay,
     [searchEvent]
   );
 
+  //!
   return (
     <div className='min-w-0 flex-1'>
       <div className='max-w-2xl relative text-gray-400 focus-within:text-gray-500'>

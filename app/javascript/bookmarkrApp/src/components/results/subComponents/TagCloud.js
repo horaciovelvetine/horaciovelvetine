@@ -1,8 +1,7 @@
 //* React + Lib Imports
 import React from 'react'
-import sortByAttr from '../../../utils/sortByAttr'
 
-
+//!
 export default function TagCloud(props) {
 
   const tags = props.tags
