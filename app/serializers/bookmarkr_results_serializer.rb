@@ -2,16 +2,13 @@ class BookmarkrResultsSerializer < ActionController::Base
   include JSONAPI::Serializer
   set_type :results_array
 
-  attribute :resultIds do |results|
-    if results.id
-      resultsIds = {resultId: "#{results.id}"}
-    elsif results.length > 1
-      ids = results.map{ |link| "#{link.id}" }
-      resultsIds = { resultsIds: ids }
+  attribute :results do |response|
+    if response.links == "NA"
+      results = {resultsIds: [], id: "noResultsResponse" }
     else
-      ##catch error
-      binding.pry
+      results = response.links.map{ |l| {id: l.id, tagsIds: (l.tags.map{ |t| t.id }) } }
     end
-    resultsIds
+    results
   end
+
 end

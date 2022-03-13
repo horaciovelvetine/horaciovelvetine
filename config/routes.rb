@@ -10,12 +10,13 @@ Rails.application.routes.draw do
   ##? in case need to add backin the ability to sign_up for a new admin(user)   
   # devise_for :admins
 
-  
-  ##* All Api v1 routes
-  # namespace :api do    
-      resources :bookmarkr, only: [:index, :create, :edit, :update, :destroy]
-      post 'bookmarkr/search', to: 'bookmarkr#search'
-  # end
+  ##* Parent Actions
+  resources :bookmarkr, only: [:index]
+  post 'bookmarkr/search', to: 'bookmarkr#search'
+
+  namespace :bookmarkr do 
+    resources :link, only: [:create, :update, :destroy]
+  end
   
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_13_212644) do
+ActiveRecord::Schema.define(version: 2022_02_27_203025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,47 +27,6 @@ ActiveRecord::Schema.define(version: 2022_02_13_212644) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "bookmarkr_configurators", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "contexts", force: :cascade do |t|
-    t.string "name"
-    t.bigint "admin_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["admin_id"], name: "index_contexts_on_admin_id"
-  end
-
-  create_table "contexts_date_utils", id: false, force: :cascade do |t|
-    t.bigint "date_util_id", null: false
-    t.bigint "context_id", null: false
-    t.index ["context_id", "date_util_id"], name: "index_contexts_date_utils_on_context_id_and_date_util_id"
-    t.index ["date_util_id", "context_id"], name: "index_contexts_date_utils_on_date_util_id_and_context_id"
-  end
-
-  create_table "contexts_links", id: false, force: :cascade do |t|
-    t.bigint "link_id", null: false
-    t.bigint "context_id", null: false
-    t.index ["context_id", "link_id"], name: "index_contexts_links_on_context_id_and_link_id"
-    t.index ["link_id", "context_id"], name: "index_contexts_links_on_link_id_and_context_id"
-  end
-
-  create_table "contexts_notes", id: false, force: :cascade do |t|
-    t.bigint "note_id", null: false
-    t.bigint "context_id", null: false
-    t.index ["context_id", "note_id"], name: "index_contexts_notes_on_context_id_and_note_id"
-    t.index ["note_id", "context_id"], name: "index_contexts_notes_on_note_id_and_context_id"
-  end
-
-  create_table "contexts_recipes", id: false, force: :cascade do |t|
-    t.bigint "recipe_id", null: false
-    t.bigint "context_id", null: false
-    t.index ["context_id", "recipe_id"], name: "index_contexts_recipes_on_context_id_and_recipe_id"
-    t.index ["recipe_id", "context_id"], name: "index_contexts_recipes_on_recipe_id_and_context_id"
-  end
-
   create_table "date_utils", force: :cascade do |t|
     t.date "start"
     t.date "end"
@@ -76,10 +35,8 @@ ActiveRecord::Schema.define(version: 2022_02_13_212644) do
     t.string "kind"
     t.bigint "dateable_id"
     t.string "dateable_type"
-    t.bigint "context_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["context_id"], name: "index_date_utils_on_context_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -176,6 +133,11 @@ ActiveRecord::Schema.define(version: 2022_02_13_212644) do
     t.index ["tag_id", "recipe_id"], name: "index_recipes_tags_on_tag_id_and_recipe_id"
   end
 
+  create_table "response_objects", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "states", force: :cascade do |t|
     t.bigint "admin_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -202,16 +164,6 @@ ActiveRecord::Schema.define(version: 2022_02_13_212644) do
     t.index ["name"], name: "index_tags_on_name"
   end
 
-  add_foreign_key "contexts", "admins"
-  add_foreign_key "contexts_date_utils", "contexts"
-  add_foreign_key "contexts_date_utils", "date_utils"
-  add_foreign_key "contexts_links", "contexts"
-  add_foreign_key "contexts_links", "links"
-  add_foreign_key "contexts_notes", "contexts"
-  add_foreign_key "contexts_notes", "notes"
-  add_foreign_key "contexts_recipes", "contexts"
-  add_foreign_key "contexts_recipes", "recipes"
-  add_foreign_key "date_utils", "contexts"
   add_foreign_key "ingredients", "journal_entries"
   add_foreign_key "ingredients", "recipes"
   add_foreign_key "journal_entries", "recipes"

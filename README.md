@@ -1,23 +1,26 @@
-### Hi there 👋
+### 👋 Im @horaciovelvetine a Full Stack Developer!  
 
 ## SPECIFICATIONS.TECHNICALLY:: 
 - Languages // Ruby, JavaScript/HTML/CSS, Java;
 - Frameworks // Sinatra, Rails, React;
-- Libraries // Bootstrap, Devise, OAuth;
+- Libraries // Bootstrap, TailwindCSS, React-Query, Redux, Hooks
 - Databases // SQLite, PostgreSql;
 - Education // the Flatiron School (Software Developement);
 
 ## PROJECTS.ONGOING:: 
 - Scamazon --> (https://github.com/horaciovelvetine/scamazon_backend);
-- Bookmarkr --> (https://github.com/horaciovelvetine/bookmarkr_Scraper_Plugin);
 - Self --> (https://github.com/horaciovelvetine/horaciovelvetine);
 
 ## LEARNING.CURRENTLY:: 
-- React;
+- Material UI
+- TailwindCSS;
 - Typescript;
 
 ## ME.CONTACT:: 
 horaciovelvetine@gmail.com
 
 ## DOCS.TECHNICALLY::
-- This repository also functions as my portfolio website --> Looking for docs concerning that // it's operation? --> https://github.com/horaciovelvetine/horaciovelvetine/tree/main/docs
+- This repository houses an ongoing project, documentation concerning that and it's operation can be found here: 
+  - https://github.com/horaciovelvetine/horaciovelvetine/tree/main/docs
+- You can also find quite a lot of information here:
+  - https://horaciovelvetine.medium.com/defining-a-developmental-narrative-fis-final-project-1-883db67c5fc2

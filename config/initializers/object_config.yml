@@ -2,10 +2,8 @@ tags:
   - ruby
   - rails
   - js
-  - education
-  - resource
-  - reference
-  - forlater
+  - resources
+  - references
   - html
   - css
   - scss
@@ -13,10 +11,9 @@ tags:
   - stack
   - postgres
   - react
-  - bootstrap
   - tailwind
   - tutorial
-  - tool
+  - tools
   - testing
   - video
   - gem
@@ -26,116 +23,126 @@ tags:
   - mdn
   - fis
   - node
-  - project
   - personal
   - work
-  - dom
-  - redux
-  - thunk
   - practice
   - github
   - git
-  - codecademy
-  - jobhunt
-  - self
   - guide
-  - homebrew
   - bash
+  - shell
+  - zsh
   - scamazon
   - writing
-  - pt
   - setup
   - shopping
-  - wishlist
-  - regex
   - oauth
   - omniauth
-  - bot
   - frontend
   - backend
   - database
   - db
-  - faker
-  - devise
-  - java
   - typescript
   - ts
-  - wikiverse
-  - ba
-  - flagged
-  - low
-  - med
-  - medium
-  - high
+  - auth
   - social
-  - wanttotry
-  - favorite
-  - standby
-  - travel
-  - contact
-  - whilom
-  - lacey
-  - keto
-  - vegetarian
-  - ferment
-  - dehydrate
-  - filling
-  - light
-  - desert
-  - main
-  - breakfast
-  - side
-  - vegetable
-  - healthy
-  - pasta
-  - steak
-  - chicken
-  - drink
-  - grandma
-  - mom
-  - oldman
-  - italian
-  - asian
-  - mexican
-  - spanish
-  - fresh
-  - fish
-  - warm
-  - soup
-  - salad
-  - appetizer
-  - condiment
-  - staple
-  - dateidea
-  - bored
-contexts:
-  - company
-  - recipe
-  - todo
-  - contact_info
-  - experience
-  - job
-  - skill
-  - project
-  - journal_entry
-  - social
-  - home
-  - video
-  - reference
-  - archived
-  - flagged
-  - favorited
-  - application
-  - applied
-  - scheduled
-  - interviewed
-  - passed
-  - offered
-  - negotiating
-  - accepted
-  - done
-  - bookmarked
-links: 
-  - {name: "Google", href: "https://www.google.com", pinned: false}
-  - {name: "Twitter", href: "https://www.twitter.com", pinned: false}
-  - {name: "Wikipedia", href: "https://www.wikipedia.com", pinned: false}
+  - ref
+  - javascript
+  - bkmrk
+
+links:
+  - { name: 'Twitter', href: 'https://www.twitter.com', pinned: false, tagNames: ['tools', 'social'] }
+  - {
+      name: 'Wikipedia',
+      href: 'https://www.wikipedia.com',
+      pinned: true,
+      tagNames: ['resources', 'references', 'tools'],
+    }
+  - {
+      name: 'Rails Docs',
+      href: 'https://guides.rubyonrails.org/',
+      pinned: false,
+      tagNames: ['ruby', 'rails', 'references', 'docs', 'documentation', 'setup', 'ref'],
+    }
+  - {
+      name: 'Stackoverflow',
+      href: 'https://stackoverflow.com/',
+      pinned: true,
+      tagNames: ['docs', 'references', 'ref', 'resources', 'stack'],
+    }
+  - {
+      name: 'GitHub',
+      href: 'https://github.com/',
+      pinned: true,
+      tagNames: ['docs', 'references', 'ref', 'resources', 'stack', 'work', 'tools', 'git', 'github'],
+    }
+  - {
+      name: 'Faker',
+      href: 'https://github.com/faker-ruby/faker',
+      pinned: false,
+      tagNames:
+        [
+          'ruby',
+          'rails',
+          'references',
+          'docs',
+          'documentation',
+          'setup',
+          'ref',
+          'db',
+          'database',
+          'testing',
+          'gem',
+          'setup',
+          'sql',
+          'postgres',
+        ],
+    }
+  - {
+      name: 'Devise',
+      href: 'https://github.com/heartcombo/devise',
+      pinned: false,
+      tagNames:
+        [
+          'ruby',
+          'rails',
+          'references',
+          'docs',
+          'documentation',
+          'ref',
+          'gem',
+          'auth',
+          'oauth',
+          'omniauth',
+          'setup',
+          'resources',
+        ],
+    }
+  - {
+      name: 'MDN Mozilla Docs',
+      href: 'https://github.com/heartcombo/devise',
+      pinned: false,
+      tagNames:
+        ['references', 'docs', 'documentation', 'ref', 'setup', 'resources', 'js', 'javascript', 'frontend', 'mdn'],
+    }
+  - {
+      name: 'React Docs',
+      href: 'https://reactjs.org/docs/getting-started.html',
+      pinned: false,
+      tagNames:
+        [
+          'references',
+          'docs',
+          'documentation',
+          'ref',
+          'setup',
+          'resources',
+          'js',
+          'javascript',
+          'frontend',
+          'mdn',
+          'react',
+          'ts',
+          'typescript',
+        ],
+    }

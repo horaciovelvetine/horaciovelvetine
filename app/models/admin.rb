@@ -5,7 +5,6 @@ class Admin < ApplicationRecord
 
   ## Adds Access to Searchable Objects
   has_many :link_groups
-  has_many :contexts
   has_many :tags
 
   ## Adds Access to backend (para)State Object
