@@ -10,6 +10,7 @@
 ## PROJECTS.ONGOING:: 
 - Scamazon --> (https://github.com/horaciovelvetine/scamazon_backend);
 - Self --> (https://github.com/horaciovelvetine/horaciovelvetine);
+- The_Oregon_Trail (1990) --> (https://github.com/horaciovelvetine/the-oregon-trail-1990)
 
 ## LEARNING.CURRENTLY:: 
 - Material UI
