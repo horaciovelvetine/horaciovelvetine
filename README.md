@@ -1,26 +1,31 @@
-### 👋 Im @horaciovelvetine a Full Stack Developer!  
+## 👋 Im James Tillman @horaciovelvetine
 
-## SPECIFICATIONS.TECHNICALLY:: 
-- Languages // Ruby, JavaScript/HTML/CSS, Java;
+## SPECIFICATIONS.TECHNICALLY
+
+- Languages // Ruby, JavaScript, TypeScript, HTML, CSS
 - Frameworks // Sinatra, Rails, React;
-- Libraries // Bootstrap, TailwindCSS, React-Query, Redux, Hooks
+- Libraries //
+  - JS/TS(){ Query, Discord.js, Redux ( & Hooks! ), Jest, TailwindCss, BootStrap, Cypress, Faker }
+  - Ruby(Rails) : Devise, Faker, OmniAuth(1/2), Nokogiri
 - Databases // SQLite, PostgreSql;
-- Education // the Flatiron School (Software Developement);
 
-## PROJECTS.ONGOING:: 
-- Scamazon --> (https://github.com/horaciovelvetine/scamazon_backend);
-- Self --> (https://github.com/horaciovelvetine/horaciovelvetine);
+## PROJECTS.ONGOING
 
-## LEARNING.CURRENTLY:: 
+- Scamazon --> (<https://github.com/horaciovelvetine/scamazon_backend>);
+- Self --> (<https://github.com/horaciovelvetine/horaciovelvetine>);
+
+## LEARNING.CURRENTLY
+
+- p5
 - Material UI
-- TailwindCSS;
-- Typescript;
 
-## ME.CONTACT:: 
+## ME.CONTACT
+
 horaciovelvetine@gmail.com
 
-## DOCS.TECHNICALLY::
-- This repository houses an ongoing project, documentation concerning that and it's operation can be found here: 
-  - https://github.com/horaciovelvetine/horaciovelvetine/tree/main/docs
+## DOCS.TECHNICALLY
+
+- This repository houses an ongoing project, documentation concerning that and it's operation can be found here:
+  - <https://github.com/horaciovelvetine/horaciovelvetine/tree/main/docs>
 - You can also find quite a lot of information here:
-  - https://horaciovelvetine.medium.com/defining-a-developmental-narrative-fis-final-project-1-883db67c5fc2
+  - <https://horaciovelvetine.medium.com/defining-a-developmental-narrative-fis-final-project-1-883db67c5fc2>
