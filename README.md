@@ -26,6 +26,4 @@ horaciovelvetine@gmail.com
 ## DOCS.TECHNICALLY
 
 - This repository houses an ongoing project, documentation concerning that and it's operation can be found here:
-  - <https://github.com/horaciovelvetine/horaciovelvetine/tree/main/docs>
-- You can also find quite a lot of information here:
   - <https://horaciovelvetine.medium.com/defining-a-developmental-narrative-fis-final-project-1-883db67c5fc2>
