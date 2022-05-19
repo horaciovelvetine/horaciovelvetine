@@ -21,14 +21,8 @@
 		"**/.hg": true,
 		"**/CVS": true,
 		"**/.DS_Store": true,
-		"**/Thumbs.db": true,
-		".vscode/": true,
-		"node_modules": true,
-		"src/setupTests.ts": true,
-		"package-lock.json": true,
-		"README.react.md": true,
-		"tsconfig.json": true
+		"**/Thumbs.db": true
 	},
 	"hidefiles.selectedProfile": "Default",
-	"hide-files.files": ["node_modules", "src/setupTests.ts", "package-lock.json", "README.react.md", "tsconfig.json"]
+	"hide-files.files": []
 }
