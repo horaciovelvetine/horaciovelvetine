@@ -9,6 +9,7 @@
     "@types/jest": "^27.5.1",
     "@types/node": "^16.11.36",
     "autoprefixer": "^10.4.7",
+    "daisyui": "^2.15.0",
     "postcss": "^8.4.14",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
