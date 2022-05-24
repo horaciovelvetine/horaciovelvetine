@@ -6,7 +6,9 @@
 - Frameworks // Sinatra, Rails, React;
 - Libraries //
   - JS/TS(React){ Query, Discord.js, Redux ( & Hooks! ), Jest, TailwindCss, BootStrap, Cypress, Faker }
-  - Ruby(Rails) : Devise, Faker, OmniAuth(1/2), Nokogiri, ActiveRecord
+
+  - Ruby(Rails) | Devise, Faker, OmniAuth, Nokogiri, ActiveRecord |
+
 - Databases // SQLite, PostgreSql;
 
 ## PROJECTS.ONGOING
@@ -26,4 +28,4 @@ horaciovelvetine@gmail.com
 ## DOCS.TECHNICALLY
 
 - This repository houses an ongoing project, documentation concerning that and it's operation can be found here:
-  - <https://horaciovelvetine.medium.com/defining-a-developmental-narrative-fis-final-project-1-883db67c5fc2>
+  - <https://horaciovelvetine.medium.com/defining-a-developmental-narrative-fis-final-project-1-883db67c5fc2> (from the first iteration which was Front + Backend!)
