@@ -2,12 +2,12 @@
 
 ## SPECIFICATIONS.TECHNICALLY
 
-- Languages // Ruby, JavaScript, TypeScript, HTML, CSS
+- Languages // Ruby, JavaScript, TypeScript, HTML, CSS, SQL
 - Frameworks // Sinatra, Rails, React;
 - Libraries //
-  - JS/TS(){ Query, Discord.js, Redux ( & Hooks! ), Jest, TailwindCss, BootStrap, Cypress, Faker }
-  - Ruby(Rails) : Devise, Faker, OmniAuth(1/2), Nokogiri
-- Databases // SQLite, PostgreSql;
+  - JS/TS(React){ Query, Discord.js, Redux ( & Hooks! ), Jest, TailwindCss, BootStrap, Cypress, Faker }
+  - Ruby(Rails) : Devise, Faker, OmniAuth(1/2), Nokogiri, ActiveRecord
+- Databases // SQLite, PostgreSql, MySQL;
 
 ## PROJECTS.ONGOING
 
