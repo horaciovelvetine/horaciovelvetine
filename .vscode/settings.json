@@ -1,20 +1,4 @@
 {
-	"hidefiles.configurationType": "local",
-	"hidefiles.globalConfig": {
-		"profiles": [
-			{
-				"name": "Default",
-				"detail": "",
-				"description": "Test",
-				"hidden": [".vscode/"]
-			},
-			{
-				"name": "Strict",
-				"detail": "Hide everything not immediately required",
-				"hidden": ["$Default"]
-			}
-		]
-	},
 	"files.exclude": {
 		"**/.git": true,
 		"**/.svn": true,
@@ -28,4 +12,8 @@
 	},
 	"hidefiles.selectedProfile": "Default",
 	"hide-files.files": ["node_modules", ".gitignore", "package-lock.json"]
+
+		"**/Thumbs.db": true
+	},
+	"hide-files.files": []
 }
