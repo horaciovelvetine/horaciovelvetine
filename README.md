@@ -7,7 +7,7 @@
 - Libraries //
   - JS/TS(React){ Query, Discord.js, Redux ( & Hooks! ), Jest, TailwindCss, BootStrap, Cypress, Faker }
   - Ruby(Rails) : Devise, Faker, OmniAuth(1/2), Nokogiri, ActiveRecord
-- Databases // SQLite, PostgreSql, MySQL;
+- Databases // SQLite, PostgreSql;
 
 ## PROJECTS.ONGOING
 
