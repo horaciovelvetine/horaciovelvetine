@@ -1,8 +1,6 @@
 import './App.css'
-
-// import HomeHeadshot from './assets/HomeHeadshot.mp4' => replit import
-// import HomePageGradient from './assets/HomePageGradient.png' => replit import
-import HomeHeadshot from './assets/HomeHeadshot.mp4'
+// import HomeHeadshot from './assets/HomeHeadshot.mp4' //=> replit import
+import HomeHeadshot from './assets/HomeHeadshot.mp4' //! Causes import reload issue, what is HMR?? : https://github.com/vitejs/vite/discussions/4577#discussioncomment-1161007  <==== see this
 import { ChevronRightIcon } from '@heroicons/react/solid'
 
 
