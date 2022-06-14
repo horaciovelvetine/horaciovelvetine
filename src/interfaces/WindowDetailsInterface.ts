@@ -1,5 +1,5 @@
 export interface WindowDetailsInterface {
-	windowStyle: string;
-	windowTitle: string;
-	content: {};
+	style: string;
+	title: string;
+	content: JSX.Element[];
 }

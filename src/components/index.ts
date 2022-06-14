@@ -1,2 +1,2 @@
 export { WindowContainer } from './window';
-export { Summary } from './summary';
+export { Summary } from './Summary';
