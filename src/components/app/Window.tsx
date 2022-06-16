@@ -16,7 +16,7 @@ export const WindowCard = ({ style, title, contents }: WindowCardInt) => {
 	const [isShowing, setIsShowing] = useState(false);
 
 	return (
-		<Draggable cancel='.window-contents' bounds='parent'>
+		<Draggable cancel='.window-contents'>
 			<div className={`flex flex-col card backdrop-blur-sm bg-bg-primary-900/70 shadow-xl text-white ${style}`}>
 				{/* Status Bar */}
 				<div className={`flex flex-row h-50 pt-1.5 pb-0.5 mx-0.5 hover:cursor-grab bg-bg-primary-900/75`}>
