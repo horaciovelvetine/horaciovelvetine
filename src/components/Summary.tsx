@@ -34,7 +34,7 @@ const socialLink = ({ text, url }: SocialLink) => {
 const InfoMe = (
 	<div key='info-me' id='info-me'>
 		<div className='py-4 mx-2 text-center'>
-			<p className='text-xlg font-semibold tracking-wider leading-none'>James Tillman</p>
+			<p className='text-xl font-semibold tracking-wider leading-none'>James Tillman</p>
 			<a
 				href='https://flatironschool.com/courses/coding-bootcamp/' //TODO: Change this to reference, or pull up a more comprehensive version of my about summary
 				className='text-sm  text-ui-text/80 tracking-tighter hover:underline hover:underline-offset-0 hover:decoration-icon-fill '>
@@ -106,9 +106,13 @@ const SkillsSummary = (
 const summaryWindowDetails = {
 	style: 'mx-auto my-auto w-96',
 	title: '@horaciovelvetine',
-	contents: [AnimatedHeadshot, InfoMe, SkillsSummary, ContactMe],
+	contents: [SkillsSummary],
 };
 
 export const Summary = () => {
-	return <WindowCard {...summaryWindowDetails} />;
+	return (
+		<div className='h-screen w-screen'>
+			<WindowCard {...summaryWindowDetails} />;
+		</div>
+	);
 };
