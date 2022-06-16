@@ -1,7 +1,7 @@
 // import { AnimatedHeadshot, InfoMe, ContactMe, SkillsSummary } from '.';
 import { ChevronRightIcon } from '@heroicons/react/solid';
-import { SocialLink, WindowDetailsInterface } from '../interfaces';
-import { WindowContainer } from './window';
+import { SocialLink } from '../interfaces';
+import { WindowCard } from '.';
 
 const AnimatedHeadshot = (
 	<div
@@ -9,7 +9,7 @@ const AnimatedHeadshot = (
 		key='animated-headshot'
 		id='animated-headshot'>
 		<video autoPlay loop muted className='rounded-full'>
-			Your browser doesnt support the video tag
+			<img src='src/assets/StillHeadshot.png' />
 			<source src='src/assets/HomeHeadshot.mp4' type='video/mp4' />
 		</video>
 	</div>
@@ -103,12 +103,12 @@ const SkillsSummary = (
 	</div>
 );
 
-const summaryWindowDetails: WindowDetailsInterface = {
-	style: 'mx-auto my-auto h-content w-96',
+const summaryWindowDetails = {
+	style: 'mx-auto my-auto w-96',
 	title: '@horaciovelvetine',
-	content: [AnimatedHeadshot, InfoMe, SkillsSummary, ContactMe],
+	contents: [AnimatedHeadshot, InfoMe, SkillsSummary, ContactMe],
 };
 
 export const Summary = () => {
-	return <WindowContainer {...summaryWindowDetails} />;
+	return <WindowCard {...summaryWindowDetails} />;
 };
