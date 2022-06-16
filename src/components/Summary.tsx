@@ -8,11 +8,15 @@ const socialLinks: SocialLink[] = [
 	{ text: 'LinkedIn', url: 'https://www.linkedin.com/in/james-tillman-43a2828b' },
 	{ text: 'Medium', url: 'https://horaciovelvetine.medium.com' },
 	{ text: 'Twitter', url: 'https://twitter.com/HoraceVelvetine' },
+	{ text: 'Contact', url: 'mailto:horaciovelvetine@gmail.com?subject=I%20Saw%20Your%20Resume%20and...' },
 ];
 
 const socialLink = ({ text, url }: SocialLink) => {
 	return (
-		<a href={url} className='mx-1 inline-flex items-center' key={url}>
+		<a
+			href={url}
+			className='inline-flex items-center transition duration-300 ease-in-out decoration-dodger-blue hover:underline hover:decoration hover:decoration-dodger-blue hover:underline-offset-2 hover:scale-105 hover:-translate-y-1 tracking-tight text-dodger-blue font-light'
+			key={url}>
 			{text}
 			<ChevronRightIcon className='h-4' />
 		</a>
@@ -31,6 +35,7 @@ const summaryInfo = {
 
 const contents: JSX.Element = (
 	<>
+		{/* //! Video Headshot */}
 		<div
 			className='flex my-2 mx-auto w-32 rounded-full border-2 border-acc-gray/20 drop-shadow-lg transition duration-300 hover:scale-105 hover:-translate-y-1 ease-in-out hover:drop-shadow-2xl'
 			key='animated-headshot'
@@ -40,58 +45,37 @@ const contents: JSX.Element = (
 				<source src='src/assets/HomeHeadshot.mp4' type='video/mp4' />
 			</video>
 		</div>
-		<div className='py-4 mx-2 text-center'>
+
+		{/* //! Prose Info & Links Start */}
+		<div className='mx-2 text-center'>
 			<p className='text-xl font-semibold tracking-wider leading-none'>{summaryInfo.name}</p>
-			<a
-				href='https://flatironschool.com/courses/coding-bootcamp/'
-				className='text-sm  text-ui-text/80 tracking-tighter hover:underline hover:underline-offset-0 hover:decoration-icon-fill '>
-				{summaryInfo.role}
-			</a>
-		</div>
+			<p className='text-sm text-ui-text tracking-tighter mb-1.5'>{summaryInfo.role}</p>
+			<p className='text=sm text-ui-text  mb-1.5'>{summaryInfo.summary}</p>
+			{/* ALL Social Contact Links*/}
+			<div className='inline-flex font-light tracking-tighter text-dodger-blue gap-1 mb-1.5'>
+				{socialLinks.map((Link) => {
+					return socialLink(Link);
+				})}
+				{/* ALL Skills */}
+			</div>
+			<p className='text-ui-text tracking-tighter underline underline-offset-auto mb-1.5'>Skills:</p>
 
-		<div className='mx-auto text-center mb-4 text-sm'>{summaryInfo.summary}</div>
-
-		<div className='flex mx-2 mb-4'>
-			<p className='flex text-sm text-ui-text tracking-tighter font-light'>
-				Find me on:
-				<span className='translate-x-1 inline-flex items-center font-normal text-dodger-blue gap-1'>
-					{socialLinks.map((link) => {
-						return socialLink(link);
-					})}
-				</span>
-			</p>
-		</div>
-		<div className='mx-2 text-start tracking-tighter' key='skills-summary-info' id='skills-summary'>
-			<ul className='text-sm text-ui-text/80 leading-relaxed'>
-				<li id='languages'>
-					Languages: <span className='text-white tracking-normal pl-1'>{summaryInfo.languages}</span>
+			<ul id='skills-summary' className='text-sm text-ui-text tracking-tight text-left'>
+				<li id='skills-languages' key='skills-languages' className=''>
+					Languages: {summaryInfo.languages}
 				</li>
-				<li id='frameworks'>
-					Libraries/Tools: <span className='text-white tracking-normal pl-1'>{summaryInfo.tools}</span>
+				<li id='skills-tools' key='skills-tools' className=''>
+					Tools: {summaryInfo.tools}
 				</li>
-				<li id='javaScript-TypeScript'>JS/TS:</li>
-				<div className='my-1 mx-2'>
-					<li id='libs-js' className='ml-2 leading-normal'>
-						<span className='text-white tracking-normal'> + {summaryInfo.libraries}</span>
-					</li>
-				</div>
-				<li id='javaScript-TypeScript'>Ruby:</li>
-				<div className='my-1 mx-2'>
-					<li id='libs-js' className='ml-2 leading-normal'>
-						<span className='text-white tracking-normal'>+ {summaryInfo.gems}</span>
-					</li>
-				</div>
+				<li id='skills-libs' key='skills-libs' className=''>
+					Libraries: {summaryInfo.libraries}
+				</li>
+				<li id='skills-languages' key='skills-gems' className=''>
+					Gems: {summaryInfo.gems}
+				</li>
 			</ul>
 		</div>
-			<a
-		key='contact-me-button'
-		id='contact-me'
-		type='button'
-		href='mailto:horaciovelvetine@gmail.com?subject=I%20Saw%20Your%20Resume%20and...'
-		className='w-content mx-auto mb-4 mt-2 transition duration-300 ease-in-out decoration-dodger-blue hover:underline hover:decoration hover:decoration-dodger-blue hover:underline-offset-2 hover:scale-105 hover:-translate-y-1 tracking-tight text-dodger-blue font-light inline-flex items-center leading-4'>
-		Contact Me
-		<ChevronRightIcon className='h-6' />
-	</a>
+
 	</>
 );
 
@@ -103,8 +87,6 @@ const summaryWindowDetails = {
 
 export const Summary = () => {
 	return (
-		<div className='h-screen w-screen'>
-			<WindowCard {...summaryWindowDetails} />;
-		</div>
+			<WindowCard {...summaryWindowDetails} />
 	);
 };
