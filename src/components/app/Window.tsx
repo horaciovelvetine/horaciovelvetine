@@ -5,7 +5,7 @@ import Draggable from 'react-draggable';
 interface WindowCardInt {
 	style: string; //==> sets sizing details for the card, and any surplust styling
 	title: string; //==> sets the title of the card
-	contents: JSX.Element[];
+	contents: JSX.Element;
 }
 
 let statusIconStyle = 'text-black p-0.5 stroke-2 h-full';
@@ -35,7 +35,7 @@ export const WindowCard = ({ style, title, contents }: WindowCardInt) => {
 				</div>
 				{/* Window Content */}
 				<div className='window-contents'>
-					{contents.length > 0 && contents.map((e) => e)}
+					{contents}
 
 					<div className='flex justify-center text-ui-text text-2xs tracking-tight bg-bg-primary-900/75 py-1'>
 						©2022 By James Tillman.
