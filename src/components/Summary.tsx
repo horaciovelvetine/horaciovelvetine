@@ -3,18 +3,6 @@ import { ChevronRightIcon } from '@heroicons/react/solid';
 import { SocialLink } from '../interfaces';
 import { WindowCard } from '.';
 
-const AnimatedHeadshot = (
-	<div
-		className='flex my-2 mx-auto w-32 rounded-full border-2 border-acc-gray/20 drop-shadow-lg transition duration-300 hover:scale-105 hover:-translate-y-1 ease-in-out hover:drop-shadow-2xl'
-		key='animated-headshot'
-		id='animated-headshot'>
-		<video autoPlay loop muted className='rounded-full'>
-			<img src='src/assets/StillHeadshot.png' />
-			<source src='src/assets/HomeHeadshot.mp4' type='video/mp4' />
-		</video>
-	</div>
-);
-
 const socialLinks: SocialLink[] = [
 	{ text: 'Github', url: 'https://github.com/horaciovelvetine' },
 	{ text: 'LinkedIn', url: 'https://www.linkedin.com/in/james-tillman-43a2828b' },
@@ -31,20 +19,37 @@ const socialLink = ({ text, url }: SocialLink) => {
 	);
 };
 
-const InfoMe = (
-	<div key='info-me' id='info-me'>
+const summaryInfo = {
+	name: 'James Tillman',
+	role: 'Full-Stack Developer',
+	summary: 'I build modern and creative web applications that solve problems for clients and make happy users.',
+	languages: 'Ruby, JavaScript, TypeScript, HTML, CSS, SQL',
+	tools: 'Sinatra, Ruby on Rails, React.js, Node.js, SQLite, PostgreSQL, GitHub, Git, Heroku, AWS',
+	libraries: 'Redux & Hooks, Jest, Cypress, React-Query, TailwindCSS, BootStrap, Material UI, Headless UI',
+	gems: 'Devise, OmniAuth, Webpacker, Rack, Faker, Nokogiri, ActiveRecord, pg_search, Capybara, .rspec',
+};
+
+const contents: JSX.Element = (
+	<>
+		<div
+			className='flex my-2 mx-auto w-32 rounded-full border-2 border-acc-gray/20 drop-shadow-lg transition duration-300 hover:scale-105 hover:-translate-y-1 ease-in-out hover:drop-shadow-2xl'
+			key='animated-headshot'
+			id='animated-headshot'>
+			<video autoPlay loop muted className='rounded-full'>
+				<img src='src/assets/StillHeadshot.png' />
+				<source src='src/assets/HomeHeadshot.mp4' type='video/mp4' />
+			</video>
+		</div>
 		<div className='py-4 mx-2 text-center'>
-			<p className='text-xl font-semibold tracking-wider leading-none'>James Tillman</p>
+			<p className='text-xl font-semibold tracking-wider leading-none'>{summaryInfo.name}</p>
 			<a
-				href='https://flatironschool.com/courses/coding-bootcamp/' //TODO: Change this to reference, or pull up a more comprehensive version of my about summary
+				href='https://flatironschool.com/courses/coding-bootcamp/'
 				className='text-sm  text-ui-text/80 tracking-tighter hover:underline hover:underline-offset-0 hover:decoration-icon-fill '>
-				Full-Stack Developer
+				{summaryInfo.role}
 			</a>
 		</div>
 
-		<div className='mx-auto text-center mb-4 text-sm'>
-			I build modern and creative web applications that solve problems for clients and make happy users.
-		</div>
+		<div className='mx-auto text-center mb-4 text-sm'>{summaryInfo.summary}</div>
 
 		<div className='flex mx-2 mb-4'>
 			<p className='flex text-sm text-ui-text tracking-tighter font-light'>
@@ -56,11 +61,29 @@ const InfoMe = (
 				</span>
 			</p>
 		</div>
-	</div>
-);
-
-const ContactMe = (
-	<a
+		<div className='mx-2 text-start tracking-tighter' key='skills-summary-info' id='skills-summary'>
+			<ul className='text-sm text-ui-text/80 leading-relaxed'>
+				<li id='languages'>
+					Languages: <span className='text-white tracking-normal pl-1'>{summaryInfo.languages}</span>
+				</li>
+				<li id='frameworks'>
+					Libraries/Tools: <span className='text-white tracking-normal pl-1'>{summaryInfo.tools}</span>
+				</li>
+				<li id='javaScript-TypeScript'>JS/TS:</li>
+				<div className='my-1 mx-2'>
+					<li id='libs-js' className='ml-2 leading-normal'>
+						<span className='text-white tracking-normal'> + {summaryInfo.libraries}</span>
+					</li>
+				</div>
+				<li id='javaScript-TypeScript'>Ruby:</li>
+				<div className='my-1 mx-2'>
+					<li id='libs-js' className='ml-2 leading-normal'>
+						<span className='text-white tracking-normal'>+ {summaryInfo.gems}</span>
+					</li>
+				</div>
+			</ul>
+		</div>
+			<a
 		key='contact-me-button'
 		id='contact-me'
 		type='button'
@@ -69,44 +92,13 @@ const ContactMe = (
 		Contact Me
 		<ChevronRightIcon className='h-6' />
 	</a>
-);
-
-const SkillsSummary = (
-	<div className='mx-2 text-start tracking-tighter' key='skills-summary-info' id='skills-summary'>
-		<ul className='text-sm text-ui-text/80 leading-relaxed'>
-			<li id='languages'>
-				Languages: <span className='text-white tracking-normal pl-1'>Ruby, JavaScript, TypeScript, HTML, CSS, SQL</span>
-			</li>
-			<li id='frameworks'>
-				Libraries/Tools:{' '}
-				<span className='text-white tracking-normal pl-1'>
-					Sinatra, Ruby on Rails, React.js, Node.js, SQLite, PostgreSQL, GitHub, Git, Heroku, AWS{' '}
-				</span>
-			</li>
-			<li id='javaScript-TypeScript'>JS/TS:</li>
-			<div className='my-1 mx-2'>
-				<li id='libs-js' className='ml-2 leading-normal'>
-					<span className='text-white tracking-normal'>
-						+ Redux & Hooks, Jest, Cypress, React-Query, TailwindCSS, BootStrap, Material UI, Headless UI{' '}
-					</span>
-				</li>
-			</div>
-			<li id='javaScript-TypeScript'>Ruby:</li>
-			<div className='my-1 mx-2'>
-				<li id='libs-js' className='ml-2 leading-normal'>
-					<span className='text-white tracking-normal'>
-						+ Devise, OmniAuth, Webpacker, Rack, Faker, Nokogiri, ActiveRecord, pg_search, Capybara, .rspec{' '}
-					</span>
-				</li>
-			</div>
-		</ul>
-	</div>
+	</>
 );
 
 const summaryWindowDetails = {
 	style: 'mx-auto my-auto w-96',
 	title: '@horaciovelvetine',
-	contents: [SkillsSummary],
+	contents,
 };
 
 export const Summary = () => {
