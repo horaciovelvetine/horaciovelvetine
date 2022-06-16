@@ -1,2 +1,2 @@
-export { WindowCard } from './app';
+export { WindowCard, AppleLink } from './app';
 export { Summary } from './Summary';

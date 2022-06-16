@@ -1,2 +1,2 @@
-export type {WindowDetailsInterface} from './WindowDetailsInterface'
-export type {SocialLink} from './SocialLink'
+export type { WindowDetailsInt } from './_WindowDetails';
+export type { LinkGenInt } from './_LinkGen';

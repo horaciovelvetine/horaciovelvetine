@@ -1,4 +1,4 @@
-export interface SocialLink {
+export interface LinkGenInt {
 	text: string;
 	url: string;
 }

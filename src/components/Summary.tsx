@@ -1,27 +1,24 @@
 // import { AnimatedHeadshot, InfoMe, ContactMe, SkillsSummary } from '.';
-import { ChevronRightIcon } from '@heroicons/react/solid';
-import { SocialLink } from '../interfaces';
-import { WindowCard } from '.';
+import { ChipIcon } from '@heroicons/react/solid';
+import { LinkGenInt } from '../interfaces';
+import { WindowCard, AppleLink } from '.';
 
-const socialLinks: SocialLink[] = [
+const skillsListItem = (skills: string) => {
+	return (
+		<div className='inline-flex items-center ml-1 mt-1'>
+			<ChipIcon className='h-4 shrink-0' />
+			<p className='text-white/95 ml-2'>{skills}</p>
+		</div>
+	);
+};
+
+const socialLinks: LinkGenInt[] = [
 	{ text: 'Github', url: 'https://github.com/horaciovelvetine' },
 	{ text: 'LinkedIn', url: 'https://www.linkedin.com/in/james-tillman-43a2828b' },
 	{ text: 'Medium', url: 'https://horaciovelvetine.medium.com' },
 	{ text: 'Twitter', url: 'https://twitter.com/HoraceVelvetine' },
 	{ text: 'Contact', url: 'mailto:horaciovelvetine@gmail.com?subject=I%20Saw%20Your%20Resume%20and...' },
 ];
-
-const socialLink = ({ text, url }: SocialLink) => {
-	return (
-		<a
-			href={url}
-			className='inline-flex items-center transition duration-300 ease-in-out decoration-dodger-blue hover:underline hover:decoration hover:decoration-dodger-blue hover:underline-offset-2 hover:scale-105 hover:-translate-y-1 tracking-tight text-dodger-blue font-light'
-			key={url}>
-			{text}
-			<ChevronRightIcon className='h-4' />
-		</a>
-	);
-};
 
 const summaryInfo = {
 	name: 'James Tillman',
@@ -47,35 +44,37 @@ const contents: JSX.Element = (
 		</div>
 
 		{/* //! Prose Info & Links Start */}
-		<div className='mx-2 text-center'>
+		<div className='mx-2 text-center mb-3'>
 			<p className='text-xl font-semibold tracking-wider leading-none'>{summaryInfo.name}</p>
 			<p className='text-sm text-ui-text tracking-tighter mb-1.5'>{summaryInfo.role}</p>
 			<p className='text=sm text-ui-text  mb-1.5'>{summaryInfo.summary}</p>
 			{/* ALL Social Contact Links*/}
 			<div className='inline-flex font-light tracking-tighter text-dodger-blue gap-1 mb-1.5'>
 				{socialLinks.map((Link) => {
-					return socialLink(Link);
+					return AppleLink(Link);
 				})}
 				{/* ALL Skills */}
 			</div>
-			<p className='text-ui-text tracking-tighter underline underline-offset-auto mb-1.5'>Skills:</p>
 
-			<ul id='skills-summary' className='text-sm text-ui-text tracking-tight text-left'>
-				<li id='skills-languages' key='skills-languages' className=''>
-					Languages: {summaryInfo.languages}
+			<ul id='skills-summary' className='text-sm text-ui-text tracking-tight text-left mt-2'>
+				<li id='skills-languages' key='skills-languages' className='ml-2 mb-2'>
+					Languages:
+					{skillsListItem(summaryInfo.languages)}
 				</li>
-				<li id='skills-tools' key='skills-tools' className=''>
-					Tools: {summaryInfo.tools}
+				<li id='skills-tools' key='skills-tools' className='ml-2 mb-1'>
+					Tools:
+					{skillsListItem(summaryInfo.tools)}
 				</li>
-				<li id='skills-libs' key='skills-libs' className=''>
-					Libraries: {summaryInfo.libraries}
+				<li id='skills-libs' key='skills-libs' className='ml-2 mb-1'>
+					Libraries:
+					{skillsListItem(summaryInfo.libraries)}
 				</li>
-				<li id='skills-languages' key='skills-gems' className=''>
-					Gems: {summaryInfo.gems}
+				<li id='skills-languages' key='skills-gems' className='ml-2 mb-1'>
+					Gems:
+					{skillsListItem(summaryInfo.gems)}
 				</li>
 			</ul>
 		</div>
-
 	</>
 );
 
@@ -86,7 +85,5 @@ const summaryWindowDetails = {
 };
 
 export const Summary = () => {
-	return (
-			<WindowCard {...summaryWindowDetails} />
-	);
+	return <WindowCard {...summaryWindowDetails} />;
 };
