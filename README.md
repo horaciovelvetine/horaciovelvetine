@@ -1,6 +1,6 @@
 ## Hi there 👋
 
-My names is James Tillman (@horaciovelvetine), I'm a full-stack developer from Denver with experience building modern, responsive, and robust web-apps. I'm a huge fan of learning and problem solving, but not riddles thats problem solving for liars.
+My names is James Tillman (@horaciovelvetine), I'm a full-stack developer from Denver with experience building modern, responsive, and robust web-apps. I'm a huge fan of learning and problem solving, but not riddles, thats just problem solving for liars.
 
 ### Skills.technical
 
