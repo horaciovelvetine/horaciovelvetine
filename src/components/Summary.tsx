@@ -5,9 +5,9 @@ import { WindowCard, AppleLink } from '.';
 
 const skillsListItem = (skills: string) => {
 	return (
-		<div className='inline-flex items-center ml-1 mt-1'>
+		<div className='inline-flex items-center mt-1 ml-1'>
 			<ChipIcon className='h-4 shrink-0' />
-			<p className='text-white/95 ml-2'>{skills}</p>
+			<p className='ml-2 text-white/95'>{skills}</p>
 		</div>
 	);
 };
@@ -34,7 +34,7 @@ const contents: JSX.Element = (
 	<>
 		{/* //! Video Headshot */}
 		<div
-			className='flex my-2 mx-auto w-32 rounded-full border-2 border-acc-gray/20 drop-shadow-lg transition duration-300 hover:scale-105 hover:-translate-y-1 ease-in-out hover:drop-shadow-2xl'
+			className='flex w-32 mx-auto my-2 transition duration-300 ease-in-out border-2 rounded-full border-acc-gray/20 drop-shadow-lg hover:scale-105 hover:-translate-y-1 hover:drop-shadow-2xl'
 			key='animated-headshot'
 			id='animated-headshot'>
 			<video autoPlay loop muted className='rounded-full'>
@@ -44,32 +44,32 @@ const contents: JSX.Element = (
 		</div>
 
 		{/* //! Prose Info & Links Start */}
-		<div className='mx-2 text-center mb-3'>
-			<p className='text-xl font-semibold tracking-wider leading-none'>{summaryInfo.name}</p>
+		<div className='mx-2 mb-3 text-center'>
+			<p className='text-xl font-semibold leading-none tracking-wider'>{summaryInfo.name}</p>
 			<p className='text-sm text-ui-text tracking-tighter mb-1.5'>{summaryInfo.role}</p>
 			<p className='text=sm text-ui-text  mb-1.5'>{summaryInfo.summary}</p>
 			{/* ALL Social Contact Links*/}
 			<div className='inline-flex font-light tracking-tighter text-dodger-blue gap-1 mb-1.5'>
-				{socialLinks.map((Link) => {
+				{socialLinks.map(Link => {
 					return AppleLink(Link);
 				})}
 				{/* ALL Skills */}
 			</div>
 
-			<ul id='skills-summary' className='text-sm text-ui-text tracking-tight text-left mt-2'>
-				<li id='skills-languages' key='skills-languages' className='ml-2 mb-2'>
+			<ul id='skills-summary' className='mt-2 text-sm tracking-tight text-left text-ui-text'>
+				<li id='skills-languages' key='skills-languages' className='mb-2 ml-2'>
 					Languages:
 					{skillsListItem(summaryInfo.languages)}
 				</li>
-				<li id='skills-tools' key='skills-tools' className='ml-2 mb-1'>
+				<li id='skills-tools' key='skills-tools' className='mb-1 ml-2'>
 					Tools:
 					{skillsListItem(summaryInfo.tools)}
 				</li>
-				<li id='skills-libs' key='skills-libs' className='ml-2 mb-1'>
+				<li id='skills-libs' key='skills-libs' className='mb-1 ml-2'>
 					Libraries:
 					{skillsListItem(summaryInfo.libraries)}
 				</li>
-				<li id='skills-languages' key='skills-gems' className='ml-2 mb-1'>
+				<li id='skills-languages' key='skills-gems' className='mb-1 ml-2'>
 					Gems:
 					{skillsListItem(summaryInfo.gems)}
 				</li>
@@ -79,8 +79,8 @@ const contents: JSX.Element = (
 );
 
 const summaryWindowDetails = {
-	style: 'mx-auto my-auto w-96',
-	title: '@horaciovelvetine',
+	style: 'w-96',
+	title: 'Summary - @horaciovelvetine',
 	contents,
 };
 
