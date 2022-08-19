@@ -48,12 +48,10 @@ const contents: JSX.Element = (
 			<p className='text-xl font-semibold leading-none tracking-wider'>{summaryInfo.name}</p>
 			<p className='text-sm text-ui-text tracking-tighter mb-1.5'>{summaryInfo.role}</p>
 			<p className='text=sm text-ui-text  mb-1.5'>{summaryInfo.summary}</p>
-			{/* ALL Social Contact Links*/}
 			<div className='inline-flex font-light tracking-tighter text-dodger-blue gap-1 mb-1.5'>
 				{socialLinks.map(Link => {
 					return AppleLink(Link);
 				})}
-				{/* ALL Skills */}
 			</div>
 
 			<ul id='skills-summary' className='mt-2 text-sm tracking-tight text-left text-ui-text'>
