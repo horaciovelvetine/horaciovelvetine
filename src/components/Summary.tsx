@@ -78,10 +78,15 @@ const contents: JSX.Element = (
 	</>
 );
 
+let getIntInRange = (min: number, max: number) => {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 const summaryWindowDetails = {
 	style: 'w-96',
 	title: 'Summary - @horaciovelvetine',
 	contents,
+	defaultPosition: { x: getIntInRange(10, 1000), y: getIntInRange(10, 185) },
 };
 
 export const Summary = () => {

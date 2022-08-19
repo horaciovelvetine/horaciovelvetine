@@ -6,16 +6,17 @@ interface WindowCardInt {
 	style: string; //==> sets sizing details for the card, and any surplust styling
 	title: string; //==> sets the title of the card
 	contents: JSX.Element;
+	defaultPosition: {x: number, y: number};
 }
 
 let statusIconStyle = 'text-black p-0.5 h-full transition duration-200 ease-in-out opacity-0 hover:opacity-100';
 let statusButtonStyle = 'inline-flex items-center rounded-full shadow-sm w-3.5 h-3.5 mx-1';
 
-export const WindowCard = ({ style, title, contents }: WindowCardInt) => {
+export const WindowCard = ({ style, title, contents, defaultPosition }: WindowCardInt) => {
 	const [isShowing, setIsShowing] = useState(true);
 
 	return (
-		<Draggable bounds='#homepage-desktop-contain'>
+		<Draggable bounds='#homepage-desktop-contain' defaultPosition={defaultPosition}>
 			<div className={`flex flex-col card backdrop-blur-sm bg-bg-primary-900/70 shadow-xl text-white ${style}`}>
 				{/* Status Bar */}
 				<div className={`flex flex-row pt-1 pb-0.5 px-1 hover:cursor-grab bg-bg-primary-900/75`}>
