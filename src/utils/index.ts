@@ -1,0 +1,1 @@
+export { browserName } from './browserName';

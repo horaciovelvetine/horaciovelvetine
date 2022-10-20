@@ -1,6 +1,6 @@
 import './App.css';
-import Home from './pages/Home'
+import { Desktop } from './components/Desktop';
 
 export default function App() {
-	return <Home />;
+	return <Desktop />;
 }

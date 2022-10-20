@@ -32,6 +32,7 @@ module.exports = {
         'icon-fill': '#b3b3b3',
         'ui-text': '#a6a6a6',
         'acc-gray': '#8c8c8c',
+        'window': '#281c2c',
         'tomato': '#ff5e57',
         'dark-orange': '#f68219',
         'goldenrod': '#febd2d',
