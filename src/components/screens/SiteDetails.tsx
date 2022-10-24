@@ -12,7 +12,7 @@ export const SiteDetails = (props: DESKTOP_STATE) => {
 	const windowDetails: WINDOW_DETAILS = {
 		id: 1,
 		name: 'Site Details',
-		content: content,
+		content,
 		windowPosition,
 		setWindowPosition,
 		isFocused,

@@ -1,16 +1,16 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { WINDOW_DETAILS } from '../../interfaces';
 import { DESKTOP_STATE } from '../../interfaces/DesktopState';
 import { WindowWrapper } from '../app/WindowWrapper';
 
-export const Finder = (props: DESKTOP_STATE) => {
+export const Trash = (props: DESKTOP_STATE) => {
 	const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
 	const [isFocused, setIsFocused] = useState(false);
 	const [isVisible, setIsVisible] = useState(false);
 
 	const windowDetails: WINDOW_DETAILS = {
-		id: 3,
-		name: 'Finder',
+		id: 5,
+		name: 'Trash',
 		content,
 		windowPosition,
 		setWindowPosition,
@@ -23,20 +23,21 @@ export const Finder = (props: DESKTOP_STATE) => {
 	return <WindowWrapper details={windowDetails} desktopState={props} />;
 };
 
-const content = <div className='relative flex flex-row h-96 w-96'>This is going to be a finder window</div>;
+const content = <>This is gonna be a trash window</>;
 
-export const FinderDockIcon = (desktopState: DESKTOP_STATE) => {
+export const TrashDockIcon = (desktopState: DESKTOP_STATE) => {
 	return (
 		<div
 			className='relative'
 			onClick={() => {
 				desktopState.setVisibleWindows(prev => {
-					return [...prev, 3];
+					return [...prev, 5];
 				});
-				desktopState.setFocusedWindow(3);
+				desktopState.setFocusedWindow(5);
 			}}>
 			<img
-				src='src/assets/icons/Finder.webp'
+				// https://www.veryicon.com/icons/system/ivista-mac/recycle-bin-empty-12.html for future ref
+				src='src/assets/icons/TrashEmpty.png'
 				className='h-[70px] hover:scale-110 hover:-translate-y-6 transition-all duration-200 rounded'
 			/>
 			{/* if window is visible render... */}

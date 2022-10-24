@@ -1,4 +1,4 @@
-import { ChevronRightIcon, ChipIcon } from '@heroicons/react/solid';
+import { ChevronRightIcon, ChipIcon, CodeIcon } from '@heroicons/react/solid';
 import { useEffect, useState } from 'react';
 import { WINDOW_DETAILS } from '../../interfaces';
 import { DESKTOP_STATE } from '../../interfaces/DesktopState';
@@ -12,7 +12,7 @@ export const About = (props: DESKTOP_STATE) => {
 	const windowDetails: WINDOW_DETAILS = {
 		id: 2,
 		name: 'About',
-		content: content,
+		content,
 		windowPosition,
 		setWindowPosition,
 		isFocused,
@@ -108,3 +108,24 @@ const content = (
 		</div>
 	</div>
 );
+
+export const AboutDockIcon = (desktopState: DESKTOP_STATE) => {
+	return (
+		<div
+			className='relative bg-window h-14 w-14 rounded p-1 shadow-lg border hover:scale-110 hover:-translate-y-6 transition-all duration-200'
+			onClick={() => {
+				desktopState.setVisibleWindows(prev => {
+					return [...prev, 2];
+				});
+				desktopState.setFocusedWindow(2);
+			}}>
+			<span className='inline-flex text-white'>
+				<CodeIcon className='h-5 stroke-white stroke-0 pr-[1px]' />_
+			</span>
+			{/* if window is visible render... */}
+			{desktopState.visibleWindows.includes(2) && (
+				<div className='absolute h-[5px] w-[5px] inset-x-[23px] -bottom-[14px] rounded-full bg-white/[0.85]'></div>
+			)}
+		</div>
+	);
+};

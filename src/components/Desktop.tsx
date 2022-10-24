@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react';
 import { CodeIcon } from '@heroicons/react/solid';
-import { SiteDetails, About, Finder } from './screens';
+import { SiteDetails, About, Finder, SystemPreferences, Trash } from './screens';
 import { DESKTOP_STATE } from '../interfaces/DesktopState';
 import { DesktopMenuBar } from './app/DesktopMenuBar';
+import { Dock } from './app/desktop/Dock';
 
 export const Desktop = () => {
 	const [focusedWindow, setFocusedWindow] = useState(0);
@@ -70,7 +71,7 @@ export const Desktop = () => {
 						setFocusedWindow(0);
 					}
 				}}>
-				{/*  MENU BAR START */}
+				{/*  //! MENU BAR START */}
 				<div>
 					<DesktopMenuBar
 						setFocusedWindow={setFocusedWindow}
@@ -79,46 +80,17 @@ export const Desktop = () => {
 					/>
 				</div>
 
-				{/* DESKTOP START */}
+				{/* //! DESKTOP START */}
 				<div className='w-screen h-screen relative' id='homepage-desktop-container'>
 					{visibleWindows.includes(1) && <SiteDetails {...desktopState} />}
 					{visibleWindows.includes(2) && <About {...desktopState} />}
 					{visibleWindows.includes(3) && <Finder {...desktopState} />}
+					{visibleWindows.includes(4) && <SystemPreferences {...desktopState} />}
+					{visibleWindows.includes(5) && <Trash {...desktopState} />}
 				</div>
 
-				{/* DOCK BAR START */}
-				<div
-					id='dock-container'
-					className='absolute w-fit inset-x-0 bottom-0 bg-bg-primary-900/90 transition-all mx-auto my-2 px-4 pt-2 pb-3 rounded-xl shadow-2xl border-[0.25px] border-white/[0.27] '>
-					<div className='flex flex-row justify-center gap-3 items-center'>
-						<div className='relative'>
-							<img
-								src='src/assets/icons/Finder.webp'
-								className='h-16 hover:scale-110 hover:-translate-y-4 transition-all duration-200 rounded'
-							/>
-							{/* if window is visible render... */}
-							{visibleWindows.includes(0) && (
-								<div className='absolute h-[5px] w-[5px] inset-x-[29px] -bottom-[10px] rounded-full bg-white/[0.85]'></div>
-							)}
-						</div>
-						<div
-							className='relative bg-window h-14 w-14 rounded p-1 shadow-lg border hover:scale-110 hover:-translate-y-4 transition-all duration-200'
-							onClick={() => {
-								setVisibleWindows(prev => {
-									return [...prev, 2];
-								});
-								setFocusedWindow(2);
-							}}>
-							<span className='inline-flex text-white'>
-								<CodeIcon className='h-5 stroke-white stroke-0 pr-[1px]' />_
-							</span>
-							{/* if window is visible render... */}
-							{visibleWindows.includes(2) && (
-								<div className='absolute h-[5px] w-[5px] inset-x-[23px] -bottom-[14px] rounded-full bg-white/[0.85]'></div>
-							)}
-						</div>
-					</div>
-				</div>
+				{/* //! DOCK BAR START */}
+				<Dock {...desktopState} />
 			</main>
 		</div>
 	);

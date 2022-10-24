@@ -1,16 +1,16 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { WINDOW_DETAILS } from '../../interfaces';
 import { DESKTOP_STATE } from '../../interfaces/DesktopState';
 import { WindowWrapper } from '../app/WindowWrapper';
 
-export const Finder = (props: DESKTOP_STATE) => {
+export const SystemPreferences = (props: DESKTOP_STATE) => {
 	const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
 	const [isFocused, setIsFocused] = useState(false);
 	const [isVisible, setIsVisible] = useState(false);
 
 	const windowDetails: WINDOW_DETAILS = {
-		id: 3,
-		name: 'Finder',
+		id: 4,
+		name: 'System Preferences',
 		content,
 		windowPosition,
 		setWindowPosition,
@@ -23,24 +23,24 @@ export const Finder = (props: DESKTOP_STATE) => {
 	return <WindowWrapper details={windowDetails} desktopState={props} />;
 };
 
-const content = <div className='relative flex flex-row h-96 w-96'>This is going to be a finder window</div>;
+const content = <div className='relative flex flex-row h-fit w-fit'>This is gonna set up some sort of preference</div>;
 
-export const FinderDockIcon = (desktopState: DESKTOP_STATE) => {
+export const SystemPreferencesDockIcon = (desktopState: DESKTOP_STATE) => {
 	return (
 		<div
 			className='relative'
 			onClick={() => {
 				desktopState.setVisibleWindows(prev => {
-					return [...prev, 3];
+					return [...prev, 4];
 				});
-				desktopState.setFocusedWindow(3);
+				desktopState.setFocusedWindow(4);
 			}}>
 			<img
-				src='src/assets/icons/Finder.webp'
-				className='h-[70px] hover:scale-110 hover:-translate-y-6 transition-all duration-200 rounded'
+				src='src/assets/icons/SystemPref.webp'
+				className='h-[72px] hover:scale-110 hover:-translate-y-6 transition-all duration-200 rounded'
 			/>
 			{/* if window is visible render... */}
-			{desktopState.visibleWindows.includes(3) && (
+			{desktopState.visibleWindows.includes(4) && (
 				<div className='absolute h-[5px] w-[5px] inset-x-[29px] -bottom-[10px] rounded-full bg-white/[0.85]'></div>
 			)}
 		</div>
