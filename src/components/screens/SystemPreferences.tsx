@@ -41,7 +41,7 @@ export const SystemPreferencesDockIcon = (desktopState: DESKTOP_STATE) => {
 			/>
 			{/* if window is visible render... */}
 			{desktopState.visibleWindows.includes(4) && (
-				<div className='absolute h-[5px] w-[5px] inset-x-[29px] -bottom-[10px] rounded-full bg-white/[0.85]'></div>
+				<div className='absolute h-[5px] w-[5px] inset-x-[33px] -bottom-[5px] rounded-full bg-white/[0.85]'></div>
 			)}
 		</div>
 	);

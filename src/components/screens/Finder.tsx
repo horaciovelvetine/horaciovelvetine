@@ -12,6 +12,7 @@ export const Finder = (props: DESKTOP_STATE) => {
 		id: 3,
 		name: 'Finder',
 		content,
+		sideBarContent,
 		windowPosition,
 		setWindowPosition,
 		isFocused,
@@ -22,6 +23,8 @@ export const Finder = (props: DESKTOP_STATE) => {
 
 	return <WindowWrapper details={windowDetails} desktopState={props} />;
 };
+
+const sideBarContent = <>Some sidebar content</>
 
 const content = <div className='relative flex flex-row h-96 w-96'>This is going to be a finder window</div>;
 
@@ -41,7 +44,7 @@ export const FinderDockIcon = (desktopState: DESKTOP_STATE) => {
 			/>
 			{/* if window is visible render... */}
 			{desktopState.visibleWindows.includes(3) && (
-				<div className='absolute h-[5px] w-[5px] inset-x-[29px] -bottom-[10px] rounded-full bg-white/[0.85]'></div>
+				<div className='absolute h-[5px] w-[5px] inset-x-[33px] -bottom-[7px] rounded-full bg-white/[0.85]'></div>
 			)}
 		</div>
 	);

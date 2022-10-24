@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import Draggable from 'react-draggable';
-import { WINDOW_DETAILS } from '../../interfaces';
-import { DESKTOP_STATE } from '../../interfaces/DesktopState';
-import { ContentContainer } from './window/ContentContainer';
-import { FooterContainer } from './window/Footercontainer';
-import { StatusBarVisibilityButtons } from './window/StatusBarVisibilityButtons';
+
+import { WINDOW_DETAILS, DESKTOP_STATE } from '../../interfaces';
+import { ContentContainer, FooterContainer, StatusBarVisibilityButtons } from './window';
+import { SidebarContainer } from './window/SidebarContainter';
 
 export interface WINDOW_WRAPPER_PROPS {
 	details: WINDOW_DETAILS;
@@ -49,7 +48,8 @@ export const WindowWrapper = ({ details, desktopState }: WINDOW_WRAPPER_PROPS) =
 					}
 				}}>
 				{/* //! STATUS BAR */}
-				<StatusBarVisibilityButtons {...windowComponentProps} />
+				{!details.sideBarContent && <StatusBarVisibilityButtons {...windowComponentProps} />}
+				{details.sideBarContent && <SidebarContainer {...windowComponentProps} />}
 
 				{/* //! WINDOW CONTENT */}
 				{details.content && <ContentContainer {...windowComponentProps} />}

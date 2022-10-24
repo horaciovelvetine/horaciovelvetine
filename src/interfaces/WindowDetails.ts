@@ -3,6 +3,7 @@ export interface WINDOW_DETAILS {
 	name: string;
 	content?: JSX.Element;
 	footerContent?: JSX.Element;
+	sideBarContent?: JSX.Element;
 	isFocused?: boolean;
 	setIsFocused?: React.Dispatch<React.SetStateAction<boolean>>;
 	setIsVisible?: React.Dispatch<React.SetStateAction<boolean>>;
