@@ -1,15 +1,16 @@
 import { useMemo, useState } from 'react';
 import { CodeIcon } from '@heroicons/react/solid';
-import { SiteDetails, About } from './screens';
+import { SiteDetails, About, Finder } from './screens';
 import { DESKTOP_STATE } from '../interfaces/DesktopState';
 import { DesktopMenuBar } from './app/DesktopMenuBar';
 
 export const Desktop = () => {
 	const [focusedWindow, setFocusedWindow] = useState(0);
-	const [visibleWindows, setVisibleWindows] = useState<number[]>([]);
+	const [visibleWindows, setVisibleWindows] = useState<number[]>([3]);
 
 	const desktopState: DESKTOP_STATE = { focusedWindow, setFocusedWindow, visibleWindows, setVisibleWindows };
-	const ALL_WINDOWS = [
+	const WINDOWS_DETAILS = [
+		// id: 0 is default or empty
 		{
 			id: 0,
 			name: 'horaciovelvetine.dev',
@@ -38,10 +39,22 @@ export const Desktop = () => {
 				{ id: 4, name: 'Work' },
 			],
 		},
+		{
+			id: 3,
+			name: 'Finder',
+			menuBarActions: [
+				{ id: 1, name: 'File' },
+				{ id: 2, name: 'Edit' },
+				{ id: 3, name: 'View' },
+				{ id: 4, name: 'Go' },
+				{ id: 5, name: 'Window' },
+				{ id: 6, name: 'Help' },
+			],
+		},
 	];
 
 	const curWinDetails = useMemo(() => {
-		return ALL_WINDOWS.find(win => win.id === focusedWindow) || ALL_WINDOWS[0];
+		return WINDOWS_DETAILS.find(win => win.id === focusedWindow) || WINDOWS_DETAILS[0];
 	}, [focusedWindow]);
 
 	return (
@@ -68,9 +81,9 @@ export const Desktop = () => {
 
 				{/* DESKTOP START */}
 				<div className='w-screen h-screen relative' id='homepage-desktop-container'>
-					{/* //! POSSIBLE TO ATTEMPT MAPPING AGAIN NOW WITH STATE? STATE MAY OVERRIDE ON REWRITE?? */}
 					{visibleWindows.includes(1) && <SiteDetails {...desktopState} />}
 					{visibleWindows.includes(2) && <About {...desktopState} />}
+					{visibleWindows.includes(3) && <Finder {...desktopState} />}
 				</div>
 
 				{/* DOCK BAR START */}
