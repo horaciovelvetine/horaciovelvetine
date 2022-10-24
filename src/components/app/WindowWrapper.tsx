@@ -9,16 +9,18 @@ export interface WINDOW_WRAPPER_PROPS {
 	desktopState: DESKTOP_STATE;
 }
 
-const windowBaseStyle = 'flex flex-row pt-1 pb-0.5 px-1 hover:cursor-grab bg-bg-primary-700 border-black border-b';
-const statusIconStyle = 'text-black stroke-2 h-full transition duration-200 ease-in-out opacity-0 hover:opacity-100';
-const statusButtonStyle =
+const windowCSS =
+	'absolute card backdrop-blur-sm bg-bg-primary-800/80 drop-shadow-xl w-fit border-bg-primary-900 text-white';
+const simpleStatusBarCSS = 'flex flex-row pt-1 pb-0.5 px-1 hover:cursor-grab bg-bg-primary-700 border-black border-b';
+const statusButtonCSS =
 	'inline-flex items-center rounded-full shadow-sm w-3.5 h-3.5 mx-1 border-[0.01px] border-bg-primary-900/25';
-const titleTextStyle = 'text-sm text-center text-white font-lighter mx-auto';
+const statusIconCSS = 'text-black stroke-2 h-full transition duration-200 ease-in-out opacity-0 hover:opacity-100';
+const titleTextCSS = 'text-sm text-center text-white font-lighter mx-auto pr-12';
+const footerCSS = 'flex justify-center py-1 tracking-tight text-ui-text text-2xs bg-bg-primary-900 h-5';
 
 export const WindowWrapper = ({ details, desktopState }: WINDOW_WRAPPER_PROPS) => {
 	//wraps the window contents with a card element that has buttons to minimize and close windows.
 	const [isMinimized, setisMinimized] = useState(false);
-	//COMPONENT
 
 	const controlledDrag = (e: any, position: any) => {
 		const { x, y } = position;
@@ -33,18 +35,17 @@ export const WindowWrapper = ({ details, desktopState }: WINDOW_WRAPPER_PROPS) =
 			position={details.windowPosition}>
 			<div
 				id={`window-${details.id}`}
-				className='card backdrop-blur-sm bg-bg-primary-800/80 drop-shadow-xl text-white w-fit border-bg-primary-900 absolute'
+				className={windowCSS}
 				onClick={e => {
 					if (!e.target.id) return;
 					if (e.target.id === `window-${details.id}`) {
-						// STATE
 						desktopState.setFocusedWindow(details.id);
 					}
 				}}>
-				{/* Status Bar */}
+				{/* //! STATUS BAR */}
 				<div
 					id={`window-${details.id}-status-bar`}
-					className={windowBaseStyle}
+					className={simpleStatusBarCSS}
 					onClick={e => {
 						if (!e.target.id) return;
 						if (e.target.id === `window-${details.id}-status-bar`) {
@@ -53,38 +54,41 @@ export const WindowWrapper = ({ details, desktopState }: WINDOW_WRAPPER_PROPS) =
 						}
 					}}>
 					<div>
+						{/* //! CLOSE WINDOW */}
 						<button
-							className={`${statusButtonStyle} bg-tomato`}
+							className={`${statusButtonCSS} bg-tomato`}
 							onClick={() => {
-								//STATE
 								desktopState.setVisibleWindows(prev => {
 									return prev.filter(n => n !== details.id);
 								});
 								desktopState.setFocusedWindow(0);
 							}}
 							key={`window-${details.id}-close`}>
-							<XIcon className={statusIconStyle} />
+							<XIcon className={statusIconCSS} />
 						</button>
+						{/* //! MINIMIZE WINDOW */}
 						<button
-							className={`${statusButtonStyle} bg-gold`}
+							className={`${statusButtonCSS} bg-gold`}
 							key={`window-${details.id}-minimize`}
 							onClick={() => {
 								setisMinimized(true);
 							}}>
-							<MinusIcon className={statusIconStyle} />
+							<MinusIcon className={statusIconCSS} />
 						</button>
+						{/* //! MAXIMIZE WINDOW */}
 						<button
-							className={`${statusButtonStyle} bg-limegreen`}
+							className={`${statusButtonCSS} bg-limegreen`}
 							key={`window-${details.id}-expand`}
 							onClick={() => {
 								setisMinimized(false);
 							}}>
-							<SelectorIcon className={`${statusIconStyle} -rotate-45`} />
+							<SelectorIcon className={`${statusIconCSS} -rotate-45`} />
 						</button>
 					</div>
-					<div className={titleTextStyle + ' pr-12'}>{details.name}</div>
+					<div className={titleTextCSS}>{details.name}</div>
 				</div>
-				{/* Window Content */}
+
+				{/* //! WINDOW CONTENT */}
 				<div
 					className={(isMinimized ? 'hidden ' : 'showing ') + 'transition-all duration-1000 ease-in-out'}
 					id={`window-${details.id}-content`}
@@ -93,8 +97,10 @@ export const WindowWrapper = ({ details, desktopState }: WINDOW_WRAPPER_PROPS) =
 						desktopState.setFocusedWindow(details.id);
 					}}>
 					{details.content}
+
+					{/* //! FOOTER CONTENT */}
 					{details.footerContent && (
-						<div className='flex justify-center py-1 tracking-tight text-ui-text text-2xs bg-bg-primary-900 h-5'>
+						<div className={footerCSS}>
 							{/* {Footer content option} */}
 							{details.footerContent}
 						</div>
