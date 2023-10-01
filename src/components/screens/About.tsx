@@ -118,6 +118,7 @@ export const AboutDockIcon = (desktopState: DESKTOP_STATE) => {
 					return [...prev, 2];
 				});
 				desktopState.setFocusedWindow(2);
+				desktopState.setFocusedWindowName('About');
 			}}>
 			<span className='inline-flex text-white'>
 				<CodeIcon className='h-5 stroke-white stroke-0 pr-[1px]' />_

@@ -19,7 +19,6 @@ export interface WINDOW_COMPONENT_PROPS {
 
 const windowCSS =
 	'absolute card backdrop-blur-sm bg-bg-primary-800/80 drop-shadow-xl w-fit border-bg-primary-900 text-white';
-const footerCSS = 'flex justify-center py-1 tracking-tight text-ui-text text-2xs bg-bg-primary-900 h-5';
 
 export const WindowWrapper = ({ details, desktopState }: WINDOW_WRAPPER_PROPS) => {
 	//wraps the window contents with a card element that has buttons to minimize and close windows.
@@ -45,10 +44,12 @@ export const WindowWrapper = ({ details, desktopState }: WINDOW_WRAPPER_PROPS) =
 					if (!e.target.id) return;
 					if (e.target.id === `window-${details.id}`) {
 						desktopState.setFocusedWindow(details.id);
+						desktopState.setFocusedWindowName(details.name);
 					}
 				}}>
 				{/* //! STATUS BAR */}
 				{!details.sideBarContent && <StatusBarVisibilityButtons {...windowComponentProps} />}
+				{/* //! SIDEBAR CONTENT */}
 				{details.sideBarContent && <SidebarContainer {...windowComponentProps} />}
 
 				{/* //! WINDOW CONTENT */}

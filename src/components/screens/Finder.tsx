@@ -37,6 +37,7 @@ export const FinderDockIcon = (desktopState: DESKTOP_STATE) => {
 					return [...prev, 3];
 				});
 				desktopState.setFocusedWindow(3);
+				desktopState.setFocusedWindowName('Finder');
 			}}>
 			<img
 				src='src/assets/icons/Finder.webp'
