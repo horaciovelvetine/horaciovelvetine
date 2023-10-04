@@ -1,10 +1,13 @@
 ## Hi there 👋
 
-My names is James Tillman (@horaciovelvetine), I'm a full-stack developer from Denver with experience building modern, responsive, and robust web-apps. I'm a huge fan of learning and problem solving, but not riddles, thats just problem solving for liars.
+My names is James Tillman (@horaciovelvetine) - Im a software engineer and creative technologist based in Denver, Colorado. Problem solving and creative thinking are my passions. I love to build creative things, fun things, and sometimes even useful things.
 
 ### Learning.currently
-- p5
+
+- [Force Drawn Graphs & Java SpringBoot](https://github.com/horaciovelvetine/CloudPointGeneration)
+- [Browser Visualization tools & p5.js](https://github.com/horaciovelvetine/p5-sketches)
+- [Random Number Generation & recharts typeScript](https://github.com/horaciovelvetine/js-rng-experiments)
 
 ### Contact.me
 
-horaciovelvetine@gmail.com
+[Email Me](mailto:horaciovelvetine@gmail.com) | [LinkedIn](https://www.linkedin.com/in/james-tillman-3b1b3b1b/)
