@@ -1,12 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>horaciovelvetine.dev</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/index.tsx"></script>
-  </body>
+<html lang="en" class="block h-full antialiased">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- Gets tailwindcss from CDN per docs... -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<title>horaciovelvetine.dev</title>
+	</head>
+
+	<body class="flex h-full bg-cover text-stone-200 saturate-100" style="background-image: url(/assets/img/bg_gradient.png)">
+		<!-- FILTER BG -->
+		<div class="flex w-full flex-col backdrop-blur-3xl bg-slate-900/5">
+			<div class="flex justify-center">
+				<!-- WINDOW CONTENT BG GRAYED -->
+				<div class="flex flex-col bg-gray-900/80 rounded-2xl m-4 px-4 py-6 min-w-96 2xl:w-7/12 xl:w-8/12 lg:w:9/12 md:w-10/12 sm:w-11/12 drop-shadow-xl">
+					<!-- HEADER CONTENT -->
+					<header class="flex justify-center">
+						<ul class="flex flex-col self-center">
+							<h1 class="flex justify-end font-bold text-3xl">James Tillman</h1>
+							<h2 class="flex justify-end text-xl justify-self-end">@horaciovelvetine</h2>
+							<h2 class="flex justify-end text-xl justify-self-end">Full Stack Developer</h2>
+							<div class="flex gap-2 justify-end underline underline-offset-2 text-sky-600">
+								<a href="https://github.com/horaciovelvetine" class="transition hover:scale-105 duration-200">Github</a>
+								<p class="text-stone-300/75">|</p>
+								<a href="http://www.linkedin.com/in/james-p-tillman" class="transition hover:scale-105 duration-200">LinkedIn</a>
+								<p class="text-stone-300/75">|</p>
+								<a href="https://docs.google.com/document/d/e/2PACX-1vTwaSN3KLjSdvIBbngLEeE7ezcRbzUFNlEZ9Nv8eLROGm2d_qojjKbq_tmXe7UZQJiIHk8fmzfrCuR_/pub" class="transition hover:scale-105 duration-200">Resume</a>
+							</div>
+						</ul>
+						<div class="flex px-2.5 sm:my-4">
+							<img src="/assets/img/headshot_cropped.png" alt="James Tillman" class="self-center rounded-full aspect-auto max-h-48 max-w-48 drop-shadow-xl transition hover:scale-105 duration-500" />
+						</div>
+					</header>
+					<!-- MAIN CONTENT -->
+					<main class="">
+						<div class="flex flex-col p-4">
+							<div>
+								<h2 class="text-lg font-medium text-center text-stone-300">Ongoing Work</h2>
+								<!-- PROJECTS LIST -->
+								<ul role="list" class="mt-3 grid grid-cols-1 gap-5 md:grid-cols-1 lg:grid-cols-2">
+									<!-- FIRST PROJECT ITEM -->
+									<li class="col-span-1 flex rounded-md shadow-sm">
+										<div class="flex w-16 flex-shrink-0 items-center justify-center bg-pink-600 rounded-l-md text-sm font-medium text-white">CPG</div>
+										<div class="flex flex-1 items-center justify-between rounded-r-md border-b border-r border-t border-gray-200 bg-white/95">
+											<div class="flex flex-col flex-1 px-4 py-2">
+												<a href="https://github.com/horaciovelvetine/CloudPointGeneration" class="font-bold text-gray-900 hover:text-gray-600 underline underline-offset-2">Cloud Point Generation</a>
+												<p class="font-light text-xs text-gray-900 break-word py-2">Uses force drawn graphs to interpret the relationship between wikipedia articles and maps them to datasets for visualization</p>
+												<div class="flex gap-2">
+
+													<p class="inline-flex items-center rounded-md bg-pink-400/10 px-1 py-1 text-xs text-pink-400 ring-1 ring-inset ring-pink-400/30">Java</p>
+													<p class="inline-flex items-center rounded-md bg-pink-400/10 px-1 py-1 text-xs text-pink-400 ring-1 ring-inset ring-pink-400/30">PostgreSQL</p>
+													<p class="inline-flex items-center rounded-md bg-pink-400/10 px-1 py-1 text-xs text-pink-400 ring-1 ring-inset ring-pink-400/30">Spring</p>
+													<p class="inline-flex items-center rounded-md bg-pink-400/10 px-1 py-1 text-xs text-pink-400 ring-1 ring-inset ring-pink-400/30">JUNG</p>
+												</div>
+											</div>
+										</div>
+									</li>
+									<!-- SECOND PROJECT ITEM -->
+									<li class="col-span-1 flex rounded-md shadow-sm">
+										<div class="flex w-16 flex-shrink-0 items-center justify-center bg-purple-600 rounded-l-md text-sm font-medium text-white">p5</div>
+										<div class="flex flex-1 items-center justify-between rounded-r-md border-b border-r border-t border-gray-200 bg-white/95">
+											<div class="flex flex-col flex-1 px-4 py-2 ">
+												<a href="https://github.com/horaciovelvetine/p5-sketches" class="font-bold text-gray-900 hover:text-gray-600 underline underline-offset-2">p5 Sketches</a>
+												<p class="font-light text-xs text-gray-900 break-word py-2">Learning the p5 js library to build in browser visualization tools, and games.</p>
+												<div class="flex gap-2">
+
+													<p class="inline-flex items-center rounded-md bg-purple-400/10 px-1 py-1 text-xs text-purple-400 ring-1 ring-inset ring-purple-400/30">JavaScript</p>
+													<p class="inline-flex items-center rounded-md bg-purple-400/10 px-1 py-1 text-xs text-purple-400 ring-1 ring-inset ring-purple-400/30">p5.js</p>
+													<p class="inline-flex items-center rounded-md bg-purple-400/10 px-1 py-1 text-xs text-purple-400 ring-1 ring-inset ring-purple-400/30">Node</p>
+													<p class="inline-flex items-center rounded-md bg-purple-400/10 px-1 py-1 text-xs text-purple-400 ring-1 ring-inset ring-purple-400/30">Vite</p>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</main>
+					<!-- FOOTER CONTENT -->
+					<footer class="flex justify-center items-end text-stone-300 text-lg transition hover:scale-105 duration-200">
+						<a href="mailto:horaciovelvetine@gmail.com" class="align-baseline underline underline-offset-2"><span class="inline-flex items-center rounded-md bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-400 ring-1 ring-inset ring-gray-400/20">Contact Me</span></a>
+					</footer>
+				</div>
+			</div>
+		</div>
+	</body>
+
 </html>
