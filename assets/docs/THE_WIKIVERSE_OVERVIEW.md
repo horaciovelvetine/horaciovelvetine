@@ -13,6 +13,7 @@
 </ul>
 
 <h2 align=center>Objective:</h2>
+<hr>
 <h3 align=center>
   <li>Answer: 'What would Wikipedia look like in 3D space'? </li>
   <li>Document the prototyping processes in a detailed and helpful way</li>
@@ -20,6 +21,11 @@
   <li>Provide an alternative take on 'Search UI' and the way which topics are explored on Wikipedia</li>
   <li> (bonus goal) Get apple to send me one of those Vision Pro's so I can explore Wikipedia in 3D AND look cool</li>  
 </h3>
+<hr>
+
+<div align=center>
+  <img src=../img/kb_ver0.0.1_demo.png>
+</div>
 
 ## Summary 
 
