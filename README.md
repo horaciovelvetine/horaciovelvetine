@@ -12,6 +12,7 @@ My names is James Tillman (@horaciovelvetine) - Im a software engineer and creat
 - [finding-centroids](https://github.com/horaciovelvetine/finding-centroids)
 - [Random Number Generation & recharts typeScript](https://github.com/horaciovelvetine/js-rng-experiments)
 - [java, spring boot, and stateless APIs](https://github.com/horaciovelvetine/wikidata-universe-api)
+- [graphs, Wikidata, and data](https://github.com/horaciovelvetine/horaciovelvetine/blob/main/assets/docs/THE_WIKIVERSE_OVERVIEW.md)
 
 ### Contact Me
 
