@@ -8,9 +8,10 @@ My names is James Tillman (@horaciovelvetine) - Im a software engineer and creat
 
 ### What I'm Learning/Working-On
 
-- [Force Drawn Graphs & Java SpringBoot](https://github.com/horaciovelvetine/ForceDrawnGraphs)
-- [Browser Visualization tools & p5.js](https://github.com/horaciovelvetine/p5-sketches)
+- [the Wikiverse](https://github.com/horaciovelvetine/wikidata-universe-client)
+- [finding-centroids](https://github.com/horaciovelvetine/finding-centroids)
 - [Random Number Generation & recharts typeScript](https://github.com/horaciovelvetine/js-rng-experiments)
+- [java, spring boot, and stateless APIs](https://github.com/horaciovelvetine/wikidata-universe-api)
 
 ### Contact Me
 
