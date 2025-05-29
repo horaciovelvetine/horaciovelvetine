@@ -8,5 +8,9 @@
 		"**/Thumbs.db": true,
 		"**/.ruby-lsp": true
 	},
-	"hide-files.files": []
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
 }
