@@ -7,10 +7,11 @@ export function SolutionFinderControls({
   gameBoardEmpty,
   setIsFindingSolution,
   setSolutionFinderInterval,
+  solutionFinderInterval,
   solutionBoard,
 }: SolvedokuGameState) {
   const buttonText = isFindingSolution ? 'Pause Solution' : 'Solve Puzzle';
-  const [speedText, setSpeedText] = useState('1x')
+  const [speedText, setSpeedText] = useState(solutionFinderInterval.toString() + 'ms')
 
   const handleSolveButtonClick = () => {
     if (gameBoardEmpty) return;
@@ -20,19 +21,31 @@ export function SolutionFinderControls({
 
   const handleModifySpeedClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const action = (e.target as HTMLElement).id;
-    const currentSpeed = Number(speedText.replace('x', ''));
+    const currentSpeed = Number(speedText.replace('ms', ''));
 
-    if (action === 'increase' && currentSpeed < 512) {
-      const newSpeed = currentSpeed * 2;
-      setSpeedText(`${newSpeed.toString()}x`);
-      setSolutionFinderInterval(prev => prev <= 50 ? 5 : prev - 50);
+    if (action === 'increase') {
+      let newSpeed;
+      if (currentSpeed === 1) {
+        newSpeed = 50;
+      } else if (currentSpeed < 500) {
+        newSpeed = Math.min(500, currentSpeed + 50);
+      } else {
+        newSpeed = 500;
+      }
+      setSpeedText(`${newSpeed.toString()}ms`);
+      setSolutionFinderInterval(newSpeed);
       return;
     }
 
-    if (action === 'decrease' && currentSpeed > 1) {
-      const newSpeed = currentSpeed / 2;
-      setSpeedText(`${newSpeed.toString()}x`);
-      setSolutionFinderInterval(prev => prev + 50);
+    if (action === 'decrease') {
+      let newSpeed;
+      if (currentSpeed <= 50) {
+        newSpeed = 1;
+      } else {
+        newSpeed = currentSpeed - 50;
+      }
+      setSpeedText(`${newSpeed.toString()}ms`);
+      setSolutionFinderInterval(newSpeed);
       return;
     }
   };
@@ -64,7 +77,7 @@ export function SolutionFinderControls({
           </button>
         </li>
         <li className='flex flex-col justify-center text-center font-bold tracking-tighter'>
-          <p className='w-26 text-nowrap'>Speed [ {speedText} ]</p>
+          <p className='w-26 text-nowrap'>Speed [{speedText}]</p>
         </li>
         <li className='flex items-center'>
           <button
