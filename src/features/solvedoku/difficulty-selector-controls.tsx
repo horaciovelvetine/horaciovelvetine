@@ -6,7 +6,7 @@ export function DifficultySelectorControls({
 }: Pick<SolvedokuGameState, 'selectedDifficulty' | 'setSelectedDifficulty'>) {
 	return (
 		<div className='text-center font-bold tracking-tighter my-2'>
-			<label className='border-b'>Puzzle Difficulty Selector</label>
+			<h4 className='border-b mb-0.5'>Puzzle Difficulty Selector</h4>
 			<ul className='flex gap-1 justify-center pt-1'>
 				{(['easy', 'medium', 'hard'] as PuzzleDifficulty[]).map(level => (
 					<DifficultyButton
@@ -48,7 +48,7 @@ function DifficultyButton({
 				className={`
 		border border-gray-300 tracking-tight font-bold text-center rounded-lg px-2 py-0.5 
 		transition-all duration-100 hover:scale-105 hover:-translate-y-1 select-none
-		${isSelected ? 'bg-sky-500/60' : 'border-gray-300/50 bg-sky-500/10 text-white/50'}
+		${isSelected ? 'bg-sky-500/60' : 'border-gray-300/70 bg-sky-500/30 text-white'}
 	`}
 				onClick={handleClick}
 				aria-pressed={isSelected}>

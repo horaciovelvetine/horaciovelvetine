@@ -10,6 +10,8 @@ export function PuzzleFunctionControls({
 	gameBoardEmpty,
 	resetGameStepwise
 }: SolvedokuGameState) {
+
+
 	const handleClearSelectedClick = () => {
 		if (!selectedCellID) return;
 		updateCellValue(selectedCellID, null);
@@ -17,8 +19,8 @@ export function PuzzleFunctionControls({
 
 	return (
 		<div className='w-full flex flex-col items-center justify-center'>
-			<label className='border-b leading-none font-extrabold tracking-tight text-lg'>Controls</label>
-			<div className='flex my-2 gap-1.75'>
+			<h4 className='border-b font-extrabold tracking-tight text-lg'>Controls</h4>
+			<div className='flex mt-1.5 mb-1 gap-1'>
 				<PuzzleFunctionButton
 					title={canUndo ? 'Undo last move (Ctrl+Z)' : 'No moves to undo'}
 					iconAltText='Undo'
@@ -75,11 +77,11 @@ function PuzzleFunctionButton({
 			onClick={onClickFunction}
 			disabled={!disabledState}
 			title={title}
-			className={`border border-gray-300 p-2 rounded-lg transition-all duration-100 bg-sky-500/60 select-none ${disabledState ? 'hover:scale-105 hover:-translate-y-1' : 'opacity-30 cursor-not-allowed'}`}>
+			className={`border border-gray-300 px-2 py-0.5 rounded-lg transition-all duration-100 bg-sky-500/60 select-none ${disabledState ? 'hover:scale-105 hover:-translate-y-1' : 'opacity-30 cursor-not-allowed'}`}>
 			{iconSource && <img
 				src={iconSource}
 				alt={iconAltText}
-				className='size-6'
+				className='size-7'
 			/>}
 			{text && <p className='tracking-tighter'>{text}</p>}
 		</button>
