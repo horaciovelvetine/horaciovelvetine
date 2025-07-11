@@ -1,8 +1,16 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: sans-serif, monospace;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('./img/main-background-gradient.png');
+  overflow: hidden;
 }
