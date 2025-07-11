@@ -106,4 +106,14 @@ export interface SolvedokuGameState {
    * Memoized boolean to indicate the board is full and the solution is valid...
    */
   isValidSolution: boolean;
+
+  /**
+   * State to count the number of steps taken to arrive at a solution (number of calls to the { @see findCellSolution() method })
+   */
+  solutionStepCounter: number;
+
+  /**
+   * Setter to update solutionStepCounter state.
+   */
+  setSolutionStepCounter: Dispatch<SetStateAction<number>>;
 }

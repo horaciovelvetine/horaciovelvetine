@@ -20,7 +20,10 @@ export function useSolutionFinder(state: SolvedokuGameState) {
     updateCellValue,
     gameBoard,
     setGameBoard,
-    isValidSolution
+    isValidSolution,
+    setSolutionStepCounter,
+    solutionStepCounter,
+    solutionBoard,
   } = state;
   const [cellTarget, setCellTarget] = useState<RowColumnSet | null>();
 
@@ -30,6 +33,7 @@ export function useSolutionFinder(state: SolvedokuGameState) {
       targetCellStart: RowColumnSet | null
     ): RowColumnSet | null => {
       if (!targetCellStart) return null; //? no empty cells found...
+      setSolutionStepCounter(prev => prev + 1);
 
       const [rowTgt, colTgt] = targetCellStart;
       const startingGuess =
@@ -46,7 +50,8 @@ export function useSolutionFinder(state: SolvedokuGameState) {
           num
         );
 
-        if (validSolutionPlaced) { //? update gameBoard and return the next cellTarget 
+        if (validSolutionPlaced) {
+          //? update gameBoard and return the next cellTarget
           workingBoard[rowTgt][colTgt].value = num.toString();
           const cellTgtIDString = createCellIDFromTarget(targetCellStart);
           updateCellValue(cellTgtIDString, num.toString());
@@ -78,7 +83,7 @@ export function useSolutionFinder(state: SolvedokuGameState) {
 
       return btTargetCell;
     },
-    [updateCellValue, setGameBoard]
+    [updateCellValue, setGameBoard, setSolutionStepCounter]
   );
 
   useEffect(() => {
@@ -91,13 +96,16 @@ export function useSolutionFinder(state: SolvedokuGameState) {
 
       const targetCellStart = cellTarget ?? findEmptyCell(workingBoard);
       const nextCellTarget = findCellSolution(workingBoard, targetCellStart);
+      const boardIncomplete = workingBoard.some(row =>
+        row.some(cell => cell.value === null)
+      );
 
       if (nextCellTarget === null) {
         console.log({
-          msg: 'useEffect() => nextCellTarget === null',
+          msg: 'useSolutionFinder() => ' + (boardIncomplete ? 'unsolved' : 'solved'),
           workingBoard,
-          targetCellStart,
-          nextCellTarget,
+          solutionBoard,
+          solutionStepCounter,
         });
         setIsFindingSolution(false);
         setCellTarget(null);
@@ -110,12 +118,14 @@ export function useSolutionFinder(state: SolvedokuGameState) {
       clearTimeout(timeoutSolver);
     };
   }, [
+    solutionStepCounter,
     isFindingSolution,
     solutionFinderInterval,
     setIsFindingSolution,
     cellTarget,
     findCellSolution,
     isValidSolution,
-    gameBoard
+    gameBoard,
+    solutionBoard,
   ]);
 }

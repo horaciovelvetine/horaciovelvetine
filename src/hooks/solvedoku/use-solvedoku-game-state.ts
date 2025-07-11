@@ -45,6 +45,7 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 	// Solution finder state
 	const [isFindingSolution, setIsFindingSolution] = useState(false);
 	const [solutionFinderInterval, setSolutionFinderInterval] = useState(1); //? in ms...
+	const [solutionStepCounter, setSolutionStepCounter] = useState(0);
 
 	// Computed values
 	const canUndo = useMemo(() => moveHistory.length > 0, [moveHistory]);
@@ -139,9 +140,10 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 					return newGame;
 				});
 			}
-
+			setSolutionStepCounter(0);
 			setMoveHistory([]);
 		} else {
+			setSolutionStepCounter(0);
 			setGameBoard(createEmptyBoard(BOARD_SIZE));
 		}
 	}, [setGameBoard, moveHistory]);
@@ -160,6 +162,7 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		const solved = filledBoard.map(row => (row.map(cell => ({ ...cell }))))
 		setSolutionBoard(solved);
 		emptyCellsForDifficulty(filledBoard, selectedDifficulty);
+		setSolutionStepCounter(0);
 		setMoveHistory([]);
 		setGameBoard(filledBoard);
 	}, [selectedDifficulty]);
@@ -185,5 +188,7 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		solutionFinderInterval,
 		setSolutionFinderInterval,
 		solutionBoard,
+		solutionStepCounter,
+		setSolutionStepCounter
 	};
 }
