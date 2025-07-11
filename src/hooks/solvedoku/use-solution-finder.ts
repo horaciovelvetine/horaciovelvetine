@@ -69,8 +69,13 @@ export function useSolutionFinder(state: SolvedokuGameState) {
         }
         foundBTTarget = true;
       }
+
+      workingBoard[rowTgt][colTgt].value = null;
+      const currentCellIDString = createCellIDFromTarget(targetCellStart);
+      updateCellValue(currentCellIDString, null);
       clearBoardPastTarget(btTargetCell, workingBoard);
-      setGameBoard(workingBoard);
+      setGameBoard(workingBoard.map(row => row.map(cell => ({ ...cell }))));
+
       return btTargetCell;
     },
     [updateCellValue, setGameBoard]
@@ -83,6 +88,7 @@ export function useSolutionFinder(state: SolvedokuGameState) {
       const workingBoard: SolvedokuGameBoard = gameBoard.map(row =>
         row.map(cell => ({ ...cell }))
       );
+
       const targetCellStart = cellTarget ?? findEmptyCell(workingBoard);
       const nextCellTarget = findCellSolution(workingBoard, targetCellStart);
 
@@ -94,8 +100,8 @@ export function useSolutionFinder(state: SolvedokuGameState) {
           nextCellTarget,
         });
         setIsFindingSolution(false);
-        setCellTarget(nextCellTarget);
-        clearTimeout(timeoutSolver);
+        setCellTarget(null);
+        return;
       }
       setCellTarget(nextCellTarget);
     }, solutionFinderInterval);
@@ -105,11 +111,11 @@ export function useSolutionFinder(state: SolvedokuGameState) {
     };
   }, [
     isFindingSolution,
-    gameBoard,
     solutionFinderInterval,
     setIsFindingSolution,
     cellTarget,
     findCellSolution,
-    isValidSolution
+    isValidSolution,
+    gameBoard
   ]);
 }
