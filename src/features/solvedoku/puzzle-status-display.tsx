@@ -1,15 +1,16 @@
 import type { SolvedokuGameState } from '../../types';
 
 export function PuzzleStatusDisplay({
-	isFindingSolution,
-	isValidGameBoard,
-	isValidSolution,
+  isFindingSolution,
+  isValidGameBoard,
+  isValidSolution,
 }: SolvedokuGameState) {
-	return (
-		<div className='absolute bottom-1'>
-			{isFindingSolution && <p>Solving</p>}
-			{!isValidGameBoard && <p>Invalid</p>}
-			{isValidSolution && <p>Solved!</p>}
-		</div>
-	);
+  return (
+    <div className='flex justify-center h-8 tracking-tight font-bold align-baseline items-center'>
+      {/* <p className='select-none opacity-0'>default</p> */}
+      {isFindingSolution && <p className='bg-amber-500/70 rounded-lg py-0.5 px-2 border border-gray-300'>Solving...</p>}
+      {!isValidGameBoard && <p className='bg-red-400/70 rounded-lg py-0.5 px-2 border border-gray-300'>Invalid!</p>}
+      {isValidSolution && <p className='bg-emerald-500/70 rounded-lg py-0.5 px-2 border border-gray-300'>Solved!</p>}
+    </div>
+  );
 }
