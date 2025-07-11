@@ -7,9 +7,9 @@
 </ul>
 
 <ul align=center>
-<img src=../img/icons/java_logo.svg width=200>
-    <img src=../img/icons/P5js_logo.svg width=200>
-    <img src=../img/icons/spring_logo.svg width=200>
+<img src=src/assets/icons/java-logo.svg width=200>
+    <img src=src/assets/icons/p5js-logo.svg width=200>
+    <img src=src/assets/icons/spring-logo.svg width=200>
 </ul>
 
 <h2 align=center>Objective:</h2>
