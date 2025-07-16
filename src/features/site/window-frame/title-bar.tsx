@@ -1,4 +1,4 @@
-import { CloseIcon } from '../../assets';
+import { CloseIcon } from '../../../assets';
 
 interface TitleBarProps {
   title: string;
