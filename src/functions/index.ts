@@ -14,3 +14,4 @@ export { parseFormattedCellIDString } from './solvedoku/parse-formatted-cell-id-
 export { stepTargetCellIndecesBack } from './solvedoku/step-target-cell-indeces-back';
 export { createCellIDFromTarget } from './solvedoku/create-cell-id-from-target';
 export { clearBoardPastTarget } from './solvedoku/clear-board-past-target'
+

@@ -102,7 +102,7 @@ export function useSolutionFinder(state: SolvedokuGameState) {
 
       if (nextCellTarget === null) {
         console.log({
-          msg: 'useSolutionFinder() => ' + (boardIncomplete ? 'unsolved' : 'solved'),
+          msg: 'Solvedoku::useSolutionFinder() => ' + (boardIncomplete ? 'unsolved' : 'solved'),
           workingBoard,
           solutionBoard,
           solutionStepCounter,

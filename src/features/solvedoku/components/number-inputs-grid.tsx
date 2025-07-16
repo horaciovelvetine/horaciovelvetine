@@ -1,4 +1,4 @@
-import type { SolvedokuGameState } from '../../types';
+import type { SolvedokuGameState } from '../../../types';
 
 export function NumberInputsGrid({ selectedCellID, updateCellValue }: SolvedokuGameState) {
 

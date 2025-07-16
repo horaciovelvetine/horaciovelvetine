@@ -1,16 +1,16 @@
+import { useArrowKeyListener, useKeyboardShortcuts, useSolutionFinder } from '../../hooks/solvedoku';
 import type { SolvedokuGameState } from '../../types';
-import {
-  useArrowKeyListener,
-  useKeyboardShortcuts,
-} from '../../hooks/solvedoku';
-import { GameTable } from '../solvedoku/game-table';
-import { NumberInputsGrid } from '../solvedoku/number-inputs-grid';
-import { CreateNewPuzzleButton } from '../solvedoku/create-new-puzzle-button';
-import { PuzzleFunctionControls } from '../solvedoku/puzzle-functions-controls';
-import { DifficultySelectorControls } from '../solvedoku/difficulty-selector-controls';
-import { useSolutionFinder } from '../../hooks/solvedoku/use-solution-finder';
-import { SolutionFinderControls } from '../solvedoku/solution-finder-controls';
-import { PuzzleStatusDisplay } from '../solvedoku/puzzle-status-display';
+
+//Components
+import { CreateNewPuzzleButton } from './components/create-new-puzzle-button';
+import { DifficultySelectorControls } from './components/difficulty-selector-controls';
+import { GameTable } from './components/game-table';
+import { NumberInputsGrid } from './components/number-inputs-grid';
+import { PuzzleFunctionControls } from './components/puzzle-functions-controls';
+import { PuzzleStatusDisplay } from './components/puzzle-status-display';
+import { SolutionFinderControls } from './components/solution-finder-controls';
+
+
 
 export function SolvedokuWindow(props: SolvedokuGameState) {
 

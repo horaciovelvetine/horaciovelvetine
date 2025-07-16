@@ -1,16 +1,19 @@
-import { GithubLogo, LinkedInLogo } from '../../assets';
+import { GithubLogo, LinkedInLogo } from '../../../assets';
 
 export function DevsktopLandingWindow() {
-	const textGradientSetupStyle = 'bg-clip-text text-transparent bg-gradient-to-r ';
+	const textGradientSetupStyle =
+		'bg-clip-text text-transparent bg-gradient-to-r ';
 	const linkGradientStyle =
 		'from-rose-500 via-purple-500 to-sky-500 hover:text-white hover:bg-clip-border hover:-translate-y-1 hover:scale-105 hover:drop-shadow-2xl transition-all duration-100 rounded-full text-nowrap ';
-	const mainLinkStyle = textGradientSetupStyle + linkGradientStyle + 'px-2 pb-1 align-text-top';
-	const siteLinkStyle = textGradientSetupStyle + linkGradientStyle + 'px-2 pb-1 text-center';
+	const mainLinkStyle =
+		textGradientSetupStyle + linkGradientStyle + 'px-2 pb-1 align-text-top';
+	const siteLinkStyle =
+		textGradientSetupStyle + linkGradientStyle + 'px-2 pb-1 text-center';
 
 	return (
-		<div className='font-sans relative'>
+		<div className='relative'>
 			<div className='flex items-center'>
-				<div className='flex border border-white/40 rounded-full transition-all duration-200 drop-shadow-md hover:scale-105 hover:-translate-y-1 w-35 hover:drop-shadow-2xl'>
+				<div className='flex border border-white/40 bg-transparent rounded-full transition-all duration-200 drop-shadow-md hover:scale-105 hover:-translate-y-1 w-35 hover:drop-shadow-2xl tracking-tight'>
 					<a
 						href='https://support.apple.com/en-us/111115'
 						target='_blank'
@@ -41,16 +44,25 @@ export function DevsktopLandingWindow() {
 						className='inline-flex items-center tracking-tighter'
 						rel='noreferrer noopener'>
 						<h2 className={mainLinkStyle}>
-							<span className='text-5xl font-extrabold align-top'>@</span>horaciovelvetine
+							<span className='text-5xl font-extrabold align-top'>@</span>
+							horaciovelvetine
 						</h2>
 					</a>
 				</div>
 			</div>
 			<div className='w-full border-t-2 mb-1.5'></div>
 			<p className='text-3xl/7 font-bold text-white tracking-tight  mb-1.5'>
-				Enterprising <span className={textGradientSetupStyle + 'from-yellow-500 to-rose-500'}>full-stack engineer</span>{' '}
-				and creative-technologist driven by solving uniquely challenging problems and growing a{' '}
-				<span className={textGradientSetupStyle + 'from-rose-500 via-orange-500  to-yellow-500'}>
+				<span
+					className={textGradientSetupStyle + 'from-yellow-500 to-rose-500'}>
+					Full-stack engineer
+				</span>{' '}
+				and creative-technologist driven by solving uniquely challenging
+				problems and growing a{' '}
+				<span
+					className={
+						textGradientSetupStyle +
+						'from-rose-500 via-orange-500  to-yellow-500'
+					}>
 					love for technology
 				</span>{' '}
 				spanning back to jailbreaking the first iPhones.

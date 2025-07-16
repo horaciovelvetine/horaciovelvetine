@@ -1,4 +1,4 @@
-import type { PuzzleDifficulty, SolvedokuGameState } from '../../types';
+import type { PuzzleDifficulty, SolvedokuGameState } from '../../../types';
 
 export function DifficultySelectorControls({
 	selectedDifficulty,

@@ -1,7 +1,7 @@
 import type { ChangeEvent } from 'react';
+import { isInSelectedSquare, parseFormattedCellIDString } from '../../../functions';
+import type { SolvedokuGameState } from '../../../types';
 
-import type { SolvedokuGameState } from '../../types';
-import { isInSelectedSquare, parseFormattedCellIDString } from '../../functions';
 
 interface CellProps
 	extends Pick<

@@ -9,7 +9,7 @@ import type { SolvedokuGameState } from '../../types';
  * - Backspace/Delete: Clear selected cell
  * @param props - Hook configuration props
  */
-export function useKeyboardShortcuts({ undo, canUndo, selectedCellID, updateCellValue }: SolvedokuGameState) {
+export function useKeyboardShortcuts({ undo, canUndo, selectedCellID, updateCellValue, }: SolvedokuGameState) {
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       // Undo shortcut: Ctrl+Z (Windows/Linux) or Cmd+Z (Mac)

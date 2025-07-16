@@ -1,4 +1,4 @@
-import type { SolvedokuGameState } from "../../types";
+import type { SolvedokuGameState } from "../../../types";
 import { CellDisplay } from "./cell-display";
 
 export function GameTable({ gameBoard, updateCellValue, selectedCellID, setSelectedCellID }: SolvedokuGameState) {

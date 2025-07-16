@@ -1,4 +1,4 @@
-import type { SolvedokuGameState } from "../../types";
+import type { SolvedokuGameState } from "../../../types";
 
 export function CreateNewPuzzleButton({ generateRandomPuzzle }: Pick<SolvedokuGameState, 'generateRandomPuzzle'>) {
   return (

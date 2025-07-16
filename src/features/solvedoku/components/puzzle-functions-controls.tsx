@@ -1,5 +1,5 @@
-import { UndoArrowIcon, EraserIcon } from '../../assets';
-import type { SolvedokuGameState } from '../../types';
+import { UndoArrowIcon, EraserIcon } from '../../../assets';
+import type { SolvedokuGameState } from '../../../types';
 
 export function PuzzleFunctionControls({
 	canUndo,
@@ -7,7 +7,6 @@ export function PuzzleFunctionControls({
 	selectedCellHasValue,
 	updateCellValue,
 	selectedCellID,
-	gameBoardEmpty,
 	resetGameStepwise
 }: SolvedokuGameState) {
 
@@ -42,11 +41,11 @@ export function PuzzleFunctionControls({
 					aria-label='Clear selected cell'
 				/>
 				<PuzzleFunctionButton
-					title={gameBoardEmpty ? 'Fill out puzzle to reset' : 'Clear current puzzle'}
-					iconAltText='reset'
+					title={'Reset solution progress'}
+					iconAltText='Reset'
 					text={'Reset'}
 					onClickFunction={resetGameStepwise}
-					disabledState={!gameBoardEmpty}
+					disabledState={canUndo}
 					aria-label='Clear current puzzle' />
 			</div>
 		</div>

@@ -29,7 +29,7 @@ import {
  * @returns {SolvedokuGameState} Object containing game state, computed values, and functions to manipulate the game
  */
 export function useSolvedokuGameState(): SolvedokuGameState {
-	// Core game state
+	//? Core game state
 	const BOARD_SIZE = 9; // 9x9 grid size
 	const [gameBoard, setGameBoard] = useState<SolvedokuGameBoard>(() =>
 		createEmptyBoard(BOARD_SIZE)
@@ -42,26 +42,30 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 	const [selectedDifficulty, setSelectedDifficulty] =
 		useState<PuzzleDifficulty>('easy');
 
-	// Solution finder state
+	//? Solution finder state
 	const [isFindingSolution, setIsFindingSolution] = useState(false);
 	const [solutionFinderInterval, setSolutionFinderInterval] = useState(1); //? in ms...
 	const [solutionStepCounter, setSolutionStepCounter] = useState(0);
 
-	// Computed values
+	//? Computed values
 	const canUndo = useMemo(() => moveHistory.length > 0, [moveHistory]);
+	
 	const isValidGameBoard = useMemo(
 		() => isValidSolvedokuGame(gameBoard),
 		[gameBoard]
 	);
+
 	const gameBoardEmpty = useMemo(
 		() => gameBoard.every(row => row.every(cell => cell.value === null)),
 		[gameBoard]
 	);
+	
 	const selectedCellHasValue = useMemo(() => {
 		if (!selectedCellID) return false;
 		const [row, col] = parseFormattedCellIDString(selectedCellID);
 		return gameBoard[row][col].value !== null;
 	}, [selectedCellID, gameBoard]);
+	
 	const isValidSolution = useMemo(() => {
 		if (!isValidGameBoard) return false;
 		return gameBoard.every(row => row.every(cell => cell.value !== null));
@@ -115,6 +119,16 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		setMoveHistory(prev => prev.slice(0, -1));
 	}, [moveHistory]);
 
+
+	/**
+	 * clears the game board unlocking each cell and setting every value to null
+	 */
+	const clearGameBoard = useCallback(() => {
+		setSolutionStepCounter(0);
+		setGameBoard(createEmptyBoard(BOARD_SIZE))
+		setMoveHistory([]);
+	}, [])
+
 	/**
 	 * Resets the game board by undoing all moves in history or creating a new empty board
 	 *
@@ -142,11 +156,10 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 			}
 			setSolutionStepCounter(0);
 			setMoveHistory([]);
-		} else {
-			setSolutionStepCounter(0);
-			setGameBoard(createEmptyBoard(BOARD_SIZE));
+			return;
 		}
-	}, [setGameBoard, moveHistory]);
+		clearGameBoard()
+	}, [setGameBoard, moveHistory, clearGameBoard]);
 
 	/**
 	 * Generates a new random Sudoku puzzle with the specified difficulty level
@@ -178,6 +191,7 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		selectedCellID,
 		setSelectedCellID,
 		selectedCellHasValue,
+		clearGameBoard,
 		resetGameStepwise,
 		updateCellValue,
 		undo,

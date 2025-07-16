@@ -1,10 +1,9 @@
 import { useState, type MouseEvent } from 'react';
-import { RewindIcon, FastForwardIcon } from '../../assets';
-import type { SolvedokuGameState } from '../../types';
+import { RewindIcon, FastForwardIcon } from '../../../assets';
+import type { SolvedokuGameState } from '../../../types';
 
 export function SolutionFinderControls({
   isFindingSolution,
-  gameBoardEmpty,
   setIsFindingSolution,
   setSolutionFinderInterval,
   solutionFinderInterval,
@@ -16,7 +15,7 @@ export function SolutionFinderControls({
   );
 
   const handleSolveButtonClick = () => {
-    if (gameBoardEmpty || isValidSolution) return;
+    if (isValidSolution) return;
     setIsFindingSolution(!isFindingSolution);
   };
 
@@ -60,7 +59,7 @@ export function SolutionFinderControls({
       <SolutionFinderButton
         id='solve'
         innerText={buttonText}
-        disabled={gameBoardEmpty || isValidSolution}
+        disabled={isValidSolution}
         altText={
           (isFindingSolution ? 'Pause ' : 'Start ') + 'the puzzle solver'
         }
@@ -70,7 +69,7 @@ export function SolutionFinderControls({
         <li className='flex items-center'>
           <SolutionFinderButton
             id='decrease'
-            disabled={gameBoardEmpty || isValidSolution}
+            disabled={isValidSolution}
             onClickFunc={handleModifySpeedClick}
             icon={RewindIcon}
             altText='Decrease the time between each solution step'
@@ -82,7 +81,7 @@ export function SolutionFinderControls({
         <li className='flex items-center'>
           <SolutionFinderButton
             id='increase'
-            disabled={gameBoardEmpty || isValidSolution}
+            disabled={isValidSolution}
             onClickFunc={handleModifySpeedClick}
             icon={FastForwardIcon}
             altText='Increase the time between each solution step'

@@ -31,6 +31,11 @@ export interface SolvedokuGameState {
   setSelectedDifficulty: Dispatch<SetStateAction<PuzzleDifficulty>>;
 
   /**
+   * Reset the game board with all null values.
+   */
+  clearGameBoard: () => void;
+
+  /**
    * Steps the game all the back to clear the undo history first, then clears all the values in the puzzle
    */
   resetGameStepwise: () => void;
