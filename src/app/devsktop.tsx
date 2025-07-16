@@ -6,7 +6,7 @@ export const Devsktop = () => {
   const siteSettings = useSiteSettings();
 
   return (
-    <main className='h-screen w-screen bg-cover saturate-[1.5] overflow-hidden box-border text-white brightness-90'>
+    <main className='h-screen w-screen relative bg-cover saturate-[1.5] overflow-hidden box-border text-white brightness-90 font-sans'>
       {siteSettings.useMobileCompatability ?
         <MobileDevsktopLayout />
         : <MainDevsktopLayout {...siteSettings} />}
