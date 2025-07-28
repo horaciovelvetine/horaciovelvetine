@@ -11,10 +11,11 @@ export function TitleBar({ title, id, closeWindowByID }: TitleBarProps) {
     'rounded-full transition-all duration-200 bg-zinc-500 group h-4 w-4 flex items-center justify-center';
   return (
     <div className='flex gap-1 bg-zinc-800/80 rounded-t-md py-1 px-2 items-center'>
-      <div className='flex gap-1.5 justify-self-start'>
+      <div className='flex gap-1.5 justify-self-start relative'>
         <button
           type='button'
-          className={windowButtonStyle + ' hover:bg-red-500'}
+          title={`Close the ${title} window`}
+          className={windowButtonStyle + ' hover:bg-red-500 border border-gray-300/10 absolute -top-2'}
           onClick={() => { closeWindowByID(id) }}>
           <img
             src={CloseIcon}
