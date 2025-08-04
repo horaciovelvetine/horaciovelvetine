@@ -1,15 +1,17 @@
 import { useSiteSettings } from '../hooks/site/use-site-settings';
-import { MobileDevsktopLayout } from './layouts/mobile-devsktop-layout';
-import { MainDevsktopLayout } from './layouts/main-devsktop-layout';
+import { MobileLayout } from './layouts/mobile-layout';
+import { DevsktopLayout } from './layouts/devsktop-layout';
+import { useWindowManager } from '../hooks/site';
 
 export const Devsktop = () => {
   const siteSettings = useSiteSettings();
+  const windowManager = useWindowManager(siteSettings);
 
   return (
-    <main className='h-screen w-screen relative bg-cover saturate-[1.5] overflow-hidden box-border text-white brightness-90 font-sans'>
+    <>
       {siteSettings.useMobileCompatability ?
-        <MobileDevsktopLayout />
-        : <MainDevsktopLayout {...siteSettings} />}
-    </main>
+        <MobileLayout siteSettings={siteSettings} windowManager={windowManager} />
+        : <DevsktopLayout siteSettings={siteSettings} windowManager={windowManager} />}
+    </>
   );
 };
