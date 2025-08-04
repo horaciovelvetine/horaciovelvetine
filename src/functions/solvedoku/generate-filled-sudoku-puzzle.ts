@@ -35,6 +35,7 @@ export function generateFilledSudokuPuzzle(boardSize: number): SolvedokuGameBoar
         const cell = board[rowTgt][colTgt];
         cell.value = num.toString();
         cell.locked = true;
+        cell.userInputted = false;
 
         // continue filling board recursively
         if (fillBoardRecurseive(board)) return true;
@@ -44,6 +45,7 @@ export function generateFilledSudokuPuzzle(boardSize: number): SolvedokuGameBoar
       const cell = board[rowTgt][colTgt]
       cell.value = null;
       cell.locked = false;
+      cell.userInputted = false;
     }
     return false;
   }

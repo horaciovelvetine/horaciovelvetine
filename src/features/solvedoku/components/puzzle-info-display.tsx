@@ -33,11 +33,11 @@ export function PuzzleInfoDisplay({
 		);
 		const cell = solvedokuState.gameBoard[row][col];
 		if (cell.locked) return;
-		solvedokuState.updateCellValue(solvedokuState.selectedCellID, null);
+		solvedokuState.updateCellValue(solvedokuState.selectedCellID, null, false);
 	}, [solvedokuState]);
 
 	/**
-	 * Determine if the selected cell can be erased (i.e. was a randomly generated cell)
+	 * Determine if the selected cell can be erased (i.e. is not a randomly generated cell)
 	 */
 	const canEraseCellValue = useCallback(() => {
 		if (!solvedokuState.selectedCellHasValue) return false;
@@ -62,6 +62,11 @@ export function PuzzleInfoDisplay({
 						Invalid!
 					</p>
 				)}
+				{solvedokuState.isUnsolveable && (
+					<p className='bg-red-400/70 rounded-lg py-0.5 px-2 border border-gray-300'>
+						Unable to Solve!
+					</p>
+				)}
 				{solvedokuState.isValidSolution && (
 					<p className='bg-emerald-500/70 rounded-lg py-0.5 px-2 border border-gray-300'>
 						Solved!
@@ -69,6 +74,7 @@ export function PuzzleInfoDisplay({
 				)}
 				{!solvedokuState.isValidSolution &&
 					solvedokuState.isValidGameBoard &&
+					!solvedokuState.isUnsolveable &&
 					!solvedokuState.isFindingSolution && (
 						<p className='py-0.5 px-2 text-transparent select-none'>Message!</p>
 					)}
@@ -80,7 +86,7 @@ export function PuzzleInfoDisplay({
 					title={
 						solvedokuState.canUndo ?
 							'Undo last move (Ctrl+Z)'
-						:	'No moves to undo'
+							: 'No moves to undo'
 					}
 					onClickFunction={solvedokuState.undo}
 					isDisabled={!solvedokuState.canUndo}
@@ -92,7 +98,7 @@ export function PuzzleInfoDisplay({
 					title={
 						solvedokuState.selectedCellHasValue ?
 							'Clear the currently selected cell'
-						:	'Select a cell with a value to clear'
+							: 'Select a cell with a value to clear'
 					}
 					onClickFunction={handleClearSelectedClick}
 					accentColor={siteSettings.accentColor}

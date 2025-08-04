@@ -47,6 +47,7 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 	const [isFindingSolution, setIsFindingSolution] = useState(false);
 	const [solutionFinderInterval, setSolutionFinderInterval] = useState(1); //? in ms...
 	const [solutionStepCounter, setSolutionStepCounter] = useState(0);
+	const [isUnsolveable, setIsUnsolveable] = useState(false);
 
 	/**
 	 * Ref values for expensive checks to see if they can be skipped
@@ -156,26 +157,35 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 	 * @param value - The new value to set (string number 1-9 or null to clear)
 	 */
 	const updateCellValue = useCallback(
-		(cellID: string, value: string | null) => {
+		(cellID: string, value: string | null, isUserInput: boolean, resetUnsolveable = true) => {
 			const [row, col] = parseFormattedCellIDString(cellID);
-			const previousValue = gameBoard[row][col].value;
+			const cellReference = gameBoard[row][col];
 
-			if (previousValue === value) return;
+			if (cellReference.value === value) return;
+
+			// Reset unsolveable state when board changes (unless explicitly disabled)
+			if (resetUnsolveable) {
+				setIsUnsolveable(false);
+			}
 
 			const move: Move = {
 				cellID,
-				previousValue,
 				newValue: value,
+				previousValue: cellReference.value,
+				previouslyLocked: cellReference.locked,
+				previouslyUserInputted: cellReference.userInputted
 			};
 			setMoveHistory(prev => [...prev, move]);
 
 			setGameBoard(prev => {
 				const newGameData = [...prev];
 				newGameData[row][col].value = value;
+				newGameData[row][col].userInputted = isUserInput;
+				newGameData[row][col].locked = false;
 				return newGameData;
 			});
 		},
-		[gameBoard]
+		[gameBoard, setIsUnsolveable]
 	);
 
 	/**
@@ -190,17 +200,22 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 	const undo = useCallback(() => {
 		if (moveHistory.length === 0) return;
 
+		// Reset unsolveable state when board changes
+		setIsUnsolveable(false);
+
 		const lastMove = moveHistory[moveHistory.length - 1];
 		const [row, col] = parseFormattedCellIDString(lastMove.cellID);
 
 		setGameBoard(prev => {
 			const newGame = [...prev];
 			newGame[row][col].value = lastMove.previousValue;
+			newGame[row][col].userInputted = lastMove.previouslyUserInputted;
+			newGame[row][col].locked = lastMove.previouslyLocked;
 			return newGame;
 		});
 
 		setMoveHistory(prev => prev.slice(0, -1));
-	}, [moveHistory]);
+	}, [moveHistory, setIsUnsolveable]);
 
 	/**
 	 * Clears the game board by unlocking all cells and setting all values to null
@@ -215,10 +230,12 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		setSolutionStepCounter(0);
 		setGameBoard(createEmptyBoard(BOARD_SIZE));
 		setMoveHistory([]);
+		// Reset unsolveable state when board changes
+		setIsUnsolveable(false);
 		// Clear caches when board is reset
 		lastValidationRef.current = null;
 		lastEmptyCheckRef.current = null;
-	}, []);
+	}, [setIsUnsolveable]);
 
 	/**
 	 * Resets the game board by undoing all moves in history or creating a new empty board
@@ -232,6 +249,9 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 	 */
 	const resetGameStepwise = useCallback(() => {
 		if (moveHistory.length > 0) {
+			// Reset unsolveable state when board changes
+			setIsUnsolveable(false);
+
 			const movesToUndo = [...moveHistory];
 
 			for (let i = movesToUndo.length - 1; i >= 0; i--) {
@@ -241,7 +261,8 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 				setGameBoard(prev => {
 					const newGame = [...prev];
 					newGame[row][col].value = move.previousValue;
-					newGame[row][col].locked = move.previousValue !== null;
+					newGame[row][col].locked = move.previouslyLocked;
+					newGame[row][col].userInputted = move.previouslyUserInputted;
 					return newGame;
 				});
 			}
@@ -253,7 +274,7 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 			return;
 		}
 		clearGameBoard();
-	}, [setGameBoard, moveHistory, clearGameBoard]);
+	}, [setGameBoard, moveHistory, clearGameBoard, setIsUnsolveable]);
 
 	/**
 	 * Generates a new random Sudoku puzzle with the specified difficulty level
@@ -272,10 +293,12 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		setSolutionStepCounter(0);
 		setMoveHistory([]);
 		setGameBoard(filledBoard);
+		// Reset unsolveable state when board changes
+		setIsUnsolveable(false);
 		// Clear caches when new puzzle is generated
 		lastValidationRef.current = null;
 		lastEmptyCheckRef.current = null;
-	}, [selectedDifficulty]);
+	}, [selectedDifficulty, setIsUnsolveable]);
 
 	/**
 	 * Toggles between showing the stored solution or the current game state
@@ -292,15 +315,19 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		(showSolution: boolean) => {
 			if (!solutionBoard) return;
 
+			// Reset unsolveable state when board changes
+			setIsUnsolveable(false);
+
 			setGameBoard(prev => {
 				const newBoard = prev.map((row, rowIndex) =>
 					row.map((cell, colIndex) => ({
 						...cell,
 						value:
 							showSolution ? solutionBoard[rowIndex][colIndex].value
-							: cell.locked ? cell.value
-							: null,
+								: cell.locked ? cell.value
+									: null,
 						locked: cell.locked,
+						userInputted: cell.userInputted
 					}))
 				);
 				return newBoard;
@@ -312,7 +339,7 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 				lastValidationRef.current = null;
 			}
 		},
-		[solutionBoard]
+		[solutionBoard, setIsUnsolveable]
 	);
 
 	return {
@@ -340,5 +367,7 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		solutionStepCounter,
 		setSolutionStepCounter,
 		toggleShowStoredPuzzleSolution,
+		isUnsolveable,
+		setIsUnsolveable
 	};
 }

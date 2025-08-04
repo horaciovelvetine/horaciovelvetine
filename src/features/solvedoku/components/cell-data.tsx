@@ -12,7 +12,7 @@ interface CellDataProps {
   accentColor: Colors;
   selectedCellCoords: [number, number] | null;
   selectedCellID: string | null;
-  updateCellValue: (cellID: string, value: string | null) => void;
+  updateCellValue: (cellID: string, value: string | null, userInput: boolean) => void;
   setSelectedCellID: (cellID: string | null) => void;
 }
 
@@ -72,7 +72,7 @@ export const CellData = React.memo(function CellData({
         !isNaN(numberValue) && numberValue >= 1 && numberValue <= 9;
 
       if (isValidSudokuNumber) {
-        updateCellValue(cellID, numberValue.toString());
+        updateCellValue(cellID, numberValue.toString(), true);
       }
     },
     [cellID, updateCellValue]
@@ -98,7 +98,7 @@ export const CellData = React.memo(function CellData({
 
     const selectionOutline =
       isSelected ?
-        'outline-4 -outline-offset-2 '.concat(
+        'outline-3 -outline-offset-4 '.concat(
           tailwindOutlineColors[accentColor]
         )
         : 'border border-black';
@@ -114,7 +114,7 @@ export const CellData = React.memo(function CellData({
   return (
     <td
       id={cellID}
-      className={getCellBorderStyle() + ' select-none'}
+      className={getCellBorderStyle() + ' select-none relative'}
       onClick={toggleCellSelection}>
       <input
         className={`${cellSizing} text-center border-none outline-none cursor-pointer caret-transparent text-lg font-bold xs:text-2xl sm:text-3xl ${backgroundColor}`}

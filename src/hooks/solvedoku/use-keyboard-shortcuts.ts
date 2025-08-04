@@ -31,14 +31,15 @@ export function useKeyboardShortcuts({
 			// Number keys 1-9: Input the number in the selected cell
 			if (/^[1-9]$/.test(e.key)) {
 				e.preventDefault();
-				updateCellValue(selectedCellID, e.key);
+				updateCellValue(selectedCellID, e.key, true);
 				return;
 			}
 
 			// Backspace or Delete: Clear the selected cell
 			if (e.key === 'Backspace' || e.key === 'Delete') {
 				e.preventDefault();
-				updateCellValue(selectedCellID, null);
+				//? isUserInputted to false for all null entries, prevents ignored for solution finder....
+				updateCellValue(selectedCellID, null, false);
 				return;
 			}
 		};

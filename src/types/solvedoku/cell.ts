@@ -6,5 +6,6 @@
 
 export interface Cell {
 	value: string | null;
-	locked: boolean; 
+	locked: boolean;
+	userInputted: boolean;
 }

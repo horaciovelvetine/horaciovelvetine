@@ -85,7 +85,7 @@ export function SolvedokuGameMenu({
         accentColor={siteSettings.accentColor}
       />
       <GameMenuButton
-        buttonText='Reveal Solution'
+        buttonText={showStoredSolution ? 'Hide Solution' : 'Reveal Solution'}
         buttonTitle='Show the (intended) solution for the current puzzle'
         accentColor={siteSettings.accentColor}
         isDisabled={cannotShowSolutionBoard}

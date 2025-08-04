@@ -31,6 +31,7 @@ export function emptyCellsForDifficulty(
       const cell = board[row][col];
       cell.value = null;
       cell.locked = false;
+      cell.userInputted = false;
       cellsRemaining--;
     }
   }

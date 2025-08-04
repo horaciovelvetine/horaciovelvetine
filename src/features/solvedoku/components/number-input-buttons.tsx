@@ -15,7 +15,7 @@ export function NumberInputButtons({
   const handleInputClick = useCallback(
     (value: number) => {
       if (!selectedCellID) return;
-      updateCellValue(selectedCellID, value.toString());
+      updateCellValue(selectedCellID, value.toString(), true);
     },
     [selectedCellID, updateCellValue]
   );

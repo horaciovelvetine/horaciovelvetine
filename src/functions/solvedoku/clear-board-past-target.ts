@@ -13,27 +13,28 @@ import type { RowColumnSet, SolvedokuGameBoard } from '../../types';
  * Does nothing if cellTarget is null
  */
 export function clearBoardPastTarget(
-  cellTarget: RowColumnSet | null,
-  workingBoard: SolvedokuGameBoard
+	cellTarget: RowColumnSet | null,
+	workingBoard: SolvedokuGameBoard
 ) {
-  // Return early if no target cell provided
-  if (cellTarget === null) return;
+	// Return early if no target cell provided
+	if (cellTarget === null) return;
 
-  const [targetRow, targetCol] = cellTarget;
-  const boardSize = workingBoard.length;
+	const [targetRow, targetCol] = cellTarget;
+	const boardSize = workingBoard.length;
 
-  for (let currentRow = targetRow; currentRow < boardSize; currentRow++) {
-    const rowLength = workingBoard[currentRow].length;
+	for (let currentRow = targetRow; currentRow < boardSize; currentRow++) {
+		const rowLength = workingBoard[currentRow].length;
 
-    for (let currentCol = targetCol; currentCol < rowLength; currentCol++) {
-      const shouldClearCell =
-        currentRow > targetRow || //? Cell is in a later row
-        (currentRow === targetRow && currentCol > targetCol); //? Cell is after target in same row
+		for (let currentCol = targetCol; currentCol < rowLength; currentCol++) {
+			const shouldClearCell =
+				currentRow > targetRow || //? Cell is in a later row
+				(currentRow === targetRow && currentCol > targetCol); //? Cell is after target in same row
 
-      const cell = workingBoard[currentRow][currentCol];
-      if (shouldClearCell && !cell.locked) {
-        cell.value = null;
-      }
-    }
-  }
+			const cell = workingBoard[currentRow][currentCol];
+			//? Ignore cells before target, generated as part of new puzzle, or which the user has input
+			if (shouldClearCell && !cell.locked && !cell.userInputted) {
+				cell.value = null;
+			}
+		}
+	}
 }

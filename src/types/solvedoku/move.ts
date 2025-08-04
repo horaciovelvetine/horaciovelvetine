@@ -3,6 +3,8 @@
  */
 export interface Move {
 	cellID: string;
-	previousValue: string | null;
 	newValue: string | null;
+	previouslyLocked: boolean;
+	previouslyUserInputted: boolean;
+	previousValue: string | null;
 }

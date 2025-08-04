@@ -17,6 +17,7 @@ export function PuzzleSolverButtons({
 
 	const handleSolveButtonClick = () => {
 		if (solvedokuState.isValidSolution) return;
+		solvedokuState.setIsUnsolveable(false);
 		solvedokuState.setIsFindingSolution(!solvedokuState.isFindingSolution);
 	};
 
@@ -44,7 +45,7 @@ export function PuzzleSolverButtons({
 		}
 		solvedokuState.setSolutionFinderInterval(newSpeed);
 	};
-	
+
 	return (
 		<div className='flex w-full justify-center mt-1 md:mb-2 gap-2'>
 			<PuzzleButton

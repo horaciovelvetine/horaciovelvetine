@@ -86,8 +86,10 @@ export interface SolvedokuGameState {
    * Updates the value of a cell in the game board and records the move in history (for undo functionality)
    * @param cellID - The ID of the cell to update in "row-col" format - expects 1 based ID
    * @param value - The new value to set (string number 1-9 or null to clear)
+   * @param isUserInput - Whether this update was initiated by user input
+   * @param resetUnsolveable - Whether to reset the unsolvable state (defaults to true)
    */
-  updateCellValue: (cellID: string, value: string | null) => void;
+  updateCellValue: (cellID: string, value: string | null, isUserInput: boolean, resetUnsolveable?: boolean) => void;
 
   /**
    * The ID for whichever cell is currently selected or null if none are selected. 
@@ -182,4 +184,14 @@ export interface SolvedokuGameState {
    * 3. Resets move history and solution tracking when showing solution
    */
   toggleShowStoredPuzzleSolution: (showSolution: boolean) => void;
+
+  /**
+   * The current state of the puzzle as described by a string
+   */
+  isUnsolveable: boolean
+
+  /**
+   * Setter for the current puzzle status message
+   */
+  setIsUnsolveable: Dispatch<SetStateAction<boolean>>;
 }
