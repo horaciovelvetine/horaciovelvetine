@@ -1,46 +1,11 @@
-import { SimpleInlineLink } from '../site/components/simple-inline-link';
-import { ToolBadge } from '../site/components/tool-badge';
+import { SimpleInlineLink } from "../../site/components/simple-inline-link";
+import { ToolBadge } from "../../site/components/tool-badge";
+import { SolvedokuIcon } from "../components/solvedoku-icon";
 
 export function AboutSolvedokuWindow() {
 	return (
 		<div className='flex flex-col items-center'>
-			<table className='border-collapse border-2 border-slate-500 mb-4 cursor-default select-none rotate-4 drop-shadow-xl drop-shadow-gray-300/50'>
-				<tbody className='text-blue-600 cursor-default select-none'>
-					<tr>
-						<td className='border border-slate-400 w-8 h-8 text-center bg-slate-100'>
-							1
-						</td>
-						<td className='border border-slate-400 w-8 h-8 text-center bg-slate-200'>
-							2
-						</td>
-						<td className='border border-slate-400 w-8 h-8 text-center bg-slate-100'>
-							3
-						</td>
-					</tr>
-					<tr>
-						<td className='border border-slate-400 w-8 h-8 text-center bg-slate-200'>
-							4
-						</td>
-						<td className='border border-slate-400 w-8 h-8 text-center bg-slate-100'>
-							5
-						</td>
-						<td className='border border-slate-400 w-8 h-8 text-center bg-slate-200'>
-							6
-						</td>
-					</tr>
-					<tr>
-						<td className='border border-slate-400 w-8 h-8 text-center bg-slate-100'>
-							7
-						</td>
-						<td className='border border-slate-400 w-8 h-8 text-center bg-slate-200'>
-							8
-						</td>
-						<td className='border border-slate-400 w-8 h-8 text-center bg-slate-100'>
-							9
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<SolvedokuIcon iconSize="size-32 xl:size-34"/>
 			<h2 className='text-3xl font-extrabold'>Solvedoku</h2>
 			<div className='flex flex-col items-center text-base'>
 				<h4 className='font-semibold tracking-tighter leading-3.5 mt-1 text-white/50'>
