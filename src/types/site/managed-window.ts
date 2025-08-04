@@ -9,5 +9,5 @@ export interface ManagedWindow {
   setPosition: Dispatch<SetStateAction<Position>>
   zIndex: string
   setZIndex: Dispatch<SetStateAction<string>>;
-  navBarMenuItems: NavBarMenuParent[]
+  navBarMenuItems: (openWindowByID: (windowID: string) => void) => NavBarMenuParent[]
 }
