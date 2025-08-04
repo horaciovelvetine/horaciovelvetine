@@ -9,40 +9,44 @@ import type { SolvedokuGameState } from '../../types';
  * - Backspace/Delete: Clear selected cell
  * @param props - Hook configuration props
  */
-export function useKeyboardShortcuts({ undo, canUndo, selectedCellID, updateCellValue, }: SolvedokuGameState) {
-  useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      // Undo shortcut: Ctrl+Z (Windows/Linux) or Cmd+Z (Mac)
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
-        e.preventDefault(); // Prevent browser's default undo behavior
-        if (canUndo) {
-          undo();
-        }
-        return;
-      }
+export function useKeyboardShortcuts({
+	undo,
+	canUndo,
+	selectedCellID,
+	updateCellValue,
+}: SolvedokuGameState) {
+	useEffect(() => {
+		const handleKeyPress = (e: KeyboardEvent) => {
+			// Undo shortcut: Ctrl+Z (Windows/Linux) or Cmd+Z (Mac)
+			if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
+				e.preventDefault();
+				if (canUndo) {
+					undo();
+				}
+				return;
+			}
 
-      // Only handle number input and deletion if a cell is selected
-      if (!selectedCellID) return;
+			if (!selectedCellID) return;
 
-      // Number keys 1-9: Input the number in the selected cell
-      if (/^[1-9]$/.test(e.key)) {
-        e.preventDefault();
-        updateCellValue(selectedCellID, e.key);
-        return;
-      }
+			// Number keys 1-9: Input the number in the selected cell
+			if (/^[1-9]$/.test(e.key)) {
+				e.preventDefault();
+				updateCellValue(selectedCellID, e.key);
+				return;
+			}
 
-      // Backspace or Delete: Clear the selected cell
-      if (e.key === 'Backspace' || e.key === 'Delete') {
-        e.preventDefault();
-        updateCellValue(selectedCellID, null);
-        return;
-      }
-    };
+			// Backspace or Delete: Clear the selected cell
+			if (e.key === 'Backspace' || e.key === 'Delete') {
+				e.preventDefault();
+				updateCellValue(selectedCellID, null);
+				return;
+			}
+		};
 
-    document.addEventListener('keydown', handleKeyPress);
+		document.addEventListener('keydown', handleKeyPress);
 
-    return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [undo, canUndo, selectedCellID, updateCellValue]);
-} 
+		return () => {
+			document.removeEventListener('keydown', handleKeyPress);
+		};
+	}, [undo, canUndo, selectedCellID, updateCellValue]);
+}

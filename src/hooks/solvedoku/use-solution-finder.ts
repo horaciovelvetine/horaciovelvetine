@@ -12,6 +12,13 @@ import {
   stepTargetCellIndecesBack,
 } from '../../functions';
 
+/**
+ * Custom hook that implements a backtracking algorithm to find valid solutions for the Sudoku puzzle
+ * Handles solution finding state, step counting, and board updates
+ * Can be paused/resumed via the solution finder interval
+ * @param state - The game state containing board data and control functions
+ */
+
 export function useSolutionFinder(state: SolvedokuGameState) {
   const {
     solutionFinderInterval,
@@ -102,7 +109,9 @@ export function useSolutionFinder(state: SolvedokuGameState) {
 
       if (nextCellTarget === null) {
         console.log({
-          msg: 'Solvedoku::useSolutionFinder() => ' + (boardIncomplete ? 'unsolved' : 'solved'),
+          msg:
+            'Solvedoku::useSolutionFinder() => ' +
+            (boardIncomplete ? 'unsolved' : 'solved'),
           workingBoard,
           solutionBoard,
           solutionStepCounter,

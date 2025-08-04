@@ -7,12 +7,17 @@ import type { SolvedokuGameState } from '../../types';
  * Wraps around edges when moving past grid boundaries
  * @param props - Hook configuration props
  */
-export function useArrowKeyListener({ selectedCellID, setSelectedCellID }: SolvedokuGameState) {
+export function useArrowKeyListener({
+	selectedCellID,
+	setSelectedCellID,
+}: SolvedokuGameState) {
 	useEffect(() => {
 		const handleKeyPress = (e: KeyboardEvent) => {
 			if (!selectedCellID) return;
 			const key = e.key.toLowerCase();
-			const [currentRow, currentCol] = selectedCellID.split('-').map(n => parseInt(n) - 1);
+			const [currentRow, currentCol] = selectedCellID
+				.split('-')
+				.map(n => parseInt(n) - 1);
 			let newRow = currentRow;
 			let newCol = currentCol;
 

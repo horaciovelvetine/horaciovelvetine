@@ -1,5 +1,4 @@
-
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useRef } from 'react';
 import type {
 	SolvedokuGameBoard,
 	SolvedokuGameState,
@@ -37,39 +36,119 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 	const [solutionBoard, setSolutionBoard] = useState<SolvedokuGameBoard | null>(
 		null
 	);
-	const [selectedCellID, setSelectedCellID] = useState<string | null>(null);
 	const [moveHistory, setMoveHistory] = useState<Move[]>([]);
+	const [selectedCellID, setSelectedCellID] = useState<string | null>(null);
 	const [selectedDifficulty, setSelectedDifficulty] =
 		useState<PuzzleDifficulty>('easy');
 
-	//? Solution finder state
+	/**
+	 * Solution Finder state, determine if the client has asked to find a solution, how long to wait between each cell solution is tried, and how many steps it takes to arrive at the solution once the solution is completed.
+	 */
 	const [isFindingSolution, setIsFindingSolution] = useState(false);
 	const [solutionFinderInterval, setSolutionFinderInterval] = useState(1); //? in ms...
 	const [solutionStepCounter, setSolutionStepCounter] = useState(0);
 
-	//? Computed values
-	const canUndo = useMemo(() => moveHistory.length > 0, [moveHistory]);
-	
-	const isValidGameBoard = useMemo(
-		() => isValidSolvedokuGame(gameBoard),
-		[gameBoard]
-	);
+	/**
+	 * Ref values for expensive checks to see if they can be skipped
+	 */
+	const lastValidationRef = useRef<{
+		board: SolvedokuGameBoard;
+		isValid: boolean;
+	} | null>(null);
 
-	const gameBoardEmpty = useMemo(
-		() => gameBoard.every(row => row.every(cell => cell.value === null)),
-		[gameBoard]
-	);
-	
+	const lastEmptyCheckRef = useRef<{
+		board: SolvedokuGameBoard;
+		isEmpty: boolean;
+	} | null>(null);
+
+
+	/**
+	 * Memoized boolean indicates if there are any moves to be undone
+	 */
+	const canUndo = useMemo(() => moveHistory.length > 0, [moveHistory]);
+
+	/**
+	 * Memoized boolean indicating if the current state of gameBoard is a valid Sudoku puzzle
+	 *
+	 * The function:
+	 * 1. Checks if there is a cached result that can be used
+	 * 2. If no cache hit, validates that:
+	 *    - Each row contains no duplicate numbers
+	 *    - Each column contains no duplicate numbers
+	 *    - Each 3x3 box contains no duplicate numbers
+	 * 3. Caches the new result before returning
+	 *
+	 * @returns {boolean} True if the current board state is valid, false if any duplicates are found
+	 */
+	const isValidGameBoard = useMemo(() => {
+		// Check if we can use cached result
+		if (
+			lastValidationRef.current &&
+			lastValidationRef.current.board === gameBoard
+		) {
+			return lastValidationRef.current.isValid;
+		}
+
+		const isValid = isValidSolvedokuGame(gameBoard);
+		lastValidationRef.current = { board: gameBoard, isValid };
+		return isValid;
+	}, [gameBoard]);
+
+	/**
+	 * Memoized boolean indicating if the game board is completely empty
+	 *
+	 * The function:
+	 * 1. Checks if there is a cached result that can be used
+	 * 2. If no cache hit, checks if every cell in the board has a null value
+	 * 3. Caches the new result before returning
+	 *
+	 * @returns {boolean} True if all cells are empty (null), false if any cell has a value
+	 */
+	const gameBoardEmpty = useMemo(() => {
+		// Check if we can use cached result
+		if (
+			lastEmptyCheckRef.current &&
+			lastEmptyCheckRef.current.board === gameBoard
+		) {
+			return lastEmptyCheckRef.current.isEmpty;
+		}
+
+		const isEmpty = gameBoard.every(row =>
+			row.every(cell => cell.value === null)
+		);
+		lastEmptyCheckRef.current = { board: gameBoard, isEmpty };
+		return isEmpty;
+	}, [gameBoard]);
+
+	/**
+	 * Helper to check if the currently selected cell contains a value
+	 *
+	 * The function:
+	 * 1. Returns false if no cell is selected
+	 * 2. Parses the selected cell ID to get row/column indices
+	 * 3. Checks if the cell at those indices has a non-null value
+	 *
+	 * @returns {boolean} True if the selected cell contains a value, false if empty or no selection
+	 */
 	const selectedCellHasValue = useMemo(() => {
 		if (!selectedCellID) return false;
 		const [row, col] = parseFormattedCellIDString(selectedCellID);
 		return gameBoard[row][col].value !== null;
 	}, [selectedCellID, gameBoard]);
-	
+
+	/**
+	 * Memoized boolean indicating if the current game board represents a valid completed solution
+	 *
+	 * The function:
+	 * 1. Returns false if the current board state is not valid (has duplicates)
+	 * 2. Checks if every cell contains a non-null value
+	 *
+	 * @returns {boolean} True if board is both valid and complete, false otherwise
+	 */
 	const isValidSolution = useMemo(() => {
 		if (!isValidGameBoard) return false;
 		return gameBoard.every(row => row.every(cell => cell.value !== null));
-	}, [gameBoard, isValidGameBoard])
+	}, [gameBoard, isValidGameBoard]);
 
 	/**
 	 * Updates the value of a cell in the game board and records the move in history (for undo functionality)
@@ -92,7 +171,7 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 
 			setGameBoard(prev => {
 				const newGameData = [...prev];
-				newGameData[row][col].value = value
+				newGameData[row][col].value = value;
 				return newGameData;
 			});
 		},
@@ -101,8 +180,12 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 
 	/**
 	 * Reverts the last move made on the game board
-	 * Retrieves the last move from moveHistory, restores the previous value to that cell,
-	 * and removes the move from history. Does nothing if moveHistory is empty.
+	 *
+	 * The function:
+	 * 1. Returns early if move history is empty
+	 * 2. Gets the last move from history
+	 * 3. Restores the previous value to that cell
+	 * 4. Removes the move from history
 	 */
 	const undo = useCallback(() => {
 		if (moveHistory.length === 0) return;
@@ -119,15 +202,23 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		setMoveHistory(prev => prev.slice(0, -1));
 	}, [moveHistory]);
 
-
 	/**
-	 * clears the game board unlocking each cell and setting every value to null
+	 * Clears the game board by unlocking all cells and setting all values to null
+	 *
+	 * The function:
+	 * 1. Resets the solution step counter to 0
+	 * 2. Creates a new empty game board with all cells unlocked
+	 * 3. Clears the move history
+	 * 4. Clears any cached validation results
 	 */
 	const clearGameBoard = useCallback(() => {
 		setSolutionStepCounter(0);
-		setGameBoard(createEmptyBoard(BOARD_SIZE))
+		setGameBoard(createEmptyBoard(BOARD_SIZE));
 		setMoveHistory([]);
-	}, [])
+		// Clear caches when board is reset
+		lastValidationRef.current = null;
+		lastEmptyCheckRef.current = null;
+	}, []);
 
 	/**
 	 * Resets the game board by undoing all moves in history or creating a new empty board
@@ -156,9 +247,12 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 			}
 			setSolutionStepCounter(0);
 			setMoveHistory([]);
+			// Clear caches when board is reset
+			lastValidationRef.current = null;
+			lastEmptyCheckRef.current = null;
 			return;
 		}
-		clearGameBoard()
+		clearGameBoard();
 	}, [setGameBoard, moveHistory, clearGameBoard]);
 
 	/**
@@ -172,13 +266,54 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 	 */
 	const generateRandomPuzzle = useCallback(() => {
 		const filledBoard = generateFilledSudokuPuzzle(BOARD_SIZE);
-		const solved = filledBoard.map(row => (row.map(cell => ({ ...cell }))))
+		const solved = filledBoard.map(row => row.map(cell => ({ ...cell })));
 		setSolutionBoard(solved);
 		emptyCellsForDifficulty(filledBoard, selectedDifficulty);
 		setSolutionStepCounter(0);
 		setMoveHistory([]);
 		setGameBoard(filledBoard);
+		// Clear caches when new puzzle is generated
+		lastValidationRef.current = null;
+		lastEmptyCheckRef.current = null;
 	}, [selectedDifficulty]);
+
+	/**
+	 * Toggles between showing the stored solution or the current game state
+	 * @param showSolution - Boolean flag indicating whether to show the solution (true) or hide it (false)
+	 *
+	 * The function:
+	 * 1. Checks if a solution board exists, returns early if not
+	 * 2. Updates the game board to either show:
+	 *    - The complete solution while preserving locked cell status
+	 *    - The current game state with only locked cells visible
+	 * 3. Resets move history and solution tracking when showing solution
+	 */
+	const toggleShowStoredPuzzleSolution = useCallback(
+		(showSolution: boolean) => {
+			if (!solutionBoard) return;
+
+			setGameBoard(prev => {
+				const newBoard = prev.map((row, rowIndex) =>
+					row.map((cell, colIndex) => ({
+						...cell,
+						value:
+							showSolution ? solutionBoard[rowIndex][colIndex].value
+							: cell.locked ? cell.value
+							: null,
+						locked: cell.locked,
+					}))
+				);
+				return newBoard;
+			});
+
+			if (showSolution) {
+				setMoveHistory([]);
+				setSolutionStepCounter(0);
+				lastValidationRef.current = null;
+			}
+		},
+		[solutionBoard]
+	);
 
 	return {
 		gameBoard,
@@ -203,6 +338,7 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		setSolutionFinderInterval,
 		solutionBoard,
 		solutionStepCounter,
-		setSolutionStepCounter
+		setSolutionStepCounter,
+		toggleShowStoredPuzzleSolution,
 	};
 }
