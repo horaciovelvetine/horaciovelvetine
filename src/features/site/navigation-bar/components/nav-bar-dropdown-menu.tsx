@@ -7,7 +7,7 @@ export function NavBarDropdownMenu({
 	dropdownOptions: NavBarMenuChild[];
 }) {
 	return (
-		<div className='absolute -left-1 bg-zinc-900/80 backdrop-blur-3xl border border-gray-300/50 px-0.5 rounded drop-shadow-2xl my-8'>
+		<div className='absolute -left-1 bg-zinc-800/95 backdrop-blur-3xl border border-gray-300/50 px-0.5 rounded drop-shadow-2xl my-8'>
 			<ul className='text-nowrap flex flex-col px-1 py-1 tracking-tight'>
 				{dropdownOptions.map(option => (
 					<Fragment key={option.key}>
