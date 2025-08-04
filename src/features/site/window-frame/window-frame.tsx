@@ -1,41 +1,35 @@
+// Disable any warnings for React Draggable ref per:
+// https://github.com/react-grid-layout/react-draggable/issues/779
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef, type ReactNode } from 'react';
+
+import { useRef } from 'react';
 import Draggable, {
 	type DraggableData,
 	type DraggableEvent,
 } from 'react-draggable';
 import { TitleBar } from './title-bar';
-import type { ManagedWindow } from '../../../types';
-
-interface WindowFrameProps {
-	window: ManagedWindow;
-	Component: (args: any) => ReactNode;
-	openWindowIDs: string[];
-	focusWindowByID: (windowID: string) => void;
-	closeWindowByID: (windowID: string) => void;
-}
+import type { WindowFrameProps } from '../../../types';
 
 export function WindowFrame({
 	window,
+	siteSettings,
+	windowManager,
 	Component,
-	openWindowIDs,
-	focusWindowByID,
-	closeWindowByID,
 }: WindowFrameProps) {
 	const windowRef = useRef<any>(null);
 
 	const controlledDrag = (_e: DraggableEvent, ui: DraggableData) => {
-		//adjust dragged window to the '1' zIndex in case it isnt currently focused...
-		if (window.zIndex !== '1') {
-			focusWindowByID(window.id);
-		}
+		windowManager.focusWindowByID(window.id);
 		const { x, y } = window.position;
 		window.setPosition({ x: x + ui.deltaX, y: y + ui.deltaY });
 	};
 
-	// display the window on screen?
 	const showWindow = (id: string) => {
-		return openWindowIDs.some(openWindowID => openWindowID === id);
+		return windowManager.openWindowIDs.some(openWindowID => openWindowID === id);
+	};
+
+	const handleFocusWindow = () => {
+		windowManager.focusWindowByID(window.id);
 	};
 
 	return (
@@ -50,15 +44,20 @@ export function WindowFrame({
 					<div
 						id={window.id}
 						ref={windowRef}
-						className={`absolute`}
+						className='absolute'
 						style={{ zIndex: window.zIndex }}
-						onClick={() => {
-							focusWindowByID(window.id);
-						}}>
-						<div className='w-[760px] h-fit bg-zinc-900/80 backdrop-blur-2xl border border-white/40 rounded-md z'>
-							<TitleBar {...{ ...window, closeWindowByID }} />
+						onClick={handleFocusWindow}
+						onTouchStart={handleFocusWindow}>
+						<div className='w-[760px] h-fit bg-zinc-900/80 backdrop-blur-2xl border border-stone-300/30 rounded-md z'>
+							<TitleBar
+								window={window}
+								manager={windowManager}
+							/>
 							<div className='w-[760px] h-fit window-content p-3'>
-								<Component {...window} />
+								<Component
+									siteSettings={siteSettings}
+									windowState={window}
+								/>
 							</div>
 						</div>
 					</div>
