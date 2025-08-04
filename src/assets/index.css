@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+@theme {
+  --breakpoint-xs: 480px;
+}
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -9,8 +13,6 @@
 }
 
 main {
-  width: 100vw;
-  height: 100vh;
   background-image: url('./img/main-background-gradient.png');
   overflow: hidden;
 }
