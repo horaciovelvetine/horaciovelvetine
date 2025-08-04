@@ -10,6 +10,9 @@ import UndoArrowIcon from './icons/mi-undo-arrow.svg';
 import ResetArrowIcon from './icons/mi-reset-arrow.svg';
 import RewindIcon from './icons/mi-rewind.svg';
 import FastForwardIcon from './icons/mi-fast-forward.svg';
+import MailToIcon from './icons/mi-mailto.svg';
+import SettingsIcon from './icons/mi-settings-gear.svg';
+import QuestionMarkIcon from './icons/mi-question-mark.svg';
 
 export {
 	CodeBlockIcon,
@@ -24,4 +27,7 @@ export {
 	ResetArrowIcon,
 	RewindIcon,
 	FastForwardIcon,
+	MailToIcon,
+	SettingsIcon,
+	QuestionMarkIcon
 };
