@@ -12,7 +12,9 @@
   font-family: sans-serif, monospace;
 }
 
-main {
+#root {
   background-image: url('./img/main-background-gradient.png');
   overflow: hidden;
+  background-size: cover;
+  filter: brightness(90%);
 }
