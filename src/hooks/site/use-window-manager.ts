@@ -5,10 +5,11 @@ import type {
   ManagedWindow,
   SiteSettings,
   NavBarMenuParent,
+  WindowIDs,
 } from '../../types';
 
 import {
-  useDevsktopLandingWindow,
+  useMainLandingWindow,
   useSolvedokuWindow,
   useAboutSolvedokuWindow,
   useAboutThisSiteWindow,
@@ -22,13 +23,13 @@ import {
  */
 export function useWindowManager(props: SiteSettings): WindowManager {
   const [focusedWindowID, setFocusedWindowID] =
-    useState<string>('solvedoku-window');
-  const [openWindowIDs, setOpenWindowIDs] = useState<string[]>([
-    'solvedoku-window',
+    useState<WindowIDs>('main-landing-window');
+  const [openWindowIDs, setOpenWindowIDs] = useState<WindowIDs[]>([
+    'main-landing-window',
   ]);
 
   //? INITIALIZE ALL WINDOWS
-  const devsktopWindow = useDevsktopLandingWindow(props);
+  const devsktopWindow = useMainLandingWindow(props);
   const aboutThisSiteWindow = useAboutThisSiteWindow(props, devsktopWindow);
   // Solvedoku Windows...
   const solvedokuWindow = useSolvedokuWindow(props);
@@ -60,7 +61,7 @@ export function useWindowManager(props: SiteSettings): WindowManager {
    * @returns void
    */
   const focusWindowByID = useCallback(
-    (windowID: string): void => {
+    (windowID: WindowIDs): void => {
       const windowToFocus = ALL_WINDOWS.find(window => window.id === windowID);
       if (!windowToFocus) return;
 
@@ -91,7 +92,7 @@ export function useWindowManager(props: SiteSettings): WindowManager {
    * @returns void
    */
   const openWindowByID = useCallback(
-    (windowID: string): void => {
+    (windowID: WindowIDs): void => {
       focusWindowByID(windowID);
       setOpenWindowIDs(prev => [...prev, windowID]);
     },
@@ -104,14 +105,14 @@ export function useWindowManager(props: SiteSettings): WindowManager {
   const siteMenu: NavBarMenuParent = useMemo(
     () => ({
       key: 'site-menu',
-      navbarDisplayIcon: CodeBlockIcon,
+      DisplayIcon: CodeBlockIcon,
       dropdownOptions: [
         {
           key: 'landing-page',
           parentWindowID: 'velvet.dev',
           titleText: 'Home',
           onClickAction: () => {
-            openWindowByID('devsktop-landing-window');
+            openWindowByID('main-landing-window');
           },
         },
         {

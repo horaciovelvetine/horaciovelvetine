@@ -4,13 +4,13 @@ import type {
 	SiteSettings,
 	NavBarMenuParent,
 	SolvedokuWindowState,
+	WindowIDs,
+	PuzzleDifficulty,
 } from '../../types';
 import { setInitialWindowPosition } from '../../functions/site/set-initial-window-position';
 import { useSolvedokuGameState } from '../solvedoku/use-solvedoku-game-state';
 
-export function useSolvedokuWindow(
-	props: SiteSettings
-): SolvedokuWindowState {
+export function useSolvedokuWindow(props: SiteSettings): SolvedokuWindowState {
 	const windowID = 'solvedoku-window';
 	const title = 'Solvedoku';
 	const [position, setPosition] = useState<Position>(() =>
@@ -19,12 +19,19 @@ export function useSolvedokuWindow(
 	const [zIndex, setZIndex] = useState('0');
 	const solvedokuState = useSolvedokuGameState();
 
+	// Mobile menu state management
+	const [showMobileSettings, setShowMobileSettings] = useState(false);
+	const [showMobileAbout, setShowMobileAbout] = useState(false);
+	const [showGameMenu, setShowGameMenu] = useState(false);
+	const [currentPuzzleDifficultyDisplay, setCurrentPuzzleDifficultyDisplay] =
+		useState<PuzzleDifficulty>(solvedokuState.selectedDifficulty);
+
 	const navBarMenuItems = useCallback(
-		(openWindowByID: (windowID: string) => void): NavBarMenuParent[] => {
+		(openWindowByID: (windowID: WindowIDs) => void): NavBarMenuParent[] => {
 			return [
 				{
 					key: 'solvedoku-menu',
-					navbarDisplayText: 'Solvedoku',
+					displayText: 'Solvedoku',
 					isAppTitledDisplayText: true,
 					dropdownOptions: [
 						{
@@ -52,7 +59,7 @@ export function useSolvedokuWindow(
 				},
 				{
 					key: 'file-menu',
-					navbarDisplayText: 'File',
+					displayText: 'File',
 					dropdownOptions: [
 						{
 							key: 'new-game',
@@ -61,7 +68,7 @@ export function useSolvedokuWindow(
 							hoverExplainerTitle:
 								'Create a new puzzle based on the currently selected difficulty',
 							onClickAction: () => {
-								openWindowByID('solvedoku-window')
+								openWindowByID('solvedoku-window');
 								solvedokuState.generateRandomPuzzle();
 							},
 							displayMenuBreakAfter: true,
@@ -73,7 +80,7 @@ export function useSolvedokuWindow(
 							hoverExplainerTitle: 'Clear the current game board completely',
 							isDisabled: solvedokuState.gameBoardEmpty,
 							onClickAction: () => {
-								openWindowByID('solvedoku-window')
+								openWindowByID('solvedoku-window');
 								if (solvedokuState.gameBoardEmpty) return;
 								solvedokuState.clearGameBoard();
 							},
@@ -88,7 +95,7 @@ export function useSolvedokuWindow(
 							displayMenuBreakAfter: true,
 							onClickAction: () => {
 								if (!solvedokuState.canUndo) return;
-								openWindowByID('solvedoku-window')
+								openWindowByID('solvedoku-window');
 								solvedokuState.resetGameStepwise();
 							},
 						},
@@ -102,11 +109,11 @@ export function useSolvedokuWindow(
 							hoverExplainerTitle:
 								solvedokuState.isFindingSolution ?
 									'Pause the current solution finder'
-									: 'Solve the current puzzle',
+								:	'Solve the current puzzle',
 							isDisabled: solvedokuState.isValidSolution,
 							displaySectionHeader: 'Puzzle Solver',
 							onClickAction: () => {
-								openWindowByID('solvedoku-window')
+								openWindowByID('solvedoku-window');
 								if (solvedokuState.isValidSolution) {
 									return;
 								}
@@ -117,7 +124,7 @@ export function useSolvedokuWindow(
 				},
 				{
 					key: 'edit-menu',
-					navbarDisplayText: 'Edit',
+					displayText: 'Edit',
 					dropdownOptions: [
 						{
 							key: 'undo',
@@ -129,7 +136,7 @@ export function useSolvedokuWindow(
 							isDisabled: !solvedokuState.canUndo,
 							onClickAction: () => {
 								if (solvedokuState.canUndo) {
-									openWindowByID('solvedoku-window')
+									openWindowByID('solvedoku-window');
 									solvedokuState.undo();
 								}
 							},
@@ -166,7 +173,7 @@ export function useSolvedokuWindow(
 				},
 				{
 					key: 'help-menu',
-					navbarDisplayText: 'Help',
+					displayText: 'Help',
 					dropdownOptions: [
 						{
 							key: 'solvedoku-help',
@@ -193,5 +200,14 @@ export function useSolvedokuWindow(
 		setZIndex,
 		navBarMenuItems,
 		...solvedokuState,
+		// Mobile menu state
+		showMobileSettings,
+		setShowMobileSettings,
+		showMobileAbout,
+		setShowMobileAbout,
+		showGameMenu,
+		setShowGameMenu,
+		currentPuzzleDifficultyDisplay,
+		setCurrentPuzzleDifficultyDisplay,
 	};
 }

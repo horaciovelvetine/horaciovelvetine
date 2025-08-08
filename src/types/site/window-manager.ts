@@ -1,6 +1,7 @@
 import type { SolvedokuWindowState } from "../solvedoku/solvedoku-window-state";
 import type { ManagedWindow } from "./managed-window";
 import type { NavBarMenuParent } from "./nav-bar-menu-parent";
+import type { WindowIDs } from "./window-ids";
 
 export interface WindowManager {
   // WINDOWS
@@ -12,7 +13,7 @@ export interface WindowManager {
   focusedWindow: ManagedWindow,
   openWindowIDs: string[],
   navBarMenuItems: NavBarMenuParent[],
-  focusWindowByID: (windowID: string) => void;
-  closeWindowByID: (windowID: string) => void
-  openWindowByID: (windowID: string) => void
+  focusWindowByID: (windowID: WindowIDs) => void;
+  closeWindowByID: (windowID: WindowIDs) => void
+  openWindowByID: (windowID: WindowIDs) => void
 }

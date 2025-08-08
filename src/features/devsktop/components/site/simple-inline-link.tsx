@@ -6,18 +6,18 @@
  */
 
 interface SimpleInlineLinkProps {
-  url: string;
-  text: string;
+	url: string;
+	text: string;
 }
 
 export function SimpleInlineLink({ url, text }: SimpleInlineLinkProps) {
-  return (
-    <a
-      href={url}
-      target='_blank'
-      rel='noopener noreferrer'
-      className='inline-block text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'>
-      {text}
-    </a>
-  );
+	return (
+		<a
+			href={url}
+			target='_blank'
+			rel='noopener noreferrer'
+			className='inline-block text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'>
+			{text}
+		</a>
+	);
 }

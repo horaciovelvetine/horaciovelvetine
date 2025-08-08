@@ -1,5 +1,5 @@
 import { Fragment } from 'react/jsx-runtime';
-import type { NavBarMenuChild } from '../../../../types';
+import type { NavBarMenuChild } from '../../../../../types';
 
 export function NavBarDropdownMenu({
 	dropdownOptions,

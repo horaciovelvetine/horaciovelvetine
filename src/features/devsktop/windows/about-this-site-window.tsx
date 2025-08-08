@@ -1,7 +1,6 @@
 import { CloseIcon, GithubLogo } from '../../../assets';
-import { GradientLinkText } from '../components/gradient-link-text';
-import { IconLink } from '../components/icon-link';
-import { ToolBadge } from '../components/tool-badge';
+import { IconLink, ToolBadge, GradientLinkText } from '../components';
+
 export function AboutThisSiteWindow() {
   return (
     <div>

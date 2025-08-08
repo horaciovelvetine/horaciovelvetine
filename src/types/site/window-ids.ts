@@ -1,0 +1,1 @@
+export type WindowIDs = 'main-landing-window' | 'solvedoku-window' | 'about-solvedoku-window' | 'about-this-site-window';

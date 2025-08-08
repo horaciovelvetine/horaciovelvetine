@@ -8,7 +8,8 @@ import Draggable, {
 	type DraggableEvent,
 } from 'react-draggable';
 import { TitleBar } from './title-bar';
-import type { WindowFrameProps } from '../../../types';
+import type { WindowFrameProps } from '../../../../types';
+
 
 export function WindowFrame({
 	window,

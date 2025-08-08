@@ -1,5 +1,5 @@
-import { CloseIcon } from '../../../assets';
-import type { ManagedWindow, WindowManager } from '../../../types';
+import { CloseIcon } from '../../../../assets';
+import type { ManagedWindow, WindowManager } from '../../../../types';
 
 interface TitleBarProps {
 	window: ManagedWindow;
@@ -27,14 +27,11 @@ export function TitleBar({ window, manager }: TitleBarProps) {
 					title={`Close the ${window.title} window`}
 					className={
 						windowButtonStyle +
-						' hover:bg-red-500 border border-gray-300/10 absolute -top-2'
+						' hover:bg-red-500 border border-stone-300/10 absolute -top-2'
 					}
 					onClick={handleWindowClose}
 					onTouchStart={handleWindowClose}>
-					<img
-						src={CloseIcon}
-						className='opacity-0 group-hover:opacity-100'
-					/>
+					<CloseIcon classes='text-gray-300 opacity-0 group-hover:opacity-100' />
 				</button>
 			</div>
 			<div className='tracking-tighter text-center w-full font-extrabold text-nowrap select-none'>

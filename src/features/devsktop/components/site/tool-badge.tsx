@@ -1,4 +1,4 @@
-import type { Colors } from '../../../types';
+import type { Colors } from '../../../../types';
 
 /**
  * List badge element intended for use in the about screens to denote a tool used in the development of that particular component

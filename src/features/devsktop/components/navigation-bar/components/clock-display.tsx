@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { ClockDisplaySettings } from '../../../../types';
+import type { ClockDisplaySettings } from '../../../../../types';
 
 /**
  * Clock display in upper-right hand included in the { @see NavigationBar }, updates every second to maintain the current time.
