@@ -38,20 +38,19 @@ export function SolvedokuHeader({
 	};
 
 	return (
-		<div className='flex w-full items-center justify-between px-2 text-white sm:px-14 md:px-6 md:pb-1'>
-			<h2 className='md:hidden font-extrabold tracking-tighter text-2xl xs:text-3xl sm:text-4xl py-1 text-center'>
+		<div className='flex w-full items-center justify-between px-2 md:px-6.5 md:pb-1 text-white'>
+			<h2 className='md:hidden font-extrabold tracking-tighter text-2xl xs:text-3xl sm:text-4xl text-center'>
 				Solvedoku
 			</h2>
 			<div className='flex justify-end w-full gap-1'>
 				<button
 					type='button'
 					title='Show the about menu for Solvedoku'
-					className='rounded-full border border-white md:hidden'
+					className='md:hidden'
 					onClick={handleShowMobileAbout}>
-					<img
-						src={QuestionMarkIcon}
-						alt='Question mark icon'
-						className='size-5 p-0.25 xs:size-6 sm:size-8 md:size-11'
+					<QuestionMarkIcon
+						size='size-6 xs:size-8 sm:size-9'
+						classes='p-0.25'
 					/>
 				</button>
 
@@ -60,11 +59,7 @@ export function SolvedokuHeader({
 					title='Show the settings menu for Solvedoku'
 					className='md:hidden'
 					onClick={handleShowMobileSettings}>
-					<img
-						src={SettingsIcon}
-						alt='Settings gear icon'
-						className='size-5.5 xs:size-6.5 sm:size-9 md:size-12'
-					/>
+					<SettingsIcon size='size-5.5 xs:size-7.5 sm:size-8.5' />
 				</button>
 
 				<button

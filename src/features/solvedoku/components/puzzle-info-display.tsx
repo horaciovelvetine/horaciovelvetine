@@ -93,8 +93,7 @@ export function PuzzleInfoDisplay({
 					accentColor={siteSettings.accentColor}
 				/>
 				<PuzzleButton
-					icon={EraserIcon}
-					iconAltText='Eraser'
+					Icon={EraserIcon}
 					title={
 						solvedokuState.selectedCellHasValue ?
 							'Clear the currently selected cell'

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { FastForwardIcon, RewindIcon } from '../../../../assets';
 import { tailwindBGColors } from '../../../../functions';
 import type {
@@ -26,6 +27,10 @@ export function MobileSettingsMenu({
 		'cyan',
 		'rose',
 	];
+
+	useEffect(() => {
+		// console.log({ msg: 'mobile settings menu', siteSettings })
+	}, [siteSettings]);
 
 	const MIN_INTERVAL = 1;
 	const MAX_INTERVAL = 300;
@@ -82,15 +87,14 @@ export function MobileSettingsMenu({
 				<hr className='text-white' />
 			</li>
 			<li className='flex-col xs:gap-1'>
-				<div className='flex w-full justify-center items-center'>
-					<h4 className='font-semibold tracking-tighter mr-1.5 text-sm xs:text-base sm:text-lg'>
+				<div className='flex w-full items-center'>
+					<h4 className='font-semibold tracking-tighter mr-0.5 text-sm xs:text-base sm:text-lg'>
 						Solver Step Interval:
 					</h4>
 					<ul className='flex items-center text-white gap-2 md:gap-3'>
 						<li className='flex items-center'>
 							<PuzzleButton
-								icon={RewindIcon}
-								iconAltText='Slow down the puzzle solver'
+								Icon={RewindIcon}
 								accentColor={siteSettings.accentColor}
 								onClickFunction={handleSlowDownButtonClick}
 								title='Slow down the puzzle solver'
@@ -107,8 +111,7 @@ export function MobileSettingsMenu({
 						</li>
 						<li className='flex items-center'>
 							<PuzzleButton
-								icon={FastForwardIcon}
-								iconAltText='Speed up the puzzle solver'
+								Icon={FastForwardIcon}
 								accentColor={siteSettings.accentColor}
 								onClickFunction={handleSpeedUpClick}
 								title='Speed up the puzzle solver'
@@ -120,7 +123,10 @@ export function MobileSettingsMenu({
 						</li>
 					</ul>
 				</div>
-				<p className='tracking-tight leading-3.5 text-xs xs:text-sm sm:text-base text-white/50 text-center mx-4 xs:mx-18'>The amount of time waited between trying a number in a cell while solving a puzzle and moving on to the next cell.</p>
+				<p className='tracking-tight leading-3.5 text-xs xs:text-sm sm:text-base text-white/50 text-center mx-4 xs:mx-18'>
+					The amount of time waited between trying a number in a cell while
+					solving a puzzle and moving on to the next cell.
+				</p>
 			</li>
 		</ul>
 	);

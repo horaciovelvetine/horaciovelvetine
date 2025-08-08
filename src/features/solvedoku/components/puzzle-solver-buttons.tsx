@@ -63,8 +63,7 @@ export function PuzzleSolverButtons({
 			<ul className='flex items-center text-white gap-2 md:gap-3'>
 				<li className='flex items-center'>
 					<PuzzleButton
-						icon={RewindIcon}
-						iconAltText='Slow down the puzzle solver'
+						Icon={RewindIcon}
 						accentColor={siteSettings.accentColor}
 						onClickFunction={handleSlowDownButtonClick}
 						title='Slow down the puzzle solver'
@@ -81,8 +80,7 @@ export function PuzzleSolverButtons({
 				</li>
 				<li className='flex items-center'>
 					<PuzzleButton
-						icon={FastForwardIcon}
-						iconAltText='Speed up the puzzle solver'
+						Icon={FastForwardIcon}
 						accentColor={siteSettings.accentColor}
 						onClickFunction={handleSpeedUpClick}
 						title='Speed up the puzzle solver'

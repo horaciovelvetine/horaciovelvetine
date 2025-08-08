@@ -1,10 +1,10 @@
+import type { JSX } from 'react';
 import { tailwindBGColors } from '../../../functions';
-import type { Colors } from '../../../types';
+import type { Colors, IconProps } from '../../../types';
 
 interface PuzzleButtonProps {
 	title: string;
-	icon?: string;
-	iconAltText?: string;
+	Icon?: ({ size, classes }: IconProps) => JSX.Element;
 	text?: string;
 	onClickFunction: () => void;
 	isDisabled: boolean;
@@ -13,8 +13,7 @@ interface PuzzleButtonProps {
 
 export function PuzzleButton({
 	title,
-	icon,
-	iconAltText,
+	Icon,
 	text,
 	onClickFunction,
 	isDisabled,
@@ -23,7 +22,7 @@ export function PuzzleButton({
 	const bgColorClass =
 		isDisabled ?
 			`${tailwindBGColors[accentColor]} brightness-45`
-		:	tailwindBGColors[accentColor];
+			: tailwindBGColors[accentColor];
 
 	return (
 		<button
@@ -32,12 +31,9 @@ export function PuzzleButton({
 			title={title}
 			disabled={isDisabled}
 			className={`border border-gray-300/50 rounded px-1 tracking-tighter font-semibold ${bgColorClass} xs:text-xl sm:text-3xl  text-white text-nowrap transition-all ${isDisabled ? '' : 'duration-100 hover:-translate-y-1 hover:scale-105'}`}>
-			{icon ?
-				<img
-					alt={iconAltText}
-					src={icon}
-					className='w-6 xs:w-9 sm:w-12'></img>
-			:	<p>{text}</p>}
+			{Icon ?
+				<Icon size='w-6 xs:w-9 sm:w-12' />
+				: <p>{text}</p>}
 		</button>
 	);
 }

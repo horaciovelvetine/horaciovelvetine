@@ -1,11 +1,11 @@
-import { SimpleInlineLink } from "../../site/components/simple-inline-link";
-import { ToolBadge } from "../../site/components/tool-badge";
+import { SimpleInlineLink } from "../../devsktop/components/site/simple-inline-link";
+import { ToolBadge } from "../../devsktop/components/site/tool-badge";
 import { SolvedokuIcon } from "../components/solvedoku-icon";
 
 export function AboutSolvedokuWindow() {
 	return (
 		<div className='flex flex-col items-center'>
-			<SolvedokuIcon iconSize="size-32 xl:size-34"/>
+			<SolvedokuIcon iconSize="size-32 xl:size-34" />
 			<h2 className='text-3xl font-extrabold'>Solvedoku</h2>
 			<div className='flex flex-col items-center text-base'>
 				<h4 className='font-semibold tracking-tighter leading-3.5 mt-1 text-white/50'>

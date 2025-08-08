@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import type { SiteSettings, SolvedokuGameState } from '../../../types';
+import type { SiteSettings, SolvedokuWindowState } from '../../../types';
 import {
 	useArrowKeyListener,
 	useKeyboardShortcuts,
@@ -18,7 +17,7 @@ import { PuzzleInfoDisplay } from '../components/puzzle-info-display';
 import { SolvedokuGameMenu } from '../components/game-menu/solvedoku-game-menu';
 
 interface SolvedokuWindowMainProps {
-	windowState: SolvedokuGameState;
+	windowState: SolvedokuWindowState;
 	siteSettings: SiteSettings;
 }
 
@@ -26,27 +25,21 @@ export function SolvedokuWindowMain({
 	windowState,
 	siteSettings,
 }: SolvedokuWindowMainProps) {
-	const [showMobileSettings, setShowMobileSettings] = useState(false);
-	const [showMobileAbout, setShowMobileAbout] = useState(false);
-	const [showGameMenu, setShowGameMenu] = useState(false);
-	const [currentPuzzleDifficultyDisplay, setCurrentPuzzleDifficultyDisplay] =
-		useState(windowState.selectedDifficulty);
-
 	// Hook listeners...
 	useSolutionFinder(windowState);
 	useArrowKeyListener(windowState);
 	useKeyboardShortcuts(windowState);
 
 	return (
-		<div className='flex flex-col justify-center items-center relative h-full sm:mx-6 md:mx-12'>
+		<div className='flex flex-col h-full justify-center items-center relative sm:mx-6 md:mx-12'>
 			{/* MOBILE HEADER ELEMENTS */}
 			<SolvedokuHeader
-				showMobileAboutMenu={showMobileAbout}
-				showGameMenu={showGameMenu}
-				showMobileSettingsMenu={showMobileSettings}
-				setShowMobileAbout={setShowMobileAbout}
-				setShowMobileSettings={setShowMobileSettings}
-				setShowGameMenu={setShowGameMenu}
+				showMobileAboutMenu={windowState.showMobileAbout}
+				showGameMenu={windowState.showGameMenu}
+				showMobileSettingsMenu={windowState.showMobileSettings}
+				setShowMobileAbout={windowState.setShowMobileAbout}
+				setShowMobileSettings={windowState.setShowMobileSettings}
+				setShowGameMenu={windowState.setShowGameMenu}
 			/>
 
 			{/* GAME BOARD & CELL DATA TABLE */}
@@ -57,7 +50,7 @@ export function SolvedokuWindowMain({
 
 			{/* PUZZLE INFO DETAILS */}
 			<PuzzleInfoDisplay
-				currentPuzzleDifficulty={currentPuzzleDifficultyDisplay}
+				currentPuzzleDifficulty={windowState.currentPuzzleDifficultyDisplay}
 				solvedokuState={windowState}
 				siteSettings={siteSettings}
 			/>
@@ -77,31 +70,31 @@ export function SolvedokuWindowMain({
 
 			{/* MOBILE MENU's */}
 			<MobileMenuWrapper
-				setShowMobileMenu={setShowMobileAbout}
-				showMobileMenu={showMobileAbout}
+				setShowMobileMenu={windowState.setShowMobileAbout}
+				showMobileMenu={windowState.showMobileAbout}
 				siteSettings={siteSettings}
 				menuMainTitle='About Solvedoku'
 				Content={MobileAboutMenu}
 				solvedokuState={windowState}
-				setCurrentPuzzleDifficultyDisplay={setCurrentPuzzleDifficultyDisplay}
+				setCurrentPuzzleDifficultyDisplay={windowState.setCurrentPuzzleDifficultyDisplay}
 			/>
 			<MobileMenuWrapper
-				setShowMobileMenu={setShowGameMenu}
-				showMobileMenu={showGameMenu}
+				setShowMobileMenu={windowState.setShowGameMenu}
+				showMobileMenu={windowState.showGameMenu}
 				siteSettings={siteSettings}
 				menuMainTitle='Solvedoku Menu'
 				Content={SolvedokuGameMenu}
 				solvedokuState={windowState}
-				setCurrentPuzzleDifficultyDisplay={setCurrentPuzzleDifficultyDisplay}
+				setCurrentPuzzleDifficultyDisplay={windowState.setCurrentPuzzleDifficultyDisplay}
 			/>
 			<MobileMenuWrapper
-				setShowMobileMenu={setShowMobileSettings}
-				showMobileMenu={showMobileSettings}
+				setShowMobileMenu={windowState.setShowMobileSettings}
+				showMobileMenu={windowState.showMobileSettings}
 				siteSettings={siteSettings}
 				menuMainTitle='Settings'
 				Content={MobileSettingsMenu}
 				solvedokuState={windowState}
-				setCurrentPuzzleDifficultyDisplay={setCurrentPuzzleDifficultyDisplay}
+				setCurrentPuzzleDifficultyDisplay={windowState.setCurrentPuzzleDifficultyDisplay}
 			/>
 		</div>
 	);
