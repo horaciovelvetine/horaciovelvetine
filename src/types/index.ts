@@ -11,6 +11,8 @@ import type { NavBarMenuParent } from './site/nav-bar-menu-parent';
 import type { NavBarMenuChild } from './site/nav-bar-menu-child';
 import type { WindowFrameProps } from './site/window-frame-props';
 import type { LayoutProps } from './site/layout-props';
+import type { WindowIDs } from './site/window-ids';
+import type { IconProps } from './site/icon-props';
 
 //Solvedoku
 import type { SolvedokuGameBoard } from './solvedoku/solvedoku-game-board';
@@ -42,4 +44,6 @@ export type {
 	RowColumnSet,
 	NavBarMenuParent,
 	NavBarMenuChild,
+	WindowIDs,
+	IconProps
 };
