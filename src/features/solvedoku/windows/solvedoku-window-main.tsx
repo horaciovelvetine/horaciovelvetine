@@ -10,11 +10,11 @@ import { SolvedokuHeader } from '../components/solvedoku-header';
 import { GameBoardTable } from '../components/game-board-table';
 import { NumberInputButtons } from '../components/number-input-buttons';
 import { PuzzleSolverButtons } from '../components/puzzle-solver-buttons';
-import { MobileAboutMenu } from '../components/mobile-menus/mobile-about-menu';
-import { MobileSettingsMenu } from '../components/mobile-menus/mobile-settings-menu';
-import { MobileMenuWrapper } from '../components/mobile-menus/mobile-menu-wrapper';
+import { AboutMenu } from '../components/solvedoku-menus/about-menu';
+import { SettingsMenu } from '../components/solvedoku-menus/settings-menu';
+import { MenuWrapper } from '../components/solvedoku-menus/menu-wrapper';
 import { PuzzleInfoDisplay } from '../components/puzzle-info-display';
-import { SolvedokuGameMenu } from '../components/game-menu/solvedoku-game-menu';
+import { GameMenu } from '../components/solvedoku-menus/game-menu';
 
 interface SolvedokuWindowMainProps {
 	windowState: SolvedokuWindowState;
@@ -69,32 +69,38 @@ export function SolvedokuWindowMain({
 			/>
 
 			{/* MOBILE MENU's */}
-			<MobileMenuWrapper
+			<MenuWrapper
 				setShowMobileMenu={windowState.setShowMobileAbout}
 				showMobileMenu={windowState.showMobileAbout}
 				siteSettings={siteSettings}
 				menuMainTitle='About Solvedoku'
-				Content={MobileAboutMenu}
+				Content={AboutMenu}
 				solvedokuState={windowState}
-				setCurrentPuzzleDifficultyDisplay={windowState.setCurrentPuzzleDifficultyDisplay}
+				setCurrentPuzzleDifficultyDisplay={
+					windowState.setCurrentPuzzleDifficultyDisplay
+				}
 			/>
-			<MobileMenuWrapper
+			<MenuWrapper
 				setShowMobileMenu={windowState.setShowGameMenu}
 				showMobileMenu={windowState.showGameMenu}
 				siteSettings={siteSettings}
 				menuMainTitle='Solvedoku Menu'
-				Content={SolvedokuGameMenu}
+				Content={GameMenu}
 				solvedokuState={windowState}
-				setCurrentPuzzleDifficultyDisplay={windowState.setCurrentPuzzleDifficultyDisplay}
+				setCurrentPuzzleDifficultyDisplay={
+					windowState.setCurrentPuzzleDifficultyDisplay
+				}
 			/>
-			<MobileMenuWrapper
+			<MenuWrapper
 				setShowMobileMenu={windowState.setShowMobileSettings}
 				showMobileMenu={windowState.showMobileSettings}
 				siteSettings={siteSettings}
 				menuMainTitle='Settings'
-				Content={MobileSettingsMenu}
+				Content={SettingsMenu}
 				solvedokuState={windowState}
-				setCurrentPuzzleDifficultyDisplay={windowState.setCurrentPuzzleDifficultyDisplay}
+				setCurrentPuzzleDifficultyDisplay={
+					windowState.setCurrentPuzzleDifficultyDisplay
+				}
 			/>
 		</div>
 	);
