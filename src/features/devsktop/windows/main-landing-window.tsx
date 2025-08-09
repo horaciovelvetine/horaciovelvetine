@@ -3,12 +3,12 @@ import { GradientLinkText, IconLink, VideoHeadshot } from '../components/';
 
 export function MainLandingWindow() {
 	return (
-		<div className='flex flex-col items-center font-extrabold text-white'>
+		<div className='flex flex-col items-center font-extrabold'>
 			<div className='flex flex-col items-center md:flex-row lg:justify-center lg:gap-2'>
 				<VideoHeadshot />
 
 				<div>
-					<div className='flex tracking-tight text-3xl sm:text-4xl md:text-5xl items-baseline'>
+					<div className='flex tracking-tight text-4xl sm:text-5xl items-baseline'>
 						<h1 className='ms-2'>Hi, I'm James</h1>
 						<p className='ml-2 font-semibold text-white/65 text-2xl sm:text-3xl md:text-4xl'>
 							a.k.a.
@@ -18,21 +18,21 @@ export function MainLandingWindow() {
 					<GradientLinkText
 						text='@horaciovelvetine'
 						url='https://github.com/horaciovelvetine'
-						classes='text-4xl sm:text-5xl md:text-6xl leading-7 sm:leading-9 md:leading-12 from-rose-500 via-purple-500 to-sky-500 pb-1.75 tracking-tighter px-1.5'
+						classes='text-4xl/9 xs:text-5xl/12 sm:text-7xl/14 from-rose-500 via-purple-500 to-sky-500 pb-1.75 tracking-tighter px-1.5'
 					/>
 				</div>
 			</div>
 
-			<div className='flex gap-1 items-center justify-center md:w-full md:justify-end md:mr-23'>
-				<p className='text-lg sm:text-2xl md:text-3xl leading-4 sm:leading-5 md:leading-7 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-orange-500 to-rose-500 pb-1 md:pb-2.5 text-nowrap'>
+			<div className='flex flex-col xs:flex-row gap-1 items-center justify-center md:w-full md:justify-end md:mr-23'>
+				<p className='text-2xl/5 xs:text-3xl/6 sm:text-4xl/8 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-orange-500 to-rose-500 pb-1 md:pb-2.5 text-nowrap'>
 					Full-Stack Engineer & <br /> Creative Technologist
 				</p>
 
-				<div className='flex gap-1 xs:gap-1.5 sm:gap-2 items-center justify-center mb-2'>
+				<div className='flex gap-3 xs:gap-1.5 sm:gap-2 items-center justify-center mb-2'>
 					<IconLink
 						iconSrc={GithubLogo}
 						url='https://github.com/horaciovelvetine'
-						size='w-7 sm:w-10 md:w-12'
+						size='w-8 sm:w-10 md:w-12'
 					/>
 					<span className='sm:text-xl md:text-2xl font-extrabold tracking-tighter text-white/65 sm:px-1'>
 						/
@@ -40,7 +40,7 @@ export function MainLandingWindow() {
 					<IconLink
 						iconSrc={LinkedInLogo}
 						url='https://www.linkedin.com/in/james-p-tillman/'
-						size='w-6 sm:w-9 md:w-11'
+						size='w-7 sm:w-9 md:w-11'
 					/>
 					<span className='sm:text-xl md:text-2xl font-extrabold tracking-tighter text-white/65 sm:px-1'>
 						/
@@ -50,7 +50,7 @@ export function MainLandingWindow() {
 						href='mailto:horaciovelvetine@gmail.com'
 						target='_blank'
 						rel='noreferrer noopener'>
-						<MailToIcon size='w-7 sm:w-10 md:w-12' />
+						<MailToIcon size='w-8 sm:w-10 md:w-12' />
 					</a>
 				</div>
 			</div>

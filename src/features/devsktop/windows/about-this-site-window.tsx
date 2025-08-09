@@ -90,10 +90,7 @@ export function AboutThisSiteWindow() {
           <li>
             Use the{' '}
             <span className='inline-block'>
-              <img
-                className='rounded-full bg-red-500 p-0.5'
-                src={CloseIcon}
-              />
+              <CloseIcon classes='rounded-full bg-red-500 p-0.5' />
             </span>{' '}
             button at the top left of a window to close it.
           </li>

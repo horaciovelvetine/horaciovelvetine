@@ -3,6 +3,7 @@ import { MainLandingWindow } from './windows/main-landing-window';
 import { AboutThisSiteWindow } from './windows/about-this-site-window';
 import type { LayoutProps } from '../../types';
 import { WindowFrame, NavigationBar } from './components';
+import { DevsktopIcons } from './components/devsktop-icons/devsktop-icons';
 
 export function DevsktopMain(props: LayoutProps) {
   const {
@@ -13,11 +14,15 @@ export function DevsktopMain(props: LayoutProps) {
   } = props.windowManager;
   return (
     <main className='min-h-screen w-screen box-border text-white font-sans'>
-      {/* <main className='min-h-screen w-screen bg-cover saturate-[1.5] box-border text-white brightness-90 font-sans'> */}
+      {/* SITE MAIN */}
       <div
         id='devsktop-bounds'
-        className='h-screen w-full'>
-        {/* SITE */}
+        className='h-[calc(100vh-36px)] w-full translate-y-[36px] relative isolate'>
+        <DevsktopIcons
+          windowManager={props.windowManager}
+          siteSettings={props.siteSettings}
+        />
+
         <WindowFrame
           window={devsktopWindow}
           Component={MainLandingWindow}
