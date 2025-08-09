@@ -14,16 +14,16 @@ declare module '@tanstack/react-router' {
 
 export function SiteMain() {
 	const siteSettings = useSiteSettings();
-	const windowManager = useWindowManager(siteSettings);
+	const windowManager = useWindowManager();
 
 	//? Instantiate in component to ensure updated state access...
-	const router =  createRouter({
-			routeTree,
-			context: {
-				siteSettings,
-				windowManager,
-			},
-		});
+	const router = createRouter({
+		routeTree,
+		context: {
+			siteSettings,
+			windowManager,
+		},
+	});
 
 	return (
 		<>

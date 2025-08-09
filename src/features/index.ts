@@ -1,7 +1,8 @@
 // DEVSKTOP
-export { DevsktopMain, MainLandingWindow } from './devsktop'
+export { DevsktopMain, MainLandingWindow } from './devsktop';
+
+// MOBILE
+export { ProjectCard } from './mobile/components/project-card';
 
 // SOLVEDOKU
-export { AboutSolvedokuWindow, SolvedokuWindowMain } from './solvedoku';
-
-
+export { AboutSolvedokuWindow, SolvedokuWindowMain, SolvedokuIcon } from './solvedoku';
