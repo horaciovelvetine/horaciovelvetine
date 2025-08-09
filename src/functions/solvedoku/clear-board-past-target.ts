@@ -24,15 +24,12 @@ export function clearBoardPastTarget(
 
 	for (let currentRow = targetRow; currentRow < boardSize; currentRow++) {
 		const rowLength = workingBoard[currentRow].length;
+		const startCol = currentRow === targetRow ? targetCol + 1 : 0;
 
-		for (let currentCol = targetCol; currentCol < rowLength; currentCol++) {
-			const shouldClearCell =
-				currentRow > targetRow || //? Cell is in a later row
-				(currentRow === targetRow && currentCol > targetCol); //? Cell is after target in same row
-
+		for (let currentCol = startCol; currentCol < rowLength; currentCol++) {
 			const cell = workingBoard[currentRow][currentCol];
-			//? Ignore cells before target, generated as part of new puzzle, or which the user has input
-			if (shouldClearCell && !cell.locked && !cell.userInputted) {
+			//? Only clear unlocked, non-user-inputted cells
+			if (!cell.locked && !cell.userInputted) {
 				cell.value = null;
 			}
 		}
