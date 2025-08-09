@@ -1,20 +1,23 @@
-import { useState } from "react"
-import { setInitialWindowPosition } from "../../functions"
-import type { ManagedWindow,  Position, SiteSettings } from "../../types"
+import { useState } from 'react';
+import type {
+  ManagedWindow,
+} from '../../types';
 
-export function useAboutThisSiteWindow(props: SiteSettings, parentWindow: ManagedWindow): ManagedWindow {
-  const windowID = 'about-this-site-window'
-  const title = 'About This Site'
-  const [position, setPosition] = useState<Position>(() => setInitialWindowPosition(props))
+export function useAboutThisSiteWindow(
+  parentWindow: ManagedWindow
+): ManagedWindow {
+  const windowID = 'about-this-site-window';
+  const title = 'About This Site';
   const [zIndex, setZIndex] = useState('0');
+  const [isShown, setIsShown] = useState(false);
 
   return {
     id: windowID,
     title,
-    position,
-    setPosition,
     zIndex,
     setZIndex,
-    navBarMenuItems: parentWindow.navBarMenuItems
-  }
+    isShown,
+    setIsShown,
+    navBarMenuItems: parentWindow.navBarMenuItems,
+  };
 }

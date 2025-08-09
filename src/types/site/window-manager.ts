@@ -11,7 +11,6 @@ export interface WindowManager {
   aboutSolvedokuWindow: ManagedWindow
   // WINDOW MANAGEMENT FUNC
   focusedWindow: ManagedWindow,
-  openWindowIDs: string[],
   navBarMenuItems: NavBarMenuParent[],
   focusWindowByID: (windowID: WindowIDs) => void;
   closeWindowByID: (windowID: WindowIDs) => void

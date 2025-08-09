@@ -1,20 +1,21 @@
-import { useState } from "react"
-import { setInitialWindowPosition } from "../../functions"
-import type { ManagedWindow, Position, SiteSettings, SolvedokuGameState } from "../../types"
+import { useState } from 'react';
+import type { ManagedWindow } from '../../types';
 
-export function useAboutSolvedokuWindow(props: SiteSettings, parentWindow: ManagedWindow & SolvedokuGameState): ManagedWindow {
-  const windowID = 'about-solvedoku-window'
-  const title = 'About Solvedoku'
-  const [position, setPosition] = useState<Position>(() => setInitialWindowPosition(props))
-  const [zIndex, setZIndex] = useState('0');
+export function useAboutSolvedokuWindow(
+	parentWindow: ManagedWindow
+): ManagedWindow {
+	const windowID = 'about-solvedoku-window';
+	const title = 'About Solvedoku';
+	const [zIndex, setZIndex] = useState('0');
+	const [isShown, setIsShown] = useState(false);
 
-  return {
-    id: windowID,
-    title,
-    position,
-    setPosition,
-    zIndex,
-    setZIndex,
-    navBarMenuItems: parentWindow.navBarMenuItems
-  }
+	return {
+		id: windowID,
+		title,
+		zIndex,
+		setZIndex,
+		isShown,
+		setIsShown,
+		navBarMenuItems: parentWindow.navBarMenuItems,
+	};
 }

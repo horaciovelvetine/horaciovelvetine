@@ -1,27 +1,22 @@
 import { useState, useCallback } from 'react';
 import type {
-	Position,
-	SiteSettings,
 	NavBarMenuParent,
 	SolvedokuWindowState,
 	WindowIDs,
 	PuzzleDifficulty,
 } from '../../types';
-import { setInitialWindowPosition } from '../../functions/site/set-initial-window-position';
 import { useSolvedokuGameState } from '../solvedoku/use-solvedoku-game-state';
 
-export function useSolvedokuWindow(props: SiteSettings): SolvedokuWindowState {
+export function useSolvedokuWindow(): SolvedokuWindowState {
 	const windowID = 'solvedoku-window';
 	const title = 'Solvedoku';
-	const [position, setPosition] = useState<Position>(() =>
-		setInitialWindowPosition(props)
-	);
 	const [zIndex, setZIndex] = useState('0');
 	const solvedokuState = useSolvedokuGameState();
+	const [isShown, setIsShown] = useState(false);
 
 	// Mobile menu state management
-	const [showMobileSettings, setShowMobileSettings] = useState(false);
-	const [showMobileAbout, setShowMobileAbout] = useState(false);
+	const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+	const [showAboutMenu, setShowAboutMenu] = useState(false);
 	const [showGameMenu, setShowGameMenu] = useState(false);
 	const [currentPuzzleDifficultyDisplay, setCurrentPuzzleDifficultyDisplay] =
 		useState<PuzzleDifficulty>(solvedokuState.selectedDifficulty);
@@ -109,7 +104,7 @@ export function useSolvedokuWindow(props: SiteSettings): SolvedokuWindowState {
 							hoverExplainerTitle:
 								solvedokuState.isFindingSolution ?
 									'Pause the current solution finder'
-								:	'Solve the current puzzle',
+									: 'Solve the current puzzle',
 							isDisabled: solvedokuState.isValidSolution,
 							displaySectionHeader: 'Puzzle Solver',
 							onClickAction: () => {
@@ -194,17 +189,17 @@ export function useSolvedokuWindow(props: SiteSettings): SolvedokuWindowState {
 	return {
 		id: windowID,
 		title,
-		position,
-		setPosition,
 		zIndex,
 		setZIndex,
 		navBarMenuItems,
+		isShown,
+		setIsShown,
 		...solvedokuState,
 		// Mobile menu state
-		showMobileSettings,
-		setShowMobileSettings,
-		showMobileAbout,
-		setShowMobileAbout,
+		showSettingsMenu,
+		setShowSettingsMenu,
+		showAboutMenu,
+		setShowAboutMenu,
 		showGameMenu,
 		setShowGameMenu,
 		currentPuzzleDifficultyDisplay,
