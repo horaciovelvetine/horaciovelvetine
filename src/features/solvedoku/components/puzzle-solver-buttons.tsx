@@ -67,15 +67,12 @@ export function PuzzleSolverButtons({
 						accentColor={siteSettings.accentColor}
 						onClickFunction={handleSlowDownButtonClick}
 						title='Slow down the puzzle solver'
-						isDisabled={
-							solvedokuState.isValidSolution ||
-							solvedokuState.solutionFinderInterval === MIN_INTERVAL
-						}
+						isDisabled={solvedokuState.solutionFinderInterval === MIN_INTERVAL}
 					/>
 				</li>
 				<li>
 					<p className='text-nowrap tracking-tighter font-semibold text-sm xs:text-base sm:text-lg'>
-						Speed [{solvedokuState.solutionFinderInterval} ms.]
+						Speed [{solvedokuState.solutionFinderInterval}ms]
 					</p>
 				</li>
 				<li className='flex items-center'>
@@ -84,10 +81,7 @@ export function PuzzleSolverButtons({
 						accentColor={siteSettings.accentColor}
 						onClickFunction={handleSpeedUpClick}
 						title='Speed up the puzzle solver'
-						isDisabled={
-							solvedokuState.isValidSolution ||
-							solvedokuState.solutionFinderInterval === MAX_INTERVAL
-						}
+						isDisabled={solvedokuState.solutionFinderInterval === MAX_INTERVAL}
 					/>
 				</li>
 			</ul>

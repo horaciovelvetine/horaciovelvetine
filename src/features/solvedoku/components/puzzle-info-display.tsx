@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { EraserIcon } from '../../../assets';
 import type {
 	PuzzleDifficulty,
@@ -39,13 +39,13 @@ export function PuzzleInfoDisplay({
 	/**
 	 * Determine if the selected cell can be erased (i.e. is not a randomly generated cell)
 	 */
-	const canEraseCellValue = useCallback(() => {
+	const canEraseCellValue = useMemo(() => {
 		if (!solvedokuState.selectedCellHasValue) return false;
 		const [row, col] = parseFormattedCellIDString(
 			solvedokuState.selectedCellID
 		);
 		return !solvedokuState.gameBoard[row][col].locked;
-	}, [solvedokuState]);
+	}, [solvedokuState.selectedCellHasValue, solvedokuState.selectedCellID, solvedokuState.gameBoard]);
 
 	return (
 		<div className='flex w-full items-center gap-1 mt-1 px-2'>
@@ -101,7 +101,7 @@ export function PuzzleInfoDisplay({
 					}
 					onClickFunction={handleClearSelectedClick}
 					accentColor={siteSettings.accentColor}
-					isDisabled={!canEraseCellValue()}
+					isDisabled={!canEraseCellValue}
 				/>
 			</div>
 		</div>

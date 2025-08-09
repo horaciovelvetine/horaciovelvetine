@@ -42,24 +42,24 @@ export function SolvedokuHeader({
 			<h2 className='md:hidden font-extrabold tracking-tighter text-2xl xs:text-3xl sm:text-4xl text-center'>
 				Solvedoku
 			</h2>
-			<div className='flex justify-end w-full gap-1'>
+			<div className='flex justify-end items-center w-full gap-1'>
 				<button
 					type='button'
 					title='Show the about menu for Solvedoku'
-					className='md:hidden'
+					className='md:mt-1.5'
 					onClick={handleShowMobileAbout}>
 					<QuestionMarkIcon
-						size='size-6 xs:size-8 sm:size-9'
+						size='size-6 xs:size-8 sm:size-9.5'
 						classes='p-0.25'
 					/>
 				</button>
 
 				<button
 					type='button'
+					className='md:mt-1.5'
 					title='Show the settings menu for Solvedoku'
-					className='md:hidden'
 					onClick={handleShowMobileSettings}>
-					<SettingsIcon size='size-5.5 xs:size-7.5 sm:size-8.5' />
+					<SettingsIcon size='size-6 xs:size-8 sm:size-9' />
 				</button>
 
 				<button
