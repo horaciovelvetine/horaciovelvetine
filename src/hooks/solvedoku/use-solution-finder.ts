@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import type {
   RowColumnSet,
   SolvedokuGameBoard,
@@ -7,7 +7,6 @@ import type {
 import {
   checkCanPlaceNumber,
   clearBoardPastTarget,
-  createCellIDFromTarget,
   findEmptyCell,
   stepTargetCellIndecesBack,
 } from '../../functions';
@@ -24,16 +23,17 @@ export function useSolutionFinder(state: SolvedokuGameState) {
     solutionFinderInterval,
     isFindingSolution,
     setIsFindingSolution,
-    updateCellValue,
     gameBoard,
     setGameBoard,
     isValidSolution,
     setSolutionStepCounter,
     solutionStepCounter,
     solutionBoard,
-    setIsUnsolveable
+    setIsUnsolveable,
+    cellSolveTarget,
+    setCellSolveTarget
   } = state;
-  const [cellTarget, setCellTarget] = useState<RowColumnSet | null>();
+  // const [cellTarget, setCellTarget] = useState<RowColumnSet | null>();
 
   const findCellSolution = useCallback(
     (
@@ -44,14 +44,12 @@ export function useSolutionFinder(state: SolvedokuGameState) {
       setSolutionStepCounter(prev => prev + 1);
 
       const [rowTgt, colTgt] = targetCellStart;
-      const startingGuess =
-        (workingBoard[rowTgt][colTgt].value ?
-          parseInt(workingBoard[rowTgt][colTgt].value)
-          : 0) + 1;
+      const currentValue = workingBoard[rowTgt][colTgt].value;
+      const startingGuess = currentValue ? parseInt(currentValue) + 1 : 1;
 
-      let validSolutionPlaced = false;
+      // Try numbers from startingGuess to 9
       for (let num = startingGuess; num <= 9; num++) {
-        validSolutionPlaced = checkCanPlaceNumber(
+        const validSolutionPlaced = checkCanPlaceNumber(
           workingBoard,
           rowTgt,
           colTgt,
@@ -59,15 +57,25 @@ export function useSolutionFinder(state: SolvedokuGameState) {
         );
 
         if (validSolutionPlaced) {
-          //? update gameBoard and return the next cellTarget
+          //? Place the number and move to next empty cell
           workingBoard[rowTgt][colTgt].value = num.toString();
-          const cellTgtIDString = createCellIDFromTarget(targetCellStart);
-          updateCellValue(cellTgtIDString, num.toString(), false, false);
+
+          //? Batch the cell update with the board update to prevent excessive re-renders
+          setGameBoard(prev => {
+            const newBoard = prev.map((row, rowIndex) =>
+              row.map((cell, colIndex) => ({
+                ...cell,
+                value: workingBoard[rowIndex][colIndex].value
+              }))
+            );
+            return newBoard;
+          });
+
           return findEmptyCell(workingBoard);
         }
       }
 
-      //? No valid solution, find backtrack target and clean up...
+      //? No valid solution found, need to backtrack
       let foundBTTarget = false;
       let btTargetCell = stepTargetCellIndecesBack(targetCellStart);
 
@@ -77,6 +85,7 @@ export function useSolutionFinder(state: SolvedokuGameState) {
 
         const [btRowTgt, btColTgt] = btTargetCell;
         const newBTTgtCell = workingBoard[btRowTgt][btColTgt]
+
         //? skip cell if it was input by the user or locked by puzzle generation
         if (newBTTgtCell.locked || newBTTgtCell.userInputted) {
           btTargetCell = stepTargetCellIndecesBack(btTargetCell);
@@ -85,16 +94,25 @@ export function useSolutionFinder(state: SolvedokuGameState) {
         foundBTTarget = true;
       }
 
-      //? clears board ahead of target in case multiple cells were skipped backwards
+      //? Clear the current cell and all cells after the backtrack target
       workingBoard[rowTgt][colTgt].value = null;
-      const currentCellIDString = createCellIDFromTarget(targetCellStart);
-      updateCellValue(currentCellIDString, null, false, false);
       clearBoardPastTarget(btTargetCell, workingBoard);
-      setGameBoard(workingBoard.map(row => row.map(cell => ({ ...cell }))));
 
+      //? Batch all cell updates into a single board update to prevent excessive re-renders
+      setGameBoard(prev => {
+        const newBoard = prev.map((row, rowIndex) =>
+          row.map((cell, colIndex) => ({
+            ...cell,
+            value: workingBoard[rowIndex][colIndex].value
+          }))
+        );
+        return newBoard;
+      });
+
+      //? Return the backtrack target so it can try the next number
       return btTargetCell;
     },
-    [updateCellValue, setGameBoard, setSolutionStepCounter]
+    [setGameBoard, setSolutionStepCounter]
   );
 
   useEffect(() => {
@@ -105,13 +123,15 @@ export function useSolutionFinder(state: SolvedokuGameState) {
         row.map(cell => ({ ...cell }))
       );
 
-      const targetCellStart = cellTarget ?? findEmptyCell(workingBoard);
+      const targetCellStart = cellSolveTarget ?? findEmptyCell(workingBoard);
       const nextCellTarget = findCellSolution(workingBoard, targetCellStart);
-      const boardIncomplete = workingBoard.some(row =>
-        row.some(cell => cell.value === null)
-      );
+
 
       if (nextCellTarget === null) {
+
+        const boardIncomplete = workingBoard.some(row =>
+          row.some(cell => cell.value === null)
+        );
         console.log({
           msg:
             'Solvedoku::useSolutionFinder() => ' +
@@ -122,10 +142,10 @@ export function useSolutionFinder(state: SolvedokuGameState) {
         });
         if (boardIncomplete) setIsUnsolveable(true);
         setIsFindingSolution(false);
-        setCellTarget(null);
+        setCellSolveTarget(null);
         return;
       }
-      setCellTarget(nextCellTarget);
+      setCellSolveTarget(nextCellTarget);
     }, solutionFinderInterval);
 
     return () => {
@@ -136,11 +156,12 @@ export function useSolutionFinder(state: SolvedokuGameState) {
     isFindingSolution,
     solutionFinderInterval,
     setIsFindingSolution,
-    cellTarget,
     findCellSolution,
     isValidSolution,
     gameBoard,
     solutionBoard,
-    setIsUnsolveable
+    setIsUnsolveable,
+    cellSolveTarget,
+    setCellSolveTarget
   ]);
 }

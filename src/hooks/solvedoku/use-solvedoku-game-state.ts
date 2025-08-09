@@ -4,6 +4,7 @@ import type {
 	SolvedokuGameState,
 	Move,
 	PuzzleDifficulty,
+	RowColumnSet,
 } from '../../types';
 import {
 	parseFormattedCellIDString,
@@ -48,6 +49,10 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 	const [solutionFinderInterval, setSolutionFinderInterval] = useState(1); //? in ms...
 	const [solutionStepCounter, setSolutionStepCounter] = useState(0);
 	const [isUnsolveable, setIsUnsolveable] = useState(false);
+	const [cellSolveTarget, setCellSolveTarget] = useState<RowColumnSet | null>(
+		null
+	);
+	const [showStoredSolution, setShowStoredSolution] = useState(false);
 
 	/**
 	 * Ref values for expensive checks to see if they can be skipped
@@ -61,7 +66,6 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		board: SolvedokuGameBoard;
 		isEmpty: boolean;
 	} | null>(null);
-
 
 	/**
 	 * Memoized boolean indicates if there are any moves to be undone
@@ -157,7 +161,12 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 	 * @param value - The new value to set (string number 1-9 or null to clear)
 	 */
 	const updateCellValue = useCallback(
-		(cellID: string, value: string | null, isUserInput: boolean, resetUnsolveable = true) => {
+		(
+			cellID: string,
+			value: string | null,
+			isUserInput: boolean,
+			resetUnsolveable = true
+		) => {
 			const [row, col] = parseFormattedCellIDString(cellID);
 			const cellReference = gameBoard[row][col];
 
@@ -173,7 +182,7 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 				newValue: value,
 				previousValue: cellReference.value,
 				previouslyLocked: cellReference.locked,
-				previouslyUserInputted: cellReference.userInputted
+				previouslyUserInputted: cellReference.userInputted,
 			};
 			setMoveHistory(prev => [...prev, move]);
 
@@ -327,7 +336,7 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 								: cell.locked ? cell.value
 									: null,
 						locked: cell.locked,
-						userInputted: cell.userInputted
+						userInputted: cell.userInputted,
 					}))
 				);
 				return newBoard;
@@ -368,6 +377,10 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		setSolutionStepCounter,
 		toggleShowStoredPuzzleSolution,
 		isUnsolveable,
-		setIsUnsolveable
+		setIsUnsolveable,
+		cellSolveTarget,
+		setCellSolveTarget,
+		showStoredSolution,
+		setShowStoredSolution
 	};
 }
