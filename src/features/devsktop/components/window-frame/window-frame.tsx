@@ -18,7 +18,14 @@ export function WindowFrame({
 }: WindowFrameProps) {
 	const windowRef = useRef<any>(null);
 	const [dimensions, setDimensions] = useState<Dimensions | undefined>();
-	const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
+	const [position, setPosition] = useState<Position>(() => {
+		//? center the window width wise if theirs enought space...
+		const { width, height } = siteSettings.clientDimensions;
+		const x = Math.max(0, width / 2 - 380)
+		//? slight bump down if theres some space 
+		const y = height > 250 ? 50 : 0;
+		return { x, y }
+	});
 
 	const controlledDrag = (_e: DraggableEvent, ui: DraggableData) => {
 		windowManager.focusWindowByID(window.id);
