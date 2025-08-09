@@ -7,19 +7,19 @@ import type {
 import { SelectedDifficultyButton } from './selected-difficulty-button';
 import { GameMenuButton } from './game-menu-button';
 
-interface SolvedokuGameMenuProps {
-	setShowMobileMenu: Dispatch<SetStateAction<boolean>>;
+interface GameMenuProps {
+	setShowMenu: Dispatch<SetStateAction<boolean>>;
 	solvedokuState: SolvedokuGameState;
 	siteSettings: SiteSettings;
 	setCurrentPuzzleDifficultyDisplay: Dispatch<SetStateAction<PuzzleDifficulty>>;
 }
 
 export function GameMenu({
-	setShowMobileMenu,
+	setShowMenu,
 	solvedokuState,
 	siteSettings,
 	setCurrentPuzzleDifficultyDisplay,
-}: SolvedokuGameMenuProps) {
+}: GameMenuProps) {
 	const cannotShowSolutionBoard = solvedokuState.solutionBoard ? false : true;
 
 	/**
@@ -28,7 +28,7 @@ export function GameMenu({
 	const handleNewGameClick = () => {
 		solvedokuState.generateRandomPuzzle();
 		setCurrentPuzzleDifficultyDisplay(solvedokuState.selectedDifficulty); // set displayed difficulty value
-		setShowMobileMenu(false);
+		setShowMenu(false);
 	};
 
 	/**
@@ -36,7 +36,7 @@ export function GameMenu({
 	 */
 	const handleResetClick = () => {
 		solvedokuState.resetGameStepwise();
-		setShowMobileMenu(false);
+		setShowMenu(false);
 	};
 
 	/**
@@ -48,7 +48,7 @@ export function GameMenu({
 			!solvedokuState.showStoredSolution
 		);
 		solvedokuState.setShowStoredSolution(prev => !prev);
-		setShowMobileMenu(false);
+		setShowMenu(false);
 	};
 
 	return (

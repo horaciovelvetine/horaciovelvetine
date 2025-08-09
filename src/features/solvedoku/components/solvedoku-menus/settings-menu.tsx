@@ -56,8 +56,8 @@ export function SettingsMenu({
 		solvedokuState.setSolutionFinderInterval(newSpeed);
 	};
 	return (
-		<ul className='flex flex-col items-center gap-1 sm:gap-2 mb-8'>
-			<li className='flex items-center xs:gap-1'>
+		<ul className='flex flex-col items-center gap-2 sm:gap-2 mb-8'>
+			<li className='flex items-center xs:gap-1 border-b border-white/35 pb-3'>
 				<h4 className='font-semibold tracking-tighter mr-1.5 text-nowrap text-sm xs:text-base sm:text-lg'>
 					Accent Color:
 				</h4>
@@ -78,15 +78,12 @@ export function SettingsMenu({
 					))}
 				</ul>
 			</li>
-			<li>
-				<hr className='text-white' />
-			</li>
 			<li className='flex-col xs:gap-1'>
 				<div className='flex w-full justify-center items-center'>
 					<h4 className='font-semibold tracking-tighter mr-1 xs:mr-2 text-sm xs:text-base sm:text-lg'>
 						Solver Interval:
 					</h4>
-					<ul className='flex items-center text-white gap-2 md:gap-3'>
+					<ul className='flex items-center gap-2 md:gap-3'>
 						<li className='flex items-center'>
 							<PuzzleButton
 								Icon={RewindIcon}

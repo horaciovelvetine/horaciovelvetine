@@ -30,7 +30,7 @@ export function PuzzleButton({
 			onClick={onClickFunction}
 			title={title}
 			disabled={isDisabled}
-			className={`border border-gray-300/50 rounded px-1 tracking-tighter font-semibold ${bgColorClass} xs:text-xl sm:text-3xl  text-white text-nowrap transition-all ${isDisabled ? '' : 'duration-100 hover:-translate-y-1 hover:scale-105'}`}>
+			className={`border border-gray-300/50 rounded px-1 tracking-tighter font-semibold ${bgColorClass} xs:text-xl sm:text-3xl text-nowrap transition-all ${isDisabled ? '' : 'duration-100 hover:-translate-y-1 hover:scale-105'}`}>
 			{Icon ?
 				<Icon size='w-6 xs:w-9 sm:w-12' />
 				: <p>{text}</p>}

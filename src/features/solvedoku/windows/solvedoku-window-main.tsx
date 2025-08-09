@@ -34,11 +34,11 @@ export function SolvedokuWindowMain({
 		<div className='flex flex-col h-full justify-center items-center relative sm:mx-6 md:mx-12'>
 			{/* MOBILE HEADER ELEMENTS */}
 			<SolvedokuHeader
-				showMobileAboutMenu={windowState.showMobileAbout}
+				showAboutMenu={windowState.showAboutMenu}
 				showGameMenu={windowState.showGameMenu}
-				showMobileSettingsMenu={windowState.showMobileSettings}
-				setShowMobileAbout={windowState.setShowMobileAbout}
-				setShowMobileSettings={windowState.setShowMobileSettings}
+				showSettingsMenu={windowState.showSettingsMenu}
+				setShowAboutMenu={windowState.setShowAboutMenu}
+				setShowSettingsMenu={windowState.setShowSettingsMenu}
 				setShowGameMenu={windowState.setShowGameMenu}
 			/>
 
@@ -70,8 +70,8 @@ export function SolvedokuWindowMain({
 
 			{/* MOBILE MENU's */}
 			<MenuWrapper
-				setShowMobileMenu={windowState.setShowMobileAbout}
-				showMobileMenu={windowState.showMobileAbout}
+				setShowMenu={windowState.setShowAboutMenu}
+				showMenu={windowState.showAboutMenu}
 				siteSettings={siteSettings}
 				menuMainTitle='About Solvedoku'
 				Content={AboutMenu}
@@ -81,8 +81,8 @@ export function SolvedokuWindowMain({
 				}
 			/>
 			<MenuWrapper
-				setShowMobileMenu={windowState.setShowGameMenu}
-				showMobileMenu={windowState.showGameMenu}
+				setShowMenu={windowState.setShowGameMenu}
+				showMenu={windowState.showGameMenu}
 				siteSettings={siteSettings}
 				menuMainTitle='Solvedoku Menu'
 				Content={GameMenu}
@@ -92,8 +92,8 @@ export function SolvedokuWindowMain({
 				}
 			/>
 			<MenuWrapper
-				setShowMobileMenu={windowState.setShowMobileSettings}
-				showMobileMenu={windowState.showMobileSettings}
+				setShowMenu={windowState.setShowSettingsMenu}
+				showMenu={windowState.showSettingsMenu}
 				siteSettings={siteSettings}
 				menuMainTitle='Settings'
 				Content={SettingsMenu}

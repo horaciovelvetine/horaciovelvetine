@@ -1,11 +1,12 @@
-import { SimpleInlineLink } from "../../devsktop/components/site/simple-inline-link";
-import { ToolBadge } from "../../devsktop/components/site/tool-badge";
-import { SolvedokuIcon } from "../components/solvedoku-icon";
+import { SolvedokuIcon } from '..';
+import { SimpleInlineLink } from '../../devsktop/components/site/simple-inline-link';
+import { ToolBadge } from '../../devsktop/components/site/tool-badge';
+
 
 export function AboutSolvedokuWindow() {
 	return (
 		<div className='flex flex-col items-center'>
-			<SolvedokuIcon iconSize="size-32 xl:size-34" />
+			<SolvedokuIcon size='size-36 xl:size-34' />
 			<h2 className='text-3xl font-extrabold'>Solvedoku</h2>
 			<div className='flex flex-col items-center text-base'>
 				<h4 className='font-semibold tracking-tighter leading-3.5 mt-1 text-white/50'>
@@ -31,7 +32,7 @@ export function AboutSolvedokuWindow() {
 					/>
 				</ul>
 			</div>
-			<p className='text-lg text-center font-semibold mx-4 tracking-tight leading-6'>
+			<p className='text-lg lg:text-2xl text-center font-semibold mx-4 tracking-tight leading-6 text-pretty'>
 				Solvedoku is a tool built to solve any standard{' '}
 				<SimpleInlineLink
 					url='https://en.wikipedia.org/wiki/Sudoku'
@@ -50,29 +51,32 @@ export function AboutSolvedokuWindow() {
 			</p>
 
 			<div className='flex flex-col my-3'>
-				<h4 className='text-white/75 border-b text-xl'>
+				<h4 className='text-white/75 border-b text-xl lg:text-2xl'>
 					Additional Links & Resources:
 				</h4>
-				<ul className='list-decimal'>
+				<ul className='list-decimal text-lg lg:text-xl'>
 					<li>
-						Generating Sudoku Puzzles -{' '}
+						Generating Sudoku Puzzles{' '}
 						<SimpleInlineLink
 							url='https://stackoverflow.com/questions/6924216/how-to-generate-sudoku-boards-with-unique-solutions'
 							text='Stack Overflow'
+							showArrow
 						/>
 					</li>
 					<li>
-						Algorithim to Solve Sudoku -{' '}
+						Algorithim to Solve Sudoku{' '}
 						<SimpleInlineLink
 							url='https://www.geeksforgeeks.org/dsa/sudoku-backtracking-7/'
 							text='Geeks for Geeks'
+							showArrow
 						/>
 					</li>
 					<li>
-						Sudoku Solver: A Backtracking Approach -{' '}
+						Sudoku Solver: A Backtracking Approach{' '}
 						<SimpleInlineLink
 							url='https://www.kaggle.com/code/mexwell/sudoku-solver-a-backtracking-approach/notebook'
 							text='Kaggle Notebook w/ Dataset'
+							showArrow
 						/>
 					</li>
 				</ul>

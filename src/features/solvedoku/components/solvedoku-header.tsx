@@ -2,38 +2,39 @@ import type { Dispatch, SetStateAction } from 'react';
 import { QuestionMarkIcon, SettingsIcon } from '../../../assets';
 
 interface SolvedokuHeaderProps {
-	showMobileSettingsMenu: boolean;
-	showMobileAboutMenu: boolean;
+	showSettingsMenu: boolean;
+	showAboutMenu: boolean;
 	showGameMenu: boolean;
-	setShowMobileSettings: Dispatch<SetStateAction<boolean>>;
-	setShowMobileAbout: Dispatch<SetStateAction<boolean>>;
+	setShowSettingsMenu: Dispatch<SetStateAction<boolean>>;
+	setShowAboutMenu: Dispatch<SetStateAction<boolean>>;
 	setShowGameMenu: Dispatch<SetStateAction<boolean>>;
 }
 
 export function SolvedokuHeader({
-	showMobileAboutMenu,
+	showAboutMenu,
 	showGameMenu,
-	showMobileSettingsMenu,
-	setShowMobileAbout,
-	setShowMobileSettings,
+	showSettingsMenu,
+	setShowAboutMenu,
+	setShowSettingsMenu,
 	setShowGameMenu,
 }: SolvedokuHeaderProps) {
+	
 	// HANDLERS
 	const handleShowMobileAbout = () => {
-		if (showMobileSettingsMenu) setShowMobileSettings(false);
+		if (showSettingsMenu) setShowSettingsMenu(false);
 		if (showGameMenu) setShowGameMenu(false);
-		setShowMobileAbout(prev => !prev);
+		setShowAboutMenu(prev => !prev);
 	};
 
 	const handleShowMobileSettings = () => {
-		if (showMobileAboutMenu) setShowMobileAbout(false);
+		if (showAboutMenu) setShowAboutMenu(false);
 		if (showGameMenu) setShowGameMenu(false);
-		setShowMobileSettings(prev => !prev);
+		setShowSettingsMenu(prev => !prev);
 	};
 
 	const handleShowGameMenu = () => {
-		if (showMobileAboutMenu) setShowMobileAbout(false);
-		if (showMobileSettingsMenu) setShowMobileSettings(false);
+		if (showAboutMenu) setShowAboutMenu(false);
+		if (showSettingsMenu) setShowSettingsMenu(false);
 		setShowGameMenu(prev => !prev);
 	};
 

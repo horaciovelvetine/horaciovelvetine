@@ -60,7 +60,7 @@ export function PuzzleSolverButtons({
 				onClickFunction={handleSolveButtonClick}
 			/>
 
-			<ul className='flex items-center text-white gap-2 md:gap-3'>
+			<ul className='flex items-center gap-2 md:gap-3'>
 				<li className='flex items-center'>
 					<PuzzleButton
 						Icon={RewindIcon}
@@ -72,7 +72,7 @@ export function PuzzleSolverButtons({
 				</li>
 				<li>
 					<p className='text-nowrap tracking-tighter font-semibold text-sm xs:text-base sm:text-lg'>
-						Speed [{solvedokuState.solutionFinderInterval}ms]
+						Speed [{solvedokuState.solutionFinderInterval}ms.]
 					</p>
 				</li>
 				<li className='flex items-center'>

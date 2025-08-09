@@ -8,11 +8,12 @@ import type {
 import { CloseIcon } from '../../../../assets';
 import { SolvedokuIcon } from '../solvedoku-icon';
 
+
 interface MobileMenuWrapperProps {
 	siteSettings: SiteSettings;
 	solvedokuState: SolvedokuGameState;
-	showMobileMenu: boolean;
-	setShowMobileMenu: Dispatch<SetStateAction<boolean>>;
+	showMenu: boolean;
+	setShowMenu: Dispatch<SetStateAction<boolean>>;
 	menuMainTitle: string;
 	setCurrentPuzzleDifficultyDisplay: Dispatch<SetStateAction<PuzzleDifficulty>>;
 	Content: (props: any) => ReactNode;
@@ -21,30 +22,30 @@ interface MobileMenuWrapperProps {
 export function MenuWrapper({
 	siteSettings,
 	solvedokuState,
-	showMobileMenu,
-	setShowMobileMenu,
+	showMenu,
+	setShowMenu,
 	menuMainTitle,
 	Content,
 	setCurrentPuzzleDifficultyDisplay,
 }: MobileMenuWrapperProps) {
 	return (
 		<div
-			className={`absolute w-full -bottom-2 transition-transform duration-200 pb-2 ${showMobileMenu ? '' : 'translate-y-300'}`}>
-			<div className='flex flex-col rounded-lg bg-stone-900 text-white px-2 pt-2 items-center gap-1'>
+			className={`absolute w-full -bottom-2 transition-transform duration-200 pb-2 ${showMenu ? '' : 'translate-y-300'}`}>
+			<div className='flex flex-col rounded-lg bg-stone-900 px-2 pt-2 items-center gap-1'>
 				<div
 					className='flex w-full justify-end'
 					onClick={() => {
-						setShowMobileMenu(false);
+						setShowMenu(false);
 					}}>
 					<CloseIcon size='size-6 xs:size-8 sm:size-10' />
 				</div>
-				<SolvedokuIcon iconSize='size-16 xs:size-20 sm:size-24' />
+				<SolvedokuIcon size='size-16 xs:size-20 sm:size-24 md:size-42 lg:size-48' />
 				<h3 className='font-semibold tracking-tighter xs:text-lg sm:text-2xl'>
 					{menuMainTitle}
 				</h3>
 				{/* ADD MAIN CONTENT */}
 				<Content
-					setShowMobileMenu={setShowMobileMenu}
+					setShowMenu={setShowMenu}
 					solvedokuState={solvedokuState}
 					siteSettings={siteSettings}
 					setCurrentPuzzleDifficultyDisplay={setCurrentPuzzleDifficultyDisplay}
