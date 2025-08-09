@@ -8,15 +8,17 @@
 interface SimpleInlineLinkProps {
 	url: string;
 	text: string;
+	showArrow?: boolean
 }
 
-export function SimpleInlineLink({ url, text }: SimpleInlineLinkProps) {
+export function SimpleInlineLink({ url, text, showArrow = false }: SimpleInlineLinkProps) {
 	return (
 		<a
 			href={url}
 			target='_blank'
 			rel='noopener noreferrer'
 			className='inline-block text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'>
+			{showArrow && <span aria-hidden='true'>&rarr;</span>}{' '} 
 			{text}
 		</a>
 	);
