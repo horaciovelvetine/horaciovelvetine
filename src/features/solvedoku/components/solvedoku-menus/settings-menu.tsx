@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { FastForwardIcon, RewindIcon } from '../../../../assets';
 import { tailwindBGColors } from '../../../../functions';
 import type {
@@ -13,7 +12,7 @@ interface MobileSettingsMenuProps {
 	siteSettings: SiteSettings;
 }
 
-export function MobileSettingsMenu({
+export function SettingsMenu({
 	siteSettings,
 	solvedokuState,
 }: MobileSettingsMenuProps) {
@@ -27,10 +26,6 @@ export function MobileSettingsMenu({
 		'cyan',
 		'rose',
 	];
-
-	useEffect(() => {
-		// console.log({ msg: 'mobile settings menu', siteSettings })
-	}, [siteSettings]);
 
 	const MIN_INTERVAL = 1;
 	const MAX_INTERVAL = 300;
@@ -87,9 +82,9 @@ export function MobileSettingsMenu({
 				<hr className='text-white' />
 			</li>
 			<li className='flex-col xs:gap-1'>
-				<div className='flex w-full items-center'>
-					<h4 className='font-semibold tracking-tighter mr-0.5 text-sm xs:text-base sm:text-lg'>
-						Solver Step Interval:
+				<div className='flex w-full justify-center items-center'>
+					<h4 className='font-semibold tracking-tighter mr-1 xs:mr-2 text-sm xs:text-base sm:text-lg'>
+						Solver Interval:
 					</h4>
 					<ul className='flex items-center text-white gap-2 md:gap-3'>
 						<li className='flex items-center'>
@@ -99,14 +94,13 @@ export function MobileSettingsMenu({
 								onClickFunction={handleSlowDownButtonClick}
 								title='Slow down the puzzle solver'
 								isDisabled={
-									solvedokuState.isValidSolution ||
 									solvedokuState.solutionFinderInterval === MIN_INTERVAL
 								}
 							/>
 						</li>
 						<li>
 							<p className='text-nowrap tracking-tighter font-semibold text-sm xs:text-base sm:text-lg'>
-								Speed [{solvedokuState.solutionFinderInterval} ms.]
+								Speed [{solvedokuState.solutionFinderInterval}ms]
 							</p>
 						</li>
 						<li className='flex items-center'>
@@ -116,14 +110,13 @@ export function MobileSettingsMenu({
 								onClickFunction={handleSpeedUpClick}
 								title='Speed up the puzzle solver'
 								isDisabled={
-									solvedokuState.isValidSolution ||
 									solvedokuState.solutionFinderInterval === MAX_INTERVAL
 								}
 							/>
 						</li>
 					</ul>
 				</div>
-				<p className='tracking-tight leading-3.5 text-xs xs:text-sm sm:text-base text-white/50 text-center mx-4 xs:mx-18'>
+				<p className='tracking-tight leading-3.5 xs:leading-5 text-xs xs:text-sm sm:text-base text-white/50 md:text-lg mt-1 xs:mt-2 text-center mx-10 xs:mx-18 md:mx-24'>
 					The amount of time waited between trying a number in a cell while
 					solving a puzzle and moving on to the next cell.
 				</p>

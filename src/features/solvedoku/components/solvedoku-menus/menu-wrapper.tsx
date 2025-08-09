@@ -18,7 +18,7 @@ interface MobileMenuWrapperProps {
 	Content: (props: any) => ReactNode;
 }
 
-export function MobileMenuWrapper({
+export function MenuWrapper({
 	siteSettings,
 	solvedokuState,
 	showMobileMenu,
@@ -29,8 +29,8 @@ export function MobileMenuWrapper({
 }: MobileMenuWrapperProps) {
 	return (
 		<div
-			className={`absolute w-full -bottom-2 transition-transform duration-200 ${showMobileMenu ? '' : 'translate-y-300'}`}>
-			<div className='flex flex-col bg-stone-900 text-white px-2 pt-2 items-center gap-1'>
+			className={`absolute w-full -bottom-2 transition-transform duration-200 pb-2 ${showMobileMenu ? '' : 'translate-y-300'}`}>
+			<div className='flex flex-col rounded-lg bg-stone-900 text-white px-2 pt-2 items-center gap-1'>
 				<div
 					className='flex w-full justify-end'
 					onClick={() => {

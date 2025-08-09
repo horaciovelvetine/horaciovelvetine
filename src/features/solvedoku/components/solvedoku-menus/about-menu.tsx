@@ -7,7 +7,7 @@
 
 import { SimpleInlineLink } from '../../../devsktop/components';
 
-export function MobileAboutMenu() {
+export function AboutMenu() {
 	return (
 		<div className='flex flex-col gap-4 pb-6 xs:w-7/8'>
 			<p className='text-xs xs:text-base sm:text-lg xs:leading-4 sm:leading-5 tracking-tighter sm:tracking-tight'>

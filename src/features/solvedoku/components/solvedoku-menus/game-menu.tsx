@@ -1,4 +1,4 @@
-import { useState, type Dispatch, type SetStateAction } from 'react';
+import { type Dispatch, type SetStateAction } from 'react';
 import type {
 	PuzzleDifficulty,
 	SiteSettings,
@@ -14,14 +14,12 @@ interface SolvedokuGameMenuProps {
 	setCurrentPuzzleDifficultyDisplay: Dispatch<SetStateAction<PuzzleDifficulty>>;
 }
 
-export function SolvedokuGameMenu({
+export function GameMenu({
 	setShowMobileMenu,
 	solvedokuState,
 	siteSettings,
 	setCurrentPuzzleDifficultyDisplay,
 }: SolvedokuGameMenuProps) {
-	const [showStoredSolution, setShowStoredSolution] = useState(false);
-
 	const cannotShowSolutionBoard = solvedokuState.solutionBoard ? false : true;
 
 	/**
@@ -45,9 +43,11 @@ export function SolvedokuGameMenu({
 	 * Check if the toggleShowStoredSolution can be called, then toggle it on or off based off of the local state
 	 */
 	const handleShowSolutionClick = () => {
-		if (cannotShowSolutionBoard && !showStoredSolution) return;
-		solvedokuState.toggleShowStoredPuzzleSolution(!showStoredSolution);
-		setShowStoredSolution(prev => !prev);
+		if (cannotShowSolutionBoard && !solvedokuState.showStoredSolution) return;
+		solvedokuState.toggleShowStoredPuzzleSolution(
+			!solvedokuState.showStoredSolution
+		);
+		solvedokuState.setShowStoredSolution(prev => !prev);
 		setShowMobileMenu(false);
 	};
 
@@ -86,7 +86,11 @@ export function SolvedokuGameMenu({
 				accentColor={siteSettings.accentColor}
 			/>
 			<GameMenuButton
-				buttonText={showStoredSolution ? 'Hide Solution' : 'Reveal Solution'}
+				buttonText={
+					solvedokuState.showStoredSolution ? 'Hide Solution' : (
+						'Reveal Solution'
+					)
+				}
 				buttonTitle='Show the (intended) solution for the current puzzle'
 				accentColor={siteSettings.accentColor}
 				isDisabled={cannotShowSolutionBoard}
