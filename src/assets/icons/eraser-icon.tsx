@@ -1,6 +1,6 @@
 import type { IconProps } from '../../types';
 
-export function EraserIcon({ size = 'size-6', classes = 'text-white' }: IconProps) {
+export function EraserIcon({ size = 'size-6', classes = ' ' }: IconProps) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'

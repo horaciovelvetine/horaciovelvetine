@@ -2,7 +2,7 @@ import type { IconProps } from '../../types';
 
 export function QuestionMarkIcon({
 	size = 'size-6',
-	classes = 'text-white',
+	classes = ' ',
 }: IconProps) {
 	return (
 		<svg
