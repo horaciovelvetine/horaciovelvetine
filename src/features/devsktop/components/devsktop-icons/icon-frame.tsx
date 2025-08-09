@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef, type JSX } from 'react';
+import { useRef, useState, type JSX } from 'react';
 import type { IconProps, Position } from '../../../../types';
 import Draggable from 'react-draggable';
 
@@ -12,6 +12,19 @@ interface IconFrameProps {
 
 export function IconFrame({ Icon, label, onClickAction, initialPosition }: IconFrameProps) {
   const iconRef = useRef<any>(null);
+  const [lastTap, setLastTap] = useState<number>(0);
+
+  const handleTouchStart = () => {
+    const now = Date.now();
+    const DOUBLE_TAP_DELAY = 300; // ms between taps
+
+    if (now - lastTap < DOUBLE_TAP_DELAY) {
+      // Double tap detected
+      onClickAction();
+    }
+
+    setLastTap(now);
+  };
 
   return (
     <Draggable
@@ -24,7 +37,7 @@ export function IconFrame({ Icon, label, onClickAction, initialPosition }: IconF
         type='button'
         className='absolute flex flex-col items-center'
         onDoubleClick={onClickAction}
-        onTouchEnd={onClickAction}>
+        onTouchStart={handleTouchStart}>
         <Icon size='size-18 lg:size-22' classes='drop-shadow-lg drop-shadow-stone-900/35' />
         <h4 className='tracking-tighter text-sm lg:text-base font-semibold'>
           {label}
