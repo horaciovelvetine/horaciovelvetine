@@ -23,8 +23,8 @@ export function DevsktopIcons(props: LayoutProps) {
 
 	const { width, height } = props.siteSettings.clientDimensions;
 	//
-	const trayXPosStart = width / 2 - 105 * (ICONS.length / 2);
-	const trayYPosStart = height - 200;
+	const trayXPosStart = width / 2 - 98 * (ICONS.length / 2);
+	const trayYPosStart = height - (height >= 500 ? 200 : 130);
 
 	return (
 		<div className='absolute min-h-full min-w-full'>
@@ -34,7 +34,7 @@ export function DevsktopIcons(props: LayoutProps) {
 					Icon={icon.component}
 					label={icon.label}
 					onClickAction={icon.onClick}
-					initialPosition={{ x: trayXPosStart + index * 150, y: trayYPosStart }}
+					initialPosition={{ x: trayXPosStart + index * 130, y: trayYPosStart }}
 				/>
 			))}
 		</div>
