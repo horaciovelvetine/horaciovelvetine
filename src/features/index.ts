@@ -5,4 +5,4 @@ export { DevsktopMain, MainLandingWindow } from './devsktop';
 export { ProjectCard, PageNotFound } from './mobile';
 
 // SOLVEDOKU
-export { AboutSolvedokuWindow, SolvedokuWindowMain, SolvedokuIcon } from './solvedoku';
+export { AboutSolvedokuWindow, SolvedokuWindow, SolvedokuIcon } from './solvedoku';

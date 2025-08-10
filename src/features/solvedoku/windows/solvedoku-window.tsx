@@ -16,15 +16,15 @@ import { MenuWrapper } from '../components/solvedoku-menus/menu-wrapper';
 import { PuzzleInfoDisplay } from '../components/puzzle-info-display';
 import { GameMenu } from '../components/solvedoku-menus/game-menu';
 
-interface SolvedokuWindowMainProps {
+interface SolvedokuWindowProps {
 	windowState: SolvedokuWindowState;
 	siteSettings: SiteSettings;
 }
 
-export function SolvedokuWindowMain({
+export function SolvedokuWindow({
 	windowState,
 	siteSettings,
-}: SolvedokuWindowMainProps) {
+}: SolvedokuWindowProps) {
 	// Hook listeners...
 	useSolutionFinder(windowState);
 	useArrowKeyListener(windowState);

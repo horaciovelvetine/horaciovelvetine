@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { SolvedokuWindowMain } from '../features';
+import { SolvedokuWindow } from '../features';
 
 export const Route = createFileRoute('/solvedoku')({
   component: SolvedokuComponent,
@@ -10,7 +10,7 @@ function SolvedokuComponent() {
 
   return (
     <div className='flex justify-center bg-stone-900/90 pt-1 pb-3 my-1 rounded-lg mx-0.25'>
-      <SolvedokuWindowMain
+      <SolvedokuWindow
         siteSettings={siteSettings}
         windowState={windowManager.solvedokuWindow}
       />
