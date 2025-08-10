@@ -31,7 +31,7 @@ export function TitleBar({ window, manager }: TitleBarProps) {
 					}
 					onClick={handleWindowClose}
 					onTouchStart={handleWindowClose}>
-					<CloseIcon classes='text-gray-300 opacity-0 group-hover:opacity-100' />
+					<CloseIcon classes='text-gray-800 opacity-0 group-hover:opacity-100' />
 				</button>
 			</div>
 			<div className='tracking-tighter text-center w-full font-extrabold text-nowrap select-none'>

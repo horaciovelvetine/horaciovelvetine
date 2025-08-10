@@ -10,10 +10,10 @@ export const Route = createFileRoute('/')({
 function MobileHomePage() {
 	return (
 		<div className='flex flex-col gap-2 mx-1 my-2'>
-			<div className='bg-stone-900/70 py-2 rounded-xl ring-1 ring-stone-300/30'>
+			<div className='bg-stone-900/60 py-2 rounded-xl ring-1 ring-stone-300/30'>
 				<MainLandingWindow />
 			</div>
-			<div className='bg-stone-900/70 py-2 rounded-xl ring-1 ring-stone-300/30 px-2'>
+			<div className='bg-stone-900/60 py-2 rounded-xl ring-1 ring-stone-300/30 px-2'>
 				<div>
 					<h4 className='tracking-tighter text-center font-extrabold sm:font-bold text-3xl xs:text-4xl sm:text-5xl mb-2'>
 						Projects:
@@ -44,6 +44,7 @@ function MobileHomePage() {
 					</div>
 				</div>
 			</div>
+			
 		</div>
 	);
 }

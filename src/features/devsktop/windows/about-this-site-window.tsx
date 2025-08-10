@@ -1,5 +1,5 @@
 import { CloseIcon, GithubLogo } from '../../../assets';
-import { IconLink, ToolBadge, GradientLinkText } from '../components';
+import { IconLink, ToolBadge, GradientLinkText, SimpleInlineLink } from '../components';
 
 export function AboutThisSiteWindow() {
   return (
@@ -64,16 +64,18 @@ export function AboutThisSiteWindow() {
           </div>
         </div>
 
-        <p className='text-3xl font-bold tracking-tighter pl-3 leading-7.5'>
-          Is the page for engineer
-          <GradientLinkText
-            text='@horaciovelvetine'
-            url='https://github.com/horaciovelvetine'
-            classes='from-rose-500 via-purple-500 to-sky-500 font-extrabold pl-1'
-          />
-          . While typically websites consist of pages seperated neatly by URL's
+        <p className='text-2xl/7.5 font-bold tracking-tighter pl-3 text-pretty flex flex-col justify-center'>
+          <span className='border-b border-stone-300/50'>
+            Is the page for engineer
+            <GradientLinkText
+              text='@horaciovelvetine'
+              url='https://github.com/horaciovelvetine'
+              classes='from-rose-500 via-purple-500 to-sky-500 font-extrabold px-1'
+            />
+          </span>
+          While typically websites consist of pages seperated neatly by URL's
           here pages are draggable windows which can be positioned, opened, and
-          closed.
+          closed just like on a desktop!
         </p>
       </div>
 
@@ -89,8 +91,8 @@ export function AboutThisSiteWindow() {
           </li>
           <li>
             Use the{' '}
-            <span className='inline-block'>
-              <CloseIcon classes='rounded-full bg-red-500 p-0.5' />
+            <span className='inline-block align-center'>
+              <CloseIcon size='size-4.5' classes='rounded-full bg-red-500 text-stone-800' />
             </span>{' '}
             button at the top left of a window to close it.
           </li>
@@ -98,9 +100,19 @@ export function AboutThisSiteWindow() {
           <li>Additional functions can be found in the dropdown menu's at the top of the screen, and depend on the currently active window.</li>
         </ul>
       </div>
-      <p className='text-center text-white/50 font-bold text-lg tracking-tighter'>
-        ©2025 All Rights Reserved - @horaciovelvetine
-      </p>
+      <div className='flex flex-col min-w-full items-center'>
+        <p className='font-bold tracking-tight text-white/50 text-base/6 xs:text-lg sm:text-xl'>
+          © 2020-{new Date().getFullYear()} -{' '}
+          <span className='font-normal'>J.Tillman / @horaciovelvetine</span>
+        </p>
+        <p className='font-semibold tracking-tight text-base/6 xs:text-lg sm:text-xl'>
+          <SimpleInlineLink
+            url='https://github.com/horaciovelvetine/horaciovelvetine'
+            text='Repo on Github'
+            showArrow
+          />
+        </p>
+      </div>
     </div>
   );
 }
