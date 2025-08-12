@@ -5,13 +5,10 @@ import type { PuzzleDifficulty } from './puzzle-difficulty';
 
 export interface SolvedokuWindowState
 	extends ManagedWindow,
-		SolvedokuGameState {
+	SolvedokuGameState {
 	/**
 	 * Interface that extends both ManagedWindow and SolvedokuGameState to create a window
 	 * that contains and manages a Solvedoku game instance.
-	 *
-	 * Combines window management capabilities from ManagedWindow with
-	 * game state and logic from SolvedokuGameState.
 	 */
 
 	// Mobile menu state
