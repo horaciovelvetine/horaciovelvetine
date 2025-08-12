@@ -21,10 +21,10 @@ export function WindowFrame({
 	const [position, setPosition] = useState<Position>(() => {
 		//? center the window width wise if theirs enought space...
 		const { width, height } = siteSettings.clientDimensions;
-		const x = Math.max(0, width / 2 - 380)
-		//? slight bump down if theres some space 
+		const x = Math.max(0, width / 2 - 380);
+		//? slight bump down if theres some space
 		const y = height > 250 ? 50 : 0;
-		return { x, y }
+		return { x, y };
 	});
 
 	const controlledDrag = (_e: DraggableEvent, ui: DraggableData) => {
