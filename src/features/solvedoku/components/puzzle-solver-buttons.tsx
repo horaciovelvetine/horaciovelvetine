@@ -7,6 +7,15 @@ interface PuzzleSolverInputsProps {
 	siteSettings: SiteSettings;
 }
 
+/**
+ * Component that provides controls for the automated puzzle solver
+ * Includes buttons for starting/pausing solution, adjusting solution speed
+ * Manages solution interval timing between MIN_INTERVAL and MAX_INTERVAL
+ *
+ * @param {SolvedokuGameState} props.solvedokuState - Current game state including solver status and timing
+ * @param {SiteSettings} props.siteSettings - Global site settings like theme colors
+ * @returns JSX element containing the puzzle solver control buttons
+ */
 export function PuzzleSolverButtons({
 	solvedokuState,
 	siteSettings,

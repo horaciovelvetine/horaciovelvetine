@@ -1,5 +1,14 @@
 import type { IconProps } from "../../../types";
 
+/**
+ * Icon component that renders the Solvedoku logo/icon as an SVG
+ * Displays a stylized Sudoku grid with a magnifying glass overlay
+ * Uses gradient fills for visual appeal
+ * 
+ * @param {string} [props.size='size-128'] - CSS class to control icon dimensions 
+ * @param {string} [props.classes=' '] - Additional CSS classes to apply to the SVG
+ * @returns SVG element containing the Solvedoku icon
+ */
 export function SolvedokuIcon({ size = 'size-128', classes = ' ' }: IconProps) {
   return (
     <svg

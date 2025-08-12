@@ -14,6 +14,17 @@ interface PuzzleInfoDisplayProps {
 	siteSettings: SiteSettings;
 }
 
+/**
+ * Displays information about the current puzzle state and provides cell editing controls
+ * Shows the current puzzle difficulty, solving status, and validation messages
+ * Includes an eraser button for clearing non-locked cell values
+ * 
+ * @param {PuzzleDifficulty} props.currentPuzzleDifficulty - The difficulty level of the current puzzle
+ * @param {SolvedokuGameState} props.solvedokuState - Current game state including board data and solving status
+ * @param {SiteSettings} props.siteSettings - Global site settings like theme colors
+ * @returns JSX element containing the puzzle info display
+ */
+
 export function PuzzleInfoDisplay({
 	currentPuzzleDifficulty,
 	solvedokuState,
@@ -51,7 +62,6 @@ export function PuzzleInfoDisplay({
 		<div className='flex w-full items-center gap-1 mt-1 px-2'>
 			<div className='flex w-3/4 font-semibold gap-2 xs:gap-3 sm:gap-4 justify-around text-lg xs:text-xl sm:text-2xl md:text-3xl pl-2'>
 				<p>{formattedPuzzleDifficulty}</p>
-				<p>0:51</p>
 				{solvedokuState.isFindingSolution && (
 					<p className='bg-amber-500/70 rounded-lg py-0.5 px-2 border border-gray-300'>
 						Solving...

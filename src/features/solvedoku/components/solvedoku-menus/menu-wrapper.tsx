@@ -1,24 +1,30 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
-import type {
-	PuzzleDifficulty,
-	SiteSettings,
-	SolvedokuGameState,
-} from '../../../../types';
+import type { SiteSettings, SolvedokuWindowState } from '../../../../types';
 import { CloseIcon } from '../../../../assets';
 import { SolvedokuIcon } from '../solvedoku-icon';
 
-
-interface MobileMenuWrapperProps {
+interface MenuWrapperProps {
 	siteSettings: SiteSettings;
-	solvedokuState: SolvedokuGameState;
+	solvedokuState: SolvedokuWindowState;
 	showMenu: boolean;
 	setShowMenu: Dispatch<SetStateAction<boolean>>;
 	menuMainTitle: string;
-	setCurrentPuzzleDifficultyDisplay: Dispatch<SetStateAction<PuzzleDifficulty>>;
 	Content: (props: any) => ReactNode;
 }
 
+/**
+ * A wrapper component that provides consistent styling and behavior for mobile menus
+ * Contains a header with close button, Solvedoku icon, title and main content area
+ * Slides up from bottom of screen when shown
+ * @param {SiteSettings} props.siteSettings - Global site settings like theme colors
+ * @param {SolvedokuWindowState} props.solvedokuState - Current game state and methods
+ * @param {boolean} props.showMenu - Whether the menu is currently visible
+ * @param {Dispatch<SetStateAction<boolean>>} props.setShowMenu - Function to control menu visibility
+ * @param {string} props.menuMainTitle - Title text displayed in the menu header
+ * @param {(props: any) => ReactNode} props.Content - Component to render in the main content area
+ * @returns JSX element containing the menu wrapper
+ */
 export function MenuWrapper({
 	siteSettings,
 	solvedokuState,
@@ -26,8 +32,7 @@ export function MenuWrapper({
 	setShowMenu,
 	menuMainTitle,
 	Content,
-	setCurrentPuzzleDifficultyDisplay,
-}: MobileMenuWrapperProps) {
+}: MenuWrapperProps) {
 	return (
 		<div
 			className={`absolute w-full -bottom-2 transition-transform duration-200 pb-2 ${showMenu ? '' : 'translate-y-300'}`}>
@@ -48,7 +53,9 @@ export function MenuWrapper({
 					setShowMenu={setShowMenu}
 					solvedokuState={solvedokuState}
 					siteSettings={siteSettings}
-					setCurrentPuzzleDifficultyDisplay={setCurrentPuzzleDifficultyDisplay}
+					setCurrentPuzzleDifficultyDisplay={
+						solvedokuState.setCurrentPuzzleDifficultyDisplay
+					}
 				/>
 			</div>
 		</div>

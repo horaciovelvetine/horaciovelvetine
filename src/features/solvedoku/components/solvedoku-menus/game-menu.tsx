@@ -14,6 +14,16 @@ interface GameMenuProps {
 	setCurrentPuzzleDifficultyDisplay: Dispatch<SetStateAction<PuzzleDifficulty>>;
 }
 
+/**
+ * Mobile menu component that provides game controls and difficulty selection
+ * Contains buttons for starting new games, resetting progress, and showing solutions
+ * Includes a difficulty selector for generating new puzzles
+ * @param {Dispatch<SetStateAction<boolean>>} props.setShowMenu - Function to control menu visibility
+ * @param {SolvedokuGameState} props.solvedokuState - Current game state and methods
+ * @param {SiteSettings} props.siteSettings - Global site settings like theme colors
+ * @param {Dispatch<SetStateAction<PuzzleDifficulty>>} props.setCurrentPuzzleDifficultyDisplay - Updates displayed difficulty
+ * @returns JSX element containing the game menu controls
+ */
 export function GameMenu({
 	setShowMenu,
 	solvedokuState,

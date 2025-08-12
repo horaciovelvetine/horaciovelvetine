@@ -1,5 +1,5 @@
 import { FastForwardIcon, RewindIcon } from '../../../../assets';
-import { tailwindBGColors } from '../../../../functions';
+import { TailwindBGs500, TailwindDropShadows } from '../../../../functions';
 import type {
 	SiteSettings,
 	Colors,
@@ -12,6 +12,14 @@ interface MobileSettingsMenuProps {
 	siteSettings: SiteSettings;
 }
 
+/**
+ * Mobile menu component that provides settings controls for the Solvedoku game
+ * Contains accent color selection and solution speed controls
+ * Allows users to customize the game appearance and solution animation speed
+ * @param {SolvedokuGameState} props.solvedokuState - Current game state and methods
+ * @param {SiteSettings} props.siteSettings - Global site settings like theme colors
+ * @returns JSX element containing the settings menu controls
+ */
 export function SettingsMenu({
 	siteSettings,
 	solvedokuState,
@@ -69,7 +77,7 @@ export function SettingsMenu({
 								onClick={() => {
 									siteSettings.setAccentColor(color);
 								}}
-								className={`flex items-center justify-center size-5 xs:size-6 sm:size-7 rounded-full border border-stone-300/40   ${tailwindBGColors[color]} ${siteSettings.accentColor === color ? tailwindDropShadowColors[color] : ''}`}>
+								className={`flex items-center justify-center size-5 xs:size-6 sm:size-7 rounded-full border border-stone-300/40   ${TailwindBGs500[color]} ${siteSettings.accentColor === color ? TailwindDropShadows[color] : ''}`}>
 								<span className='inline-flex mb-5 xs:mb-7 sm:mb-8.5 text-black/80 font-extrabold text-4xl xs:text-5xl sm:text-6xl'>
 									{siteSettings.accentColor === color ? '.' : ''}
 								</span>
@@ -121,28 +129,3 @@ export function SettingsMenu({
 		</ul>
 	);
 }
-
-const tailwindDropShadowColors = {
-	red: 'drop-shadow-lg drop-shadow-red-500/30',
-	orange: 'drop-shadow-lg drop-shadow-orange-500/30',
-	amber: 'drop-shadow-lg drop-shadow-amber-500/30',
-	yellow: 'drop-shadow-lg drop-shadow-yellow-500/30',
-	lime: 'drop-shadow-lg drop-shadow-lime-500/30',
-	green: 'drop-shadow-lg drop-shadow-green-500/30',
-	emerald: 'drop-shadow-lg drop-shadow-emerald-500/30',
-	teal: 'drop-shadow-lg drop-shadow-teal-500/30',
-	cyan: 'drop-shadow-lg drop-shadow-cyan-500/30',
-	sky: 'drop-shadow-lg drop-shadow-sky-500/30',
-	blue: 'drop-shadow-lg drop-shadow-blue-500/30',
-	indigo: 'drop-shadow-lg drop-shadow-indigo-500/30',
-	violet: 'drop-shadow-lg drop-shadow-violet-500/30',
-	purple: 'drop-shadow-lg drop-shadow-purple-500/30',
-	fuchsia: 'drop-shadow-lg drop-shadow-fuchsia-500/30',
-	pink: 'drop-shadow-lg drop-shadow-pink-500/30',
-	rose: 'drop-shadow-lg drop-shadow-rose-500/30',
-	slate: 'drop-shadow-lg drop-shadow-slate-500/30',
-	gray: 'drop-shadow-lg drop-shadow-gray-500/30',
-	zinc: 'drop-shadow-lg drop-shadow-zinc-500/30',
-	neutral: 'drop-shadow-lg drop-shadow-neutral-500/30',
-	stone: 'drop-shadow-lg drop-shadow-stone-500/30',
-} as const;

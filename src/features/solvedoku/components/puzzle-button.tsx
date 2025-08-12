@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import { tailwindBGColors } from '../../../functions';
+import { TailwindBGs500 } from '../../../functions';
 import type { Colors, IconProps } from '../../../types';
 
 interface PuzzleButtonProps {
@@ -11,6 +11,19 @@ interface PuzzleButtonProps {
 	accentColor: Colors;
 }
 
+/**
+ * A reusable button component for puzzle-related actions
+ * Supports both icon and text content with consistent styling
+ * Includes hover animations and disabled states
+ * 
+ * @param {string} props.title - Tooltip text shown on hover
+ * @param {({ size, classes }: IconProps) => JSX.Element} [props.Icon] - Optional icon component to display
+ * @param {string} [props.text] - Optional text to display if no icon provided
+ * @param {() => void} props.onClickFunction - Handler called when button is clicked
+ * @param {boolean} props.isDisabled - Whether the button is disabled
+ * @param {Colors} props.accentColor - Theme color used for button background
+ * @returns A styled button element with icon or text content
+ */
 export function PuzzleButton({
 	title,
 	Icon,
@@ -19,10 +32,7 @@ export function PuzzleButton({
 	isDisabled,
 	accentColor,
 }: PuzzleButtonProps) {
-	const bgColorClass =
-		isDisabled ?
-			`${tailwindBGColors[accentColor]} brightness-45`
-			: tailwindBGColors[accentColor];
+	const bgColorClass = `${TailwindBGs500[accentColor]} ${isDisabled ? 'brightness-45' : ''}`;
 
 	return (
 		<button

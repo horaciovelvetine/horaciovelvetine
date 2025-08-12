@@ -1,12 +1,11 @@
+import { SimpleInlineLink } from '../../../devsktop/components';
+
 /**
  * Mobile menu component that displays information about Solvedoku and how to play
  * Contains links to external resources and instructions for playing Sudoku
  * Includes a link to report issues on GitHub
  * @returns JSX element containing the about menu content
  */
-
-import { SimpleInlineLink } from '../../../devsktop/components';
-
 export function AboutMenu() {
 	return (
 		<div className='flex flex-col gap-4 pb-6 xs:w-7/8'>

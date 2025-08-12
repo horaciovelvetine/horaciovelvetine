@@ -10,6 +10,19 @@ interface SolvedokuHeaderProps {
 	setShowGameMenu: Dispatch<SetStateAction<boolean>>;
 }
 
+/**
+ * Header component for the Solvedoku game that provides navigation controls
+ * Contains buttons for accessing the about menu, settings menu, and game menu
+ * Handles showing/hiding menus and ensures only one menu is visible at a time
+ * 
+ * @param {boolean} props.showAboutMenu - Whether the about menu is currently visible
+ * @param {boolean} props.showGameMenu - Whether the game menu is currently visible 
+ * @param {boolean} props.showSettingsMenu - Whether the settings menu is currently visible
+ * @param {Dispatch<SetStateAction<boolean>>} props.setShowAboutMenu - Function to control about menu visibility
+ * @param {Dispatch<SetStateAction<boolean>>} props.setShowSettingsMenu - Function to control settings menu visibility
+ * @param {Dispatch<SetStateAction<boolean>>} props.setShowGameMenu - Function to control game menu visibility
+ * @returns JSX element containing the Solvedoku header with menu controls
+ */
 export function SolvedokuHeader({
 	showAboutMenu,
 	showGameMenu,
@@ -18,7 +31,7 @@ export function SolvedokuHeader({
 	setShowSettingsMenu,
 	setShowGameMenu,
 }: SolvedokuHeaderProps) {
-	
+
 	// HANDLERS
 	const handleShowMobileAbout = () => {
 		if (showSettingsMenu) setShowSettingsMenu(false);
@@ -39,7 +52,7 @@ export function SolvedokuHeader({
 	};
 
 	return (
-		<div className='flex w-full items-center justify-between px-2 md:px-6.5 md:pb-1 text-white'>
+		<div className='flex w-full items-center justify-between px-2 md:px-6.5 md:pb-1 e'>
 			<h2 className='md:hidden font-extrabold tracking-tighter text-2xl xs:text-3xl sm:text-4xl text-center'>
 				Solvedoku
 			</h2>

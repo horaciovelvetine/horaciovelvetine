@@ -76,9 +76,6 @@ export function SolvedokuWindow({
 				menuMainTitle='About Solvedoku'
 				Content={AboutMenu}
 				solvedokuState={windowState}
-				setCurrentPuzzleDifficultyDisplay={
-					windowState.setCurrentPuzzleDifficultyDisplay
-				}
 			/>
 			<MenuWrapper
 				setShowMenu={windowState.setShowGameMenu}
@@ -87,9 +84,6 @@ export function SolvedokuWindow({
 				menuMainTitle='Solvedoku Menu'
 				Content={GameMenu}
 				solvedokuState={windowState}
-				setCurrentPuzzleDifficultyDisplay={
-					windowState.setCurrentPuzzleDifficultyDisplay
-				}
 			/>
 			<MenuWrapper
 				setShowMenu={windowState.setShowSettingsMenu}
@@ -98,9 +92,6 @@ export function SolvedokuWindow({
 				menuMainTitle='Settings'
 				Content={SettingsMenu}
 				solvedokuState={windowState}
-				setCurrentPuzzleDifficultyDisplay={
-					windowState.setCurrentPuzzleDifficultyDisplay
-				}
 			/>
 		</div>
 	);
