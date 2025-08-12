@@ -11,8 +11,8 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 	const windowID = 'solvedoku-window';
 	const title = 'Solvedoku';
 	const [zIndex, setZIndex] = useState('0');
-	const solvedokuState = useSolvedokuGameState();
 	const [isShown, setIsShown] = useState(false);
+	const solvedokuState = useSolvedokuGameState();
 
 	// Mobile menu state management
 	const [showSettingsMenu, setShowSettingsMenu] = useState(false);
@@ -34,9 +34,7 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 							parentWindowID: windowID,
 							titleText: 'Settings',
 							onClickAction: () => {
-								console.log({
-									target: 'Solvedoku -> Settings -> Open()',
-								});
+								setShowSettingsMenu(true)
 							},
 							displayMenuBreakAfter: true,
 						},
