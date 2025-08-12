@@ -39,7 +39,7 @@ export function IconFrame({ Icon, label, onClickAction, initialPosition }: IconF
         onDoubleClick={onClickAction}
         onTouchStart={handleTouchStart}>
         <Icon size='size-18 lg:size-22' classes='drop-shadow-lg drop-shadow-stone-900/35' />
-        <h4 className='tracking-tighter text-sm lg:text-base font-semibold text-shadow-lg'>
+        <h4 className='tracking-tighter text-sm lg:text-base font-semibold text-shadow-lg w-24'>
           {label}
         </h4>
       </button>
