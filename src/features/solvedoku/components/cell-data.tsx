@@ -5,6 +5,7 @@ import {
 	isInSelectedSquare,
 	TailwindBGs300,
 	TailwindOutlineColors,
+	TailwindTextColors500,
 } from '../../../functions';
 
 interface CellDataProps {
@@ -22,6 +23,7 @@ interface CellDataProps {
 		userInput: boolean
 	) => void;
 	setSelectedCellID: (cellID: string | null) => void;
+	showingStoredSolution: boolean;
 }
 
 /**
@@ -52,6 +54,7 @@ export const CellData = React.memo(function CellData({
 	updateCellValue,
 	setSelectedCellID,
 	accentColor,
+	showingStoredSolution,
 }: CellDataProps) {
 	const isSelected = cellID === selectedCellID;
 
@@ -119,13 +122,20 @@ export const CellData = React.memo(function CellData({
 		: isRelatedToSelected ? 'bg-yellow-50'
 		: 'bg-neutral-50';
 
+	const textColor =
+		showingStoredSolution ?
+			!cell.userInputted ?
+				TailwindTextColors500[accentColor]
+			:	'text-black'
+		:	'text-black';
+
 	return (
 		<td
 			id={cellID}
 			className={getCellBorderStyle() + ' select-none relative'}
 			onClick={toggleCellSelection}>
 			<input
-				className={`${cellSizing} text-center border-none outline-none cursor-pointer caret-transparent text-lg font-bold xs:text-2xl sm:text-3xl ${backgroundColor}`}
+				className={`${cellSizing} text-center border-none outline-none cursor-pointer caret-transparent text-lg font-bold xs:text-2xl sm:text-3xl ${textColor} ${backgroundColor}`}
 				type='text'
 				value={cell.value ?? ''}
 				name={cellID + '-input'}

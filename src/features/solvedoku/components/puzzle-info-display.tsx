@@ -6,7 +6,7 @@ import type {
 	SolvedokuGameState,
 } from '../../../types';
 import { PuzzleButton } from './puzzle-button';
-import { parseFormattedCellIDString } from '../../../functions';
+import { parseFormattedCellIDString, TailwindBGs500 } from '../../../functions';
 
 interface PuzzleInfoDisplayProps {
 	currentPuzzleDifficulty: PuzzleDifficulty;
@@ -58,6 +58,8 @@ export function PuzzleInfoDisplay({
 		return !solvedokuState.gameBoard[row][col].locked;
 	}, [solvedokuState.selectedCellHasValue, solvedokuState.selectedCellID, solvedokuState.gameBoard]);
 
+	const solvingMessageBG = TailwindBGs500[siteSettings.accentColor];
+
 	return (
 		<div className='flex w-full items-center gap-1 mt-1 px-2'>
 			<div className='flex w-3/4 font-semibold gap-2 xs:gap-3 sm:gap-4 justify-around text-lg xs:text-xl sm:text-2xl md:text-3xl pl-2'>
@@ -77,15 +79,21 @@ export function PuzzleInfoDisplay({
 						Unable to Solve!
 					</p>
 				)}
-				{solvedokuState.isValidSolution && (
+				{solvedokuState.isValidSolution && !solvedokuState.showStoredSolution && (
 					<p className='bg-emerald-500/70 rounded-lg py-0.5 px-2 border border-gray-300'>
 						Solved!
+					</p>
+				)}
+				{solvedokuState.showStoredSolution && (
+					<p className={`${solvingMessageBG} rounded-lg py-0.5 px-2 border border-gray-300`}>
+						Showing Solution
 					</p>
 				)}
 				{!solvedokuState.isValidSolution &&
 					solvedokuState.isValidGameBoard &&
 					!solvedokuState.isUnsolveable &&
-					!solvedokuState.isFindingSolution && (
+					!solvedokuState.isFindingSolution &&
+					!solvedokuState.showStoredSolution && (
 						<p className='py-0.5 px-2 text-transparent select-none'>Message!</p>
 					)}
 			</div>

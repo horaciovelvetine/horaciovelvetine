@@ -59,6 +59,7 @@ export function GameBoardTable({ solvedokuState, siteSettings }: GameBoardTableP
                 selectedCellID={solvedokuState.selectedCellID}
                 updateCellValue={solvedokuState.updateCellValue}
                 setSelectedCellID={solvedokuState.setSelectedCellID}
+                showingStoredSolution={solvedokuState.showStoredSolution}
               />
             ))}
           </tr>

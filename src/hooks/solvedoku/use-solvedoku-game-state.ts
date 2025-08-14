@@ -239,6 +239,8 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		setSolutionStepCounter(0);
 		setGameBoard(createEmptyBoard(BOARD_SIZE));
 		setMoveHistory([]);
+		setShowStoredSolution(false)
+		setSolutionBoard(null)
 		// Reset unsolveable state when board changes
 		setIsUnsolveable(false);
 		// Clear caches when board is reset
@@ -277,12 +279,16 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 			}
 			setSolutionStepCounter(0);
 			setMoveHistory([]);
+
 			// Clear caches when board is reset
 			lastValidationRef.current = null;
 			lastEmptyCheckRef.current = null;
 			return;
 		}
 		clearGameBoard();
+		setSolutionBoard(null)
+		setShowStoredSolution(false);
+
 	}, [setGameBoard, moveHistory, clearGameBoard, setIsUnsolveable]);
 
 	/**
@@ -302,6 +308,7 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		setSolutionStepCounter(0);
 		setMoveHistory([]);
 		setGameBoard(filledBoard);
+		setShowStoredSolution(false);
 		// Reset unsolveable state when board changes
 		setIsUnsolveable(false);
 		// Clear caches when new puzzle is generated
