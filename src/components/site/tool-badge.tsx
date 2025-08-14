@@ -1,4 +1,4 @@
-import type { Colors } from '../../../../types';
+import type { Colors } from '../../types';
 
 /**
  * List badge element intended for use in the about screens to denote a tool used in the development of that particular component
@@ -52,4 +52,6 @@ const tailwindColors = {
 	zinc: 'bg-zinc-600/25 ring-zinc-500/40 text-zinc-400',
 	neutral: 'bg-neutral-600/25 ring-neutral-500/40 text-neutral-400',
 	stone: 'bg-stone-600/25 ring-stone-500/40 text-stone-400',
+	black: 'bg-black/25 ring-black/40 text-black',
+	white: 'bg-white/25 ring-white/40 text-white',
 } as const;

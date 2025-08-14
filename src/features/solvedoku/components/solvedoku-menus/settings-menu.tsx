@@ -8,7 +8,7 @@ import type {
 import { PuzzleButton } from '../puzzle-button';
 
 interface MobileSettingsMenuProps {
-	solvedokuState: SolvedokuGameState;
+	windowState: SolvedokuGameState;
 	siteSettings: SiteSettings;
 }
 
@@ -21,8 +21,8 @@ interface MobileSettingsMenuProps {
  * @returns JSX element containing the settings menu controls
  */
 export function SettingsMenu({
+	windowState,
 	siteSettings,
-	solvedokuState,
 }: MobileSettingsMenuProps) {
 	const colorOptions: Colors[] = [
 		'red',
@@ -41,27 +41,27 @@ export function SettingsMenu({
 
 	const handleSlowDownButtonClick = () => {
 		let newSpeed;
-		if (solvedokuState.solutionFinderInterval <= INTERVAL_STEP) {
+		if (windowState.solutionFinderInterval <= INTERVAL_STEP) {
 			newSpeed = MIN_INTERVAL;
 		} else {
-			newSpeed = solvedokuState.solutionFinderInterval - INTERVAL_STEP;
+			newSpeed = windowState.solutionFinderInterval - INTERVAL_STEP;
 		}
-		solvedokuState.setSolutionFinderInterval(newSpeed);
+		windowState.setSolutionFinderInterval(newSpeed);
 	};
 
 	const handleSpeedUpClick = () => {
 		let newSpeed;
-		if (solvedokuState.solutionFinderInterval === MIN_INTERVAL) {
+		if (windowState.solutionFinderInterval === MIN_INTERVAL) {
 			newSpeed = INTERVAL_STEP;
-		} else if (solvedokuState.solutionFinderInterval < MAX_INTERVAL) {
+		} else if (windowState.solutionFinderInterval < MAX_INTERVAL) {
 			newSpeed = Math.min(
 				MAX_INTERVAL,
-				solvedokuState.solutionFinderInterval + INTERVAL_STEP
+				windowState.solutionFinderInterval + INTERVAL_STEP
 			);
 		} else {
 			newSpeed = MAX_INTERVAL;
 		}
-		solvedokuState.setSolutionFinderInterval(newSpeed);
+		windowState.setSolutionFinderInterval(newSpeed);
 	};
 	return (
 		<ul className='flex flex-col items-center gap-2 sm:gap-2 mb-8'>
@@ -99,13 +99,13 @@ export function SettingsMenu({
 								onClickFunction={handleSlowDownButtonClick}
 								title='Slow down the puzzle solver'
 								isDisabled={
-									solvedokuState.solutionFinderInterval === MIN_INTERVAL
+									windowState.solutionFinderInterval === MIN_INTERVAL
 								}
 							/>
 						</li>
 						<li>
 							<p className='text-nowrap tracking-tighter font-semibold text-sm xs:text-base sm:text-lg'>
-								Speed [{solvedokuState.solutionFinderInterval}ms]
+								Speed [{windowState.solutionFinderInterval}ms]
 							</p>
 						</li>
 						<li className='flex items-center'>
@@ -115,7 +115,7 @@ export function SettingsMenu({
 								onClickFunction={handleSpeedUpClick}
 								title='Speed up the puzzle solver'
 								isDisabled={
-									solvedokuState.solutionFinderInterval === MAX_INTERVAL
+									windowState.solutionFinderInterval === MAX_INTERVAL
 								}
 							/>
 						</li>

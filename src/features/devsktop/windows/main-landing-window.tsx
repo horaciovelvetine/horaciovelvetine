@@ -1,5 +1,6 @@
 import { GithubLogo, LinkedInLogo, MailToIcon } from '../../../assets';
-import { GradientLinkText, IconLink, VideoHeadshot } from '../components/';
+import { GradientLinkText, IconLink, VideoHeadshot } from '../../../components';
+
 
 export function MainLandingWindow() {
 	return (

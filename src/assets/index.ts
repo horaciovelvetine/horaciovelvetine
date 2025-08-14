@@ -1,4 +1,3 @@
-
 // import ChevronRightIcon from './icons/mi-chevron-right.svg';
 // import EraserIcon from './icons/mi-eraser.svg';
 
@@ -15,6 +14,8 @@ export { SettingsIcon } from './icons/settings-icon.tsx';
 export { FastForwardIcon } from './icons/fast-forward-icon.tsx';
 export { RewindIcon } from './icons/rewind-icon.tsx';
 export { EraserIcon } from './icons/eraser-icon.tsx';
-export { MailToIcon } from './icons/mail-to-icon.tsx'
+export { MailToIcon } from './icons/mail-to-icon.tsx';
+export { PlayIcon } from './icons/play-icon.tsx';
+export { PauseIcon } from './icons/pause-icon.tsx';
 
 export { LinkedInLogo, GithubLogo };

@@ -1,6 +1,6 @@
 import type { IconProps } from '../../types';
 
-export function SettingsIcon({ size = 'size-6', classes = ' ' }: IconProps) {
+export function SettingsIcon({ size = 'size-6', classes = ' ', ariaHidden = false }: IconProps) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
@@ -8,6 +8,7 @@ export function SettingsIcon({ size = 'size-6', classes = ' ' }: IconProps) {
 			viewBox='0 0 24 24'
 			strokeWidth={1.5}
 			stroke='currentColor'
+			aria-hidden={ariaHidden}
 			className={`${size} ${classes}`}>
 			<path
 				strokeLinecap='round'

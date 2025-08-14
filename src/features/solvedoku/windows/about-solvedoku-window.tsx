@@ -1,6 +1,6 @@
 import { SolvedokuIcon } from '..';
-import { SimpleInlineLink } from '../../devsktop/components/site/simple-inline-link';
-import { ToolBadge } from '../../devsktop/components/site/tool-badge';
+import { SimpleInlineLink, ToolBadge } from '../../../components';
+
 
 
 export function AboutSolvedokuWindow() {

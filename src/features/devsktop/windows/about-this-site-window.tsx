@@ -1,5 +1,5 @@
 import { CloseIcon, GithubLogo } from '../../../assets';
-import { IconLink, ToolBadge, GradientLinkText, SimpleInlineLink } from '../components';
+import { GradientLinkText, IconLink, SimpleInlineLink, ToolBadge } from '../../../components';
 
 export function AboutThisSiteWindow() {
   return (

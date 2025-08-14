@@ -1,4 +1,5 @@
 import type { SiteSettings, SolvedokuWindowState } from '../../../types';
+// HOOKS
 import {
 	useArrowKeyListener,
 	useKeyboardShortcuts,
@@ -6,15 +7,17 @@ import {
 } from '../../../hooks/solvedoku';
 
 // SUB-COMPONENTS
-import { SolvedokuHeader } from '../components/solvedoku-header';
-import { GameBoardTable } from '../components/game-board-table';
-import { NumberInputButtons } from '../components/number-input-buttons';
-import { PuzzleSolverButtons } from '../components/puzzle-solver-buttons';
-import { AboutMenu } from '../components/solvedoku-menus/about-menu';
-import { SettingsMenu } from '../components/solvedoku-menus/settings-menu';
-import { MenuWrapper } from '../components/solvedoku-menus/menu-wrapper';
-import { PuzzleInfoDisplay } from '../components/puzzle-info-display';
-import { GameMenu } from '../components/solvedoku-menus/game-menu';
+import {
+	SolvedokuHeader,
+	PuzzleSolverButtons,
+	PuzzleInfoDisplay,
+	GameBoardTable,
+	GameMenu,
+	AboutMenu,
+	SettingsMenu,
+	NumberInputButtons,
+} from '../components';
+import { WindowMenuWrapper } from '../../../components';
 
 interface SolvedokuWindowProps {
 	windowState: SolvedokuWindowState;
@@ -25,7 +28,7 @@ export function SolvedokuWindow({
 	windowState,
 	siteSettings,
 }: SolvedokuWindowProps) {
-	// Hook listeners...
+	// Hook listeners...(useEffects...)
 	useSolutionFinder(windowState);
 	useArrowKeyListener(windowState);
 	useKeyboardShortcuts(windowState);
@@ -69,29 +72,29 @@ export function SolvedokuWindow({
 			/>
 
 			{/* MOBILE MENU's */}
-			<MenuWrapper
+			<WindowMenuWrapper
 				setShowMenu={windowState.setShowAboutMenu}
 				showMenu={windowState.showAboutMenu}
 				siteSettings={siteSettings}
 				menuMainTitle='About Solvedoku'
 				Content={AboutMenu}
-				solvedokuState={windowState}
+				windowState={windowState}
 			/>
-			<MenuWrapper
+			<WindowMenuWrapper
 				setShowMenu={windowState.setShowGameMenu}
 				showMenu={windowState.showGameMenu}
 				siteSettings={siteSettings}
 				menuMainTitle='Solvedoku Menu'
 				Content={GameMenu}
-				solvedokuState={windowState}
+				windowState={windowState}
 			/>
-			<MenuWrapper
+			<WindowMenuWrapper
 				setShowMenu={windowState.setShowSettingsMenu}
 				showMenu={windowState.showSettingsMenu}
 				siteSettings={siteSettings}
 				menuMainTitle='Settings'
 				Content={SettingsMenu}
-				solvedokuState={windowState}
+				windowState={windowState}
 			/>
 		</div>
 	);

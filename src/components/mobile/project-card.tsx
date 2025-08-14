@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
-import { SimpleInlineLink } from '../../devsktop/components';
-import type { IconProps } from '../../../types';
 import type { JSX } from 'react';
+import { SimpleInlineLink } from '../site/simple-inline-link';
+import type { IconProps } from '../../types';
 
 interface ProjectCardProps {
   title: string;

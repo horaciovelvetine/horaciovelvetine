@@ -2,16 +2,15 @@ import { type Dispatch, type SetStateAction } from 'react';
 import type {
 	PuzzleDifficulty,
 	SiteSettings,
-	SolvedokuGameState,
+	SolvedokuWindowState,
 } from '../../../../types';
 import { SelectedDifficultyButton } from './selected-difficulty-button';
 import { GameMenuButton } from './game-menu-button';
 
 interface GameMenuProps {
 	setShowMenu: Dispatch<SetStateAction<boolean>>;
-	solvedokuState: SolvedokuGameState;
+	windowState: SolvedokuWindowState;
 	siteSettings: SiteSettings;
-	setCurrentPuzzleDifficultyDisplay: Dispatch<SetStateAction<PuzzleDifficulty>>;
 }
 
 /**
@@ -26,18 +25,17 @@ interface GameMenuProps {
  */
 export function GameMenu({
 	setShowMenu,
-	solvedokuState,
+	windowState,
 	siteSettings,
-	setCurrentPuzzleDifficultyDisplay,
 }: GameMenuProps) {
-	const cannotShowSolutionBoard = solvedokuState.solutionBoard ? false : true;
+	const cannotShowSolutionBoard = windowState.solutionBoard ? false : true;
 
 	/**
 	 * Creates a new game, sets the local state display of what difficulty that puzzle is
 	 */
 	const handleNewGameClick = () => {
-		solvedokuState.generateRandomPuzzle();
-		setCurrentPuzzleDifficultyDisplay(solvedokuState.selectedDifficulty); // set displayed difficulty value
+		windowState.generateRandomPuzzle();
+		windowState.setCurrentPuzzleDifficultyDisplay(windowState.selectedDifficulty); // set displayed difficulty value
 		setShowMenu(false);
 	};
 
@@ -45,7 +43,7 @@ export function GameMenu({
 	 * Soft reset the puzzle progress back to empty (leaving generated puzzle in place)
 	 */
 	const handleResetClick = () => {
-		solvedokuState.resetGameStepwise();
+		windowState.resetGameStepwise();
 		setShowMenu(false);
 	};
 
@@ -53,11 +51,11 @@ export function GameMenu({
 	 * Check if the toggleShowStoredSolution can be called, then toggle it on or off based off of the local state
 	 */
 	const handleShowSolutionClick = () => {
-		if (cannotShowSolutionBoard && !solvedokuState.showStoredSolution) return;
-		solvedokuState.toggleShowStoredPuzzleSolution(
-			!solvedokuState.showStoredSolution
+		if (cannotShowSolutionBoard && !windowState.showStoredSolution) return;
+		windowState.toggleShowStoredPuzzleSolution(
+			!windowState.showStoredSolution
 		);
-		solvedokuState.setShowStoredSolution(prev => !prev);
+		windowState.setShowStoredSolution(prev => !prev);
 		setShowMenu(false);
 	};
 
@@ -80,8 +78,8 @@ export function GameMenu({
 								<SelectedDifficultyButton
 									key={difficulty.concat('-selector')}
 									difficulty={difficulty}
-									isSelected={difficulty === solvedokuState.selectedDifficulty}
-									onSelect={solvedokuState.setSelectedDifficulty}
+									isSelected={difficulty === windowState.selectedDifficulty}
+									onSelect={windowState.setSelectedDifficulty}
 									accentColor={siteSettings.accentColor}
 								/>
 							)
@@ -97,7 +95,7 @@ export function GameMenu({
 			/>
 			<GameMenuButton
 				buttonText={
-					solvedokuState.showStoredSolution ? 'Hide Solution' : (
+					windowState.showStoredSolution ? 'Hide Solution' : (
 						'Reveal Solution'
 					)
 				}
@@ -111,7 +109,7 @@ export function GameMenu({
 				buttonText='Reset Puzzle'
 				accentColor={siteSettings.accentColor}
 				clickHandler={handleResetClick}
-				isDisabled={solvedokuState.gameBoardEmpty}
+				isDisabled={windowState.gameBoardEmpty}
 			/>
 		</ul>
 	);

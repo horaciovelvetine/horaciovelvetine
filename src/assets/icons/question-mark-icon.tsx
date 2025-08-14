@@ -3,6 +3,7 @@ import type { IconProps } from '../../types';
 export function QuestionMarkIcon({
 	size = 'size-6',
 	classes = ' ',
+	ariaHidden = false
 }: IconProps) {
 	return (
 		<svg
@@ -10,6 +11,7 @@ export function QuestionMarkIcon({
 			fill='none'
 			viewBox='0 0 24 24'
 			strokeWidth={1.5}
+			aria-hidden={ariaHidden}
 			stroke='currentColor'
 			className={`${size} ${classes}`}>
 			<path

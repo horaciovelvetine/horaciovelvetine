@@ -1,4 +1,4 @@
-import { SimpleInlineLink } from '../../devsktop/components';
+import { SimpleInlineLink } from "../site/simple-inline-link";
 
 export function Footer() {
 	return (

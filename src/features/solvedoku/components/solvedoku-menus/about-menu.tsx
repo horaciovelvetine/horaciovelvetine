@@ -1,4 +1,5 @@
-import { SimpleInlineLink } from '../../../devsktop/components';
+import { SimpleInlineLink } from "../../../../components";
+
 
 /**
  * Mobile menu component that displays information about Solvedoku and how to play
