@@ -7,15 +7,14 @@ import type { LayoutProps } from '../types';
 import { useState } from 'react';
 import { CloseIcon, MenuBarsIcon, CodeBlockIcon } from '../assets';
 import { Dialog, DialogPanel } from '@headlessui/react';
-import { PageNotFound } from '../features';
-import { Footer } from '../features/mobile/components/footer';
+import { Footer, PageNotFound } from '../components';
 
 export const Route = createRootRouteWithContext<LayoutProps>()({
 	component: RootComponent,
 	notFoundComponent: PageNotFound
 });
 
-const siteNavigation = [{ name: 'Home', href: '/' }, { name: 'Solvedoku', href: '/solvedoku' }, { name: 'Contact', href: '/contact' }];
+const siteNavigation = [{ name: 'Home', href: '/' }, { name: 'Solvedoku', href: '/solvedoku' }, { name: 'Rock, Paper, Scissors', href: 'rock-paper-scissors' }, { name: 'Contact', href: '/contact' }];
 
 function RootComponent() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
