@@ -27,15 +27,16 @@ export function WindowMenuWrapper({
 }: WindowMenuWrapperProps) {
 	return (
 		<div
-			className={`absolute w-full -bottom-1.5 md:bottom-9 transition-transform duration-200 pb-2 ${showMenu ? '' : 'translate-y-500'}`}>
+			className={`absolute w-full -bottom-1.5 md:bottom-9 transition-all duration-200 pb-2 ${showMenu ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none'}`}>
 			<div className='flex flex-col rounded-lg bg-stone-900 px-2 pt-1 items-center gap-1 border border-stone-300/30'>
-				<div
+				<button
+					type='button'
 					className='flex w-full justify-end'
 					onClick={() => {
 						setShowMenu(false);
 					}}>
 					<CloseIcon size='size-5 xs:size-8 sm:size-10' />
-				</div>
+				</button>
 
 				<Icon size='size-16 xs:size-20 sm:size-28 md:size-36' />
 
