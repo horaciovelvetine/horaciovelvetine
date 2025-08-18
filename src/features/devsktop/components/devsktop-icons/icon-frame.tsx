@@ -1,16 +1,56 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 import type { IconFrameProps } from './icon-frame-props';
+import type { Position } from '../../../../types';
 
 export function IconFrame({
 	Icon,
 	label,
 	onClickAction,
-	initialPosition,
+	baseTrayPosition,
+	iconIndex,
+	siteSettings,
 }: IconFrameProps) {
 	const iconRef = useRef<any>(null);
 	const [lastTap, setLastTap] = useState<number>(0);
+	const [position, setPosition] = useState<Position>(() => {
+		// Calculate initial position based on tray position and icon index
+		return {
+			x: baseTrayPosition.x + iconIndex * 130,
+			y: baseTrayPosition.y
+		};
+	});
+
+	/**
+	 * Calculate the icon position based on current tray position and icon index
+	 */
+	function calculateIconPosition(trayPos: Position): Position {
+		return {
+			x: trayPos.x + iconIndex * 130,
+			y: trayPos.y
+		};
+	}
+
+	/**
+	 * Reposition icon when screen dimensions change to keep it in the correct tray position
+	 */
+	useLayoutEffect(() => {
+		const { width } = siteSettings.clientDimensions;
+		const iconWidth = 130;
+		const trayWidth = iconWidth * 3; // Assuming 3 icons (Home, Solvedoku, RPS)
+		const margin = 20;
+
+		// Recalculate tray position
+		const newTrayPosition = {
+			x: width - trayWidth - margin,
+			y: margin
+		};
+
+		// Update icon position
+		const newIconPosition = calculateIconPosition(newTrayPosition);
+		setPosition(newIconPosition);
+	}, [siteSettings.clientDimensions, iconIndex]);
 
 	const handleTouchStart = () => {
 		const now = Date.now();
@@ -28,7 +68,7 @@ export function IconFrame({
 		<Draggable
 			bounds='#devsktop-bounds'
 			grid={[25, 25]}
-			defaultPosition={initialPosition}
+			position={position}
 			nodeRef={iconRef}>
 			<button
 				ref={iconRef}
