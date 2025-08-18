@@ -1,8 +1,32 @@
 import { SolvedokuIcon } from '..';
-import { SimpleInlineLink, ToolBadge } from '../../../components';
+import {
+	ReactBadge,
+	SimpleInlineLink,
+	TailwindCSSBadge,
+	TypescriptBadge,
+} from '../../../components';
 
-
-
+/**
+ * About window component for the Solvedoku application.
+ *
+ * Displays comprehensive information about the Solvedoku puzzle solver, including
+ * its purpose, the technologies used to build it, and detailed explanation of how
+ * the backtracking algorithm works. The component presents this information in a
+ * visually appealing layout with the application icon, tool badges, and formatted text.
+ *
+ * Features:
+ * - Application branding with the Solvedoku icon and title
+ * - Technology stack showcase using interactive tool badges
+ * - Detailed description of the Sudoku solving functionality
+ * - Educational content about backtracking algorithms with external links
+ * - Responsive typography and layout for various screen sizes
+ * - Integration with SimpleInlineLink components for external references
+ *
+ * The component serves as both an introduction to new users and a reference
+ * for understanding the technical approach used in the puzzle solver.
+ *
+ * @returns JSX element containing the about page content with application information
+ */
 export function AboutSolvedokuWindow() {
 	return (
 		<div className='flex flex-col items-center'>
@@ -13,23 +37,11 @@ export function AboutSolvedokuWindow() {
 					Built With:
 				</h4>
 				<ul className='list-none flex gap-2 font-bold tracking-normal mt-1 mb-2'>
-					<ToolBadge
-						text='React'
-						color='blue'
-						url='https://react.dev/'
-					/>
+					<ReactBadge />
 					/
-					<ToolBadge
-						text='TailwindCSS'
-						color='indigo'
-						url='https://tailwindcss.com/'
-					/>
+					<TailwindCSSBadge />
 					/
-					<ToolBadge
-						text='Typescript'
-						color='sky'
-						url='https://www.typescriptlang.org/'
-					/>
+					<TypescriptBadge />
 				</ul>
 			</div>
 			<p className='text-lg lg:text-2xl text-center font-semibold mx-4 tracking-tight leading-6 text-pretty'>
@@ -47,7 +59,7 @@ export function AboutSolvedokuWindow() {
 				/>{' '}
 				to find a solution allowing you to watch each step, and the controls
 				next to the puzzle you can slow down and speed up the solution in
-				realtime and visualize how a backtracking solution works.
+				realtime and visualize how a backtracking solution works. How about that
 			</p>
 
 			<div className='flex flex-col my-3'>

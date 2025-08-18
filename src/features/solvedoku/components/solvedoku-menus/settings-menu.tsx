@@ -5,7 +5,7 @@ import type {
 	Colors,
 	SolvedokuGameState,
 } from '../../../../types';
-import { PuzzleButton } from '../puzzle-button';
+import { PuzzleButton } from '../puzzle-button/puzzle-button';
 
 interface MobileSettingsMenuProps {
 	windowState: SolvedokuGameState;

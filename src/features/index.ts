@@ -1,8 +1,16 @@
 // DEVSKTOP
-export { DevsktopMain, MainLandingWindow } from './devsktop';
-
-// MOBILE
-export { ProjectCard, PageNotFound } from './mobile';
+export {
+	DevsktopMain,
+	MainLandingWindow,
+	AboutThisSiteWindow,
+} from './devsktop';
 
 // SOLVEDOKU
-export { AboutSolvedokuWindow, SolvedokuWindow, SolvedokuIcon } from './solvedoku';
+export {
+	AboutSolvedokuWindow,
+	SolvedokuWindow,
+	SolvedokuIcon,
+} from './solvedoku';
+
+// RPS
+export { RPSSKetchWindow, AboutRPSSketchWindow } from './rps';

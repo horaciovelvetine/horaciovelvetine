@@ -1,4 +1,3 @@
-import type { SiteSettings, SolvedokuWindowState } from '../../../types';
 // HOOKS
 import {
 	useArrowKeyListener,
@@ -16,14 +15,38 @@ import {
 	AboutMenu,
 	SettingsMenu,
 	NumberInputButtons,
+	SolvedokuIcon,
 } from '../components';
-import { WindowMenuWrapper } from '../../../components';
+import { WindowMenuWrapper } from '../../devsktop';
+import type { SolvedokuWindowProps } from './solvedoku-window-props';
 
-interface SolvedokuWindowProps {
-	windowState: SolvedokuWindowState;
-	siteSettings: SiteSettings;
-}
-
+/**
+ * SolvedokuWindow component serves as the main container for the Solvedoku puzzle game interface.
+ *
+ * This component orchestrates the entire Solvedoku game experience, managing the puzzle board,
+ * user interactions, solver functionality, and various menu systems. It integrates multiple hooks
+ * for keyboard navigation, solution finding, and shortcut handling, while providing a responsive
+ * layout that adapts to different screen sizes.
+ *
+ * Features:
+ * - Interactive 9x9 Sudoku puzzle board with cell selection
+ * - Automatic puzzle solving with step-by-step visualization
+ * - Keyboard navigation and shortcut support
+ * - Number input interface for manual puzzle solving
+ * - Puzzle information display showing difficulty and progress
+ * - About, settings, and game menu overlays
+ * - Responsive design optimized for mobile and desktop
+ * - Integration with site-wide theming and accent colors
+ *
+ * The component uses several specialized hooks to handle complex game logic:
+ * - useSolutionFinder for automatic puzzle solving algorithms
+ * - useArrowKeyListener for keyboard-based cell navigation
+ * - useKeyboardShortcuts for game control shortcuts
+ *
+ * @param props - Component props for the Solvedoku window
+ * @param props.windowState - State management object from useSolvedokuWindow hook containing game state and actions
+ * @param props.siteSettings - Global site configuration including theme and accent color preferences
+ */
 export function SolvedokuWindow({
 	windowState,
 	siteSettings,
@@ -36,25 +59,17 @@ export function SolvedokuWindow({
 	return (
 		<div className='flex flex-col h-full justify-center items-center relative sm:mx-6 md:mx-12'>
 			{/* MOBILE HEADER ELEMENTS */}
-			<SolvedokuHeader
-				showAboutMenu={windowState.showAboutMenu}
-				showGameMenu={windowState.showGameMenu}
-				showSettingsMenu={windowState.showSettingsMenu}
-				setShowAboutMenu={windowState.setShowAboutMenu}
-				setShowSettingsMenu={windowState.setShowSettingsMenu}
-				setShowGameMenu={windowState.setShowGameMenu}
-			/>
+			<SolvedokuHeader {...windowState} />
 
 			{/* GAME BOARD & CELL DATA TABLE */}
 			<GameBoardTable
-				solvedokuState={windowState}
+				windowState={windowState}
 				siteSettings={siteSettings}
 			/>
 
 			{/* PUZZLE INFO DETAILS */}
 			<PuzzleInfoDisplay
-				currentPuzzleDifficulty={windowState.currentPuzzleDifficultyDisplay}
-				solvedokuState={windowState}
+				windowState={windowState}
 				siteSettings={siteSettings}
 			/>
 
@@ -68,7 +83,7 @@ export function SolvedokuWindow({
 			{/* SOLVER CONTROLS */}
 			<PuzzleSolverButtons
 				siteSettings={siteSettings}
-				solvedokuState={windowState}
+				windowState={windowState}
 			/>
 
 			{/* MOBILE MENU's */}
@@ -79,6 +94,7 @@ export function SolvedokuWindow({
 				menuMainTitle='About Solvedoku'
 				Content={AboutMenu}
 				windowState={windowState}
+				Icon={SolvedokuIcon}
 			/>
 			<WindowMenuWrapper
 				setShowMenu={windowState.setShowGameMenu}
@@ -87,6 +103,7 @@ export function SolvedokuWindow({
 				menuMainTitle='Solvedoku Menu'
 				Content={GameMenu}
 				windowState={windowState}
+				Icon={SolvedokuIcon}
 			/>
 			<WindowMenuWrapper
 				setShowMenu={windowState.setShowSettingsMenu}
@@ -95,6 +112,7 @@ export function SolvedokuWindow({
 				menuMainTitle='Settings'
 				Content={SettingsMenu}
 				windowState={windowState}
+				Icon={SolvedokuIcon}
 			/>
 		</div>
 	);
