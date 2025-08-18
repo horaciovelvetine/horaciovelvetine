@@ -97,7 +97,7 @@ export function useRPSSketchWindow(focusedWindowID: string): RPSWindowState {
 				},
 			];
 		},
-		[]
+		[isShown, sketchState]
 	);
 
 	return {
