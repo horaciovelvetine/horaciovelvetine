@@ -3,6 +3,20 @@ interface GradientLinkTextProps {
 	url: string;
 	classes: string;
 }
+
+/**
+ * GradientLinkText component renders a link with gradient text styling and hover animations.
+ *
+ * This component creates an external link with a gradient text effect that transitions to solid white
+ * on hover with subtle scale and translate animations. The link opens in a new tab with appropriate
+ * security attributes.
+ *
+ * @param {string} props.text - The text content to display in the link
+ * @param {string} props.url - The URL destination for the link
+ * @param {string} props.classes - Additional CSS classes to apply for styling (typically gradient colors)
+ * @returns JSX element containing a styled external link with gradient text and hover effects
+ */
+
 export function GradientLinkText({
 	text,
 	url,

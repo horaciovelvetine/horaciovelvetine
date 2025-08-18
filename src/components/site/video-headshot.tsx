@@ -5,7 +5,6 @@
  *
  * @returns JSX.Element A styled anchor tag containing an autoplay video element
  */
-
 export function VideoHeadshot() {
 	return (
 		<a

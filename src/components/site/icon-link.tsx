@@ -11,7 +11,6 @@ interface IconLinkProps {
  * @param {string} props.iconSrc - The source URL of the icon image
  * @param {string} props.size - TailwindCSS class controlling the icon size
  */
-
 export function IconLink({ size, url, iconSrc }: IconLinkProps) {
 	return (
 		<a

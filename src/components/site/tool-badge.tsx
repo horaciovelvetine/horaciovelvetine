@@ -1,18 +1,18 @@
 import type { Colors } from '../../types';
 
-/**
- * List badge element intended for use in the about screens to denote a tool used in the development of that particular component
- *
- * @param {string} text - The text to display inside the badge
- * @param {Colors} color - derived from TailwindCSS colors list, string denoting the bg and ring color
- * @param {string} link - URL that the badge links to when clicked
- */
-
 interface ToolBadgeProps {
 	color: Colors;
 	text: string;
 	url: string;
 }
+
+/**
+ * List badge element intended for use in the about screens to denote a tool used in the development of that particular component
+ *
+ * @param {string} props.text - The text to display inside the badge
+ * @param {Colors} props.color - derived from TailwindCSS colors list, string denoting the bg and ring color
+ * @param {string} props.link - URL that the badge links to when clicked
+ */
 
 export function ToolBadge({ color, text, url }: ToolBadgeProps) {
 	return (
