@@ -10,10 +10,8 @@ import type {
 import {
 	useMainLandingWindow,
 	useSolvedokuWindow,
-	useAboutSolvedokuWindow,
 	useAboutThisSiteWindow,
 	useRPSSketchWindow,
-	useAboutRPSWindow,
 } from '../windows';
 
 /**
@@ -33,37 +31,30 @@ import {
  *   - Window control functions and state
  */
 export function useWindowManager(): WindowManager {
-	const [focusedWindowID, setFocusedWindowID] =
-		useState<WindowIDs>('rps-sketch-window');
+	const [focusedWindowID, setFocusedWindowID] = useState<WindowIDs>(
+		'main-landing-window'
+	);
 
 	//? INITIALIZE ALL WINDOWS
 	// SITE WINDOWS
-	const devsktopWindow = useMainLandingWindow();
-	const aboutThisSiteWindow = useAboutThisSiteWindow(devsktopWindow);
+	const devsktopWindow = useMainLandingWindow(focusedWindowID);
+	const aboutThisSiteWindow = useAboutThisSiteWindow(
+		devsktopWindow,
+		focusedWindowID
+	);
 	// SOLVEDOKU WINDOWS
-	const solvedokuWindow = useSolvedokuWindow();
-	const aboutSolvedokuWindow = useAboutSolvedokuWindow(solvedokuWindow);
+	const solvedokuWindow = useSolvedokuWindow(focusedWindowID);
 	// RPS WINDOWS
-	const rpsSketchWindow = useRPSSketchWindow();
-	const aboutRPSSketchWindow = useAboutRPSWindow(rpsSketchWindow);
+	const rpsSketchWindow = useRPSSketchWindow(focusedWindowID);
 
 	const ALL_WINDOWS: ManagedWindow[] = useMemo(
 		() => [
 			devsktopWindow,
 			aboutThisSiteWindow,
 			solvedokuWindow,
-			aboutSolvedokuWindow,
 			rpsSketchWindow,
-			aboutRPSSketchWindow,
 		],
-		[
-			aboutSolvedokuWindow,
-			aboutThisSiteWindow,
-			devsktopWindow,
-			solvedokuWindow,
-			rpsSketchWindow,
-			aboutRPSSketchWindow,
-		]
+		[aboutThisSiteWindow, devsktopWindow, solvedokuWindow, rpsSketchWindow]
 	);
 
 	/**
@@ -106,7 +97,10 @@ export function useWindowManager(): WindowManager {
 	const closeWindowByID = useCallback(
 		(id: WindowIDs): void => {
 			ALL_WINDOWS.forEach(window => {
-				if (window.id === id) window.setIsShown(false);
+				if (window.id === id) {
+					window.setIsShown(false);
+					window.closeWindowCallback(); // clean up window state...
+				}
 			});
 		},
 		[ALL_WINDOWS]
@@ -196,9 +190,7 @@ export function useWindowManager(): WindowManager {
 		devsktopWindow,
 		aboutThisSiteWindow,
 		solvedokuWindow,
-		aboutSolvedokuWindow,
 		rpsSketchWindow,
-		aboutRPSSketchWindow,
 		focusedWindow,
 		navBarMenuItems,
 		focusWindowByID,

@@ -17,16 +17,28 @@ import type { NavBarMenuParent, WindowIDs, RPSWindowState } from '../../types';
  *   - Navigation bar menu configuration
  *   - Integrated RPS sketch state and controls
  */
-export function useRPSSketchWindow(): RPSWindowState {
+export function useRPSSketchWindow(focusedWindowID: string): RPSWindowState {
 	const windowID = 'rps-sketch-window';
 	const title = 'Rock, Paper, Scissors';
 	const [zIndex, setZIndex] = useState('0');
-	const [isShown, setIsShown] = useState(true);
+	const [isShown, setIsShown] = useState(() => {
+		return windowID === focusedWindowID;
+	});
 	const sketchState = useRPSSketchState();
 
 	const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 	const [showAboutMenu, setShowAboutMenu] = useState(false);
 	const [showGameMenu, setShowGameMenu] = useState(false);
+
+	/**
+	 * Clean up menu's when window is closed
+	 */
+	const closeWindowCallback = useCallback(() => {
+		setShowSettingsMenu(false);
+		setShowAboutMenu(false);
+		setShowGameMenu(false);
+		sketchState.closeSketchCallback();
+	}, [sketchState]);
 
 	const navBarMenuItems = useCallback(
 		(openWindowByID: (windowID: WindowIDs) => void): NavBarMenuParent[] => {
@@ -48,7 +60,7 @@ export function useRPSSketchWindow(): RPSWindowState {
 							key: 'rps-about',
 							titleText: 'About Rock, Paper, Scissors',
 							onClickAction: () => {
-								openWindowByID('about-rps-sketch-window');
+								setShowAboutMenu(prev => !prev);
 							},
 						},
 					],
@@ -62,8 +74,8 @@ export function useRPSSketchWindow(): RPSWindowState {
 							titleText: 'New Sketch',
 							hoverExplainerTitle: 'Reset the sketch and keep it paused.',
 							onClickAction: () => {
-								//TODO!! HOW TO RESTART OR RESET THE SKETCH
-								console.log('file-menu => new-sketch => new()');
+								if (!isShown) openWindowByID('rps-sketch-window');
+								sketchState.setResetRequested(true);
 							},
 							displayMenuBreakAfter: true,
 						},
@@ -102,6 +114,7 @@ export function useRPSSketchWindow(): RPSWindowState {
 		setShowSettingsMenu,
 		showGameMenu,
 		setShowGameMenu,
+		closeWindowCallback,
 		...sketchState,
 	};
 }

@@ -6,11 +6,7 @@ export {
 } from './devsktop';
 
 // SOLVEDOKU
-export {
-	AboutSolvedokuWindow,
-	SolvedokuWindow,
-	SolvedokuIcon,
-} from './solvedoku';
+export { SolvedokuWindow, SolvedokuIcon } from './solvedoku';
 
 // RPS
-export { RPSSKetchWindow, AboutRPSSketchWindow } from './rps';
+export { RPSSKetchWindow, RPSIcon } from './rps';

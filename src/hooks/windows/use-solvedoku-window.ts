@@ -23,11 +23,15 @@ import { useSolvedokuGameState } from '../solvedoku/use-solvedoku-game-state';
  *   - Integrated Solvedoku game state and controls
  *   - Current puzzle difficulty display state
  */
-export function useSolvedokuWindow(): SolvedokuWindowState {
+export function useSolvedokuWindow(
+	focusedWindowID: string
+): SolvedokuWindowState {
 	const windowID = 'solvedoku-window';
 	const title = 'Solvedoku';
 	const [zIndex, setZIndex] = useState('0');
-	const [isShown, setIsShown] = useState(false);
+	const [isShown, setIsShown] = useState(() => {
+		return windowID === focusedWindowID;
+	});
 	const solvedokuState = useSolvedokuGameState();
 
 	// Mobile menu state management
@@ -36,6 +40,15 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 	const [showGameMenu, setShowGameMenu] = useState(false);
 	const [currentPuzzleDifficultyDisplay, setCurrentPuzzleDifficultyDisplay] =
 		useState<PuzzleDifficulty>(solvedokuState.selectedDifficulty);
+
+	/**
+	 * Clean up menu's when window is closed 
+	 */
+	const closeWindowCallback = useCallback(() => {
+		setShowSettingsMenu(false);
+		setShowAboutMenu(false);
+		setShowGameMenu(false);
+	}, []);
 
 	const navBarMenuItems = useCallback(
 		(openWindowByID: (windowID: WindowIDs) => void): NavBarMenuParent[] => {
@@ -49,6 +62,7 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 							key: 'solvedoku-settings',
 							titleText: 'Settings',
 							onClickAction: () => {
+								if (!isShown) openWindowByID('solvedoku-window');
 								setShowSettingsMenu(true);
 							},
 							displayMenuBreakAfter: true,
@@ -59,7 +73,8 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 							hoverExplainerTitle:
 								'Open a window explaining this application and what it does',
 							onClickAction: () => {
-								openWindowByID('about-solvedoku-window');
+								if (!isShown) openWindowByID('solvedoku-window');
+								setShowAboutMenu(prev => !prev);
 							},
 						},
 					],
@@ -74,7 +89,7 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 							hoverExplainerTitle:
 								'Create a new puzzle based on the currently selected difficulty',
 							onClickAction: () => {
-								openWindowByID('solvedoku-window');
+								if (isShown) openWindowByID('solvedoku-window');
 								solvedokuState.generateRandomPuzzle();
 							},
 							displayMenuBreakAfter: true,
@@ -85,7 +100,7 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 							hoverExplainerTitle: 'Clear the current game board completely',
 							isDisabled: solvedokuState.gameBoardEmpty,
 							onClickAction: () => {
-								openWindowByID('solvedoku-window');
+								if (!isShown) openWindowByID('solvedoku-window');
 								if (solvedokuState.gameBoardEmpty) return;
 								solvedokuState.clearGameBoard();
 							},
@@ -98,6 +113,7 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 							isDisabled: !solvedokuState.canUndo,
 							displayMenuBreakAfter: true,
 							onClickAction: () => {
+								if (!isShown) openWindowByID('solvedoku-window');
 								if (!solvedokuState.canUndo) return;
 								openWindowByID('solvedoku-window');
 								solvedokuState.resetGameStepwise();
@@ -116,7 +132,7 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 							isDisabled: solvedokuState.isValidSolution,
 							displaySectionHeader: 'Puzzle Solver',
 							onClickAction: () => {
-								openWindowByID('solvedoku-window');
+								if (!isShown) openWindowByID('solvedoku-window');
 								if (solvedokuState.isValidSolution) {
 									return;
 								}
@@ -138,7 +154,7 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 							isDisabled: !solvedokuState.canUndo,
 							onClickAction: () => {
 								if (solvedokuState.canUndo) {
-									openWindowByID('solvedoku-window');
+									if (!isShown) openWindowByID('solvedoku-window');
 									solvedokuState.undo();
 								}
 							},
@@ -180,14 +196,15 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 							titleText: 'Solvedoku Help',
 							hoverExplainerTitle: 'Open the Solvedoku help window',
 							onClickAction: () => {
-								openWindowByID('about-solvedoku-window');
+								if (!isShown) openWindowByID('solvedoku-window');
+								setShowAboutMenu(prev => !prev);
 							},
 						},
 					],
 				},
 			];
 		},
-		[solvedokuState]
+		[isShown, solvedokuState]
 	);
 
 	return {
@@ -206,6 +223,7 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 		setShowAboutMenu,
 		showGameMenu,
 		setShowGameMenu,
+		closeWindowCallback,
 		currentPuzzleDifficultyDisplay,
 		setCurrentPuzzleDifficultyDisplay,
 	};

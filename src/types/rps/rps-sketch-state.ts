@@ -101,7 +101,7 @@ export interface RPSSketchState {
 	setCanvasColor: Dispatch<SetStateAction<Colors>>;
 
 	/**
-	 * Flag indicating whether a reset of the sketch has been requested
+	 * Flag indicating whether a reset of the sketch has been requested by the user (via 'Reset Game' button)
 	 */
 	resetRequested: boolean;
 
@@ -109,4 +109,9 @@ export interface RPSSketchState {
 	 * State setter function to request a reset of the sketch
 	 */
 	setResetRequested: Dispatch<SetStateAction<boolean>>;
+
+	/**
+	 * Helper to reset the window state when closed by the user, called inside the closeWindowCallback();
+	 */
+	closeSketchCallback: () => void;
 }

@@ -19,6 +19,7 @@ import type { RPSSketchState } from './rps-sketch-state';
  * @property {Dispatch<SetStateAction<boolean>>} setShowSettingsMenu - Function to toggle settings menu visibility
  * @property {boolean} showGameMenu - Flag indicating whether the game menu dialog is currently visible
  * @property {Dispatch<SetStateAction<boolean>>} setShowGameMenu - Function to toggle the game menu visibility
+ * @property {() => void;} closeMenusCallback - set all menu's show to false
  */
 
 export interface RPSWindowState extends ManagedWindow, RPSSketchState {

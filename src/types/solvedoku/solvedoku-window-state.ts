@@ -22,6 +22,7 @@ import type { PuzzleDifficulty } from './puzzle-difficulty';
  * @property {Dispatch<SetStateAction<boolean>>} setShowGameMenu - React state setter for game menu visibility
  * @property {PuzzleDifficulty} currentPuzzleDifficultyDisplay - The difficulty level displayed to the user for the current puzzle
  * @property {Dispatch<SetStateAction<PuzzleDifficulty>>} setCurrentPuzzleDifficultyDisplay - React state setter for updating the displayed difficulty level
+ * @property {() => void;} closeMenusCallback - set all menu's show to false
  */
 
 export interface SolvedokuWindowState
@@ -32,13 +33,39 @@ export interface SolvedokuWindowState
 	 * that contains and manages a Solvedoku game instance.
 	 */
 
-	// Mobile menu state
-	showSettingsMenu: boolean;
-	setShowSettingsMenu: Dispatch<SetStateAction<boolean>>;
+	/**
+	 * Flag indicating whether the about menu dialog is currently visible
+	 */
 	showAboutMenu: boolean;
+	/**
+	 * Setter to toggle the about menu visibility
+	 */
 	setShowAboutMenu: Dispatch<SetStateAction<boolean>>;
+	/**
+	 * Flag indicating whether the about settings menu dialog is currently visible
+	 */
+	showSettingsMenu: boolean;
+	/**
+	 * Setter to toggle the settings menu visibility
+	 */
+	setShowSettingsMenu: Dispatch<SetStateAction<boolean>>;
+
+	/**
+	 * Flag indicating whether the game menu dialog is currently visible
+	 */
 	showGameMenu: boolean;
+	/**
+	 * Setter to toggle the game menu visibility
+	 */
 	setShowGameMenu: Dispatch<SetStateAction<boolean>>;
+
+	/**
+	 * Text state indicating the difficulty of the puzzle currently being displayed (after generation) to the user
+	 */
 	currentPuzzleDifficultyDisplay: PuzzleDifficulty;
+
+	/**
+	 * Setter for the currentPuzzleDifficultyDisplay
+	 */
 	setCurrentPuzzleDifficultyDisplay: Dispatch<SetStateAction<PuzzleDifficulty>>;
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import type { ManagedWindow } from '../../types';
 
 /**
@@ -16,12 +16,19 @@ import type { ManagedWindow } from '../../types';
  *   - Window identification and display properties
  */
 export function useAboutThisSiteWindow(
-	parentWindow: ManagedWindow
+	parentWindow: ManagedWindow,
+	focusedWindowID: string
 ): ManagedWindow {
 	const windowID = 'about-this-site-window';
 	const title = 'About This Site';
 	const [zIndex, setZIndex] = useState('0');
-	const [isShown, setIsShown] = useState(false);
+	const [isShown, setIsShown] = useState(() => {
+		return windowID === focusedWindowID;
+	});
+
+	const closeWindowCallback = useCallback(() => {
+		// no cleanup needed
+	}, []);
 
 	return {
 		id: windowID,
@@ -30,6 +37,7 @@ export function useAboutThisSiteWindow(
 		setZIndex,
 		isShown,
 		setIsShown,
+		closeWindowCallback,
 		navBarMenuItems: parentWindow.navBarMenuItems,
 	};
 }

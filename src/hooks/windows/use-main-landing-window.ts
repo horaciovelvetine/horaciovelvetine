@@ -15,11 +15,17 @@ import type { ManagedWindow, NavBarMenuParent, WindowIDs } from '../../types';
  *   - Project navigation controls (Solvedoku, etc.)
  *   - About and contact page access
  */
-export function useMainLandingWindow(): ManagedWindow {
+export function useMainLandingWindow(focusedWindowID: string): ManagedWindow {
 	const windowID = 'main-landing-window';
 	//? set as primary on top by default
 	const [zIndex, setZIndex] = useState('1');
-	const [isShown, setIsShown] = useState(false);
+	const [isShown, setIsShown] = useState(() => {
+		return windowID === focusedWindowID;
+	});
+
+	const closeWindowCallback = useCallback(() => {
+		// no cleanup needed
+	}, []);
 
 	const navBarMenuItems = useCallback(
 		(openWindowByID: (windowID: WindowIDs) => void): NavBarMenuParent[] => {
@@ -81,5 +87,6 @@ export function useMainLandingWindow(): ManagedWindow {
 		navBarMenuItems,
 		isShown,
 		setIsShown,
+		closeWindowCallback,
 	};
 }

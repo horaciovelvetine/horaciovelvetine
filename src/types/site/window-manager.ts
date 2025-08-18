@@ -30,9 +30,7 @@ export interface WindowManager {
 	devsktopWindow: ManagedWindow;
 	aboutThisSiteWindow: ManagedWindow;
 	solvedokuWindow: SolvedokuWindowState;
-	aboutSolvedokuWindow: ManagedWindow;
 	rpsSketchWindow: RPSWindowState;
-	aboutRPSSketchWindow: ManagedWindow;
 	// WINDOW MANAGEMENT FUNC
 	focusedWindow: ManagedWindow;
 	navBarMenuItems: NavBarMenuParent[];

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import type {
 	SpriteCharSet,
 	SpriteCountSelects,
@@ -61,6 +61,12 @@ export function useRPSSketchState(): RPSSketchState {
 	const [canvasColor, setCanvasColor] = useState<Colors>('black');
 	const [resetRequested, setResetRequested] = useState(false);
 
+	const closeSketchCallback = useCallback(() => {
+		setSketchIsPaused(false);
+		setSketchIsInitialized(undefined);
+		setResetRequested(false);
+	}, []);
+
 	return {
 		spriteChars,
 		setSpriteChars,
@@ -78,5 +84,6 @@ export function useRPSSketchState(): RPSSketchState {
 		setCanvasColor,
 		resetRequested,
 		setResetRequested,
+		closeSketchCallback,
 	};
 }
