@@ -1,11 +1,6 @@
 import { FastForwardIcon, RewindIcon } from '../../../assets';
-import type { SiteSettings, SolvedokuGameState } from '../../../types';
-import { PuzzleButton } from './puzzle-button';
-
-interface PuzzleSolverInputsProps {
-	solvedokuState: SolvedokuGameState;
-	siteSettings: SiteSettings;
-}
+import type { SolvedokuWindowProps } from '../windows/solvedoku-window-props';
+import { PuzzleButton } from './puzzle-button/puzzle-button';
 
 /**
  * Component that provides controls for the automated puzzle solver
@@ -17,55 +12,58 @@ interface PuzzleSolverInputsProps {
  * @returns JSX element containing the puzzle solver control buttons
  */
 export function PuzzleSolverButtons({
-	solvedokuState,
+	windowState,
 	siteSettings,
-}: PuzzleSolverInputsProps) {
+}: SolvedokuWindowProps) {
 	const MIN_INTERVAL = 1;
 	const MAX_INTERVAL = 300;
 	const INTERVAL_STEP = 20;
+	const {
+		isValidSolution,
+		setIsUnsolveable,
+		setIsFindingSolution,
+		isFindingSolution,
+		solutionFinderInterval,
+		setSolutionFinderInterval,
+	} = windowState;
 
 	const handleSolveButtonClick = () => {
-		if (solvedokuState.isValidSolution) return;
-		solvedokuState.setIsUnsolveable(false);
-		solvedokuState.setIsFindingSolution(!solvedokuState.isFindingSolution);
+		if (isValidSolution) return;
+		setIsUnsolveable(false);
+		setIsFindingSolution(!isFindingSolution);
 	};
 
 	const handleSlowDownButtonClick = () => {
 		let newSpeed;
-		if (solvedokuState.solutionFinderInterval <= INTERVAL_STEP) {
+		if (solutionFinderInterval <= INTERVAL_STEP) {
 			newSpeed = MIN_INTERVAL;
 		} else {
-			newSpeed = solvedokuState.solutionFinderInterval - INTERVAL_STEP;
+			newSpeed = solutionFinderInterval - INTERVAL_STEP;
 		}
-		solvedokuState.setSolutionFinderInterval(newSpeed);
+		setSolutionFinderInterval(newSpeed);
 	};
 
 	const handleSpeedUpClick = () => {
 		let newSpeed;
-		if (solvedokuState.solutionFinderInterval === MIN_INTERVAL) {
+		if (solutionFinderInterval === MIN_INTERVAL) {
 			newSpeed = INTERVAL_STEP;
-		} else if (solvedokuState.solutionFinderInterval < MAX_INTERVAL) {
-			newSpeed = Math.min(
-				MAX_INTERVAL,
-				solvedokuState.solutionFinderInterval + INTERVAL_STEP
-			);
+		} else if (solutionFinderInterval < MAX_INTERVAL) {
+			newSpeed = Math.min(MAX_INTERVAL, solutionFinderInterval + INTERVAL_STEP);
 		} else {
 			newSpeed = MAX_INTERVAL;
 		}
-		solvedokuState.setSolutionFinderInterval(newSpeed);
+		setSolutionFinderInterval(newSpeed);
 	};
 
 	return (
 		<div className='flex w-full justify-center mt-1 md:mb-2 gap-2'>
 			<PuzzleButton
-				text={
-					solvedokuState.isFindingSolution ? 'Pause Solution' : 'Solve Puzzle'
-				}
-				title={(solvedokuState.isFindingSolution ? 'Pause ' : 'Start ').concat(
+				text={isFindingSolution ? 'Pause Solution' : 'Solve Puzzle'}
+				title={(isFindingSolution ? 'Pause ' : 'Start ').concat(
 					'the puzzle solver'
 				)}
 				accentColor={siteSettings.accentColor}
-				isDisabled={solvedokuState.isValidSolution}
+				isDisabled={isValidSolution}
 				onClickFunction={handleSolveButtonClick}
 			/>
 
@@ -76,12 +74,12 @@ export function PuzzleSolverButtons({
 						accentColor={siteSettings.accentColor}
 						onClickFunction={handleSlowDownButtonClick}
 						title='Slow down the puzzle solver'
-						isDisabled={solvedokuState.solutionFinderInterval === MIN_INTERVAL}
+						isDisabled={solutionFinderInterval === MIN_INTERVAL}
 					/>
 				</li>
 				<li>
 					<p className='text-nowrap tracking-tighter font-semibold text-sm xs:text-base sm:text-lg'>
-						Speed [{solvedokuState.solutionFinderInterval}ms.]
+						Speed [{solutionFinderInterval}ms.]
 					</p>
 				</li>
 				<li className='flex items-center'>
@@ -90,7 +88,7 @@ export function PuzzleSolverButtons({
 						accentColor={siteSettings.accentColor}
 						onClickFunction={handleSpeedUpClick}
 						title='Speed up the puzzle solver'
-						isDisabled={solvedokuState.solutionFinderInterval === MAX_INTERVAL}
+						isDisabled={solutionFinderInterval === MAX_INTERVAL}
 					/>
 				</li>
 			</ul>
