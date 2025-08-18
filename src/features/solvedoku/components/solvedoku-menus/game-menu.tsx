@@ -64,10 +64,10 @@ export function GameMenu({
 			{/* NEW GAME W/ DIFFICULTY SELECTOR */}
 			<li className='flex justify-center items-center w-full'>
 				<div className='flex flex-col items-center my-1 md:my-2 '>
-					<h6 className='text-white/50 text-xs border-b md:text-base'>
+					<h6 className='text-white/50 text-sm border-b md:text-base'>
 						Select a Difficulty
 					</h6>
-					<p className='text-xs leading-4 xs:w-2/3 md:text-sm md:leading-5 text-white/50 text-center tracking-tight'>
+					<p className='text-sm leading-4 xs:w-2/3 md:w-5/6 md:text-base/5 text-white/50 text-center tracking-tight'>
 						The difficulty determines the number of cells which remain filled
 						when creating a new puzzle. Select a difficulty, then click "New
 						Puzzle" below.
