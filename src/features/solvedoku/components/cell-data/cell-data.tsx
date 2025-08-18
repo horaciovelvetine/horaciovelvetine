@@ -1,30 +1,12 @@
 import React from 'react';
 import { useMemo, useCallback, type ChangeEvent } from 'react';
-import type { Cell, Colors } from '../../../types';
 import {
 	isInSelectedSquare,
 	TailwindBGs300,
 	TailwindOutlineColors,
 	TailwindTextColors500,
-} from '../../../functions';
-
-interface CellDataProps {
-	cellID: string;
-	rowIndex: number;
-	colIndex: number;
-	cell: Cell;
-	cellSizing: string;
-	accentColor: Colors;
-	selectedCellCoords: [number, number] | null;
-	selectedCellID: string | null;
-	updateCellValue: (
-		cellID: string,
-		value: string | null,
-		userInput: boolean
-	) => void;
-	setSelectedCellID: (cellID: string | null) => void;
-	showingStoredSolution: boolean;
-}
+} from '../../../../functions';
+import type { CellDataProps } from './cell-data-props';
 
 /**
  * Cell component for the Sudoku game board.
@@ -42,7 +24,6 @@ interface CellDataProps {
  * @param {(cellID: string, value: string | null) => void} props.updateCellValue - Function to update cell value
  * @param {(cellID: string | null) => void} props.setSelectedCellID - Function to update selected cell
  */
-
 export const CellData = React.memo(function CellData({
 	cellID,
 	cell,
