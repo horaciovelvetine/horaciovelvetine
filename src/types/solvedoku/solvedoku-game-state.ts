@@ -3,6 +3,47 @@ import type { PuzzleDifficulty } from './puzzle-difficulty';
 import type { SolvedokuGameBoard } from './solvedoku-game-board';
 import type { RowColumnSet } from './row-column-set';
 
+/**
+ * Interface representing the complete game state for a Solvedoku game
+ *
+ * This interface encapsulates all the state and functionality needed to manage
+ * a Solvedoku game session, including the game board, difficulty settings,
+ * validation status, and game control functions. It serves as the central
+ * state management contract for the game logic.
+ *
+ * @interface
+ * @property {SolvedokuGameBoard} gameBoard - The current 9x9 Sudoku game board displayed to the client
+ * @property {Dispatch<SetStateAction<SolvedokuGameBoard>>} setGameBoard - React state setter for updating the game board
+ * @property {boolean} gameBoardEmpty - Memoized boolean indicating if all cells in the game board are empty (null)
+ * @property {boolean} isValidGameBoard - Memoized boolean indicating if the current board state is a valid Sudoku puzzle
+ * @property {PuzzleDifficulty} selectedDifficulty - The current difficulty level for puzzle generation
+ * @property {Dispatch<SetStateAction<PuzzleDifficulty>>} setSelectedDifficulty - React state setter for updating the difficulty level
+ * @property {() => void} clearGameBoard - Function to clear the game board by unlocking all cells and setting all values to null
+ * @property {() =>void} resetGameStepwise - Function which resets the game board using the undo history, first undoing all the users moves, then clearing the board if asked again.
+ * @property {boolean} selectedCellHasValue - wether or not the currently selected cell has a value
+ * @property {(cellID: string, value: string, isUserInput: boolean, resetUnsolveable: boolean) => void} updateCellValue - method to update a specific cells value
+ * @property {string | null} selectedCellID - the currently selected cells ID
+ * @property {Dispatch<SetStateAction<string | null>>} setSelectedCellID - setter for the selectedCellID state
+ * @property {() => void} undo - Reverts the last user move made on the game board
+ * @property {boolean} canUndo - indicator if there are any moves which can be done
+ * @property {() => void} generateRandomPuzzle - Function to generate a new random puzzle based on the selected difficulty
+ * @property {boolean} isFindingSolution - wether or not the puzzle solver is currently working
+ * @property {Dispatch<SetStateAction<boolean>>} setIsFindingSolution - setter for the isFindingSolution state.
+ * @property {number} solutionFinderInterval - the amount of time delayed inbetween each of the solutionFinder's attempts to find a solution for a given cell.
+ * @property {Dispatch<SetStateAction<number>>} setSolutionFinderInterval - setter for the solutionFinderInterval state.
+ * @property {SolvedokuGameBoard | null} solutionBoard - the solution generated for the random puzzle prior to having cell answers removed
+ * @property {boolean} isValidSolution - if the current board is a valid completed solution
+ * @property {number} solutionStepCounter - the amount of steps it took to solve the current puzzle
+ * @property {Dispatch<SetStateAction<number>>} setSolutionStepCounter - setter for the solutionStepCounter state
+ * @property {(show: boolean) => void} toggleShowStoredPuzzleSolution - method to toggle the visibility of the the stored solution to the client
+ * @property {boolean} isUnsolveable - wether of not the solutionFinder could (or has) tried to find a solution for the given puzzle
+ * @property {Dispatch<SetStateAction<boolean>>} setIsUnsolveable - setter for the isUnsolveable state
+ * @property {RowColumnSet | null} cellSolveTarget - the next cell the solutionFinder is intending to or currently working on solving
+ * @property {Dispatch<SetStateAction<RowColumnSet | null>>} setCellSolveTarget - setter for the cellSolveTarget state
+ * @property {boolean} showStoredSolution - wether or not to show the client the stored solution for a generate puzzle
+ * @property {Dispatch<SetStateAction<boolean>>} setShowStoredSolution - setter for the showStoredSolution state.
+ */
+
 export interface SolvedokuGameState {
 	/**
 	 * Game Board state displayed on-screen fot the client
@@ -191,7 +232,7 @@ export interface SolvedokuGameState {
 	toggleShowStoredPuzzleSolution: (showSolution: boolean) => void;
 
 	/**
-	 * The current state of the puzzle as described by a string
+	 * Wether or not the current puzzle is solveable - set only after the solutionFinder attempts to solve the current puzzle and finds it is unable to.
 	 */
 	isUnsolveable: boolean;
 
