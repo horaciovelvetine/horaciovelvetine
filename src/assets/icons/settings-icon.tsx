@@ -1,6 +1,22 @@
 import type { IconProps } from '../../types';
 
-export function SettingsIcon({ size = 'size-6', classes = ' ', ariaHidden = false }: IconProps) {
+/**
+ * Settings Icon Component
+ *
+ * A customizable settings icon SVG component that renders a gear/cog settings icon.
+ * Uses Heroicons cog-6-tooth icon with configurable size, styling, and accessibility options.
+ * Commonly used for configuration panels, user preferences, application settings, and other administrative interfaces.
+ *
+ * @param {IconProps} props - The props for the SettingsIcon component
+ * @param {string} [props.size='size-6'] - Tailwind CSS size class for the icon dimensions
+ * @param {string} [props.classes=' '] - Additional CSS classes to apply to the icon
+ * @param {boolean} [props.ariaHidden=false] - Whether the icon should be hidden from screen readers
+ */
+export function SettingsIcon({
+	size = 'size-6',
+	classes = ' ',
+	ariaHidden = false,
+}: IconProps) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'

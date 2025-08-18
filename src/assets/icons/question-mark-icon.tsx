@@ -1,9 +1,21 @@
 import type { IconProps } from '../../types';
 
+/**
+ * Question Mark Icon Component
+ *
+ * A customizable question mark icon SVG component that renders a help/info icon.
+ * Uses Heroicons question mark circle icon with configurable size, styling, and accessibility options.
+ * Commonly used for help buttons, tooltips, FAQ sections, and other informational interfaces.
+ *
+ * @param {IconProps} props - The props for the QuestionMarkIcon component
+ * @param {string} [props.size='size-6'] - Tailwind CSS size class for the icon dimensions
+ * @param {string} [props.classes=' '] - Additional CSS classes to apply to the icon
+ * @param {boolean} [props.ariaHidden=false] - Whether the icon should be hidden from screen readers
+ */
 export function QuestionMarkIcon({
 	size = 'size-6',
 	classes = ' ',
-	ariaHidden = false
+	ariaHidden = false,
 }: IconProps) {
 	return (
 		<svg

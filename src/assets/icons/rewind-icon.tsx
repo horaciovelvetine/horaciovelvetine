@@ -1,5 +1,18 @@
 import type { IconProps } from '../../types';
 
+/**
+ * Rewind Icon Component
+ *
+ * A customizable rewind icon SVG component that renders a media control rewind icon.
+ * Uses Heroicons backward icon with configurable size, styling, and accessibility options.
+ * Commonly used in media players, audio controls, video interfaces, and other playback-related features.
+ *
+ * @param {IconProps} props - The props for the RewindIcon component
+ * @param {string} [props.size='size-6'] - Tailwind CSS size class for the icon dimensions
+ * @param {string} [props.classes=' '] - Additional CSS classes to apply to the icon
+ * @param {boolean} [props.ariaHidden=false] - Whether the icon should be hidden from screen readers
+ */
+
 export function RewindIcon({ size = 'size-6', classes = ' ', ariaHidden = false }: IconProps) {
   return (
     <svg

@@ -1,6 +1,23 @@
 import type { IconProps } from '../../types';
 
-export function FastForwardIcon({ size = 'size-6', classes = ' ', ariaHidden = false}: IconProps) {
+/**
+ * Fast Forward Icon Component
+ *
+ * A customizable fast forward icon SVG component that renders a media control icon.
+ * Uses Heroicons fast forward icon with configurable size, styling, and accessibility options.
+ * Commonly used in media players, video controls, and other interfaces requiring skip/advance functionality.
+ *
+ * @param {IconProps} props - The props for the FastForwardIcon component
+ * @param {string} [props.size='size-6'] - Tailwind CSS size class for the icon dimensions
+ * @param {string} [props.classes=' '] - Additional CSS classes to apply to the icon
+ * @param {boolean} [props.ariaHidden=false] - Whether the icon should be hidden from screen readers
+ */
+
+export function FastForwardIcon({
+	size = 'size-6',
+	classes = ' ',
+	ariaHidden = false,
+}: IconProps) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'

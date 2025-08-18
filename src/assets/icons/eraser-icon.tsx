@@ -1,6 +1,22 @@
 import type { IconProps } from '../../types';
 
-export function EraserIcon({ size = 'size-6', classes = ' ', ariaHidden = false }: IconProps) {
+/**
+ * Eraser Icon Component
+ *
+ * A customizable eraser icon SVG component that renders an eraser/delete icon.
+ * Uses Material Design eraser icon with configurable size, styling, and accessibility options.
+ * Commonly used for delete, clear, or erase actions in drawing applications, forms, and editing interfaces.
+ *
+ * @param {IconProps} props - The props for the EraserIcon component
+ * @param {string} [props.size='size-6'] - Tailwind CSS size class for the icon dimensions
+ * @param {string} [props.classes=' '] - Additional CSS classes to apply to the icon
+ * @param {boolean} [props.ariaHidden=false] - Whether the icon should be hidden from screen readers
+ */
+export function EraserIcon({
+	size = 'size-6',
+	classes = ' ',
+	ariaHidden = false,
+}: IconProps) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'

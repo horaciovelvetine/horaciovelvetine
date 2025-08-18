@@ -1,6 +1,23 @@
 import type { IconProps } from '../../types';
 
-export function MailToIcon({ size = 'size-6', classes = ' ', ariaHidden = false }: IconProps) {
+/**
+ * Mail To Icon Component
+ *
+ * A customizable mail/email icon SVG component that renders an envelope icon.
+ * Uses Heroicons envelope icon with configurable size, styling, and accessibility options.
+ * Commonly used for email links, contact forms, messaging features, and communication interfaces.
+ *
+ * @param {IconProps} props - The props for the MailToIcon component
+ * @param {string} [props.size='size-6'] - Tailwind CSS size class for the icon dimensions
+ * @param {string} [props.classes=' '] - Additional CSS classes to apply to the icon
+ * @param {boolean} [props.ariaHidden=false] - Whether the icon should be hidden from screen readers
+ */
+
+export function MailToIcon({
+	size = 'size-6',
+	classes = ' ',
+	ariaHidden = false,
+}: IconProps) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'

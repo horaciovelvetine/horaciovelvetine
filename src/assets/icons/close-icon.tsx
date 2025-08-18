@@ -1,6 +1,22 @@
 import type { IconProps } from '../../types';
 
-export function CloseIcon({ size = 'size-6', classes = ' ', ariaHidden = false }: IconProps) {
+/**
+ * Close Icon Component
+ *
+ * A customizable close/X icon SVG component that renders a close button icon.
+ * Uses Heroicons close (X) icon with configurable size, styling, and accessibility options.
+ * Commonly used in modal dialogs, notifications, and other dismissible UI elements.
+ *
+ * @param {IconProps} props - The props for the CloseIcon component
+ * @param {string} [props.size='size-6'] - Tailwind CSS size class for the icon dimensions
+ * @param {string} [props.classes=' '] - Additional CSS classes to apply to the icon
+ * @param {boolean} [props.ariaHidden=false] - Whether the icon should be hidden from screen readers
+ */
+export function CloseIcon({
+	size = 'size-6',
+	classes = ' ',
+	ariaHidden = false,
+}: IconProps) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
