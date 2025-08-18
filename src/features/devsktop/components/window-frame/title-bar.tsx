@@ -13,9 +13,6 @@ interface TitleBarProps {
  * @param props.manager - The window manager instance
  */
 export function TitleBar({ window, manager }: TitleBarProps) {
-	const windowButtonStyle =
-		'rounded-full transition-all duration-200 bg-zinc-500 group h-4 w-4 flex items-center justify-center';
-
 	const handleWindowClose = () => {
 		manager.closeWindowByID(window.id);
 	};
@@ -26,8 +23,7 @@ export function TitleBar({ window, manager }: TitleBarProps) {
 					type='button'
 					title={`Close the ${window.title} window`}
 					className={
-						windowButtonStyle +
-						' hover:bg-red-500 border border-stone-300/10 absolute -top-2'
+						'rounded-full transision-all duration-200 bg-zinc-500 group size-4 flex items-center justify-center hover:bg-red-500 border border-stone-300/10 absolute -top-2'
 					}
 					onClick={handleWindowClose}
 					onTouchStart={handleWindowClose}>
