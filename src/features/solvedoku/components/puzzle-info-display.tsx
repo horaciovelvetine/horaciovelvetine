@@ -1,24 +1,14 @@
 import { useCallback, useMemo } from 'react';
 import { EraserIcon } from '../../../assets';
-import type {
-	PuzzleDifficulty,
-	SiteSettings,
-	SolvedokuGameState,
-} from '../../../types';
-import { PuzzleButton } from './puzzle-button';
+import { PuzzleButton } from './puzzle-button/puzzle-button';
 import { parseFormattedCellIDString, TailwindBGs500 } from '../../../functions';
-
-interface PuzzleInfoDisplayProps {
-	currentPuzzleDifficulty: PuzzleDifficulty;
-	solvedokuState: SolvedokuGameState;
-	siteSettings: SiteSettings;
-}
+import type { SolvedokuWindowProps } from '../windows/solvedoku-window-props';
 
 /**
  * Displays information about the current puzzle state and provides cell editing controls
  * Shows the current puzzle difficulty, solving status, and validation messages
  * Includes an eraser button for clearing non-locked cell values
- * 
+ *
  * @param {PuzzleDifficulty} props.currentPuzzleDifficulty - The difficulty level of the current puzzle
  * @param {SolvedokuGameState} props.solvedokuState - Current game state including board data and solving status
  * @param {SiteSettings} props.siteSettings - Global site settings like theme colors
@@ -26,37 +16,46 @@ interface PuzzleInfoDisplayProps {
  */
 
 export function PuzzleInfoDisplay({
-	currentPuzzleDifficulty,
-	solvedokuState,
+	windowState,
 	siteSettings,
-}: PuzzleInfoDisplayProps) {
+}: SolvedokuWindowProps) {
+	const {
+		gameBoard,
+		isValidSolution,
+		isValidGameBoard,
+		isUnsolveable,
+		isFindingSolution,
+		showStoredSolution,
+		selectedCellID,
+		updateCellValue,
+		selectedCellHasValue,
+		currentPuzzleDifficultyDisplay,
+		undo,
+		canUndo,
+	} = windowState;
 	const formattedPuzzleDifficulty =
-		currentPuzzleDifficulty.charAt(0).toUpperCase() +
-		currentPuzzleDifficulty.slice(1);
+		currentPuzzleDifficultyDisplay.charAt(0).toUpperCase() +
+		currentPuzzleDifficultyDisplay.slice(1);
 
 	/**
 	 * Handler for erasing the value in a selected cell
 	 */
 	const handleClearSelectedClick = useCallback(() => {
-		if (!solvedokuState.selectedCellID) return;
-		const [row, col] = parseFormattedCellIDString(
-			solvedokuState.selectedCellID
-		);
-		const cell = solvedokuState.gameBoard[row][col];
+		if (!selectedCellID) return;
+		const [row, col] = parseFormattedCellIDString(selectedCellID);
+		const cell = gameBoard[row][col];
 		if (cell.locked) return;
-		solvedokuState.updateCellValue(solvedokuState.selectedCellID, null, false);
-	}, [solvedokuState]);
+		updateCellValue(selectedCellID, null, false);
+	}, [gameBoard, selectedCellID, updateCellValue]);
 
 	/**
 	 * Determine if the selected cell can be erased (i.e. is not a randomly generated cell)
 	 */
 	const canEraseCellValue = useMemo(() => {
-		if (!solvedokuState.selectedCellHasValue) return false;
-		const [row, col] = parseFormattedCellIDString(
-			solvedokuState.selectedCellID
-		);
-		return !solvedokuState.gameBoard[row][col].locked;
-	}, [solvedokuState.selectedCellHasValue, solvedokuState.selectedCellID, solvedokuState.gameBoard]);
+		if (!selectedCellHasValue) return false;
+		const [row, col] = parseFormattedCellIDString(selectedCellID);
+		return !gameBoard[row][col].locked;
+	}, [selectedCellHasValue, selectedCellID, gameBoard]);
 
 	const solvingMessageBG = TailwindBGs500[siteSettings.accentColor];
 
@@ -64,56 +63,54 @@ export function PuzzleInfoDisplay({
 		<div className='flex w-full items-center gap-1 mt-1 px-2'>
 			<div className='flex w-3/4 font-semibold gap-2 xs:gap-3 sm:gap-4 justify-around text-lg xs:text-xl sm:text-2xl md:text-3xl pl-2'>
 				<p>{formattedPuzzleDifficulty}</p>
-				{solvedokuState.isFindingSolution && (
-					<p className='bg-amber-500/70 rounded-lg py-0.5 px-2 border border-gray-300'>
-						Solving...
-					</p>
-				)}
-				{!solvedokuState.isValidGameBoard && (
-					<p className='bg-red-400/70 rounded-lg py-0.5 px-2 border border-gray-300'>
-						Invalid!
-					</p>
-				)}
-				{solvedokuState.isUnsolveable && (
-					<p className='bg-red-400/70 rounded-lg py-0.5 px-2 border border-gray-300'>
-						Unable to Solve!
-					</p>
-				)}
-				{solvedokuState.isValidSolution && !solvedokuState.showStoredSolution && (
-					<p className='bg-emerald-500/70 rounded-lg py-0.5 px-2 border border-gray-300'>
-						Solved!
-					</p>
-				)}
-				{solvedokuState.showStoredSolution && (
-					<p className={`${solvingMessageBG} rounded-lg py-0.5 px-2 border border-gray-300`}>
-						Showing Solution
-					</p>
-				)}
-				{!solvedokuState.isValidSolution &&
-					solvedokuState.isValidGameBoard &&
-					!solvedokuState.isUnsolveable &&
-					!solvedokuState.isFindingSolution &&
-					!solvedokuState.showStoredSolution && (
-						<p className='py-0.5 px-2 text-transparent select-none'>Message!</p>
+				<MessageDisplay
+					text='Solving...'
+					bgColor='bg-amber-500/70'
+					isShown={isFindingSolution}
+				/>
+				<MessageDisplay
+					text={'Invalid Puzzle'}
+					bgColor='bg-red-400/70'
+					isShown={!isValidGameBoard}
+				/>
+				<MessageDisplay
+					text={'Unsolveable!'}
+					bgColor='bg-red-400/70'
+					isShown={isUnsolveable}
+				/>
+				<MessageDisplay
+					text='Solved!'
+					bgColor='bg-emerald-500/70'
+					isShown={isValidSolution && !showStoredSolution}
+				/>
+				<MessageDisplay
+					text='Showing Solution'
+					bgColor={solvingMessageBG}
+					isShown={showStoredSolution}
+				/>
+				{!isValidSolution &&
+					isValidGameBoard &&
+					!isUnsolveable &&
+					!isFindingSolution &&
+					!showStoredSolution && (
+						<p className='py-0.5 px-2 text-transparent select-none'>
+							Placeholder!
+						</p>
 					)}
 			</div>
 			{/* UNDO & ERASE */}
 			<div className='flex justify-end gap-1 xs:gap-1.5 sm:gap-2'>
 				<PuzzleButton
 					text='Undo'
-					title={
-						solvedokuState.canUndo ?
-							'Undo last move (Ctrl+Z)'
-							: 'No moves to undo'
-					}
-					onClickFunction={solvedokuState.undo}
-					isDisabled={!solvedokuState.canUndo}
+					title={canUndo ? 'Undo last move (Ctrl/⌘)+Z' : 'No moves to undo'}
+					onClickFunction={undo}
+					isDisabled={!canUndo}
 					accentColor={siteSettings.accentColor}
 				/>
 				<PuzzleButton
 					Icon={EraserIcon}
 					title={
-						solvedokuState.selectedCellHasValue ?
+						selectedCellHasValue ?
 							'Clear the currently selected cell'
 							: 'Select a cell with a value to clear'
 					}
@@ -123,5 +120,27 @@ export function PuzzleInfoDisplay({
 				/>
 			</div>
 		</div>
+	);
+}
+
+interface MessageDisplayProps {
+	text: string;
+	bgColor: string;
+	isShown: boolean;
+}
+
+/**
+ * Small text dipslay used to display the 'status' of the puzzle for a variety of states.
+ */
+function MessageDisplay({ text, bgColor, isShown }: MessageDisplayProps) {
+	return (
+		<>
+			{isShown && (
+				<p
+					className={` ${bgColor} text-sm sm:text-base tracking-tighter text-nowrap rounded-lg py-0.5 px-2 border border-stone-300/50`}>
+					{text}
+				</p>
+			)}
+		</>
 	);
 }
