@@ -1,11 +1,25 @@
 import { useCallback, useState } from 'react';
 import type { ManagedWindow, NavBarMenuParent, WindowIDs } from '../../types';
 
+/**
+ * Custom hook for managing the main landing window state and functionality
+ *
+ * Provides comprehensive window management for the main landing page of the application,
+ * including window display state, navigation bar menu configuration, and navigation
+ * controls for accessing different sections and projects of the site. Serves as the
+ * primary entry point and navigation hub for the entire application.
+ *
+ * @returns {ManagedWindow} Complete window state object containing:
+ *   - Basic window management (show/hide, z-index, title, etc.)
+ *   - Navigation bar menu configuration with site navigation options
+ *   - Project navigation controls (Solvedoku, etc.)
+ *   - About and contact page access
+ */
 export function useMainLandingWindow(): ManagedWindow {
 	const windowID = 'main-landing-window';
 	//? set as primary on top by default
 	const [zIndex, setZIndex] = useState('1');
-	const [isShown, setIsShown] = useState(true);
+	const [isShown, setIsShown] = useState(false);
 
 	const navBarMenuItems = useCallback(
 		(openWindowByID: (windowID: WindowIDs) => void): NavBarMenuParent[] => {
@@ -17,7 +31,6 @@ export function useMainLandingWindow(): ManagedWindow {
 					dropdownOptions: [
 						{
 							key: 'about-velvet-dev',
-							parentWindowID: windowID,
 							titleText: 'About',
 							onClickAction: () => {
 								openWindowByID('about-this-site-window');
@@ -26,7 +39,6 @@ export function useMainLandingWindow(): ManagedWindow {
 						},
 						{
 							key: 'open-contact',
-							parentWindowID: windowID,
 							titleText: 'Contact',
 							onClickAction: () => {
 								console.log({ tgt: 'velvet.dev => Contact' });
@@ -35,7 +47,6 @@ export function useMainLandingWindow(): ManagedWindow {
 						},
 						{
 							key: 'open-solvedoku',
-							parentWindowID: windowID,
 							displaySectionHeader: 'Projects',
 							titleText: 'Solvedoku',
 							onClickAction: () => {
@@ -50,7 +61,6 @@ export function useMainLandingWindow(): ManagedWindow {
 					dropdownOptions: [
 						{
 							key: 'velvet-about-this-site',
-							parentWindowID: windowID,
 							titleText: 'About this Site',
 							onClickAction: () => {
 								openWindowByID('about-this-site-window');

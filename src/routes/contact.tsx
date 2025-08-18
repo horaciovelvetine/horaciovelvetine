@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { GradientLinkText, IconLink } from '../features/devsktop/components';
+
 import { GithubLogo, LinkedInLogo, MailToIcon } from '../assets';
+import { GradientLinkText, IconLink } from '../components';
 
 export const Route = createFileRoute('/contact')({
   component: RouteComponent,

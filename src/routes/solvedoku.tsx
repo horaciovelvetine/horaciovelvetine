@@ -1,18 +1,20 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { SolvedokuWindow } from '../features';
+import { useSolvedokuWindow } from '../hooks/windows';
 
 export const Route = createFileRoute('/solvedoku')({
   component: SolvedokuComponent,
 });
 
 function SolvedokuComponent() {
-  const { siteSettings, windowManager } = Route.useRouteContext();
+  const { siteSettings } = Route.useRouteContext();
+  const solvedokuWindow = useSolvedokuWindow();
 
   return (
     <div className='flex justify-center bg-stone-900/90 pt-1 pb-3 my-1 rounded-lg mx-0.25'>
       <SolvedokuWindow
         siteSettings={siteSettings}
-        windowState={windowManager.solvedokuWindow}
+        windowState={solvedokuWindow}
       />
     </div>
   );

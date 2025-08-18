@@ -1,10 +1,8 @@
 import {
-	AboutSolvedokuWindow,
 	SolvedokuWindow,
 	MainLandingWindow,
 	AboutThisSiteWindow,
 	RPSSKetchWindow,
-	AboutRPSSketchWindow,
 } from '../../features';
 import { useWindowManager } from '../../hooks/site';
 import type { SiteContext } from '../../types';
@@ -53,24 +51,10 @@ export function DevsktopMain({ siteSettings }: SiteContext) {
 					windowManager={windowManager}
 				/>
 
-				<WindowFrame
-					window={windowManager.aboutSolvedokuWindow}
-					Component={AboutSolvedokuWindow}
-					siteSettings={siteSettings}
-					windowManager={windowManager}
-				/>
-
 				{/* ROCK, PAPER, SCISSORS */}
 				<WindowFrame
 					window={windowManager.rpsSketchWindow}
 					Component={RPSSKetchWindow}
-					siteSettings={siteSettings}
-					windowManager={windowManager}
-				/>
-
-				<WindowFrame
-					window={windowManager.aboutRPSSketchWindow}
-					Component={AboutRPSSketchWindow}
 					siteSettings={siteSettings}
 					windowManager={windowManager}
 				/>

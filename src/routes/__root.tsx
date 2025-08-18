@@ -3,13 +3,13 @@ import {
 	Link,
 	Outlet,
 } from '@tanstack/react-router';
-import type { LayoutProps } from '../types';
 import { useState } from 'react';
 import { CloseIcon, MenuBarsIcon, CodeBlockIcon } from '../assets';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { Footer, PageNotFound } from '../components';
+import type { SiteContext } from '../types';
 
-export const Route = createRootRouteWithContext<LayoutProps>()({
+export const Route = createRootRouteWithContext<SiteContext>()({
 	component: RootComponent,
 	notFoundComponent: PageNotFound
 });

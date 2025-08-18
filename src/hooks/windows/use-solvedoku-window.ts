@@ -7,6 +7,22 @@ import type {
 } from '../../types';
 import { useSolvedokuGameState } from '../solvedoku/use-solvedoku-game-state';
 
+/**
+ * Custom hook for managing the Solvedoku window state and functionality
+ *
+ * Provides comprehensive window management for the Solvedoku application, including
+ * window display state, menu controls, navigation bar items, and integration with
+ * the underlying Solvedoku game state. Handles all window-specific interactions
+ * and provides callbacks for game actions like starting new games and managing
+ * puzzle difficulty settings.
+ *
+ * @returns {SolvedokuWindowState} Complete window state object containing:
+ *   - Basic window management (show/hide, z-index, title, etc.)
+ *   - Menu state controls (settings, about, game menus)
+ *   - Navigation bar menu configuration
+ *   - Integrated Solvedoku game state and controls
+ *   - Current puzzle difficulty display state
+ */
 export function useSolvedokuWindow(): SolvedokuWindowState {
 	const windowID = 'solvedoku-window';
 	const title = 'Solvedoku';
@@ -31,16 +47,14 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 					dropdownOptions: [
 						{
 							key: 'solvedoku-settings',
-							parentWindowID: windowID,
 							titleText: 'Settings',
 							onClickAction: () => {
-								setShowSettingsMenu(true)
+								setShowSettingsMenu(true);
 							},
 							displayMenuBreakAfter: true,
 						},
 						{
 							key: 'solvedoku-about',
-							parentWindowID: windowID,
 							titleText: 'About Solvedoku',
 							hoverExplainerTitle:
 								'Open a window explaining this application and what it does',
@@ -56,7 +70,6 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 					dropdownOptions: [
 						{
 							key: 'new-game',
-							parentWindowID: windowID,
 							titleText: 'New Game',
 							hoverExplainerTitle:
 								'Create a new puzzle based on the currently selected difficulty',
@@ -68,7 +81,6 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 						},
 						{
 							key: 'clear-game',
-							parentWindowID: windowID,
 							titleText: 'Clear Game',
 							hoverExplainerTitle: 'Clear the current game board completely',
 							isDisabled: solvedokuState.gameBoardEmpty,
@@ -80,7 +92,6 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 						},
 						{
 							key: 'reset-game',
-							parentWindowID: windowID,
 							titleText: 'Reset Game',
 							hoverExplainerTitle:
 								'Reset any moves/answers on the board, ignores the generated puzzle',
@@ -94,7 +105,6 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 						},
 						{
 							key: 'solve-puzzle',
-							parentWindowID: windowID,
 							titleText:
 								solvedokuState.isFindingSolution ? 'Pause Solving' : (
 									'Solve Puzzle'
@@ -102,7 +112,7 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 							hoverExplainerTitle:
 								solvedokuState.isFindingSolution ?
 									'Pause the current solution finder'
-									: 'Solve the current puzzle',
+								:	'Solve the current puzzle',
 							isDisabled: solvedokuState.isValidSolution,
 							displaySectionHeader: 'Puzzle Solver',
 							onClickAction: () => {
@@ -121,7 +131,6 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 					dropdownOptions: [
 						{
 							key: 'undo',
-							parentWindowID: windowID,
 							titleText: 'Undo',
 							displayKeyboardShortcut: '⌘ Z',
 							hoverExplainerTitle: 'Undo the last move made',
@@ -136,7 +145,6 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 						},
 						{
 							key: 'cut-puzzle',
-							parentWindowID: windowID,
 							titleText: 'Cut',
 							hoverExplainerTitle: 'Copy the current puzzle to the clipboard',
 							isDisabled: solvedokuState.gameBoardEmpty,
@@ -150,7 +158,6 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 						},
 						{
 							key: 'copy-puzzle',
-							parentWindowID: windowID,
 							titleText: 'Copy',
 							hoverExplainerTitle:
 								'Copy the current puzzle to the clipboard and clear the board',
@@ -170,7 +177,6 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 					dropdownOptions: [
 						{
 							key: 'solvedoku-help',
-							parentWindowID: windowID,
 							titleText: 'Solvedoku Help',
 							hoverExplainerTitle: 'Open the Solvedoku help window',
 							onClickAction: () => {

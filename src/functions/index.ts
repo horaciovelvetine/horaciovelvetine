@@ -1,14 +1,25 @@
-// SITE
+// ? SITE
+export { capitalize } from './site/capitalize';
 export { setInitialWindowPosition } from './site/set-initial-window-position';
 export { unfocusedClickHandler } from './site/unfocused-click-handler';
 export {
-  TailwindBGs300,
-  TailwindBGs500,
-  TailwindOutlineColors,
-  TailwindColors,
-  TailwindDropShadows,
+	TailwindBGs300,
+	TailwindBGs500,
+	TailwindOutlineColors,
+	TailwindColors,
+	TailwindDropShadows,
+	TailwindFocusBGs500,
+	TailwindFocusOutlineColors,
+	TailwindTextColors500,
+	TailwindCheckedBGs500,
+	TailwindDivideColors,
+	TailwindHoverBGs700,
+	TailwindFocusVisibleOutlineColors,
+	TailwindGroupDataFocusTextColors200,
+	TailwindCanvasColorHexMap,
 } from './site/tailwind-color-utils';
-//SOLVEDOKU
+
+// ? SOLVEDOKU
 export { checkCanPlaceNumber } from './solvedoku/check-can-place-number';
 export { createEmptyBoard } from './solvedoku/create-empty-board';
 export { emptyCellsForDifficulty } from './solvedoku/empty-cells-for-difficulty';
@@ -22,3 +33,7 @@ export { stepTargetCellIndecesBack } from './solvedoku/step-target-cell-indeces-
 export { createCellIDFromTarget } from './solvedoku/create-cell-id-from-target';
 export { clearBoardPastTarget } from './solvedoku/clear-board-past-target';
 export { findCellDataDisplayWidth } from './solvedoku/find-cell-data-display-width';
+
+// ? ROCK, PAPER, SCISSORS
+export { setupCanvasDimensions } from './rps/setup-canvas-dimensions';
+export { invertHexColorString } from './rps/invert-hex-color-string';

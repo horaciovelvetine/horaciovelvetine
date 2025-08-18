@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { MainLandingWindow, ProjectCard, SolvedokuIcon } from '../features';
-
+import { MainLandingWindow, SolvedokuIcon } from '../features';
+import { ProjectCard } from '../components';
 
 // root/index.tsx
 export const Route = createFileRoute('/')({
@@ -36,15 +36,14 @@ function MobileHomePage() {
 						/>
 						<ProjectCard
 							title='Rock Paper Scissors'
-							description={`A self playing game of Rock, Paper, Scissors where emoji's fly around the screen colliding with eachother until only the winner remains. Built with P5.js and inspired by a viral GIF!`}
+							description={`A self playing game of Rock, Paper, Scissors where emoji's fly around the screen colliding with each other until only the winner remains. Built with P5.js and inspired by a viral GIF!`}
 							thumbnailSrc='https://raw.githubusercontent.com/horaciovelvetine/rock-paper-scissors/main/src/assets/Demo_Gif.gif'
-							linkText='Visit the Github'
-							linkURL='https://github.com/horaciovelvetine/rock-paper-scissors'
+							pageLinkText='Go to Page'
+							pageLinkRoute='/rock-paper-scissors'
 						/>
 					</div>
 				</div>
 			</div>
-			
 		</div>
 	);
 }
