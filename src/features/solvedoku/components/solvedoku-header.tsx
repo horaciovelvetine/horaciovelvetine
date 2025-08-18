@@ -1,22 +1,13 @@
-import type { Dispatch, SetStateAction } from 'react';
 import { QuestionMarkIcon, SettingsIcon } from '../../../assets';
-
-interface SolvedokuHeaderProps {
-	showSettingsMenu: boolean;
-	showAboutMenu: boolean;
-	showGameMenu: boolean;
-	setShowSettingsMenu: Dispatch<SetStateAction<boolean>>;
-	setShowAboutMenu: Dispatch<SetStateAction<boolean>>;
-	setShowGameMenu: Dispatch<SetStateAction<boolean>>;
-}
+import type { SolvedokuWindowState } from '../../../types';
 
 /**
  * Header component for the Solvedoku game that provides navigation controls
  * Contains buttons for accessing the about menu, settings menu, and game menu
  * Handles showing/hiding menus and ensures only one menu is visible at a time
- * 
+ *
  * @param {boolean} props.showAboutMenu - Whether the about menu is currently visible
- * @param {boolean} props.showGameMenu - Whether the game menu is currently visible 
+ * @param {boolean} props.showGameMenu - Whether the game menu is currently visible
  * @param {boolean} props.showSettingsMenu - Whether the settings menu is currently visible
  * @param {Dispatch<SetStateAction<boolean>>} props.setShowAboutMenu - Function to control about menu visibility
  * @param {Dispatch<SetStateAction<boolean>>} props.setShowSettingsMenu - Function to control settings menu visibility
@@ -30,8 +21,7 @@ export function SolvedokuHeader({
 	setShowAboutMenu,
 	setShowSettingsMenu,
 	setShowGameMenu,
-}: SolvedokuHeaderProps) {
-
+}: SolvedokuWindowState) {
 	// HANDLERS
 	const handleShowMobileAbout = () => {
 		if (showSettingsMenu) setShowSettingsMenu(false);
