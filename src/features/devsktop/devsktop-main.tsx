@@ -1,61 +1,84 @@
-import { AboutSolvedokuWindow, SolvedokuWindow } from '../../features';
-import { MainLandingWindow } from './windows/main-landing-window';
-import { AboutThisSiteWindow } from './windows/about-this-site-window';
-import type { LayoutProps } from '../../types';
-import { WindowFrame, NavigationBar } from './components';
-import { DevsktopIcons } from './components/devsktop-icons/devsktop-icons';
+import {
+	AboutSolvedokuWindow,
+	SolvedokuWindow,
+	MainLandingWindow,
+	AboutThisSiteWindow,
+	RPSSKetchWindow,
+	AboutRPSSketchWindow,
+} from '../../features';
+import { useWindowManager } from '../../hooks/site';
+import type { SiteContext } from '../../types';
+import { WindowFrame, NavigationBar, DevsktopIcons } from './components';
 
-export function DevsktopMain(props: LayoutProps) {
-  const {
-    devsktopWindow,
-    aboutSolvedokuWindow,
-    aboutThisSiteWindow,
-    solvedokuWindow,
-  } = props.windowManager;
-  return (
-    <main className='min-h-screen w-screen box-border text-white font-sans'>
-      {/* SITE MAIN */}
-      <div
-        id='devsktop-bounds'
-        className='h-[calc(100vh-36px)] w-full translate-y-[36px] relative isolate'>
-        <DevsktopIcons
-          windowManager={props.windowManager}
-          siteSettings={props.siteSettings}
-        />
+/**
+ * Main desktop component that renders the entire devsktop interface
+ * Manages multiple application windows and provides a desktop-like experience
+ * Includes navigation bar, desktop icons, and various application windows
+ *
+ * @param {SiteSettings} props.siteSettings - Global site settings including theme and accent colors
+ */
+export function DevsktopMain({ siteSettings }: SiteContext) {
+	const windowManager = useWindowManager();
 
-        <WindowFrame
-          window={devsktopWindow}
-          Component={MainLandingWindow}
-          siteSettings={props.siteSettings}
-          windowManager={props.windowManager}
-        />
+	return (
+		<main className='min-h-screen w-screen box-border text-white font-sans'>
+			{/* SITE MAIN */}
+			<div
+				id='devsktop-bounds'
+				className='h-[calc(100vh-36px)] w-full translate-y-[36px] relative isolate'>
+				<DevsktopIcons
+					windowManager={windowManager}
+					siteSettings={siteSettings}
+				/>
 
-        <WindowFrame
-          window={aboutThisSiteWindow}
-          Component={AboutThisSiteWindow}
-          siteSettings={props.siteSettings}
-          windowManager={props.windowManager}
-        />
+				<WindowFrame
+					window={windowManager.devsktopWindow}
+					Component={MainLandingWindow}
+					siteSettings={siteSettings}
+					windowManager={windowManager}
+				/>
 
-        {/* SOLVEDOKU */}
-        <WindowFrame
-          window={solvedokuWindow}
-          Component={SolvedokuWindow}
-          siteSettings={props.siteSettings}
-          windowManager={props.windowManager}
-        />
+				<WindowFrame
+					window={windowManager.aboutThisSiteWindow}
+					Component={AboutThisSiteWindow}
+					siteSettings={siteSettings}
+					windowManager={windowManager}
+				/>
 
-        <WindowFrame
-          window={aboutSolvedokuWindow}
-          Component={AboutSolvedokuWindow}
-          siteSettings={props.siteSettings}
-          windowManager={props.windowManager}
-        />
-      </div>
-      <NavigationBar
-        windowManager={props.windowManager}
-        siteSettings={props.siteSettings}
-      />
-    </main>
-  );
+				{/* SOLVEDOKU */}
+				<WindowFrame
+					window={windowManager.solvedokuWindow}
+					Component={SolvedokuWindow}
+					siteSettings={siteSettings}
+					windowManager={windowManager}
+				/>
+
+				<WindowFrame
+					window={windowManager.aboutSolvedokuWindow}
+					Component={AboutSolvedokuWindow}
+					siteSettings={siteSettings}
+					windowManager={windowManager}
+				/>
+
+				{/* ROCK, PAPER, SCISSORS */}
+				<WindowFrame
+					window={windowManager.rpsSketchWindow}
+					Component={RPSSKetchWindow}
+					siteSettings={siteSettings}
+					windowManager={windowManager}
+				/>
+
+				<WindowFrame
+					window={windowManager.aboutRPSSketchWindow}
+					Component={AboutRPSSketchWindow}
+					siteSettings={siteSettings}
+					windowManager={windowManager}
+				/>
+			</div>
+			<NavigationBar
+				windowManager={windowManager}
+				siteSettings={siteSettings}
+			/>
+		</main>
+	);
 }
