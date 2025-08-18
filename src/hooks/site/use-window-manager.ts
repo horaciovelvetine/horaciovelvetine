@@ -12,25 +12,40 @@ import {
 	useSolvedokuWindow,
 	useAboutSolvedokuWindow,
 	useAboutThisSiteWindow,
+	useRPSSketchWindow,
+	useAboutRPSWindow,
 } from '../windows';
 
 /**
  * Custom hook that manages window state and focus for the Devsktop application
- * Handles window opening/closing, focus changes, and z-index management
- * @param props - The site settings object containing configuration options
- * @returns A WindowManager object with window state and control functions
+ *
+ * Handles:
+ * - Window initialization for all application windows (site, Solvedoku, RPS)
+ * - Window focus management and z-index ordering
+ * - Focused window state tracking
+ * - Window switching and navigation
+ *
+ * @returns {WindowManager} Object containing:
+ *   - focusedWindow: Currently focused window object
+ *   - focusedWindowID: ID of the currently focused window
+ *   - setFocusedWindowID: Function to change the focused window
+ *   - ALL_WINDOWS: Array of all managed window objects
+ *   - Window control functions and state
  */
 export function useWindowManager(): WindowManager {
-	const [focusedWindowID, setFocusedWindowID] = useState<WindowIDs>(
-		'main-landing-window'
-	);
+	const [focusedWindowID, setFocusedWindowID] =
+		useState<WindowIDs>('rps-sketch-window');
 
 	//? INITIALIZE ALL WINDOWS
+	// SITE WINDOWS
 	const devsktopWindow = useMainLandingWindow();
 	const aboutThisSiteWindow = useAboutThisSiteWindow(devsktopWindow);
-	// Solvedoku Windows...
+	// SOLVEDOKU WINDOWS
 	const solvedokuWindow = useSolvedokuWindow();
 	const aboutSolvedokuWindow = useAboutSolvedokuWindow(solvedokuWindow);
+	// RPS WINDOWS
+	const rpsSketchWindow = useRPSSketchWindow();
+	const aboutRPSSketchWindow = useAboutRPSWindow(rpsSketchWindow);
 
 	const ALL_WINDOWS: ManagedWindow[] = useMemo(
 		() => [
@@ -38,8 +53,17 @@ export function useWindowManager(): WindowManager {
 			aboutThisSiteWindow,
 			solvedokuWindow,
 			aboutSolvedokuWindow,
+			rpsSketchWindow,
+			aboutRPSSketchWindow,
 		],
-		[aboutSolvedokuWindow, aboutThisSiteWindow, devsktopWindow, solvedokuWindow]
+		[
+			aboutSolvedokuWindow,
+			aboutThisSiteWindow,
+			devsktopWindow,
+			solvedokuWindow,
+			rpsSketchWindow,
+			aboutRPSSketchWindow,
+		]
 	);
 
 	/**
@@ -113,7 +137,6 @@ export function useWindowManager(): WindowManager {
 			dropdownOptions: [
 				{
 					key: 'landing-page',
-					parentWindowID: 'velvet.dev',
 					titleText: 'Home',
 					isDisabled:
 						devsktopWindow.isShown && focusedWindowID === 'main-landing-window',
@@ -123,7 +146,6 @@ export function useWindowManager(): WindowManager {
 				},
 				{
 					key: 'about-this-site',
-					parentWindowID: 'Velvet.dev',
 					titleText: 'About This Site',
 					isDisabled:
 						aboutThisSiteWindow.isShown &&
@@ -135,7 +157,6 @@ export function useWindowManager(): WindowManager {
 				},
 				{
 					key: 'solvedoku-project',
-					parentWindowID: 'solvedoku-window',
 					titleText: 'Solvedoku',
 					isDisabled:
 						solvedokuWindow.isShown && focusedWindowID === 'solvedoku-window',
@@ -144,14 +165,25 @@ export function useWindowManager(): WindowManager {
 					},
 					displaySectionHeader: 'Projects',
 				},
+				{
+					key: 'rps-project',
+					titleText: 'Rock, Paper, Scissors',
+					isDisabled:
+						rpsSketchWindow.isShown && focusedWindowID === 'rps-sketch-window',
+					onClickAction: () => {
+						openWindowByID('rps-sketch-window');
+					},
+					displaySectionHeader: 'Projects',
+				},
 			],
 		}),
 		[
-			aboutThisSiteWindow.isShown,
-			devsktopWindow.isShown,
 			openWindowByID,
-			solvedokuWindow.isShown,
 			focusedWindowID,
+			devsktopWindow.isShown,
+			aboutThisSiteWindow.isShown,
+			solvedokuWindow.isShown,
+			rpsSketchWindow.isShown,
 		]
 	);
 
@@ -165,6 +197,8 @@ export function useWindowManager(): WindowManager {
 		aboutThisSiteWindow,
 		solvedokuWindow,
 		aboutSolvedokuWindow,
+		rpsSketchWindow,
+		aboutRPSSketchWindow,
 		focusedWindow,
 		navBarMenuItems,
 		focusWindowByID,

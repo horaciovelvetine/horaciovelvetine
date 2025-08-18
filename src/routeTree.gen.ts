@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SolvedokuRouteImport } from './routes/solvedoku'
+import { Route as RockPaperScissorsRouteImport } from './routes/rock-paper-scissors'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SolvedokuRoute = SolvedokuRouteImport.update({
   id: '/solvedoku',
   path: '/solvedoku',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RockPaperScissorsRoute = RockPaperScissorsRouteImport.update({
+  id: '/rock-paper-scissors',
+  path: '/rock-paper-scissors',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -32,30 +38,34 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/solvedoku': typeof SolvedokuRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/solvedoku': typeof SolvedokuRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/rock-paper-scissors': typeof RockPaperScissorsRoute
   '/solvedoku': typeof SolvedokuRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/solvedoku'
+  fullPaths: '/' | '/contact' | '/rock-paper-scissors' | '/solvedoku'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/solvedoku'
-  id: '__root__' | '/' | '/contact' | '/solvedoku'
+  to: '/' | '/contact' | '/rock-paper-scissors' | '/solvedoku'
+  id: '__root__' | '/' | '/contact' | '/rock-paper-scissors' | '/solvedoku'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
+  RockPaperScissorsRoute: typeof RockPaperScissorsRoute
   SolvedokuRoute: typeof SolvedokuRoute
 }
 
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/solvedoku'
       fullPath: '/solvedoku'
       preLoaderRoute: typeof SolvedokuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rock-paper-scissors': {
+      id: '/rock-paper-scissors'
+      path: '/rock-paper-scissors'
+      fullPath: '/rock-paper-scissors'
+      preLoaderRoute: typeof RockPaperScissorsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
+  RockPaperScissorsRoute: RockPaperScissorsRoute,
   SolvedokuRoute: SolvedokuRoute,
 }
 export const routeTree = rootRouteImport
