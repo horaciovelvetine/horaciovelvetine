@@ -1,9 +1,38 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useLayoutEffect, useRef, useState } from 'react';
-import Draggable from 'react-draggable';
+import Draggable, {
+	type DraggableData,
+	type DraggableEvent,
+} from 'react-draggable';
 import type { IconFrameProps } from './icon-frame-props';
 import type { Position } from '../../../../types';
 
+/**
+ * IconFrame component that renders a draggable desktop icon with label
+ * 
+ * Provides a draggable wrapper around application icons that can be repositioned by the user
+ * while maintaining proper tray positioning when screen dimensions change. Supports both
+ * mouse and touch interactions with double-click/tap to execute actions.
+ * 
+ * Features:
+ * - Draggable icon positioning with drag offset preservation
+ * - Automatic repositioning when screen dimensions change
+ * - Screen boundary clamping to prevent icons from moving off-screen
+ * - Double-click and double-tap support for action execution
+ * - Visual feedback with scaling animation on interaction
+ * 
+ * @param {IconFrameProps} props - Component properties
+ * @param {({ size }: IconProps) => ReactNode} props.Icon - React component that renders the icon with size props
+ * @param {string} props.label - Text label displayed below the icon
+ * @param {() => void} props.onClickAction - Callback function executed when the icon is double-clicked or double-tapped
+ * @param {Position} props.baseTrayPosition - Base position of the tray in the upper right corner
+ * @param {number} props.iconIndex - Index of the icon within the tray for horizontal spacing
+ * @param {SiteSettings} props.siteSettings - Site settings containing client dimensions for repositioning
+ * @param {number} props.iconCount - Total number of icons in the tray
+ * @param {number} props.iconSpacing - Spacing between/around icons in pixels
+ * @param {number} props.iconMargin - Margin used to bound the icons to the screen edges
+ * @returns JSX element containing a draggable icon with label
+ */
 export function IconFrame({
 	Icon,
 	label,
@@ -11,52 +40,73 @@ export function IconFrame({
 	baseTrayPosition,
 	iconIndex,
 	siteSettings,
+	iconCount,
+	iconSpacing,
+	iconMargin,
 }: IconFrameProps) {
 	const iconRef = useRef<any>(null);
 	const [lastTap, setLastTap] = useState<number>(0);
+	const [userDragOffset, setUserDragOffset] = useState<Position>({
+		x: 0,
+		y: 0,
+	});
 	const [position, setPosition] = useState<Position>(() => {
-		// Calculate initial position based on tray position and icon index
 		return {
-			x: baseTrayPosition.x + iconIndex * 130,
-			y: baseTrayPosition.y
+			x: baseTrayPosition.x + iconIndex * iconSpacing,
+			y: baseTrayPosition.y,
 		};
 	});
 
 	/**
-	 * Calculate the icon position based on current tray position and icon index
-	 */
-	function calculateIconPosition(trayPos: Position): Position {
-		return {
-			x: trayPos.x + iconIndex * 130,
-			y: trayPos.y
-		};
-	}
-
-	/**
 	 * Reposition icon when screen dimensions change to keep it in the correct tray position
+	 * while preserving the user's drag offset and ensuring the icon stays within screen bounds
 	 */
 	useLayoutEffect(() => {
-		const { width } = siteSettings.clientDimensions;
-		const iconWidth = 130;
-		const trayWidth = iconWidth * 3; // Assuming 3 icons (Home, Solvedoku, RPS)
-		const margin = 20;
+		const { width, height } = siteSettings.clientDimensions;
+		const trayWidth = iconSpacing * iconCount;
 
-		// Recalculate tray position
 		const newTrayPosition = {
-			x: width - trayWidth - margin,
-			y: margin
+			x: width - trayWidth - iconMargin,
+			y: iconMargin,
 		};
 
-		// Update icon position
-		const newIconPosition = calculateIconPosition(newTrayPosition);
-		setPosition(newIconPosition);
-	}, [siteSettings.clientDimensions, iconIndex]);
+		const newBasePosition = {
+			x: newTrayPosition.x + iconIndex * iconSpacing,
+			y: newTrayPosition.y,
+		};
 
+		// Apply the user's drag offset to the new base position
+		let newIconPosition = {
+			x: newBasePosition.x + userDragOffset.x,
+			y: newBasePosition.y + userDragOffset.y,
+		};
+
+		// Clamp position to screen bounds
+		const maxX = Math.max(0, width - iconSpacing);
+		const maxY = Math.max(0, height - iconSpacing);
+		newIconPosition = {
+			x: Math.min(Math.max(0, newIconPosition.x), maxX),
+			y: Math.min(Math.max(0, newIconPosition.y), maxY),
+		};
+
+		setPosition(newIconPosition);
+	}, [
+		siteSettings.clientDimensions,
+		iconIndex,
+		userDragOffset,
+		iconCount,
+		iconSpacing,
+		iconMargin,
+	]);
+
+	/**
+	 * Allows 'double-click' to launch project applications on touch-screen devices which are large enough
+	 * to render the full layout.
+	 */
 	const handleTouchStart = () => {
 		const now = Date.now();
-		const DOUBLE_TAP_DELAY = 300; // ms between taps
 
-		if (now - lastTap < DOUBLE_TAP_DELAY) {
+		if (now - lastTap < 300) {
 			// Double tap detected
 			onClickAction();
 		}
@@ -64,11 +114,32 @@ export function IconFrame({
 		setLastTap(now);
 	};
 
+	/**
+	 * Control icon drag event to maintain the offset data to handle screen resizing.
+	 * When screen is resized icons cant be 'resized' off of the screen and become not visible to the user.
+	 */
+	const controlledDragHandler = (_e: DraggableEvent, ui: DraggableData) => {
+		const { x, y } = position;
+		const newPosition = { x: x + ui.deltaX, y: y + ui.deltaY };
+		setPosition(newPosition);
+
+		// Calculate and store the user's drag offset from the current tray position
+		const currentTrayPosition = {
+			x: baseTrayPosition.x + iconIndex * iconSpacing,
+			y: baseTrayPosition.y,
+		};
+		const newOffset = {
+			x: newPosition.x - currentTrayPosition.x,
+			y: newPosition.y - currentTrayPosition.y,
+		};
+		setUserDragOffset(newOffset);
+	};
+
 	return (
 		<Draggable
 			bounds='#devsktop-bounds'
-			grid={[25, 25]}
 			position={position}
+			onDrag={controlledDragHandler}
 			nodeRef={iconRef}>
 			<button
 				ref={iconRef}

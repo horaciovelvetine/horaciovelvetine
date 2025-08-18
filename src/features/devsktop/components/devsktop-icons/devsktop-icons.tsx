@@ -1,9 +1,13 @@
 import { RPSIcon } from '../../../rps';
 import { SolvedokuIcon } from '../../../solvedoku';
-import type { DevsktopIconsProps } from './devsktop-icons-props';
-import type { Position } from '../../../../types';
+import type { Position, SiteSettings, WindowManager } from '../../../../types';
 import { HomeIcon } from './home-icon';
 import { IconFrame } from './icon-frame';
+
+interface DevsktopIconsProps {
+	siteSettings: SiteSettings;
+	windowManager: WindowManager;
+}
 
 /**
  * DevsktopIcons component that renders draggable application icons on the desktop
@@ -22,6 +26,8 @@ import { IconFrame } from './icon-frame';
  * @returns JSX element containing positioned desktop application icons
  */
 export function DevsktopIcons(props: DevsktopIconsProps) {
+	const iconSpacing = 100;
+	const iconMargin = 10;
 	const ICONS = [
 		{
 			component: HomeIcon,
@@ -51,13 +57,11 @@ export function DevsktopIcons(props: DevsktopIconsProps) {
 	 * Icons are positioned horizontally from right to left with proper spacing
 	 */
 	function calculateTrayPosition(width: number): Position {
-		const iconWidth = 130; // Width of each icon including spacing
-		const trayWidth = iconWidth * ICONS.length;
-		const margin = 20; // Margin from screen edges
+		const trayWidth = iconSpacing * ICONS.length;
 
 		// Position tray in upper right corner
-		const x = width - trayWidth - margin;
-		const y = margin;
+		const x = width - trayWidth - iconMargin;
+		const y = iconMargin;
 
 		return { x, y };
 	}
@@ -76,6 +80,9 @@ export function DevsktopIcons(props: DevsktopIconsProps) {
 					baseTrayPosition={baseTrayPosition}
 					iconIndex={index}
 					siteSettings={props.siteSettings}
+					iconCount={ICONS.length}
+					iconSpacing={iconSpacing}
+					iconMargin={iconMargin}
 				/>
 			))}
 		</div>
