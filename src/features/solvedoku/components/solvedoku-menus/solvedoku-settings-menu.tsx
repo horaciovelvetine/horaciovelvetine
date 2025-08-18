@@ -1,16 +1,8 @@
 import { FastForwardIcon, RewindIcon } from '../../../../assets';
 import { TailwindBGs500, TailwindDropShadows } from '../../../../functions';
-import type {
-	SiteSettings,
-	Colors,
-	SolvedokuGameState,
-} from '../../../../types';
+import type { Colors } from '../../../../types';
+import type { SolvedokuWindowProps } from '../../windows/solvedoku-window-props';
 import { PuzzleButton } from '../puzzle-button/puzzle-button';
-
-interface MobileSettingsMenuProps {
-	windowState: SolvedokuGameState;
-	siteSettings: SiteSettings;
-}
 
 /**
  * Mobile menu component that provides settings controls for the Solvedoku game
@@ -20,10 +12,10 @@ interface MobileSettingsMenuProps {
  * @param {SiteSettings} props.siteSettings - Global site settings like theme colors
  * @returns JSX element containing the settings menu controls
  */
-export function SettingsMenu({
+export function SolvedokuSettingsMenu({
 	windowState,
 	siteSettings,
-}: MobileSettingsMenuProps) {
+}: SolvedokuWindowProps) {
 	const colorOptions: Colors[] = [
 		'red',
 		'orange',
@@ -98,9 +90,7 @@ export function SettingsMenu({
 								accentColor={siteSettings.accentColor}
 								onClickFunction={handleSlowDownButtonClick}
 								title='Slow down the puzzle solver'
-								isDisabled={
-									windowState.solutionFinderInterval === MIN_INTERVAL
-								}
+								isDisabled={windowState.solutionFinderInterval === MIN_INTERVAL}
 							/>
 						</li>
 						<li>
@@ -114,9 +104,7 @@ export function SettingsMenu({
 								accentColor={siteSettings.accentColor}
 								onClickFunction={handleSpeedUpClick}
 								title='Speed up the puzzle solver'
-								isDisabled={
-									windowState.solutionFinderInterval === MAX_INTERVAL
-								}
+								isDisabled={windowState.solutionFinderInterval === MAX_INTERVAL}
 							/>
 						</li>
 					</ul>

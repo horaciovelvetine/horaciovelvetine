@@ -1,16 +1,11 @@
 import { type Dispatch, type SetStateAction } from 'react';
-import type {
-	PuzzleDifficulty,
-	SiteSettings,
-	SolvedokuWindowState,
-} from '../../../../types';
-import { SelectedDifficultyButton } from './selected-difficulty-button';
-import { GameMenuButton } from './game-menu-button';
+import type { PuzzleDifficulty } from '../../../../types';
+import { SelectedDifficultyButton } from './components/selected-difficulty-button/selected-difficulty-button';
+import { GameMenuButton } from './components/game-menu-button/game-menu-button';
+import type { SolvedokuWindowProps } from '../../windows/solvedoku-window-props';
 
-interface GameMenuProps {
+interface GameMenuProps extends SolvedokuWindowProps {
 	setShowMenu: Dispatch<SetStateAction<boolean>>;
-	windowState: SolvedokuWindowState;
-	siteSettings: SiteSettings;
 }
 
 /**
@@ -23,7 +18,7 @@ interface GameMenuProps {
  * @param {Dispatch<SetStateAction<PuzzleDifficulty>>} props.setCurrentPuzzleDifficultyDisplay - Updates displayed difficulty
  * @returns JSX element containing the game menu controls
  */
-export function GameMenu({
+export function SolvedokuGameMenu({
 	setShowMenu,
 	windowState,
 	siteSettings,
@@ -35,7 +30,9 @@ export function GameMenu({
 	 */
 	const handleNewGameClick = () => {
 		windowState.generateRandomPuzzle();
-		windowState.setCurrentPuzzleDifficultyDisplay(windowState.selectedDifficulty); // set displayed difficulty value
+		windowState.setCurrentPuzzleDifficultyDisplay(
+			windowState.selectedDifficulty
+		); // set displayed difficulty value
 		setShowMenu(false);
 	};
 
@@ -52,9 +49,7 @@ export function GameMenu({
 	 */
 	const handleShowSolutionClick = () => {
 		if (cannotShowSolutionBoard && !windowState.showStoredSolution) return;
-		windowState.toggleShowStoredPuzzleSolution(
-			!windowState.showStoredSolution
-		);
+		windowState.toggleShowStoredPuzzleSolution(!windowState.showStoredSolution);
 		windowState.setShowStoredSolution(prev => !prev);
 		setShowMenu(false);
 	};
@@ -95,9 +90,7 @@ export function GameMenu({
 			/>
 			<GameMenuButton
 				buttonText={
-					windowState.showStoredSolution ? 'Hide Solution' : (
-						'Reveal Solution'
-					)
+					windowState.showStoredSolution ? 'Hide Solution' : 'Reveal Solution'
 				}
 				buttonTitle='Show the (intended) solution for the current puzzle'
 				accentColor={siteSettings.accentColor}

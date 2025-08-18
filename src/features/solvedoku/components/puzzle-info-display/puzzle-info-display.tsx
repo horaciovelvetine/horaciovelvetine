@@ -1,8 +1,13 @@
 import { useCallback, useMemo } from 'react';
-import { EraserIcon } from '../../../assets';
-import { PuzzleButton } from './puzzle-button/puzzle-button';
-import { parseFormattedCellIDString, TailwindBGs500 } from '../../../functions';
-import type { SolvedokuWindowProps } from '../windows/solvedoku-window-props';
+import { EraserIcon } from '../../../../assets';
+import { PuzzleButton } from '../puzzle-button/puzzle-button';
+import {
+	capitalize,
+	parseFormattedCellIDString,
+	TailwindBGs500,
+} from '../../../../functions';
+import type { SolvedokuWindowProps } from '../../windows/solvedoku-window-props';
+import { MessageDisplay } from './message-display';
 
 /**
  * Displays information about the current puzzle state and provides cell editing controls
@@ -33,9 +38,6 @@ export function PuzzleInfoDisplay({
 		undo,
 		canUndo,
 	} = windowState;
-	const formattedPuzzleDifficulty =
-		currentPuzzleDifficultyDisplay.charAt(0).toUpperCase() +
-		currentPuzzleDifficultyDisplay.slice(1);
 
 	/**
 	 * Handler for erasing the value in a selected cell
@@ -62,7 +64,7 @@ export function PuzzleInfoDisplay({
 	return (
 		<div className='flex w-full items-center gap-1 mt-1 px-2'>
 			<div className='flex w-3/4 font-semibold gap-2 xs:gap-3 sm:gap-4 justify-around text-lg xs:text-xl sm:text-2xl md:text-3xl pl-2'>
-				<p>{formattedPuzzleDifficulty}</p>
+				<p>{capitalize(currentPuzzleDifficultyDisplay)}</p>
 				<MessageDisplay
 					text='Solving...'
 					bgColor='bg-amber-500/70'
@@ -120,27 +122,5 @@ export function PuzzleInfoDisplay({
 				/>
 			</div>
 		</div>
-	);
-}
-
-interface MessageDisplayProps {
-	text: string;
-	bgColor: string;
-	isShown: boolean;
-}
-
-/**
- * Small text dipslay used to display the 'status' of the puzzle for a variety of states.
- */
-function MessageDisplay({ text, bgColor, isShown }: MessageDisplayProps) {
-	return (
-		<>
-			{isShown && (
-				<p
-					className={` ${bgColor} text-sm sm:text-base tracking-tighter text-nowrap rounded-lg py-0.5 px-2 border border-stone-300/50`}>
-					{text}
-				</p>
-			)}
-		</>
 	);
 }

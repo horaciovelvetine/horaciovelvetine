@@ -42,7 +42,6 @@ export function RPSSketch(p5: P5CanvasInstance<RPSSketchProps>) {
 
 	//! UPDATE WITH PROPS
 	p5.updateWithProps = props => {
-		console.log({ props });
 		const {
 			canvasColor,
 			canvasSize,

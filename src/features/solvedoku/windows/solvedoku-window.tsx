@@ -11,11 +11,11 @@ import {
 	PuzzleSolverButtons,
 	PuzzleInfoDisplay,
 	GameBoardTable,
-	GameMenu,
-	AboutMenu,
-	SettingsMenu,
 	NumberInputButtons,
 	SolvedokuIcon,
+	SolvedokuAboutMenu,
+	SolvedokuGameMenu,
+	SolvedokuSettingsMenu,
 } from '../components';
 import { WindowMenuWrapper } from '../../devsktop';
 import type { SolvedokuWindowProps } from './solvedoku-window-props';
@@ -92,7 +92,7 @@ export function SolvedokuWindow({
 				showMenu={windowState.showAboutMenu}
 				siteSettings={siteSettings}
 				menuMainTitle='About Solvedoku'
-				Content={AboutMenu}
+				Content={SolvedokuAboutMenu}
 				windowState={windowState}
 				Icon={SolvedokuIcon}
 			/>
@@ -101,7 +101,7 @@ export function SolvedokuWindow({
 				showMenu={windowState.showGameMenu}
 				siteSettings={siteSettings}
 				menuMainTitle='Solvedoku Menu'
-				Content={GameMenu}
+				Content={SolvedokuGameMenu}
 				windowState={windowState}
 				Icon={SolvedokuIcon}
 			/>
@@ -110,7 +110,7 @@ export function SolvedokuWindow({
 				showMenu={windowState.showSettingsMenu}
 				siteSettings={siteSettings}
 				menuMainTitle='Settings'
-				Content={SettingsMenu}
+				Content={SolvedokuSettingsMenu}
 				windowState={windowState}
 				Icon={SolvedokuIcon}
 			/>

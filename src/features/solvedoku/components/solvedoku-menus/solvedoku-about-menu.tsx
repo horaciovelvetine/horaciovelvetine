@@ -6,7 +6,7 @@ import { SimpleInlineLink } from '../../../../components';
  * Includes a link to report issues on GitHub
  * @returns JSX element containing the about menu content
  */
-export function AboutMenu() {
+export function SolvedokuAboutMenu() {
 	return (
 		<div className='flex flex-col gap-1 md:gap-2 pb-2 mx-1 xs:mx-4 md:mx-8'>
 			<p className='text-base/4.5 xs:text-lg/5 md:text-xl/6 tracking-tighter md:tracking-tight'>

@@ -13,6 +13,8 @@ import { WindowFrame, NavigationBar, DevsktopIcons } from './components';
  * Manages multiple application windows and provides a desktop-like experience
  * Includes navigation bar, desktop icons, and various application windows
  *
+ * #devsktop-bounds height is set to the clients view height minus the {@see NavigationBar } component @ 36px
+ *
  * @param {SiteSettings} props.siteSettings - Global site settings including theme and accent colors
  */
 export function DevsktopMain({ siteSettings }: SiteContext) {

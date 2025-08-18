@@ -1,13 +1,5 @@
-import { TailwindBGs500 } from '../../../../functions';
-import type { Colors } from '../../../../types';
-
-interface GameMenuButtonProps {
-	accentColor: Colors;
-	buttonTitle: string;
-	clickHandler: () => void;
-	buttonText: string;
-	isDisabled?: boolean;
-}
+import { TailwindBGs500 } from '../../../../../../functions';
+import type { GameMenuButtonProps } from './game-menu-button-props';
 
 /**
  * A button component used in game menus that provides consistent styling and behavior

@@ -11,5 +11,5 @@ export function setupCanvasDimensions(siteSettings: SiteSettings) {
 				width: siteSettings.clientDimensions.width - 24,
 				height: siteSettings.clientDimensions.height - 125,
 			}
-		:	{ width: 750, height: 560 };
+		:	{ width: 740, height: 560 };
 }
