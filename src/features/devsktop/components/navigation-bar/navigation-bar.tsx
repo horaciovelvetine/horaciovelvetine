@@ -1,8 +1,7 @@
 /* eslint-disable @eslint-react/jsx-key-before-spread */
-
-import type { LayoutProps } from '../../../../types';
 import { ClockDisplay } from './components/clock-display';
 import { NavBarMenuItemParent } from './components/nav-bar-menu-item-parent';
+import type { NavigationBarProps } from './navigation-bar-props';
 
 /**
  * Navigation bar component that displays at the top of the screen.
@@ -12,7 +11,7 @@ import { NavBarMenuItemParent } from './components/nav-bar-menu-item-parent';
  * @param props.clockDisplaySettings - Settings for the clock display component
  * @returns Navigation bar React component
  */
-export function NavigationBar(props: LayoutProps) {
+export function NavigationBar(props: NavigationBarProps) {
 	return (
 		<nav
 			className='fixed top-0 w-full bg-zinc-900/80 backdrop-blur-3xl h-9 items-center px-2.5'

@@ -1,15 +1,34 @@
 // Disable any warnings for React Draggable ref per:
 // https://github.com/react-grid-layout/react-draggable/issues/779
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { useLayoutEffect, useRef, useState } from 'react';
 import Draggable, {
 	type DraggableData,
 	type DraggableEvent,
 } from 'react-draggable';
 import { TitleBar } from './title-bar';
-import type { Position, Dimensions, WindowFrameProps } from '../../../../types';
+import type { Position, Dimensions } from '../../../../types';
+import type { WindowFrameProps } from './window-frame-props';
 
+/**
+ * WindowFrame component that provides a draggable window container with focus management
+ * Wraps application components in a resizable, moveable window with a title bar
+ * Automatically handles window positioning, bounds checking, and focus states
+ *
+ * Features:
+ * - Draggable window positioning with mouse/touch support
+ * - Automatic window bounds checking to prevent off-screen windows
+ * - Window focus management when clicked or dragged
+ * - Dynamic dimension tracking for responsive layout
+ * - Integration with WindowManager for multi-window coordination
+ *
+ * @param {WindowFrameProps} props - Component properties
+ * @param {ManagedWindow} props.window - The managed window instance containing state and metadata
+ * @param {SiteSettings} props.siteSettings - Global site settings including client dimensions and theme
+ * @param {WindowManager} props.windowManager - Window manager for handling focus and window operations
+ * @param {(args: any) => ReactNode} props.Component - The React component to render inside the window frame
+ * @returns JSX element containing a draggable window frame with the specified component
+ */
 export function WindowFrame({
 	window,
 	siteSettings,

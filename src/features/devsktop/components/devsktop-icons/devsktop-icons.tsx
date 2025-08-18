@@ -1,9 +1,26 @@
-import type { LayoutProps } from '../../../../types';
+import { RPSIcon } from '../../../rps';
 import { SolvedokuIcon } from '../../../solvedoku';
+import type { DevsktopIconsProps } from './devsktop-icons-props';
 import { HomeIcon } from './home-icon';
 import { IconFrame } from './icon-frame';
 
-export function DevsktopIcons(props: LayoutProps) {
+/**
+ * DevsktopIcons component that renders draggable application icons on the desktop
+ * Displays a collection of application icons in a horizontal tray at the bottom of the screen
+ * Each icon can be clicked to open its corresponding window application
+ *
+ * Features:
+ * - Responsive icon positioning based on screen dimensions
+ * - Dynamic tray centering with automatic spacing between icons
+ * - Integration with WindowManager for opening application windows
+ * - Adaptive vertical positioning for different screen heights
+ *
+ * @param {DevsktopIconsProps} props - Component properties
+ * @param {SiteSettings} props.siteSettings - Global site settings including client dimensions for calculating icon positions
+ * @param {WindowManager} props.windowManager - Window manager instance for opening windows when icons are clicked
+ * @returns JSX element containing positioned desktop application icons
+ */
+export function DevsktopIcons(props: DevsktopIconsProps) {
 	const ICONS = [
 		{
 			component: HomeIcon,
@@ -17,6 +34,13 @@ export function DevsktopIcons(props: LayoutProps) {
 			label: 'Solvedoku',
 			onClick: () => {
 				props.windowManager.openWindowByID('solvedoku-window');
+			},
+		},
+		{
+			component: RPSIcon,
+			label: 'Rock, Paper, Scissors',
+			onClick: () => {
+				props.windowManager.openWindowByID('rps-sketch-window');
 			},
 		},
 	];
