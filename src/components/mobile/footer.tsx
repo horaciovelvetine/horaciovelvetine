@@ -1,5 +1,8 @@
-import { SimpleInlineLink } from "../site/simple-inline-link";
+import { SimpleInlineLink } from '../site/simple-inline-link';
 
+/**
+ * Footer component for mobile layouts that displays copyright information and a link to the project repository.
+ */
 export function Footer() {
 	return (
 		<footer className='flex flex-col items-center min-w-screen bg-stone-900/95 py-0.5'>
