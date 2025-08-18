@@ -10,7 +10,8 @@ export function createEmptyBoard(boardSize: number): SolvedokuGameBoard {
 	return Array.from({ length: boardSize }, () =>
 		Array.from({ length: boardSize }, () => ({
 			value: null,
-			locked: false
+			locked: false,
+			userInputted: false,
 		}))
 	);
 }
