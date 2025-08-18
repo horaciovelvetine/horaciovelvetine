@@ -1,7 +1,19 @@
 import { GithubLogo, LinkedInLogo, MailToIcon } from '../../../assets';
 import { GradientLinkText, IconLink, VideoHeadshot } from '../../../components';
 
-
+/**
+ * MainLandingWindow component that renders the primary landing page content for the devsktop interface
+ *
+ * This component serves as the main introduction page featuring:
+ * - Personal introduction with name and handle
+ * - Video headshot component
+ * - Professional title and role description with gradient styling
+ * - Social media and contact links (GitHub, LinkedIn, Email)
+ * - Responsive layout that adapts to different screen sizes
+ *
+ * The layout adjusts from a vertical stack on mobile to a horizontal layout on larger screens,
+ * with gradient text effects and interactive hover states for all links and icons.
+ */
 export function MainLandingWindow() {
 	return (
 		<div className='flex flex-col items-center font-extrabold'>
