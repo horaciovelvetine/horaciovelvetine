@@ -50,8 +50,8 @@ export function SpriteCountSelector({
 	const options: { text: SpriteCountSelects; description: string }[] = [
 		{ text: 'some', description: '15 total' },
 		{ text: 'more', description: '30 total' },
-		{ text: 'lots', description: '60 total' },
-		{ text: 'lots!', description: '100 total' },
+		{ text: 'lots', description: '45 total' },
+		{ text: 'lots!', description: '60 total' },
 	];
 
 	const focusBGClass = TailwindFocusBGs500[accentColor];

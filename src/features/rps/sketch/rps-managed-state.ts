@@ -165,9 +165,9 @@ export class RPSManagedState {
 			case 'more':
 				return 30;
 			case 'lots':
-				return 60;
+				return 45;
 			case 'lots!':
-				return 100;
+				return 60;
 			default:
 				return 15;
 		}

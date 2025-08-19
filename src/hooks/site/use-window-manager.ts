@@ -137,16 +137,6 @@ export function useWindowManager(): WindowManager {
 					onClickAction: () => {
 						openWindowByID('main-landing-window');
 					},
-				},
-				{
-					key: 'about-this-site',
-					titleText: 'About This Site',
-					isDisabled:
-						aboutThisSiteWindow.isShown &&
-						focusedWindowID === 'about-this-site-window',
-					onClickAction: () => {
-						openWindowByID('about-this-site-window');
-					},
 					displayMenuBreakAfter: true,
 				},
 				{
@@ -167,7 +157,17 @@ export function useWindowManager(): WindowManager {
 					onClickAction: () => {
 						openWindowByID('rps-sketch-window');
 					},
-					displaySectionHeader: 'Projects',
+					displayMenuBreakAfter: true,
+				},
+				{
+					key: 'about-this-site',
+					titleText: 'About This Site',
+					isDisabled:
+						aboutThisSiteWindow.isShown &&
+						focusedWindowID === 'about-this-site-window',
+					onClickAction: () => {
+						openWindowByID('about-this-site-window');
+					},
 				},
 			],
 		}),

@@ -38,25 +38,25 @@ export function useMainLandingWindow(focusedWindowID: string): ManagedWindow {
 						{
 							key: 'about-velvet-dev',
 							titleText: 'About',
+							displaySectionHeader: 'Pages',
 							onClickAction: () => {
 								openWindowByID('about-this-site-window');
-							},
-							displaySectionHeader: 'Pages',
-						},
-						{
-							key: 'open-contact',
-							titleText: 'Contact',
-							onClickAction: () => {
-								console.log({ tgt: 'velvet.dev => Contact' });
 							},
 							displayMenuBreakAfter: true,
 						},
 						{
 							key: 'open-solvedoku',
-							displaySectionHeader: 'Projects',
+							displaySectionHeader: 'Work',
 							titleText: 'Solvedoku',
 							onClickAction: () => {
 								openWindowByID('solvedoku-window');
+							},
+						},
+						{
+							key: 'open-rock-paper-scissors',
+							titleText: 'Rock, Paper, Scissors',
+							onClickAction: () => {
+								openWindowByID('rps-sketch-window');
 							},
 						},
 					],

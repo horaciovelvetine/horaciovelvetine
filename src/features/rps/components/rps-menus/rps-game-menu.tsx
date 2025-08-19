@@ -31,26 +31,36 @@ import type { RPSSketchWindowProps } from '../../windows/rps-sketch-window-props
  */
 
 export function RPSGameMenu({
-  windowState,
-  siteSettings,
+	windowState,
+	siteSettings,
 }: RPSSketchWindowProps) {
-  const handleResetClick = () => {
-    windowState.setResetRequested(true);
-    windowState.setShowGameMenu(false);
-    windowState.setSketchIsPaused(false);
-  };
-  return (
-    <ul className='flex flex-col w-full tracking-tighter gap-2 px-8 mb-6'>
-      <li className='flex w-full justify-center'>
-        <button
-          type='button'
-          title='Reset the current game simulation'
-          disabled={!windowState.sketchIsInitialized}
-          className={`border border-stone-300/50 rounded-lg py-0.5 w-full xs:w-1/2 ${TailwindBGs500[siteSettings.accentColor]}`}
-          onClick={handleResetClick}>
-          Restart Game
-        </button>
-      </li>
-    </ul>
-  );
+	const handleResetClick = () => {
+		windowState.setResetRequested(true);
+		windowState.setShowGameMenu(false);
+		windowState.setSketchIsPaused(false);
+	};
+	return (
+		<ul className='flex flex-col w-full tracking-tighter gap-2 px-8 mb-6'>
+			<li className='flex flex-col gap-1 items-center w-full justify-center'>
+				<button
+					type='button'
+					title='Create an entirely new game, returning to the initialization menu'
+					disabled={!windowState.sketchIsInitialized}
+					className={`border border-stone-300/50 rounded-lg py-0.5 w-full xs:w-1/2 ${TailwindBGs500[siteSettings.accentColor]}`}
+					onClick={() => {
+						windowState.closeWindowCallback();
+					}}>
+					New Game
+				</button>
+				<button
+					type='button'
+					title='Reset the game with the current settings'
+					disabled={!windowState.sketchIsInitialized}
+					className={`border border-stone-300/50 rounded-lg py-0.5 w-full xs:w-1/2 ${TailwindBGs500[siteSettings.accentColor]}`}
+					onClick={handleResetClick}>
+					Restart Game
+				</button>
+			</li>
+		</ul>
+	);
 }

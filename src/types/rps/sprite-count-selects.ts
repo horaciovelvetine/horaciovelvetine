@@ -8,7 +8,7 @@
  * @type {'some' | 'more' | 'lots' | 'lots!'}
  * @property 'some' - 15 Sprite Chars
  * @property 'more' - 30 Sprite Chars
- * @property 'lots' - 60 Sprite Chars
- * @property 'lots!' - 100 Sprite Chars
+ * @property 'lots' - 45 Sprite Chars
+ * @property 'lots!' - 60 Sprite Chars
  */
 export type SpriteCountSelects = 'some' | 'more' | 'lots' | 'lots!';
