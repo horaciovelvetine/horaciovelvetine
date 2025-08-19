@@ -5,7 +5,7 @@ export function P5JSBadge() {
 		<ToolBadge
 			text='p5.js'
 			url='https://p5js.org'
-			color='rose'
+			color='pink'
 		/>
 	);
 }

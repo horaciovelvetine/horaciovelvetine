@@ -16,7 +16,7 @@ interface ToolBadgeProps {
 
 export function ToolBadge({ color, text, url }: ToolBadgeProps) {
 	return (
-		<li
+		<div
 			className={`inline-flex w-fit items-center rounded-xl px-2 py-0.5 text-sm font-bold ring-1 ring-inset ${tailwindColors[color]} transition-all hover:scale-105 hover:drop-shadow-2xl duration-100 hover:-translate-y-1 text-nowrap m-0.5`}>
 			<a
 				href={url}
@@ -25,7 +25,7 @@ export function ToolBadge({ color, text, url }: ToolBadgeProps) {
 				referrerPolicy='no-referrer'>
 				{text}
 			</a>
-		</li>
+		</div>
 	);
 }
 

@@ -11,6 +11,7 @@ export { ToolBadge } from './site/tool-badge';
 export { VideoHeadshot } from './site/video-headshot';
 
 // TOOL BADGES
+export { CSSBadge } from './tool-badges/css-badge';
 export { ESLintBadge } from './tool-badges/eslint-badge';
 export { GuavaBadge } from './tool-badges/guava-badge';
 export { JavaBadge } from './tool-badges/java-badge';
