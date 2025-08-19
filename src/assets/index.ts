@@ -17,5 +17,6 @@ export { EraserIcon } from './icons/eraser-icon.tsx';
 export { MailToIcon } from './icons/mail-to-icon.tsx';
 export { PlayIcon } from './icons/play-icon.tsx';
 export { PauseIcon } from './icons/pause-icon.tsx';
+export { ExclaimsTriangleIcon } from './icons/exclaims-triangle-icon.tsx';
 
 export { LinkedInLogo, GithubLogo };
