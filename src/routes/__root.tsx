@@ -11,10 +11,15 @@ import type { SiteContext } from '../types';
 
 export const Route = createRootRouteWithContext<SiteContext>()({
 	component: RootComponent,
-	notFoundComponent: PageNotFound
+	notFoundComponent: PageNotFound,
 });
 
-const siteNavigation = [{ name: 'Home', href: '/' }, { name: 'Solvedoku', href: '/solvedoku' }, { name: 'Rock, Paper, Scissors', href: 'rock-paper-scissors' }, { name: 'Contact', href: '/contact' }];
+const siteNavigation = [
+	{ name: 'Home', href: '/' },
+	{ name: 'Solvedoku', href: '/solvedoku' },
+	{ name: 'Rock, Paper, Scissors', href: 'rock-paper-scissors' },
+	{ name: 'Contact', href: '/contact' },
+];
 
 function RootComponent() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

@@ -31,7 +31,7 @@ export function MessageDisplay({
 		<>
 			{isShown && (
 				<p
-					className={`${bgColor} text-sm sm:text-base tracking-tighter text-nowrap rounded-lg py-0.5 px-2 border border-stone-300/50`}>
+					className={`${bgColor} text-sm sm:text-base md:text-2xl md:font-bold tracking-tighter text-nowrap rounded-lg py-0.5 px-2 border border-stone-300/50`}>
 					{text}
 				</p>
 			)}

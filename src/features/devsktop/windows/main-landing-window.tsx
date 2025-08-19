@@ -17,12 +17,14 @@ import { GradientLinkText, IconLink, VideoHeadshot } from '../../../components';
 export function MainLandingWindow() {
 	return (
 		<div className='flex flex-col items-center font-extrabold'>
-			<div className='flex flex-col items-center md:flex-row lg:justify-center lg:gap-2'>
+			<div className='flex flex-col items-center md:flex-row lg:justify-center'>
 				<VideoHeadshot />
 
 				<div>
-					<div className='flex tracking-tight text-4xl sm:text-5xl items-baseline'>
-						<h1 className='ms-2'>Hi, I'm James</h1>
+					<div className='flex justify-center items-baseline'>
+						<h1 className='tracking-tighter  text-4xl sm:text-5xl'>
+							👋 I'm James
+						</h1>
 						<p className='ml-2 font-semibold text-white/65 text-2xl sm:text-3xl md:text-4xl'>
 							a.k.a.
 						</p>
@@ -31,7 +33,7 @@ export function MainLandingWindow() {
 					<GradientLinkText
 						text='@horaciovelvetine'
 						url='https://github.com/horaciovelvetine'
-						classes='text-4xl/9 xs:text-5xl/12 sm:text-7xl/14 from-rose-500 via-purple-500 to-sky-500 pb-1.75 tracking-tighter px-1.5'
+						classes='text-[2.23rem]/8 xs:text-5xl/12 sm:text-7xl/14 from-rose-500 via-purple-500 to-sky-500 pb-2 px-2.5 tracking-tighter '
 					/>
 				</div>
 			</div>

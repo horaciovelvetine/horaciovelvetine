@@ -26,7 +26,7 @@ interface DevsktopIconsProps {
  * @returns JSX element containing positioned desktop application icons
  */
 export function DevsktopIcons(props: DevsktopIconsProps) {
-	const iconSpacing = 100;
+	const iconSpacing = 120;
 	const iconMargin = 10;
 	const ICONS = [
 		{

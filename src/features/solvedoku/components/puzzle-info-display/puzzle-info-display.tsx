@@ -63,7 +63,7 @@ export function PuzzleInfoDisplay({
 
 	return (
 		<div className='flex w-full items-center gap-1 mt-1 px-2'>
-			<div className='flex w-3/4 font-semibold gap-2 xs:gap-3 sm:gap-4 justify-around text-lg xs:text-xl sm:text-2xl md:text-3xl pl-2'>
+			<div className='flex items-center w-3/4 font-semibold gap-2 xs:gap-3 sm:gap-4 justify-around text-lg xs:text-xl sm:text-2xl md:text-3xl pl-2'>
 				<p>{capitalize(currentPuzzleDifficultyDisplay)}</p>
 				<MessageDisplay
 					text='Solving...'
