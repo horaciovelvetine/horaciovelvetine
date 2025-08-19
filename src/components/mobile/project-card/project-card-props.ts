@@ -17,4 +17,5 @@ export interface ProjectCardProps {
 	linkURL?: string;
 	pageLinkRoute?: string;
 	pageLinkText?: string;
+	tools: (() => ReactNode)[];
 }

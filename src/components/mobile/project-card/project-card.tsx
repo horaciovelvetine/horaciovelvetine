@@ -1,5 +1,4 @@
 import { Link } from '@tanstack/react-router';
-import { SimpleInlineLink } from '../../site/simple-inline-link';
 import type { ProjectCardProps } from './project-card-props';
 
 /**
@@ -14,6 +13,7 @@ import type { ProjectCardProps } from './project-card-props';
  * @param {string} [props.linkURL] - Optional URL for external link
  * @param {string} [props.pageLinkRoute] - Optional route for internal page navigation
  * @param {string} [props.pageLinkText] - Optional text for internal page link
+ * @param {() => ReactNode[]} props.tools - the Tool Badge list to render
  * @returns JSX element containing the project card with thumbnail, content, and navigation links
  */
 export function ProjectCard({
@@ -25,12 +25,14 @@ export function ProjectCard({
 	linkURL,
 	pageLinkRoute,
 	pageLinkText,
+	tools,
 }: ProjectCardProps) {
 	return (
 		<div className='overflow-hidden'>
 			<div className='relative isolate'>
 				<div className='mx-auto max-w-7xl sm:px-6 '>
 					<div className='mx-auto flex flex-col gap-2 bg-stone-300/10 px-6 py-4 ring-1 ring-white/10 rounded-xl sm:p-8'>
+						{/* THUMBNAILS */}
 						{thumbnailSrc && (
 							<img
 								alt=''
@@ -43,6 +45,8 @@ export function ProjectCard({
 								<ThumbnailIcon size={'size-48 xs:size-64 sm:size-72'} />
 							)}
 						</div>
+
+						{/* TEXT */}
 						<div className='w-full flex-auto'>
 							<h2 className='text-2xl font-bold tracking-tighter text-pretty text-white xs:text-3xl sm:text-4xl'>
 								{title}
@@ -50,22 +54,42 @@ export function ProjectCard({
 							<p className='text-lg/6 text-pretty text-stone-300 tracking-tight'>
 								{description}
 							</p>
-							<ul
-								role='list'
-								className='grid grid-cols-1 gap-x-8 gap-y-3 text-base/7 text-gray-200 sm:grid-cols-2'></ul>
-							<div className='flex'>
+
+							{/* TOOL BADGES */}
+							<div className='flex justify-center'>
+								<div className='bg-zinc-950/30 rounded-lg px-3 py-3 ring ring-stone-300/10 mt-2 mb-3 shadow-2xl'>
+									<h2 className='text-sm/4 xs:text-base/5 font-semibold text-stone-300 border-b-2 border-stone-300/30 w-fit'>
+										Built Using:
+									</h2>
+									<ul
+										role='list'
+										className='flex flex-wrap my-1 gap-x-1'>
+										{tools.map(ToolBadge => (
+											<li
+												key={crypto.randomUUID()}
+												className='flex rounded-md shadow-xs'>
+												<ToolBadge />
+											</li>
+										))}
+									</ul>
+								</div>
+							</div>
+
+							{/* LINK(S) */}
+							<div className='flex items-center justify-center'>
 								{linkURL && linkText && (
-									<SimpleInlineLink
-										url={linkURL}
-										text={linkText}
-										showArrow
-									/>
+									<a
+										href={linkURL}
+										target='_blank'
+										rel='noopener noreferrer'
+										className='inline-block text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1 text-base xs:text-lg sm:text-xl font-semibold'>
+										<span aria-hidden='true'>&rarr;</span> {linkText}
+									</a>
 								)}
 								{pageLinkRoute && (
 									<Link
 										to={pageLinkRoute}
-										className='inline-block text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'>
-										<span aria-hidden='true'>&rarr;</span>
+										className='inline-block text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1 text-base xs:text-lg sm:text-xl font-semibold'>
 										{pageLinkText}
 									</Link>
 								)}
@@ -73,6 +97,8 @@ export function ProjectCard({
 						</div>
 					</div>
 				</div>
+
+				{/* BG MASK */}
 				<div
 					aria-hidden='true'
 					className='absolute inset-x-0 -top-16 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl'>
