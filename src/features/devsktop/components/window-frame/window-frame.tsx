@@ -109,7 +109,7 @@ export function WindowFrame({
 						style={{ zIndex: window.zIndex }}
 						onClick={handleFocusWindow}
 						onTouchStart={handleFocusWindow}>
-						<div className='w-[760px] h-fit bg-zinc-900/80 backdrop-blur-2xl border border-stone-300/30 rounded-md'>
+						<div className='w-[760px] h-fit bg-zinc-900/80 backdrop-blur-2xl border border-stone-300/30 rounded-lg'>
 							<TitleBar
 								window={window}
 								manager={windowManager}
