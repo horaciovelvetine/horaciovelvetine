@@ -1,0 +1,121 @@
+import { CloseIcon, GithubLogo } from '../../../assets';
+import {
+	ESLintBadge,
+	GradientLinkText,
+	IconLink,
+	P5JSBadge,
+	PostCSSBadge,
+	ReactBadge,
+	SimpleInlineLink,
+	TailwindCSSBadge,
+	TypescriptBadge,
+	ViteBadge,
+} from '../../../components';
+import { GH_REPO } from '../../../consts/urls';
+
+/**
+ * A window component that displays information about the velvet.dev website
+ * Shows the site title, GitHub link, technology stack, and description
+ * Designed to be used within the desktop environment as a draggable window
+ *
+ * Features:
+ * - Site branding and title
+ * - Link to source code repository on GitHub
+ * - Technology badges showing the tech stack used
+ * - Description of the site's unique desktop-style interface
+ *
+ * @returns JSX.Element A styled window containing site information and details
+ */
+export function AboutThisSiteWindow() {
+	return (
+		<div>
+			<div className='flex pb-2'>
+				<div className='flex flex-col h-full'>
+					<h2 className='text-nowrap font-extrabold tracking-tighter text-6xl leading-10'>
+						velvet.dev
+					</h2>
+
+					<div className='flex items-center justify-center mt-2 text-white/50'>
+						<p className='text-2xl tracking-tighter font-extrabold px-1'>
+							source code on:{' '}
+						</p>
+						<IconLink
+							iconSrc={GithubLogo}
+							url={GH_REPO}
+							size='w-12'
+						/>{' '}
+					</div>
+					<div>
+						<h5 className='leading-4.5 font-bold text-white/50  text-center mx-20'>
+							Built With:{' '}
+						</h5>
+						<ul className='my-1'>
+							<TypescriptBadge />
+							<ReactBadge />
+							<ViteBadge />
+							<P5JSBadge />
+							<TailwindCSSBadge />
+							<PostCSSBadge />
+							<ESLintBadge />
+						</ul>
+					</div>
+				</div>
+
+				<p className='text-2xl/7.5 font-bold tracking-tighter pl-3 text-pretty flex flex-col justify-center'>
+					<span className='border-b border-stone-300/50'>
+						Is the page for engineer
+						<GradientLinkText
+							text='@horaciovelvetine'
+							url={GH_REPO}
+							classes='from-rose-500 via-purple-500 to-sky-500 font-extrabold px-1'
+						/>
+					</span>
+					While typically websites consist of pages seperated neatly by URL's
+					here pages are draggable windows which can be positioned, opened, and
+					closed just like on a desktop!
+				</p>
+			</div>
+
+			<div className='tracking-tighter my-2 mx-7'>
+				<div className='flex w-full justify-center gap-1'>
+					<h3 className='font-extrabold text-5xl border-white/50 pb-1.5 text-nowrap border-b-2  text-end bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-orange-500 to-rose-500'>
+						Navigate like a desktop:
+					</h3>
+				</div>
+				<ul className='font-semibold text-2xl list-disc'>
+					<li>
+						Move windows around by clicking and dragging the bar at the top.
+					</li>
+					<li>
+						Use the{' '}
+						<span className='inline-block align-center'>
+							<CloseIcon
+								size='size-4.5'
+								classes='rounded-full bg-red-500 text-stone-800'
+							/>
+						</span>{' '}
+						button at the top left of a window to close it.
+					</li>
+					<li>Click on icons to open pages, applications, and view content.</li>
+					<li>
+						Additional functions can be found in the dropdown menu's at the top
+						of the screen, and depend on the currently active window.
+					</li>
+				</ul>
+			</div>
+			<div className='flex flex-col min-w-full items-center'>
+				<p className='font-bold tracking-tight text-white/50 text-base/6 xs:text-lg sm:text-xl'>
+					© 2020-{new Date().getFullYear()} -{' '}
+					<span className='font-normal'>J.Tillman / @horaciovelvetine</span>
+				</p>
+				<p className='font-semibold tracking-tight text-base/6 xs:text-lg sm:text-xl'>
+					<SimpleInlineLink
+						url={GH_REPO}
+						text='Repo on Github'
+						showArrow
+					/>
+				</p>
+			</div>
+		</div>
+	);
+}
