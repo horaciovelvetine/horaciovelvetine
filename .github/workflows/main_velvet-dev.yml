@@ -1,7 +1,4 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy to Azure Web App - velvet-dev
+name: Build and deploy Node.js app to Azure Web App - velvet-dev
 
 on:
   push:
@@ -22,43 +19,105 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '22.x'
+          cache: 'npm'
       
       - name: npm install, build, and test
         run: |
-          npm install
+          npm ci
           npm run build --if-present
           npm run test --if-present
       
-      # DEBUG THE BUILD DIR
-      - name: List build output
+      - name: Determine build output and prepare deployment
         run: |
-          echo "=== Root directory contents ==="
-          ls -la
-          echo "=== Checking for common build folders ==="
-          if [ -d "dist" ]; then
-            echo "✅ dist/ folder exists"
-            ls -la dist/
+          # Check what type of app this is
+          if [ -f "next.config.js" ] || [ -f "next.config.mjs" ]; then
+            echo "Next.js app detected"
+            echo "BUILD_TYPE=nextjs" >> $GITHUB_ENV
+          elif [ -d "dist" ]; then
+            echo "Static build app detected (dist folder)"
+            echo "BUILD_TYPE=static-dist" >> $GITHUB_ENV
+          elif [ -d "build" ]; then
+            echo "Static build app detected (build folder)"
+            echo "BUILD_TYPE=static-build" >> $GITHUB_ENV
           else
-            echo "❌ dist/ folder not found"
-          fi
-          if [ -d "build" ]; then
-            echo "✅ build/ folder exists"
-            ls -la build/
-          else
-            echo "❌ build/ folder not found"
-          fi
-          if [ -d "out" ]; then
-            echo "✅ out/ folder exists"
-            ls -la out/
-          else
-            echo "❌ out/ folder not found"
+            echo "Node.js app detected"
+            echo "BUILD_TYPE=nodejs" >> $GITHUB_ENV
           fi
       
-      - name: Upload artifact for deployment job
+      - name: Prepare static app deployment (dist)
+        if: env.BUILD_TYPE == 'static-dist'
+        run: |
+          # Add Azure web.config for client-side routing
+          cat > dist/web.config << 'EOF'
+          <?xml version="1.0"?>
+          <configuration>
+            <system.webServer>
+              <rewrite>
+                <rules>
+                  <rule name="SPA Routes" stopProcessing="true">
+                    <match url=".*" />
+                    <conditions logicalGrouping="MatchAll">
+                      <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+                      <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+                    </conditions>
+                    <action type="Rewrite" url="/index.html" />
+                  </rule>
+                </rules>
+              </rewrite>
+            </system.webServer>
+          </configuration>
+          EOF
+      
+      - name: Prepare static app deployment (build)
+        if: env.BUILD_TYPE == 'static-build'
+        run: |
+          # Add Azure web.config for client-side routing
+          cat > build/web.config << 'EOF'
+          <?xml version="1.0"?>
+          <configuration>
+            <system.webServer>
+              <rewrite>
+                <rules>
+                  <rule name="SPA Routes" stopProcessing="true">
+                    <match url=".*" />
+                    <conditions logicalGrouping="MatchAll">
+                      <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+                      <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+                    </conditions>
+                    <action type="Rewrite" url="/index.html" />
+                  </rule>
+                </rules>
+              </rewrite>
+            </system.webServer>
+          </configuration>
+          EOF
+      
+      - name: Upload artifact (dist)
+        if: env.BUILD_TYPE == 'static-dist'
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: dist/ 
+          path: dist/
+      
+      - name: Upload artifact (build)
+        if: env.BUILD_TYPE == 'static-build'
+        uses: actions/upload-artifact@v4
+        with:
+          name: node-app
+          path: build/
+      
+      - name: Upload artifact (Node.js)
+        if: env.BUILD_TYPE == 'nodejs'
+        uses: actions/upload-artifact@v4
+        with:
+          name: node-app
+          path: |
+            .
+            !node_modules
+            !.git
+            !.github
+            !*.log
+            !.env
 
   deploy:
     runs-on: ubuntu-latest
@@ -73,11 +132,14 @@ jobs:
         with:
           name: node-app
       
-      # Check actual deployment content
       - name: List deployment contents
         run: |
-          echo "=== Contents to be deployed ==="
+          echo "=== Deployment package contents ==="
           ls -la
+          if [ -f "package.json" ]; then
+            echo "=== package.json found ==="
+            cat package.json | grep -E '"scripts"|"main"|"start"' -A 5
+          fi
           
       - name: Login to Azure
         uses: azure/login@v2
@@ -93,3 +155,14 @@ jobs:
           app-name: 'velvet-dev'
           slot-name: 'Production'
           package: .
+      
+      - name: Verify deployment
+        run: |
+          echo "Deployment completed. Checking app status..."
+          sleep 30  # Wait for deployment to propagate
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" https://velvet-dev.azurewebsites.net)
+          if [ $RESPONSE -eq 200 ]; then
+            echo "✅ Site is responding with HTTP 200"
+          else
+            echo "⚠️ Site returned HTTP $RESPONSE"
+          fi
