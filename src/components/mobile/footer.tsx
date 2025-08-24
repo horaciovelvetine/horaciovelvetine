@@ -1,3 +1,4 @@
+import { GH_REPO } from '../../consts/urls';
 import { SimpleInlineLink } from '../site/simple-inline-link';
 
 /**
@@ -14,7 +15,7 @@ export function Footer() {
 			</p>
 			<p className='font-semibold tracking-tight text-base/6 xs:text-lg sm:text-xl'>
 				<SimpleInlineLink
-					url='https://github.com/horaciovelvetine/horaciovelvetine'
+					url={GH_REPO}
 					text='Repo on Github'
 					showArrow
 				/>

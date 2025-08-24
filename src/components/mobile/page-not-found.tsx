@@ -3,6 +3,7 @@ import { Route } from '../../routes/__root';
 import { TailwindTextColors500 } from '../../functions';
 import { SimpleInlineLink } from '../site/simple-inline-link';
 import { ExclaimsTriangleIcon } from '../../assets';
+import { GH_NEW_ISSUES } from '../../consts/urls';
 
 /**
  * PageNotFound component for displaying a 404 error page in mobile layouts.
@@ -34,7 +35,7 @@ export function PageNotFound() {
 					</Link>
 					<SimpleInlineLink
 						text='Let me know!'
-						url='https://github.com/horaciovelvetine/horaciovelvetine/issues/new'
+						url={GH_NEW_ISSUES}
 						showArrow
 					/>
 				</div>

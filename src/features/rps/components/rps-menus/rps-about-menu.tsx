@@ -1,4 +1,5 @@
 import { SimpleInlineLink } from '../../../../components';
+import { GH_NEW_ISSUES } from '../../../../consts/urls';
 
 /**
  * AboutMenu component displays information about the Rock Paper Scissors simulation game.
@@ -40,7 +41,7 @@ export function RPSAboutMenu() {
 				<p className='text-sm xs:text-base/4 sm:text-xl/5 text-center'>
 					Issues?{' '}
 					<SimpleInlineLink
-						url='https://github.com/horaciovelvetine/horaciovelvetine/issues/new'
+						url={GH_NEW_ISSUES}
 						text='Let me know!'
 					/>
 				</p>

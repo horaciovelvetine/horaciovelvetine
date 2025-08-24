@@ -11,6 +11,7 @@ import {
 	TypescriptBadge,
 	ViteBadge,
 } from '../../../components';
+import { GH_REPO } from '../../../consts/urls';
 
 /**
  * A window component that displays information about the velvet.dev website
@@ -40,7 +41,7 @@ export function AboutThisSiteWindow() {
 						</p>
 						<IconLink
 							iconSrc={GithubLogo}
-							url='https://github.com/horaciovelvetine/horaciovelvetine'
+							url={GH_REPO}
 							size='w-12'
 						/>{' '}
 					</div>
@@ -65,7 +66,7 @@ export function AboutThisSiteWindow() {
 						Is the page for engineer
 						<GradientLinkText
 							text='@horaciovelvetine'
-							url='https://github.com/horaciovelvetine'
+							url={GH_REPO}
 							classes='from-rose-500 via-purple-500 to-sky-500 font-extrabold px-1'
 						/>
 					</span>
@@ -109,7 +110,7 @@ export function AboutThisSiteWindow() {
 				</p>
 				<p className='font-semibold tracking-tight text-base/6 xs:text-lg sm:text-xl'>
 					<SimpleInlineLink
-						url='https://github.com/horaciovelvetine/horaciovelvetine'
+						url={GH_REPO}
 						text='Repo on Github'
 						showArrow
 					/>
