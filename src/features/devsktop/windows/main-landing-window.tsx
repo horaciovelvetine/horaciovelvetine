@@ -171,7 +171,7 @@ export function MainLandingWindow() {
 	return (
 		<>
 			<LandingPageIntro />
-			<p className='text-center font-bold text-2xl/5 xs:text-3xl/7 sm:text-4xl/10 mb-2 px-2 py-1 tracking-tight sm:tracking-tight text-white border-2 border-stone-300/30 rounded-lg'>
+			<p className='text-center font-bold text-2xl/5 xs:text-3xl/7 sm:text-4xl/10 mb-2 px-2 py-1 tracking-tight sm:tracking-tight text-white'>
 				I design and develop bespoke solutions for challenging problems
 				leveraging technology and creativity at every turn.
 			</p>

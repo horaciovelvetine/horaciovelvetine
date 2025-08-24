@@ -1,3 +1,6 @@
+import homeHeadshotVideo from '../../assets/img/home-headshot.mp4';
+import fallbackHeadshot from '../../assets/img/fallback-headshot.png';
+
 /**
  * A component that displays a circular video headshot with a fallback image
  * Links to Apple support documentation when clicked
@@ -18,10 +21,10 @@ export function VideoHeadshot() {
 				muted
 				className='rounded-full'>
 				<source
-					src='src/assets/img/home-headshot.mp4'
+					src={homeHeadshotVideo}
 					type='video/mp4'
 				/>
-				<img src='src/assets/img/fallback-headshot.png' />
+				<img src={fallbackHeadshot} />
 			</video>
 		</a>
 	);
