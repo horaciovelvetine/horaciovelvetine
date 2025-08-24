@@ -1,8 +1,11 @@
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { routeTree } from '../routeTree.gen.ts';
+import { lazy, Suspense } from 'react';
 
-import { DevsktopMain } from '../features/devsktop';
 import { useSiteSettings } from '../hooks/site';
+
+// Lazy load the heavy desktop component
+const DevsktopMain = lazy(() => import('../features/devsktop').then(module => ({ default: module.DevsktopMain })));
 
 declare module '@tanstack/react-router' {
 	interface Register {
@@ -47,7 +50,9 @@ export function SiteMain() {
 					router={router}
 					context={{ siteSettings }}
 				/>
-			:	<DevsktopMain siteSettings={siteSettings} />}
+				: <Suspense fallback={<div className="min-h-screen w-screen bg-stone-900 flex items-center justify-center text-white">Loading Desktop...</div>}>
+					<DevsktopMain siteSettings={siteSettings} />
+				</Suspense>}
 		</>
 	);
 }

@@ -1,12 +1,15 @@
 import {
-	SolvedokuWindow,
 	MainLandingWindow,
 	AboutThisSiteWindow,
-	RPSSKetchWindow,
 } from '../../features';
 import { useWindowManager } from '../../hooks/site';
 import type { SiteContext } from '../../types';
 import { WindowFrame, NavigationBar, DevsktopIcons } from './components';
+import { lazy } from 'react';
+
+// Lazy load heavy application windows (but keep P5.js as static import)
+const SolvedokuWindow = lazy(() => import('../../features/solvedoku/windows/solvedoku-window').then(module => ({ default: module.SolvedokuWindow })));
+const RPSSKetchWindow = lazy(() => import('../../features/rps/windows/rps-sketch-window').then(module => ({ default: module.RPSSKetchWindow })));
 
 /**
  * Main desktop component that renders the entire devsktop interface
@@ -45,7 +48,7 @@ export function DevsktopMain({ siteSettings }: SiteContext) {
 					windowManager={windowManager}
 				/>
 
-				{/* SOLVEDOKU */}
+				{/* SOLVEDOKU - Lazy Loaded */}
 				<WindowFrame
 					window={windowManager.solvedokuWindow}
 					Component={SolvedokuWindow}
@@ -53,7 +56,7 @@ export function DevsktopMain({ siteSettings }: SiteContext) {
 					windowManager={windowManager}
 				/>
 
-				{/* ROCK, PAPER, SCISSORS */}
+				{/* ROCK, PAPER, SCISSORS - Lazy Loaded */}
 				<WindowFrame
 					window={windowManager.rpsSketchWindow}
 					Component={RPSSKetchWindow}
