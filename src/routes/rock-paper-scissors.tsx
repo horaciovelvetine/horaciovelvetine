@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { RPSSKetchWindow } from '../features';
+import { RPSSKetchWindow } from '../features/rps/windows/rps-sketch-window';
 import { useRPSSketchWindow } from '../hooks/windows';
 
 export const Route = createFileRoute('/rock-paper-scissors')({

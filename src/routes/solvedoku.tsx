@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { SolvedokuWindow } from '../features';
+import { SolvedokuWindow } from '../features/solvedoku/windows/solvedoku-window';
 import { useSolvedokuWindow } from '../hooks/windows';
 
 export const Route = createFileRoute('/solvedoku')({
