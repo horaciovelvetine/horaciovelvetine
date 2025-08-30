@@ -1,26 +1,11 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import {
 	findCellDataDisplayWidth,
 	parseFormattedCellIDString,
 } from '../../../functions';
 import { CellData } from './cell-data';
 import type { SolvedokuWindowProps } from '../windows/solvedoku-window-props';
-
-// Local hook for window dimensions to prevent unnecessary re-renders
-function useWindowDimensions() {
-	const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
-
-	useEffect(() => {
-		const handleResize = () => {
-			setDimensions({ width: window.innerWidth, height: window.innerHeight });
-		};
-
-		window.addEventListener('resize', handleResize);
-		return () => { window.removeEventListener('resize', handleResize); };
-	}, []);
-
-	return dimensions;
-}
+import { useClientDimensionsUpdates } from '../../../hooks/site';
 
 /**
  * Renders a Sudoku game board as a table with interactive cells
@@ -46,7 +31,7 @@ export function GameBoardTable({
 		showStoredSolution,
 	} = windowState;
 
-	const { width, height } = useWindowDimensions();
+	const { width, height } = useClientDimensionsUpdates();
 
 	const rowBorderStyle = (rowIndex: number) =>
 		[2, 5].includes(rowIndex) ? 'border-b-4' : '';

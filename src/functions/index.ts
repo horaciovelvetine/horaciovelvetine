@@ -1,7 +1,6 @@
 // ? SITE
 export { capitalize } from './site/capitalize';
 export { setInitialWindowPosition } from './site/set-initial-window-position';
-export { unfocusedClickHandler } from './site/unfocused-click-handler';
 export {
 	TailwindBGs300,
 	TailwindBGs500,

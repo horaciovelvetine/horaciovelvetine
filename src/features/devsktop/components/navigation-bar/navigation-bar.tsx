@@ -1,7 +1,12 @@
 /* eslint-disable @eslint-react/jsx-key-before-spread */
+import type { SiteSettings, WindowManager } from '../../../../types';
 import { ClockDisplay } from './components/clock-display';
 import { NavBarMenuItemParent } from './components/nav-bar-menu-item-parent';
-import type { NavigationBarProps } from './navigation-bar-props';
+
+export interface NavigationBarProps {
+	siteSettings: SiteSettings;
+	windowManager: WindowManager;
+}
 
 /**
  * Navigation bar component that displays at the top of the screen.
