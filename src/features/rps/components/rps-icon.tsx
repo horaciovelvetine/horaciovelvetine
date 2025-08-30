@@ -1,30 +1,30 @@
 import type { IconProps } from '../../../types';
 
 /**
- * RPSIcon component renders an animated SVG icon for the Rock Paper Scissors game.
+ * Rock Paper Scissors Icon Component
  *
- * This component creates a visually striking icon featuring the three RPS game elements
- * (rock ✊, paper ✋, scissors ✌️) arranged in a dynamic composition with a gradient
- * background and explosion effect. The icon is designed to represent the competitive
- * nature of the game with animated elements and vibrant colors.
+ * A customizable SVG icon component that displays the three classic RPS game elements
+ * (rock ✊, paper ✋, scissors ✌️) arranged in a triangular formation with a gradient
+ * background and visual effects. Designed to represent the Rock Paper Scissors game
+ * with modern styling and scalable dimensions.
  *
  * Features:
- * - Scalable SVG icon with customizable size
- * - Gradient background with purple-to-violet transition
+ * - Scalable SVG with responsive emoji positioning
+ * - Purple-to-violet gradient background
  * - Radial explosion effect for visual impact
- * - Responsive emoji sizing based on icon dimensions
- * - Clean, modern design suitable for headers and menus
- * - Optimized positioning of game elements within the icon bounds
+ * - Dynamic emoji sizing based on icon dimensions
+ * - Triangle formation layout of game elements
+ * - Accessible with proper ARIA attributes
  *
- * The icon automatically calculates emoji sizing and positioning based on the provided
- * size prop, ensuring consistent visual proportions across different display contexts.
- * It's commonly used in headers, initialization menus, and about sections.
+ * The component automatically calculates emoji sizing and positioning to maintain
+ * proper proportions across different icon sizes, ensuring visual consistency
+ * throughout the application.
  *
- * @param props - Component props for the RPS icon
- * @param props.size - CSS class string defining the icon size (e.g., 'size-16', 'size-128')
- * @param props.classes - Additional CSS classes to apply to the SVG element
+ * @param {IconProps} props - The props for the RPSIcon component
+ * @param {string} [props.size='size-128'] - Tailwind CSS size class for the icon dimensions
+ * @param {string} [props.classes=' '] - Additional CSS classes to apply to the icon
+ * @param {boolean} [props.ariaHidden=false] - Whether the icon should be hidden from screen readers
  */
-
 export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
 	// Extract size number from size string (e.g. 'size-128' -> 128)
 	const sizeNumber = parseInt(size.split('-')[1]);
