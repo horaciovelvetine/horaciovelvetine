@@ -7,7 +7,6 @@ import {
 	ProjectCard,
 	ReactBadge,
 	ReactP5WrapperBadge,
-	SimpleInlineLink,
 	SpringBootBadge,
 	TailwindCSSBadge,
 	TypescriptBadge,
@@ -19,41 +18,63 @@ import {
 	VisualToolsGrid,
 } from '../features/devsktop/components';
 import { GITHUB, LINKEDIN } from '../consts/urls';
-import { GithubLogo, LinkedInLogo } from '../assets';
+import { GithubIcon, LinkedInIcon } from '../assets';
 
 // root/index.tsx
 export const Route = createFileRoute('/')({
 	component: MobileHomePage,
 });
 
+/**
+ * Mobile Home Page Component
+ *
+ * The main landing page component that provides an overview of the developer's skills,
+ * projects, and contact information. Features a responsive design optimized for mobile-first
+ * viewing with sections for introduction, skills showcase, and featured projects.
+ *
+ * The component includes:
+ * - Landing page introduction with social media links (GitHub, LinkedIn)
+ * - About section highlighting development philosophy and approach
+ * - Skills showcase organized into languages, frameworks, and visual tools grids
+ * - Featured project cards with technology badges and descriptions
+ *
+ * Uses a card-based layout with glass morphism effects, gradient backgrounds,
+ * and hover animations for an engaging user experience.
+ *
+ * @component
+ */
 function MobileHomePage() {
 	return (
 		<div className='flex flex-col gap-2 mx-0.5 my-2'>
 			<div className='bg-stone-900/60 py-2 rounded-xl ring-1 ring-stone-300/30'>
 				<LandingPageIntro />
 				<div className='flex justify-center items-center text-lg px-2 mx-auto font-bold gap-2 border-t-2 pt-1 mt-1.5 border-stone-300/30'>
-					<div className='inline-flex items-center gap-1'>
-						<SimpleInlineLink
-							text='Github'
-							url={GITHUB}
-							showArrow
+					<a
+						className='inline-flex gap-1 text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'
+						target='_blank'
+						rel='noopener noreferrer'
+						href={GITHUB}>
+						<span aria-hidden={true}>&rarr;</span>
+						Github
+						<GithubIcon
+							size='size-6'
+							ariaHidden={true}
+							classes='text-white'
 						/>
-						<img
-							src={GithubLogo}
-							className='h-6 '
+					</a>
+					<a
+						className='inline-flex gap-1 text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'
+						target='_blank'
+						rel='noopener noreferrer'
+						href={LINKEDIN}>
+						<span aria-hidden={true}>&rarr;</span>
+						LinkedIn
+						<LinkedInIcon
+							size='size-6'
+							ariaHidden={true}
+							classes='text-sky-500'
 						/>
-					</div>
-					<div className='inline-flex items-center gap-1'>
-						<SimpleInlineLink
-							text='LinkedIn'
-							url={LINKEDIN}
-							showArrow
-						/>
-						<img
-							src={LinkedInLogo}
-							className='h-6'
-						/>
-					</div>
+					</a>
 				</div>
 			</div>
 

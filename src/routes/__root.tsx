@@ -21,6 +21,27 @@ const siteNavigation = [
 	{ name: 'Contact', href: '/contact' },
 ];
 
+/**
+ * Root Component for the velvet.dev Application
+ *
+ * The main root component that provides the layout structure for the entire application.
+ * Features a responsive navigation header with mobile menu functionality, main content area,
+ * and footer. Uses TanStack Router for routing and Headless UI for accessible mobile menu dialog.
+ *
+ * Features:
+ * - Responsive navigation header with logo and mobile menu toggle
+ * - Mobile-first hamburger menu with overlay dialog
+ * - Site navigation links for all main pages
+ * - Integration with TanStack Router for client-side routing
+ * - Consistent layout structure across all pages
+ * - Accessibility features including screen reader support
+ *
+ * The component manages mobile menu state and provides smooth transitions and hover effects
+ * for enhanced user experience. The navigation includes links to Home, Solvedoku game,
+ * Rock Paper Scissors game, and Contact page.
+ *
+ * @component
+ */
 function RootComponent() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
