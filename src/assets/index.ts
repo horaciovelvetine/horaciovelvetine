@@ -1,8 +1,3 @@
-// Image logos...
-import LinkedInLogo from './icons/linkedin-logo.svg';
-import GithubLogo from './icons/github-logo.svg';
-
-// Logo Components
 export { CloseIcon } from './icons/close-icon';
 export { MenuBarsIcon } from './icons/menu-bars-icon';
 export { CodeBlockIcon } from './icons/code-block-icon';
@@ -36,5 +31,5 @@ export { PhotoshopIcon } from './icons/photoshop-icon.tsx';
 export { IllustratorIcon } from './icons/illustrator-icon.tsx';
 export { P5JSIcon } from './icons/p5js-icon.tsx';
 export { FigmaIcon } from './icons/figma-icon.tsx';
-
-export { LinkedInLogo, GithubLogo };
+export { GithubIcon } from './icons/github-icon.tsx';
+export { LinkedInIcon } from './icons/linkedin-icon.tsx';
