@@ -46,7 +46,7 @@ export const Route = createFileRoute('/')({
 function MobileHomePage() {
 	return (
 		<div className='flex flex-col gap-2 mx-0.5 my-2'>
-			<div className='bg-stone-900/60 py-2 rounded-xl ring-1 ring-stone-300/30'>
+			<div className='bg-stone-900/60 py-2 rounded-xl'>
 				<LandingPageIntro />
 				<div className='flex justify-center items-center text-lg px-2 mx-auto font-bold gap-2 border-t-2 pt-1 mt-1.5 border-stone-300/30'>
 					<a
@@ -78,7 +78,7 @@ function MobileHomePage() {
 				</div>
 			</div>
 
-			<div className='bg-stone-900/60 py-3 rounded-xl ring-1 ring-stone-300/30'>
+			<div className='bg-stone-900/60 py-3 rounded-xl'>
 				<h2 className='tracking-tighter text-center font-extrabold sm:font-bold text-3xl xs:text-4xl sm:text-5xl mb-2'>
 					About:
 				</h2>
@@ -93,7 +93,7 @@ function MobileHomePage() {
 				</div>
 			</div>
 
-			<div className='bg-stone-900/60 py-2 rounded-xl ring-1 ring-stone-300/30 px-2'>
+			<div className='bg-stone-900/60 py-2 rounded-xl px-2'>
 				<div>
 					<h2 className='tracking-tighter text-center font-extrabold sm:font-bold text-3xl xs:text-4xl sm:text-5xl mb-2'>
 						Work:
