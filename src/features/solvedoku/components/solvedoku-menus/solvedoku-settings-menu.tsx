@@ -2,7 +2,7 @@ import { FastForwardIcon, RewindIcon } from '../../../../assets';
 import { TailwindBGs500, TailwindDropShadows } from '../../../../functions';
 import type { Colors } from '../../../../types';
 import type { SolvedokuWindowProps } from '../../windows/solvedoku-window-props';
-import { PuzzleButton } from '../puzzle-button/puzzle-button';
+import { PuzzleButton } from '../puzzle-button';
 
 /**
  * Mobile menu component that provides settings controls for the Solvedoku game

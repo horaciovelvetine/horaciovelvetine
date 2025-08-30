@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { EraserIcon } from '../../../../assets';
-import { PuzzleButton } from '../puzzle-button/puzzle-button';
+import { PuzzleButton } from '../puzzle-button';
 import {
 	capitalize,
 	parseFormattedCellIDString,

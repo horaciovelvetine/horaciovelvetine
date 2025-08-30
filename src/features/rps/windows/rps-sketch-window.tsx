@@ -17,7 +17,10 @@ import type { RPSSketchWindowProps } from './rps-sketch-window-props';
 
 // Local hook for window dimensions to prevent unnecessary re-renders
 function useWindowDimensions() {
-	const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
+	const [dimensions, setDimensions] = useState({
+		width: window.innerWidth,
+		height: window.innerHeight,
+	});
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -25,7 +28,9 @@ function useWindowDimensions() {
 		};
 
 		window.addEventListener('resize', handleResize);
-		return () => window.removeEventListener('resize', handleResize);
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
 	}, []);
 
 	return dimensions;
@@ -66,7 +71,10 @@ export function RPSSKetchWindow({
 	siteSettings,
 }: RPSSketchWindowProps) {
 	const { width, height } = useWindowDimensions();
-	const canvasSize = setupCanvasDimensions({ width, height }, siteSettings.useMobileCompatability);
+	const canvasSize = setupCanvasDimensions(
+		{ width, height },
+		siteSettings.useMobileCompatability
+	);
 	const sketchState = useSketchUpdateState(canvasSize, windowState);
 
 	/**

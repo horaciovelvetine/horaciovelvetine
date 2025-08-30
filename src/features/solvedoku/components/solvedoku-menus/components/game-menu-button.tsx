@@ -1,6 +1,13 @@
-import { TailwindBGs500 } from '../../../../../../functions';
-import type { GameMenuButtonProps } from './game-menu-button-props';
+import { TailwindBGs500 } from '../../../../../functions';
+import type { Colors } from '../../../../../types';
 
+export interface GameMenuButtonProps {
+	accentColor: Colors;
+	buttonTitle: string;
+	clickHandler: () => void;
+	buttonText: string;
+	isDisabled?: boolean;
+}
 /**
  * A button component used in game menus that provides consistent styling and behavior
  * @param {Colors} props.accentColor - The theme color to use for the button background

@@ -3,7 +3,7 @@ import {
 	findCellDataDisplayWidth,
 	parseFormattedCellIDString,
 } from '../../../functions';
-import { CellData } from './cell-data/cell-data';
+import { CellData } from './cell-data';
 import type { SolvedokuWindowProps } from '../windows/solvedoku-window-props';
 
 // Local hook for window dimensions to prevent unnecessary re-renders
@@ -16,7 +16,7 @@ function useWindowDimensions() {
 		};
 
 		window.addEventListener('resize', handleResize);
-		return () => window.removeEventListener('resize', handleResize);
+		return () => { window.removeEventListener('resize', handleResize); };
 	}, []);
 
 	return dimensions;

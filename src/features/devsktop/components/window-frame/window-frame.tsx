@@ -1,17 +1,39 @@
 // Disable any warnings for React Draggable ref per:
 // https://github.com/react-grid-layout/react-draggable/issues/779
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useLayoutEffect, useRef, useState, useEffect } from 'react';
+import {
+	useLayoutEffect,
+	useRef,
+	useState,
+	useEffect,
+	type ReactNode,
+} from 'react';
 import Draggable, {
 	type DraggableData,
 	type DraggableEvent,
 } from 'react-draggable';
-import type { Dimensions, Position, SiteSettings, ManagedWindow, WindowManager } from '../../../../types';
+import type {
+	Dimensions,
+	Position,
+	SiteSettings,
+	ManagedWindow,
+	WindowManager,
+} from '../../../../types';
 import { TitleBar } from './title-bar';
+
+export interface WindowFrameProps {
+	window: ManagedWindow;
+	windowManager: WindowManager;
+	siteSettings: SiteSettings;
+	Component: (args: any) => ReactNode;
+}
 
 // Local hook for window dimensions to prevent unnecessary re-renders
 function useWindowDimensions() {
-	const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
+	const [dimensions, setDimensions] = useState({
+		width: window.innerWidth,
+		height: window.innerHeight,
+	});
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -19,17 +41,12 @@ function useWindowDimensions() {
 		};
 
 		window.addEventListener('resize', handleResize);
-		return () => window.removeEventListener('resize', handleResize);
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
 	}, []);
 
 	return dimensions;
-}
-
-interface WindowFrameProps {
-	window: ManagedWindow;
-	siteSettings: SiteSettings;
-	windowManager: WindowManager;
-	Component: React.ComponentType<any>;
 }
 
 /**

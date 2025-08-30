@@ -5,27 +5,27 @@ const MINIMUM_WINDOW_FRAME_WIDTH = 760;
 /**
  * Calculates the initial position for a window based on dimensions and mobile compatibility
  * Centers window horizontally and positions vertically based on mobile vs desktop
- * 
+ *
  * @param {Dimensions} clientDimensions - The width and height of the client viewport
  * @param {boolean} useMobileCompatability - Whether mobile compatibility mode is enabled
  * @returns {Position} The calculated x,y coordinates for initial window position
  */
 
 export function setInitialWindowPosition(
-  clientDimensions: Dimensions,
-  useMobileCompatability: boolean
+	clientDimensions: Dimensions,
+	useMobileCompatability: boolean
 ): Position {
-  // Center window horizontally by subtracting half window width from half screen width
-  const x = Math.max(
-    0,
-    (clientDimensions.width - MINIMUM_WINDOW_FRAME_WIDTH) / 2
-  );
+	// Center window horizontally by subtracting half window width from half screen width
+	const x = Math.max(
+		0,
+		(clientDimensions.width - MINIMUM_WINDOW_FRAME_WIDTH) / 2
+	);
 
-  // Center vertically by placing at 1/4 screen height for mobile, center for desktop +32px to accomodate the menu on desktop
-  const y =
-    useMobileCompatability ?
-      (clientDimensions.height / 4)
-      : Math.max(0, clientDimensions.height / 3 - 200) + 32;
+	// Center vertically by placing at 1/4 screen height for mobile, center for desktop +32px to accomodate the menu on desktop
+	const y =
+		useMobileCompatability ?
+			clientDimensions.height / 4
+		:	Math.max(0, clientDimensions.height / 3 - 200) + 32;
 
-  return { x, y };
+	return { x, y };
 }

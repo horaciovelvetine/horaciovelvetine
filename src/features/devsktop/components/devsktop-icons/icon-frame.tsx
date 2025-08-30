@@ -1,15 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useLayoutEffect, useRef, useState, useEffect } from 'react';
+import { useLayoutEffect, useRef, useState, useEffect, type ReactNode } from 'react';
 import Draggable, {
 	type DraggableData,
 	type DraggableEvent,
 } from 'react-draggable';
-import type { IconFrameProps } from './icon-frame-props';
-import type { Position } from '../../../../types';
+import type { IconProps, Position } from '../../../../types';
+
+
+export interface IconFrameProps {
+	Icon: ({ size }: IconProps) => ReactNode;
+	label: string;
+	onClickAction: () => void;
+	baseTrayPosition: Position;
+	iconIndex: number;
+	iconCount: number;
+	iconSpacing: number;
+	iconMargin: number;
+}
 
 // Local hook for window dimensions to prevent unnecessary re-renders
 function useWindowDimensions() {
-	const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
+	const [dimensions, setDimensions] = useState({
+		width: window.innerWidth,
+		height: window.innerHeight,
+	});
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -17,7 +31,9 @@ function useWindowDimensions() {
 		};
 
 		window.addEventListener('resize', handleResize);
-		return () => window.removeEventListener('resize', handleResize);
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
 	}, []);
 
 	return dimensions;
@@ -25,18 +41,18 @@ function useWindowDimensions() {
 
 /**
  * IconFrame component that renders a draggable desktop icon with label
- * 
+ *
  * Provides a draggable wrapper around application icons that can be repositioned by the user
  * while maintaining proper tray positioning when screen dimensions change. Supports both
  * mouse and touch interactions with double-click/tap to execute actions.
- * 
+ *
  * Features:
  * - Draggable icon positioning with drag offset preservation
  * - Automatic repositioning when screen dimensions change
  * - Screen boundary clamping to prevent icons from moving off-screen
  * - Double-click and double-tap support for action execution
  * - Visual feedback with scaling animation on interaction
- * 
+ *
  * @param {IconFrameProps} props - Component properties
  * @param {({ size }: IconProps) => ReactNode} props.Icon - React component that renders the icon with size props
  * @param {string} props.label - Text label displayed below the icon
