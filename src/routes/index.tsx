@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { SolvedokuIcon } from '../features';
 import {
 	CSSBadge,
+	InlineSocialLink,
 	JavaBadge,
 	P5JSBadge,
 	ProjectCard,
@@ -49,32 +50,18 @@ function MobileHomePage() {
 			<div className='bg-stone-900/60 py-2 rounded-xl'>
 				<LandingPageIntro />
 				<div className='flex justify-center items-center text-lg px-2 mx-auto font-bold gap-2 border-t-2 pt-1 mt-1.5 border-stone-300/30'>
-					<a
-						className='inline-flex gap-1 text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'
-						target='_blank'
-						rel='noopener noreferrer'
-						href={GITHUB}>
-						<span aria-hidden={true}>&rarr;</span>
-						Github
-						<GithubIcon
-							size='size-6'
-							ariaHidden={true}
-							classes='text-white'
-						/>
-					</a>
-					<a
-						className='inline-flex gap-1 text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'
-						target='_blank'
-						rel='noopener noreferrer'
-						href={LINKEDIN}>
-						<span aria-hidden={true}>&rarr;</span>
-						LinkedIn
-						<LinkedInIcon
-							size='size-6'
-							ariaHidden={true}
-							classes='text-sky-500'
-						/>
-					</a>
+					<InlineSocialLink
+						text='Github'
+						href={GITHUB}
+						SocialIcon={GithubIcon}
+						iconStyle='text-white'
+					/>
+					<InlineSocialLink
+						text='LinkedIn'
+						href={LINKEDIN}
+						SocialIcon={LinkedInIcon}
+						iconStyle='text-sky-500'
+					/>
 				</div>
 			</div>
 
@@ -103,9 +90,9 @@ function MobileHomePage() {
 						<ProjectCard
 							title='Wikiverse'
 							description={`The Wikiverse is a web app (and API) that allows you to search Wikidata and uniquely explore topics in 3D space.  Leveraging Wikidata's publically available api for data, the Wikiverse dynamically generates a graph of the result and it's related topics, to answer the question 'What would Wikipedia look like in 3D?'.`}
-							thumbnailSrc='https://raw.githubusercontent.com/horaciovelvetine/wikidata-universe-client/main/.github/readme_assets/wikipedia_in3D_v0.0.1.png'
+							thumbnailSource='https://raw.githubusercontent.com/horaciovelvetine/wikidata-universe-client/main/.github/readme_assets/wikipedia_in3D_v0.0.1.png'
 							linkText='Visit the Github'
-							linkURL='https://github.com/horaciovelvetine/wikidata-universe-client'
+							hrefLink='https://github.com/horaciovelvetine/wikidata-universe-client'
 							tools={[
 								JavaBadge,
 								SpringBootBadge,
@@ -119,9 +106,9 @@ function MobileHomePage() {
 						<ProjectCard
 							title='Rock Paper Scissors'
 							description={`A self playing game of Rock, Paper, Scissors where emoji's fly around the screen colliding with each other until only the winner remains. Built with P5.js and inspired by a viral GIF!`}
-							thumbnailSrc='https://raw.githubusercontent.com/horaciovelvetine/rock-paper-scissors/main/src/assets/Demo_Gif.gif'
-							pageLinkText='Open Rock, Paper, Scissors'
-							pageLinkRoute='/rock-paper-scissors'
+							thumbnailSource='https://raw.githubusercontent.com/horaciovelvetine/rock-paper-scissors/main/src/assets/Demo_Gif.gif'
+							linkText='Open Rock, Paper, Scissors'
+							pageLink='/rock-paper-scissors'
 							tools={[
 								ReactBadge,
 								TypescriptBadge,
@@ -134,8 +121,8 @@ function MobileHomePage() {
 							title='Solvedoku'
 							description={`A Sudoku puzzle solver and game, built for the browser using React and Typescript, it solves puzzles in real-time classic backtracking algorithim. Just enter your puzzle (or have it generate one for you) and hit 'Solve Puzzle' to watch it work out a solution in real-time!`}
 							ThumbnailIcon={SolvedokuIcon}
-							pageLinkRoute={'/solvedoku'}
-							pageLinkText='Open Solvedoku'
+							pageLink={'/solvedoku'}
+							linkText='Open Solvedoku'
 							tools={[ReactBadge, TypescriptBadge, TailwindCSSBadge]}
 						/>
 					</div>

@@ -1,7 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router';
 
 import { GithubIcon, LinkedInIcon } from '../assets';
-import { GradientLinkText, SimpleInlineLink } from '../components';
+import {
+	GradientLinkText,
+	InlineSocialLink,
+	SimpleInlineLink,
+} from '../components';
 import { GH_REPO, GITHUB, LINKEDIN, MAILTO } from '../consts/urls';
 
 export const Route = createFileRoute('/contact')({
@@ -33,7 +37,7 @@ function MobileContactPage() {
 					<p className='font-semibold text-lg/tight xs:text-xl sm:text-2xl md:text-3xl pt-2 text-center xs:w-3/4'>
 						The easiest way to get in touch is simply to{' '}
 						<SimpleInlineLink
-							url={MAILTO}
+							href={MAILTO}
 							text='email me here'
 							showArrow
 						/>
@@ -67,33 +71,19 @@ function MobileContactPage() {
 							Socials:
 						</h2>
 						<div className='flex px-2 py-1 gap-2'>
-							<a
-								className='inline-flex gap-1 text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'
-								target='_blank'
-								rel='noopener noreferrer'
-								href={GITHUB}>
-								<span aria-hidden={true}>&rarr;</span>
-								Github
-								<GithubIcon
-									size='size-6'
-									ariaHidden={true}
-									classes='text-white'
-								/>
-							</a>
+							<InlineSocialLink
+								text='Github'
+								href={GITHUB}
+								SocialIcon={GithubIcon}
+								iconStyle='text-white'
+							/>
 							<span className='text-lg text-stone-300/30 font-bold'>/</span>
-							<a
-								className='inline-flex gap-1 text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'
-								target='_blank'
-								rel='noopener noreferrer'
-								href={LINKEDIN}>
-								<span aria-hidden={true}>&rarr;</span>
-								LinkedIn
-								<LinkedInIcon
-									size='size-6'
-									ariaHidden={true}
-									classes='text-sky-500'
-								/>
-							</a>
+							<InlineSocialLink
+								text='LinkedIn'
+								href={LINKEDIN}
+								SocialIcon={LinkedInIcon}
+								iconStyle='text-sky-500'
+							/>
 						</div>
 					</div>
 				</div>

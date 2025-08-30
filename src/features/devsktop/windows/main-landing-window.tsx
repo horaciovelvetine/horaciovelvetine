@@ -31,6 +31,7 @@ import {
 } from '../../../assets';
 import { ToolGridItem } from '../components/landing-page/tool-grid-item';
 import { GITHUB, LINKEDIN } from '../../../consts/urls';
+import { InlineSocialLink } from '../../../components';
 
 export function MainLandingWindow() {
 	const languages = [
@@ -283,32 +284,18 @@ export function MainLandingWindow() {
 				</Disclosure>
 			</div>
 			<div className='flex justify-center items-center text-lg mx-auto font-bold gap-2 border-t-2 border-stone-300/30 pt-1.5 mt-1'>
-				<a
-					className='inline-flex gap-1 text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'
-					target='_blank'
-					rel='noopener noreferrer'
-					href={GITHUB}>
-					<span aria-hidden={true}>&rarr;</span>
-					Github
-					<GithubIcon
-						size='size-6'
-						ariaHidden={true}
-						classes='text-white'
-					/>
-				</a>
-				<a
-					className='inline-flex gap-1 text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'
-					target='_blank'
-					rel='noopener noreferrer'
-					href={LINKEDIN}>
-					<span aria-hidden={true}>&rarr;</span>
-					LinkedIn
-					<LinkedInIcon
-						size='size-6'
-						ariaHidden={true}
-						classes='text-sky-500'
-					/>
-				</a>
+				<InlineSocialLink
+					text='Github'
+					href={GITHUB}
+					SocialIcon={GithubIcon}
+					iconStyle='text-white'
+				/>
+				<InlineSocialLink
+					text='LinkedIn'
+					href={LINKEDIN}
+					SocialIcon={LinkedInIcon}
+					iconStyle='text-sky-500'
+				/>
 			</div>
 		</>
 	);
