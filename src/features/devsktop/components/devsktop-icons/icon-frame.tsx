@@ -1,11 +1,13 @@
+// Disable any warnings for React Draggable ref per:
+// https://github.com/react-grid-layout/react-draggable/issues/779
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useLayoutEffect, useRef, useState, useEffect, type ReactNode } from 'react';
+import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import Draggable, {
 	type DraggableData,
 	type DraggableEvent,
 } from 'react-draggable';
 import type { IconProps, Position } from '../../../../types';
-
+import { useClientDimensionsUpdates } from '../../../../hooks/site';
 
 export interface IconFrameProps {
 	Icon: ({ size }: IconProps) => ReactNode;
@@ -16,27 +18,6 @@ export interface IconFrameProps {
 	iconCount: number;
 	iconSpacing: number;
 	iconMargin: number;
-}
-
-// Local hook for window dimensions to prevent unnecessary re-renders
-function useWindowDimensions() {
-	const [dimensions, setDimensions] = useState({
-		width: window.innerWidth,
-		height: window.innerHeight,
-	});
-
-	useEffect(() => {
-		const handleResize = () => {
-			setDimensions({ width: window.innerWidth, height: window.innerHeight });
-		};
-
-		window.addEventListener('resize', handleResize);
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
-	}, []);
-
-	return dimensions;
 }
 
 /**
@@ -88,7 +69,7 @@ export function IconFrame({
 		};
 	});
 
-	const { width, height } = useWindowDimensions();
+	const { width, height } = useClientDimensionsUpdates();
 
 	/**
 	 * Reposition icon when screen dimensions change to keep it in the correct tray position

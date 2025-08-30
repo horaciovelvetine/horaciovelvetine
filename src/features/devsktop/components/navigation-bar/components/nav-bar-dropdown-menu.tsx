@@ -1,6 +1,25 @@
 import { Fragment } from 'react/jsx-runtime';
 import type { NavBarMenuChild } from '../../../../../types';
 
+/**
+ * NavBarDropdownMenu component that renders a dropdown menu with multiple options
+ *
+ * This component creates a styled dropdown menu that appears below navigation bar items.
+ * It supports various menu item features including keyboard shortcuts, disabled states,
+ * hover explanations, section headers, and menu breaks between groups of items.
+ *
+ * Features:
+ * - Backdrop blur and shadow styling for modern appearance
+ * - Support for disabled menu items with visual feedback
+ * - Keyboard shortcut display on the right side of menu items
+ * - Hover tooltips for additional context
+ * - Section headers and menu breaks for organization
+ * - Click handlers for menu item actions
+ *
+ * @param {object} props - Component properties
+ * @param {NavBarMenuChild[]} props.dropdownOptions - Array of menu options to display
+ * @returns JSX element containing a styled dropdown menu with the provided options
+ */
 export function NavBarDropdownMenu({
 	dropdownOptions,
 }: {
