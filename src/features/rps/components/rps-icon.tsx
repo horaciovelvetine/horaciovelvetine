@@ -28,8 +28,23 @@ import type { IconProps } from '../../../types';
 export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
 	// Extract size number from size string (e.g. 'size-128' -> 128)
 	const sizeNumber = parseInt(size.split('-')[1]);
-	const emojiSize = sizeNumber * 3;
-	const scissorsPosition = { x: 64 - emojiSize / 2, y: 128 - emojiSize - 15 };
+
+	const emojiSize = Math.max(sizeNumber * 0.33, 20); // 33% of icon size, minimum 20px
+
+	const centerX = 128 / 2;
+	const centerY = 128 / 2 + 8; // Shifted down by 8 units (about 6% of icon height)
+
+	// Radius for the triangle formation (distance from center to each emoji)
+	const radius = 128 * 0.3; // 30% of icon size for good spacing
+
+	// Rock (✊) at top, Paper (✋) at bottom-right, Scissors (✌️) at bottom-left
+	const rockX = centerX; // Top center
+	const rockY = centerY - radius;
+	const paperX = centerX + radius * 0.866; // cos(30°) * radius for bottom-right
+	const paperY = centerY + radius * 0.5; // sin(30°) * radius for bottom-right
+	const scissorsX = centerX - radius * 0.866; // -cos(30°) * radius for bottom-left
+	const scissorsY = centerY + radius * 0.5; // sin(30°) * radius for bottom-left
+
 	return (
 		<svg
 			viewBox='0 0 128 128'
@@ -132,7 +147,7 @@ export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
 				height='60'
 				rx='24'
 				ry='24'
-				fill='url(#rpsBbackgroundGradient)'
+				fill='url(#rpsBackgroundGradient)'
 				opacity='0.3'
 			/>
 
@@ -147,16 +162,16 @@ export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
 				fill='url(#simpleExplosionGradient)'
 			/>
 
-			{/* Rock emoji (✊) - Top Left */}
+			{/* Rock emoji (✊) - Top */}
 			<foreignObject
-				x='12'
-				y='16'
-				width={emojiSize}
-				height={emojiSize}
-				transform={`rotate(30 40 40)`}>
+				x={rockX - emojiSize}
+				y={rockY - emojiSize}
+				width={emojiSize * 2}
+				height={emojiSize * 2}
+				transform={`rotate(30 ${rockX.toString()} ${rockY.toString()})`}>
 				<div
 					style={{
-						fontSize: `${(emojiSize * 0.65).toString()}px`,
+						fontSize: `${(emojiSize * 2).toString()}px`,
 						lineHeight: 1,
 						display: 'flex',
 						alignItems: 'center',
@@ -168,16 +183,16 @@ export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
 				</div>
 			</foreignObject>
 
-			{/* Paper emoji (✋) - Top Right */}
+			{/* Paper emoji (✋) - Bottom Right */}
 			<foreignObject
-				x={128 - emojiSize - 8}
-				y='15'
-				width={emojiSize}
-				height={emojiSize}
-				transform={`rotate(-30 90 45)`}>
+				x={paperX - emojiSize}
+				y={paperY - emojiSize}
+				width={emojiSize * 2}
+				height={emojiSize * 2}
+				transform={`rotate(-30 ${paperX.toString()} ${paperY.toString()})`}>
 				<div
 					style={{
-						fontSize: `${(emojiSize * 0.8).toString()}px`,
+						fontSize: `${(emojiSize * 2).toString()}px`,
 						lineHeight: 1,
 						display: 'flex',
 						alignItems: 'center',
@@ -189,16 +204,16 @@ export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
 				</div>
 			</foreignObject>
 
-			{/* Scissors emoji (✌️) - Bottom Center */}
+			{/* Scissors emoji (✌️) - Bottom Left */}
 			<foreignObject
-				x={scissorsPosition.x + 8}
-				y={scissorsPosition.y - 18}
-				width={emojiSize}
-				height={emojiSize}
-				transform={`rotate(30 ${scissorsPosition.x.toString()} ${scissorsPosition.y.toString()})`}>
+				x={scissorsX - emojiSize}
+				y={scissorsY - emojiSize}
+				width={emojiSize * 2}
+				height={emojiSize * 2}
+				transform={`rotate(30 ${scissorsX.toString()} ${scissorsY.toString()})`}>
 				<div
 					style={{
-						fontSize: `${(emojiSize * 0.8).toString()}px`,
+						fontSize: `${(emojiSize * 2).toString()}px`,
 						lineHeight: 1,
 						display: 'flex',
 						alignItems: 'center',
