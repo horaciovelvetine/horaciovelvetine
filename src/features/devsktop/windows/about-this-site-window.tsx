@@ -1,8 +1,7 @@
-import { CloseIcon, GithubLogo } from '../../../assets';
+import { CloseIcon, GithubIcon } from '../../../assets';
 import {
 	ESLintBadge,
 	GradientLinkText,
-	IconLink,
 	P5JSBadge,
 	PostCSSBadge,
 	ReactBadge,
@@ -39,11 +38,17 @@ export function AboutThisSiteWindow() {
 						<p className='text-2xl tracking-tighter font-extrabold px-1'>
 							source code on:{' '}
 						</p>
-						<IconLink
-							iconSrc={GithubLogo}
-							url={GH_REPO}
-							size='w-12'
-						/>{' '}
+						<a
+							className='inline-flex gap-1 text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'
+							target='_blank'
+							rel='noopener noreferrer'
+							href={GH_REPO}>
+							<GithubIcon
+								size='size-12'
+								ariaHidden={true}
+								classes='text-white'
+							/>
+						</a>{' '}
 					</div>
 					<div>
 						<h5 className='leading-4.5 font-bold text-white/50  text-center mx-20'>
