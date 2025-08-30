@@ -1,11 +1,27 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import Draggable, {
 	type DraggableData,
 	type DraggableEvent,
 } from 'react-draggable';
 import type { IconFrameProps } from './icon-frame-props';
 import type { Position } from '../../../../types';
+
+// Local hook for window dimensions to prevent unnecessary re-renders
+function useWindowDimensions() {
+	const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
+
+	useEffect(() => {
+		const handleResize = () => {
+			setDimensions({ width: window.innerWidth, height: window.innerHeight });
+		};
+
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
+
+	return dimensions;
+}
 
 /**
  * IconFrame component that renders a draggable desktop icon with label
@@ -27,7 +43,7 @@ import type { Position } from '../../../../types';
  * @param {() => void} props.onClickAction - Callback function executed when the icon is double-clicked or double-tapped
  * @param {Position} props.baseTrayPosition - Base position of the tray in the upper right corner
  * @param {number} props.iconIndex - Index of the icon within the tray for horizontal spacing
- * @param {SiteSettings} props.siteSettings - Site settings containing client dimensions for repositioning
+ * @param {SiteSettings} props.siteSettings - Site settings for icon behavior
  * @param {number} props.iconCount - Total number of icons in the tray
  * @param {number} props.iconSpacing - Spacing between/around icons in pixels
  * @param {number} props.iconMargin - Margin used to bound the icons to the screen edges
@@ -39,7 +55,6 @@ export function IconFrame({
 	onClickAction,
 	baseTrayPosition,
 	iconIndex,
-	siteSettings,
 	iconCount,
 	iconSpacing,
 	iconMargin,
@@ -57,12 +72,13 @@ export function IconFrame({
 		};
 	});
 
+	const { width, height } = useWindowDimensions();
+
 	/**
 	 * Reposition icon when screen dimensions change to keep it in the correct tray position
 	 * while preserving the user's drag offset and ensuring the icon stays within screen bounds
 	 */
 	useLayoutEffect(() => {
-		const { width, height } = siteSettings.clientDimensions;
 		const trayWidth = iconSpacing * iconCount;
 
 		const newTrayPosition = {
@@ -91,7 +107,8 @@ export function IconFrame({
 
 		setPosition(newIconPosition);
 	}, [
-		siteSettings.clientDimensions,
+		width,
+		height,
 		iconIndex,
 		userDragOffset,
 		iconCount,

@@ -3,6 +3,23 @@ import { SolvedokuIcon } from '../../../solvedoku';
 import type { Position, SiteSettings, WindowManager } from '../../../../types';
 import { HomeIcon } from './home-icon';
 import { IconFrame } from './icon-frame';
+import { useState, useEffect } from 'react';
+
+// Local hook for window dimensions to prevent unnecessary re-renders
+function useWindowDimensions() {
+	const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
+
+	useEffect(() => {
+		const handleResize = () => {
+			setDimensions({ width: window.innerWidth, height: window.innerHeight });
+		};
+
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
+
+	return dimensions;
+}
 
 interface DevsktopIconsProps {
 	siteSettings: SiteSettings;
@@ -21,13 +38,15 @@ interface DevsktopIconsProps {
  * - Icons handle their own repositioning when screen dimensions change
  *
  * @param {DevsktopIconsProps} props - Component properties
- * @param {SiteSettings} props.siteSettings - Global site settings including client dimensions for calculating icon positions
+ * @param {SiteSettings} props.siteSettings - Global site settings for icon behavior
  * @param {WindowManager} props.windowManager - Window manager instance for opening windows when icons are clicked
  * @returns JSX element containing positioned desktop application icons
  */
 export function DevsktopIcons(props: DevsktopIconsProps) {
 	const iconSpacing = 120;
 	const iconMargin = 10;
+	const { width } = useWindowDimensions();
+
 	const ICONS = [
 		{
 			component: HomeIcon,
@@ -66,7 +85,6 @@ export function DevsktopIcons(props: DevsktopIconsProps) {
 		return { x, y };
 	}
 
-	const { width } = props.siteSettings.clientDimensions;
 	const baseTrayPosition = calculateTrayPosition(width);
 
 	return (
@@ -79,7 +97,6 @@ export function DevsktopIcons(props: DevsktopIconsProps) {
 					onClickAction={icon.onClick}
 					baseTrayPosition={baseTrayPosition}
 					iconIndex={index}
-					siteSettings={props.siteSettings}
 					iconCount={ICONS.length}
 					iconSpacing={iconSpacing}
 					iconMargin={iconMargin}

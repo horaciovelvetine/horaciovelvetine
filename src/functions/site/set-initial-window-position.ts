@@ -1,21 +1,20 @@
-import type { Position, SiteSettings } from '../../types';
+import type { Position, Dimensions } from '../../types';
 
 const MINIMUM_WINDOW_FRAME_WIDTH = 760;
 
 /**
- * Calculates the initial position for a window based on site settings
+ * Calculates the initial position for a window based on dimensions and mobile compatibility
  * Centers window horizontally and positions vertically based on mobile vs desktop
  * 
- * @param {SiteSettings} settings - Site configuration containing client dimensions and mobile compatibility flag
- * @param {Object} settings.clientDimensions - The width and height of the client viewport
- * @param {boolean} settings.useMobileCompatability - Whether mobile compatibility mode is enabled
+ * @param {Dimensions} clientDimensions - The width and height of the client viewport
+ * @param {boolean} useMobileCompatability - Whether mobile compatibility mode is enabled
  * @returns {Position} The calculated x,y coordinates for initial window position
  */
 
-export function setInitialWindowPosition({
-  clientDimensions,
-  useMobileCompatability,
-}: SiteSettings): Position {
+export function setInitialWindowPosition(
+  clientDimensions: Dimensions,
+  useMobileCompatability: boolean
+): Position {
   // Center window horizontally by subtracting half window width from half screen width
   const x = Math.max(
     0,

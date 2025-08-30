@@ -1,10 +1,26 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import {
 	findCellDataDisplayWidth,
 	parseFormattedCellIDString,
 } from '../../../functions';
 import { CellData } from './cell-data/cell-data';
 import type { SolvedokuWindowProps } from '../windows/solvedoku-window-props';
+
+// Local hook for window dimensions to prevent unnecessary re-renders
+function useWindowDimensions() {
+	const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
+
+	useEffect(() => {
+		const handleResize = () => {
+			setDimensions({ width: window.innerWidth, height: window.innerHeight });
+		};
+
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
+
+	return dimensions;
+}
 
 /**
  * Renders a Sudoku game board as a table with interactive cells
@@ -15,7 +31,7 @@ import type { SolvedokuWindowProps } from '../windows/solvedoku-window-props';
  *
  * @param props - The component props
  * @param props.solvedokuState - The current state of the Sudoku game including the board data and selected cell
- * @param props.siteSettings - Site configuration including client dimensions and accent color
+ * @param props.siteSettings - Site configuration including accent color
  * @returns A table element containing the Sudoku game board
  */
 export function GameBoardTable({
@@ -30,10 +46,12 @@ export function GameBoardTable({
 		showStoredSolution,
 	} = windowState;
 
+	const { width, height } = useWindowDimensions();
+
 	const rowBorderStyle = (rowIndex: number) =>
 		[2, 5].includes(rowIndex) ? 'border-b-4' : '';
 
-	const cellSize = findCellDataDisplayWidth(siteSettings.clientDimensions);
+	const cellSize = findCellDataDisplayWidth({ width, height });
 
 	const selectedCellCoords = useMemo(() => {
 		if (!selectedCellID) return null;

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { IconProps, Position, SiteSettings } from '../../../../types';
+import type { IconProps, Position } from '../../../../types';
 
 /**
  * Props for the IconFrame component that renders draggable desktop icons
@@ -12,7 +12,6 @@ import type { IconProps, Position, SiteSettings } from '../../../../types';
  * @property {() => void} onClickAction - Callback function executed when the icon is double-clicked or double-tapped
  * @property {Position} baseTrayPosition - Base position of the tray in the upper right corner
  * @property {number} iconIndex - Index of the icon within the tray for horizontal spacing
- * @property {SiteSettings} siteSettings - Site settings containing client dimensions for repositioning
  * @property {number} iconCount - the total number of Icons in the tray
  * @property {number} iconSpacing - the spacing between/around icons
  * @property {number} iconMargin - the margin used to bound the icons to the screen
@@ -23,7 +22,6 @@ export interface IconFrameProps {
 	onClickAction: () => void;
 	baseTrayPosition: Position;
 	iconIndex: number;
-	siteSettings: SiteSettings;
 	iconCount: number;
 	iconSpacing: number;
 	iconMargin: number;
