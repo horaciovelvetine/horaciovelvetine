@@ -7,9 +7,9 @@ import type { SiteSettings } from '../../types';
  */
 export function setupCanvasDimensions(siteSettings: SiteSettings) {
 	return siteSettings.useMobileCompatability ?
-			{
-				width: siteSettings.clientDimensions.width - 24,
-				height: siteSettings.clientDimensions.height - 125,
-			}
-		:	{ width: 740, height: 560 };
+		{
+			width: siteSettings.clientDimensions.width - 24,
+			height: siteSettings.clientDimensions.height - 125,
+		}
+		: { width: 740, height: 560 };
 }
