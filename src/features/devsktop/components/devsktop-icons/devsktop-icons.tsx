@@ -3,23 +3,7 @@ import { SolvedokuIcon } from '../../../solvedoku';
 import type { Position, SiteSettings, WindowManager } from '../../../../types';
 import { HomeIcon } from './home-icon';
 import { IconFrame } from './icon-frame';
-import { useState, useEffect } from 'react';
-
-// Local hook for window dimensions to prevent unnecessary re-renders
-function useWindowDimensions() {
-	const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
-
-	useEffect(() => {
-		const handleResize = () => {
-			setDimensions({ width: window.innerWidth, height: window.innerHeight });
-		};
-
-		window.addEventListener('resize', handleResize);
-		return () => { window.removeEventListener('resize', handleResize) };
-	}, []);
-
-	return dimensions;
-}
+import { useClientDimensionsUpdates } from '../../../../hooks/site';
 
 interface DevsktopIconsProps {
 	siteSettings: SiteSettings;
@@ -45,7 +29,7 @@ interface DevsktopIconsProps {
 export function DevsktopIcons(props: DevsktopIconsProps) {
 	const iconSpacing = 120;
 	const iconMargin = 10;
-	const { width } = useWindowDimensions();
+	const { width } = useClientDimensionsUpdates();
 
 	const ICONS = [
 		{

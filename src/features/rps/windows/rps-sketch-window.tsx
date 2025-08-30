@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback } from 'react';
 import { ReactP5Wrapper } from '@p5-wrapper/react';
 import {
 	RPSIcon,
@@ -14,27 +14,7 @@ import { setupCanvasDimensions } from '../../../functions';
 import { RPSSketch } from '../sketch';
 import { useSketchUpdateState } from '../../../hooks/rps';
 import type { RPSSketchWindowProps } from './rps-sketch-window-props';
-
-// Local hook for window dimensions to prevent unnecessary re-renders
-function useWindowDimensions() {
-	const [dimensions, setDimensions] = useState({
-		width: window.innerWidth,
-		height: window.innerHeight,
-	});
-
-	useEffect(() => {
-		const handleResize = () => {
-			setDimensions({ width: window.innerWidth, height: window.innerHeight });
-		};
-
-		window.addEventListener('resize', handleResize);
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
-	}, []);
-
-	return dimensions;
-}
+import { useClientDimensionsUpdates } from '../../../hooks/site';
 
 /**
  * RPSSketchWindow component renders the complete Rock Paper Scissors simulation interface.
@@ -70,9 +50,9 @@ export function RPSSKetchWindow({
 	windowState,
 	siteSettings,
 }: RPSSketchWindowProps) {
-	const { width, height } = useWindowDimensions();
+	const clientDimensions = useClientDimensionsUpdates();
 	const canvasSize = setupCanvasDimensions(
-		{ width, height },
+		clientDimensions,
 		siteSettings.useMobileCompatability
 	);
 	const sketchState = useSketchUpdateState(canvasSize, windowState);
@@ -101,7 +81,7 @@ export function RPSSKetchWindow({
 					siteSettings={siteSettings}
 					windowState={windowState}
 				/>
-				: <div
+			:	<div
 					className='relative mt-1 border border-stone-300/30 shadow-lg shadow-stone-300/5'
 					onClick={handlePauseSketchClick}>
 					<ReactP5Wrapper
