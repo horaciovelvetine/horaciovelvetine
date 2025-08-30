@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { ReactP5Wrapper } from '@p5-wrapper/react';
 import {
 	RPSIcon,
@@ -7,13 +7,34 @@ import {
 	RPSInitializeSketchMenu,
 	SketchPausedIndicator,
 	RPSAboutMenu,
+	RPSGameMenu,
 } from '../components';
 import { WindowMenuWrapper } from '../../devsktop';
 import { setupCanvasDimensions } from '../../../functions';
 import { RPSSketch } from '../sketch';
 import { useSketchUpdateState } from '../../../hooks/rps';
 import type { RPSSketchWindowProps } from './rps-sketch-window-props';
-import { RPSGameMenu } from '../components/rps-menus/rps-game-menu';
+
+// Local hook for window dimensions to prevent unnecessary re-renders
+function useWindowDimensions() {
+	const [dimensions, setDimensions] = useState({
+		width: window.innerWidth,
+		height: window.innerHeight,
+	});
+
+	useEffect(() => {
+		const handleResize = () => {
+			setDimensions({ width: window.innerWidth, height: window.innerHeight });
+		};
+
+		window.addEventListener('resize', handleResize);
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []);
+
+	return dimensions;
+}
 
 /**
  * RPSSketchWindow component renders the complete Rock Paper Scissors simulation interface.
@@ -49,7 +70,11 @@ export function RPSSKetchWindow({
 	windowState,
 	siteSettings,
 }: RPSSketchWindowProps) {
-	const canvasSize = setupCanvasDimensions(siteSettings);
+	const { width, height } = useWindowDimensions();
+	const canvasSize = setupCanvasDimensions(
+		{ width, height },
+		siteSettings.useMobileCompatability
+	);
 	const sketchState = useSketchUpdateState(canvasSize, windowState);
 
 	/**

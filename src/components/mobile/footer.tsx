@@ -15,8 +15,8 @@ export function Footer() {
 			</p>
 			<p className='font-semibold tracking-tight text-base/6 xs:text-lg sm:text-xl'>
 				<SimpleInlineLink
-					url={GH_REPO}
-					text='Repo on Github'
+					href={GH_REPO}
+					text='Find on Github'
 					showArrow
 				/>
 			</p>

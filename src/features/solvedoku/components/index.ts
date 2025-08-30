@@ -1,8 +1,8 @@
 // COMPONENTS
-export { CellData } from './cell-data/cell-data';
+export { CellData } from './cell-data';
 export { GameBoardTable } from './game-board-table';
 export { NumberInputButtons } from './number-input-buttons';
-export { PuzzleButton } from './puzzle-button/puzzle-button';
+export { PuzzleButton } from './puzzle-button';
 export { PuzzleInfoDisplay } from './puzzle-info-display/puzzle-info-display';
 export { PuzzleSolverButtons } from './puzzle-solver-buttons';
 export { SolvedokuHeader } from './solvedoku-header';

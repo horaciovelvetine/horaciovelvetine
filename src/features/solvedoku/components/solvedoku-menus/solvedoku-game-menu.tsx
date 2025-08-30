@@ -1,7 +1,7 @@
 import { type Dispatch, type SetStateAction } from 'react';
 import type { PuzzleDifficulty } from '../../../../types';
-import { SelectedDifficultyButton } from './components/selected-difficulty-button/selected-difficulty-button';
-import { GameMenuButton } from './components/game-menu-button/game-menu-button';
+import { SelectedDifficultyButton } from './components/selected-difficulty-button';
+import { GameMenuButton } from './components/game-menu-button';
 import type { SolvedokuWindowProps } from '../../windows/solvedoku-window-props';
 
 interface GameMenuProps extends SolvedokuWindowProps {

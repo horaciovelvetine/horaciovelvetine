@@ -4,7 +4,7 @@ export function TypescriptBadge() {
 	return (
 		<ToolBadge
 			text='Typescript'
-			url='htttps;//www.typescriptlang.org'
+			url='https://www.typescriptlang.org/'
 			color='sky'
 		/>
 	);

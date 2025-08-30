@@ -1,15 +1,19 @@
-import type { SiteSettings } from '../../types';
+import type { Dimensions } from '../../types';
 
 /**
- * Calculates the appropriate canvas dimensions based on site settings
- * @param siteSettings - The site settings containing mobile compatibility flag and client dimensions
+ * Calculates the appropriate canvas dimensions based on mobile compatibility and client dimensions
+ * @param clientDimensions - The client viewport dimensions
+ * @param useMobileCompatability - Whether mobile compatibility mode is enabled
  * @returns Dimensions object with width and height properties for the canvas
  */
-export function setupCanvasDimensions(siteSettings: SiteSettings) {
-	return siteSettings.useMobileCompatability ?
-			{
-				width: siteSettings.clientDimensions.width - 24,
-				height: siteSettings.clientDimensions.height - 125,
-			}
-		:	{ width: 740, height: 560 };
+export function setupCanvasDimensions(
+	clientDimensions: Dimensions,
+	useMobileCompatability: boolean
+) {
+	return useMobileCompatability ?
+		{
+			width: clientDimensions.width - 24,
+			height: clientDimensions.height - 125,
+		}
+		: { width: 740, height: 560 };
 }

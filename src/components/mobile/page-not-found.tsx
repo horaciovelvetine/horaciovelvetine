@@ -35,7 +35,7 @@ export function PageNotFound() {
 					</Link>
 					<SimpleInlineLink
 						text='Let me know!'
-						url={GH_NEW_ISSUES}
+						href={GH_NEW_ISSUES}
 						showArrow
 					/>
 				</div>

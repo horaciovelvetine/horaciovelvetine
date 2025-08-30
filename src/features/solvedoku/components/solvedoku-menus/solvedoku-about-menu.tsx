@@ -13,13 +13,13 @@ export function SolvedokuAboutMenu() {
 			<p className='text-base/4.5 xs:text-lg/5 md:text-xl/6 tracking-tighter md:tracking-tight'>
 				Solvedoku is a tool built to solve any standard{' '}
 				<SimpleInlineLink
-					url='https://en.wikipedia.org/wiki/Sudoku'
+					href='https://en.wikipedia.org/wiki/Sudoku'
 					text='Sudoku'
 				/>{' '}
 				puzzle. Simply enter the puzzle you want to solve, click 'Solve Puzzle'
 				and watch as it's solved cell-by-cell. Solvedoku uses a{' '}
 				<SimpleInlineLink
-					url=''
+					href='https://en.wikipedia.org/wiki/Backtracking'
 					text='backtracking algorithim'
 				/>{' '}
 				to find a solution, and you can slow down and speed up the solution in
@@ -41,7 +41,7 @@ export function SolvedokuAboutMenu() {
 			<p className='text-sm xs:text-base sm:text-xl xs:leading-4 sm:leading-5 tracking-tighter sm:tracking-tight text-center'>
 				Issues?{' '}
 				<SimpleInlineLink
-					url={GH_NEW_ISSUES}
+					href={GH_NEW_ISSUES}
 					text='Let me know!'
 				/>
 			</p>

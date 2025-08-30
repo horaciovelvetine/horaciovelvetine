@@ -1,5 +1,13 @@
-import { capitalize, TailwindBGs500 } from '../../../../../../functions';
-import type { SelectedDifficultyButtonProps } from './selected-difficulty-button-props';
+import type { Dispatch, SetStateAction } from 'react';
+import { capitalize, TailwindBGs500 } from '../../../../../functions';
+import type { Colors, PuzzleDifficulty } from '../../../../../types';
+
+export interface SelectedDifficultyButtonProps {
+	difficulty: PuzzleDifficulty;
+	isSelected: boolean;
+	onSelect: Dispatch<SetStateAction<PuzzleDifficulty>>;
+	accentColor: Colors;
+}
 
 /**
  * A button component that displays and allows selection of a puzzle difficulty level

@@ -11,7 +11,6 @@ import { useClientDeviceCompatibilityDetails } from "./use-client-device-compati
  * and client device compatibility information into a unified settings object.
  * 
  * @returns {SiteSettings} An object containing:
- *   - clientDimensions: Current client viewport dimensions
  *   - accentColor: Current theme accent color
  *   - setAccentColor: Function to update the accent color
  *   - useMobileCompatability: Boolean indicating if mobile compatibility mode is enabled
@@ -21,10 +20,9 @@ import { useClientDeviceCompatibilityDetails } from "./use-client-device-compati
 export function useSiteSettings(): SiteSettings {
   const [accentColor, setAccentColor] = useState<Colors>('blue');
   const clockDisplaySettings = useClockDisplaySettings();
-  const { clientDimensions, useMobileCompatability } = useClientDeviceCompatibilityDetails();
+  const { useMobileCompatability } = useClientDeviceCompatibilityDetails();
 
   return {
-    clientDimensions,
     accentColor,
     setAccentColor,
     useMobileCompatability,

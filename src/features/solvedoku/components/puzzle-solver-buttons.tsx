@@ -1,6 +1,6 @@
 import { FastForwardIcon, RewindIcon } from '../../../assets';
 import type { SolvedokuWindowProps } from '../windows/solvedoku-window-props';
-import { PuzzleButton } from './puzzle-button/puzzle-button';
+import { PuzzleButton } from './puzzle-button';
 
 /**
  * Component that provides controls for the automated puzzle solver

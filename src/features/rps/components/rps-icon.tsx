@@ -1,35 +1,50 @@
 import type { IconProps } from '../../../types';
 
 /**
- * RPSIcon component renders an animated SVG icon for the Rock Paper Scissors game.
+ * Rock Paper Scissors Icon Component
  *
- * This component creates a visually striking icon featuring the three RPS game elements
- * (rock ✊, paper ✋, scissors ✌️) arranged in a dynamic composition with a gradient
- * background and explosion effect. The icon is designed to represent the competitive
- * nature of the game with animated elements and vibrant colors.
+ * A customizable SVG icon component that displays the three classic RPS game elements
+ * (rock ✊, paper ✋, scissors ✌️) arranged in a triangular formation with a gradient
+ * background and visual effects. Designed to represent the Rock Paper Scissors game
+ * with modern styling and scalable dimensions.
  *
  * Features:
- * - Scalable SVG icon with customizable size
- * - Gradient background with purple-to-violet transition
+ * - Scalable SVG with responsive emoji positioning
+ * - Purple-to-violet gradient background
  * - Radial explosion effect for visual impact
- * - Responsive emoji sizing based on icon dimensions
- * - Clean, modern design suitable for headers and menus
- * - Optimized positioning of game elements within the icon bounds
+ * - Dynamic emoji sizing based on icon dimensions
+ * - Triangle formation layout of game elements
+ * - Accessible with proper ARIA attributes
  *
- * The icon automatically calculates emoji sizing and positioning based on the provided
- * size prop, ensuring consistent visual proportions across different display contexts.
- * It's commonly used in headers, initialization menus, and about sections.
+ * The component automatically calculates emoji sizing and positioning to maintain
+ * proper proportions across different icon sizes, ensuring visual consistency
+ * throughout the application.
  *
- * @param props - Component props for the RPS icon
- * @param props.size - CSS class string defining the icon size (e.g., 'size-16', 'size-128')
- * @param props.classes - Additional CSS classes to apply to the SVG element
+ * @param {IconProps} props - The props for the RPSIcon component
+ * @param {string} [props.size='size-128'] - Tailwind CSS size class for the icon dimensions
+ * @param {string} [props.classes=' '] - Additional CSS classes to apply to the icon
+ * @param {boolean} [props.ariaHidden=false] - Whether the icon should be hidden from screen readers
  */
-
 export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
 	// Extract size number from size string (e.g. 'size-128' -> 128)
 	const sizeNumber = parseInt(size.split('-')[1]);
-	const emojiSize = sizeNumber * 3;
-	const scissorsPosition = { x: 64 - emojiSize / 2, y: 128 - emojiSize - 15 };
+
+	const emojiSize = Math.max(sizeNumber * 0.33, 20); // 33% of icon size, minimum 20px
+
+	const centerX = 128 / 2;
+	const centerY = 128 / 2 + 8; // Shifted down by 8 units (about 6% of icon height)
+
+	// Radius for the triangle formation (distance from center to each emoji)
+	const radius = 128 * 0.3; // 30% of icon size for good spacing
+
+	// Rock (✊) at top, Paper (✋) at bottom-right, Scissors (✌️) at bottom-left
+	const rockX = centerX; // Top center
+	const rockY = centerY - radius;
+	const paperX = centerX + radius * 0.866; // cos(30°) * radius for bottom-right
+	const paperY = centerY + radius * 0.5; // sin(30°) * radius for bottom-right
+	const scissorsX = centerX - radius * 0.866; // -cos(30°) * radius for bottom-left
+	const scissorsY = centerY + radius * 0.5; // sin(30°) * radius for bottom-left
+
 	return (
 		<svg
 			viewBox='0 0 128 128'
@@ -132,7 +147,7 @@ export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
 				height='60'
 				rx='24'
 				ry='24'
-				fill='url(#rpsBbackgroundGradient)'
+				fill='url(#rpsBackgroundGradient)'
 				opacity='0.3'
 			/>
 
@@ -147,16 +162,16 @@ export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
 				fill='url(#simpleExplosionGradient)'
 			/>
 
-			{/* Rock emoji (✊) - Top Left */}
+			{/* Rock emoji (✊) - Top */}
 			<foreignObject
-				x='12'
-				y='16'
-				width={emojiSize}
-				height={emojiSize}
-				transform={`rotate(30 40 40)`}>
+				x={rockX - emojiSize}
+				y={rockY - emojiSize}
+				width={emojiSize * 2}
+				height={emojiSize * 2}
+				transform={`rotate(30 ${rockX.toString()} ${rockY.toString()})`}>
 				<div
 					style={{
-						fontSize: `${(emojiSize * 0.65).toString()}px`,
+						fontSize: `${(emojiSize * 2).toString()}px`,
 						lineHeight: 1,
 						display: 'flex',
 						alignItems: 'center',
@@ -168,16 +183,16 @@ export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
 				</div>
 			</foreignObject>
 
-			{/* Paper emoji (✋) - Top Right */}
+			{/* Paper emoji (✋) - Bottom Right */}
 			<foreignObject
-				x={128 - emojiSize - 8}
-				y='15'
-				width={emojiSize}
-				height={emojiSize}
-				transform={`rotate(-30 90 45)`}>
+				x={paperX - emojiSize}
+				y={paperY - emojiSize}
+				width={emojiSize * 2}
+				height={emojiSize * 2}
+				transform={`rotate(-30 ${paperX.toString()} ${paperY.toString()})`}>
 				<div
 					style={{
-						fontSize: `${(emojiSize * 0.8).toString()}px`,
+						fontSize: `${(emojiSize * 2).toString()}px`,
 						lineHeight: 1,
 						display: 'flex',
 						alignItems: 'center',
@@ -189,16 +204,16 @@ export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
 				</div>
 			</foreignObject>
 
-			{/* Scissors emoji (✌️) - Bottom Center */}
+			{/* Scissors emoji (✌️) - Bottom Left */}
 			<foreignObject
-				x={scissorsPosition.x + 8}
-				y={scissorsPosition.y - 18}
-				width={emojiSize}
-				height={emojiSize}
-				transform={`rotate(30 ${scissorsPosition.x.toString()} ${scissorsPosition.y.toString()})`}>
+				x={scissorsX - emojiSize}
+				y={scissorsY - emojiSize}
+				width={emojiSize * 2}
+				height={emojiSize * 2}
+				transform={`rotate(30 ${scissorsX.toString()} ${scissorsY.toString()})`}>
 				<div
 					style={{
-						fontSize: `${(emojiSize * 0.8).toString()}px`,
+						fontSize: `${(emojiSize * 2).toString()}px`,
 						lineHeight: 1,
 						display: 'flex',
 						alignItems: 'center',

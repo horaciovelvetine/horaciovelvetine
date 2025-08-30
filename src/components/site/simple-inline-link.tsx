@@ -1,7 +1,8 @@
 interface SimpleInlineLinkProps {
-	url: string;
+	href: string;
 	text: string;
 	showArrow?: boolean;
+	classes?: string;
 }
 
 /**
@@ -11,16 +12,17 @@ interface SimpleInlineLinkProps {
  * @param {string} props.text - The text content to display for the link
  */
 export function SimpleInlineLink({
-	url,
+	href,
 	text,
 	showArrow = false,
+	classes = ' ',
 }: SimpleInlineLinkProps) {
 	return (
 		<a
-			href={url}
+			href={href}
 			target='_blank'
 			rel='noopener noreferrer'
-			className='inline-block text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'>
+			className={`inline-block text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1 ${classes}`}>
 			{showArrow && <span aria-hidden='true'>&rarr;</span>} {text}
 		</a>
 	);

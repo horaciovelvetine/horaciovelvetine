@@ -1,5 +1,18 @@
-import { Link } from '@tanstack/react-router';
-import type { ProjectCardProps } from './project-card-props';
+import { ProjectThumbnail } from './project-thumbnail';
+import type { IconProps } from '../../../types';
+import type { ReactNode } from 'react';
+import { ProjectLink } from './project-link';
+
+export interface ProjectCardProps {
+	title: string;
+	description: string;
+	thumbnailSource?: string; // url to picture...
+	ThumbnailIcon?: ({ size }: IconProps) => ReactNode;
+	linkText: string;
+	hrefLink?: string;
+	pageLink?: string;
+	tools: (() => ReactNode)[];
+}
 
 /**
  * ProjectCard component for displaying project information in a mobile-friendly card layout.
@@ -19,12 +32,11 @@ import type { ProjectCardProps } from './project-card-props';
 export function ProjectCard({
 	title,
 	description,
-	thumbnailSrc,
+	thumbnailSource,
 	ThumbnailIcon,
 	linkText,
-	linkURL,
-	pageLinkRoute,
-	pageLinkText,
+	hrefLink,
+	pageLink,
 	tools,
 }: ProjectCardProps) {
 	return (
@@ -32,19 +44,13 @@ export function ProjectCard({
 			<div className='relative isolate'>
 				<div className='mx-auto max-w-7xl sm:px-6 '>
 					<div className='mx-auto flex flex-col gap-2 bg-stone-300/10 px-6 py-4 ring-1 ring-white/10 rounded-xl sm:p-8'>
-						{/* THUMBNAILS */}
-						{thumbnailSrc && (
-							<img
-								alt=''
-								src={thumbnailSrc}
-								className='h-auto w-full flex-none rounded-lg object-cover shadow-xl hover:shadow-2xl shadow-stone-300/5 hover:shadow-stone-300/15 transition-all duration-200 '
-							/>
-						)}
-						<div className='flex w-full justify-center'>
-							{ThumbnailIcon && (
-								<ThumbnailIcon size={'size-48 xs:size-64 sm:size-72'} />
-							)}
-						</div>
+						{/* THUMBNAIL */}
+						<ProjectThumbnail
+							pageLink={pageLink}
+							hrefLink={hrefLink}
+							thumbnailSource={thumbnailSource}
+							ThumbnailIcon={ThumbnailIcon}
+						/>
 
 						{/* TEXT */}
 						<div className='w-full flex-auto'>
@@ -75,24 +81,13 @@ export function ProjectCard({
 								</div>
 							</div>
 
-							{/* LINK(S) */}
+							{/* LINK */}
 							<div className='flex items-center justify-center'>
-								{linkURL && linkText && (
-									<a
-										href={linkURL}
-										target='_blank'
-										rel='noopener noreferrer'
-										className='inline-block text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1 text-base xs:text-lg sm:text-xl font-semibold'>
-										<span aria-hidden='true'>&rarr;</span> {linkText}
-									</a>
-								)}
-								{pageLinkRoute && (
-									<Link
-										to={pageLinkRoute}
-										className='inline-block text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1 text-base xs:text-lg sm:text-xl font-semibold'>
-										{pageLinkText}
-									</Link>
-								)}
+								<ProjectLink
+									linkText={linkText}
+									hrefLink={hrefLink}
+									pageLink={pageLink}
+								/>
 							</div>
 						</div>
 					</div>

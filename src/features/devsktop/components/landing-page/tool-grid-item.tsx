@@ -46,7 +46,7 @@ export function ToolGridItem({
 				</p>
 				<Icon
 					size='size-20 xs:size-24'
-					classes={`absolute -top-4 xs:-top-6 -right-4 xs:right-1 ${iconRotation} pointer-events-none text-zinc-900 opacity-30 group-hover:opacity-100 transition-all duration-300 ${hoverFill}`}
+					classes={`absolute -top-4 xs:-top-6 -right-4 xs:right-1 ${iconRotation} pointer-events-none text-zinc-400 opacity-30 group-hover:opacity-100 transition-all duration-300 ${hoverFill}`}
 					ariaHidden={true}
 				/>
 			</a>

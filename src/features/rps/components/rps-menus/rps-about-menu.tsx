@@ -20,7 +20,7 @@ export function RPSAboutMenu() {
 				<p className='text-base/4.5 xs:text-lg/5 md:text-xl/6 text-pretty'>
 					Inspired by the{' '}
 					<SimpleInlineLink
-						url='https://bouncingdvdlogo.com/'
+						href='https://bouncingdvdlogo.com/'
 						text='DVD icon'
 					/>{' '}
 					bouncing around your childhood clasroom TV on movie day, this is a
@@ -41,7 +41,7 @@ export function RPSAboutMenu() {
 				<p className='text-sm xs:text-base/4 sm:text-xl/5 text-center'>
 					Issues?{' '}
 					<SimpleInlineLink
-						url={GH_NEW_ISSUES}
+						href={GH_NEW_ISSUES}
 						text='Let me know!'
 					/>
 				</p>

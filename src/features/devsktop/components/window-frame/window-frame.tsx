@@ -1,14 +1,53 @@
 // Disable any warnings for React Draggable ref per:
 // https://github.com/react-grid-layout/react-draggable/issues/779
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useLayoutEffect, useRef, useState } from 'react';
+import {
+	useLayoutEffect,
+	useRef,
+	useState,
+	useEffect,
+	type ReactNode,
+} from 'react';
 import Draggable, {
 	type DraggableData,
 	type DraggableEvent,
 } from 'react-draggable';
+import type {
+	Dimensions,
+	Position,
+	SiteSettings,
+	ManagedWindow,
+	WindowManager,
+} from '../../../../types';
 import { TitleBar } from './title-bar';
-import type { Position, Dimensions } from '../../../../types';
-import type { WindowFrameProps } from './window-frame-props';
+
+export interface WindowFrameProps {
+	window: ManagedWindow;
+	windowManager: WindowManager;
+	siteSettings: SiteSettings;
+	Component: (args: any) => ReactNode;
+}
+
+// Local hook for window dimensions to prevent unnecessary re-renders
+function useWindowDimensions() {
+	const [dimensions, setDimensions] = useState({
+		width: window.innerWidth,
+		height: window.innerHeight,
+	});
+
+	useEffect(() => {
+		const handleResize = () => {
+			setDimensions({ width: window.innerWidth, height: window.innerHeight });
+		};
+
+		window.addEventListener('resize', handleResize);
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []);
+
+	return dimensions;
+}
 
 /**
  * WindowFrame component that provides a draggable window container with focus management
@@ -37,10 +76,11 @@ export function WindowFrame({
 }: WindowFrameProps) {
 	const windowRef = useRef<any>(null);
 	const [dimensions, setDimensions] = useState<Dimensions | undefined>();
+	const { width: screenWidth, height: screenHeight } = useWindowDimensions();
+
 	const [position, setPosition] = useState<Position>(() => {
 		//? center the window width wise if theirs enought space...
-		const { width } = siteSettings.clientDimensions;
-		const x = Math.max(0, width / 2 - 380);
+		const x = Math.max(0, screenWidth / 2 - 380);
 		//? slight bump down if theres some space
 		const y = 0;
 		return { x, y };
@@ -77,8 +117,6 @@ export function WindowFrame({
 	useLayoutEffect(() => {
 		if (!dimensions) return;
 		// Ensure window stays within screen bounds when screen size changes (as much as possible)
-		const { width: screenWidth, height: screenHeight } =
-			siteSettings.clientDimensions;
 		const { x, y } = position;
 		const { width: windowWidth, height: windowHeight } = dimensions;
 		const maxX = Math.max(0, screenWidth - windowWidth);
@@ -90,7 +128,7 @@ export function WindowFrame({
 		if (newX !== x || newY !== y) {
 			setPosition({ x: newX, y: newY });
 		}
-	}, [dimensions, siteSettings.clientDimensions, position, setPosition]);
+	}, [dimensions, screenWidth, screenHeight, position, setPosition]);
 
 	return (
 		<>
