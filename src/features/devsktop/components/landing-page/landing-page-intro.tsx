@@ -1,5 +1,5 @@
 import { GradientLinkText, VideoHeadshot } from '../../../../components';
-import { GH_REPO } from '../../../../consts/urls';
+import { GITHUB } from '../../../../consts/urls';
 
 /**
  * LandingPageIntro component that renders the primary landing page content for the devsktop interface
@@ -29,7 +29,7 @@ export function LandingPageIntro() {
 
 					<GradientLinkText
 						text='@horaciovelvetine'
-						url={GH_REPO}
+						url={GITHUB}
 						classes='text-[2.23rem]/8 xs:text-5xl/12 sm:text-7xl/14 from-rose-500 via-purple-500 to-sky-500 pb-2 px-2.5 tracking-tighter '
 					/>
 				</div>
