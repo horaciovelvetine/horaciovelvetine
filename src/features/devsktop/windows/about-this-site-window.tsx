@@ -115,7 +115,7 @@ export function AboutThisSiteWindow() {
 				</p>
 				<p className='font-semibold tracking-tight text-base/6 xs:text-lg sm:text-xl'>
 					<SimpleInlineLink
-						url={GH_REPO}
+						href={GH_REPO}
 						text='Repo on Github'
 						showArrow
 					/>
