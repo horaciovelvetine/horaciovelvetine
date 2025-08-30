@@ -26,11 +26,10 @@ import {
 	P5JSIcon,
 	PhotoshopIcon,
 	TailwindCSSIcon,
-	GithubLogo,
-	LinkedInLogo,
+	GithubIcon,
+	LinkedInIcon,
 } from '../../../assets';
 import { ToolGridItem } from '../components/landing-page/tool-grid-item';
-import { SimpleInlineLink } from '../../../components';
 import { GITHUB, LINKEDIN } from '../../../consts/urls';
 
 export function MainLandingWindow() {
@@ -179,7 +178,7 @@ export function MainLandingWindow() {
 			{/* LANGUAGES */}
 			<div className='flex flex-wrap justify-center items-start gap-4 py-2'>
 				<Disclosure>
-					<DisclosureButton className='data-open:hidden'>
+					<DisclosureButton className='data-open:hidden hover:cursor-pointer hover:shadow-xl hover:shadow-zinc-900/75 transition-all duration-20'>
 						<div className='border border-stone-300/30 rounded-lg width-24 relative overflow-hidden group hover:shadow-lg hover:shadow-zinc-900/50 transition-all duration-300 items-center bg-stone-300/75'>
 							<h2 className='font-extrabold font-stretch-semi-condensed text-center text-xl xs:text-2xl sm:font-stretch-105% tracking-tighter p-1 md:py-2 md:px-1.5 text-stone-800/75'>
 								Languages
@@ -194,7 +193,7 @@ export function MainLandingWindow() {
 								Languages
 							</h3>
 							<ul className='grid grid-cols-3 md:grid-cols-5 gap-1 xs:gap-2 xs'>
-								<DisclosureButton>
+								<DisclosureButton className='hover:cursor-pointer hover:shadow-xl hover:shadow-zinc-900/75 transition-all duration-20'>
 									<li className='hidden md:visible md:inline-flex border border-stone-300/30 rounded-lg width-24 relative overflow-hidden group hover:shadow-lg hover:shadow-zinc-900/50 transition-all duration-300 items-center bg-stone-300/75'>
 										<h3 className='font-extrabold font-stretch-semi-condensed text-center text-xl xs:text-2xl sm:font-stretch-105% tracking-tighter p-1 md:py-2 md:px-1.5 text-stone-800/75'>
 											Languages
@@ -214,7 +213,7 @@ export function MainLandingWindow() {
 
 				{/* FRAMEWORKS */}
 				<Disclosure>
-					<DisclosureButton className='data-open:hidden'>
+					<DisclosureButton className='data-open:hidden hover:cursor-pointer hover:shadow-xl hover:shadow-zinc-900/75 transition-all duration-20'>
 						<div className='border border-stone-300/30 rounded-lg width-24 relative overflow-hidden group hover:shadow-lg hover:shadow-zinc-900/50 transition-all duration-300 items-center bg-stone-300/75'>
 							<h2 className='font-extrabold font-stretch-semi-condensed text-center text-xl xs:text-2xl sm:font-stretch-105% tracking-tighter p-1 md:py-2 md:px-1.5 text-stone-800/75'>
 								Frameworks
@@ -230,7 +229,7 @@ export function MainLandingWindow() {
 								Frameworks
 							</h3>
 							<ul className='grid grid-cols-4 gap-1 xs:gap-2 xs'>
-								<DisclosureButton>
+								<DisclosureButton className='hover:cursor-pointer hover:shadow-xl hover:shadow-zinc-900/75 transition-all duration-20'>
 									<li className='hidden md:visible md:inline-flex border border-stone-300/30 rounded-lg width-24 relative overflow-hidden group hover:shadow-lg hover:shadow-zinc-900/50 transition-all duration-300 items-center bg-stone-300/75'>
 										<h3 className='font-extrabold font-stretch-semi-condensed text-center text-xl xs:text-2xl sm:font-stretch-105% tracking-tighter p-1 md:py-2 md:px-1.5 text-stone-800/75'>
 											Frameworks
@@ -250,7 +249,7 @@ export function MainLandingWindow() {
 
 				{/* VISUALS */}
 				<Disclosure>
-					<DisclosureButton className='data-open:hidden'>
+					<DisclosureButton className='data-open:hidden hover:cursor-pointer hover:shadow-xl hover:shadow-zinc-900/75 transition-all duration-200'>
 						<div className='border border-stone-300/30 rounded-lg width-24 relative overflow-hidden group hover:shadow-lg hover:shadow-zinc-900/50 transition-all duration-300 items-center bg-stone-300/75'>
 							<h2 className='font-extrabold font-stretch-semi-condensed text-center text-xl xs:text-2xl sm:font-stretch-105% tracking-tighter p-1 md:py-2 md:px-1.5 text-stone-800/75'>
 								Visuals
@@ -265,7 +264,7 @@ export function MainLandingWindow() {
 								Visuals
 							</h3>
 							<ul className='grid grid-cols-4 gap-1 xs:gap-2 xs'>
-								<DisclosureButton>
+								<DisclosureButton className='hover:cursor-pointer hover:shadow-xl hover:shadow-zinc-900/75 transition-all duration-200'>
 									<li className='inline-flex border border-stone-300/30 rounded-lg width-24 relative overflow-hidden group hover:shadow-lg hover:shadow-zinc-900/50 transition-all duration-300 items-center bg-stone-300/75 w-full'>
 										<h3 className='font-extrabold font-stretch-semi-condensed text-center text-xl xs:text-2xl sm:font-stretch-105% tracking-tighter p-1 md:py-2 md:px-1.5 text-stone-800/75'>
 											Visuals
@@ -284,28 +283,32 @@ export function MainLandingWindow() {
 				</Disclosure>
 			</div>
 			<div className='flex justify-center items-center text-lg mx-auto font-bold gap-2 border-t-2 border-stone-300/30 pt-1.5 mt-1'>
-				<div className='inline-flex items-center gap-1 '>
-					<SimpleInlineLink
-						text='Github'
-						url={GITHUB}
-						showArrow
+				<a
+					className='inline-flex gap-1 text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'
+					target='_blank'
+					rel='noopener noreferrer'
+					href={GITHUB}>
+					<span aria-hidden={true}>&rarr;</span>
+					Github
+					<GithubIcon
+						size='size-6'
+						ariaHidden={true}
+						classes='text-white'
 					/>
-					<img
-						src={GithubLogo}
-						className='h-6 '
+				</a>
+				<a
+					className='inline-flex gap-1 text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'
+					target='_blank'
+					rel='noopener noreferrer'
+					href={LINKEDIN}>
+					<span aria-hidden={true}>&rarr;</span>
+					LinkedIn
+					<LinkedInIcon
+						size='size-6'
+						ariaHidden={true}
+						classes='text-sky-500'
 					/>
-				</div>
-				<div className='inline-flex items-center gap-1'>
-					<SimpleInlineLink
-						text='LinkedIn'
-						url={LINKEDIN}
-						showArrow
-					/>
-					<img
-						src={LinkedInLogo}
-						className='h-6'
-					/>
-				</div>
+				</a>
 			</div>
 		</>
 	);
