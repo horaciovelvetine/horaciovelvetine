@@ -2,85 +2,134 @@ import type { IconProps } from '../../../types';
 import { detectAppleDevice } from '../../../functions/site/detect-apple-device';
 import { detectSafariBrowser } from '../../../functions/site/detect-safari-browser';
 
+// Size mapping for consistent scaling
+const SIZE_MAP: Record<string, number> = {
+	'size-4': 16,
+	'size-5': 20,
+	'size-6': 24,
+	'size-7': 28,
+	'size-8': 32,
+	'size-9': 36,
+	'size-10': 40,
+	'size-11': 44,
+	'size-12': 48,
+	'size-16': 64,
+	'size-18': 72,
+	'size-20': 80,
+	'size-22': 88,
+	'size-28': 112,
+	'size-36': 144,
+};
+
+const SCALING_CONSTANTS = {
+	// Base viewBox size - all calculations are relative to this
+	BASE_SIZE: 100,
+
+	// Emoji sizing
+	EMOJI_SIZE_RATIO: 0.38, // Emojis take up 28% of icon size
+	EMOJI_SIZE_RATIO_APPLE: 0.37, // Slightly smaller for Apple devices
+
+	// Triangle formation radius
+	TRIANGLE_RADIUS_RATIO: 0.28,
+	TRIANGLE_RADIUS_RATIO_APPLE: 0.25,
+
+	// Positioning adjustments
+	CENTER_Y_OFFSET: 0.02, // Small offset for visual balance
+
+	// Background styling
+	BORDER_RADIUS_RATIO: 0.2,
+	PADDING_RATIO: 0.03,
+
+	// Effects
+	BLUR_RATIO: 0.015,
+	SHADOW_OFFSET_RATIO: 0.015,
+};
+
 /**
  * Rock Paper Scissors Icon Component
  *
- * A customizable SVG icon component that displays the three classic RPS game elements
- * (rock ✊, paper ✋, scissors ✌️) arranged in a triangular formation with a gradient
- * background and visual effects. Designed to represent the Rock Paper Scissors game
- * with modern styling and scalable dimensions.
+ * A scalable SVG icon displaying rock (✊), paper (✋), and scissors (✌️)
+ * in a triangular formation with gradient background and visual effects.
  *
  * Features:
- * - Scalable SVG with responsive emoji positioning
- * - Purple-to-violet gradient background
- * - Radial explosion effect for visual impact
- * - Dynamic emoji sizing based on icon dimensions
- * - Triangle formation layout of game elements
+ * - Consistent scaling across all size variants (16-144px)
+ * - Fixed viewBox with proportional element sizing
+ * - Platform-optimized rendering for Apple/Safari
+ * - Gradient background with radial explosion effect
  * - Accessible with proper ARIA attributes
- * - Platform-specific rendering for better compatibility
  *
- * The component automatically calculates emoji sizing and positioning to maintain
- * proper proportions across different icon sizes, ensuring visual consistency
- * throughout the application. It also detects Apple devices and Safari browsers
- * to provide optimized rendering for better compatibility.
- *
- * @param {IconProps} props - The props for the RPSIcon component
- * @param {string} [props.size='size-128'] - Tailwind CSS size class for the icon dimensions
- * @param {string} [props.classes=' '] - Additional CSS classes to apply to the icon
- * @param {boolean} [props.ariaHidden=false] - Whether the icon should be hidden from screen readers
+ * @param {IconProps} props - Component props
+ * @param {string} [props.size='size-6'] - Tailwind size class
+ * @param {string} [props.classes=''] - Additional CSS classes
+ * @param {boolean} [props.ariaHidden=false] - Hide from screen readers
  */
-export function RPSIcon({ size = 'size-6', classes = ' ' }: IconProps) {
-	// Extract size number from size string (e.g. 'size-128' -> 128)
-	const emojiSize = parseInt(size.split('-')[1]) * 2;
+export function RPSIcon({
+	size = 'size-6',
+	classes = '',
+	ariaHidden = false,
+}: IconProps) {
+	const pixelSize = SIZE_MAP[size] || 24;
+	const isAppleOrSafari = detectAppleDevice() || detectSafariBrowser();
 
-	// Detect platform for optimized rendering
-	const isAppleDevice = detectAppleDevice();
-	const isSafariBrowser = detectSafariBrowser();
+	const viewBoxSize = SCALING_CONSTANTS.BASE_SIZE;
+	const center = viewBoxSize / 2;
 
-	// Adjust positioning based on platform
-	let centerX;
-	let centerY;
-	let radius;
+	const emojiSizeRatio =
+		isAppleOrSafari ?
+			SCALING_CONSTANTS.EMOJI_SIZE_RATIO_APPLE
+		:	SCALING_CONSTANTS.EMOJI_SIZE_RATIO;
 
-	// Platform-specific adjustments
-	if (isAppleDevice || isSafariBrowser) {
-		centerX = 128 / 3;
-		centerY = 128 / 3;
-		radius = 128 * 0.19;
-	} else {
-		centerX = 128 / 2;
-		centerY = 128 / 1.87;
-		radius = 128 * 0.32;
-	}
+	const triangleRadiusRatio =
+		isAppleOrSafari ?
+			SCALING_CONSTANTS.TRIANGLE_RADIUS_RATIO_APPLE
+		:	SCALING_CONSTANTS.TRIANGLE_RADIUS_RATIO;
 
-	// Rock (✊) at top, Paper (✋) at bottom-right, Scissors (✌️) at bottom-left
-	const rockX = centerX; // Top center
-	const rockY = centerY - radius + 2;
-	const paperX = centerX + radius * 0.86; // cos(30°) * radius for bottom-right
-	const paperY = centerY + radius * 0.5; // sin(30°) * radius for bottom-right
-	const scissorsX = centerX - radius * 0.866; // -cos(30°) * radius for bottom-left
-	const scissorsY = centerY + radius * 0.5; // sin(30°) * radius for bottom-left
+	const emojiSize = viewBoxSize * emojiSizeRatio;
+	const triangleRadius = viewBoxSize * triangleRadiusRatio;
+	const adjustedCenterY =
+		center + viewBoxSize * SCALING_CONSTANTS.CENTER_Y_OFFSET;
 
-	// Platform-specific emoji sizing
-	let finalEmojiSize = emojiSize;
-	if (isAppleDevice || isSafariBrowser) {
-		// Slightly smaller emojis for Apple devices and Safari
-		finalEmojiSize = emojiSize * 0.9;
-		console.log('apple device detected');
-	} else { 
-		finalEmojiSize = emojiSize * 1.35
-	}
+	const positions = {
+		rock: { x: center, y: adjustedCenterY - triangleRadius, rotation: 0 },
+		paper: {
+			x: center + triangleRadius * Math.cos(Math.PI / 6),
+			y: adjustedCenterY + triangleRadius * Math.sin(Math.PI / 6),
+			rotation: -30,
+		},
+		scissors: {
+			x: center - triangleRadius * Math.cos(Math.PI / 6),
+			y: adjustedCenterY + triangleRadius * Math.sin(Math.PI / 6),
+			rotation: 30,
+		},
+	};
+
+	const borderRadius = viewBoxSize * SCALING_CONSTANTS.BORDER_RADIUS_RATIO;
+	const padding = viewBoxSize * SCALING_CONSTANTS.PADDING_RATIO;
+	const blurAmount = viewBoxSize * SCALING_CONSTANTS.BLUR_RATIO;
+	const shadowOffset = viewBoxSize * SCALING_CONSTANTS.SHADOW_OFFSET_RATIO;
+
+	const emojis = [
+		{ symbol: '✊', ...positions.rock },
+		{ symbol: '✋', ...positions.paper },
+		{ symbol: '✌️', ...positions.scissors },
+	];
 
 	return (
 		<svg
-			viewBox='0 0 128 128'
+			viewBox={`0 0 ${viewBoxSize.toString()} ${viewBoxSize.toString()}`}
+			width={pixelSize}
+			height={pixelSize}
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'
-			className={`${size} ${classes}`}>
-			{/* Rounded square background with gradient */}
+			className={`${size} ${classes}`}
+			aria-hidden={ariaHidden}
+			role='img'
+			aria-label='Rock Paper Scissors'>
+			{/* Gradients */}
 			<defs>
+				{/* Background gradient */}
 				<linearGradient
-					id='rpsBackgroundGradient'
+					id='rpsGradient'
 					x1='0%'
 					y1='0%'
 					x2='100%'
@@ -95,8 +144,9 @@ export function RPSIcon({ size = 'size-6', classes = ' ' }: IconProps) {
 					/>
 				</linearGradient>
 
+				{/* Radial explosion effect */}
 				<radialGradient
-					id='simpleExplosionGradient'
+					id='rpsExplosion'
 					cx='50%'
 					cy='50%'
 					r='70%'>
@@ -122,20 +172,20 @@ export function RPSIcon({ size = 'size-6', classes = ' ' }: IconProps) {
 					/>
 				</radialGradient>
 
-				{/* Inner shadow */}
-				<filter id='innerShadow'>
+				{/* Inner shadow filter */}
+				<filter id='rpsInnerShadow'>
 					<feOffset
 						dx='0'
-						dy='2'
+						dy={shadowOffset}
 					/>
 					<feGaussianBlur
-						stdDeviation='2'
-						result='offset-blur'
+						stdDeviation={blurAmount}
+						result='offsetBlur'
 					/>
 					<feComposite
 						operator='out'
 						in='SourceGraphic'
-						in2='offset-blur'
+						in2='offsetBlur'
 						result='inverse'
 					/>
 					<feFlood
@@ -155,100 +205,63 @@ export function RPSIcon({ size = 'size-6', classes = ' ' }: IconProps) {
 
 			{/* Main background */}
 			<rect
-				x='4'
-				y='4'
-				width='120'
-				height='120'
-				rx='24'
-				ry='24'
-				fill='url(#rpsBackgroundGradient)'
-				filter='url(#innerShadow)'
+				x={padding}
+				y={padding}
+				width={viewBoxSize - padding * 2}
+				height={viewBoxSize - padding * 2}
+				rx={borderRadius}
+				fill='url(#rpsGradient)'
+				filter='url(#rpsInnerShadow)'
 			/>
 
-			{/* Highlight on top */}
+			{/* Top highlight */}
 			<rect
-				x='4'
-				y='4'
-				width='120'
-				height='60'
-				rx='24'
-				ry='24'
-				fill='url(#rpsBackgroundGradient)'
+				x={padding}
+				y={padding}
+				width={viewBoxSize - padding * 2}
+				height={(viewBoxSize - padding * 2) / 2}
+				rx={borderRadius}
+				fill='url(#rpsGradient)'
 				opacity='0.3'
 			/>
 
-			{/* Simple explosion background - behind emojis */}
+			{/* Explosion effect overlay */}
 			<rect
-				x='4'
-				y='4'
-				width='120'
-				height='120'
-				rx='24'
-				ry='24'
-				fill='url(#simpleExplosionGradient)'
+				x={padding}
+				y={padding}
+				width={viewBoxSize - padding * 2}
+				height={viewBoxSize - padding * 2}
+				rx={borderRadius}
+				fill='url(#rpsExplosion)'
 			/>
 
-			{/* Rock emoji (✊) - Top */}
-			<foreignObject
-				x={rockX - finalEmojiSize / 2}
-				y={rockY - finalEmojiSize / 2}
-				width={finalEmojiSize}
-				height={finalEmojiSize}>
-				<div
-					style={{
-						fontSize: `${finalEmojiSize.toString()}px`,
-						lineHeight: 1,
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						height: '100%',
-						filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
-					}}>
-					✊
-				</div>
-			</foreignObject>
-
-			{/* Paper emoji (✋) - Bottom Right */}
-			<foreignObject
-				x={paperX - finalEmojiSize / 2}
-				y={paperY - finalEmojiSize / 2}
-				width={finalEmojiSize}
-				height={finalEmojiSize}
-				transform={`rotate(-30 ${paperX.toString()} ${paperY.toString()})`}>
-				<div
-					style={{
-						fontSize: `${finalEmojiSize.toString()}px`,
-						lineHeight: 1,
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						height: '100%',
-						filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
-					}}>
-					✋
-				</div>
-			</foreignObject>
-
-			{/* Scissors emoji (✌️) - Bottom Left */}
-			<foreignObject
-				x={scissorsX - finalEmojiSize / 2}
-				y={scissorsY - finalEmojiSize / 2}
-				width={finalEmojiSize}
-				height={finalEmojiSize}
-				transform={`rotate(30 ${scissorsX.toString()} ${scissorsY.toString()})`}>
-				<div
-					style={{
-						fontSize: `${finalEmojiSize.toString()}px`,
-						lineHeight: 1,
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						height: '100%',
-						filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
-					}}>
-					✌️
-				</div>
-			</foreignObject>
+			{/* Render emojis */}
+			{emojis.map((emoji, index) => (
+				<foreignObject
+					key={`emoji-${index.toString()}`}
+					x={emoji.x - emojiSize / 2}
+					y={emoji.y - emojiSize / 2}
+					width={emojiSize}
+					height={emojiSize}
+					transform={
+						emoji.rotation ?
+							`rotate(${emoji.rotation.toString()} ${emoji.x.toString()} ${emoji.y.toString()})`
+						:	undefined
+					}>
+					<div
+						style={{
+							width: '100%',
+							height: '100%',
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+							fontSize: `${(emojiSize * 0.8).toString()}px`,
+							lineHeight: 1,
+						}}>
+						{emoji.symbol}
+					</div>
+				</foreignObject>
+			))}
 		</svg>
 	);
 }
