@@ -17,6 +17,8 @@ export {
 	TailwindGroupDataFocusTextColors200,
 	TailwindCanvasColorHexMap,
 } from './site/tailwind-color-utils';
+export { detectAppleDevice } from './site/detect-apple-device';
+export { detectSafariBrowser } from './site/detect-safari-browser';
 
 // ? SOLVEDOKU
 export { checkCanPlaceNumber } from './solvedoku/check-can-place-number';

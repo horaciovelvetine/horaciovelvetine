@@ -1,4 +1,6 @@
 import type { IconProps } from '../../../types';
+import { detectAppleDevice } from '../../../functions/site/detect-apple-device';
+import { detectSafariBrowser } from '../../../functions/site/detect-safari-browser';
 
 /**
  * Rock Paper Scissors Icon Component
@@ -15,35 +17,59 @@ import type { IconProps } from '../../../types';
  * - Dynamic emoji sizing based on icon dimensions
  * - Triangle formation layout of game elements
  * - Accessible with proper ARIA attributes
+ * - Platform-specific rendering for better compatibility
  *
  * The component automatically calculates emoji sizing and positioning to maintain
  * proper proportions across different icon sizes, ensuring visual consistency
- * throughout the application.
+ * throughout the application. It also detects Apple devices and Safari browsers
+ * to provide optimized rendering for better compatibility.
  *
  * @param {IconProps} props - The props for the RPSIcon component
  * @param {string} [props.size='size-128'] - Tailwind CSS size class for the icon dimensions
  * @param {string} [props.classes=' '] - Additional CSS classes to apply to the icon
  * @param {boolean} [props.ariaHidden=false] - Whether the icon should be hidden from screen readers
  */
-export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
+export function RPSIcon({ size = 'size-6', classes = ' ' }: IconProps) {
 	// Extract size number from size string (e.g. 'size-128' -> 128)
-	const sizeNumber = parseInt(size.split('-')[1]);
+	const emojiSize = parseInt(size.split('-')[1]) * 2;
 
-	const emojiSize = Math.max(sizeNumber * 0.33, 20); // 33% of icon size, minimum 20px
+	// Detect platform for optimized rendering
+	const isAppleDevice = detectAppleDevice();
+	const isSafariBrowser = detectSafariBrowser();
 
-	const centerX = 128 / 2;
-	const centerY = 128 / 2 + 8; // Shifted down by 8 units (about 6% of icon height)
+	// Adjust positioning based on platform
+	let centerX;
+	let centerY;
+	let radius;
 
-	// Radius for the triangle formation (distance from center to each emoji)
-	const radius = 128 * 0.3; // 30% of icon size for good spacing
+	// Platform-specific adjustments
+	if (isAppleDevice || isSafariBrowser) {
+		centerX = 128 / 3;
+		centerY = 128 / 3;
+		radius = 128 * 0.19;
+	} else {
+		centerX = 128 / 2;
+		centerY = 128 / 1.87;
+		radius = 128 * 0.32;
+	}
 
 	// Rock (✊) at top, Paper (✋) at bottom-right, Scissors (✌️) at bottom-left
 	const rockX = centerX; // Top center
-	const rockY = centerY - radius;
-	const paperX = centerX + radius * 0.866; // cos(30°) * radius for bottom-right
+	const rockY = centerY - radius + 2;
+	const paperX = centerX + radius * 0.86; // cos(30°) * radius for bottom-right
 	const paperY = centerY + radius * 0.5; // sin(30°) * radius for bottom-right
 	const scissorsX = centerX - radius * 0.866; // -cos(30°) * radius for bottom-left
 	const scissorsY = centerY + radius * 0.5; // sin(30°) * radius for bottom-left
+
+	// Platform-specific emoji sizing
+	let finalEmojiSize = emojiSize;
+	if (isAppleDevice || isSafariBrowser) {
+		// Slightly smaller emojis for Apple devices and Safari
+		finalEmojiSize = emojiSize * 0.9;
+		console.log('apple device detected');
+	} else { 
+		finalEmojiSize = emojiSize * 1.35
+	}
 
 	return (
 		<svg
@@ -164,14 +190,13 @@ export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
 
 			{/* Rock emoji (✊) - Top */}
 			<foreignObject
-				x={rockX - emojiSize}
-				y={rockY - emojiSize}
-				width={emojiSize * 2}
-				height={emojiSize * 2}
-				transform={`rotate(30 ${rockX.toString()} ${rockY.toString()})`}>
+				x={rockX - finalEmojiSize / 2}
+				y={rockY - finalEmojiSize / 2}
+				width={finalEmojiSize}
+				height={finalEmojiSize}>
 				<div
 					style={{
-						fontSize: `${(emojiSize * 2).toString()}px`,
+						fontSize: `${finalEmojiSize.toString()}px`,
 						lineHeight: 1,
 						display: 'flex',
 						alignItems: 'center',
@@ -185,14 +210,14 @@ export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
 
 			{/* Paper emoji (✋) - Bottom Right */}
 			<foreignObject
-				x={paperX - emojiSize}
-				y={paperY - emojiSize}
-				width={emojiSize * 2}
-				height={emojiSize * 2}
+				x={paperX - finalEmojiSize / 2}
+				y={paperY - finalEmojiSize / 2}
+				width={finalEmojiSize}
+				height={finalEmojiSize}
 				transform={`rotate(-30 ${paperX.toString()} ${paperY.toString()})`}>
 				<div
 					style={{
-						fontSize: `${(emojiSize * 2).toString()}px`,
+						fontSize: `${finalEmojiSize.toString()}px`,
 						lineHeight: 1,
 						display: 'flex',
 						alignItems: 'center',
@@ -206,14 +231,14 @@ export function RPSIcon({ size = 'size-128', classes = ' ' }: IconProps) {
 
 			{/* Scissors emoji (✌️) - Bottom Left */}
 			<foreignObject
-				x={scissorsX - emojiSize}
-				y={scissorsY - emojiSize}
-				width={emojiSize * 2}
-				height={emojiSize * 2}
+				x={scissorsX - finalEmojiSize / 2}
+				y={scissorsY - finalEmojiSize / 2}
+				width={finalEmojiSize}
+				height={finalEmojiSize}
 				transform={`rotate(30 ${scissorsX.toString()} ${scissorsY.toString()})`}>
 				<div
 					style={{
-						fontSize: `${(emojiSize * 2).toString()}px`,
+						fontSize: `${finalEmojiSize.toString()}px`,
 						lineHeight: 1,
 						display: 'flex',
 						alignItems: 'center',
