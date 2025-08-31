@@ -1,5 +1,5 @@
-import type { Dispatch, SetStateAction } from "react";
-import type { Dimensions } from "./dimensions";
+import type { Dispatch, SetStateAction } from 'react';
+import type { Dimensions } from './dimensions';
 
 /**
  * Interface representing details about the client device's compatibility characteristics
@@ -10,8 +10,8 @@ import type { Dimensions } from "./dimensions";
  */
 
 export interface ClientDeviceCompatabilityDetails {
-  checkWindowsOnScreen: boolean
-  setCheckWindowsOnScreen: Dispatch<SetStateAction<boolean>>
-  clientDimensions: Dimensions,
-  useMobileCompatability: boolean,
+	checkWindowsOnScreen: boolean;
+	setCheckWindowsOnScreen: Dispatch<SetStateAction<boolean>>;
+	clientDimensions: Dimensions;
+	useMobileCompatability: boolean;
 }
