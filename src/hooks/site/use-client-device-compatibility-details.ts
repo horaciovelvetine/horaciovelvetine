@@ -1,6 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { Dimensions, ClientDeviceCompatabilityDetails } from '../../types';
-import { detectAppleDevice, detectSafariBrowser } from '../../functions';
 
 /**
  * A custom hook that provides information about the client's window and device characteristics
