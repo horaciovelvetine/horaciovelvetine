@@ -43,7 +43,7 @@ export function SolvedokuHeader({
 
 	return (
 		<div className='flex w-full items-center justify-between px-2 md:px-6.5 md:pb-1 e'>
-			<h2 className='md:hidden font-extrabold tracking-tighter text-2xl xs:text-3xl sm:text-4xl text-center'>
+			<h2 className='md:hidden font-extrabold tracking-tighter text-3xl xs:text-4xl sm:text-5xl text-center'>
 				Solvedoku
 			</h2>
 			<div className='flex justify-end items-center w-full gap-1'>
@@ -53,7 +53,7 @@ export function SolvedokuHeader({
 					className='md:mt-1.5'
 					onClick={handleShowMobileAbout}>
 					<QuestionMarkIcon
-						size='size-6 xs:size-8 sm:size-9.5'
+						size='size-8 xs:size-10 sm:size-12'
 						classes='p-0.25'
 					/>
 				</button>
@@ -63,13 +63,13 @@ export function SolvedokuHeader({
 					className='md:mt-1.5'
 					title='Show the settings menu for Solvedoku'
 					onClick={handleShowMobileSettings}>
-					<SettingsIcon size='size-6 xs:size-8 sm:size-9' />
+					<SettingsIcon size='size-8 xs:size-10 sm:size-12.5' />
 				</button>
 
 				<button
 					type='button'
 					title='Show the game options menu'
-					className='font-bold text-lg xs:text-2xl sm:text-4xl md:text-5xl leading-0 md:leading-none'
+					className='font-extrabold text-3xl xs:text-4xl sm:text-5xl md:text-5xl leading-0 md:leading-none'
 					onClick={handleShowGameMenu}>
 					...
 				</button>
