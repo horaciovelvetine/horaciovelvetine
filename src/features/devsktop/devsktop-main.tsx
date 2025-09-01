@@ -1,15 +1,20 @@
-import {
-	MainLandingWindow,
-	AboutThisSiteWindow,
-} from '../../features';
+import { MainLandingWindow, AboutThisSiteWindow } from '../../features';
 import { useWindowManager } from '../../hooks/site';
 import type { SiteContext } from '../../types';
-import { WindowFrame, NavigationBar, DevsktopIcons } from './components';
+import { WindowFrame, NavigationBar, DockBar } from './components';
 import { lazy } from 'react';
 
 // Lazy load heavy application windows (but keep P5.js as static import)
-const SolvedokuWindow = lazy(() => import('../../features/solvedoku/windows/solvedoku-window').then(module => ({ default: module.SolvedokuWindow })));
-const RPSSKetchWindow = lazy(() => import('../../features/rps/windows/rps-sketch-window').then(module => ({ default: module.RPSSKetchWindow })));
+const SolvedokuWindow = lazy(() =>
+	import('../../features/solvedoku/windows/solvedoku-window').then(module => ({
+		default: module.SolvedokuWindow,
+	}))
+);
+const RPSSKetchWindow = lazy(() =>
+	import('../../features/rps/windows/rps-sketch-window').then(module => ({
+		default: module.RPSSKetchWindow,
+	}))
+);
 
 /**
  * Main desktop component that renders the entire devsktop interface
@@ -29,9 +34,9 @@ export function DevsktopMain({ siteSettings }: SiteContext) {
 			<div
 				id='devsktop-bounds'
 				className='h-[calc(100vh-36px)] w-full translate-y-[36px] relative isolate'>
-				<DevsktopIcons
-					windowManager={windowManager}
+				<DockBar
 					siteSettings={siteSettings}
+					windowManager={windowManager}
 				/>
 
 				<WindowFrame
