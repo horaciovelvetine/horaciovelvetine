@@ -47,7 +47,7 @@ export function WindowMenuWrapper({
 					onClick={() => {
 						setShowMenu(false);
 					}}>
-					<CloseIcon size='size-5 xs:size-8 sm:size-10' />
+					<CloseIcon size='size-8 xs:size-10 sm:size-12' />
 				</button>
 
 				<Icon size='size-16 xs:size-20 sm:size-28 md:size-36' />

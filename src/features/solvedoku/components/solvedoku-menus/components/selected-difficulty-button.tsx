@@ -33,7 +33,7 @@ export function SelectedDifficultyButton({
 			className={`border border-stone-300/50 rounded-lg mt-1 ${TailwindBGs500[accentColor]} ${isSelected ? '' : 'brightness-45'} md:px-2`}>
 			<button
 				type='button'
-				className='px-2'>
+				className='px-2 sm:text-lg md:text-xl lg:text-2xl'>
 				{capitalize(difficulty)}
 			</button>
 		</li>

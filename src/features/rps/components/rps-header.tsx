@@ -60,43 +60,41 @@ export function RPSHeader({
 	};
 
 	return (
-		<div className='flex w-full items-center justify-between px-2 md:px-6.5 md:pb-1'>
+		<div className='flex w-full items-center justify-center px-2 md:px-6.5 md:pb-1'>
 			<h2
 				className={`md:hidden font-extrabold tracking-tighter text-xl xs:text-2xl sm:text-3xl w-full text-nowrap my-0.5 ${sketchIsInitialized ? '' : 'hidden'}`}>
 				Rock, Paper, Scissors
 			</h2>
-			{sketchIsInitialized && (
-				<>
-					<div className='flex justify-end items-center w-full gap-1'>
-						<button
-							type='button'
-							title='Show the about menu for Solvedoku'
-							className='md:mt-1.5'
-							onClick={handleShowAboutMenu}>
-							<QuestionMarkIcon
-								size='size-6 xs:size-8 sm:size-9.5'
-								classes='p-0.25'
-							/>
-						</button>
 
-						<button
-							type='button'
-							className='md:mt-1.5'
-							title='Show the settings menu for Solvedoku'
-							onClick={handleShowSettingsMenu}>
-							<SettingsIcon size='size-6 xs:size-8 sm:size-9' />
-						</button>
+			<div
+				className={`flex justify-end items-center w-full gap-0.5 ${sketchIsInitialized ? '' : 'hidden'}`}>
+				<button
+					type='button'
+					title='Show the about menu for Solvedoku'
+					className='md:mt-1.5'
+					onClick={handleShowAboutMenu}>
+					<QuestionMarkIcon
+						size='size-8 xs:size-10 sm:size-12'
+						classes='p-0.25'
+					/>
+				</button>
 
-						<button
-							type='button'
-							title='Show the game options menu'
-							className='font-bold text-lg xs:text-2xl sm:text-4xl md:text-5xl leading-0 md:leading-none'
-							onClick={handleShowGameMenu}>
-							...
-						</button>
-					</div>
-				</>
-			)}
+				<button
+					type='button'
+					className='md:mt-1.5'
+					title='Show the settings menu for Solvedoku'
+					onClick={handleShowSettingsMenu}>
+					<SettingsIcon size='size-8 xs:size-10 sm:size-12.5' />
+				</button>
+
+				<button
+					type='button'
+					title='Show the game options menu'
+					className='font-extrabold text-3xl xs:text-4xl sm:text-5xl md:text-5xl leading-0 md:leading-none'
+					onClick={handleShowGameMenu}>
+					...
+				</button>
+			</div>
 		</div>
 	);
 }

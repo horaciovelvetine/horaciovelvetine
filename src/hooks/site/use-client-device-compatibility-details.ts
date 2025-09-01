@@ -17,10 +17,9 @@ export function useClientDeviceCompatibilityDetails(): ClientDeviceCompatability
 	});
 	const [checkWindowsOnScreen, setCheckWindowsOnScreen] = useState(false);
 
-	// Tests for different potential indicators of a mobile device, deviceID, touch and device dimensions...
-	// const isMobileDeviceID = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-	// const isTouchEnabledDevice = 'ontouchstart' in window || navigator.maxTouchPoints >= 1;
-	const [isMobileDimensions, setIsMobileDimensions] = useState<boolean>(clientDimensions.width < 768);
+	const [isMobileDimensions, setIsMobileDimensions] = useState<boolean>(
+		clientDimensions.width < 768
+	);
 
 	useEffect(() => {
 		const handleResize = () => {

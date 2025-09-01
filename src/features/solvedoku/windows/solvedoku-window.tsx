@@ -16,6 +16,7 @@ import {
 	SolvedokuAboutMenu,
 	SolvedokuGameMenu,
 	SolvedokuSettingsMenu,
+	SolvedokuTopMenu,
 } from '../components';
 import { WindowMenuWrapper } from '../../devsktop';
 import type { SolvedokuWindowProps } from './solvedoku-window-props';
@@ -61,6 +62,14 @@ export function SolvedokuWindow({
 			{/* MOBILE HEADER ELEMENTS */}
 			<SolvedokuHeader {...windowState} />
 
+			{/* TOP MENU SHOWN ON INIT */}
+			{windowState.showTopMenu && (
+				<SolvedokuTopMenu
+					windowState={windowState}
+					siteSettings={siteSettings}
+				/>
+			)}
+
 			{/* GAME BOARD & CELL DATA TABLE */}
 			<GameBoardTable
 				windowState={windowState}
@@ -86,7 +95,7 @@ export function SolvedokuWindow({
 				windowState={windowState}
 			/>
 
-			{/* MOBILE MENU's */}
+			{/* MENU's */}
 			<WindowMenuWrapper
 				setShowMenu={windowState.setShowAboutMenu}
 				showMenu={windowState.showAboutMenu}

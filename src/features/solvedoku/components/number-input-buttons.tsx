@@ -36,7 +36,7 @@ export function NumberInputButtons({
 	const bgColorClass = `${TailwindBGs500[accentColor]} ${selectedCellID ? '' : 'brightness-45'}`;
 
 	return (
-		<ul className='flex w-full justify-between gap-0.5  my-1'>
+		<ul className='flex w-full justify-center gap-0.5 xs:gap-1 my-1'>
 			{[1, 2, 3, 4, 5, 6, 7, 8, 9].map(value => (
 				<li
 					key={'input-'.concat(value.toString())}
@@ -52,7 +52,7 @@ export function NumberInputButtons({
 								'Place '.concat(value.toString()).concat(' in selected cell')
 							:	'Select a cell to place a value'
 						}
-						className={`border border-stone-300/50 size-8 xs:size-12 sm:size-15 rounded select-none font-semibold sm:font-bold xs:text-lg sm:text-xl ${bgColorClass} ${!selectedCellID ? '' : 'duration-100 hover:-translate-y-1 hover:scale-105'}`}>
+						className={`border border-stone-300/50 size-8 xs:size-12 rounded select-none font-semibold sm:font-bold xs:text-xl ${bgColorClass} ${!selectedCellID ? '' : 'duration-100 hover:-translate-y-1 hover:scale-105'}`}>
 						{value}
 					</button>
 				</li>

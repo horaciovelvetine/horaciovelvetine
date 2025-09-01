@@ -12,3 +12,4 @@ export { SolvedokuIcon } from './solvedoku-icon';
 export { SolvedokuAboutMenu } from './solvedoku-menus/solvedoku-about-menu';
 export { SolvedokuGameMenu } from './solvedoku-menus/solvedoku-game-menu';
 export { SolvedokuSettingsMenu } from './solvedoku-menus/solvedoku-settings-menu';
+export { SolvedokuTopMenu } from './solvedoku-menus/solvedoku-top-menu';

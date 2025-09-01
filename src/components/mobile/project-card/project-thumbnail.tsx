@@ -39,7 +39,7 @@ export function ProjectThumbnail({
 					/>
 				</a>
 			)}
-			{pageLink && ThumbnailIcon && (
+			{pageLink && (
 				<Link
 					to={pageLink}
 					className='flex w-full justify-center'>

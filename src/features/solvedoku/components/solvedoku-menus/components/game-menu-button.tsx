@@ -29,7 +29,7 @@ export function GameMenuButton({
 				type='button'
 				title={buttonTitle}
 				disabled={isDisabled}
-				className={`border border-stone-300/50 rounded-lg py-0.5 w-full xs:w-1/2 ${TailwindBGs500[accentColor]} ${isDisabled ? 'brightness-45' : ''}`}
+				className={`border border-stone-300/50 rounded-lg py-0.5 w-full sm:text-lg md:text-xl lg:text-2xl font-bold ${TailwindBGs500[accentColor]} ${isDisabled ? 'brightness-45' : ''}`}
 				onClick={clickHandler}>
 				{buttonText}
 			</button>
