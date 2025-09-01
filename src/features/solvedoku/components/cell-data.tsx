@@ -6,8 +6,7 @@ import {
 	TailwindOutlineColors,
 	TailwindTextColors500,
 } from '../../../functions';
-import type { Cell, Colors } from '../../../types';
-
+import type { Cell, SiteSettings } from '../../../types';
 
 export interface CellDataProps {
 	cellID: string;
@@ -15,7 +14,7 @@ export interface CellDataProps {
 	colIndex: number;
 	cell: Cell;
 	cellSizing: string;
-	accentColor: Colors;
+	siteSettings: SiteSettings;
 	selectedCellCoords: [number, number] | null;
 	selectedCellID: string | null;
 	updateCellValue: (
@@ -26,7 +25,6 @@ export interface CellDataProps {
 	setSelectedCellID: (cellID: string | null) => void;
 	showingStoredSolution: boolean;
 }
-
 
 /**
  * Cell component for the Sudoku game board.
@@ -54,9 +52,10 @@ export const CellData = React.memo(function CellData({
 	selectedCellID,
 	updateCellValue,
 	setSelectedCellID,
-	accentColor,
+	siteSettings,
 	showingStoredSolution,
 }: CellDataProps) {
+	const { useMobileCompatability, accentColor } = siteSettings;
 	const isSelected = cellID === selectedCellID;
 
 	const isRelatedToSelected = useMemo(() => {
@@ -113,22 +112,22 @@ export const CellData = React.memo(function CellData({
 				'outline-3 -outline-offset-4 '.concat(
 					TailwindOutlineColors[accentColor]
 				)
-				: 'border border-black';
+			:	'border border-black';
 
 		return selectionOutline + (hasThickRightBorder ? ' border-r-4' : '');
 	};
 
 	const backgroundColor =
 		isSelected ? TailwindBGs300[accentColor]
-			: isRelatedToSelected ? 'bg-yellow-50'
-				: 'bg-neutral-50';
+		: isRelatedToSelected ? 'bg-yellow-50'
+		: 'bg-neutral-50';
 
 	const textColor =
 		showingStoredSolution ?
 			!cell.userInputted ?
 				TailwindTextColors500[accentColor]
-				: 'text-black'
-			: 'text-black';
+			:	'text-black'
+		:	'text-black';
 
 	return (
 		<td
@@ -141,6 +140,8 @@ export const CellData = React.memo(function CellData({
 				value={cell.value ?? ''}
 				name={cellID + '-input'}
 				onChange={handleNumberInput}
+				inputMode={useMobileCompatability ? 'none' : 'numeric'}
+				readOnly={useMobileCompatability}
 			/>
 		</td>
 	);
