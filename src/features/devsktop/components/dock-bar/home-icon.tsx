@@ -27,7 +27,7 @@ const SIZE_MAP: Record<string, number> = {
  * - Rounded background with gradient fill
  * - 3D pyramid-style roof with multiple faces for depth
  * - Simple house body with rounded corners
- * - Door and window elements for detail
+ * - Chimney for additional architectural detail
  *
  * @param {IconProps} props - Component properties
  * @param {string} [props.size='size-6'] - Tailwind CSS size class for the icon dimensions

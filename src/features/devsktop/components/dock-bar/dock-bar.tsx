@@ -9,6 +9,22 @@ interface DockBarProps {
   windowManager: WindowManager;
 }
 
+/**
+ * Desktop dock bar component that provides quick access to applications
+ * 
+ * Renders a translucent dock at the bottom of the desktop interface containing
+ * application icons for launching windows. Each icon displays an active indicator
+ * when its corresponding window is open and handles click events to open or focus windows.
+ * 
+ * The dock is positioned absolutely at the bottom of the devsktop bounds and centers
+ * itself horizontally with a rounded background and subtle ring border for visual appeal.
+ * 
+ * @param props - The component props
+ * @param props.siteSettings - Global site configuration and theme settings
+ * @param props.windowManager - Window management system for controlling application windows
+ * @returns A dock bar component with application icons for window management
+ */
+
 export function DockBar({ windowManager }: DockBarProps) {
   return (
     <div className='absolute min-w-full bottom-2'>
