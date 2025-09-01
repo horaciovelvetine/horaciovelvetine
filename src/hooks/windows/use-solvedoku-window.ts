@@ -38,17 +38,20 @@ export function useSolvedokuWindow(
 	const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 	const [showAboutMenu, setShowAboutMenu] = useState(false);
 	const [showGameMenu, setShowGameMenu] = useState(false);
+	const [showTopMenu, setShowTopMenu] = useState(true);
 	const [currentPuzzleDifficultyDisplay, setCurrentPuzzleDifficultyDisplay] =
 		useState<PuzzleDifficulty>(solvedokuState.selectedDifficulty);
 
 	/**
-	 * Clean up menu's when window is closed 
+	 * Clean up menu's and window state when window is closed.
 	 */
 	const closeWindowCallback = useCallback(() => {
 		setShowSettingsMenu(false);
 		setShowAboutMenu(false);
 		setShowGameMenu(false);
-	}, []);
+		solvedokuState.clearGameBoard();
+		setShowTopMenu(true);
+	}, [solvedokuState]);
 
 	const navBarMenuItems = useCallback(
 		(openWindowByID: (windowID: WindowIDs) => void): NavBarMenuParent[] => {
@@ -223,6 +226,8 @@ export function useSolvedokuWindow(
 		setShowAboutMenu,
 		showGameMenu,
 		setShowGameMenu,
+		showTopMenu,
+		setShowTopMenu,
 		closeWindowCallback,
 		currentPuzzleDifficultyDisplay,
 		setCurrentPuzzleDifficultyDisplay,

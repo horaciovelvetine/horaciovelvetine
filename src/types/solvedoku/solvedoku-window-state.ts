@@ -60,6 +60,16 @@ export interface SolvedokuWindowState
 	setShowGameMenu: Dispatch<SetStateAction<boolean>>;
 
 	/**
+	 * Initial menu presented to the client on first window open to communicate intent and add some explanation
+	 */
+	showTopMenu: boolean;
+
+	/**
+	 * Setter to toggle the top menu visibility
+	 */
+	setShowTopMenu: Dispatch<SetStateAction<boolean>>;
+
+	/**
 	 * Text state indicating the difficulty of the puzzle currently being displayed (after generation) to the user
 	 */
 	currentPuzzleDifficultyDisplay: PuzzleDifficulty;
