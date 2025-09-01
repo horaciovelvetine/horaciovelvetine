@@ -62,7 +62,7 @@ export function GameBoardTable({
 								rowIndex={rowIndex}
 								colIndex={colIndex}
 								cellSizing={cellSize}
-								accentColor={siteSettings.accentColor}
+								siteSettings={siteSettings}
 								selectedCellCoords={selectedCellCoords}
 								selectedCellID={selectedCellID}
 								updateCellValue={updateCellValue}
