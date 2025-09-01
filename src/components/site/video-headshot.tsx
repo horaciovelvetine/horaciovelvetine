@@ -19,6 +19,7 @@ export function VideoHeadshot() {
 				autoPlay
 				loop
 				muted
+				playsInline
 				className='rounded-full'>
 				<source
 					src={homeHeadshotVideo}
