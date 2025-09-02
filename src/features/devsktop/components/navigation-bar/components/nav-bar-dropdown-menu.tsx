@@ -26,8 +26,8 @@ export function NavBarDropdownMenu({
 	dropdownOptions: NavBarMenuChild[];
 }) {
 	return (
-		<div className='absolute -left-1 bg-zinc-800/95 backdrop-blur-3xl border border-gray-300/50 px-0.5 rounded drop-shadow-2xl my-8'>
-			<ul className='text-nowrap flex flex-col px-1 py-1 tracking-tight'>
+		<div className='absolute -left-1 bg-zinc-800/95 backdrop-blur-3xl border border-gray-300/50 px-0.5 rounded drop-shadow-2xl my-8 select-none'>
+			<ul className='text-nowrap flex flex-col px-1 py-1 tracking-tight select-none'>
 				{dropdownOptions.map(option => (
 					<Fragment key={option.key}>
 						<SectionHeader showHeaderText={option.displaySectionHeader} />
@@ -43,7 +43,7 @@ export function NavBarDropdownMenu({
 							<button
 								type='button'
 								disabled={option.isDisabled}
-								title={option.hoverExplainerTitle}
+								title={option.hoverExplainer}
 								className={`
 									inline-flex justify-between
 									${option.displayKeyboardShortcut ? 'gap-6' : ''}

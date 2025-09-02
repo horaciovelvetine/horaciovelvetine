@@ -19,9 +19,9 @@ export interface NavigationBarProps {
 export function NavigationBar(props: NavigationBarProps) {
 	return (
 		<nav
-			className='fixed top-0 w-full bg-zinc-900/80 backdrop-blur-3xl h-9 items-center px-2.5'
+			className='fixed top-0 w-full bg-zinc-900/80 backdrop-blur-3xl h-9 items-center px-2.5 select-none'
 			style={{ zIndex: 1000 }}>
-			<div className='w-full h-full flex items-center justify-between text-lg'>
+			<div className='w-full h-full flex items-center justify-between text-lg select-none'>
 				<ul className='flex items-center gap-1'>
 					{props.windowManager.navBarMenuItems.map(item => (
 						<NavBarMenuItemParent
