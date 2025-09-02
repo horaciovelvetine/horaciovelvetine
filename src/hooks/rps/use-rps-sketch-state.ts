@@ -45,9 +45,9 @@ import type {
  */
 export function useRPSSketchState(): RPSSketchState {
 	const [spriteChars, setSpriteChars] = useState<SpriteCharSet>([
-		'✌️',
-		'✊',
-		'✋',
+		'🪨',
+		'📄',
+		'✂️',
 	]);
 	const [spriteCount, setSpriteCount] = useState<SpriteCountSelects>('some');
 
