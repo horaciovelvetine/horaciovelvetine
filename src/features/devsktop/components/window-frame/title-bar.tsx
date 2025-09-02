@@ -23,7 +23,7 @@ export function TitleBar({ window, manager }: TitleBarProps) {
 					type='button'
 					title={`Close the ${window.title} window`}
 					className={
-						'rounded-full transision-all duration-200 bg-zinc-500 group size-4 flex items-center justify-center hover:bg-red-500 border border-stone-300/10 absolute -top-2'
+						'rounded-full transision-all duration-200 group size-4 flex items-center justify-center bg-red-500 border border-stone-300/10 absolute -top-2'
 					}
 					onClick={handleWindowClose}
 					onTouchStart={handleWindowClose}>
