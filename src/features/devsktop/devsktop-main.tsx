@@ -69,6 +69,8 @@ export function DevsktopMain({ siteSettings }: SiteContext) {
 					windowManager={windowManager}
 				/>
 			</div>
+
+			{/* NAVBAR */}
 			<NavigationBar
 				windowManager={windowManager}
 				siteSettings={siteSettings}

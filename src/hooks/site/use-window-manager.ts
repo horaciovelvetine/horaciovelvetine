@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { CodeBlockIcon } from '../../assets';
+import { HomeIcon } from '../../assets';
 import type {
 	WindowManager,
 	ManagedWindow,
@@ -13,6 +13,7 @@ import {
 	useAboutThisSiteWindow,
 	useRPSSketchWindow,
 } from '../windows';
+import { GITHUB, LINKEDIN } from '../../consts/urls';
 
 /**
  * Custom hook that manages window state and focus for the Devsktop application
@@ -34,7 +35,7 @@ export function useWindowManager(): WindowManager {
 	//? INITIALIZE ALL WINDOWS
 	// SITE WINDOWS
 	const mainLandingWindow = useMainLandingWindow();
-	const aboutThisSiteWindow = useAboutThisSiteWindow(mainLandingWindow);
+	const aboutThisSiteWindow = useAboutThisSiteWindow();
 	// SOLVEDOKU WINDOWS
 	const solvedokuWindow = useSolvedokuWindow();
 	// RPS WINDOWS
@@ -107,7 +108,10 @@ export function useWindowManager(): WindowManager {
 		(windowID: WindowIDs): void => {
 			focusWindowByID(windowID);
 			ALL_WINDOWS.forEach(window => {
-				if (window.id === windowID) window.setIsShown(true);
+				if (window.id === windowID) {
+					window.setIsFocused(true);
+					window.setIsShown(true);
+				}
 			});
 		},
 		[focusWindowByID, ALL_WINDOWS]
@@ -119,11 +123,12 @@ export function useWindowManager(): WindowManager {
 	const siteMenu: NavBarMenuParent = useMemo(
 		() => ({
 			key: 'site-menu',
-			DisplayIcon: CodeBlockIcon,
+			DisplayIcon: HomeIcon,
 			dropdownOptions: [
 				{
 					key: 'landing-page',
 					titleText: 'Home',
+					hoverExplainer: 'Open the Home page window',
 					isDisabled: mainLandingWindow.isShown && mainLandingWindow.isFocused,
 					onClickAction: () => {
 						openWindowByID('main-landing-window');
@@ -131,45 +136,25 @@ export function useWindowManager(): WindowManager {
 					displayMenuBreakAfter: true,
 				},
 				{
-					key: 'solvedoku-project',
-					titleText: 'Solvedoku',
-					isDisabled: solvedokuWindow.isShown && solvedokuWindow.isFocused,
+					key: 'github-socials',
+					titleText: 'Github',
+					hoverExplainer: 'Find me on Github',
+					displaySectionHeader: 'Socials',
 					onClickAction: () => {
-						openWindowByID('solvedoku-window');
+						window.open(GITHUB, '_blank');
 					},
-					displaySectionHeader: 'Projects',
 				},
 				{
-					key: 'rps-project',
-					titleText: 'Rock, Paper, Scissors',
-					isDisabled: rpsSketchWindow.isShown && rpsSketchWindow.isFocused,
+					key: 'linkedin-socials',
+					hoverExplainer: 'Find me on LinkedIn',
+					titleText: 'LinkedIn',
 					onClickAction: () => {
-						openWindowByID('rps-sketch-window');
-					},
-					displayMenuBreakAfter: true,
-				},
-				{
-					key: 'about-this-site',
-					titleText: 'About This Site',
-					isDisabled:
-						aboutThisSiteWindow.isShown && aboutThisSiteWindow.isFocused,
-					onClickAction: () => {
-						openWindowByID('about-this-site-window');
+						window.open(LINKEDIN, '_blank');
 					},
 				},
 			],
 		}),
-		[
-			aboutThisSiteWindow.isFocused,
-			aboutThisSiteWindow.isShown,
-			mainLandingWindow.isFocused,
-			mainLandingWindow.isShown,
-			openWindowByID,
-			rpsSketchWindow.isFocused,
-			rpsSketchWindow.isShown,
-			solvedokuWindow.isFocused,
-			solvedokuWindow.isShown,
-		]
+		[mainLandingWindow.isFocused, mainLandingWindow.isShown, openWindowByID]
 	);
 
 	const navBarMenuItems: NavBarMenuParent[] =

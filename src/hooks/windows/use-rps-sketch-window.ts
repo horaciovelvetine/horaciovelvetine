@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useRPSSketchState } from '../rps/use-rps-sketch-state';
 import type { NavBarMenuParent, WindowIDs, RPSWindowState } from '../../types';
+import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
 
 /**
  * Custom hook for managing the Rock, Paper, Scissors sketch window state and functionality
@@ -51,17 +52,11 @@ export function useRPSSketchWindow(): RPSWindowState {
 							key: 'rps-settings',
 							titleText: 'Settings',
 							isDisabled: !sketchState.sketchIsInitialized,
+							hoverExplainer:
+								'Open the Rock, Paper, Scissors sketch settings menu',
 							onClickAction: () => {
 								sketchState.setSketchIsPaused(true);
 								setShowSettingsMenu(true);
-							},
-							displayMenuBreakAfter: true,
-						},
-						{
-							key: 'rps-about',
-							titleText: 'About Rock, Paper, Scissors',
-							onClickAction: () => {
-								setShowAboutMenu(prev => !prev);
 							},
 						},
 					],
@@ -73,9 +68,9 @@ export function useRPSSketchWindow(): RPSWindowState {
 						{
 							key: 'new-game',
 							titleText: 'New Game',
-							hoverExplainerTitle:
+							hoverExplainer:
 								'Create an entirely new game, returning to the initialization menu',
-							isDisabled: !sketchState.sketchIsInitialized,
+							isDisabled: (!sketchState.sketchIsInitialized && isShown) || isShown,
 							onClickAction: () => {
 								if (!isShown) openWindowByID('rps-sketch-window');
 								closeWindowCallback();
@@ -85,8 +80,8 @@ export function useRPSSketchWindow(): RPSWindowState {
 						{
 							key: 'reset-game',
 							titleText: 'Reset Game',
-							hoverExplainerTitle: 'Reset the game with the current settings',
-							isDisabled: !sketchState.sketchIsInitialized,
+							hoverExplainer: 'Reset the game with the current settings',
+							isDisabled: !sketchState.sketchIsInitialized || !isShown,
 							onClickAction: () => {
 								if (!isShown) openWindowByID('rps-sketch-window');
 								sketchState.setResetRequested(true);
@@ -97,11 +92,11 @@ export function useRPSSketchWindow(): RPSWindowState {
 							key: 'pause-sketch',
 							titleText:
 								sketchState.sketchIsPaused ? 'Resume Game' : 'Pause Game',
-							hoverExplainerTitle:
+							hoverExplainer:
 								sketchState.sketchIsPaused ?
 									'Resumes the current game'
 								:	'Pauses the current game',
-							isDisabled: !sketchState.sketchIsInitialized,
+							isDisabled: !sketchState.sketchIsInitialized || !isShown,
 							onClickAction: () => {
 								if (!isShown) openWindowByID('rps-sketch-window');
 								if (!sketchState.sketchIsInitialized) return;
@@ -117,8 +112,7 @@ export function useRPSSketchWindow(): RPSWindowState {
 						{
 							key: 'sprite-set-1-select',
 							titleText: '✌️ ✊ ✋',
-							hoverExplainerTitle:
-								'Select the traditional hand sprite charcter set',
+							hoverExplainer: 'Select the traditional hand sprite charcter set',
 							displaySectionHeader: 'Charcter Set Selection',
 							isDisabled: !sketchState.sketchIsInitialized,
 							onClickAction: () => {
@@ -129,7 +123,7 @@ export function useRPSSketchWindow(): RPSWindowState {
 						{
 							key: 'sprite-set-1-select',
 							titleText: '🪨 📄 ✂️',
-							hoverExplainerTitle: 'Select the pictogram sprite charcter set',
+							hoverExplainer: 'Select the pictogram sprite charcter set',
 							isDisabled: !sketchState.sketchIsInitialized,
 							onClickAction: () => {
 								if (!isShown) openWindowByID('rps-sketch-window');
@@ -142,7 +136,7 @@ export function useRPSSketchWindow(): RPSWindowState {
 							titleText: (sketchState.showCollisionRadius ? 'Hide' : 'Show'
 							).concat(' Collision Bounds'),
 							displaySectionHeader: 'View Options',
-							hoverExplainerTitle:
+							hoverExplainer:
 								'Show or Hide the radius used to detect collisions between sprites',
 							isDisabled: !sketchState.sketchIsInitialized,
 							onClickAction() {
@@ -154,7 +148,7 @@ export function useRPSSketchWindow(): RPSWindowState {
 							key: 'toggle-velocity',
 							titleText: (sketchState.showCollisionRadius ? 'Hide' : 'Show'
 							).concat(' Velocity Indicator'),
-							hoverExplainerTitle:
+							hoverExplainer:
 								'Show or Hide the Velocity and Heading indicator arrow',
 							isDisabled: !sketchState.sketchIsInitialized,
 							onClickAction() {
@@ -168,6 +162,8 @@ export function useRPSSketchWindow(): RPSWindowState {
 							displaySectionHeader: 'Change Sprite Count',
 							titleText: 'Some',
 							displayKeyboardShortcut: '(15)',
+							hoverExplainer:
+								'Adjust the number of sprites in the sketch to 15',
 							isDisabled: !sketchState.sketchIsInitialized,
 							onClickAction: () => {
 								if (!isShown) openWindowByID('rps-sketch-window');
@@ -178,6 +174,8 @@ export function useRPSSketchWindow(): RPSWindowState {
 							key: 'adjust-sprite-count-more',
 							titleText: 'More',
 							displayKeyboardShortcut: '(30)',
+							hoverExplainer:
+								'Adjust the number of sprites in the sketch to 30',
 							isDisabled: !sketchState.sketchIsInitialized,
 							onClickAction: () => {
 								if (!isShown) openWindowByID('rps-sketch-window');
@@ -188,6 +186,8 @@ export function useRPSSketchWindow(): RPSWindowState {
 							key: 'adjust-sprite-count-lots',
 							titleText: 'Lots',
 							displayKeyboardShortcut: '(45)',
+							hoverExplainer:
+								'Adjust the number of sprites in the sketch to 45',
 							isDisabled: !sketchState.sketchIsInitialized,
 							onClickAction: () => {
 								if (!isShown) openWindowByID('rps-sketch-window');
@@ -198,6 +198,8 @@ export function useRPSSketchWindow(): RPSWindowState {
 							key: 'adjust-sprite-count-lots!',
 							titleText: 'Lots!',
 							displayKeyboardShortcut: '(60)',
+							hoverExplainer:
+								'Adjust the number of sprites in the sketch to 60',
 							isDisabled: !sketchState.sketchIsInitialized,
 							onClickAction: () => {
 								if (!isShown) openWindowByID('rps-sketch-window');
@@ -211,13 +213,35 @@ export function useRPSSketchWindow(): RPSWindowState {
 					displayText: 'Help',
 					dropdownOptions: [
 						{
+							key: 'contact',
+							titleText: 'Contact',
+							hoverExplainer: 'Send @horaciovelvetine an email',
+							onClickAction: () => {
+								window.open(MAILTO);
+							},
+							displayMenuBreakAfter: true,
+						},
+						{
 							key: 'rps-help',
 							titleText: 'Rock, Paper, Scissors Help',
-							hoverExplainerTitle: 'Open the Rock, Paper, Scissors help window',
+							hoverExplainer: 'Open the Rock, Paper, Scissors help window',
 							onClickAction: () => {
 								if (!isShown) openWindowByID('rps-sketch-window');
+								if (!sketchState.sketchIsInitialized) {
+									// 'initialize' the sketch before showing the menu
+									sketchState.setSketchIsInitialized(Date.now());
+								}
 								sketchState.setSketchIsPaused(true);
 								setShowAboutMenu(prev => !prev);
+							},
+							displayMenuBreakAfter: true,
+						},
+						{
+							key: 'submit-issue',
+							titleText: 'Submit Github Issue',
+							hoverExplainer: 'Let me know about any issues on the site',
+							onClickAction: () => {
+								window.open(GH_NEW_ISSUES, '_blank');
 							},
 						},
 					],
