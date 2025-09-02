@@ -27,34 +27,6 @@ export function SolvedokuSettingsMenu({
 		'rose',
 	];
 
-	const MIN_INTERVAL = 1;
-	const MAX_INTERVAL = 300;
-	const INTERVAL_STEP = 20;
-
-	const handleSlowDownButtonClick = () => {
-		let newSpeed;
-		if (windowState.solutionFinderInterval <= INTERVAL_STEP) {
-			newSpeed = MIN_INTERVAL;
-		} else {
-			newSpeed = windowState.solutionFinderInterval - INTERVAL_STEP;
-		}
-		windowState.setSolutionFinderInterval(newSpeed);
-	};
-
-	const handleSpeedUpClick = () => {
-		let newSpeed;
-		if (windowState.solutionFinderInterval === MIN_INTERVAL) {
-			newSpeed = INTERVAL_STEP;
-		} else if (windowState.solutionFinderInterval < MAX_INTERVAL) {
-			newSpeed = Math.min(
-				MAX_INTERVAL,
-				windowState.solutionFinderInterval + INTERVAL_STEP
-			);
-		} else {
-			newSpeed = MAX_INTERVAL;
-		}
-		windowState.setSolutionFinderInterval(newSpeed);
-	};
 	return (
 		<ul className='flex flex-col items-center gap-2 sm:gap-2 mb-8'>
 			<li className='flex items-center xs:gap-1 border-b border-white/35 pb-3'>
@@ -88,9 +60,12 @@ export function SolvedokuSettingsMenu({
 							<PuzzleButton
 								Icon={RewindIcon}
 								accentColor={siteSettings.accentColor}
-								onClickFunction={handleSlowDownButtonClick}
+								onClickFunction={windowState.slowDownSolutionFinder}
 								title='Slow down the puzzle solver'
-								isDisabled={windowState.solutionFinderInterval === MIN_INTERVAL}
+								isDisabled={
+									windowState.solutionFinderInterval ===
+									windowState.MIN_SOLVER_INTERVAL
+								}
 							/>
 						</li>
 						<li>
@@ -102,9 +77,12 @@ export function SolvedokuSettingsMenu({
 							<PuzzleButton
 								Icon={FastForwardIcon}
 								accentColor={siteSettings.accentColor}
-								onClickFunction={handleSpeedUpClick}
+								onClickFunction={windowState.speedUpSolutionFinder}
 								title='Speed up the puzzle solver'
-								isDisabled={windowState.solutionFinderInterval === MAX_INTERVAL}
+								isDisabled={
+									windowState.solutionFinderInterval ===
+									windowState.MAX_SOLVER_INTERVAL
+								}
 							/>
 						</li>
 					</ul>
