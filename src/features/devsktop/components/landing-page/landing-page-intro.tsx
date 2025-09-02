@@ -23,7 +23,7 @@ export function LandingPageIntro() {
 				<div>
 					<div className='flex justify-center items-baseline'>
 						<h1 className='tracking-tighter text-4xl sm:text-5xl'>
-							Hi, I'm James
+							👋{' '}I'm James
 						</h1>
 					</div>
 
