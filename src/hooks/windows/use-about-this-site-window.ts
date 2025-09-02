@@ -16,15 +16,13 @@ import type { ManagedWindow } from '../../types';
  *   - Window identification and display properties
  */
 export function useAboutThisSiteWindow(
-	parentWindow: ManagedWindow,
-	focusedWindowID: string
+	parentWindow: ManagedWindow
 ): ManagedWindow {
 	const windowID = 'about-this-site-window';
 	const title = 'About This Site';
 	const [zIndex, setZIndex] = useState('0');
-	const [isShown, setIsShown] = useState(() => {
-		return windowID === focusedWindowID;
-	});
+	const [isFocused, setIsFocused] = useState(false);
+	const [isShown, setIsShown] = useState(false);
 
 	const closeWindowCallback = useCallback(() => {
 		// no cleanup needed
@@ -37,6 +35,8 @@ export function useAboutThisSiteWindow(
 		setZIndex,
 		isShown,
 		setIsShown,
+		isFocused,
+		setIsFocused,
 		closeWindowCallback,
 		navBarMenuItems: parentWindow.navBarMenuItems,
 	};

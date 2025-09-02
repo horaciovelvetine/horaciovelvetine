@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { CodeBlockIcon } from '../../assets';
 import type {
 	WindowManager,
@@ -31,41 +31,31 @@ import {
  *   - Window control functions and state
  */
 export function useWindowManager(): WindowManager {
-	const [focusedWindowID, setFocusedWindowID] = useState<WindowIDs>(
-		'main-landing-window'
-	);
-
 	//? INITIALIZE ALL WINDOWS
 	// SITE WINDOWS
-	const devsktopWindow = useMainLandingWindow(focusedWindowID);
-	const aboutThisSiteWindow = useAboutThisSiteWindow(
-		devsktopWindow,
-		focusedWindowID
-	);
+	const mainLandingWindow = useMainLandingWindow();
+	const aboutThisSiteWindow = useAboutThisSiteWindow(mainLandingWindow);
 	// SOLVEDOKU WINDOWS
-	const solvedokuWindow = useSolvedokuWindow(focusedWindowID);
+	const solvedokuWindow = useSolvedokuWindow();
 	// RPS WINDOWS
-	const rpsSketchWindow = useRPSSketchWindow(focusedWindowID);
+	const rpsSketchWindow = useRPSSketchWindow();
 
 	const ALL_WINDOWS: ManagedWindow[] = useMemo(
 		() => [
-			devsktopWindow,
+			mainLandingWindow,
 			aboutThisSiteWindow,
 			solvedokuWindow,
 			rpsSketchWindow,
 		],
-		[aboutThisSiteWindow, devsktopWindow, solvedokuWindow, rpsSketchWindow]
+		[aboutThisSiteWindow, mainLandingWindow, solvedokuWindow, rpsSketchWindow]
 	);
 
 	/**
 	 * The current {@see ManagedWindow } which the user is currently (clicked) focused on.
 	 */
 	const focusedWindow = useMemo(() => {
-		return (
-			ALL_WINDOWS.find(window => window.id === focusedWindowID) ??
-			devsktopWindow
-		);
-	}, [ALL_WINDOWS, focusedWindowID, devsktopWindow]);
+		return ALL_WINDOWS.find(window => window.isFocused) ?? mainLandingWindow;
+	}, [ALL_WINDOWS, mainLandingWindow]);
 
 	/**
 	 * Focuses a window by its ID, changes { @see SiteNavigationMenuBar } to display relevant menu-ing and adjust its Z-Index state to be visible on top of the other windows. zIndex is '1' for the window on top, and 0 (sorted by the order rendered in {@see MainDevsktopLayout }) for all other visibleWindows.
@@ -77,11 +67,12 @@ export function useWindowManager(): WindowManager {
 			const windowToFocus = ALL_WINDOWS.find(window => window.id === windowID);
 			if (!windowToFocus) return;
 
-			setFocusedWindowID(windowID);
+			windowToFocus.setIsFocused(true);
 			windowToFocus.setZIndex('1');
 			//? Send all other windows to back
 			ALL_WINDOWS.filter(window => window.id !== windowToFocus.id).forEach(
 				window => {
+					window.setIsFocused(false);
 					window.setZIndex('0');
 				}
 			);
@@ -98,6 +89,7 @@ export function useWindowManager(): WindowManager {
 		(id: WindowIDs): void => {
 			ALL_WINDOWS.forEach(window => {
 				if (window.id === id) {
+					window.setIsFocused(false);
 					window.setIsShown(false);
 					window.closeWindowCallback(); // clean up window state...
 				}
@@ -132,8 +124,7 @@ export function useWindowManager(): WindowManager {
 				{
 					key: 'landing-page',
 					titleText: 'Home',
-					isDisabled:
-						devsktopWindow.isShown && focusedWindowID === 'main-landing-window',
+					isDisabled: mainLandingWindow.isShown && mainLandingWindow.isFocused,
 					onClickAction: () => {
 						openWindowByID('main-landing-window');
 					},
@@ -142,8 +133,7 @@ export function useWindowManager(): WindowManager {
 				{
 					key: 'solvedoku-project',
 					titleText: 'Solvedoku',
-					isDisabled:
-						solvedokuWindow.isShown && focusedWindowID === 'solvedoku-window',
+					isDisabled: solvedokuWindow.isShown && solvedokuWindow.isFocused,
 					onClickAction: () => {
 						openWindowByID('solvedoku-window');
 					},
@@ -152,8 +142,7 @@ export function useWindowManager(): WindowManager {
 				{
 					key: 'rps-project',
 					titleText: 'Rock, Paper, Scissors',
-					isDisabled:
-						rpsSketchWindow.isShown && focusedWindowID === 'rps-sketch-window',
+					isDisabled: rpsSketchWindow.isShown && rpsSketchWindow.isFocused,
 					onClickAction: () => {
 						openWindowByID('rps-sketch-window');
 					},
@@ -163,8 +152,7 @@ export function useWindowManager(): WindowManager {
 					key: 'about-this-site',
 					titleText: 'About This Site',
 					isDisabled:
-						aboutThisSiteWindow.isShown &&
-						focusedWindowID === 'about-this-site-window',
+						aboutThisSiteWindow.isShown && aboutThisSiteWindow.isFocused,
 					onClickAction: () => {
 						openWindowByID('about-this-site-window');
 					},
@@ -172,12 +160,15 @@ export function useWindowManager(): WindowManager {
 			],
 		}),
 		[
-			openWindowByID,
-			focusedWindowID,
-			devsktopWindow.isShown,
+			aboutThisSiteWindow.isFocused,
 			aboutThisSiteWindow.isShown,
-			solvedokuWindow.isShown,
+			mainLandingWindow.isFocused,
+			mainLandingWindow.isShown,
+			openWindowByID,
+			rpsSketchWindow.isFocused,
 			rpsSketchWindow.isShown,
+			solvedokuWindow.isFocused,
+			solvedokuWindow.isShown,
 		]
 	);
 
@@ -187,7 +178,7 @@ export function useWindowManager(): WindowManager {
 		}, [siteMenu, focusedWindow, openWindowByID]);
 
 	return {
-		devsktopWindow,
+		mainLandingWindow,
 		aboutThisSiteWindow,
 		solvedokuWindow,
 		rpsSketchWindow,

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import type { SolvedokuGameState } from '../../types';
+import type { SolvedokuWindowState } from '../../types';
 
 /**
  * Custom hook that adds keyboard shortcuts for the Solvedoku game
@@ -14,9 +14,13 @@ export function useKeyboardShortcuts({
 	canUndo,
 	selectedCellID,
 	updateCellValue,
-}: SolvedokuGameState) {
+	isShown,
+	isFocused,
+}: SolvedokuWindowState) {
 	useEffect(() => {
 		const handleKeyPress = (e: KeyboardEvent) => {
+			if (!isFocused) return;
+			if (!isShown) return; // ignore if not on screen
 			// Undo shortcut: Ctrl+Z (Windows/Linux) or Cmd+Z (Mac)
 			if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
 				e.preventDefault();
@@ -49,5 +53,5 @@ export function useKeyboardShortcuts({
 		return () => {
 			document.removeEventListener('keydown', handleKeyPress);
 		};
-	}, [undo, canUndo, selectedCellID, updateCellValue]);
+	}, [undo, canUndo, selectedCellID, updateCellValue, isFocused, isShown]);
 }

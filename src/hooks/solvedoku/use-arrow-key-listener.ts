@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import type { SolvedokuGameState } from '../../types';
+import type { SolvedokuWindowState } from '../../types';
 
 /**
  * Custom hook that adds keyboard navigation functionality to the game grid
@@ -10,9 +10,11 @@ import type { SolvedokuGameState } from '../../types';
 export function useArrowKeyListener({
 	selectedCellID,
 	setSelectedCellID,
-}: SolvedokuGameState) {
+	isFocused,
+}: SolvedokuWindowState) {
 	useEffect(() => {
 		const handleKeyPress = (e: KeyboardEvent) => {
+			if (!isFocused) return; // ignore if not focused
 			if (!selectedCellID) return;
 			const key = e.key.toLowerCase();
 			const [currentRow, currentCol] = selectedCellID
@@ -45,5 +47,5 @@ export function useArrowKeyListener({
 		return () => {
 			document.removeEventListener('keydown', handleKeyPress);
 		};
-	}, [selectedCellID, setSelectedCellID]);
+	}, [isFocused, selectedCellID, setSelectedCellID]);
 }

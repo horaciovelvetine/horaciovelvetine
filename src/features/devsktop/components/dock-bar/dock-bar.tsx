@@ -36,7 +36,7 @@ export function DockBar({ windowManager }: DockBarProps) {
             onClick={() => {
               windowManager.openWindowByID('main-landing-window');
             }}
-            isOpen={windowManager.devsktopWindow.isShown}
+            isOpen={windowManager.mainLandingWindow.isShown}
           />
           <DockIcon
             label='Solvedoku'

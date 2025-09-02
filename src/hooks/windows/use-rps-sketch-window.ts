@@ -17,13 +17,12 @@ import type { NavBarMenuParent, WindowIDs, RPSWindowState } from '../../types';
  *   - Navigation bar menu configuration
  *   - Integrated RPS sketch state and controls
  */
-export function useRPSSketchWindow(focusedWindowID: string): RPSWindowState {
+export function useRPSSketchWindow(): RPSWindowState {
 	const windowID = 'rps-sketch-window';
 	const title = 'Rock, Paper, Scissors';
 	const [zIndex, setZIndex] = useState('0');
-	const [isShown, setIsShown] = useState(() => {
-		return windowID === focusedWindowID;
-	});
+	const [isFocused, setIsFocused] = useState(false);
+	const [isShown, setIsShown] = useState(false);
 	const sketchState = useRPSSketchState();
 
 	const [showSettingsMenu, setShowSettingsMenu] = useState(false);
@@ -235,6 +234,8 @@ export function useRPSSketchWindow(focusedWindowID: string): RPSWindowState {
 		setZIndex,
 		isShown,
 		setIsShown,
+		isFocused,
+		setIsFocused,
 		navBarMenuItems,
 		showAboutMenu,
 		setShowAboutMenu,

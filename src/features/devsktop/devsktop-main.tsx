@@ -40,7 +40,7 @@ export function DevsktopMain({ siteSettings }: SiteContext) {
 				/>
 
 				<WindowFrame
-					window={windowManager.devsktopWindow}
+					window={windowManager.mainLandingWindow}
 					Component={MainLandingWindow}
 					siteSettings={siteSettings}
 					windowManager={windowManager}

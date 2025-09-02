@@ -23,15 +23,12 @@ import { useSolvedokuGameState } from '../solvedoku/use-solvedoku-game-state';
  *   - Integrated Solvedoku game state and controls
  *   - Current puzzle difficulty display state
  */
-export function useSolvedokuWindow(
-	focusedWindowID: string
-): SolvedokuWindowState {
+export function useSolvedokuWindow(): SolvedokuWindowState {
 	const windowID = 'solvedoku-window';
 	const title = 'Solvedoku';
 	const [zIndex, setZIndex] = useState('0');
-	const [isShown, setIsShown] = useState(() => {
-		return windowID === focusedWindowID;
-	});
+	const [isFocused, setIsFocused] = useState(false);
+	const [isShown, setIsShown] = useState(false);
 	const solvedokuState = useSolvedokuGameState();
 
 	// Mobile menu state management
@@ -218,6 +215,8 @@ export function useSolvedokuWindow(
 		navBarMenuItems,
 		isShown,
 		setIsShown,
+		isFocused,
+		setIsFocused,
 		...solvedokuState,
 		// Mobile menu state
 		showSettingsMenu,

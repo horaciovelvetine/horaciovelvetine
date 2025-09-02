@@ -13,7 +13,7 @@ import type { WindowIDs } from './window-ids';
  * opening, closing, and menu navigation.
  *
  * @interface
- * @property {ManagedWindow} devsktopWindow - Main desktop/landing window state and controls
+ * @property {ManagedWindow} mainLandingWindow - Main desktop/landing window state and controls
  * @property {ManagedWindow} aboutThisSiteWindow - About page window for site information
  * @property {SolvedokuWindowState} solvedokuWindow - Solvedoku game window with extended game state
  * @property {ManagedWindow} aboutSolvedokuWindow - About page window for Solvedoku information
@@ -27,7 +27,7 @@ import type { WindowIDs } from './window-ids';
  */
 export interface WindowManager {
 	// WINDOWS
-	devsktopWindow: ManagedWindow;
+	mainLandingWindow: ManagedWindow;
 	aboutThisSiteWindow: ManagedWindow;
 	solvedokuWindow: SolvedokuWindowState;
 	rpsSketchWindow: RPSWindowState;
