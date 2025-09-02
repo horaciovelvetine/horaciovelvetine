@@ -14,7 +14,7 @@ export function VideoHeadshot() {
 			href='https://support.apple.com/en-us/111115'
 			target='_blank'
 			rel='noreferrer noopener'
-			className='flex border border-stone-300/20 rounded-full drop-shadow-2xl drop-shadow-stone-300/10 transition-all duration-100 hover:scale-105 hover:-translate-y-1 w-32 sm:w-36 md:w-40'>
+			className='flex border border-stone-300/20 rounded-full transition-all duration-100 hover:scale-105 hover:-translate-y-1 w-32 sm:w-36 md:w-40'>
 			<video
 				autoPlay
 				loop
