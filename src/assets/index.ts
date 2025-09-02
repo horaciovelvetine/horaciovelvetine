@@ -33,3 +33,4 @@ export { P5JSIcon } from './icons/p5js-icon.tsx';
 export { FigmaIcon } from './icons/figma-icon.tsx';
 export { GithubIcon } from './icons/github-icon.tsx';
 export { LinkedInIcon } from './icons/linkedin-icon.tsx';
+export { HomeIcon } from './icons/home-icon.tsx';
