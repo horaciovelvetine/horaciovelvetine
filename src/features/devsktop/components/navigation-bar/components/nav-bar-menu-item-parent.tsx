@@ -42,7 +42,7 @@ export function NavBarMenuItemParent({
 			onClick={() => {
 				setShowDropdownMenu(prev => !prev);
 			}}
-			className={`relative flex first:mr-1 px-2 rounded ${showDropdownMenu ? 'bg-stone-300/50' : ''}`}>
+			className={`relative flex first:mr-1 px-2 rounded select-none ${showDropdownMenu ? 'bg-stone-300/50' : ''}`}>
 			<button type='button'>
 				{DisplayIcon && (
 					<DisplayIcon

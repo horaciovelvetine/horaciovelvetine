@@ -55,7 +55,7 @@ export function SpriteSetSelector({
 				<Label
 					id='set-sprite-set-label'
 					htmlFor='set-sprite-set'
-					className='block text-sm/4 sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 dark:text-white text-nowrap  border-b border-stone-300/30'>
+					className='block text-sm/4 sm:text-base md:text-lg lg:text-xl font-semibold text-white text-nowrap border-b border-stone-300/30'>
 					Set Sprites:
 				</Label>
 				<span
@@ -70,12 +70,12 @@ export function SpriteSetSelector({
 					onChange={setSpriteCharSet}>
 					<ListboxButton
 						id={'set-sprite-set'}
-						className={`flex justify-center items-center w-full rounded-md px-2 py-2 text-sm md:text-lg outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 dark:bg-white/5 dark:outline-white/10 dark:placeholder:text-gray-500 ${focusOutlineClass} text-nowrap`}>
+						className={`flex justify-center items-center w-full rounded-md px-2 py-2 text-sm md:text-lg outline-1 -outline-offset-1 outline-stone-300 focus:outline-2 focus:-outline-offset-2 bg-white/5 placeholder:text-gray-500 ${focusOutlineClass} text-nowrap`}>
 						{spriteCharSet.join(' ')}
 					</ListboxButton>
 					<ListboxOptions
 						anchor='bottom'
-						className='absolute z-10 w-fit overflow-auto rounded-md text-base shadow-lg outline-1 outline-black/5 data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10 empty:invisible'>
+						className='absolute z-10 w-fit overflow-auto rounded-md text-base outline-1 outline-stone-300/5 data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm bg-gray-800 -outline-offset-1 empty:invisible'>
 						{[
 							['✌️', '✊', '✋'],
 							['🪨', '📄', '✂️'],
@@ -83,7 +83,7 @@ export function SpriteSetSelector({
 							<ListboxOption
 								key={set.join('-')}
 								value={set}
-								className={`group relative cursor-default py-2 px-3 text-gray-900 select-none data-focus:text-white data-focus:outline-hidden dark:text-white text-lg font-bold ${focusBGClass} text-nowrap`}>
+								className={`group relative cursor-default py-2 px-3 select-none data-focus:text-white data-focus:outline-hidden text-white text-lg font-bold ${focusBGClass} text-nowrap`}>
 								{set.join(' ')}
 							</ListboxOption>
 						))}

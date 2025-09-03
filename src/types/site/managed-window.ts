@@ -17,6 +17,8 @@ import type { WindowIDs } from './window-ids';
  * @property {(openWindowByID: (windowID: WindowIDs) => void) => NavBarMenuParent[]} navBarMenuItems - Function that returns navigation menu items for this window
  * @property {boolean} isShown - Boolean flag indicating if the window is currently visible
  * @property {Dispatch<SetStateAction<boolean>>} setIsShown - Function to toggle window visibility
+ * @property {boolean} isFocused - Boolean flag indicating if the window is the focused window
+ * @property {Dispatch<SetStateAction<boolean>>} setIsShown - Function to toggle window focus
  * @property {() => void;} closeWindowCallback - cleanup function for the window state called when a window is closed
  */
 export interface ManagedWindow {
@@ -29,5 +31,7 @@ export interface ManagedWindow {
 	) => NavBarMenuParent[];
 	isShown: boolean;
 	setIsShown: Dispatch<SetStateAction<boolean>>;
+	isFocused: boolean;
+	setIsFocused: Dispatch<SetStateAction<boolean>>;
 	closeWindowCallback: () => void;
 }

@@ -62,7 +62,7 @@ export function SpriteCountSelector({
 				<Label
 					id='set-sprite-set-label'
 					htmlFor='set-sprite-set'
-					className='block text-sm/4 sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 dark:text-white text-nowrap  border-b border-stone-300/30'>
+					className='block text-sm/4 sm:text-base md:text-lg lg:text-xl font-semibold text-white text-nowrap border-b border-stone-300/30'>
 					Set Sprite Count:
 				</Label>
 				<span
@@ -77,17 +77,17 @@ export function SpriteCountSelector({
 					onChange={setSelected}>
 					<ListboxButton
 						id={'set-sprite-set'}
-						className={`flex justify-center items-center w-full rounded-md px-2 py-2 text-sm md:text-lg font-extrabold text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 ${focusOutlineClass} text-nowrap`}>
+						className={`flex justify-center items-center w-full rounded-md px-2 py-2 text-sm md:text-lg font-extrabold outline-1 -outline-offset-1 outline-stone-300 placeholder:text-stone-400 focus:outline-2 focus:-outline-offset-2 sm:text-sm/6 bg-white/5 text-white ${focusOutlineClass} text-nowrap`}>
 						{capitalize(selected)}
 					</ListboxButton>
 					<ListboxOptions
 						anchor='bottom'
-						className='absolute z-10 w-fit overflow-auto rounded-md bg-white text-base shadow-lg outline-1 outline-black/5 data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10 empty:invisible'>
+						className='absolute z-10 w-fit overflow-auto rounded-md text-base outline-1 data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm bg-gray-800 shadow-none -outline-offset-1 outline-stone-300/10 empty:invisible'>
 						{options.map(option => (
 							<ListboxOption
 								key={`${option.text}-selection`}
 								value={option.text}
-								className={`flex flex-col group relative cursor-default py-2 px-3 text-gray-900 select-none data-focus:text-white data-focus:outline-hidden dark:text-white text-base font-bold ${focusBGClass} tracking-tight`}>
+								className={`flex flex-col group relative cursor-default py-2 px-3 select-none data-focus:text-white data-focus:outline-hidden text-white text-base font-bold ${focusBGClass} tracking-tight`}>
 								{capitalize(option.text)}
 								<span className='font-normal text-sm text-stone-400'>
 									{option.description}

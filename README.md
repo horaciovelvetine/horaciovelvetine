@@ -4,15 +4,7 @@ My names is James Tillman (@horaciovelvetine) - Im a software engineer and creat
 
 ## Languages, Tools, & Frameworks
 
-<img src="https://github.com/devicons/devicon/blob/master/icons/java/java-original.svg" alt ="Java logo" width="50" height="50"/><img src="https://github.com/devicons/devicon/blob/master/icons/spring/spring-original.svg" alt ="Spring logo" width="50" height="50"/><img src="https://github.com/devicons/devicon/blob/master/icons/ruby/ruby-original.svg" alt ="Ruby logo" width="50" height="50"/><img src="https://github.com/devicons/devicon/blob/master/icons/rails/rails-original-wordmark.svg" alt ="Ruby logo" width="50" height="50"/><img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" alt ="JavaScript logo" width="50" height="50"/><img src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" alt ="TypeScript logo" width="50" height="50"/><img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg" alt ="React logo" width="50" height="50"/><img src="https://github.com/devicons/devicon/blob/master/icons/vuejs/vuejs-original.svg" alt ="React logo" width="50" height="50"/>
-
-### What I'm Learning/Working-On
-
-- [the Wikiverse](https://github.com/horaciovelvetine/wikidata-universe-client)
-- [finding-centroids](https://github.com/horaciovelvetine/finding-centroids)
-- [Random Number Generation & recharts typeScript](https://github.com/horaciovelvetine/js-rng-experiments)
-- [java, spring boot, and stateless APIs](https://github.com/horaciovelvetine/wikidata-universe-api)
-- [graphs, Wikidata, and data](https://github.com/horaciovelvetine/horaciovelvetine/blob/main/assets/docs/THE_WIKIVERSE_OVERVIEW.md)
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java logo" width="50" height="50"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring logo" width="50" height="50"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg" alt="Ruby logo" width="50" height="50"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-original-wordmark.svg" alt="Rails logo" width="50" height="50"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript logo" width="50" height="50"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript logo" width="50" height="50"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React logo" width="50" height="50"/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js logo" width="50" height="50"/>
 
 ### Contact Me
 

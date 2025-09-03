@@ -15,44 +15,22 @@ export function PuzzleSolverButtons({
 	windowState,
 	siteSettings,
 }: SolvedokuWindowProps) {
-	const MIN_INTERVAL = 1;
-	const MAX_INTERVAL = 300;
-	const INTERVAL_STEP = 20;
 	const {
 		isValidSolution,
 		setIsUnsolveable,
 		setIsFindingSolution,
 		isFindingSolution,
 		solutionFinderInterval,
-		setSolutionFinderInterval,
+		speedUpSolutionFinder,
+		slowDownSolutionFinder,
+		MIN_SOLVER_INTERVAL,
+		MAX_SOLVER_INTERVAL,
 	} = windowState;
 
 	const handleSolveButtonClick = () => {
 		if (isValidSolution) return;
 		setIsUnsolveable(false);
 		setIsFindingSolution(!isFindingSolution);
-	};
-
-	const handleSlowDownButtonClick = () => {
-		let newSpeed;
-		if (solutionFinderInterval <= INTERVAL_STEP) {
-			newSpeed = MIN_INTERVAL;
-		} else {
-			newSpeed = solutionFinderInterval - INTERVAL_STEP;
-		}
-		setSolutionFinderInterval(newSpeed);
-	};
-
-	const handleSpeedUpClick = () => {
-		let newSpeed;
-		if (solutionFinderInterval === MIN_INTERVAL) {
-			newSpeed = INTERVAL_STEP;
-		} else if (solutionFinderInterval < MAX_INTERVAL) {
-			newSpeed = Math.min(MAX_INTERVAL, solutionFinderInterval + INTERVAL_STEP);
-		} else {
-			newSpeed = MAX_INTERVAL;
-		}
-		setSolutionFinderInterval(newSpeed);
 	};
 
 	return (
@@ -72,9 +50,9 @@ export function PuzzleSolverButtons({
 					<PuzzleButton
 						Icon={RewindIcon}
 						accentColor={siteSettings.accentColor}
-						onClickFunction={handleSlowDownButtonClick}
+						onClickFunction={slowDownSolutionFinder}
 						title='Slow down the puzzle solver'
-						isDisabled={solutionFinderInterval === MIN_INTERVAL}
+						isDisabled={solutionFinderInterval === MIN_SOLVER_INTERVAL}
 					/>
 				</li>
 				<li>
@@ -86,9 +64,9 @@ export function PuzzleSolverButtons({
 					<PuzzleButton
 						Icon={FastForwardIcon}
 						accentColor={siteSettings.accentColor}
-						onClickFunction={handleSpeedUpClick}
+						onClickFunction={speedUpSolutionFinder}
 						title='Speed up the puzzle solver'
-						isDisabled={solutionFinderInterval === MAX_INTERVAL}
+						isDisabled={solutionFinderInterval === MAX_SOLVER_INTERVAL}
 					/>
 				</li>
 			</ul>

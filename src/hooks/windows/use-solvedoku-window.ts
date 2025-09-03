@@ -6,6 +6,7 @@ import type {
 	PuzzleDifficulty,
 } from '../../types';
 import { useSolvedokuGameState } from '../solvedoku/use-solvedoku-game-state';
+import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
 
 /**
  * Custom hook for managing the Solvedoku window state and functionality
@@ -23,15 +24,12 @@ import { useSolvedokuGameState } from '../solvedoku/use-solvedoku-game-state';
  *   - Integrated Solvedoku game state and controls
  *   - Current puzzle difficulty display state
  */
-export function useSolvedokuWindow(
-	focusedWindowID: string
-): SolvedokuWindowState {
+export function useSolvedokuWindow(): SolvedokuWindowState {
 	const windowID = 'solvedoku-window';
 	const title = 'Solvedoku';
 	const [zIndex, setZIndex] = useState('0');
-	const [isShown, setIsShown] = useState(() => {
-		return windowID === focusedWindowID;
-	});
+	const [isFocused, setIsFocused] = useState(false);
+	const [isShown, setIsShown] = useState(false);
 	const solvedokuState = useSolvedokuGameState();
 
 	// Mobile menu state management
@@ -64,20 +62,11 @@ export function useSolvedokuWindow(
 						{
 							key: 'solvedoku-settings',
 							titleText: 'Settings',
+							hoverExplainer: 'Open the Settings for the Solvedoku application',
 							onClickAction: () => {
 								if (!isShown) openWindowByID('solvedoku-window');
+								setShowTopMenu(false);
 								setShowSettingsMenu(true);
-							},
-							displayMenuBreakAfter: true,
-						},
-						{
-							key: 'solvedoku-about',
-							titleText: 'About Solvedoku',
-							hoverExplainerTitle:
-								'Open a window explaining this application and what it does',
-							onClickAction: () => {
-								if (!isShown) openWindowByID('solvedoku-window');
-								setShowAboutMenu(prev => !prev);
 							},
 						},
 					],
@@ -89,19 +78,20 @@ export function useSolvedokuWindow(
 						{
 							key: 'new-game',
 							titleText: 'New Game',
-							hoverExplainerTitle:
+							hoverExplainer:
 								'Create a new puzzle based on the currently selected difficulty',
 							onClickAction: () => {
 								if (isShown) openWindowByID('solvedoku-window');
 								solvedokuState.generateRandomPuzzle();
+								setShowTopMenu(false);
 							},
 							displayMenuBreakAfter: true,
 						},
 						{
 							key: 'clear-game',
 							titleText: 'Clear Game',
-							hoverExplainerTitle: 'Clear the current game board completely',
-							isDisabled: solvedokuState.gameBoardEmpty,
+							hoverExplainer: 'Clear the current game board completely',
+							isDisabled: solvedokuState.gameBoardEmpty || !isShown,
 							onClickAction: () => {
 								if (!isShown) openWindowByID('solvedoku-window');
 								if (solvedokuState.gameBoardEmpty) return;
@@ -111,9 +101,9 @@ export function useSolvedokuWindow(
 						{
 							key: 'reset-game',
 							titleText: 'Reset Game',
-							hoverExplainerTitle:
+							hoverExplainer:
 								'Reset any moves/answers on the board, ignores the generated puzzle',
-							isDisabled: !solvedokuState.canUndo,
+							isDisabled: !solvedokuState.canUndo || !isShown,
 							displayMenuBreakAfter: true,
 							onClickAction: () => {
 								if (!isShown) openWindowByID('solvedoku-window');
@@ -128,19 +118,39 @@ export function useSolvedokuWindow(
 								solvedokuState.isFindingSolution ? 'Pause Solving' : (
 									'Solve Puzzle'
 								),
-							hoverExplainerTitle:
+							hoverExplainer:
 								solvedokuState.isFindingSolution ?
 									'Pause the current solution finder'
 								:	'Solve the current puzzle',
-							isDisabled: solvedokuState.isValidSolution,
+							isDisabled: solvedokuState.isValidSolution || !isShown,
 							displaySectionHeader: 'Puzzle Solver',
 							onClickAction: () => {
-								if (!isShown) openWindowByID('solvedoku-window');
+								setShowTopMenu(false);
 								if (solvedokuState.isValidSolution) {
 									return;
 								}
 								solvedokuState.setIsFindingSolution(prev => !prev);
 							},
+						},
+						{
+							key: 'slow-down-solver',
+							titleText: 'Slow down Solver',
+							hoverExplainer:
+								'Slow down the solver by increasing the pause between each step',
+							isDisabled:
+								solvedokuState.solutionFinderInterval ===
+									solvedokuState.MIN_SOLVER_INTERVAL || !isShown,
+							onClickAction: solvedokuState.slowDownSolutionFinder,
+						},
+						{
+							key: 'speed-up-solver',
+							titleText: 'Speed up Solver',
+							hoverExplainer:
+								'Speed up the solver by decreasing the pause taken between each step',
+							isDisabled:
+								solvedokuState.solutionFinderInterval ===
+									solvedokuState.MAX_SOLVER_INTERVAL || !isShown,
+							onClickAction: solvedokuState.speedUpSolutionFinder,
 						},
 					],
 				},
@@ -152,9 +162,9 @@ export function useSolvedokuWindow(
 							key: 'undo',
 							titleText: 'Undo',
 							displayKeyboardShortcut: '⌘ Z',
-							hoverExplainerTitle: 'Undo the last move made',
+							hoverExplainer: 'Undo the last move made',
 							displayMenuBreakAfter: true,
-							isDisabled: !solvedokuState.canUndo,
+							isDisabled: !solvedokuState.canUndo && isShown,
 							onClickAction: () => {
 								if (solvedokuState.canUndo) {
 									if (!isShown) openWindowByID('solvedoku-window');
@@ -165,8 +175,8 @@ export function useSolvedokuWindow(
 						{
 							key: 'cut-puzzle',
 							titleText: 'Cut',
-							hoverExplainerTitle: 'Copy the current puzzle to the clipboard',
-							isDisabled: solvedokuState.gameBoardEmpty,
+							hoverExplainer: 'Copy the current puzzle to the clipboard',
+							isDisabled: solvedokuState.gameBoardEmpty && isShown,
 							onClickAction: () => {
 								const puzzleString = solvedokuState.gameBoard
 									.map(row => row.map(cell => cell.value ?? '.').join(''))
@@ -178,9 +188,9 @@ export function useSolvedokuWindow(
 						{
 							key: 'copy-puzzle',
 							titleText: 'Copy',
-							hoverExplainerTitle:
+							hoverExplainer:
 								'Copy the current puzzle to the clipboard and clear the board',
-							isDisabled: solvedokuState.gameBoardEmpty,
+							isDisabled: solvedokuState.gameBoardEmpty && isShown,
 							onClickAction: () => {
 								const puzzleString = solvedokuState.gameBoard
 									.map(row => row.map(cell => cell.value ?? '.').join(''))
@@ -195,12 +205,30 @@ export function useSolvedokuWindow(
 					displayText: 'Help',
 					dropdownOptions: [
 						{
+							key: 'contact',
+							titleText: 'Contact',
+							hoverExplainer: 'Send @horaciovelvetine an email',
+							onClickAction: () => {
+								window.open(MAILTO);
+							},
+							displayMenuBreakAfter: true,
+						},
+						{
 							key: 'solvedoku-help',
 							titleText: 'Solvedoku Help',
-							hoverExplainerTitle: 'Open the Solvedoku help window',
+							hoverExplainer: 'Open the Solvedoku help window',
 							onClickAction: () => {
 								if (!isShown) openWindowByID('solvedoku-window');
 								setShowAboutMenu(prev => !prev);
+							},
+							displayMenuBreakAfter: true,
+						},
+						{
+							key: 'submit-issue',
+							titleText: 'Submit Github Issue',
+							hoverExplainer: 'Let me know about any issues on the site',
+							onClickAction: () => {
+								window.open(GH_NEW_ISSUES, '_blank');
 							},
 						},
 					],
@@ -218,6 +246,8 @@ export function useSolvedokuWindow(
 		navBarMenuItems,
 		isShown,
 		setIsShown,
+		isFocused,
+		setIsFocused,
 		...solvedokuState,
 		// Mobile menu state
 		showSettingsMenu,

@@ -18,7 +18,7 @@
 export interface NavBarMenuChild {
 	key: string; //? for react...
 	titleText: string;
-	hoverExplainerTitle?: string;
+	hoverExplainer: string;
 	displaySectionHeader?: string;
 	displayMenuBreakAfter?: boolean;
 	displayKeyboardShortcut?: string;

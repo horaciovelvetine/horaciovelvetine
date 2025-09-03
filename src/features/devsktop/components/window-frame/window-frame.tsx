@@ -126,7 +126,7 @@ export function WindowFrame({
 								window={window}
 								manager={windowManager}
 							/>
-							<div className='w-[756px] max-h-[calc(100vh-72px)] window-content p-3 overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-500/70 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-gray-400/80 dark:[&::-webkit-scrollbar-track]:bg-gray-800/50 dark:[&::-webkit-scrollbar-thumb]:bg-gray-600/70 dark:[&::-webkit-scrollbar-thumb]:hover:bg-gray-500/80 [&::-webkit-scrollbar]:bg-transparent [&::-webkit-scrollbar-track]:bg-transparent'>
+							<div className='w-[756px] max-h-[calc(100vh-72px)] window-content p-3 overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-stone-400/80 [&::-webkit-scrollbar-thumb]:bg-stone-600/70 [&::-webkit-scrollbar]:bg-transparent [&::-webkit-scrollbar-track]:bg-transparent'>
 								<Component
 									siteSettings={siteSettings}
 									windowState={window}

@@ -50,7 +50,13 @@ export function WindowMenuWrapper({
 					<CloseIcon size='size-8 xs:size-10 sm:size-12' />
 				</button>
 
-				<Icon size='size-16 xs:size-20 sm:size-28 md:size-36' />
+				<Icon
+					size='size-16 xs:size-20 sm:size-28 md:size-36'
+					renderWithAppleCompatability={
+						siteSettings.deviceInfo.isAppleDevice ||
+						siteSettings.deviceInfo.isSafariBrowser
+					}
+				/>
 
 				<h3 className='font-semibold tracking-tighter xs:text-lg sm:text-2xl'>
 					{menuMainTitle}

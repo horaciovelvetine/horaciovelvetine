@@ -20,12 +20,13 @@ import { useClientDeviceCompatibilityDetails } from "./use-client-device-compati
 export function useSiteSettings(): SiteSettings {
   const [accentColor, setAccentColor] = useState<Colors>('blue');
   const clockDisplaySettings = useClockDisplaySettings();
-  const { useMobileCompatability } = useClientDeviceCompatibilityDetails();
+  const { useMobileCompatibility, deviceInfo } = useClientDeviceCompatibilityDetails();
 
   return {
     accentColor,
     setAccentColor,
-    useMobileCompatability,
+    useMobileCompatibility,
+    deviceInfo,
     clockDisplaySettings
   }
 }

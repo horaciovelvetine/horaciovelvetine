@@ -42,6 +42,10 @@ import type { RowColumnSet } from './row-column-set';
  * @property {Dispatch<SetStateAction<RowColumnSet | null>>} setCellSolveTarget - setter for the cellSolveTarget state
  * @property {boolean} showStoredSolution - wether or not to show the client the stored solution for a generate puzzle
  * @property {Dispatch<SetStateAction<boolean>>} setShowStoredSolution - setter for the showStoredSolution state.
+ * @property {() => void} slowDownSolutionFinder - slow down the solution finder interval one step
+ * @property {() => void} speedUpSolutionFinder - speed up the solution finder interval one step
+ * @property {number} MIN_SOLVER_INTERVAL - the minimum value for the solver interval
+ * @property {number} MAX_SOLVER_INTERVAL - the maximum value for the solver interval
  */
 
 export interface SolvedokuGameState {
@@ -260,4 +264,35 @@ export interface SolvedokuGameState {
 	 * Setter to show the stored (intended) solution
 	 */
 	setShowStoredSolution: Dispatch<SetStateAction<boolean>>;
+
+	/**
+	 * Decreases the solution finder interval by one step to slow down the solving animation
+	 *
+	 * The function:
+	 * 1. Checks if the current interval is at or below the step size
+	 * 2. If so, sets it to the minimum step size to prevent going below the step
+	 * 3. Otherwise, decreases the interval by one step to slow down the solver
+	 *
+	 * This creates a smoother visual experience by making the solver take longer
+	 * between each cell solution attempt, allowing users to better follow the solving process.
+	 */
+	slowDownSolutionFinder: () => void;
+
+	/**
+	 * Increases the solution finder interval by one step to speed up the solving animation
+	 *
+	 * The function:
+	 * 1. Checks if the current interval is at the minimum (fastest) setting
+	 * 2. If so, sets it to one step to begin incremental speed increases
+	 * 3. If below maximum, increases the interval by one step to speed up the solver
+	 * 4. Otherwise, ensures it doesn't exceed the maximum interval limit
+	 *
+	 * This creates a smoother visual experience by making the solver take less time
+	 * between each cell solution attempt, allowing for faster puzzle solving visualization
+	 * while maintaining controllable speed increments.
+	 */
+	speedUpSolutionFinder: () => void;
+
+	MIN_SOLVER_INTERVAL: number;
+	MAX_SOLVER_INTERVAL: number;
 }

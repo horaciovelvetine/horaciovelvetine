@@ -1,6 +1,4 @@
 import type { IconProps } from '../../../types';
-import { detectAppleDevice } from '../../../functions/site/detect-apple-device';
-import { detectSafariBrowser } from '../../../functions/site/detect-safari-browser';
 
 // Size mapping for consistent scaling
 const SIZE_MAP: Record<string, number> = {
@@ -67,9 +65,10 @@ export function RPSIcon({
 	size = 'size-6',
 	classes = '',
 	ariaHidden = false,
+	renderWithAppleCompatability = true,
 }: IconProps) {
 	const pixelSize = SIZE_MAP[size] || 24;
-	const isAppleOrSafari = detectAppleDevice() || detectSafariBrowser();
+	const isAppleOrSafari = renderWithAppleCompatability;
 
 	const viewBoxSize = SCALING_CONSTANTS.BASE_SIZE;
 	const center = viewBoxSize / 2;
@@ -77,12 +76,12 @@ export function RPSIcon({
 	const emojiSizeRatio =
 		isAppleOrSafari ?
 			SCALING_CONSTANTS.EMOJI_SIZE_RATIO_APPLE
-		:	SCALING_CONSTANTS.EMOJI_SIZE_RATIO;
+			: SCALING_CONSTANTS.EMOJI_SIZE_RATIO;
 
 	const triangleRadiusRatio =
 		isAppleOrSafari ?
 			SCALING_CONSTANTS.TRIANGLE_RADIUS_RATIO_APPLE
-		:	SCALING_CONSTANTS.TRIANGLE_RADIUS_RATIO;
+			: SCALING_CONSTANTS.TRIANGLE_RADIUS_RATIO;
 
 	const emojiSize = viewBoxSize * emojiSizeRatio;
 	const triangleRadius = viewBoxSize * triangleRadiusRatio;
@@ -246,7 +245,7 @@ export function RPSIcon({
 					transform={
 						emoji.rotation ?
 							`rotate(${emoji.rotation.toString()} ${emoji.x.toString()} ${emoji.y.toString()})`
-						:	undefined
+							: undefined
 					}>
 					<div
 						style={{

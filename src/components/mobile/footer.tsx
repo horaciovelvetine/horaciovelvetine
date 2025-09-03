@@ -1,4 +1,4 @@
-import { GH_REPO } from '../../consts/urls';
+import { GH_REPO, GITHUB } from '../../consts/urls';
 import { SimpleInlineLink } from '../site/simple-inline-link';
 
 /**
@@ -10,7 +10,11 @@ export function Footer() {
 			<p className='font-bold tracking-tight text-white/50 text-base/6 xs:text-lg sm:text-xl'>
 				© 2020-{new Date().getFullYear()} -{' '}
 				<span className='font-normal tracking-tighter'>
-					J.Tillman /@horaciovelvetine
+					J. Tillman{' '}
+					<SimpleInlineLink
+						href={GITHUB}
+						text='@horaciovelvetine'
+					/>
 				</span>
 			</p>
 			<p className='font-semibold tracking-tight text-base/6 xs:text-lg sm:text-xl'>

@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import type { ManagedWindow, NavBarMenuParent, WindowIDs } from '../../types';
+import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
 
 /**
  * Custom hook for managing the main landing window state and functionality
@@ -15,13 +16,12 @@ import type { ManagedWindow, NavBarMenuParent, WindowIDs } from '../../types';
  *   - Project navigation controls (Solvedoku, etc.)
  *   - About and contact page access
  */
-export function useMainLandingWindow(focusedWindowID: string): ManagedWindow {
+export function useMainLandingWindow(): ManagedWindow {
 	const windowID = 'main-landing-window';
 	//? set as primary on top by default
 	const [zIndex, setZIndex] = useState('1');
-	const [isShown, setIsShown] = useState(() => {
-		return windowID === focusedWindowID;
-	});
+	const [isFocused, setIsFocused] = useState(true);
+	const [isShown, setIsShown] = useState(true);
 
 	const closeWindowCallback = useCallback(() => {
 		// no cleanup needed
@@ -33,21 +33,27 @@ export function useMainLandingWindow(focusedWindowID: string): ManagedWindow {
 				{
 					key: 'velvet-dev',
 					isAppTitledDisplayText: true,
-					displayText: 'Velvet.dev',
+					displayText: '@horaciovelvetine',
 					dropdownOptions: [
 						{
 							key: 'about-velvet-dev',
 							titleText: 'About',
-							displaySectionHeader: 'Pages',
+							hoverExplainer: 'About site owner @horaciovelvetine',
 							onClickAction: () => {
 								openWindowByID('about-this-site-window');
 							},
-							displayMenuBreakAfter: true,
 						},
+					],
+				},
+				{
+					key: 'velvet.dev-work',
+					displayText: 'Work',
+					dropdownOptions: [
 						{
+							displaySectionHeader: 'Projects',
 							key: 'open-solvedoku',
-							displaySectionHeader: 'Work',
 							titleText: 'Solvedoku',
+							hoverExplainer: 'Open the Solvedoku application',
 							onClickAction: () => {
 								openWindowByID('solvedoku-window');
 							},
@@ -55,6 +61,7 @@ export function useMainLandingWindow(focusedWindowID: string): ManagedWindow {
 						{
 							key: 'open-rock-paper-scissors',
 							titleText: 'Rock, Paper, Scissors',
+							hoverExplainer: 'Open the Rock, Paper, Scissors application',
 							onClickAction: () => {
 								openWindowByID('rps-sketch-window');
 							},
@@ -66,10 +73,21 @@ export function useMainLandingWindow(focusedWindowID: string): ManagedWindow {
 					displayText: 'Help',
 					dropdownOptions: [
 						{
-							key: 'velvet-about-this-site',
-							titleText: 'About this Site',
+							key: 'contact',
+							titleText: 'Contact',
+							hoverExplainer: 'Send @horaciovelvetine an email',
 							onClickAction: () => {
-								openWindowByID('about-this-site-window');
+								window.open(MAILTO);
+							},
+							displayMenuBreakAfter: true
+						},
+						{
+							key: 'submit-issue',
+							titleText: 'Submit Github Issue',
+							hoverExplainer:
+								'Let me know about any issues on the site',
+							onClickAction: () => {
+								window.open(GH_NEW_ISSUES, '_blank');
 							},
 						},
 					],
@@ -87,6 +105,8 @@ export function useMainLandingWindow(focusedWindowID: string): ManagedWindow {
 		navBarMenuItems,
 		isShown,
 		setIsShown,
+		isFocused,
+		setIsFocused,
 		closeWindowCallback,
 	};
 }

@@ -1,17 +1,17 @@
-import type { Dispatch, SetStateAction } from 'react';
-import type { Dimensions } from './dimensions';
+import type { DeviceInfo } from './device-info';
 
 /**
- * Interface representing details about the client device's compatibility characteristics
+ * Interface representing comprehensive details about the client device's compatibility characteristics
+ *
+ * This interface provides both the primary mobile compatibility decision and additional
+ * device information for advanced use cases. The mobile compatibility decision is based
+ * on multiple factors including screen dimensions, touch capability, user agent, and orientation.
+ *
  * @interface
- * @property {boolean} checkWindowsOnScreen - Flag indicating if window positions should be checked after a screen resize
- * @property {Dimensions} clientDimensions - Current dimensions of the client window
- * @property {boolean} useMobileCompatability - Whether mobile compatibility mode should be used based on device characteristics
+ * @property {boolean} useMobileCompatibility - Whether mobile compatibility mode should be used based on comprehensive device analysis
+ * @property {DeviceInfo} deviceInfo - Additional device characteristics for advanced customization
  */
-
-export interface ClientDeviceCompatabilityDetails {
-	checkWindowsOnScreen: boolean;
-	setCheckWindowsOnScreen: Dispatch<SetStateAction<boolean>>;
-	clientDimensions: Dimensions;
-	useMobileCompatability: boolean;
+export interface ClientDeviceCompatibilityDetails {
+	useMobileCompatibility: boolean;
+	deviceInfo: DeviceInfo;
 }

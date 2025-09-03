@@ -45,6 +45,10 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 	/**
 	 * Solution Finder state, determine if the client has asked to find a solution, how long to wait between each cell solution is tried, and how many steps it takes to arrive at the solution once the solution is completed.
 	 */
+	const MIN_SOLVER_INTERVAL = 1;
+	const MAX_SOLVER_INTERVAL = 300;
+	const SOLVER_INTERVAL_STEP = 20;
+
 	const [isFindingSolution, setIsFindingSolution] = useState(false);
 	const [solutionFinderInterval, setSolutionFinderInterval] = useState(1); //? in ms...
 	const [solutionStepCounter, setSolutionStepCounter] = useState(0);
@@ -239,8 +243,8 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		setSolutionStepCounter(0);
 		setGameBoard(createEmptyBoard(BOARD_SIZE));
 		setMoveHistory([]);
-		setShowStoredSolution(false)
-		setSolutionBoard(null)
+		setShowStoredSolution(false);
+		setSolutionBoard(null);
 		// Reset unsolveable state when board changes
 		setIsUnsolveable(false);
 		// Clear caches when board is reset
@@ -286,9 +290,8 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 			return;
 		}
 		clearGameBoard();
-		setSolutionBoard(null)
+		setSolutionBoard(null);
 		setShowStoredSolution(false);
-
 	}, [setGameBoard, moveHistory, clearGameBoard, setIsUnsolveable]);
 
 	/**
@@ -340,8 +343,8 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 						...cell,
 						value:
 							showSolution ? solutionBoard[rowIndex][colIndex].value
-								: cell.locked ? cell.value
-									: null,
+							: cell.locked ? cell.value
+							: null,
 						locked: cell.locked,
 						userInputted: cell.userInputted,
 					}))
@@ -357,6 +360,50 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		},
 		[solutionBoard, setIsUnsolveable]
 	);
+
+	/**
+	 * Decreases the solution finder interval by one step to slow down the solving animation
+	 *
+	 * The function:
+	 * 1. Checks if the current interval is at or below the step size
+	 * 2. If so, sets it to the minimum step size to prevent going below the step
+	 * 3. Otherwise, decreases the interval by one step to slow down the solver
+	 *
+	 * This creates a smoother visual experience by making the solver take longer
+	 * between each cell solution attempt, allowing users to better follow the solving process.
+	 */
+	const slowDownSolutionFinder = useCallback(() => {
+		if (solutionFinderInterval <= SOLVER_INTERVAL_STEP) {
+			setSolutionFinderInterval(SOLVER_INTERVAL_STEP);
+		} else {
+			setSolutionFinderInterval(prev => prev - SOLVER_INTERVAL_STEP);
+		}
+	}, [solutionFinderInterval]);
+
+	/**
+	 * Increases the solution finder interval by one step to speed up the solving animation
+	 *
+	 * The function:
+	 * 1. Checks if the current interval is at the minimum (fastest) setting
+	 * 2. If so, sets it to one step to begin incremental speed increases
+	 * 3. If below maximum, increases the interval by one step to speed up the solver
+	 * 4. Otherwise, ensures it doesn't exceed the maximum interval limit
+	 *
+	 * This creates a smoother visual experience by making the solver take less time
+	 * between each cell solution attempt, allowing for faster puzzle solving visualization
+	 * while maintaining controllable speed increments.
+	 */
+	const speedUpSolutionFinder = useCallback(() => {
+		if (solutionFinderInterval === MIN_SOLVER_INTERVAL) {
+			setSolutionFinderInterval(SOLVER_INTERVAL_STEP);
+		} else if (solutionFinderInterval < MAX_SOLVER_INTERVAL) {
+			setSolutionFinderInterval(prev =>
+				Math.min(MAX_SOLVER_INTERVAL, prev + SOLVER_INTERVAL_STEP)
+			);
+		} else {
+			setSolutionFinderInterval(MAX_SOLVER_INTERVAL);
+		}
+	}, [solutionFinderInterval]);
 
 	return {
 		gameBoard,
@@ -388,6 +435,10 @@ export function useSolvedokuGameState(): SolvedokuGameState {
 		cellSolveTarget,
 		setCellSolveTarget,
 		showStoredSolution,
-		setShowStoredSolution
+		setShowStoredSolution,
+		slowDownSolutionFinder,
+		speedUpSolutionFinder,
+		MIN_SOLVER_INTERVAL,
+		MAX_SOLVER_INTERVAL,
 	};
 }

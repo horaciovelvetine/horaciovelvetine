@@ -40,7 +40,7 @@ export function DevsktopMain({ siteSettings }: SiteContext) {
 				/>
 
 				<WindowFrame
-					window={windowManager.devsktopWindow}
+					window={windowManager.mainLandingWindow}
 					Component={MainLandingWindow}
 					siteSettings={siteSettings}
 					windowManager={windowManager}
@@ -69,6 +69,8 @@ export function DevsktopMain({ siteSettings }: SiteContext) {
 					windowManager={windowManager}
 				/>
 			</div>
+
+			{/* NAVBAR */}
 			<NavigationBar
 				windowManager={windowManager}
 				siteSettings={siteSettings}
