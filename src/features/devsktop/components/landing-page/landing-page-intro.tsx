@@ -37,7 +37,7 @@ export function LandingPageIntro() {
 
 			<div className='flex justify-center items-center md:ml-42'>
 				<p className='text-2xl/5 xs:text-3xl/6 sm:text-4xl/8 md:text-5xl/9 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-orange-500 to-rose-500 pb-1 md:pb-2.5 text-nowrap'>
-					Full-Stack Engineer & <br /> Creative Technologist
+					Full-Stack Developer & <br /> Creative Technologist
 				</p>
 			</div>
 		</div>
