@@ -37,8 +37,8 @@ export function SolvedokuTopMenu({
 
 				<div className='flex flex-col gap-1 md:gap-3 lg:gap-4 text-sm/4 sm:text-base/6 md:text-xl/6 lg:text-2xl/6.5 font-semibold text-stone-200/70 text-center tracking-tight italic border-b border-stone-300/25 py-1 md:py-2 px-3 text-pretty'>
 					<p>
-						Start by either generating a random puzzle to solve, or entering
-						your own puzzle and watch Solvedoku work out the solution.
+						Start by either generating a random puzzle to solve or entering
+						your own puzzle, and watch Solvedoku work out the solution.
 					</p>
 					<p>
 						There are 3 difficulties to select for the randomly generated
