@@ -43,8 +43,9 @@ export function RPSInitializeSketchMenu({
 			</div>
 
 			<p className='text-sm/4 sm:text-base/6 md:text-lg/6 lg:text-xl/6 font-semibold text-stone-200/70 text-center tracking-tight italic border-b border-stone-300/25 py-1 px-1 mx-1 text-pretty'>
-				Use the 'Start Game' button to begin the game and the menu to customize
-				it.
+				Use the 'Start Game' button to begin the game. Use the menu below to
+				customize it before you start. Once the sketch starts, click or tap
+				anywhere on screen to pause.
 			</p>
 			<div className='flex flex-col gap-0.5 my-1 mx-2'>
 				<SpriteSetSelector
@@ -67,14 +68,14 @@ export function RPSInitializeSketchMenu({
 					toggleOn={windowState.showVelocityIndicators}
 					setToggleOn={windowState.setShowVelocityIndicators}
 					label='Show Velocity:'
-					description='Show each sprites heading and velocity'
+					description={`Show each sprite's heading and velocity`}
 				/>
 				<ViewToggleSlider
 					accentColor={siteSettings.accentColor}
 					toggleOn={windowState.showCollisionRadius}
 					setToggleOn={windowState.setShowCollisionRadius}
 					label='Show Collision Bounds:'
-					description={`Show an each sprite's collision bounding box`}
+					description={`Show each sprite's collision bounding box`}
 				/>
 				<div className='flex justify-center pt-1.5'>
 					<button
