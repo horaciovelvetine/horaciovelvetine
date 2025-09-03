@@ -81,7 +81,7 @@ export function AboutThisSiteWindow() {
 				</p>
 			</div>
 
-			<div className='tracking-tighter my-2 mx-7'>
+			<div className='tracking-tighter mx-7'>
 				<div className='flex w-full justify-center gap-1'>
 					<h3 className='font-extrabold text-5xl border-white/50 pb-1.5 text-nowrap border-b-2  text-end bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-orange-500 to-rose-500'>
 						Navigate like a desktop:
@@ -108,15 +108,21 @@ export function AboutThisSiteWindow() {
 					</li>
 				</ul>
 			</div>
-			<div className='flex flex-col min-w-full items-center'>
-				<p className='font-bold tracking-tight text-white/50 text-base/6 xs:text-lg sm:text-xl'>
+			<div className='flex flex-col min-w-full items-center border-t border-stone-300/30'>
+				<p className='font-bold tracking-tight text-white/50 sm:text-xl/7'>
 					© 2020-{new Date().getFullYear()} -{' '}
-					<span className='font-normal'>J.Tillman / @horaciovelvetine</span>
+					<span className='font-normal tracking-tighter'>
+						J. Tillman{' '}
+						<SimpleInlineLink
+							href={GITHUB}
+							text='@horaciovelvetine'
+						/>
+					</span>
 				</p>
-				<p className='font-semibold tracking-tight text-base/6 xs:text-lg sm:text-xl'>
+				<p className='font-semibold tracking-tight text-xl/5'>
 					<SimpleInlineLink
 						href={GH_REPO}
-						text='Repo on Github'
+						text='Find on Github'
 						showArrow
 					/>
 				</p>
