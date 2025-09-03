@@ -10,7 +10,7 @@ import {
 	TypescriptBadge,
 	ViteBadge,
 } from '../../../components';
-import { GH_REPO } from '../../../consts/urls';
+import { GH_REPO, GITHUB } from '../../../consts/urls';
 
 /**
  * A window component that displays information about the velvet.dev website
@@ -68,16 +68,16 @@ export function AboutThisSiteWindow() {
 
 				<p className='text-2xl/7.5 font-bold tracking-tighter pl-3 text-pretty flex flex-col justify-center'>
 					<span className='border-b border-stone-300/50'>
-						Is the page for engineer
+						is the page for engineer
 						<GradientLinkText
 							text='@horaciovelvetine'
-							url={GH_REPO}
+							url={GITHUB}
 							classes='from-rose-500 via-purple-500 to-sky-500 font-extrabold px-1'
 						/>
 					</span>
-					While typically websites consist of pages seperated neatly by URL's
+					While typically websites consist of pages seperated neatly by URLs,
 					here pages are draggable windows which can be positioned, opened, and
-					closed just like on a desktop!
+					closed just like on a desktop. Give it a try - drag me around.
 				</p>
 			</div>
 
@@ -103,8 +103,8 @@ export function AboutThisSiteWindow() {
 					</li>
 					<li>Click on icons to open pages, applications, and view content.</li>
 					<li>
-						Additional functions can be found in the dropdown menu's at the top
-						of the screen, and depend on the currently active window.
+						Additional functions can be found in the dropdown menus at the top
+						of the screen. The menus are based on the currently active window.
 					</li>
 				</ul>
 			</div>
