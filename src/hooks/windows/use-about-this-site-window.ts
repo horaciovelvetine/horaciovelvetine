@@ -29,7 +29,7 @@ export function useAboutThisSiteWindow(): ManagedWindow {
 				{
 					key: 'velvet-dev',
 					isAppTitledDisplayText: true,
-					displayText: 'horaciovelvetine',
+					displayText: '@horaciovelvetine',
 					dropdownOptions: [
 						{
 							key: 'about-velvet-dev',
