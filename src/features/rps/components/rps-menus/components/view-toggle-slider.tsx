@@ -61,7 +61,7 @@ export function ViewToggleSlider({
 			<span className='flex grow flex-col'>
 				<label
 					id='availability-label'
-					className='block text-sm/4 sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 dark:text-white text-nowrap border-b border-stone-300/30'>
+					className='block text-sm/4 sm:text-base md:text-lg lg:text-xl font-semibold text-white text-nowrap border-b border-stone-300/30'>
 					{label}
 				</label>
 				<span
@@ -71,7 +71,7 @@ export function ViewToggleSlider({
 				</span>
 			</span>
 			<div
-				className={`group relative inline-flex w-11 min-h-full shrink-0 rounded-full bg-stone-300 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 ${outlineColorClass} transition-colors duration-200 ease-in-out ${checkedBGColorClass} has-focus-visible:outline-2 dark:bg-white/5 dark:inset-ring-white/10 dark:${outlineColorClass} mt-6 ${toggleOn ? 'drop-shadow-lg drop-shadow-stone-300/10' : ''}`}>
+				className={`group relative inline-flex w-11 min-h-full shrink-0 rounded-full bg-stone-300 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 ${outlineColorClass} transition-colors duration-200 ease-in-out ${checkedBGColorClass} has-focus-visible:outline-2 bg-white/5 inset-ring-white/10 ${outlineColorClass} mt-6 ${toggleOn ? 'drop-shadow-lg drop-shadow-stone-300/10' : ''}`}>
 				<span className='relative size-5 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-5 '>
 					<span
 						aria-hidden='true'
@@ -79,7 +79,7 @@ export function ViewToggleSlider({
 						<svg
 							fill='none'
 							viewBox='0 0 12 12'
-							className='size-3 text-stone-400 dark:text-stone-600'>
+							className='size-3 text-stone-400'>
 							<path
 								d='M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2'
 								stroke='currentColor'
