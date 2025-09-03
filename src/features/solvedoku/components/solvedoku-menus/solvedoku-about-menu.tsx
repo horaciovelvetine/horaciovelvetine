@@ -22,7 +22,7 @@ export function SolvedokuAboutMenu() {
 					href='https://en.wikipedia.org/wiki/Backtracking'
 					text='backtracking algorithim'
 				/>{' '}
-				to find a solution, and you can slow down and speed up the solution in
+				to find a solution. You can slow down and speed up the solution in
 				realtime and visualize how backtracking works.
 			</p>
 			<h4 className='tracking-tight text-lg/4 border-b-2 border-stone-300/50 sm:text-xl/5 font-semibold mx-auto pt-1'>
@@ -30,7 +30,7 @@ export function SolvedokuAboutMenu() {
 			</h4>
 			<ul className='list-disc text-base/4 xs:text-lg/5 md:text-xl/6 text-pretty tracking-tight pl-5 sm:px-5'>
 				<li className='list-item'>
-					Click or tap any cell and select a number to place it.
+					Click or tap any cell and select a number to place it in that cell.
 				</li>
 				<li className='list-item'>Fill each 3 x 3 square with numbers 1-9.</li>
 				<li className='list-item'>
