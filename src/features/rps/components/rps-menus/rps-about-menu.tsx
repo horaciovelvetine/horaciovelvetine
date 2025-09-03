@@ -24,7 +24,7 @@ export function RPSAboutMenu() {
 						text='DVD icon'
 					/>{' '}
 					bouncing around your childhood clasroom TV on movie day, this is a
-					self playing game of Rock, Paper, Scissors. Each Emoji starts with a
+					self-playing game of Rock, Paper, Scissors. Each Emoji starts with a
 					random charcter and flies around the screen bouncing into one another
 					until only the winner remains. Tap the screen to pause anytime, and
 					use the settings menu to cusomize, reset, or restart the game at any
