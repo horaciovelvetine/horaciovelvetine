@@ -36,7 +36,13 @@ export function RPSInitializeSketchMenu({
 	return (
 		<div className='mx-1 py-2 px-1 border-2 border-stone-300/30 rounded-lg bg-zinc-900/90'>
 			<div className='flex flex-col items-center justify-center'>
-				<RPSIcon size='size-16 xs:size-20 sm:size-28 md:size-36' />
+				<RPSIcon
+					size='size-16 xs:size-20 sm:size-28 md:size-36'
+					renderWithAppleCompatability={
+						siteSettings.deviceInfo.isAppleDevice ||
+						siteSettings.deviceInfo.isSafariBrowser
+					}
+				/>
 				<h2 className='text-3xl lg:text-4xl font-bold tracking-tighter'>
 					Rock, Paper, Scissors
 				</h2>

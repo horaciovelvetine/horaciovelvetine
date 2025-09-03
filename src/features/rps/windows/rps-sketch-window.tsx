@@ -53,7 +53,7 @@ export function RPSSKetchWindow({
 	const clientDimensions = useClientDimensionsUpdates();
 	const canvasSize = setupCanvasDimensions(
 		clientDimensions,
-		siteSettings.useMobileCompatability
+		siteSettings.useMobileCompatibility
 	);
 	const sketchState = useSketchUpdateState(canvasSize, windowState);
 
@@ -81,7 +81,7 @@ export function RPSSKetchWindow({
 					siteSettings={siteSettings}
 					windowState={windowState}
 				/>
-			:	<div
+				: <div
 					className='relative mt-1 border border-stone-300/30 shadow-lg shadow-stone-300/5'
 					onClick={handlePauseSketchClick}>
 					<ReactP5Wrapper

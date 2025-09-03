@@ -9,9 +9,9 @@ export function detectAppleDevice(): boolean {
 	// Check for iOS devices (iPhone, iPad, iPod)
 	const isIOS = /iphone|ipad|ipod/.test(userAgent);
 	// Check for macOS
-	// const isMacOS = /macintosh|mac os x/.test(userAgent);
+	const isMacOS = /macintosh|mac os x/.test(userAgent);
 	// Check for Apple Silicon Macs
-	// const isAppleSilicon = /arm64|apple/.test(userAgent);
+	const isAppleSilicon = /arm64|apple/.test(userAgent);
 
-	return isIOS;
+	return isIOS || isMacOS || isAppleSilicon;
 }

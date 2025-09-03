@@ -1,5 +1,6 @@
 // Site
-export type { ClientDeviceCompatabilityDetails } from './site/client-device-compatability-details';
+export type { DeviceInfo } from './site/device-info';
+export type { ClientDeviceCompatibilityDetails } from './site/client-device-compatability-details';
 export type { ClockDisplaySettings } from './site/clock-display-settings';
 export type { Colors } from './site/colors';
 export type { Dimensions } from './site/dimensions';

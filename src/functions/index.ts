@@ -19,6 +19,8 @@ export {
 } from './site/tailwind-color-utils';
 export { detectAppleDevice } from './site/detect-apple-device';
 export { detectSafariBrowser } from './site/detect-safari-browser';
+export { detectMobileUserAgent } from './site/detect-mobile-user-agent';
+export { detectTouchDevice } from './site/detect-touch-device';
 
 // ? SOLVEDOKU
 export { checkCanPlaceNumber } from './solvedoku/check-can-place-number';
