@@ -3,7 +3,7 @@ import { routeTree } from '../routeTree.gen.ts';
 import { lazy, Suspense } from 'react';
 
 import { useSiteSettings } from '../hooks/site';
-import { PageNotFound } from '../components/index.ts';
+import { PageNotFound, DevsktopFallback } from '../components';
 
 // Lazy load the heavy desktop component
 const DevsktopMain = lazy(() =>
@@ -51,17 +51,12 @@ export function SiteMain() {
 
 	return (
 		<>
-			{siteSettings.useMobileCompatability ?
+			{siteSettings.useMobileCompatibility ?
 				<RouterProvider
 					router={router}
 					context={{ siteSettings }}
 				/>
-			:	<Suspense
-					fallback={
-						<div className='min-h-screen w-screen bg-stone-900 flex items-center justify-center text-white'>
-							Loading Desktop...
-						</div>
-					}>
+			:	<Suspense fallback={<DevsktopFallback {...siteSettings} />}>
 					<DevsktopMain siteSettings={siteSettings} />
 				</Suspense>
 			}
