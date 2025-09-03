@@ -19,6 +19,5 @@
         radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%),
         linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
   overflow: hidden;
-  background-size: cover;
   filter: brightness(90%);
 }
