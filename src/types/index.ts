@@ -13,6 +13,7 @@ export type { NavBarMenuChild } from './site/nav-bar-menu-child';
 export type { WindowIDs } from './site/window-ids';
 export type { IconProps } from './site/icon-props';
 export type { SiteContext } from './site/site-context';
+export type { SiteRoute } from './site/site-route';
 
 //Solvedoku
 export type { SolvedokuGameBoard } from './solvedoku/solvedoku-game-board';
