@@ -1,6 +1,7 @@
 import { BootstrapIcon, FigmaIcon, IllustratorIcon, P5JSIcon, PhotoshopIcon, TailwindCSSIcon } from "../../../../assets"
 import { ToolGridItem } from "./tool-grid-item"
 
+
 export function VisualToolsGrid() { 
   const tools = [
     {

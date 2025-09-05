@@ -9,8 +9,8 @@ import {
 	SQLIcon,
 	TypeScriptIcon,
 } from '../../../../assets';
-
 import { ToolGridItem } from './tool-grid-item';
+
 
 export function LanguagesGrid() {
 	const languages = [
