@@ -1,5 +1,6 @@
-import { ClockDisplay } from '../features/devsktop/components/navigation-bar/components/clock-display';
-import type { SiteSettings } from '../types';
+import { ClockDisplay } from '../../features/devsktop/components/navigation-bar/components/clock-display';
+import type { SiteSettings } from '../../types';
+import { LoadingPageSpinner } from './loading-page-spinner';
 
 /**
  * Fallback component displayed while the main desktop interface is loading
@@ -28,14 +29,10 @@ export function DevsktopFallback(props: SiteSettings) {
 				id='devsktop-bounds'
 				className='h-[calc(100vh-36px)] w-full translate-y-[36px] relative isolate'>
 				{/* LOADING SPINNER */}
-				<div className='absolute inset-0 flex items-center justify-center'>
-					<div className='flex flex-col items-center gap-4'>
-						<div className='animate-spin rounded-full h-16 w-16 border-4 border-stone-300 border-t-blue-500'></div>
-						<p className='text-stone-300 text-lg font-medium'>
-							Loading Desktop...
-						</p>
-					</div>
-				</div>
+				<LoadingPageSpinner
+					pageTitle='Devsktop'
+					siteSettings={props}
+				/>
 			</div>
 			{/* NAVBAR PLACEHOLDER */}
 			<nav
