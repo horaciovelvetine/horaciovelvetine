@@ -1,16 +1,17 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { lazy, Suspense } from 'react';
-import { useRPSSketchWindow } from '../hooks/windows';
+import { useRPSSketchWindow } from '../../hooks/windows';
+import { MobilePageFallback } from '../../components';
 
 // Lazy load the RPSSKetchWindow component
 const RPSSKetchWindow = lazy(() =>
-	import('../features/rps/windows/rps-sketch-window').then(module => ({
+	import('../../features/rps/windows/rps-sketch-window').then(module => ({
 		default: module.RPSSKetchWindow,
 	}))
 );
 
-export const Route = createFileRoute('/rock-paper-scissors')({
-	component: RockPaperScissorsComponent,
+export const Route = createFileRoute('/projects/rock-paper-scissors')({
+	component: MobileRockPaperScissorsPage,
 });
 
 /**
@@ -32,14 +33,17 @@ export const Route = createFileRoute('/rock-paper-scissors')({
  *
  * @component
  */
-function RockPaperScissorsComponent() {
+function MobileRockPaperScissorsPage() {
 	const { siteSettings } = Route.useRouteContext();
 	const rpsWindow = useRPSSketchWindow();
 	return (
 		<div className='flex justify-center bg-stone-900/90 py-1 my-1 rounded-lg mx-0.25'>
 			<Suspense
 				fallback={
-					<div className='text-white'>Loading Rock, Paper, Scissors...</div>
+					<MobilePageFallback
+						pageTitle='Rock, Paper, Scissors'
+						siteSettings={siteSettings}
+					/>
 				}>
 				<RPSSKetchWindow
 					siteSettings={siteSettings}
@@ -47,5 +51,5 @@ function RockPaperScissorsComponent() {
 				/>
 			</Suspense>
 		</div>
-	);
+	)
 }

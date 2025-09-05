@@ -9,24 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SolvedokuRouteImport } from './routes/solvedoku'
-import { Route as RockPaperScissorsRouteImport } from './routes/rock-paper-scissors'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WritingIndexRouteImport } from './routes/writing/index'
+import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
+import { Route as ProjectsSolvedokuRouteImport } from './routes/projects/solvedoku'
+import { Route as ProjectsRockPaperScissorsRouteImport } from './routes/projects/rock-paper-scissors'
 
-const SolvedokuRoute = SolvedokuRouteImport.update({
-  id: '/solvedoku',
-  path: '/solvedoku',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RockPaperScissorsRoute = RockPaperScissorsRouteImport.update({
-  id: '/rock-paper-scissors',
-  path: '/rock-paper-scissors',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -34,62 +32,110 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WritingIndexRoute = WritingIndexRouteImport.update({
+  id: '/writing/',
+  path: '/writing/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsSolvedokuRoute = ProjectsSolvedokuRouteImport.update({
+  id: '/projects/solvedoku',
+  path: '/projects/solvedoku',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRockPaperScissorsRoute =
+  ProjectsRockPaperScissorsRouteImport.update({
+    id: '/projects/rock-paper-scissors',
+    path: '/projects/rock-paper-scissors',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/rock-paper-scissors': typeof RockPaperScissorsRoute
-  '/solvedoku': typeof SolvedokuRoute
+  '/projects/rock-paper-scissors': typeof ProjectsRockPaperScissorsRoute
+  '/projects/solvedoku': typeof ProjectsSolvedokuRoute
+  '/projects': typeof ProjectsIndexRoute
+  '/writing': typeof WritingIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/rock-paper-scissors': typeof RockPaperScissorsRoute
-  '/solvedoku': typeof SolvedokuRoute
+  '/projects/rock-paper-scissors': typeof ProjectsRockPaperScissorsRoute
+  '/projects/solvedoku': typeof ProjectsSolvedokuRoute
+  '/projects': typeof ProjectsIndexRoute
+  '/writing': typeof WritingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/rock-paper-scissors': typeof RockPaperScissorsRoute
-  '/solvedoku': typeof SolvedokuRoute
+  '/projects/rock-paper-scissors': typeof ProjectsRockPaperScissorsRoute
+  '/projects/solvedoku': typeof ProjectsSolvedokuRoute
+  '/projects/': typeof ProjectsIndexRoute
+  '/writing/': typeof WritingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/rock-paper-scissors' | '/solvedoku'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/projects/rock-paper-scissors'
+    | '/projects/solvedoku'
+    | '/projects'
+    | '/writing'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/rock-paper-scissors' | '/solvedoku'
-  id: '__root__' | '/' | '/contact' | '/rock-paper-scissors' | '/solvedoku'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/projects/rock-paper-scissors'
+    | '/projects/solvedoku'
+    | '/projects'
+    | '/writing'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/projects/rock-paper-scissors'
+    | '/projects/solvedoku'
+    | '/projects/'
+    | '/writing/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
-  RockPaperScissorsRoute: typeof RockPaperScissorsRoute
-  SolvedokuRoute: typeof SolvedokuRoute
+  ProjectsRockPaperScissorsRoute: typeof ProjectsRockPaperScissorsRoute
+  ProjectsSolvedokuRoute: typeof ProjectsSolvedokuRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
+  WritingIndexRoute: typeof WritingIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/solvedoku': {
-      id: '/solvedoku'
-      path: '/solvedoku'
-      fullPath: '/solvedoku'
-      preLoaderRoute: typeof SolvedokuRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/rock-paper-scissors': {
-      id: '/rock-paper-scissors'
-      path: '/rock-paper-scissors'
-      fullPath: '/rock-paper-scissors'
-      preLoaderRoute: typeof RockPaperScissorsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/contact': {
       id: '/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -99,14 +145,45 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/writing/': {
+      id: '/writing/'
+      path: '/writing'
+      fullPath: '/writing'
+      preLoaderRoute: typeof WritingIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/solvedoku': {
+      id: '/projects/solvedoku'
+      path: '/projects/solvedoku'
+      fullPath: '/projects/solvedoku'
+      preLoaderRoute: typeof ProjectsSolvedokuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/rock-paper-scissors': {
+      id: '/projects/rock-paper-scissors'
+      path: '/projects/rock-paper-scissors'
+      fullPath: '/projects/rock-paper-scissors'
+      preLoaderRoute: typeof ProjectsRockPaperScissorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
-  RockPaperScissorsRoute: RockPaperScissorsRoute,
-  SolvedokuRoute: SolvedokuRoute,
+  ProjectsRockPaperScissorsRoute: ProjectsRockPaperScissorsRoute,
+  ProjectsSolvedokuRoute: ProjectsSolvedokuRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
+  WritingIndexRoute: WritingIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
