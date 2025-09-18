@@ -51,7 +51,7 @@ export function LandingPageIntro() {
 				I design and develop bespoke solutions for challenging problems
 				leveraging technology and creativity at every turn.
 			</p>
-			<div className='flex justify-center items-center text-lg mx-auto font-bold gap-2  pt-1.5 mt-1 border-t-2 border-stone-300/30'>
+			<div className='flex justify-center items-center text-lg mx-auto font-bold gap-2 pt-2 mt-2 border-t border-stone-300/30'>
 				<InlineSocialLink
 					text='Github'
 					href={GITHUB}
