@@ -40,3 +40,9 @@ export { findCellDataDisplayWidth } from './solvedoku/find-cell-data-display-wid
 // ? ROCK, PAPER, SCISSORS
 export { setupCanvasDimensions } from './rps/setup-canvas-dimensions';
 export { invertHexColorString } from './rps/invert-hex-color-string';
+
+//? WRITING
+export { fetchPostFromGithubAPI } from './writing/fetch-post-from-github-api';
+export { fetchPostUsingProxyFallback } from './writing/fetch-post-using-proxy-fallback';
+export { fuzzyMatch } from './writing/fuzzy-match';
+export { getBlogPostsByFilterState } from './writing/get-blog-posts-by-filter-state';

@@ -1,0 +1,45 @@
+interface PostUnavailableErrorProps {
+  errorMessage: string;
+}
+
+/**
+ * Post Unavailable Error Component
+ *
+ * A specialized error display component for blog posts that shows user-friendly
+ * error messages when posts fail to load or are unavailable. The component provides
+ * a centered error layout with navigation back to the writing index.
+ *
+ * Features:
+ * - Centered error layout with clear visual hierarchy
+ * - Customizable error message display
+ * - Built-in navigation back to the writing section
+ * - Consistent styling with the site's dark theme
+ * - Responsive design for all screen sizes
+ * - Clear visual indicators using red accent for errors
+ * - Accessible link styling with hover states
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {string} props.errorMessage - The specific error message to display to the user
+ * @returns JSX element containing the post error interface
+ */
+
+export function PostUnavailableError({
+  errorMessage,
+}: PostUnavailableErrorProps) {
+  return (
+    <div className='min-h-screen flex items-center justify-center bg-stone-900'>
+      <div className='text-center'>
+        <h1 className='text-2xl font-bold text-red-500 mb-4'>
+          Error Loading Post
+        </h1>
+        <p className='text-gray-300 mb-4'>{errorMessage}</p>
+        <a
+          href='/writing'
+          className='text-blue-400 hover:text-blue-300 underline'>
+          ← Back to Writing
+        </a>
+      </div>
+    </div>
+  );
+}

@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'highlight.js/styles/github-dark.css';
 
 @theme {
   --breakpoint-xs: 480px;
@@ -13,11 +14,187 @@
 }
 
 #root {
-    background:
-        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%),
-        linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+  background:
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
   overflow: hidden;
   filter: brightness(90%);
+}
+
+/* Custom markdown styling */
+.markdown-content {
+  line-height: 1.7;
+}
+
+.markdown-content h1:first-child,
+.markdown-content h2:first-child,
+.markdown-content h3:first-child {
+  margin-top: 0;
+}
+
+/* Override highlight.js theme for better dark mode integration */
+.hljs {
+  background: #1f2937 !important;
+  color: #f9fafb !important;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #6b7280 !important;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #f472b6 !important;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #60a5fa !important;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #34d399 !important;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #fbbf24 !important;
+  font-weight: bold;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #a78bfa !important;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #f87171 !important;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #60a5fa !important;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #fbbf24 !important;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #34d399 !important;
+}
+
+.hljs-meta {
+  color: #6b7280 !important;
+}
+
+.hljs-deletion {
+  background: #dc2626 !important;
+}
+
+.hljs-addition {
+  background: #059669 !important;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* Custom scrollbar styling for code blocks */
+pre::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+pre::-webkit-scrollbar-track {
+  background: rgba(55, 65, 81, 0.5) !important;
+  border-radius: 4px !important;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: rgba(107, 114, 128, 0.7) !important;
+  border-radius: 4px !important;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.8) !important;
+}
+
+pre::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+/* More specific selector for code blocks with highlight.js */
+.hljs::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.hljs::-webkit-scrollbar-track {
+  background: rgba(55, 65, 81, 0.5) !important;
+  border-radius: 4px !important;
+}
+
+.hljs::-webkit-scrollbar-thumb {
+  background: rgba(107, 114, 128, 0.7) !important;
+  border-radius: 4px !important;
+}
+
+.hljs::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.8) !important;
+}
+
+.hljs::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+/* Specific scrollbar styling for our custom code block component */
+.code-block-scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(107, 114, 128, 0.7) rgba(55, 65, 81, 0.5);
+}
+
+.code-block-scrollable::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.code-block-scrollable::-webkit-scrollbar-track {
+  background: rgba(55, 65, 81, 0.5) !important;
+  border-radius: 4px !important;
+}
+
+.code-block-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(107, 114, 128, 0.7) !important;
+  border-radius: 4px !important;
+}
+
+.code-block-scrollable::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.8) !important;
+}
+
+.code-block-scrollable::-webkit-scrollbar-corner {
+  background: transparent !important;
 }

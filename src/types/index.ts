@@ -15,7 +15,7 @@ export type { IconProps } from './site/icon-props';
 export type { SiteContext } from './site/site-context';
 export type { SiteRoute } from './site/site-route';
 
-//Solvedoku
+// Solvedoku
 export type { SolvedokuGameBoard } from './solvedoku/solvedoku-game-board';
 export type { SolvedokuGameState } from './solvedoku/solvedoku-game-state';
 export type { SolvedokuWindowState } from './solvedoku/solvedoku-window-state';
@@ -32,3 +32,6 @@ export type { UniformGridPosition } from './rps/uniform-grid-position';
 export type { SpriteCharSet } from './rps/sprite-char-set';
 export type { SketchInitSelections } from './rps/sketch-init-selections';
 export type { SpriteCountSelects } from './rps/sprite-count-selects';
+
+// Writing
+export type { BlogPost } from './writing/blog-post';

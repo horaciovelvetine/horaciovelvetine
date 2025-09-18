@@ -15,6 +15,7 @@ import type { DeviceInfo } from './device-info';
  * @property {Dispatch<SetStateAction<Colors>>} setAccentColor - Function to update the site's accent color
  * @property {boolean} useMobileCompatibility - Flag indicating whether mobile compatibility mode is enabled
  * @property {ClockDisplaySettings} clockDisplaySettings - Configuration settings for clock display components
+ * @property {DeviceInfo} deviceInfo - Information about the client device and its capabilities
  */
 export interface SiteSettings {
 	accentColor: Colors;
