@@ -24,7 +24,7 @@ export const Route = createFileRoute('/')({
 function MobileHomePage() {
 	return (
 		<div className='flex flex-col items-center gap-2 mx-0.5 sm:mx-1 md:mx-2 my-2'>
-			<div className='bg-stone-900/60 py-2 rounded-xl max-w-[768px]'>
+			<div className='bg-stone-900/60 py-3 rounded-xl max-w-[768px] border border-stone-300/15 drop-shadow-2xl'>
 				<LandingPageIntro />
 			</div>
 		</div>

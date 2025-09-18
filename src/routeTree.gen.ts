@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WritingIndexRouteImport } from './routes/writing/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
+import { Route as WritingSlugRouteImport } from './routes/writing/$slug'
 import { Route as ProjectsSolvedokuRouteImport } from './routes/projects/solvedoku'
 import { Route as ProjectsRockPaperScissorsRouteImport } from './routes/projects/rock-paper-scissors'
 
@@ -42,6 +43,11 @@ const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
   path: '/projects/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WritingSlugRoute = WritingSlugRouteImport.update({
+  id: '/writing/$slug',
+  path: '/writing/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsSolvedokuRoute = ProjectsSolvedokuRouteImport.update({
   id: '/projects/solvedoku',
   path: '/projects/solvedoku',
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/projects/rock-paper-scissors': typeof ProjectsRockPaperScissorsRoute
   '/projects/solvedoku': typeof ProjectsSolvedokuRoute
+  '/writing/$slug': typeof WritingSlugRoute
   '/projects': typeof ProjectsIndexRoute
   '/writing': typeof WritingIndexRoute
 }
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/projects/rock-paper-scissors': typeof ProjectsRockPaperScissorsRoute
   '/projects/solvedoku': typeof ProjectsSolvedokuRoute
+  '/writing/$slug': typeof WritingSlugRoute
   '/projects': typeof ProjectsIndexRoute
   '/writing': typeof WritingIndexRoute
 }
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/projects/rock-paper-scissors': typeof ProjectsRockPaperScissorsRoute
   '/projects/solvedoku': typeof ProjectsSolvedokuRoute
+  '/writing/$slug': typeof WritingSlugRoute
   '/projects/': typeof ProjectsIndexRoute
   '/writing/': typeof WritingIndexRoute
 }
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/projects/rock-paper-scissors'
     | '/projects/solvedoku'
+    | '/writing/$slug'
     | '/projects'
     | '/writing'
   fileRoutesByTo: FileRoutesByTo
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/projects/rock-paper-scissors'
     | '/projects/solvedoku'
+    | '/writing/$slug'
     | '/projects'
     | '/writing'
   id:
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/projects/rock-paper-scissors'
     | '/projects/solvedoku'
+    | '/writing/$slug'
     | '/projects/'
     | '/writing/'
   fileRoutesById: FileRoutesById
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   ProjectsRockPaperScissorsRoute: typeof ProjectsRockPaperScissorsRoute
   ProjectsSolvedokuRoute: typeof ProjectsSolvedokuRoute
+  WritingSlugRoute: typeof WritingSlugRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
   WritingIndexRoute: typeof WritingIndexRoute
 }
@@ -159,6 +172,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/writing/$slug': {
+      id: '/writing/$slug'
+      path: '/writing/$slug'
+      fullPath: '/writing/$slug'
+      preLoaderRoute: typeof WritingSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects/solvedoku': {
       id: '/projects/solvedoku'
       path: '/projects/solvedoku'
@@ -182,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   ProjectsRockPaperScissorsRoute: ProjectsRockPaperScissorsRoute,
   ProjectsSolvedokuRoute: ProjectsSolvedokuRoute,
+  WritingSlugRoute: WritingSlugRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
   WritingIndexRoute: WritingIndexRoute,
 }
