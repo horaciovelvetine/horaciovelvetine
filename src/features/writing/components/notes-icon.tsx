@@ -78,7 +78,6 @@ export function NotesIcon({
   ariaHidden = false,
 }: IconProps) {
   const pixelSize = SIZE_MAP[size] || 24;
-  // const isAppleOrSafari = renderWithAppleCompatability;
 
   const viewBoxSize = SCALING_CONSTANTS.BASE_SIZE;
   const center = viewBoxSize / 2;
@@ -90,16 +89,12 @@ export function NotesIcon({
   const paperY = center - paperHeight / 2;
   const paperCornerRadius = viewBoxSize * SCALING_CONSTANTS.PAPER_CORNER_RADIUS_RATIO;
 
-  // Spiral binding - removed
-
   // Text lines
   const lineSpacing = viewBoxSize * SCALING_CONSTANTS.LINE_SPACING_RATIO;
   const lineLength = viewBoxSize * SCALING_CONSTANTS.LINE_LENGTH_RATIO;
   const marginWidth = viewBoxSize * SCALING_CONSTANTS.MARGIN_WIDTH_RATIO;
   const lineStartX = paperX + marginWidth + viewBoxSize * 0.05;
   const lineStartY = paperY + viewBoxSize * 0.2;
-
-  // Pen/pencil - removed
 
   const borderRadius = viewBoxSize * SCALING_CONSTANTS.BORDER_RADIUS_RATIO;
   const padding = viewBoxSize * SCALING_CONSTANTS.PADDING_RATIO;
@@ -190,7 +185,7 @@ export function NotesIcon({
           />
         </filter>
 
-        {/* Paper shadow - more pronounced */}
+        {/* Paper Shadow */}
         <filter id='paperShadow'>
           <feDropShadow
             dx='2'
