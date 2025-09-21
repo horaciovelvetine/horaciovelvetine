@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import {
 	PostListDisplay,
 	PostSearchInput,
@@ -51,40 +51,67 @@ function MobileWritingPage() {
 	const tagSelected = selectedTags.length !== 0;
 
 	return (
-		<div className='min-h-screen bg-stone-900/50 text-white'>
-			<div className='max-w-4xl mx-auto px-6 py-2'>
-				<header className='mb-4'>
-					<h1 className='text-4xl md:text-5xl font-bold mb-4 text-white'>
-						Writing
-					</h1>
-					<div className='flex flex-col gap-y-1'>
-						<PostSearchInput
-							query={postSearch}
-							setQuery={setPostSearch}
-							label='Search'
-							accentColor={siteSettings.accentColor}
-						/>
-						<div className='flex flex-wrap'>
-							{selectedTags.map(tag => (
-								<TagFilter
-									key={`selected-${tag}-filter`}
-									text={tag}
-									accentColor={siteSettings.accentColor}
-									onClick={setSelectedTags}
-								/>
-							))}
+		<div className='min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-4 sm:p-6 lg:p-8'>
+			<div className='max-w-7xl mx-auto'>
+				<div className='bg-gray-900/95 backdrop-blur-sm rounded-xl border border-gray-600/50 shadow-2xl shadow-black/20 overflow-hidden'>
+					{/* Header */}
+					<div className='bg-gray-800/80 border-b border-gray-600/50 px-4 py-3 flex items-center space-x-2'>
+						<div className='text-gray-400 text-lg sm:text-xl leading-relaxed ml-4'>writing</div>
+					</div>
+
+					{/* Main Content */}
+					<div className='p-4 sm:p-6 lg:p-8 xl:p-10'>
+						<div className='flex flex-col text-sm sm:text-base md:text-lg space-y-1 sm:space-y-2 overflow-auto'>
+							<header className='mb-4'>
+								<h1 className='text-4xl md:text-5xl font-bold mb-4 text-white'>
+									Writing
+								</h1>
+								<div className='flex flex-col gap-y-1'>
+									<PostSearchInput
+										query={postSearch}
+										setQuery={setPostSearch}
+										label='Search'
+										accentColor={siteSettings.accentColor}
+									/>
+									<div className='flex flex-wrap'>
+										{selectedTags.map(tag => (
+											<TagFilter
+												key={`selected-${tag}-filter`}
+												text={tag}
+												accentColor={siteSettings.accentColor}
+												onClick={setSelectedTags}
+											/>
+										))}
+									</div>
+								</div>
+							</header>
+
+							<PostListDisplay
+								posts={blogPosts}
+								activeSearch={activeSearch}
+								siteSettings={siteSettings}
+								tagSelected={tagSelected}
+								setSelectedTags={setSelectedTags}
+							/>
+
+							{/* Breadcrumb footer */}
+							<div className='mt-6 pt-4 border-t border-gray-600/30'>
+								<div className='flex items-center gap-2 text-xs sm:text-sm text-gray-500'>
+									<span className='text-gray-500 hover:text-gray-400 transition-colors duration-200'>{'//'}</span>
+									<span className='text-gray-500 hover:text-gray-400 transition-colors duration-200'>Navigation:</span>
+									<span className='text-gray-100 hover:text-white transition-colors duration-200'>/</span>
+									<Link to='/'>
+										<span className='text-blue-400 hover:text-blue-300 transition-colors duration-200'>home</span>
+									</Link>
+									<span className='text-gray-100 hover:text-white transition-colors duration-200'> → </span>
+									<Link to='/writing'>
+										<span className='text-blue-400 hover:text-blue-300 transition-colors duration-200'>writing</span>
+									</Link>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div></div>
-				</header>
-
-				<PostListDisplay
-					posts={blogPosts}
-					activeSearch={activeSearch}
-					siteSettings={siteSettings}
-					tagSelected={tagSelected}
-					setSelectedTags={setSelectedTags}
-				/>
+				</div>
 			</div>
 		</div>
 	);
