@@ -28,7 +28,7 @@ export function LandingPageIntro() {
 
 					<div>
 						<div className='flex justify-center items-baseline'>
-							<h1 className='tracking-tighter text-4xl sm:text-5xl'>
+							<h1 className='tracking-tighter text-3xl sm:text-4xl md:text-5xl'>
 								👋 I'm James
 							</h1>
 						</div>
@@ -36,18 +36,18 @@ export function LandingPageIntro() {
 						<GradientLinkText
 							text='@horaciovelvetine'
 							url={GITHUB}
-							classes='text-[2.23rem]/8 xs:text-5xl/12 sm:text-7xl/14 from-rose-500 via-purple-500 to-sky-500 pb-2 px-2.5 tracking-tighter '
+							classes='text-2xl/6 xs:text-3xl/8 sm:text-4xl/10 md:text-5xl/12 lg:text-6xl/14 from-rose-500 via-purple-500 to-sky-500 pb-2 px-1 sm:px-2.5 tracking-tighter'
 						/>
 					</div>
 				</div>
 
 				<div className='flex justify-center items-center md:ml-42'>
-					<p className='text-2xl/5 xs:text-3xl/6 sm:text-4xl/8 md:text-5xl/9 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-orange-500 to-rose-500 pb-1 md:pb-2.5 text-nowrap'>
+					<p className='text-xl/5 xs:text-2xl/6 sm:text-3xl/7 md:text-4xl/8 lg:text-5xl/9 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-orange-500 to-rose-500 pb-1 md:pb-2.5 text-center'>
 						Full-Stack Developer & <br /> Creative Technologist
 					</p>
 				</div>
 			</div>
-			<p className='text-center font-bold text-2xl/5 xs:text-3xl/6.5 sm:text-4xl/7 px-2 py-1 md:py-2 tracking-tight sm:tracking-tighter text-white '>
+			<p className='text-center font-bold text-lg/5 xs:text-xl/6 sm:text-2xl/7 md:text-3xl/8 px-2 py-1 md:py-2 tracking-tight sm:tracking-tighter text-white '>
 				I design and develop bespoke solutions for challenging problems
 				leveraging technology and creativity at every turn.
 			</p>
