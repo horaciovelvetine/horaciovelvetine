@@ -13,3 +13,4 @@ export { ExclaimsTriangleIcon } from './icons/exclaims-triangle-icon.tsx';
 export { LinkedInIcon } from './icons/linkedin-icon.tsx';
 export { HomeIcon } from './icons/home-icon.tsx';
 export { GithubIcon } from './icons/github-icon.tsx';
+export { SearchIcon } from './icons/search-icon.tsx';
