@@ -8,31 +8,6 @@ export const Route = createFileRoute('/projects/')({
 // Project data structure
 const projectsData = [
 	{
-		id: 'solvedoku',
-		name: 'Solvedoku',
-		description:
-			'Interactive Sudoku puzzle solver with real-time validation and backtrack solving in which can be sped up and slowed down in real-time',
-		technologies: ['React', 'TypeScript', 'TailwindCSS'],
-		route: '/projects/solvedoku',
-		status: 'active',
-		features: [
-			'Real-time validation',
-			'Backtrack solving',
-			'Interactive UI',
-			'Responsive design',
-		],
-	},
-	{
-		id: 'rock-paper-scissors',
-		name: 'Rock Paper Scissors',
-		description:
-			'A self-playing game of Rock, Paper, Scissors and physicis simulation using P5.js animations done in the style of a DVD menu',
-		technologies: ['TypeScript', 'P5.js', 'TailwindCSS'],
-		route: '/projects/rock-paper-scissors',
-		status: 'active',
-		features: ['P5.js animations', 'Physics simulation', 'Responsive design'],
-	},
-	{
 		id: 'the-wikiverse',
 		name: 'The Wikiverse',
 		description:
@@ -49,12 +24,47 @@ const projectsData = [
 		route: '/projects/the-wikiverse',
 		status: 'in development',
 		features: [
-			'Interactive 3D knowledge graph',
-			'Real-time search and filtering',
-			'Dynamic node clustering',
+			'Java Spring-Boot API for Wikidata Access and Graph creation',
+			'TypeScript/React custom UI/UX',
+			'P5.js Interactive Network Graph Visualization',
+			'Real-time searching, grouping, and filtering',
+			'Dynamic node clustering and positioning',
 			'Multi-language support',
 			'Export functionality',
-			'Responsive design',
+		],
+	},
+	{
+		id: 'solvedoku',
+		name: 'Solvedoku',
+		description:
+			'Interactive Sudoku puzzle solver with real-time validation and backtrack solving in which can be sped up and slowed down in real-time',
+		technologies: ['React', 'TypeScript', 'TailwindCSS'],
+		route: '/projects/solvedoku',
+		status: 'active',
+		features: [
+			'Real-time Backtracking algorithm solver visualization with variable speed',
+			'Puzzle validation and solution checking ',
+			'Random puzzle generation with 3 difficulties',
+			'Interactive UI/UX for inptus',
+			'Mobile-friendly responsive design',
+		],
+	},
+	{
+		id: 'rock-paper-scissors',
+		name: 'Rock Paper Scissors',
+		description:
+			'A self-playing game of Rock, Paper, Scissors and physicis simulation using P5.js animations done in the style of a DVD menu',
+		technologies: ['TypeScript', 'P5.js', 'TailwindCSS'],
+		route: '/projects/rock-paper-scissors',
+		status: 'active',
+		features: [
+			'P5.js animation engine',
+			'Physics based collision simulation',
+			'Grid collision detection system optimizations',
+			'Mobile-friendly responsive design',
+			'Novel take on a classic Game',
+			'Visual indicators for heading and collision radius',
+			'Emoji sprite sets and customizeable background colors',
 		],
 	},
 ];
@@ -91,7 +101,6 @@ function MobileProjectsPage() {
 					{/* Code content */}
 					<div className='p-4 sm:p-6 lg:p-8 xl:p-10'>
 						<div className='flex flex-col text-sm sm:text-base md:text-lg space-y-1 sm:space-y-2'>
-
 							{/* Projects grid */}
 							<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 								{projectsData.map(project => (
