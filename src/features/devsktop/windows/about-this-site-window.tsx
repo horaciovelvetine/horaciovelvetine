@@ -27,7 +27,7 @@ import { GH_REPO, GITHUB } from '../../../consts/urls';
  */
 export function AboutThisSiteWindow() {
 	return (
-		<div>
+		<div className='block py-3'>
 			<div className='flex pb-2'>
 				<div className='flex flex-col h-full'>
 					<h2 className='text-nowrap font-extrabold tracking-tighter text-6xl leading-10'>
