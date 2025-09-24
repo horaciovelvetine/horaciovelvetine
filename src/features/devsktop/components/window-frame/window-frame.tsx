@@ -121,12 +121,12 @@ export function WindowFrame({
 						style={{ zIndex: window.zIndex }}
 						onClick={handleFocusWindow}
 						onTouchStart={handleFocusWindow}>
-						<div className='w-[760px] h-fit bg-zinc-900/80 backdrop-blur-2xl border border-stone-300/30 rounded-lg'>
+						<div className='w-[760px] bg-zinc-900/80 backdrop-blur-2xl border border-stone-300/30 rounded-lg flex flex-col overflow-hidden' style={{ height: 'auto', maxHeight: 'calc(100vh - 36px)', minHeight: 'fit-content' }}>
 							<TitleBar
 								window={window}
 								manager={windowManager}
 							/>
-							<div className='w-[756px] max-h-[calc(100vh-72px)] window-content p-3 overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-stone-400/80 [&::-webkit-scrollbar-thumb]:bg-stone-600/70 [&::-webkit-scrollbar]:bg-transparent [&::-webkit-scrollbar-track]:bg-transparent'>
+							<div className='window-content flex-1 overflow-hidden'>
 								<Component
 									siteSettings={siteSettings}
 									windowState={window}
@@ -139,3 +139,5 @@ export function WindowFrame({
 		</>
 	);
 }
+// export const originalOverflowStyling =
+// 	'w-[756px] overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-stone-400/80 [&::-webkit-scrollbar-thumb]:bg-stone-600/70 [&::-webkit-scrollbar]:bg-transparent [&::-webkit-scrollbar-track]:bg-transparent';

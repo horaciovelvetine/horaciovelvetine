@@ -21,7 +21,7 @@ import { GITHUB, LINKEDIN } from '../../../../consts/urls';
 
 export function LandingPageIntro() {
 	return (
-		<>
+		<div className='p-3'>
 			<div className='flex flex-col items-center font-extrabold'>
 				<div className='flex flex-col items-center md:flex-row lg:justify-center'>
 					<VideoHeadshot />
@@ -65,6 +65,6 @@ export function LandingPageIntro() {
 					iconStyle='text-sky-500'
 				/>
 			</div>
-		</>
+		</div>
 	);
 }
