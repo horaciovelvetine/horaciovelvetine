@@ -39,7 +39,7 @@ function MobileContactPage() {
 					{/* Header */}
 					<div className='bg-gray-800/80 border-b border-gray-600/50 px-4 py-3 flex items-center space-x-2'>
 						<div className='text-gray-400 text-lg sm:text-xl leading-relaxed ml-4'>
-							contact/info.js
+							contact
 						</div>
 					</div>
 

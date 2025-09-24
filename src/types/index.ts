@@ -35,3 +35,5 @@ export type { SpriteCountSelects } from './rps/sprite-count-selects';
 
 // Writing
 export type { BlogPost } from './writing/blog-post';
+export type { BlogPosts } from './writing/blog-posts';
+export type { WritingWindowState } from './writing/writing-window-state';

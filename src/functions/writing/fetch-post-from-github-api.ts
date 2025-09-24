@@ -1,4 +1,5 @@
-import type { BlogPost } from "../../consts/blog-posts";
+import type { BlogPost } from "../../types";
+
 
 interface SuccessResponse {
   content: string;

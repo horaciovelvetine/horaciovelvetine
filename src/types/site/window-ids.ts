@@ -22,3 +22,4 @@ export type WindowIDs =
 	| 'solvedoku-window'
 	| 'about-this-site-window'
 	| 'rps-sketch-window'
+	| 'writing-window'

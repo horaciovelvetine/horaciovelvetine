@@ -45,4 +45,3 @@ export { invertHexColorString } from './rps/invert-hex-color-string';
 export { fetchPostFromGithubAPI } from './writing/fetch-post-from-github-api';
 export { fetchPostUsingProxyFallback } from './writing/fetch-post-using-proxy-fallback';
 export { fuzzyMatch } from './writing/fuzzy-match';
-export { getBlogPostsByFilterState } from './writing/get-blog-posts-by-filter-state';

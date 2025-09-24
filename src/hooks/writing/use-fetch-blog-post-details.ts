@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
-import type { BlogPost } from '../../consts/blog-posts';
 import {
   fetchPostFromGithubAPI,
   fetchPostUsingProxyFallback,
 } from '../../functions';
+import type { BlogPost } from '../../types';
 
 /**
  * Custom hook to fetch and manage blog post markdown content
@@ -15,7 +15,7 @@ import {
  * @param post - The blog post object containing fetch URLs
  * @returns Object containing loading state, error message, and markdown content
  */
-export function useBlogPostDetails(post: BlogPost) {
+export function useFetchBlogPostDetails(post: BlogPost) {
   const [error, setError] = useState<string>();
   const [isLoading, setIsLoading] = useState(true);
   const [markdownContent, setMarkdownContent] = useState<string>('');

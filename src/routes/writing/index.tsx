@@ -5,8 +5,8 @@ import {
 	TagFilter,
 } from '../../features/writing';
 import type { BlogPost } from '../../types';
-import { getBlogPostsByFilterState } from '../../functions';
 import { useState } from 'react';
+import { useBlogPosts } from '../../hooks/writing';
 
 export const Route = createFileRoute('/writing/')({
 	component: MobileWritingPage,
@@ -38,6 +38,7 @@ export const Route = createFileRoute('/writing/')({
  */
 function MobileWritingPage() {
 	const { siteSettings } = Route.useRouteContext(); // Writing and Blogs state
+	const { getBlogPostsByFilterState } = useBlogPosts();
 	const [selectedTags, setSelectedTags] = useState<string[]>([]);
 	const [postSearch, setPostSearch] = useState('');
 
@@ -62,10 +63,7 @@ function MobileWritingPage() {
 					{/* Main Content */}
 					<div className='p-4 sm:p-6 lg:p-8 xl:p-10'>
 						<div className='flex flex-col text-sm sm:text-base md:text-lg space-y-1 sm:space-y-2 overflow-auto'>
-							<header className='mb-4'>
-								<h1 className='text-4xl md:text-5xl font-bold mb-4 text-white'>
-									Writing
-								</h1>
+							<header className='my-4'>
 								<div className='flex flex-col gap-y-1'>
 									<PostSearchInput
 										query={postSearch}

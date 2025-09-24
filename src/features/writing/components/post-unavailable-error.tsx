@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 interface PostUnavailableErrorProps {
   errorMessage: string;
 }
@@ -34,11 +36,11 @@ export function PostUnavailableError({
           Error Loading Post
         </h1>
         <p className='text-gray-300 mb-4'>{errorMessage}</p>
-        <a
-          href='/writing'
+        <Link
+          to='/writing'
           className='text-blue-400 hover:text-blue-300 underline'>
           ← Back to Writing
-        </a>
+        </Link>
       </div>
     </div>
   );

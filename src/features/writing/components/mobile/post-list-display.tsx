@@ -1,8 +1,9 @@
 import { Link } from '@tanstack/react-router';
-import type { BlogPost, SiteSettings } from '../../../types';
-import { NoPostsToDisplay } from './no-posts-to-display';
-import { TagBadge } from './tag-badge';
+
 import type { Dispatch, SetStateAction } from 'react';
+import type { BlogPost, SiteSettings } from '../../../../types';
+import { NoPostsToDisplay } from './no-posts-to-display';
+import { TagBadge } from '../tag-badge';
 
 interface PostListDisplayProps {
   posts: BlogPost[];

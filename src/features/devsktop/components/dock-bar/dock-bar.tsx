@@ -62,9 +62,9 @@ export function DockBar({ windowManager, siteSettings }: DockBarProps) {
 						label='Writing'
 						Icon={NotesIcon}
 						onClick={() => {
-							console.log('open up the notes');
+							windowManager.openWindowByID("writing-window");
 						}}
-						isOpen={false}
+						isOpen={windowManager.writingWindow.isShown}
 						siteSettings={siteSettings}
 					/>
 				</div>

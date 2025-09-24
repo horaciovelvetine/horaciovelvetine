@@ -12,6 +12,7 @@ import {
 	useSolvedokuWindow,
 	useAboutThisSiteWindow,
 	useRPSSketchWindow,
+	useWritingWindow
 } from '../windows';
 import { GITHUB, LINKEDIN } from '../../consts/urls';
 
@@ -40,6 +41,7 @@ export function useWindowManager(): WindowManager {
 	const solvedokuWindow = useSolvedokuWindow();
 	// RPS WINDOWS
 	const rpsSketchWindow = useRPSSketchWindow();
+	const writingWindow = useWritingWindow();
 
 	const ALL_WINDOWS: ManagedWindow[] = useMemo(
 		() => [
@@ -47,8 +49,9 @@ export function useWindowManager(): WindowManager {
 			aboutThisSiteWindow,
 			solvedokuWindow,
 			rpsSketchWindow,
+			writingWindow,
 		],
-		[aboutThisSiteWindow, mainLandingWindow, solvedokuWindow, rpsSketchWindow]
+		[aboutThisSiteWindow, mainLandingWindow, solvedokuWindow, rpsSketchWindow, writingWindow]
 	);
 
 	/**
@@ -167,6 +170,7 @@ export function useWindowManager(): WindowManager {
 		aboutThisSiteWindow,
 		solvedokuWindow,
 		rpsSketchWindow,
+		writingWindow,
 		focusedWindow,
 		navBarMenuItems,
 		focusWindowByID,

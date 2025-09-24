@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as WritingIndexRouteImport } from './routes/writing/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as WritingSlugRouteImport } from './routes/writing/$slug'
+import { Route as ProjectsTheWikiverseRouteImport } from './routes/projects/the-wikiverse'
 import { Route as ProjectsSolvedokuRouteImport } from './routes/projects/solvedoku'
 import { Route as ProjectsRockPaperScissorsRouteImport } from './routes/projects/rock-paper-scissors'
 
@@ -48,6 +49,11 @@ const WritingSlugRoute = WritingSlugRouteImport.update({
   path: '/writing/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsTheWikiverseRoute = ProjectsTheWikiverseRouteImport.update({
+  id: '/projects/the-wikiverse',
+  path: '/projects/the-wikiverse',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsSolvedokuRoute = ProjectsSolvedokuRouteImport.update({
   id: '/projects/solvedoku',
   path: '/projects/solvedoku',
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/projects/rock-paper-scissors': typeof ProjectsRockPaperScissorsRoute
   '/projects/solvedoku': typeof ProjectsSolvedokuRoute
+  '/projects/the-wikiverse': typeof ProjectsTheWikiverseRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/projects': typeof ProjectsIndexRoute
   '/writing': typeof WritingIndexRoute
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/projects/rock-paper-scissors': typeof ProjectsRockPaperScissorsRoute
   '/projects/solvedoku': typeof ProjectsSolvedokuRoute
+  '/projects/the-wikiverse': typeof ProjectsTheWikiverseRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/projects': typeof ProjectsIndexRoute
   '/writing': typeof WritingIndexRoute
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/projects/rock-paper-scissors': typeof ProjectsRockPaperScissorsRoute
   '/projects/solvedoku': typeof ProjectsSolvedokuRoute
+  '/projects/the-wikiverse': typeof ProjectsTheWikiverseRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/projects/': typeof ProjectsIndexRoute
   '/writing/': typeof WritingIndexRoute
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/projects/rock-paper-scissors'
     | '/projects/solvedoku'
+    | '/projects/the-wikiverse'
     | '/writing/$slug'
     | '/projects'
     | '/writing'
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/projects/rock-paper-scissors'
     | '/projects/solvedoku'
+    | '/projects/the-wikiverse'
     | '/writing/$slug'
     | '/projects'
     | '/writing'
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/projects/rock-paper-scissors'
     | '/projects/solvedoku'
+    | '/projects/the-wikiverse'
     | '/writing/$slug'
     | '/projects/'
     | '/writing/'
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   ProjectsRockPaperScissorsRoute: typeof ProjectsRockPaperScissorsRoute
   ProjectsSolvedokuRoute: typeof ProjectsSolvedokuRoute
+  ProjectsTheWikiverseRoute: typeof ProjectsTheWikiverseRoute
   WritingSlugRoute: typeof WritingSlugRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
   WritingIndexRoute: typeof WritingIndexRoute
@@ -179,6 +192,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WritingSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/the-wikiverse': {
+      id: '/projects/the-wikiverse'
+      path: '/projects/the-wikiverse'
+      fullPath: '/projects/the-wikiverse'
+      preLoaderRoute: typeof ProjectsTheWikiverseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects/solvedoku': {
       id: '/projects/solvedoku'
       path: '/projects/solvedoku'
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   ProjectsRockPaperScissorsRoute: ProjectsRockPaperScissorsRoute,
   ProjectsSolvedokuRoute: ProjectsSolvedokuRoute,
+  ProjectsTheWikiverseRoute: ProjectsTheWikiverseRoute,
   WritingSlugRoute: WritingSlugRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
   WritingIndexRoute: WritingIndexRoute,

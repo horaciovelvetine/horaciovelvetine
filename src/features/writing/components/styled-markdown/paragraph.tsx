@@ -26,7 +26,7 @@ interface ParagraphProps {
 export function Paragraph({ children, props }: ParagraphProps) {
 	return (
 		<p
-			className='mb-4 leading-relaxed text-gray-100'
+			className='my-2 leading-relaxed text-gray-100'
 			{...props}>
 			{children}
 		</p>

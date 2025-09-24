@@ -28,7 +28,7 @@ interface HeadingProps {
 export function H1({ children, props }: HeadingProps) {
 	return (
 		<h1
-			className='text-3xl font-bold mt-8 mb-4 text-white border-b border-stone-700 pb-2'
+			className='text-3xl font-bold text-white border-b py-1'
 			{...props}>
 			{children}
 		</h1>
@@ -57,7 +57,7 @@ export function H1({ children, props }: HeadingProps) {
 export function H2({ children, props }: HeadingProps) {
 	return (
 		<h2
-			className='text-2xl font-bold mt-6 mb-3 text-white'
+			className='text-2xl font-bold text-white border-b'
 			{...props}>
 			{children}
 		</h2>
@@ -86,7 +86,7 @@ export function H2({ children, props }: HeadingProps) {
 export function H3({ children, props }: HeadingProps) {
 	return (
 		<h3
-			className='text-xl font-bold mt-4 mb-2 text-white'
+			className='text-xl font-bold text-white border-b'
 			{...props}>
 			{children}
 		</h3>
@@ -115,7 +115,7 @@ export function H3({ children, props }: HeadingProps) {
 export function H4({ children, props }: HeadingProps) {
 	return (
 		<h4
-			className='text-lg font-bold mt-3 mb-2 text-white'
+			className='text-lg font-bold text-white border-b'
 			{...props}>
 			{children}
 		</h4>
