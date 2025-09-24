@@ -91,7 +91,7 @@ export function RPSSKetchWindow({
 								windowState={windowState}
 							/>
 						</div>
-						: <div
+					:	<div
 							className='relative mt-1 border border-stone-300/30 shadow-lg shadow-stone-300/5 flex-shrink-0'
 							onClick={handlePauseSketchClick}>
 							<ReactP5Wrapper
@@ -149,6 +149,5 @@ export function RPSSKetchWindow({
 				Icon={RPSIcon}
 			/>
 		</div>
-
 	);
 }
