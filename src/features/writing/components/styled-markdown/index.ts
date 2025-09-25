@@ -6,3 +6,4 @@ export { UL, OL, LI } from './list';
 export { Blockquote } from './blockquote';
 export { Table, TH, TD } from './table';
 export { HR } from './hr';
+export { Image } from './image';

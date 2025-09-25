@@ -22,6 +22,7 @@ import {
 	HR,
 	Link,
 	Table,
+	Image,
 } from '../styled-markdown';
 
 interface WritingContentBodyProps {
@@ -74,82 +75,91 @@ export function WritingContentBody({
 						</p>
 					</div>
 				</div>
-			:	<div className='max-w-4xl my-2'>
+				: <div className='max-w-4xl my-2'>
 					{isLoading ?
 						<PostLoading
 							loadingSlug={selectedPost.slug}
 							accentColor={siteSettings.accentColor}
 						/>
-					: error ?
-						<PostUnavailableError errorMessage={error} />
-					:	<div className='prose prose-invert max-w-none'>
-							<ReactMarkdown
-								remarkPlugins={[remarkGfm]}
-								rehypePlugins={[rehypeHighlight, rehypeRaw]}
-								components={{
-									// Custom styling for code blocks
-									code: ({ className, children, ...props }) => (
-										<CodeBlock
-											className={className}
-											props={props}>
-											{children}
-										</CodeBlock>
-									),
-									// Custom styling for links
-									a: ({ href, children, ...props }) => (
-										<Link
-											href={href}
-											props={props}>
-											{children}
-										</Link>
-									),
-									// Custom styling for headings
-									h1: ({ children, ...props }) => (
-										<H1 props={props}>{children}</H1>
-									),
-									h2: ({ children, ...props }) => (
-										<H2 props={props}>{children}</H2>
-									),
-									h3: ({ children, ...props }) => (
-										<H3 props={props}>{children}</H3>
-									),
-									h4: ({ children, ...props }) => (
-										<H4 props={props}>{children}</H4>
-									),
-									// Custom styling for paragraphs
-									p: ({ children, ...props }) => (
-										<Paragraph props={props}>{children}</Paragraph>
-									),
-									// Custom styling for lists
-									ul: ({ children, ...props }) => (
-										<UL props={props}>{children}</UL>
-									),
-									ol: ({ children, ...props }) => (
-										<OL props={props}>{children}</OL>
-									),
-									li: ({ children, ...props }) => (
-										<LI props={props}>{children}</LI>
-									),
-									// Custom styling for blockquotes
-									blockquote: ({ children, ...props }) => (
-										<Blockquote props={props}>{children}</Blockquote>
-									),
-									// Custom styling for tables
-									table: ({ children, ...props }) => (
-										<Table props={props}>{children}</Table>
-									),
-									th: ({ children, ...props }) => (
-										<TH props={props}>{children}</TH>
-									),
-									td: ({ children, ...props }) => (
-										<TD props={props}>{children}</TD>
-									),
-									// Custom styling for horizontal rules
-									hr: ({ ...props }) => <HR props={props} />,
-								}}>
-								{markdownContent}
-							</ReactMarkdown>
-						</div>
+						: error ?
+							<PostUnavailableError errorMessage={error} />
+							: <div className='prose prose-invert max-w-none'>
+								<ReactMarkdown
+									remarkPlugins={[remarkGfm]}
+									rehypePlugins={[rehypeHighlight, rehypeRaw]}
+									components={{
+										// Custom styling for code blocks
+										code: ({ className, children, ...props }) => (
+											<CodeBlock
+												className={className}
+												props={props}>
+												{children}
+											</CodeBlock>
+										),
+										// Custom styling for links
+										a: ({ href, children, ...props }) => (
+											<Link
+												href={href}
+												props={props}>
+												{children}
+											</Link>
+										),
+										// Custom styling for headings
+										h1: ({ children, ...props }) => (
+											<H1 props={props}>{children}</H1>
+										),
+										h2: ({ children, ...props }) => (
+											<H2 props={props}>{children}</H2>
+										),
+										h3: ({ children, ...props }) => (
+											<H3 props={props}>{children}</H3>
+										),
+										h4: ({ children, ...props }) => (
+											<H4 props={props}>{children}</H4>
+										),
+										// Custom styling for paragraphs
+										p: ({ children, ...props }) => (
+											<Paragraph props={props}>{children}</Paragraph>
+										),
+										// Custom styling for lists
+										ul: ({ children, ...props }) => (
+											<UL props={props}>{children}</UL>
+										),
+										ol: ({ children, ...props }) => (
+											<OL props={props}>{children}</OL>
+										),
+										li: ({ children, ...props }) => (
+											<LI props={props}>{children}</LI>
+										),
+										// Custom styling for blockquotes
+										blockquote: ({ children, ...props }) => (
+											<Blockquote props={props}>{children}</Blockquote>
+										),
+										// Custom styling for tables
+										table: ({ children, ...props }) => (
+											<Table props={props}>{children}</Table>
+										),
+										th: ({ children, ...props }) => (
+											<TH props={props}>{children}</TH>
+										),
+										td: ({ children, ...props }) => (
+											<TD props={props}>{children}</TD>
+										),
+										// Custom styling for horizontal rules
+										hr: ({ ...props }) => <HR props={props} />,
+										// Custom styling for images
+										img: ({ src, alt, title, ...props }) => (
+											<Image
+												src={src}
+												alt={alt}
+												title={title}
+												props={props}
+											/>
+										),
+									}}>
+									{markdownContent}
+								</ReactMarkdown>
+							</div>
 					}
 				</div>
 			}

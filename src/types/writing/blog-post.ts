@@ -14,6 +14,4 @@ export interface BlogPost {
 	tags: string[];
 	/** URL to the source file and repo on GitHub */
 	githubUrl: string;
-	/** Alternative GitHub API URL for better CORS support when fetching content */
-	githubApiUrl?: string;
 }

@@ -1,5 +1,5 @@
 import ReactMarkdown from "react-markdown";
-import { Blockquote, CodeBlock, H1, H2, H3, H4, HR, LI, Link, OL, Paragraph, Table, TD, TH, UL } from "../styled-markdown";
+import { Blockquote, CodeBlock, H1, H2, H3, H4, HR, LI, Link, OL, Paragraph, Table, TD, TH, UL, Image } from "../styled-markdown";
 import rehypeHighlight from "rehype-highlight";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
@@ -70,6 +70,15 @@ export function BlogPostArticle({ markdownContent }: { markdownContent: string }
           ),
           // Custom styling for horizontal rules
           hr: ({ ...props }) => <HR props={props} />,
+          // Custom styling for images
+          img: ({ src, alt, title, ...props }) => (
+            <Image
+              src={src}
+              alt={alt}
+              title={title}
+              props={props}
+            />
+          ),
         }}>
         {markdownContent}
       </ReactMarkdown>

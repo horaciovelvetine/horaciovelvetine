@@ -28,8 +28,6 @@ export const BLOG_POSTS: BlogPost[] = [
 		],
 		githubUrl:
 			'https://github.com/horaciovelvetine/writing-and-resources/blob/main/the-wikiverse/topics/the-visitor-pattern.md',
-		githubApiUrl:
-			'https://api.github.com/repos/horaciovelvetine/writing-and-resources/contents/the-wikiverse/topics/the-visitor-pattern.md',
 	},
 	{
 		slug: 'intro-to-wikidata',
@@ -44,7 +42,18 @@ export const BLOG_POSTS: BlogPost[] = [
 		],
 		githubUrl:
 			'https://github.com/horaciovelvetine/writing-and-resources/blob/main/the-wikiverse/topics/an-intro-to-wikidata.md',
-		githubApiUrl:
-			'https://api.github.com/repos/horaciovelvetine/writing-and-resources/contents/the-wikiverse/topics/an-intro-to-wikidata.md',
+	},
+	{
+		slug: 'wikiverse-devlog-1',
+		title: 'Devlog 1 - to Start',
+		description:
+			'A quick introduction to the Wikiverse project, and the development plans for this year',
+		publishedDate: '2025-09-08',
+		tags: [
+			Tags.topics.devlog,
+			Tags.projects.theWikiverse,
+		],
+		githubUrl:
+			'https://github.com/horaciovelvetine/writing-and-resources/blob/main/the-wikiverse/devlogs/devlog-1.md',
 	},
 ];
