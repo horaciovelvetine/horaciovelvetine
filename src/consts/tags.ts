@@ -119,7 +119,6 @@ const COMPUTER_SCIENCE = {
 	deployment: 'Deployment',
 	ciCd: 'CI/CD',
 	graphs: 'Graphs',
-	processing: 'Processing',
 	algorithms: 'Algorithms',
 	tools: 'Tools',
 	devlog: 'Devlog',
