@@ -9,7 +9,7 @@ interface PostListDisplayProps {
   posts: BlogPost[];
   activeSearch: boolean;
   siteSettings: SiteSettings;
-  tagSelected: boolean;
+  selectedTags: string[];
   setSelectedTags: Dispatch<SetStateAction<string[]>>;
 }
 
@@ -32,27 +32,38 @@ interface PostListDisplayProps {
  * @param {BlogPost[]} props.posts - Array of blog posts to display
  * @param {boolean} props.activeSearch - Whether a search is currently active (affects empty state message)
  * @param {SiteSettings} props.siteSettings - Site configuration including accent color for tag styling
- * @param {boolean} props.tagSelected - Whether a tag filter is currently selected (affects empty state message)
+ * @param {string[]} props.selectedTags - Current list of selected tags
  * @param {Dispatch<SetStateAction<string[]>>} props.setSelectedTags - Function to update the selected tags array
  */
 export function PostListDisplay({
   posts,
   activeSearch,
   siteSettings,
-  tagSelected,
+  selectedTags,
   setSelectedTags,
 }: PostListDisplayProps) {
-
+  /**
+   * Handles tag selection when a tag badge is clicked
+   *
+   * Adds the clicked tag to the selected tags array for filtering posts,
+   * but only if the tag is not already selected. This prevents duplicate
+   * tags from being added to the filter and allows users to build up
+   * multiple tag filters by clicking on tag badges within individual
+   * post items in the sidebar.
+   *
+   * @param {string} target - The tag text that was clicked
+   */
   const handleTagBadgeClick = (target: string) => {
+    if (selectedTags.find(tag => tag === target)) return;
     setSelectedTags(prev => [...prev, target]);
-  }
+  };
 
   return (
     <>
       <NoPostsToDisplay
         show={posts.length === 0}
         activeSearch={activeSearch}
-        tagSelected={tagSelected}
+        tagSelected={selectedTags.length !== 0}
       />
       {posts.length !== 0 && (
         <div className='space-y-2'>

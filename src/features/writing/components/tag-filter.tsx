@@ -39,7 +39,7 @@ export function TagFilter({ text, accentColor, onClick }: TagFilterProps) {
 
 	return (
 		<span
-			className={`inline-flex items-center gap-x-0.5 rounded-xl px-2 py-0.5 text-sm font-bold ${TagColors[accentColor]} ring-1 ring-inset text-nowrap m-0.5 transition-all hover:scale-105 duration-100 hover:t-ranslate-y-1 group`}>
+			className={`inline-flex items-center gap-x-0.5 rounded-xl px-2 py-0.5 text-xs font-bold ${TagColors[accentColor]} ring-1 ring-inset text-nowrap m-0.5 transition-all hover:scale-105 duration-100 hover:t-ranslate-y-1 group`}>
 			{text}
 			<button
 				type='button'

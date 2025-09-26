@@ -7,15 +7,6 @@
  * opened, closed, or focused within the application.
  *
  * @type {string}
- * @example
- * ```typescript
- * // Opening a specific window by ID
- * const windowId: WindowIDs = 'solvedoku-window';
- * openWindowByID(windowId);
- *
- * // Using in window management hooks
- * const window = useWindow('main-landing-window');
- * ```
  */
 export type WindowIDs =
 	| 'main-landing-window'
@@ -23,3 +14,5 @@ export type WindowIDs =
 	| 'about-this-site-window'
 	| 'rps-sketch-window'
 	| 'writing-window'
+	| 'about-window'
+	| 'contact-window';

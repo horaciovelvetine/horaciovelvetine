@@ -33,8 +33,11 @@ export function TagBadge({ text, accentColor, onClick }: TagBadgeProps) {
   return (
     <button
       type='button'
-      onClick={() => { onClick(text) }}
-      className={`inline-flex w-fit items-center rounded-xl px-2 py-0.5 text-sm font-bold ring-1 ring-inset ${tailwindColors[accentColor]} text-nowrap m-0.5 transition-all duration-100 hover:scale-105 hover:-translate-y-1`}>
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick(text)
+      }}
+      className={`inline-flex w-fit items-center rounded-xl px-2 py-0.5 text-xs font-bold ring-1 ring-inset ${tailwindColors[accentColor]} text-nowrap m-0.5 transition-all duration-100 hover:scale-105 hover:-translate-y-1 tracking-tight`}>
       <p>{text}</p>
     </button>
   );

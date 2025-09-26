@@ -25,9 +25,9 @@ import { GH_REPO, GITHUB } from '../../../consts/urls';
  *
  * @returns JSX.Element A styled window containing site information and details
  */
-export function AboutThisSiteWindow() {
+export function SiteInfoWindow() {
 	return (
-		<div className='block py-3'>
+		<div className='block p-3'>
 			<div className='flex pb-2'>
 				<div className='flex flex-col h-full'>
 					<h2 className='text-nowrap font-extrabold tracking-tighter text-6xl leading-10'>

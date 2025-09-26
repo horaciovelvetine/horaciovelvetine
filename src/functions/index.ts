@@ -21,6 +21,7 @@ export { detectAppleDevice } from './site/detect-apple-device';
 export { detectSafariBrowser } from './site/detect-safari-browser';
 export { detectMobileUserAgent } from './site/detect-mobile-user-agent';
 export { detectTouchDevice } from './site/detect-touch-device';
+export { formatNumbersDateString } from './site/format-numbers-date-string';
 
 // ? SOLVEDOKU
 export { checkCanPlaceNumber } from './solvedoku/check-can-place-number';

@@ -1,6 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import type {
 	BlogPost,
+	NavBarMenuChild,
 	NavBarMenuParent,
 	WindowIDs,
 	WritingWindowState,
@@ -22,11 +23,39 @@ export function useWritingWindow(): WritingWindowState {
 	const postsState = useBlogPosts();
 
 	const closeWindowCallback = useCallback(() => {
-		setSidebarOpen(true)
+		setSidebarOpen(true);
 		setSelectedPost(null);
-		setSearchQuery('')
+		setSearchQuery('');
 		setSelectedTags([]);
 	}, []);
+
+	const recentBlogPosts = useMemo(
+		() => postsState.getAllBlogPosts().slice(0, 5),
+		[postsState]
+	);
+
+	const createBlogDropdown = useCallback(
+		(
+			index: number,
+			post: BlogPost,
+			openWindowByID: (windowID: WindowIDs) => void
+		): NavBarMenuChild => {
+			return {
+				key: `recent-post-${index.toString()}`,
+				displaySectionHeader: index === 0 ? 'Recent Posts' : undefined,
+				titleText: post.title,
+				hoverExplainer: post.description,
+				onClickAction: () => {
+					setSelectedPost(post);
+					if (!isShown) openWindowByID(windowID);
+					if (sidebarOpen) setSidebarOpen(false);
+					setSearchQuery('');
+					setSelectedTags([]);
+				},
+			};
+		},
+		[isShown, sidebarOpen, windowID]
+	);
 
 	const navBarMenuItems = useCallback(
 		(openWindowByID: (windowID: WindowIDs) => void): NavBarMenuParent[] => {
@@ -38,17 +67,38 @@ export function useWritingWindow(): WritingWindowState {
 					dropdownOptions: [
 						{
 							key: 'writing-settings',
-							titleText: 'Settings',
-							hoverExplainer: 'Open the Settings menu for the Writing window',
+							titleText: 'Home',
+							hoverExplainer: 'Open the writing window and show the sidebar',
+							onClickAction: () => {
+								setSearchQuery('');
+								setSelectedPost(null);
+								setSelectedTags([]);
+								setSidebarOpen(true);
+								if (!isShown) openWindowByID(windowID);
+							},
+							displayMenuBreakAfter: true,
+						},
+						{
+							key: 'open-sidebar-menu',
+							titleText: sidebarOpen ? 'Hide Sidebar' : 'Show Sidebar',
+							hoverExplainer: `${sidebarOpen ? 'Hide' : 'Show'} the sidebar menu for the window`,
 							onClickAction: () => {
 								if (!isShown) openWindowByID(windowID);
+								setSidebarOpen(prev => !prev);
 							},
 						},
 					],
 				},
+				{
+					key: 'writing-file-menu',
+					displayText: 'File',
+					dropdownOptions: recentBlogPosts.map((post, index) =>
+						createBlogDropdown(index, post, openWindowByID)
+					),
+				},
 			];
 		},
-		[isShown]
+		[createBlogDropdown, isShown, recentBlogPosts, sidebarOpen]
 	);
 
 	return {
@@ -70,6 +120,6 @@ export function useWritingWindow(): WritingWindowState {
 		setSearchQuery,
 		selectedTags,
 		setSelectedTags,
-		...postsState
+		...postsState,
 	};
 }

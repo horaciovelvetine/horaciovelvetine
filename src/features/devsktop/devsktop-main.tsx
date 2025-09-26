@@ -1,7 +1,12 @@
-import { AboutThisSiteWindow, WritingWindow } from '../../features';
+import { SiteInfoWindow, WritingWindow, AboutWindow } from '../../features';
 import { useWindowManager } from '../../hooks/site';
 import type { SiteContext } from '../../types';
-import { WindowFrame, NavigationBar, DockBar, LandingPageIntro } from './components';
+import {
+	WindowFrame,
+	NavigationBar,
+	DockBar,
+	LandingPageIntro,
+} from './components';
 import { lazy } from 'react';
 
 // Lazy load heavy application windows (but keep P5.js as static import)
@@ -48,7 +53,7 @@ export function DevsktopMain({ siteSettings }: SiteContext) {
 
 				<WindowFrame
 					window={windowManager.aboutThisSiteWindow}
-					Component={AboutThisSiteWindow}
+					Component={SiteInfoWindow}
 					siteSettings={siteSettings}
 					windowManager={windowManager}
 				/>
@@ -73,7 +78,15 @@ export function DevsktopMain({ siteSettings }: SiteContext) {
 					window={windowManager.writingWindow}
 					Component={WritingWindow}
 					siteSettings={siteSettings}
-					windowManager={windowManager} />
+					windowManager={windowManager}
+				/>
+
+				<WindowFrame
+					window={windowManager.aboutWindow}
+					Component={AboutWindow}
+					siteSettings={siteSettings}
+					windowManager={windowManager}
+				/>
 			</div>
 
 			{/* NAVBAR */}

@@ -37,10 +37,10 @@ export function useMainLandingWindow(): ManagedWindow {
 					dropdownOptions: [
 						{
 							key: 'about-velvet-dev',
-							titleText: 'About',
+							titleText: 'About @horaciovelvetine',
 							hoverExplainer: 'About site owner @horaciovelvetine',
 							onClickAction: () => {
-								openWindowByID('about-this-site-window');
+								openWindowByID('about-window');
 							},
 						},
 					],

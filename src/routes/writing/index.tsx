@@ -49,7 +49,6 @@ function MobileWritingPage() {
 
 	// Determine if we have no posts at all vs no search result
 	const activeSearch = postSearch.trim() !== '';
-	const tagSelected = selectedTags.length !== 0;
 
 	return (
 		<div className='min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-4 sm:p-6 lg:p-8'>
@@ -57,7 +56,9 @@ function MobileWritingPage() {
 				<div className='bg-gray-900/95 backdrop-blur-sm rounded-xl border border-gray-600/50 shadow-2xl shadow-black/20 overflow-hidden'>
 					{/* Header */}
 					<div className='bg-gray-800/80 border-b border-gray-600/50 px-4 py-3 flex items-center space-x-2'>
-						<div className='text-gray-400 text-lg sm:text-xl leading-relaxed ml-4'>writing</div>
+						<div className='text-gray-400 text-lg sm:text-xl leading-relaxed ml-4'>
+							writing
+						</div>
 					</div>
 
 					{/* Main Content */}
@@ -88,22 +89,35 @@ function MobileWritingPage() {
 								posts={blogPosts}
 								activeSearch={activeSearch}
 								siteSettings={siteSettings}
-								tagSelected={tagSelected}
+								selectedTags={selectedTags}
 								setSelectedTags={setSelectedTags}
 							/>
 
 							{/* Breadcrumb footer */}
 							<div className='mt-6 pt-4 border-t border-gray-600/30'>
 								<div className='flex items-center gap-2 text-xs sm:text-sm text-gray-500'>
-									<span className='text-gray-500 hover:text-gray-400 transition-colors duration-200'>{'//'}</span>
-									<span className='text-gray-500 hover:text-gray-400 transition-colors duration-200'>Navigation:</span>
-									<span className='text-gray-100 hover:text-white transition-colors duration-200'>/</span>
+									<span className='text-gray-500 hover:text-gray-400 transition-colors duration-200'>
+										{'//'}
+									</span>
+									<span className='text-gray-500 hover:text-gray-400 transition-colors duration-200'>
+										Navigation:
+									</span>
+									<span className='text-gray-100 hover:text-white transition-colors duration-200'>
+										/
+									</span>
 									<Link to='/'>
-										<span className='text-blue-400 hover:text-blue-300 transition-colors duration-200'>home</span>
+										<span className='text-blue-400 hover:text-blue-300 transition-colors duration-200'>
+											home
+										</span>
 									</Link>
-									<span className='text-gray-100 hover:text-white transition-colors duration-200'> → </span>
+									<span className='text-gray-100 hover:text-white transition-colors duration-200'>
+										{' '}
+										→{' '}
+									</span>
 									<Link to='/writing'>
-										<span className='text-blue-400 hover:text-blue-300 transition-colors duration-200'>writing</span>
+										<span className='text-blue-400 hover:text-blue-300 transition-colors duration-200'>
+											writing
+										</span>
 									</Link>
 								</div>
 							</div>

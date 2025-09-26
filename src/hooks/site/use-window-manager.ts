@@ -12,7 +12,8 @@ import {
 	useSolvedokuWindow,
 	useAboutThisSiteWindow,
 	useRPSSketchWindow,
-	useWritingWindow
+	useWritingWindow,
+	useAboutWindow,
 } from '../windows';
 import { GITHUB, LINKEDIN } from '../../consts/urls';
 
@@ -36,6 +37,7 @@ export function useWindowManager(): WindowManager {
 	//? INITIALIZE ALL WINDOWS
 	// SITE WINDOWS
 	const mainLandingWindow = useMainLandingWindow();
+	const aboutWindow = useAboutWindow();
 	const aboutThisSiteWindow = useAboutThisSiteWindow();
 	// SOLVEDOKU WINDOWS
 	const solvedokuWindow = useSolvedokuWindow();
@@ -50,8 +52,16 @@ export function useWindowManager(): WindowManager {
 			solvedokuWindow,
 			rpsSketchWindow,
 			writingWindow,
+			aboutWindow,
 		],
-		[aboutThisSiteWindow, mainLandingWindow, solvedokuWindow, rpsSketchWindow, writingWindow]
+		[
+			aboutThisSiteWindow,
+			mainLandingWindow,
+			solvedokuWindow,
+			rpsSketchWindow,
+			writingWindow,
+			aboutWindow,
+		]
 	);
 
 	/**
@@ -132,9 +142,18 @@ export function useWindowManager(): WindowManager {
 					key: 'landing-page',
 					titleText: 'Home',
 					hoverExplainer: 'Open the Home page window',
-					isDisabled: mainLandingWindow.isShown && mainLandingWindow.isFocused,
 					onClickAction: () => {
 						openWindowByID('main-landing-window');
+					},
+					displayMenuBreakAfter: true,
+				},
+				{
+					key: 'about-this-site',
+					titleText: 'About This Site',
+					hoverExplainer:
+						'Open a quick explainer about this site and how it was built',
+					onClickAction: () => {
+						openWindowByID('about-this-site-window');
 					},
 					displayMenuBreakAfter: true,
 				},
@@ -157,7 +176,7 @@ export function useWindowManager(): WindowManager {
 				},
 			],
 		}),
-		[mainLandingWindow.isFocused, mainLandingWindow.isShown, openWindowByID]
+		[openWindowByID]
 	);
 
 	const navBarMenuItems: NavBarMenuParent[] =
@@ -171,6 +190,7 @@ export function useWindowManager(): WindowManager {
 		solvedokuWindow,
 		rpsSketchWindow,
 		writingWindow,
+		aboutWindow,
 		focusedWindow,
 		navBarMenuItems,
 		focusWindowByID,

@@ -1,10 +1,10 @@
-import { useCallback } from 'react';
 import { GithubIcon, MenuBarsIcon } from '../../../../assets';
 import type { BlogPost, WritingWindowState } from '../../../../types';
+import { formatNumbersDateString } from '../../../../functions';
 
 interface WritingHeaderProps {
-  windowState: WritingWindowState;
-  selectedPost: BlogPost | null;
+	windowState: WritingWindowState;
+	selectedPost: BlogPost | null;
 }
 
 /**
@@ -29,62 +29,43 @@ interface WritingHeaderProps {
  */
 
 export function WritingHeader({
-  windowState,
-  selectedPost,
+	windowState,
+	selectedPost,
 }: WritingHeaderProps) {
-  /**
-   * Formats a date string for display in a readable format
-   *
-   * Takes a date string and converts it to a localized format showing
-   * abbreviated month, numeric day, and full year (e.g., "Jan 15, 2024").
-   * This function is memoized to prevent unnecessary re-creation on re-renders.
-   *
-   * @param {string} dateString - The date string to format (expected in YYYY-MM-DD format)
-   * @returns {string} Formatted date string in "MMM D, YYYY" format
-   */
-  const formatDate = useCallback((dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
-  }, []);
-
-  return (
-    <div
-      className={`flex items-center justify-between p-2 border-b border-gray-700 flex-shrink-0 bg-gray-900`}>
-      <div className='flex items-center space-x-2'>
-        <button
-          type='button'
-          onClick={() => {
-            windowState.setSidebarOpen(prev => !prev);
-          }}
-          className='p-2 rounded-md hover:bg-gray-800 transition-colors'>
-          <MenuBarsIcon size='size-5' />
-        </button>
-        {selectedPost && (
-          <div>
-            <h1 className='text-xl font-semibold text-white'>
-              {selectedPost.title}
-            </h1>
-            <p className='text-sm text-gray-400'>
-              {formatDate(selectedPost.publishedDate)}
-            </p>
-          </div>
-        )}
-      </div>
-      <div className='flex items-center space-x-2'>
-        {selectedPost && (
-          <a
-            target='_blank'
-            href={selectedPost.githubUrl}
-            title='View source on GitHub'
-            className='p-2 rounded-md hover:bg-gray-800 hover:scale-105 hover:-translate-y-1 transition-all duration-200'>
-            <GithubIcon />
-          </a>
-        )}
-      </div>
-    </div>
-  );
+	return (
+		<div
+			className={`flex items-center justify-between p-2 border-b border-gray-700 flex-shrink-0 bg-gray-900`}>
+			<div className='flex items-center space-x-2'>
+				<button
+					type='button'
+					onClick={() => {
+						windowState.setSidebarOpen(prev => !prev);
+					}}
+					className='p-2 rounded-md hover:bg-gray-800 transition-colors'>
+					<MenuBarsIcon size='size-5' />
+				</button>
+				{selectedPost && (
+					<div>
+						<h1 className='text-xl font-semibold text-white'>
+							{selectedPost.title}
+						</h1>
+						<p className='text-sm text-gray-400'>
+							{formatNumbersDateString(selectedPost.publishedDate)}
+						</p>
+					</div>
+				)}
+			</div>
+			<div className='flex items-center space-x-2'>
+				{selectedPost && (
+					<a
+						target='_blank'
+						href={selectedPost.githubUrl}
+						title='View source on GitHub'
+						className='p-2 rounded-md hover:bg-gray-800 hover:scale-105 hover:-translate-y-1 transition-all duration-200'>
+						<GithubIcon />
+					</a>
+				)}
+			</div>
+		</div>
+	);
 }

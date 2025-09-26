@@ -89,8 +89,6 @@ export function WritingWindow({
 			<div className='flex flex-1 overflow-hidden'>
 				{/* SIDEBAR CONTENT */}
 				<WritingSidebar
-					selectedPost={selectedPost}
-					sidebarOpen={sidebarOpen}
 					windowState={windowState}
 					siteSettings={siteSettings}
 					filteredPosts={filteredPosts}

@@ -5,5 +5,7 @@ export { useAboutThisSiteWindow } from './use-about-this-site-window';
 export { useSolvedokuWindow } from './use-solvedoku-window';
 // Rock, Paper, Scissors
 export { useRPSSketchWindow } from './use-rps-sketch-window';
-// Writing Window
+// Writing
 export { useWritingWindow } from './use-writing-window';
+// About
+export { useAboutWindow } from './use-about-window';

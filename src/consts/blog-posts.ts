@@ -45,15 +45,26 @@ export const BLOG_POSTS: BlogPost[] = [
 	},
 	{
 		slug: 'wikiverse-devlog-1',
-		title: 'Devlog 1 - to Start',
+		title: 'Wikiverse Devlog 1',
 		description:
 			'A quick introduction to the Wikiverse project, and the development plans for this year',
 		publishedDate: '2025-09-08',
+		tags: [Tags.topics.devlog, Tags.projects.theWikiverse],
+		githubUrl:
+			'https://github.com/horaciovelvetine/writing-and-resources/blob/main/the-wikiverse/devlogs/devlog-1.md',
+	},
+	{
+		slug: 'wikiverse-devlog-2',
+		title: 'Wikiverse Devlog 2',
+		description:
+			'An overview of the planned features slated for the Beta and a quick digression for some open-source contribution',
+		publishedDate: '2025-09-14',
 		tags: [
 			Tags.topics.devlog,
 			Tags.projects.theWikiverse,
+			Tags.topics.visualizations,
 		],
 		githubUrl:
-			'https://github.com/horaciovelvetine/writing-and-resources/blob/main/the-wikiverse/devlogs/devlog-1.md',
+			'https://github.com/horaciovelvetine/writing-and-resources/blob/main/the-wikiverse/devlogs/devlog-2.md',
 	},
 ];
