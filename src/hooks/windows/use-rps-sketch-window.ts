@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useRPSSketchState } from '../rps/use-rps-sketch-state';
 import type { NavBarMenuParent, WindowIDs, RPSWindowState } from '../../types';
-import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
+import { GH_NEW_ISSUES } from '../../consts/urls';
 
 /**
  * Custom hook for managing the Rock, Paper, Scissors sketch window state and functionality
@@ -227,9 +227,9 @@ export function useRPSSketchWindow(): RPSWindowState {
 						{
 							key: 'contact',
 							titleText: 'Contact',
-							hoverExplainer: 'Send @horaciovelvetine an email',
+							hoverExplainer: 'Open the Contact window to get in touch',
 							onClickAction: () => {
-								window.open(MAILTO);
+								openWindowByID('contact-window');
 							},
 							displayMenuBreakAfter: true,
 						},
@@ -260,7 +260,7 @@ export function useRPSSketchWindow(): RPSWindowState {
 				},
 			];
 		},
-		[closeWindowCallback, isShown, sketchState]
+		[closeWindowCallback, isFocused, isShown, sketchState]
 	);
 
 	return {

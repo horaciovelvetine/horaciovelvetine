@@ -6,7 +6,7 @@ import type {
 	PuzzleDifficulty,
 } from '../../types';
 import { useSolvedokuGameState } from '../solvedoku/use-solvedoku-game-state';
-import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
+import { GH_NEW_ISSUES } from '../../consts/urls';
 
 /**
  * Custom hook for managing the Solvedoku window state and functionality
@@ -68,7 +68,7 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 							onClickAction: () => {
 								openWindowByID('solvedoku-window');
 							},
-							displayMenuBreakAfter: true
+							displayMenuBreakAfter: true,
 						},
 						{
 							key: 'solvedoku-settings',
@@ -218,9 +218,9 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 						{
 							key: 'contact',
 							titleText: 'Contact',
-							hoverExplainer: 'Send @horaciovelvetine an email',
+							hoverExplainer: 'Open the Contact window to get in touch',
 							onClickAction: () => {
-								window.open(MAILTO);
+								openWindowByID('contact-window');
 							},
 							displayMenuBreakAfter: true,
 						},
