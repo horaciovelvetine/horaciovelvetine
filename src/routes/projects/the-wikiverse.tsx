@@ -56,7 +56,6 @@ function TheWikiverseProjectPage() {
 
 	// Determine if we have no posts at all vs no search result
 	const activeSearch = postSearch.trim() !== '';
-	const tagSelected = selectedTags.length !== 0;
 
 	return (
 		<div className='min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-4 sm:p-6 lg:p-8'>
@@ -116,7 +115,7 @@ function TheWikiverseProjectPage() {
 										posts={devLogPosts}
 										activeSearch={activeSearch}
 										siteSettings={siteSettings}
-										tagSelected={tagSelected}
+										selectedTags={selectedTags}
 										setSelectedTags={setSelectedTags}
 									/>
 								</div>

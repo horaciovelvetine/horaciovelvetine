@@ -35,7 +35,7 @@ export function DockBar({ windowManager, siteSettings }: DockBarProps) {
 						label='Home'
 						Icon={HomeIcon}
 						onClick={() => {
-							windowManager.openWindowByID('main-landing-window');
+							windowManager.openWindowByID('landing-page-window');
 						}}
 						isOpen={windowManager.mainLandingWindow.isShown}
 						siteSettings={siteSettings}
@@ -62,7 +62,7 @@ export function DockBar({ windowManager, siteSettings }: DockBarProps) {
 						label='Writing'
 						Icon={NotesIcon}
 						onClick={() => {
-							windowManager.openWindowByID("writing-window");
+							windowManager.openWindowByID('writing-window');
 						}}
 						isOpen={windowManager.writingWindow.isShown}
 						siteSettings={siteSettings}
