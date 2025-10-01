@@ -1,12 +1,13 @@
-import { GITHUB, LINKEDIN } from './urls';
+import { CONTACT_DATA } from './contact-data';
 
 /**
  * Data used for the About Component/Pages => About @horaciovelvetine
  */
 export const ABOUT_DATA = {
 	location: 'Denver, Colorado',
-	github: GITHUB,
-	linkedin: LINKEDIN,
+	email: CONTACT_DATA.email,
+	github: CONTACT_DATA.github,
+	linkedin: CONTACT_DATA.linkedin,
 	languages: [
 		'C++',
 		'Java',
