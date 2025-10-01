@@ -12,6 +12,9 @@ import {
 	useSolvedokuWindow,
 	useAboutThisSiteWindow,
 	useRPSSketchWindow,
+	useWritingWindow,
+	useAboutWindow,
+	useContactWindow,
 } from '../windows';
 import { GITHUB, LINKEDIN } from '../../consts/urls';
 
@@ -32,23 +35,37 @@ import { GITHUB, LINKEDIN } from '../../consts/urls';
  *   - Window control functions and state
  */
 export function useWindowManager(): WindowManager {
-	//? INITIALIZE ALL WINDOWS
 	// SITE WINDOWS
 	const mainLandingWindow = useMainLandingWindow();
+	const aboutWindow = useAboutWindow();
 	const aboutThisSiteWindow = useAboutThisSiteWindow();
-	// SOLVEDOKU WINDOWS
+	const contactWindow = useContactWindow();
+	// SOLVEDOKU
 	const solvedokuWindow = useSolvedokuWindow();
-	// RPS WINDOWS
+	// ROCK, PAPER, SCISSORS
 	const rpsSketchWindow = useRPSSketchWindow();
+	// WRITING
+	const writingWindow = useWritingWindow();
 
 	const ALL_WINDOWS: ManagedWindow[] = useMemo(
 		() => [
+			contactWindow,
 			mainLandingWindow,
 			aboutThisSiteWindow,
 			solvedokuWindow,
 			rpsSketchWindow,
+			writingWindow,
+			aboutWindow,
 		],
-		[aboutThisSiteWindow, mainLandingWindow, solvedokuWindow, rpsSketchWindow]
+		[
+			contactWindow,
+			mainLandingWindow,
+			aboutThisSiteWindow,
+			solvedokuWindow,
+			rpsSketchWindow,
+			writingWindow,
+			aboutWindow,
+		]
 	);
 
 	/**
@@ -129,9 +146,18 @@ export function useWindowManager(): WindowManager {
 					key: 'landing-page',
 					titleText: 'Home',
 					hoverExplainer: 'Open the Home page window',
-					isDisabled: mainLandingWindow.isShown && mainLandingWindow.isFocused,
 					onClickAction: () => {
-						openWindowByID('main-landing-window');
+						openWindowByID('landing-page-window');
+					},
+					displayMenuBreakAfter: true,
+				},
+				{
+					key: 'about-this-site',
+					titleText: 'About This Site',
+					hoverExplainer:
+						'Open a quick explainer about this site and how it was built',
+					onClickAction: () => {
+						openWindowByID('site-info-window');
 					},
 					displayMenuBreakAfter: true,
 				},
@@ -154,7 +180,7 @@ export function useWindowManager(): WindowManager {
 				},
 			],
 		}),
-		[mainLandingWindow.isFocused, mainLandingWindow.isShown, openWindowByID]
+		[openWindowByID]
 	);
 
 	const navBarMenuItems: NavBarMenuParent[] =
@@ -165,8 +191,11 @@ export function useWindowManager(): WindowManager {
 	return {
 		mainLandingWindow,
 		aboutThisSiteWindow,
+		contactWindow,
 		solvedokuWindow,
 		rpsSketchWindow,
+		writingWindow,
+		aboutWindow,
 		focusedWindow,
 		navBarMenuItems,
 		focusWindowByID,

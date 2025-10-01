@@ -1,6 +1,6 @@
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { routeTree } from '../routeTree.gen.ts';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useMemo } from 'react';
 
 import { useSiteSettings } from '../hooks/site';
 import { PageNotFound, DevsktopFallback } from '../components';
@@ -40,14 +40,18 @@ declare module '@tanstack/react-router' {
 export function SiteMain() {
 	const siteSettings = useSiteSettings();
 
-	//? Instantiate in component to ensure updated state access...
-	const router = createRouter({
-		routeTree,
-		context: {
-			siteSettings,
-		},
-		defaultNotFoundComponent: PageNotFound,
-	});
+	// Memoize router creation
+	const router = useMemo(
+		() =>
+			createRouter({
+				routeTree,
+				context: {
+					siteSettings,
+				},
+				defaultNotFoundComponent: PageNotFound,
+			}),
+		[siteSettings]
+	);
 
 	return (
 		<>

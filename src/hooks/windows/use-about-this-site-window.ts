@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import type { ManagedWindow, NavBarMenuParent, WindowIDs } from '../../types';
-import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
+import { GH_NEW_ISSUES } from '../../consts/urls';
 
 /**
  * Custom hook for managing the "About This Site" window state and functionality
@@ -10,14 +10,13 @@ import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
  * consistent navigation context while providing its own independent window state
  * management including visibility, z-index positioning, and window identification.
  *
- * @param {ManagedWindow} parentWindow - The parent window object whose navigation menu items will be inherited
  * @returns {ManagedWindow} Complete window state object containing:
  *   - Basic window management (show/hide, z-index, title, etc.)
  *   - Inherited navigation bar menu configuration from parent window
  *   - Window identification and display properties
  */
 export function useAboutThisSiteWindow(): ManagedWindow {
-	const windowID = 'about-this-site-window';
+	const windowID: WindowIDs = 'site-info-window';
 	const title = 'About This Site';
 	const [zIndex, setZIndex] = useState('0');
 	const [isFocused, setIsFocused] = useState(false);
@@ -32,12 +31,21 @@ export function useAboutThisSiteWindow(): ManagedWindow {
 					displayText: '@horaciovelvetine',
 					dropdownOptions: [
 						{
-							key: 'about-velvet-dev',
-							titleText: 'About',
-							hoverExplainer: 'About site owner @horaciovelvetine',
-							isDisabled: isFocused,
+							key: 'show-site-info-window',
+							titleText: 'Show Site Info Window',
+							isDisabled: isFocused && isShown,
+							hoverExplainer:
+								'Show or focus the site info window on top of the devsktop',
 							onClickAction: () => {
-								openWindowByID('about-this-site-window');
+								openWindowByID('site-info-window');
+							},
+						},
+						{
+							key: 'about-velvet-dev',
+							titleText: 'About @horaciovelvetine',
+							hoverExplainer: 'About site owner @horaciovelvetine',
+							onClickAction: () => {
+								openWindowByID('about-window');
 							},
 						},
 					],
@@ -62,6 +70,16 @@ export function useAboutThisSiteWindow(): ManagedWindow {
 							onClickAction: () => {
 								openWindowByID('rps-sketch-window');
 							},
+							displayMenuBreakAfter: true,
+						},
+						{
+							key: 'open-writing',
+							titleText: 'Blog Posts',
+							displaySectionHeader: 'Writing',
+							hoverExplainer: 'Open the writing window to read some posts',
+							onClickAction: () => {
+								openWindowByID('writing-window');
+							},
 						},
 					],
 				},
@@ -74,7 +92,7 @@ export function useAboutThisSiteWindow(): ManagedWindow {
 							titleText: 'Contact',
 							hoverExplainer: 'Send @horaciovelvetine an email',
 							onClickAction: () => {
-								window.open(MAILTO);
+								openWindowByID('contact-window');
 							},
 							displayMenuBreakAfter: true,
 						},
@@ -90,7 +108,7 @@ export function useAboutThisSiteWindow(): ManagedWindow {
 				},
 			];
 		},
-		[isFocused]
+		[]
 	);
 
 	const closeWindowCallback = useCallback(() => {

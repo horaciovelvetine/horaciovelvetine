@@ -9,7 +9,9 @@ export { SimpleInlineLink } from './site/simple-inline-link';
 export { ToolBadge } from './site/tool-badge';
 export { VideoHeadshot } from './site/video-headshot';
 export { InlineSocialLink } from './site/inline-social-link';
-export { DevsktopFallback } from './devsktop-fallback';
+export { DevsktopFallback } from './site/devsktop-fallback';
+export { LoadingPageSpinner } from './site/loading-page-spinner';
+export { MobilePageFallback } from './site/mobile-page-fallback';
 
 // TOOL BADGES
 export { CSSBadge } from './tool-badges/css-badge';

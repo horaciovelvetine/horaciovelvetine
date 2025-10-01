@@ -58,42 +58,49 @@ export function SolvedokuWindow({
 	useKeyboardShortcuts(windowState);
 
 	return (
-		<div className='flex flex-col h-full justify-center items-center relative sm:mx-6 md:mx-12'>
-			{/* MOBILE HEADER ELEMENTS */}
-			<SolvedokuHeader {...windowState} />
+		<div
+			className='flex flex-col pb-2'
+			style={{ maxHeight: 'calc(100vh - 72px)' }}>
+			{/* MAIN CONTAINER WITH SCROLLABLE CONTENT */}
+			<div className='flex flex-1 flex-col overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-stone-400/80 [&::-webkit-scrollbar-thumb]:bg-stone-600/70 [&::-webkit-scrollbar]:bg-transparent [&::-webkit-scrollbar-track]:bg-transparent'>
+				<div className='flex flex-col w-full  items-center relative py-2'>
+					{/* HEADER */}
+					<SolvedokuHeader {...windowState} />
 
-			{/* TOP MENU SHOWN ON INIT */}
-			{windowState.showTopMenu && (
-				<SolvedokuTopMenu
-					windowState={windowState}
-					siteSettings={siteSettings}
-				/>
-			)}
+					{/* TOP MENU SHOWN ON INIT */}
+					{windowState.showTopMenu && (
+						<SolvedokuTopMenu
+							windowState={windowState}
+							siteSettings={siteSettings}
+						/>
+					)}
 
-			{/* GAME BOARD & CELL DATA TABLE */}
-			<GameBoardTable
-				windowState={windowState}
-				siteSettings={siteSettings}
-			/>
+					{/* GAME BOARD & CELL DATA TABLE */}
+					<GameBoardTable
+						windowState={windowState}
+						siteSettings={siteSettings}
+					/>
 
-			{/* PUZZLE INFO DETAILS */}
-			<PuzzleInfoDisplay
-				windowState={windowState}
-				siteSettings={siteSettings}
-			/>
+					{/* PUZZLE INFO DETAILS */}
+					<PuzzleInfoDisplay
+						windowState={windowState}
+						siteSettings={siteSettings}
+					/>
 
-			{/* NUMBER INPUTS */}
-			<NumberInputButtons
-				selectedCellID={windowState.selectedCellID}
-				updateCellValue={windowState.updateCellValue}
-				accentColor={siteSettings.accentColor}
-			/>
+					{/* NUMBER INPUTS */}
+					<NumberInputButtons
+						selectedCellID={windowState.selectedCellID}
+						updateCellValue={windowState.updateCellValue}
+						accentColor={siteSettings.accentColor}
+					/>
 
-			{/* SOLVER CONTROLS */}
-			<PuzzleSolverButtons
-				siteSettings={siteSettings}
-				windowState={windowState}
-			/>
+					{/* SOLVER CONTROLS */}
+					<PuzzleSolverButtons
+						siteSettings={siteSettings}
+						windowState={windowState}
+					/>
+				</div>
+			</div>
 
 			{/* MENU's */}
 			<WindowMenuWrapper

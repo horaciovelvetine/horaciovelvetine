@@ -71,37 +71,52 @@ export function RPSSKetchWindow({
 	}, [windowState]);
 
 	return (
-		<div className='flex flex-col h-full justify-center items-center relative isolate pb-2'>
-			{/* HEADER */}
-			<RPSHeader {...windowState} />
+		<div
+			className='flex flex-col pb-2'
+			style={{ maxHeight: 'calc(100vh - 72px)' }}>
+			{/* MAIN CONTAINER WITH SCROLLABLE CONTENT */}
+			<div className='flex flex-1 flex-col overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-stone-400/80 [&::-webkit-scrollbar-thumb]:bg-stone-600/70 [&::-webkit-scrollbar]:bg-transparent [&::-webkit-scrollbar-track]:bg-transparent'>
+				<div className='flex flex-col w-full items-center relative py-2 min-h-full'>
+					{/* Spacer to center content when there's extra space */}
+					<div className='flex-1' />
 
-			{/* SKETCH MAIN */}
-			{!windowState.sketchIsInitialized ?
-				<RPSInitializeSketchMenu
-					siteSettings={siteSettings}
-					windowState={windowState}
-				/>
-				: <div
-					className='relative mt-1 border border-stone-300/30 shadow-lg shadow-stone-300/5'
-					onClick={handlePauseSketchClick}>
-					<ReactP5Wrapper
-						sketch={RPSSketch}
-						{...sketchState}
-					/>
-					<SketchPausedIndicator
-						sketchIsPaused={windowState.sketchIsPaused}
-						settingsMenuOnScreen={windowState.showAboutMenu}
-						aboutMenuOnScreen={windowState.showAboutMenu}
-						gameMenuOnScreen={windowState.showGameMenu}
-					/>
+					{/* HEADER */}
+					<RPSHeader {...windowState} />
+
+					{/* SKETCH MAIN */}
+					{!windowState.sketchIsInitialized ?
+						<div className='flex-shrink-0 w-full'>
+							<RPSInitializeSketchMenu
+								siteSettings={siteSettings}
+								windowState={windowState}
+							/>
+						</div>
+					:	<div
+							className='relative mt-1 border border-stone-300/30 shadow-lg shadow-stone-300/5 flex-shrink-0'
+							onClick={handlePauseSketchClick}>
+							<ReactP5Wrapper
+								sketch={RPSSketch}
+								{...sketchState}
+							/>
+							<SketchPausedIndicator
+								sketchIsPaused={windowState.sketchIsPaused}
+								settingsMenuOnScreen={windowState.showAboutMenu}
+								aboutMenuOnScreen={windowState.showAboutMenu}
+								gameMenuOnScreen={windowState.showGameMenu}
+							/>
+						</div>
+					}
+
+					{windowState.sketchIsInitialized && (
+						<p className='text-stone-300/50 text-base/3 sm:text-lg/4 md:text-xl/5 mt-1.5 tracking-tighter flex-shrink-0'>
+							sketch by @horaciovelvetine
+						</p>
+					)}
+
+					{/* Spacer to center content when there's extra space */}
+					<div className='flex-1' />
 				</div>
-			}
-
-			{windowState.sketchIsInitialized && (
-				<p className='text-stone-300/50 text-base/3 sm:text-lg/4 md:text-xl/5 mt-1.5 tracking-tighter'>
-					sketch by @horaciovelvetine
-				</p>
-			)}
+			</div>
 
 			{/* MENUS */}
 			<WindowMenuWrapper

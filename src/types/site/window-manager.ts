@@ -18,6 +18,8 @@ import type { WindowIDs } from './window-ids';
  * @property {SolvedokuWindowState} solvedokuWindow - Solvedoku game window with extended game state
  * @property {ManagedWindow} aboutSolvedokuWindow - About page window for Solvedoku information
  * @property {RPSWindowState} rpsSketchWindow - Rock Paper Scissors game window with extended game state
+ * @property {ManagedWindow} writingWindow - Writing/Posts reading window
+ * @property {ManagedWindow} aboutWindow - About @horaciovelvetine window
  * @property {ManagedWindow} aboutRPSSketchWindow - About page window for RPS game information
  * @property {ManagedWindow} focusedWindow - Reference to the currently focused/active window
  * @property {NavBarMenuParent[]} navBarMenuItems - Navigation menu items for the currently focused window
@@ -31,6 +33,9 @@ export interface WindowManager {
 	aboutThisSiteWindow: ManagedWindow;
 	solvedokuWindow: SolvedokuWindowState;
 	rpsSketchWindow: RPSWindowState;
+	writingWindow: ManagedWindow;
+	aboutWindow: ManagedWindow;
+	contactWindow: ManagedWindow;
 	// WINDOW MANAGEMENT FUNC
 	focusedWindow: ManagedWindow;
 	navBarMenuItems: NavBarMenuParent[];

@@ -19,7 +19,7 @@ import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
  *   - Integrated RPS sketch state and controls
  */
 export function useRPSSketchWindow(): RPSWindowState {
-	const windowID = 'rps-sketch-window';
+	const windowID: WindowIDs = 'rps-sketch-window';
 	const title = 'Rock, Paper, Scissors';
 	const [zIndex, setZIndex] = useState('0');
 	const [isFocused, setIsFocused] = useState(false);
@@ -49,6 +49,17 @@ export function useRPSSketchWindow(): RPSWindowState {
 					isAppTitledDisplayText: true,
 					dropdownOptions: [
 						{
+							key: 'show-rps-window',
+							titleText: 'Show Rock, Paper, Scissors Window',
+							isDisabled: isFocused && isShown,
+							hoverExplainer:
+								'Show or focus the Rock, Paper, Scissors window on top of the devsktop',
+							onClickAction: () => {
+								openWindowByID('rps-sketch-window');
+							},
+							displayMenuBreakAfter: true,
+						},
+						{
 							key: 'rps-settings',
 							titleText: 'Settings',
 							isDisabled: !sketchState.sketchIsInitialized,
@@ -70,7 +81,8 @@ export function useRPSSketchWindow(): RPSWindowState {
 							titleText: 'New Game',
 							hoverExplainer:
 								'Create an entirely new game, returning to the initialization menu',
-							isDisabled: (!sketchState.sketchIsInitialized && isShown) || isShown,
+							isDisabled:
+								(!sketchState.sketchIsInitialized && isShown) || isShown,
 							onClickAction: () => {
 								if (!isShown) openWindowByID('rps-sketch-window');
 								closeWindowCallback();

@@ -25,7 +25,7 @@ import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
  *   - Current puzzle difficulty display state
  */
 export function useSolvedokuWindow(): SolvedokuWindowState {
-	const windowID = 'solvedoku-window';
+	const windowID: WindowIDs = 'solvedoku-window';
 	const title = 'Solvedoku';
 	const [zIndex, setZIndex] = useState('0');
 	const [isFocused, setIsFocused] = useState(false);
@@ -59,6 +59,17 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 					displayText: 'Solvedoku',
 					isAppTitledDisplayText: true,
 					dropdownOptions: [
+						{
+							key: 'show-solvedoku-window',
+							titleText: 'Show Solvedoku Window',
+							isDisabled: isFocused && isShown,
+							hoverExplainer:
+								'Show or focus the Solvedoku window on top of the devsktop',
+							onClickAction: () => {
+								openWindowByID('solvedoku-window');
+							},
+							displayMenuBreakAfter: true
+						},
 						{
 							key: 'solvedoku-settings',
 							titleText: 'Settings',

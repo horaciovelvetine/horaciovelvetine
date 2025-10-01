@@ -3,6 +3,7 @@ import { HomeIcon } from './home-icon';
 import { SolvedokuIcon } from '../../../solvedoku';
 import { RPSIcon } from '../../../rps';
 import { DockIcon } from './dock-icon';
+import { NotesIcon } from '../../../writing/components/notes-icon';
 
 interface DockBarProps {
 	siteSettings: SiteSettings;
@@ -55,6 +56,15 @@ export function DockBar({ windowManager, siteSettings }: DockBarProps) {
 							windowManager.openWindowByID('rps-sketch-window');
 						}}
 						isOpen={windowManager.rpsSketchWindow.isShown}
+						siteSettings={siteSettings}
+					/>
+					<DockIcon
+						label='Writing'
+						Icon={NotesIcon}
+						onClick={() => {
+							windowManager.openWindowByID("writing-window");
+						}}
+						isOpen={windowManager.writingWindow.isShown}
 						siteSettings={siteSettings}
 					/>
 				</div>

@@ -1,8 +1,14 @@
-import { MainLandingWindow, AboutThisSiteWindow } from '../../features';
+import { SiteInfoWindow, WritingWindow, AboutWindow } from '../../features';
 import { useWindowManager } from '../../hooks/site';
 import type { SiteContext } from '../../types';
-import { WindowFrame, NavigationBar, DockBar } from './components';
+import {
+	WindowFrame,
+	NavigationBar,
+	DockBar,
+	LandingPageContent,
+} from './components';
 import { lazy } from 'react';
+import { ContactWindow } from './windows/contact-window';
 
 // Lazy load heavy application windows (but keep P5.js as static import)
 const SolvedokuWindow = lazy(() =>
@@ -41,14 +47,14 @@ export function DevsktopMain({ siteSettings }: SiteContext) {
 
 				<WindowFrame
 					window={windowManager.mainLandingWindow}
-					Component={MainLandingWindow}
+					Component={LandingPageContent}
 					siteSettings={siteSettings}
 					windowManager={windowManager}
 				/>
 
 				<WindowFrame
 					window={windowManager.aboutThisSiteWindow}
-					Component={AboutThisSiteWindow}
+					Component={SiteInfoWindow}
 					siteSettings={siteSettings}
 					windowManager={windowManager}
 				/>
@@ -65,6 +71,27 @@ export function DevsktopMain({ siteSettings }: SiteContext) {
 				<WindowFrame
 					window={windowManager.rpsSketchWindow}
 					Component={RPSSKetchWindow}
+					siteSettings={siteSettings}
+					windowManager={windowManager}
+				/>
+
+				<WindowFrame
+					window={windowManager.writingWindow}
+					Component={WritingWindow}
+					siteSettings={siteSettings}
+					windowManager={windowManager}
+				/>
+
+				<WindowFrame
+					window={windowManager.aboutWindow}
+					Component={AboutWindow}
+					siteSettings={siteSettings}
+					windowManager={windowManager}
+				/>
+
+				<WindowFrame
+					window={windowManager.contactWindow}
+					Component={ContactWindow}
 					siteSettings={siteSettings}
 					windowManager={windowManager}
 				/>
