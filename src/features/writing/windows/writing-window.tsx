@@ -58,9 +58,11 @@ export function WritingWindow({
 	 * @type {BlogPost[]} Array of blog posts matching the current search query
 	 */
 	const filteredPosts: BlogPost[] = useMemo(() => {
-		if (!windowState.searchQuery.trim()) return allPosts;
-		return windowState.getBlogPostsByMatching(windowState.searchQuery);
-	}, [allPosts, windowState]);
+		return windowState.getBlogPostsByFilterState(
+			windowState.searchQuery,
+			windowState.selectedTags
+		);
+	}, [windowState]);
 
 	/**
 	 * Determines which blog post to fetch content for
