@@ -7,19 +7,21 @@ import {
 import { GITHUB, LINKEDIN } from '../../../../consts/urls';
 
 /**
- * LandingPageIntro component that renders the primary landing page content for the devsktop interface
+ * LandingPageContent Component
  *
- * This component serves as the main introduction page featuring:
- * - Personal introduction with name and handle
- * - Video headshot component
- * - Professional title and role description with gradient styling
- * - Responsive layout that adapts to different screen sizes
+ * Renders the main introduction section for the devsktop interface.
  *
- * The layout adjusts from a vertical stack on mobile to a horizontal layout on larger screens,
- * with gradient text effects and interactive hover states for all links and icons.
+ * Features:
+ * - Personal greeting with name and handle
+ * - Video headshot display
+ * - Professional title and creative role with gradient-styled text
+ * - Responsive layout: vertical stack on mobile, horizontal on larger screens
+ * - Gradient text effects and interactive hover states for links and icons
+ * - Prominent social links (GitHub, LinkedIn) with icons
+ *
+ * @component
  */
-
-export function LandingPageIntro() {
+export function LandingPageContent() {
 	return (
 		<div className='p-3'>
 			<div className='flex flex-col items-center font-extrabold'>
@@ -51,7 +53,7 @@ export function LandingPageIntro() {
 				I design and develop bespoke solutions for challenging problems
 				leveraging technology and creativity at every turn.
 			</p>
-			<div className='flex justify-center items-center text-lg mx-auto font-bold gap-2 pt-2 mt-2 border-t border-stone-300/30'>
+			<div className='flex justify-center items-center text-lg mx-auto font-bold gap-2 pt-2 mt-2 border-t border-gray-700/50'>
 				<InlineSocialLink
 					text='Github'
 					href={GITHUB}
