@@ -14,6 +14,7 @@ import {
 	useRPSSketchWindow,
 	useWritingWindow,
 	useAboutWindow,
+	useContactWindow,
 } from '../windows';
 import { GITHUB, LINKEDIN } from '../../consts/urls';
 
@@ -34,19 +35,21 @@ import { GITHUB, LINKEDIN } from '../../consts/urls';
  *   - Window control functions and state
  */
 export function useWindowManager(): WindowManager {
-	//? INITIALIZE ALL WINDOWS
 	// SITE WINDOWS
 	const mainLandingWindow = useMainLandingWindow();
 	const aboutWindow = useAboutWindow();
 	const aboutThisSiteWindow = useAboutThisSiteWindow();
-	// SOLVEDOKU WINDOWS
+	const contactWindow = useContactWindow();
+	// SOLVEDOKU
 	const solvedokuWindow = useSolvedokuWindow();
-	// RPS WINDOWS
+	// ROCK, PAPER, SCISSORS
 	const rpsSketchWindow = useRPSSketchWindow();
+	// WRITING
 	const writingWindow = useWritingWindow();
 
 	const ALL_WINDOWS: ManagedWindow[] = useMemo(
 		() => [
+			contactWindow,
 			mainLandingWindow,
 			aboutThisSiteWindow,
 			solvedokuWindow,
@@ -55,8 +58,9 @@ export function useWindowManager(): WindowManager {
 			aboutWindow,
 		],
 		[
-			aboutThisSiteWindow,
+			contactWindow,
 			mainLandingWindow,
+			aboutThisSiteWindow,
 			solvedokuWindow,
 			rpsSketchWindow,
 			writingWindow,
@@ -143,7 +147,7 @@ export function useWindowManager(): WindowManager {
 					titleText: 'Home',
 					hoverExplainer: 'Open the Home page window',
 					onClickAction: () => {
-						openWindowByID('main-landing-window');
+						openWindowByID('landing-page-window');
 					},
 					displayMenuBreakAfter: true,
 				},
@@ -153,7 +157,7 @@ export function useWindowManager(): WindowManager {
 					hoverExplainer:
 						'Open a quick explainer about this site and how it was built',
 					onClickAction: () => {
-						openWindowByID('about-this-site-window');
+						openWindowByID('site-info-window');
 					},
 					displayMenuBreakAfter: true,
 				},
@@ -187,6 +191,7 @@ export function useWindowManager(): WindowManager {
 	return {
 		mainLandingWindow,
 		aboutThisSiteWindow,
+		contactWindow,
 		solvedokuWindow,
 		rpsSketchWindow,
 		writingWindow,

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import type { ManagedWindow, NavBarMenuParent, WindowIDs } from '../../types';
-import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
+import { GH_NEW_ISSUES } from '../../consts/urls';
 
 /**
  * Custom hook for managing the main landing window state and functionality
@@ -17,7 +17,7 @@ import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
  *   - About and contact page access
  */
 export function useMainLandingWindow(): ManagedWindow {
-	const windowID = 'main-landing-window';
+	const windowID: WindowIDs = 'landing-page-window';
 	//? set as primary on top by default
 	const [zIndex, setZIndex] = useState('1');
 	const [isFocused, setIsFocused] = useState(true);
@@ -35,6 +35,17 @@ export function useMainLandingWindow(): ManagedWindow {
 					isAppTitledDisplayText: true,
 					displayText: '@horaciovelvetine',
 					dropdownOptions: [
+						{
+							key: 'show-landing-home',
+							titleText: 'Show Landing Window',
+							isDisabled: isFocused && isShown,
+							hoverExplainer:
+								'Show or focus the landing window on top of the devsktop',
+							onClickAction: () => {
+								openWindowByID('landing-page-window');
+							},
+							displayMenuBreakAfter: true,
+						},
 						{
 							key: 'about-velvet-dev',
 							titleText: 'About @horaciovelvetine',
@@ -65,6 +76,16 @@ export function useMainLandingWindow(): ManagedWindow {
 							onClickAction: () => {
 								openWindowByID('rps-sketch-window');
 							},
+							displayMenuBreakAfter: true,
+						},
+						{
+							key: 'open-writing',
+							titleText: 'Blog Posts',
+							displaySectionHeader: 'Writing',
+							hoverExplainer: 'Open the writing window to read some posts',
+							onClickAction: () => {
+								openWindowByID('writing-window');
+							},
 						},
 					],
 				},
@@ -77,15 +98,14 @@ export function useMainLandingWindow(): ManagedWindow {
 							titleText: 'Contact',
 							hoverExplainer: 'Send @horaciovelvetine an email',
 							onClickAction: () => {
-								window.open(MAILTO);
+								openWindowByID('contact-window');
 							},
-							displayMenuBreakAfter: true
+							displayMenuBreakAfter: true,
 						},
 						{
 							key: 'submit-issue',
 							titleText: 'Submit Github Issue',
-							hoverExplainer:
-								'Let me know about any issues on the site',
+							hoverExplainer: 'Let me know about any issues on the site',
 							onClickAction: () => {
 								window.open(GH_NEW_ISSUES, '_blank');
 							},

@@ -35,6 +35,7 @@ export interface WindowManager {
 	rpsSketchWindow: RPSWindowState;
 	writingWindow: ManagedWindow;
 	aboutWindow: ManagedWindow;
+	contactWindow: ManagedWindow;
 	// WINDOW MANAGEMENT FUNC
 	focusedWindow: ManagedWindow;
 	navBarMenuItems: NavBarMenuParent[];

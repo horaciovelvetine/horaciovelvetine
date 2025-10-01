@@ -9,9 +9,9 @@
  * @type {string}
  */
 export type WindowIDs =
-	| 'main-landing-window'
+	| 'landing-page-window'
 	| 'solvedoku-window'
-	| 'about-this-site-window'
+	| 'site-info-window'
 	| 'rps-sketch-window'
 	| 'writing-window'
 	| 'about-window'

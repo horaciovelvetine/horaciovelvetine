@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
-import type { ManagedWindow, NavBarMenuParent } from '../../types';
-import { MAILTO } from '../../consts/urls';
+import type { ManagedWindow, NavBarMenuParent, WindowIDs } from '../../types';
+import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
 
 export function useContactWindow(): ManagedWindow {
 	const windowID = 'contact-window';
@@ -13,25 +13,53 @@ export function useContactWindow(): ManagedWindow {
 		// no cleanup needed...
 	}, []);
 
-	const navBarMenuItems = useCallback((): NavBarMenuParent[] => {
-		return [
-			{
-				key: 'about',
-				isAppTitledDisplayText: true,
-				displayText: 'Contact',
-				dropdownOptions: [
-					{
-						key: 'send-email',
-						titleText: 'Send Email',
-						hoverExplainer: 'Send an email directly to @horaciovelvetine',
-						onClickAction: () => {
-							window.open(MAILTO, '_blank');
+	const navBarMenuItems = useCallback(
+		(openWindowByID: (windowID: WindowIDs) => void): NavBarMenuParent[] => {
+			return [
+				{
+					key: 'about',
+					isAppTitledDisplayText: true,
+					displayText: 'Contact',
+					dropdownOptions: [
+						{
+							key: 'show-contact-window',
+							titleText: 'Show Contact Window',
+							isDisabled: isFocused && isShown,
+							hoverExplainer:
+								'Show or focus the contact window on top of the devsktop',
+							onClickAction: () => {
+								openWindowByID('contact-window');
+							},
+							displayMenuBreakAfter: true,
 						},
-					},
-				],
-			},
-		];
-	}, []);
+						{
+							key: 'send-email',
+							titleText: 'Send Email',
+							hoverExplainer: 'Send an email directly to @horaciovelvetine',
+							onClickAction: () => {
+								window.open(MAILTO, '_blank');
+							},
+						},
+					],
+				},
+				{
+					key: 'velvet-help',
+					displayText: 'Help',
+					dropdownOptions: [
+						{
+							key: 'submit-issue',
+							titleText: 'Submit Github Issue',
+							hoverExplainer: 'Let me know about any issues on the site',
+							onClickAction: () => {
+								window.open(GH_NEW_ISSUES, '_blank');
+							},
+						},
+					],
+				},
+			];
+		},
+		[]
+	);
 
 	return {
 		id: windowID,

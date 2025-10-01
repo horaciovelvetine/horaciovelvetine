@@ -9,3 +9,5 @@ export { useRPSSketchWindow } from './use-rps-sketch-window';
 export { useWritingWindow } from './use-writing-window';
 // About
 export { useAboutWindow } from './use-about-window';
+// Contact
+export { useContactWindow } from './use-contact-window';

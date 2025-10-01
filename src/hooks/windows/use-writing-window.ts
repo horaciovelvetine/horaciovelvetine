@@ -7,9 +7,10 @@ import type {
 	WritingWindowState,
 } from '../../types';
 import { useBlogPosts } from '../writing/use-blog-posts';
+import { GH_NEW_ISSUES } from '../../consts/urls';
 
 export function useWritingWindow(): WritingWindowState {
-	const windowID = 'writing-window';
+	const windowID: WindowIDs = 'writing-window';
 	const title = 'Writing';
 	const [zIndex, setZIndex] = useState('0');
 	const [isFocused, setIsFocused] = useState(false);
@@ -66,18 +67,28 @@ export function useWritingWindow(): WritingWindowState {
 					isAppTitledDisplayText: true,
 					dropdownOptions: [
 						{
-							key: 'writing-settings',
-							titleText: 'Home',
-							hoverExplainer: 'Open the writing window and show the sidebar',
+							key: 'show-writing-window',
+							titleText: 'Show Writing Window',
+							isDisabled: isFocused && isShown,
+							hoverExplainer:
+								'Show or focus the Writing window on top of the devsktop',
 							onClickAction: () => {
-								setSearchQuery('');
-								setSelectedPost(null);
-								setSelectedTags([]);
-								setSidebarOpen(true);
-								if (!isShown) openWindowByID(windowID);
+								openWindowByID('writing-window');
 							},
-							displayMenuBreakAfter: true,
 						},
+					],
+				},
+				{
+					key: 'writing-file-menu',
+					displayText: 'File',
+					dropdownOptions: recentBlogPosts.map((post, index) =>
+						createBlogDropdown(index, post, openWindowByID)
+					),
+				},
+				{
+					key: 'writing-view-menu',
+					displayText: 'View',
+					dropdownOptions: [
 						{
 							key: 'open-sidebar-menu',
 							titleText: sidebarOpen ? 'Hide Sidebar' : 'Show Sidebar',
@@ -90,11 +101,27 @@ export function useWritingWindow(): WritingWindowState {
 					],
 				},
 				{
-					key: 'writing-file-menu',
-					displayText: 'File',
-					dropdownOptions: recentBlogPosts.map((post, index) =>
-						createBlogDropdown(index, post, openWindowByID)
-					),
+					key: 'about-help',
+					displayText: 'Help',
+					dropdownOptions: [
+						{
+							key: 'contact',
+							titleText: 'Contact',
+							hoverExplainer: 'Get in touch with @horaciovelvetine',
+							onClickAction: () => {
+								openWindowByID('contact-window');
+							},
+							displayMenuBreakAfter: true,
+						},
+						{
+							key: 'submit-issue',
+							titleText: 'Submit Github Issue',
+							hoverExplainer: 'Let me know about any issues on the site',
+							onClickAction: () => {
+								window.open(GH_NEW_ISSUES, '_blank');
+							},
+						},
+					],
 				},
 			];
 		},
