@@ -23,5 +23,10 @@
 			"serve": "/index.html",
 			"statusCode": 200
 		}
-	]
+	],
+	"mimeTypes": {
+		".js": "text/javascript",
+		".jsx": "text/javascript",
+		".tsx": "text/javascript"
+	}
 }
