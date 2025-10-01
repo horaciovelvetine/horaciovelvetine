@@ -1,4 +1,4 @@
-import { GITHUB } from '../../../../../consts/urls';
+import { GITHUB } from '../../../../consts/urls';
 import { CodeArrayValue } from './code-array-value';
 import { CodeLine } from './code-line';
 import { CodeProperty } from './code-property';
@@ -16,13 +16,6 @@ interface PropertyLineProps {
  *
  * @param property - The name of the property being assigned
  * @param value - The value to assign, can be a string or array of strings
- *
- * @example
- * ```tsx
- * <PropertyLine property="name" value="John Doe" />
- * <PropertyLine property="skills" value={["React", "TypeScript"]} />
- * <PropertyLine property="github" value="https://github.com/username" />
- * ```
  */
 export function CodePropertyLine({ property, value }: PropertyLineProps) {
 	const isArray = Array.isArray(value);
@@ -30,14 +23,17 @@ export function CodePropertyLine({ property, value }: PropertyLineProps) {
 		isArray ? `[${value.map(v => `"${v}"`).join(', ')}]` : `"${value}"`;
 
 	const isClickable =
-		property === 'handle' || property === 'github' || property === 'linkedin';
+		property === 'handle' ||
+		property === 'github' ||
+		property === 'linkedin' ||
+		property === 'email';
 
 	const url =
 		isClickable ?
-			property === 'handle' ?
-				GITHUB
-				: (value as string)
-			: null;
+			property === 'handle' ? GITHUB
+			: property === 'email' ? `mailto:${value as string}`
+			: (value as string)
+		:	null;
 
 	return (
 		<CodeLine indent={2}>
@@ -60,19 +56,19 @@ export function CodePropertyLine({ property, value }: PropertyLineProps) {
 						<CodeArrayValue text=']' />
 						<CodeText text=';' />
 					</>
-					: isClickable && url ?
-						<a
-							href={url}
-							target='_blank'
-							rel='noopener noreferrer'
-							className='break-words hover:underline transition-all duration-200'>
-							<CodeStringValue text={displayValue} />
-							<CodeText text=';' />
-						</a>
-						: <span className='break-words'>
-							<CodeStringValue text={displayValue} />
-							<CodeText text=';' />
-						</span>
+				: isClickable && url ?
+					<a
+						href={url}
+						target='_blank'
+						rel='noopener noreferrer'
+						className='break-words hover:underline transition-all duration-200'>
+						<CodeStringValue text={displayValue} />
+						<CodeText text=';' />
+					</a>
+				:	<span className='break-words'>
+						<CodeStringValue text={displayValue} />
+						<CodeText text=';' />
+					</span>
 				}
 			</div>
 		</CodeLine>
