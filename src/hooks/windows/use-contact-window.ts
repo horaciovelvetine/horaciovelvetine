@@ -2,6 +2,19 @@ import { useCallback, useState } from 'react';
 import type { ManagedWindow, NavBarMenuParent, WindowIDs } from '../../types';
 import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
 
+/**
+ * Custom hook for managing the Contact window state and functionality.
+ *
+ * Provides window management for the Contact section, including:
+ * - Window display state (show/hide, z-index, focus)
+ * - Navigation bar menu configuration for contact actions
+ * - Integration with email and GitHub issue reporting
+ *
+ * @returns {ManagedWindow} Complete window state object containing:
+ *   - Basic window management (show/hide, z-index, title, etc.)
+ *   - Navigation bar menu configuration for contact and help actions
+ */
+
 export function useContactWindow(): ManagedWindow {
 	const windowID = 'contact-window';
 	const title = 'Contact';

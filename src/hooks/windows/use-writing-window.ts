@@ -9,6 +9,25 @@ import type {
 import { useBlogPosts } from '../writing/use-blog-posts';
 import { GH_NEW_ISSUES } from '../../consts/urls';
 
+/**
+ * Custom hook for managing the Writing window state and functionality.
+ *
+ * Provides comprehensive window management for the Writing/Blog section, including:
+ * - Window display state (show/hide, z-index, focus)
+ * - Sidebar and post selection state
+ * - Search and tag filtering for blog posts
+ * - Recent blog post menu generation for navigation bar
+ * - Integration with the blog post data source
+ * - Menu item configuration for navigation bar
+ *
+ * @returns {WritingWindowState} Complete window state object containing:
+ *   - Basic window management (show/hide, z-index, title, etc.)
+ *   - Sidebar and post selection controls
+ *   - Search and tag filter state
+ *   - Recent blog post menu items for navigation
+ *   - Integrated blog post state and controls
+ */
+
 export function useWritingWindow(): WritingWindowState {
 	const windowID: WindowIDs = 'writing-window';
 	const title = 'Writing';

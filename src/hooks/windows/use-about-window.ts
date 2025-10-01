@@ -2,6 +2,19 @@ import { useCallback, useState } from 'react';
 import type { ManagedWindow, NavBarMenuParent, WindowIDs } from '../../types';
 import { GH_NEW_ISSUES } from '../../consts/urls';
 
+/**
+ * Custom hook for managing the About window state and functionality.
+ *
+ * Provides window management for the About section, including:
+ * - Window display state (show/hide, z-index, focus)
+ * - Navigation bar menu configuration for About and related project/work links
+ * - Callback for window close/cleanup (no-op in this case)
+ *
+ * @returns {ManagedWindow} Complete window state object containing:
+ *   - Basic window management (show/hide, z-index, title, etc.)
+ *   - Navigation bar menu configuration for About and project navigation
+ */
+
 export function useAboutWindow(): ManagedWindow {
 	const windowID: WindowIDs = 'about-window';
 	const title = 'About';
