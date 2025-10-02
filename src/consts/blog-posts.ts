@@ -18,7 +18,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		slug: 'value-visitor-pattern',
 		title: 'Value Visitor Pattern',
 		description:
-			'An exploration of the Value Visitor Pattern in software design',
+			'An exploration of the Visitor Pattern in software design including why and where it came from.',
 		publishedDate: '2024-01-15',
 		tags: [
 			Tags.languages.java,
@@ -33,7 +33,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		slug: 'intro-to-wikidata',
 		title: 'An Intro to Wikidata',
 		description:
-			'An introduction to the data model used, and how to access Wikidata',
+			'An introduction to the data model used, and an overview of how you might access Wikidata in variety of ways.',
 		publishedDate: '2024-06-30',
 		tags: [
 			Tags.topics.exploration,
@@ -47,7 +47,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		slug: 'wikiverse-devlog-1',
 		title: 'Wikiverse Devlog 1',
 		description:
-			'A quick introduction to the Wikiverse project, and the development plans for this year',
+			'A quick introduction to the Wikiverse project, and the development plans for this year.',
 		publishedDate: '2025-09-08',
 		tags: [Tags.topics.devlog, Tags.projects.theWikiverse],
 		githubUrl:
@@ -57,7 +57,7 @@ export const BLOG_POSTS: BlogPost[] = [
 		slug: 'wikiverse-devlog-2',
 		title: 'Wikiverse Devlog 2',
 		description:
-			'An overview of the planned features slated for the Beta and a quick digression for some open-source contribution',
+			'An overview of the planned features slated for the Beta and a quick digression for some open-source contribution.',
 		publishedDate: '2025-09-14',
 		tags: [
 			Tags.topics.devlog,
@@ -66,5 +66,19 @@ export const BLOG_POSTS: BlogPost[] = [
 		],
 		githubUrl:
 			'https://github.com/horaciovelvetine/writing-and-resources/blob/main/the-wikiverse/devlogs/devlog-2.md',
+	},
+	{
+		slug: 'wikiverse-devlog-3',
+		title: 'Wikiverse Devlog 2',
+		description:
+			'Establishing the data model and a first look into the filtering and data ingest process, the crucial first step to building relevant Graphs.',
+		publishedDate: '2025-09-20',
+		tags: [
+			Tags.topics.devlog,
+			Tags.projects.theWikiverse,
+			Tags.topics.visualizations,
+		],
+		githubUrl:
+			'https://github.com/horaciovelvetine/writing-and-resources/blob/main/the-wikiverse/devlogs/devlog-3.md',
 	},
 ];
