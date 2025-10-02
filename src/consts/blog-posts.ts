@@ -69,7 +69,7 @@ export const BLOG_POSTS: BlogPost[] = [
 	},
 	{
 		slug: 'wikiverse-devlog-3',
-		title: 'Wikiverse Devlog 2',
+		title: 'Wikiverse Devlog 3',
 		description:
 			'Establishing the data model and a first look into the filtering and data ingest process, the crucial first step to building relevant Graphs.',
 		publishedDate: '2025-09-20',
