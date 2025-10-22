@@ -81,4 +81,19 @@ export const BLOG_POSTS: BlogPost[] = [
 		githubUrl:
 			'https://github.com/horaciovelvetine/writing-and-resources/blob/main/the-wikiverse/devlogs/devlog-3.md',
 	},
+	{
+		slug: 'wikiverse-devlog-4',
+		title: 'Wikiverse Devlog 4',
+		description:
+			'A quick update on the frontend with some details about integrating P5.js and React',
+		publishedDate: '2025-09-28',
+		tags: [
+			Tags.topics.devlog,
+			Tags.projects.theWikiverse,
+			Tags.libraries.p5js,
+			Tags.frameworks.react,
+		],
+		githubUrl:
+			'https://github.com/horaciovelvetine/writing-and-resources/blob/main/the-wikiverse/devlogs/devlog-4.md',
+	},
 ];
