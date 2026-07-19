@@ -48,8 +48,8 @@ export function SketchPausedIndicator({
 
 	return (
 		<div
-			className={`absolute top-0 left-2 w-full h-full flex items-center justify-center pointer-events-none transition-all duration-100 ${showPauseIcon ? 'opacity-100' : 'opacity-0'} `}>
-			<div className='rounded-lg bg-zinc-900/95 border border-stone-300/25 flex flex-col justify-center items-center pt-1 pb-4 shadow-lg shadow-stone-300/5'>
+			className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-100 ${showPauseIcon ? 'opacity-100' : 'opacity-0'} `}>
+			<div className='flex flex-col items-center justify-center rounded-[20px] border border-white/10 bg-zinc-950/90 px-6 pb-4 pt-2 shadow-lg shadow-black/35'>
 				<PauseIcon
 					size='size-24 md:size-32'
 					classes='drop-shadow-xl drop-shadow-stone-300/20'

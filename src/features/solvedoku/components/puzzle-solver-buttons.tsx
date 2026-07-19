@@ -34,7 +34,8 @@ export function PuzzleSolverButtons({
 	};
 
 	return (
-		<div className='flex w-full justify-center mt-1 md:mb-2 gap-2'>
+		<div className='rounded-[22px] border border-white/8 bg-white/[0.03] p-3'>
+			<div className='flex flex-wrap items-center justify-center gap-2'>
 			<PuzzleButton
 				text={isFindingSolution ? 'Pause Solution' : 'Solve Puzzle'}
 				title={(isFindingSolution ? 'Pause ' : 'Start ').concat(
@@ -45,7 +46,7 @@ export function PuzzleSolverButtons({
 				onClickFunction={handleSolveButtonClick}
 			/>
 
-			<ul className='flex items-center gap-2 md:gap-3'>
+			<ul className='flex flex-wrap items-center justify-center gap-2 md:gap-3'>
 				<li className='flex items-center'>
 					<PuzzleButton
 						Icon={RewindIcon}
@@ -56,7 +57,7 @@ export function PuzzleSolverButtons({
 					/>
 				</li>
 				<li>
-					<p className='text-nowrap tracking-tighter font-semibold text-sm xs:text-base sm:text-lg'>
+					<p className='rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-sm font-semibold tracking-tight text-white'>
 						Speed [{solutionFinderInterval}ms.]
 					</p>
 				</li>
@@ -70,6 +71,7 @@ export function PuzzleSolverButtons({
 					/>
 				</li>
 			</ul>
+			</div>
 		</div>
 	);
 }

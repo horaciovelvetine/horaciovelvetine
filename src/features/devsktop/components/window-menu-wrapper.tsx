@@ -39,8 +39,16 @@ export function WindowMenuWrapper({
 }: WindowMenuWrapperProps) {
 	return (
 		<div
-			className={`absolute w-full -bottom-1.5 md:bottom-9 transition-all duration-200 pb-2 ${showMenu ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none'}`}>
-			<div className='flex flex-col rounded-lg bg-stone-900 px-2 pt-1 items-center gap-1 border border-stone-300/30'>
+			className={`absolute inset-0 z-30 flex items-center justify-center p-3 transition-all duration-200 ${showMenu ? 'opacity-100' : 'pointer-events-none opacity-0'}`}>
+			<button
+				type='button'
+				className='absolute inset-0 bg-black/55 backdrop-blur-[2px]'
+				aria-label={`Close ${menuMainTitle}`}
+				onClick={() => {
+					setShowMenu(false);
+				}}
+			/>
+			<div className='relative flex max-h-full w-full max-w-2xl flex-col items-center gap-2 overflow-auto rounded-[24px] border border-white/10 bg-zinc-950/96 px-4 pt-2 shadow-2xl shadow-black/50'>
 				<button
 					type='button'
 					className='flex w-full justify-end'

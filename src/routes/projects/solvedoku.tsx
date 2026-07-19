@@ -38,7 +38,7 @@ function MobileSolvedokuPage() {
 	const solvedokuWindow = useSolvedokuWindow();
 
 	return (
-		<div className='flex justify-center bg-stone-900/90 pt-1 pb-3 my-1 rounded-lg mx-0.25'>
+		<div className='my-1 mx-0.5 overflow-hidden rounded-[28px] border border-white/10 bg-zinc-950/92 shadow-xl shadow-black/20'>
 			<Suspense
 				fallback={
 					<MobilePageFallback

@@ -58,16 +58,11 @@ export function SolvedokuWindow({
 	useKeyboardShortcuts(windowState);
 
 	return (
-		<div
-			className='flex flex-col pb-2'
-			style={{ maxHeight: 'calc(100vh - 72px)' }}>
-			{/* MAIN CONTAINER WITH SCROLLABLE CONTENT */}
-			<div className='flex flex-1 flex-col overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-stone-400/80 [&::-webkit-scrollbar-thumb]:bg-stone-600/70 [&::-webkit-scrollbar]:bg-transparent [&::-webkit-scrollbar-track]:bg-transparent'>
-				<div className='flex flex-col w-full  items-center relative py-2'>
-					{/* HEADER */}
+		<div className='relative flex h-full min-h-0 flex-col bg-zinc-950/40'>
+			<div className='flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-stone-400/80 [&::-webkit-scrollbar-thumb]:bg-stone-600/70 [&::-webkit-scrollbar]:bg-transparent [&::-webkit-scrollbar-track]:bg-transparent'>
+				<div className='flex min-h-full flex-col gap-3 p-3'>
 					<SolvedokuHeader {...windowState} />
 
-					{/* TOP MENU SHOWN ON INIT */}
 					{windowState.showTopMenu && (
 						<SolvedokuTopMenu
 							windowState={windowState}
@@ -75,30 +70,34 @@ export function SolvedokuWindow({
 						/>
 					)}
 
-					{/* GAME BOARD & CELL DATA TABLE */}
-					<GameBoardTable
-						windowState={windowState}
-						siteSettings={siteSettings}
-					/>
+					<div className='grid gap-3 xl:grid-cols-[minmax(0,1fr)_minmax(260px,320px)] xl:items-start'>
+						<div className='flex min-w-0 flex-col gap-3'>
+							<div className='rounded-[24px] border border-white/8 bg-black/20 p-3'>
+								<GameBoardTable
+									windowState={windowState}
+									siteSettings={siteSettings}
+								/>
+							</div>
 
-					{/* PUZZLE INFO DETAILS */}
-					<PuzzleInfoDisplay
-						windowState={windowState}
-						siteSettings={siteSettings}
-					/>
+							<NumberInputButtons
+								selectedCellID={windowState.selectedCellID}
+								updateCellValue={windowState.updateCellValue}
+								accentColor={siteSettings.accentColor}
+							/>
+						</div>
 
-					{/* NUMBER INPUTS */}
-					<NumberInputButtons
-						selectedCellID={windowState.selectedCellID}
-						updateCellValue={windowState.updateCellValue}
-						accentColor={siteSettings.accentColor}
-					/>
+						<div className='flex flex-col gap-3'>
+							<PuzzleInfoDisplay
+								windowState={windowState}
+								siteSettings={siteSettings}
+							/>
 
-					{/* SOLVER CONTROLS */}
-					<PuzzleSolverButtons
-						siteSettings={siteSettings}
-						windowState={windowState}
-					/>
+							<PuzzleSolverButtons
+								siteSettings={siteSettings}
+								windowState={windowState}
+							/>
+						</div>
+					</div>
 				</div>
 			</div>
 

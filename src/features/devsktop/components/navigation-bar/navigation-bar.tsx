@@ -19,10 +19,10 @@ export interface NavigationBarProps {
 export function NavigationBar(props: NavigationBarProps) {
 	return (
 		<nav
-			className='fixed top-0 w-full bg-zinc-900/80 backdrop-blur-3xl h-9 items-center px-2.5 select-none'
+			className='fixed top-0 h-9 w-full select-none border-b border-white/10 bg-black/45 px-2.5 backdrop-blur-2xl'
 			style={{ zIndex: 1000 }}>
-			<div className='w-full h-full flex items-center justify-between text-lg select-none'>
-				<ul className='flex items-center gap-1'>
+			<div className='flex h-full w-full items-center justify-between text-lg select-none'>
+				<ul className='flex items-center gap-1 text-stone-100'>
 					{props.windowManager.navBarMenuItems.map(item => (
 						<NavBarMenuItemParent
 							{...item}

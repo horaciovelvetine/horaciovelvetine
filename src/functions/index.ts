@@ -22,6 +22,19 @@ export { detectSafariBrowser } from './site/detect-safari-browser';
 export { detectMobileUserAgent } from './site/detect-mobile-user-agent';
 export { detectTouchDevice } from './site/detect-touch-device';
 export { formatNumbersDateString } from './site/format-numbers-date-string';
+export {
+	DEVSKTOP_DOCK_SAFE_AREA,
+	DEVSKTOP_NAVBAR_HEIGHT,
+	WINDOW_CASCADE_OFFSET_X,
+	WINDOW_CASCADE_OFFSET_Y,
+	WINDOW_EDGE_MARGIN,
+	clampWindowPosition,
+	clampWindowSize,
+	createWindowRect,
+	getDesktopBounds,
+	getZoomedWindowRect,
+	resolveInitialWindowPlacement,
+} from './site/window-layout';
 
 // ? SOLVEDOKU
 export { checkCanPlaceNumber } from './solvedoku/check-can-place-number';

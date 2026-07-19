@@ -1,6 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import type { ManagedWindow, NavBarMenuParent, WindowIDs } from '../../types';
 import { GH_NEW_ISSUES } from '../../consts/urls';
+import { useManagedWindowState } from './use-managed-window-state';
 
 /**
  * Custom hook for managing the "About This Site" window state and functionality
@@ -17,10 +18,14 @@ import { GH_NEW_ISSUES } from '../../consts/urls';
  */
 export function useAboutThisSiteWindow(): ManagedWindow {
 	const windowID: WindowIDs = 'site-info-window';
-	const title = 'About This Site';
-	const [zIndex, setZIndex] = useState('0');
-	const [isFocused, setIsFocused] = useState(false);
-	const [isShown, setIsShown] = useState(false);
+	const managedWindow = useManagedWindowState({
+		id: windowID,
+		title: 'About This Site',
+		defaultSize: { width: 920, height: 660 },
+		minSize: { width: 640, height: 480 },
+		preferredPosition: { x: 132, y: 72 },
+	});
+	const { isFocused, isShown } = managedWindow;
 
 	const navBarMenuItems = useCallback(
 		(openWindowByID: (windowID: WindowIDs) => void): NavBarMenuParent[] => {
@@ -116,14 +121,7 @@ export function useAboutThisSiteWindow(): ManagedWindow {
 	}, []);
 
 	return {
-		id: windowID,
-		title,
-		zIndex,
-		setZIndex,
-		isShown,
-		setIsShown,
-		isFocused,
-		setIsFocused,
+		...managedWindow,
 		closeWindowCallback,
 		navBarMenuItems,
 	};

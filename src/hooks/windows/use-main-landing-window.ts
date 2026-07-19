@@ -1,6 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import type { ManagedWindow, NavBarMenuParent, WindowIDs } from '../../types';
 import { GH_NEW_ISSUES } from '../../consts/urls';
+import { useManagedWindowState } from './use-managed-window-state';
 
 /**
  * Custom hook for managing the main landing window state and functionality
@@ -18,10 +19,17 @@ import { GH_NEW_ISSUES } from '../../consts/urls';
  */
 export function useMainLandingWindow(): ManagedWindow {
 	const windowID: WindowIDs = 'landing-page-window';
-	//? set as primary on top by default
-	const [zIndex, setZIndex] = useState('1');
-	const [isFocused, setIsFocused] = useState(true);
-	const [isShown, setIsShown] = useState(true);
+	const managedWindow = useManagedWindowState({
+		id: windowID,
+		title: 'Velvet.dev',
+		defaultSize: { width: 860, height: 620 },
+		minSize: { width: 520, height: 420 },
+		preferredPosition: { x: 72, y: 52 },
+		isShownInitially: true,
+		isFocusedInitially: true,
+		initialStackOrder: 1,
+	});
+	const { isFocused, isShown } = managedWindow;
 
 	const closeWindowCallback = useCallback(() => {
 		// no cleanup needed
@@ -118,15 +126,8 @@ export function useMainLandingWindow(): ManagedWindow {
 	);
 
 	return {
-		id: windowID,
-		title: 'Velvet.dev',
-		zIndex,
-		setZIndex,
+		...managedWindow,
 		navBarMenuItems,
-		isShown,
-		setIsShown,
-		isFocused,
-		setIsFocused,
 		closeWindowCallback,
 	};
 }

@@ -1,6 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import type { ManagedWindow, NavBarMenuParent, WindowIDs } from '../../types';
 import { GH_NEW_ISSUES } from '../../consts/urls';
+import { useManagedWindowState } from './use-managed-window-state';
 
 /**
  * Custom hook for managing the About window state and functionality.
@@ -17,10 +18,14 @@ import { GH_NEW_ISSUES } from '../../consts/urls';
 
 export function useAboutWindow(): ManagedWindow {
 	const windowID: WindowIDs = 'about-window';
-	const title = 'About';
-	const [zIndex, setZIndex] = useState('0');
-	const [isFocused, setIsFocused] = useState(false);
-	const [isShown, setIsShown] = useState(false);
+	const managedWindow = useManagedWindowState({
+		id: windowID,
+		title: 'About',
+		defaultSize: { width: 900, height: 700 },
+		minSize: { width: 620, height: 480 },
+		preferredPosition: { x: 104, y: 92 },
+	});
+	const { isFocused, isShown } = managedWindow;
 
 	const closeWindowCallback = useCallback(() => {
 		// no cleanup needed
@@ -108,14 +113,7 @@ export function useAboutWindow(): ManagedWindow {
 	);
 
 	return {
-		id: windowID,
-		title,
-		zIndex,
-		setZIndex,
-		isFocused,
-		setIsFocused,
-		isShown,
-		setIsShown,
+		...managedWindow,
 		closeWindowCallback,
 		navBarMenuItems,
 	};

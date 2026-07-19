@@ -5,7 +5,7 @@ import {
 } from '../../../functions';
 import { CellData } from './cell-data';
 import type { SolvedokuWindowProps } from '../windows/solvedoku-window-props';
-import { useClientDimensionsUpdates } from '../../../hooks/site';
+import { useElementSize } from '../../../hooks/site';
 
 /**
  * Renders a Sudoku game board as a table with interactive cells
@@ -30,13 +30,16 @@ export function GameBoardTable({
 		setSelectedCellID,
 		showStoredSolution,
 	} = windowState;
-
-	const { width, height } = useClientDimensionsUpdates();
+	const { ref: boardRef, size: boardSize } = useElementSize<HTMLDivElement>();
 
 	const rowBorderStyle = (rowIndex: number) =>
 		[2, 5].includes(rowIndex) ? 'border-b-4' : '';
 
-	const cellSize = findCellDataDisplayWidth({ width, height });
+	const cellSize = findCellDataDisplayWidth({
+		width: boardSize.width || 420,
+		height: boardSize.width || 420,
+	});
+	const tableSize = cellSize * 9;
 
 	const selectedCellCoords = useMemo(() => {
 		if (!selectedCellID) return null;
@@ -44,35 +47,41 @@ export function GameBoardTable({
 	}, [selectedCellID]);
 
 	return (
-		<table className='border-4 text-black'>
-			<tbody className='border-collapse'>
-				{gameBoard.map((row, rowIndex) => (
-					<tr
-						key={'row-'.concat(rowIndex.toString())}
-						className={rowBorderStyle(rowIndex)}>
-						{row.map((cell, colIndex) => (
-							<CellData
-								key={
-									(rowIndex + 1).toString() + '-' + (colIndex + 1).toString()
-								}
-								cellID={
-									(rowIndex + 1).toString() + '-' + (colIndex + 1).toString()
-								}
-								cell={cell}
-								rowIndex={rowIndex}
-								colIndex={colIndex}
-								cellSizing={cellSize}
-								siteSettings={siteSettings}
-								selectedCellCoords={selectedCellCoords}
-								selectedCellID={selectedCellID}
-								updateCellValue={updateCellValue}
-								setSelectedCellID={setSelectedCellID}
-								showingStoredSolution={showStoredSolution}
-							/>
-						))}
-					</tr>
-				))}
-			</tbody>
-		</table>
+		<div
+			ref={boardRef}
+			className='flex w-full justify-center'>
+			<table
+				className='border-4 border-black bg-neutral-50 text-black shadow-xl shadow-black/20'
+				style={{ width: `${tableSize}px`, height: `${tableSize}px` }}>
+				<tbody className='border-collapse'>
+					{gameBoard.map((row, rowIndex) => (
+						<tr
+							key={'row-'.concat(rowIndex.toString())}
+							className={rowBorderStyle(rowIndex)}>
+							{row.map((cell, colIndex) => (
+								<CellData
+									key={
+										(rowIndex + 1).toString() + '-' + (colIndex + 1).toString()
+									}
+									cellID={
+										(rowIndex + 1).toString() + '-' + (colIndex + 1).toString()
+									}
+									cell={cell}
+									rowIndex={rowIndex}
+									colIndex={colIndex}
+									cellSizing={cellSize}
+									siteSettings={siteSettings}
+									selectedCellCoords={selectedCellCoords}
+									selectedCellID={selectedCellID}
+									updateCellValue={updateCellValue}
+									setSelectedCellID={setSelectedCellID}
+									showingStoredSolution={showStoredSolution}
+								/>
+							))}
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
 	);
 }

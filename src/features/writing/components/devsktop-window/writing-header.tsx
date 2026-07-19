@@ -5,6 +5,7 @@ import { formatNumbersDateString } from '../../../../functions';
 interface WritingHeaderProps {
 	windowState: WritingWindowState;
 	selectedPost: BlogPost | null;
+	isCompactLayout: boolean;
 }
 
 /**
@@ -31,41 +32,57 @@ interface WritingHeaderProps {
 export function WritingHeader({
 	windowState,
 	selectedPost,
+	isCompactLayout,
 }: WritingHeaderProps) {
 	return (
-		<div
-			className={`flex items-center justify-between p-2 border-b border-gray-700 flex-shrink-0 bg-gray-900`}>
-			<div className='flex items-center space-x-2'>
+		<header className='flex items-start justify-between gap-3 border-b border-white/8 bg-zinc-950/90 px-3 py-3 backdrop-blur-xl'>
+			<div className='flex min-w-0 flex-1 items-start gap-3'>
 				<button
 					type='button'
 					onClick={() => {
 						windowState.setSidebarOpen(prev => !prev);
 					}}
-					className='p-2 rounded-md hover:bg-gray-800 transition-colors'>
+					className='mt-0.5 rounded-xl border border-white/8 bg-white/[0.03] p-2 text-white/80 transition-colors hover:bg-white/[0.08]'
+					aria-label={`${windowState.sidebarOpen ? 'Hide' : 'Show'} writing sidebar`}>
 					<MenuBarsIcon size='size-5' />
 				</button>
-				{selectedPost && (
-					<div>
-						<h1 className='text-xl font-semibold text-white'>
-							{selectedPost.title}
-						</h1>
-						<p className='text-sm text-gray-400'>
-							{formatNumbersDateString(selectedPost.publishedDate)}
-						</p>
-					</div>
-				)}
+
+				<div className='min-w-0 flex-1'>
+					{selectedPost ?
+						<>
+							<h1 className='truncate text-base font-semibold text-white sm:text-lg'>
+								{selectedPost.title}
+							</h1>
+							<p className='truncate text-xs text-stone-400 sm:text-sm'>
+								{formatNumbersDateString(selectedPost.publishedDate)}
+							</p>
+						</>
+					:	<>
+							<h1 className='text-base font-semibold text-white sm:text-lg'>
+								Writing Library
+							</h1>
+							<p className='text-xs text-stone-400 sm:text-sm'>
+								{isCompactLayout ?
+									'Open the sidebar to browse posts and tags.'
+								:	'Browse posts in the sidebar and open one to start reading.'}
+							</p>
+						</>
+					}
+				</div>
 			</div>
-			<div className='flex items-center space-x-2'>
+
+			<div className='flex items-center gap-2'>
 				{selectedPost && (
 					<a
 						target='_blank'
 						href={selectedPost.githubUrl}
 						title='View source on GitHub'
-						className='p-2 rounded-md hover:bg-gray-800 hover:scale-105 hover:-translate-y-1 transition-all duration-200'>
+						rel='noopener noreferrer'
+						className='rounded-xl border border-white/8 bg-white/[0.03] p-2 text-white/80 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/[0.08] hover:text-white'>
 						<GithubIcon />
 					</a>
 				)}
 			</div>
-		</div>
+		</header>
 	);
 }

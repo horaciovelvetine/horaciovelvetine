@@ -27,7 +27,7 @@ export function RPSSettingsMenu({
 	windowState,
 }: RPSSketchWindowProps) {
 	return (
-		<div className='flex flex-col gap-1 mb-2 px-3 py-2 border-2 border-stone-300/30 rounded-lg bg-stone-300/5'>
+		<div className='mb-2 flex flex-col gap-3 rounded-[22px] border border-white/10 bg-white/[0.03] p-4'>
 			<SpriteSetSelector
 				accentColor={siteSettings.accentColor}
 				spriteCharSet={windowState.spriteChars}

@@ -8,6 +8,7 @@ import type {
 } from '../../types';
 import { useBlogPosts } from '../writing/use-blog-posts';
 import { GH_NEW_ISSUES } from '../../consts/urls';
+import { useManagedWindowState } from './use-managed-window-state';
 
 /**
  * Custom hook for managing the Writing window state and functionality.
@@ -30,10 +31,14 @@ import { GH_NEW_ISSUES } from '../../consts/urls';
 
 export function useWritingWindow(): WritingWindowState {
 	const windowID: WindowIDs = 'writing-window';
-	const title = 'Writing';
-	const [zIndex, setZIndex] = useState('0');
-	const [isFocused, setIsFocused] = useState(false);
-	const [isShown, setIsShown] = useState(false);
+	const managedWindow = useManagedWindowState({
+		id: windowID,
+		title: 'Writing',
+		defaultSize: { width: 1120, height: 760 },
+		minSize: { width: 720, height: 520 },
+		preferredPosition: { x: 88, y: 44 },
+	});
+	const { isFocused, isShown } = managedWindow;
 
 	const [sidebarOpen, setSidebarOpen] = useState(true);
 	const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
@@ -148,15 +153,8 @@ export function useWritingWindow(): WritingWindowState {
 	);
 
 	return {
-		id: windowID,
-		title,
-		zIndex,
-		setZIndex,
+		...managedWindow,
 		navBarMenuItems,
-		isShown,
-		setIsShown,
-		isFocused,
-		setIsFocused,
 		closeWindowCallback,
 		sidebarOpen,
 		setSidebarOpen,

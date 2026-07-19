@@ -7,6 +7,7 @@ import type {
 } from '../../types';
 import { useSolvedokuGameState } from '../solvedoku/use-solvedoku-game-state';
 import { GH_NEW_ISSUES } from '../../consts/urls';
+import { useManagedWindowState } from './use-managed-window-state';
 
 /**
  * Custom hook for managing the Solvedoku window state and functionality
@@ -26,10 +27,14 @@ import { GH_NEW_ISSUES } from '../../consts/urls';
  */
 export function useSolvedokuWindow(): SolvedokuWindowState {
 	const windowID: WindowIDs = 'solvedoku-window';
-	const title = 'Solvedoku';
-	const [zIndex, setZIndex] = useState('0');
-	const [isFocused, setIsFocused] = useState(false);
-	const [isShown, setIsShown] = useState(false);
+	const managedWindow = useManagedWindowState({
+		id: windowID,
+		title: 'Solvedoku',
+		defaultSize: { width: 860, height: 760 },
+		minSize: { width: 680, height: 560 },
+		preferredPosition: { x: 116, y: 66 },
+	});
+	const { isFocused, isShown } = managedWindow;
 	const solvedokuState = useSolvedokuGameState();
 
 	// Mobile menu state management
@@ -250,15 +255,8 @@ export function useSolvedokuWindow(): SolvedokuWindowState {
 	);
 
 	return {
-		id: windowID,
-		title,
-		zIndex,
-		setZIndex,
+		...managedWindow,
 		navBarMenuItems,
-		isShown,
-		setIsShown,
-		isFocused,
-		setIsFocused,
 		...solvedokuState,
 		// Mobile menu state
 		showSettingsMenu,

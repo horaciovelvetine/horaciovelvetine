@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useFetchBlogPostDetails } from '../../../hooks/writing';
+import { useElementSize } from '../../../hooks/site';
 import type {
 	BlogPost,
 	SiteSettings,
@@ -40,9 +41,12 @@ export function WritingWindow({
 	siteSettings,
 	windowState,
 }: WritingWindowProps) {
-	// Extract the setter to avoid dependency issues
 	const { sidebarOpen, selectedPost } = windowState;
+	const { ref: containerRef, size: containerSize } =
+		useElementSize<HTMLDivElement>();
 	const allPosts = useMemo(() => windowState.getAllBlogPosts(), [windowState]);
+	const isCompactLayout =
+		containerSize.width > 0 && containerSize.width < 960;
 
 	/**
 	 * Blog posts filtered by the current search query
@@ -85,27 +89,44 @@ export function WritingWindow({
 
 	return (
 		<div
-			className='flex flex-col'
-			style={{ height: 'calc(100vh - 72px)' }}>
-			{/* LAYOUT SIDE BY SIDE */}
-			<div className='flex flex-1 overflow-hidden'>
-				{/* SIDEBAR CONTENT */}
-				<WritingSidebar
-					windowState={windowState}
-					siteSettings={siteSettings}
-					filteredPosts={filteredPosts}
-				/>
+			ref={containerRef}
+			className='relative flex h-full min-h-0 flex-col bg-zinc-950/80'>
+			<WritingHeader
+				windowState={windowState}
+				selectedPost={selectedPost}
+				isCompactLayout={isCompactLayout}
+			/>
 
-				{/* MAIN CONTAINER */}
-				<div
-					className={`flex flex-col flex-1 bg-gray-900 transition-all duration-300 relative overflow-hidden ${sidebarOpen ? 'w-[516px]' : 'w-[756px]'}`}>
-					{/* HEADER */}
-					<WritingHeader
+			<div className='relative flex min-h-0 flex-1 overflow-hidden'>
+				{!isCompactLayout && sidebarOpen && (
+					<WritingSidebar
 						windowState={windowState}
-						selectedPost={selectedPost}
+						siteSettings={siteSettings}
+						filteredPosts={filteredPosts}
+						className='h-full w-[clamp(250px,28vw,330px)] shrink-0 border-r border-white/8 bg-zinc-950/95'
 					/>
+				)}
 
-					{/* MAIN CONTENT BODY */}
+				{isCompactLayout && sidebarOpen && (
+					<>
+						<button
+							type='button'
+							className='absolute inset-0 z-10 bg-black/45 backdrop-blur-[2px]'
+							aria-label='Close writing sidebar'
+							onClick={() => {
+								windowState.setSidebarOpen(false);
+							}}
+						/>
+						<WritingSidebar
+							windowState={windowState}
+							siteSettings={siteSettings}
+							filteredPosts={filteredPosts}
+							className='absolute inset-y-0 left-0 z-20 h-full w-[min(340px,86vw)] border-r border-white/10 bg-zinc-950 shadow-2xl shadow-black/50'
+						/>
+					</>
+				)}
+
+				<div className='min-w-0 flex-1 bg-zinc-950/45'>
 					<WritingContentBody
 						markdownContent={markdownContent}
 						siteSettings={siteSettings}

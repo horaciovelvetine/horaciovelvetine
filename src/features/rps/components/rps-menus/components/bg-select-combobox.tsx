@@ -61,11 +61,11 @@ export function BGSelectCombobox({
 	const focusBGclass = TailwindFocusBGs500[accentColor];
 
 	return (
-		<Field className='flex items-center justify-between gap-3'>
-			<div className='flex grow flex-col'>
+		<Field className='grid gap-3 rounded-2xl border border-white/8 bg-white/[0.03] px-3 py-3 md:grid-cols-[minmax(0,1fr)_180px] md:items-center'>
+			<div className='flex min-w-0 grow flex-col'>
 				<Label
 					id='color-select-label'
-					className='block text-sm/4 sm:text-base md:text-lg lg:text-xl font-semibold text-white text-nowrap  border-b border-stone-300/30'>
+					className='block border-b border-white/8 text-sm/5 font-semibold text-white sm:text-base md:text-lg lg:text-xl'>
 					Background Color:
 				</Label>
 				<span
@@ -74,7 +74,7 @@ export function BGSelectCombobox({
 					Set the color for the background of the sketch
 				</span>
 			</div>
-			<div className='group relative inline-flex w-1/4 shrink-0'>
+			<div className='group relative inline-flex shrink-0'>
 				<Combobox
 					value={color}
 					onChange={(value: Colors) => {

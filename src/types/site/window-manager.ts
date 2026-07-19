@@ -26,6 +26,8 @@ import type { WindowIDs } from './window-ids';
  * @property {function} focusWindowByID - Function to bring a specific window to focus by its ID
  * @property {function} closeWindowByID - Function to close a specific window by its ID
  * @property {function} openWindowByID - Function to open a specific window by its ID
+ * @property {function} minimizeWindowByID - Function to minimize a specific window into the dock state
+ * @property {function} toggleZoomWindowByID - Function to toggle a specific window between restore and zoomed states
  */
 export interface WindowManager {
 	// WINDOWS
@@ -42,4 +44,6 @@ export interface WindowManager {
 	focusWindowByID: (windowID: WindowIDs) => void;
 	closeWindowByID: (windowID: WindowIDs) => void;
 	openWindowByID: (windowID: WindowIDs) => void;
+	minimizeWindowByID: (windowID: WindowIDs) => void;
+	toggleZoomWindowByID: (windowID: WindowIDs) => void;
 }

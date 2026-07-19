@@ -34,7 +34,7 @@ export function MobilePageFallback({
 	pageTitle,
 }: MobilePageFallbackProps) {
 	return (
-		<div className='flex justify-center bg-stone-900/90 py-1 my-1 rounded-lg mx-0.25 min-h-[200px]'>
+		<div className='flex min-h-[240px] justify-center rounded-[28px] border border-white/10 bg-zinc-950/92 p-2 shadow-xl shadow-black/20'>
 			<div className='relative w-full'>
 				<LoadingPageSpinner
 					siteSettings={siteSettings}

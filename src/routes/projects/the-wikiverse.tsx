@@ -58,19 +58,19 @@ function TheWikiverseProjectPage() {
 	const activeSearch = postSearch.trim() !== '';
 
 	return (
-		<div className='min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-4 sm:p-6 lg:p-8'>
-			<div className='max-w-7xl mx-auto'>
-				<div className='bg-gray-900/95 backdrop-blur-sm rounded-xl border border-gray-600/50 shadow-2xl shadow-black/20 overflow-hidden'>
+		<div className='min-h-screen px-4 py-6 sm:px-6 lg:px-8'>
+			<div className='mx-auto max-w-6xl'>
+				<div className='overflow-hidden rounded-[32px] border border-white/10 bg-zinc-950/92 shadow-2xl shadow-black/30'>
 					{/* Header */}
-					<div className='bg-gray-800/80 border-b border-gray-600/50 px-4 py-3 flex items-center space-x-2'>
-						<div className='text-gray-400 text-lg sm:text-xl leading-relaxed ml-4'>
+					<div className='flex items-center space-x-2 border-b border-white/8 bg-white/[0.03] px-4 py-3'>
+						<div className='ml-4 text-lg leading-relaxed text-stone-400 sm:text-xl'>
 							the-wikiverse
 						</div>
 					</div>
 
 					{/* Main Content */}
 					<div className='p-4 sm:p-6 lg:p-8 xl:p-10'>
-						<div className='flex flex-col text-sm sm:text-base md:text-lg space-y-1 sm:space-y-2 overflow-auto'>
+						<div className='flex flex-col space-y-4 text-sm sm:text-base md:text-lg overflow-auto'>
 							{/* Project Header */}
 							<ProjectHeader />
 
@@ -92,7 +92,7 @@ function TheWikiverseProjectPage() {
 									<h2 className='text-2xl font-bold text-white mb-6'>
 										Development Log
 									</h2>
-									<div className='flex flex-col gap-y-4 mb-6'>
+									<div className='mb-6 flex flex-col gap-y-4'>
 										<PostSearchInput
 											query={postSearch}
 											setQuery={setPostSearch}

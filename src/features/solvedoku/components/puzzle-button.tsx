@@ -39,9 +39,9 @@ export function PuzzleButton({
 			onClick={onClickFunction}
 			title={title}
 			disabled={isDisabled}
-			className={`border border-gray-300/50 rounded px-1 tracking-tighter font-semibold ${bgColorClass} xs:text-xl sm:text-3xl text-nowrap transition-all ${isDisabled ? '' : 'duration-100 hover:-translate-y-1 hover:scale-105'}`}>
+			className={`rounded-xl border border-white/10 px-3 py-2 text-center tracking-tight font-semibold text-white shadow-lg shadow-black/20 ${bgColorClass} transition-all ${isDisabled ? '' : 'duration-100 hover:-translate-y-0.5 hover:scale-[1.02]'}`}>
 			{Icon ?
-				<Icon size='w-6 xs:w-9 sm:w-12' />
+				<Icon size='w-6 xs:w-8 sm:w-9' />
 				: <p>{text}</p>}
 		</button>
 	);

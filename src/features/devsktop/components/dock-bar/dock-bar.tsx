@@ -28,9 +28,9 @@ interface DockBarProps {
 
 export function DockBar({ windowManager, siteSettings }: DockBarProps) {
 	return (
-		<div className='absolute min-w-full bottom-2'>
-			<div className='flex mx-auto justify-center'>
-				<div className='flex gap-4 rounded-xl bg-zinc-900/70 px-4 pt-2.5 pb-4.5 ring ring-stone-300/10'>
+		<div className='absolute bottom-4 min-w-full'>
+			<div className='flex justify-center'>
+				<div className='flex gap-4 rounded-[28px] border border-white/10 bg-black/35 px-4 pb-4 pt-2.5 shadow-2xl shadow-black/35 backdrop-blur-2xl'>
 					<DockIcon
 						label='Home'
 						Icon={HomeIcon}

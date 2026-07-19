@@ -4,6 +4,7 @@ import { ViewToggleSlider } from './components/view-toggle-slider';
 import { SpriteCountSelector } from './components/sprite-count-selector';
 import { RPSIcon } from '../rps-icon';
 import type { RPSSketchWindowProps } from '../../windows/rps-sketch-window-props';
+import { TailwindBGs500 } from '../../../../functions';
 
 /**
  * InitializeSketchMenu component provides the main configuration interface for the Rock Paper Scissors sketch.
@@ -34,8 +35,8 @@ export function RPSInitializeSketchMenu({
 	};
 
 	return (
-		<div className='mx-1 py-2 px-1 border-2 border-stone-300/30 rounded-lg bg-zinc-900/90'>
-			<div className='flex flex-col items-center justify-center'>
+		<div className='rounded-[24px] border border-white/10 bg-zinc-950/90 p-4 shadow-2xl shadow-black/30'>
+			<div className='flex flex-col items-center justify-center gap-2 text-center'>
 				<RPSIcon
 					size='size-16 xs:size-20 sm:size-28 md:size-36'
 					renderWithAppleCompatability={
@@ -43,17 +44,17 @@ export function RPSInitializeSketchMenu({
 						siteSettings.deviceInfo.isSafariBrowser
 					}
 				/>
-				<h2 className='text-3xl lg:text-4xl font-bold tracking-tighter'>
+				<h2 className='text-3xl font-bold tracking-tighter lg:text-4xl'>
 					Rock, Paper, Scissors
 				</h2>
 			</div>
 
-			<p className='text-sm/4 sm:text-base/6 md:text-lg/6 lg:text-xl/6 font-semibold text-stone-200/70 text-center tracking-tight italic border-b border-stone-300/25 py-1 px-1 mx-1 text-pretty'>
-				Use the 'Start Game' button to begin the game. Use the menu below to
-				customize it before you start. Once the sketch starts, click or tap
-				anywhere on screen to pause.
+			<p className='mx-auto max-w-2xl border-b border-white/10 px-1 py-3 text-center text-sm/5 font-medium tracking-tight text-stone-300/75 sm:text-base/6 md:text-lg/6'>
+				Set the sprite style, count, and canvas look before you launch the
+				simulation. Once it starts, click anywhere on the canvas to pause.
 			</p>
-			<div className='flex flex-col gap-0.5 my-1 mx-2'>
+
+			<div className='mt-4 flex flex-col gap-3'>
 				<SpriteSetSelector
 					accentColor={siteSettings.accentColor}
 					spriteCharSet={windowState.spriteChars}
@@ -86,7 +87,7 @@ export function RPSInitializeSketchMenu({
 				<div className='flex justify-center pt-1.5'>
 					<button
 						type='button'
-						className={`w-3/4 md:w-3/5 border border-stone-300/30 py-1 rounded-lg bg-${siteSettings.accentColor}-500`}
+						className={`w-full rounded-2xl border border-white/10 px-4 py-3 text-base font-semibold text-white shadow-lg shadow-black/20 transition-transform duration-150 hover:-translate-y-0.5 sm:w-auto ${TailwindBGs500[siteSettings.accentColor]}`}
 						onClick={handleStartSketchClick}
 						onTouchStart={handleStartSketchClick}>
 						Start Game

@@ -1,6 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import type { ManagedWindow, NavBarMenuParent, WindowIDs } from '../../types';
 import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
+import { useManagedWindowState } from './use-managed-window-state';
 
 /**
  * Custom hook for managing the Contact window state and functionality.
@@ -16,11 +17,15 @@ import { GH_NEW_ISSUES, MAILTO } from '../../consts/urls';
  */
 
 export function useContactWindow(): ManagedWindow {
-	const windowID = 'contact-window';
-	const title = 'Contact';
-	const [zIndex, setZIndex] = useState('0');
-	const [isFocused, setIsFocused] = useState(false);
-	const [isShown, setIsShown] = useState(false);
+	const windowID: WindowIDs = 'contact-window';
+	const managedWindow = useManagedWindowState({
+		id: windowID,
+		title: 'Contact',
+		defaultSize: { width: 700, height: 560 },
+		minSize: { width: 520, height: 420 },
+		preferredPosition: { x: 168, y: 110 },
+	});
+	const { isFocused, isShown } = managedWindow;
 
 	const closeWindowCallback = useCallback(() => {
 		// no cleanup needed...
@@ -75,14 +80,7 @@ export function useContactWindow(): ManagedWindow {
 	);
 
 	return {
-		id: windowID,
-		title,
-		zIndex,
-		setZIndex,
-		isFocused,
-		setIsFocused,
-		isShown,
-		setIsShown,
+		...managedWindow,
 		closeWindowCallback,
 		navBarMenuItems,
 	};

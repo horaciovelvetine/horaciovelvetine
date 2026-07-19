@@ -13,7 +13,7 @@ export interface CellDataProps {
 	rowIndex: number;
 	colIndex: number;
 	cell: Cell;
-	cellSizing: string;
+	cellSizing: number;
 	siteSettings: SiteSettings;
 	selectedCellCoords: [number, number] | null;
 	selectedCellID: string | null;
@@ -135,7 +135,12 @@ export const CellData = React.memo(function CellData({
 			className={getCellBorderStyle() + ' select-none relative'}
 			onClick={toggleCellSelection}>
 			<input
-				className={`${cellSizing} text-center border-none outline-none cursor-pointer caret-transparent text-lg font-bold xs:text-2xl sm:text-3xl ${textColor} ${backgroundColor}`}
+				className={`cursor-pointer border-none text-center font-bold outline-none caret-transparent ${textColor} ${backgroundColor}`}
+				style={{
+					width: `${cellSizing}px`,
+					height: `${cellSizing}px`,
+					fontSize: `${Math.max(18, Math.round(cellSizing * 0.45))}px`,
+				}}
 				type='text'
 				value={cell.value ?? ''}
 				name={cellID + '-input'}

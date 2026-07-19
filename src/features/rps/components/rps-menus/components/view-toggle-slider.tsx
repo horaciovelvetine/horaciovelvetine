@@ -57,11 +57,11 @@ export function ViewToggleSlider({
 	};
 
 	return (
-		<div className='flex items-center justify-between gap-3'>
-			<span className='flex grow flex-col'>
+		<div className='grid gap-3 rounded-2xl border border-white/8 bg-white/[0.03] px-3 py-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-center'>
+			<span className='flex min-w-0 grow flex-col'>
 				<label
 					id='availability-label'
-					className='block text-sm/4 sm:text-base md:text-lg lg:text-xl font-semibold text-white text-nowrap border-b border-stone-300/30'>
+					className='block border-b border-white/8 text-sm/5 font-semibold text-white sm:text-base md:text-lg lg:text-xl'>
 					{label}
 				</label>
 				<span
@@ -71,7 +71,7 @@ export function ViewToggleSlider({
 				</span>
 			</span>
 			<div
-				className={`group relative inline-flex w-11 min-h-full shrink-0 rounded-full bg-stone-300 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 ${outlineColorClass} transition-colors duration-200 ease-in-out ${checkedBGColorClass} has-focus-visible:outline-2 bg-white/5 inset-ring-white/10 ${outlineColorClass} mt-6 ${toggleOn ? 'drop-shadow-lg drop-shadow-stone-300/10' : ''}`}>
+				className={`group relative inline-flex w-11 min-h-full shrink-0 self-start rounded-full bg-stone-300 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 ${outlineColorClass} transition-colors duration-200 ease-in-out ${checkedBGColorClass} has-focus-visible:outline-2 bg-white/5 inset-ring-white/10 ${outlineColorClass} md:self-center ${toggleOn ? 'drop-shadow-lg drop-shadow-stone-300/10' : ''}`}>
 				<span className='relative size-5 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-5 '>
 					<span
 						aria-hidden='true'

@@ -10,10 +10,26 @@ export function setupCanvasDimensions(
 	clientDimensions: Dimensions,
 	useMobileCompatibility: boolean
 ) {
-	return useMobileCompatibility ?
-		{
-			width: clientDimensions.width - 24,
-			height: clientDimensions.height - 125,
-		}
-		: { width: 740, height: 560 };
+	const availableWidth = Math.max(
+		320,
+		clientDimensions.width - (useMobileCompatibility ? 20 : 24)
+	);
+	const availableHeight = Math.max(
+		240,
+		clientDimensions.height - (useMobileCompatibility ? 20 : 24)
+	);
+	const aspectRatio = 4 / 3;
+
+	let width = availableWidth;
+	let height = Math.round(width / aspectRatio);
+
+	if (height > availableHeight) {
+		height = availableHeight;
+		width = Math.round(height * aspectRatio);
+	}
+
+	return {
+		width,
+		height,
+	};
 }

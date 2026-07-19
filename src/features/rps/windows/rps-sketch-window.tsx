@@ -14,7 +14,7 @@ import { setupCanvasDimensions } from '../../../functions';
 import { RPSSketch } from '../sketch';
 import { useSketchUpdateState } from '../../../hooks/rps';
 import type { RPSSketchWindowProps } from './rps-sketch-window-props';
-import { useClientDimensionsUpdates } from '../../../hooks/site';
+import { useElementSize } from '../../../hooks/site';
 
 /**
  * RPSSketchWindow component renders the complete Rock Paper Scissors simulation interface.
@@ -50,9 +50,13 @@ export function RPSSKetchWindow({
 	windowState,
 	siteSettings,
 }: RPSSketchWindowProps) {
-	const clientDimensions = useClientDimensionsUpdates();
+	const { ref: canvasRegionRef, size: canvasRegionSize } =
+		useElementSize<HTMLDivElement>();
 	const canvasSize = setupCanvasDimensions(
-		clientDimensions,
+		{
+			width: canvasRegionSize.width || windowState.size.width - 48,
+			height: canvasRegionSize.height || windowState.size.height - 180,
+		},
 		siteSettings.useMobileCompatibility
 	);
 	const sketchState = useSketchUpdateState(canvasSize, windowState);
@@ -71,50 +75,49 @@ export function RPSSKetchWindow({
 	}, [windowState]);
 
 	return (
-		<div
-			className='flex flex-col pb-2'
-			style={{ maxHeight: 'calc(100vh - 72px)' }}>
-			{/* MAIN CONTAINER WITH SCROLLABLE CONTENT */}
-			<div className='flex flex-1 flex-col overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-stone-400/80 [&::-webkit-scrollbar-thumb]:bg-stone-600/70 [&::-webkit-scrollbar]:bg-transparent [&::-webkit-scrollbar-track]:bg-transparent'>
-				<div className='flex flex-col w-full items-center relative py-2 min-h-full'>
-					{/* Spacer to center content when there's extra space */}
-					<div className='flex-1' />
-
-					{/* HEADER */}
+		<div className='relative flex h-full min-h-0 flex-col bg-zinc-950/40'>
+			<div className='flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-stone-400/80 [&::-webkit-scrollbar-thumb]:bg-stone-600/70 [&::-webkit-scrollbar]:bg-transparent [&::-webkit-scrollbar-track]:bg-transparent'>
+				<div className='flex min-h-full flex-col gap-3 p-3'>
 					<RPSHeader {...windowState} />
 
-					{/* SKETCH MAIN */}
 					{!windowState.sketchIsInitialized ?
-						<div className='flex-shrink-0 w-full'>
+						<div className='mx-auto w-full max-w-3xl'>
 							<RPSInitializeSketchMenu
 								siteSettings={siteSettings}
 								windowState={windowState}
 							/>
 						</div>
 					:	<div
-							className='relative mt-1 border border-stone-300/30 shadow-lg shadow-stone-300/5 flex-shrink-0'
-							onClick={handlePauseSketchClick}>
-							<ReactP5Wrapper
-								sketch={RPSSketch}
-								{...sketchState}
-							/>
-							<SketchPausedIndicator
-								sketchIsPaused={windowState.sketchIsPaused}
-								settingsMenuOnScreen={windowState.showAboutMenu}
-								aboutMenuOnScreen={windowState.showAboutMenu}
-								gameMenuOnScreen={windowState.showGameMenu}
-							/>
+							className='flex min-h-0 flex-1 flex-col gap-3'>
+							<div
+								ref={canvasRegionRef}
+								className='flex min-h-[340px] flex-1 items-center justify-center rounded-[22px] border border-white/8 bg-black/25 p-3 shadow-inner shadow-black/35'>
+								<div
+									className='relative overflow-hidden rounded-[18px] border border-white/10 shadow-2xl shadow-black/35'
+									onClick={handlePauseSketchClick}
+									style={{
+										width: `${canvasSize.width}px`,
+										height: `${canvasSize.height}px`,
+									}}>
+									<ReactP5Wrapper
+										sketch={RPSSketch}
+										{...sketchState}
+									/>
+									<SketchPausedIndicator
+										sketchIsPaused={windowState.sketchIsPaused}
+										settingsMenuOnScreen={windowState.showAboutMenu}
+										aboutMenuOnScreen={windowState.showAboutMenu}
+										gameMenuOnScreen={windowState.showGameMenu}
+									/>
+								</div>
+							</div>
+
+							<p className='text-center text-sm text-stone-400'>
+								Click the canvas to pause. Open settings, help, and runtime
+								controls from the window menus above.
+							</p>
 						</div>
 					}
-
-					{windowState.sketchIsInitialized && (
-						<p className='text-stone-300/50 text-base/3 sm:text-lg/4 md:text-xl/5 mt-1.5 tracking-tighter flex-shrink-0'>
-							sketch by @horaciovelvetine
-						</p>
-					)}
-
-					{/* Spacer to center content when there's extra space */}
-					<div className='flex-1' />
 				</div>
 			</div>
 

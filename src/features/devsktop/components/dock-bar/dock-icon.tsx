@@ -42,16 +42,16 @@ export function DockIcon({
 	return (
 		<div className='relative group'>
 			{/* Hover Title */}
-			<div className='absolute opacity-0 -top-12 group-hover:opacity-100 pointer-events-none transition-all duration-200 w-full flex justify-center'>
-				<span className='flex w-fit bg-zinc-900/80 rounded-lg px-2 py-0.5'>
-					<h4 className='text-lg text-white text-nowrap'>{label}</h4>
+			<div className='absolute -top-12 flex w-full justify-center opacity-0 transition-all duration-200 pointer-events-none group-hover:opacity-100'>
+				<span className='flex w-fit rounded-xl border border-white/10 bg-black/55 px-2 py-0.5 backdrop-blur-xl'>
+					<h4 className='text-sm text-white text-nowrap'>{label}</h4>
 				</span>
 			</div>
 
 			{/* Icon */}
 			<button
 				type='button'
-				className='flex flex-col items-center group-hover:scale-105 group-hover:-translate-y-1 duration-200 transition-all'
+				className='flex flex-col items-center transition-all duration-200 group-hover:-translate-y-1.5 group-hover:scale-[1.08]'
 				onTouchStart={onClick}
 				onClick={onClick}>
 				<Icon
@@ -65,8 +65,8 @@ export function DockIcon({
 			</button>
 			{/* Window Open Indicator */}
 			<div
-				className={`absolute -bottom-3 ${isOpen ? 'opacity-100' : 'opacity-0'} flex w-full justify-center transition-opacity duration-200 `}>
-				<div className='size-2 bg-white rounded-full'></div>
+				className={`absolute -bottom-3 flex w-full justify-center transition-opacity duration-200 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
+				<div className='h-1.5 w-5 rounded-full bg-white/85'></div>
 			</div>
 		</div>
 	);

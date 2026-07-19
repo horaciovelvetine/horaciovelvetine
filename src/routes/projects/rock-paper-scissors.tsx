@@ -37,7 +37,7 @@ function MobileRockPaperScissorsPage() {
 	const { siteSettings } = Route.useRouteContext();
 	const rpsWindow = useRPSSketchWindow();
 	return (
-		<div className='flex justify-center bg-stone-900/90 py-1 my-1 rounded-lg mx-0.25'>
+		<div className='my-1 mx-0.5 overflow-hidden rounded-[28px] border border-white/10 bg-zinc-950/92 shadow-xl shadow-black/20'>
 			<Suspense
 				fallback={
 					<MobilePageFallback

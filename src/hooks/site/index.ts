@@ -4,3 +4,4 @@ export { useSiteSettings } from './use-site-settings';
 export { useWindowManager } from './use-window-manager';
 export { useClientDimensionsUpdates } from './use-client-dimensions-updates';
 export { useUnfocusedClickListener } from './use-unfocused-click-listener';
+export { useElementSize } from './use-element-size';

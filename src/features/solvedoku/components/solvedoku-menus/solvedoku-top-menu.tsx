@@ -17,8 +17,8 @@ export function SolvedokuTopMenu({
 		windowState.setShowTopMenu(false);
 	};
 	return (
-		<div className='absolute z-10 top-0'>
-			<div className='mx-1 py-2 px-1 border-2 border-stone-300/30 rounded-lg bg-zinc-900'>
+		<div className='absolute inset-0 z-20 flex items-center justify-center p-3'>
+			<div className='w-full max-w-3xl rounded-[24px] border border-white/10 bg-zinc-950/96 p-4 shadow-2xl shadow-black/50'>
 				<div className='flex flex-col items-center justify-center'>
 					<button
 						type='button'
@@ -35,7 +35,7 @@ export function SolvedokuTopMenu({
 					</h2>
 				</div>
 
-				<div className='flex flex-col gap-1 md:gap-3 lg:gap-4 text-sm/4 sm:text-base/6 md:text-xl/6 lg:text-2xl/6.5 font-semibold text-stone-200/70 text-center tracking-tight italic border-b border-stone-300/25 py-1 md:py-2 px-3 text-pretty'>
+				<div className='flex flex-col gap-1 border-b border-white/10 px-3 py-2 text-center text-sm/5 font-medium tracking-tight text-stone-300/75 sm:text-base/6 md:gap-3 md:text-lg/6 lg:text-xl/6.5'>
 					<p>
 						Start by either generating a random puzzle to solve or entering
 						your own puzzle, and watch Solvedoku work out the solution.
@@ -51,8 +51,8 @@ export function SolvedokuTopMenu({
 					</p>
 				</div>
 
-				<div className='flex flex-col gap-2 my-1 mx-12 md:mx-32'>
-					<ul className='flex justify-center sm:justify-center gap-2'>
+				<div className='mx-auto mt-4 flex max-w-md flex-col gap-3'>
+					<ul className='flex flex-wrap justify-center gap-2'>
 						{(['easy', 'medium', 'hard'] as PuzzleDifficulty[]).map(
 							difficulty => (
 								<SelectedDifficultyButton

@@ -62,9 +62,11 @@ export function PuzzleInfoDisplay({
 	const solvingMessageBG = TailwindBGs500[siteSettings.accentColor];
 
 	return (
-		<div className='flex w-full items-center gap-1 mt-1 px-2'>
-			<div className='flex items-center w-3/4 font-semibold gap-2 xs:gap-3 sm:gap-4 justify-around text-lg xs:text-xl sm:text-2xl md:text-3xl pl-2'>
-				<p>{capitalize(currentPuzzleDifficultyDisplay)}</p>
+		<div className='rounded-[22px] border border-white/8 bg-white/[0.03] p-3'>
+			<div className='flex flex-wrap items-center gap-2 text-sm font-semibold sm:text-base'>
+				<p className='rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-white'>
+					{capitalize(currentPuzzleDifficultyDisplay)}
+				</p>
 				<MessageDisplay
 					text='Solving...'
 					bgColor='bg-amber-500/70'
@@ -95,13 +97,13 @@ export function PuzzleInfoDisplay({
 					!isUnsolveable &&
 					!isFindingSolution &&
 					!showStoredSolution && (
-						<p className='py-0.5 px-2 text-transparent select-none'>
+						<p className='select-none px-2 py-0.5 text-transparent'>
 							Placeholder!
 						</p>
 					)}
 			</div>
 			{/* UNDO & ERASE */}
-			<div className='flex justify-end gap-1 xs:gap-1.5 sm:gap-2'>
+			<div className='mt-3 flex flex-wrap justify-end gap-2'>
 				<PuzzleButton
 					text='Undo'
 					title={canUndo ? 'Undo last move (Ctrl/⌘)+Z' : 'No moves to undo'}

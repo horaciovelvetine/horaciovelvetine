@@ -25,12 +25,11 @@ export const Route = createFileRoute('/')({
  */
 function MobileHomePage() {
 	return (
-		<div className='min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-2 sm:p-4 md:p-6 lg:p-8'>
-			<div className='max-w-7xl mx-auto'>
-				<div className='bg-gray-900/95 backdrop-blur-sm rounded-xl border border-gray-600/50 shadow-2xl shadow-black/20 overflow-hidden'>
-					{/* Main Content */}
+		<div className='min-h-screen px-4 py-6 sm:px-6 lg:px-8'>
+			<div className='mx-auto max-w-6xl'>
+				<div className='overflow-hidden rounded-[32px] border border-white/10 bg-zinc-950/92 shadow-2xl shadow-black/30'>
 					<div className='p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10'>
-						<div className='flex flex-col text-sm sm:text-base md:text-lg space-y-1 sm:space-y-2 overflow-hidden'>
+						<div className='flex flex-col overflow-hidden text-sm sm:text-base md:text-lg'>
 							<LandingPageContent />
 						</div>
 					</div>

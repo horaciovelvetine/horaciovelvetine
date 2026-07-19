@@ -12,12 +12,14 @@ interface WritingSidebarProps {
   windowState: WritingWindowState;
   siteSettings: SiteSettings;
   filteredPosts: BlogPost[];
+  className?: string;
 }
 
 export function WritingSidebar({
   windowState,
   siteSettings,
   filteredPosts,
+  className = '',
 }: WritingSidebarProps) {
   /**
    * Groups filtered blog posts by month and year for organized display
@@ -45,11 +47,11 @@ export function WritingSidebar({
 
   return (
     <div
-      className={`${windowState.sidebarOpen ? 'w-66 min-w-66' : 'w-0 min-w-0'} transition-all duration-300 ease-in-out border-r border-gray-700 bg-gray-800 flex flex-col overflow-hidden`}>
+      className={`flex min-h-0 flex-col overflow-hidden ${className}`}>
       <div className='flex flex-col h-full'>
         {/* SEARCH */}
         <div
-          className={`px-2 py-3 border-b border-gray-700 flex-shrink-0 ${windowState.sidebarOpen ? '' : 'hidden select-none'}`}>
+          className='border-b border-white/8 px-3 py-3 flex-shrink-0'>
           <PostSearchInput
             query={windowState.searchQuery}
             setQuery={windowState.setSearchQuery}
@@ -57,7 +59,7 @@ export function WritingSidebar({
             accentColor={siteSettings.accentColor}
           />
 
-          <div className='flex flex-wrap mt-1.5'>
+          <div className='mt-2 flex flex-wrap'>
             {windowState.selectedTags.map(tag => (
               <TagFilter
                 key={`selected-${tag}-filter`}
@@ -76,8 +78,8 @@ export function WritingSidebar({
               <div
                 key={monthYear}
                 className=''>
-                <div className='px-4 py-2 bg-gray-700 border-y border-gray-300/30'>
-                  <h3 className='text-sm font-semibold text-gray-300'>
+                <div className='border-y border-white/8 bg-white/[0.04] px-4 py-2'>
+                  <h3 className='text-sm font-semibold text-stone-300'>
                     {monthYear}
                   </h3>
                 </div>
@@ -98,8 +100,8 @@ export function WritingSidebar({
                 </div>
               </div>
             ))
-            : <div className='p-4 text-centertext-gray-400'>
-              <p>No posts found</p>
+            : <div className='p-4 text-center text-stone-400'>
+              <p>No posts found.</p>
             </div>
           }
         </div>

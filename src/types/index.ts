@@ -7,6 +7,7 @@ export type { Dimensions } from './site/dimensions';
 export type { WindowManager } from './site/window-manager';
 export type { ManagedWindow } from './site/managed-window';
 export type { Position } from './site/position';
+export type { WindowRect } from './site/window-rect';
 export type { SiteSettings } from './site/site-settings';
 export type { NavBarMenuParent } from './site/nav-bar-menu-parent';
 export type { NavBarMenuChild } from './site/nav-bar-menu-child';

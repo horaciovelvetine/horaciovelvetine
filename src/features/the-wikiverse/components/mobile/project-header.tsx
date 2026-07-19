@@ -1,5 +1,6 @@
 import { SimpleInlineLink } from '../../../../components';
 import { GITHUB } from '../../../../consts/urls';
+import { PROJECT_CONTENT } from '../../../../consts/site-content';
 
 /**
  * Project Header Component
@@ -28,36 +29,35 @@ import { GITHUB } from '../../../../consts/urls';
  * @component
  */
 export function ProjectHeader() {
+	const project = PROJECT_CONTENT.theWikiverse;
+
 	return (
 		<header className='mb-4'>
-			<h1 className='text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white text-center'>
-				The Wikiverse
+			<h1 className='mb-4 text-balance text-4xl font-bold text-white md:text-5xl lg:text-6xl'>
+				{project.name}
 			</h1>
-			<div className='flex flex-col items-center space-x-4 mb-6'>
+			<div className='mb-6 flex flex-wrap items-center gap-4'>
 				<div className='flex items-center space-x-2'>
 					<div className='w-3 h-3 bg-green-500 rounded-full animate-pulse'></div>
 					<span className='text-sm xs:text-base sm:text-lg md:text-xl text-gray-400 uppercase tracking-wider'>
-						In Development
+						{project.status}
 					</span>
 				</div>
 				<span className='text-sm xs:text-base sm:text-lg md:text-xl text-gray-400'>
-					Data Visualization Project
+					{project.projectType}
+				</span>
+				<span className='text-sm xs:text-base sm:text-lg md:text-xl text-gray-500'>
+					{project.timeline}
 				</span>
 			</div>
 
-			<div className='flex flex-col w-full items-center justify-center'>
-				<h3 className='text-xl sm:text-2xl tracking-tighter font-semibold text-stone-300/75'>
+			<div className='flex flex-col gap-2'>
+				<h3 className='text-xl font-semibold tracking-tight text-stone-300/75 sm:text-2xl'>
 					Project Links
 				</h3>
-				<div className='flex gap-2 text-base sm:text-lg font-semibold'>
+				<div className='flex flex-wrap gap-2 text-base font-semibold sm:text-lg'>
 					<SimpleInlineLink
-						text='Frontend'
-						href={GITHUB}
-						showArrow
-					/>
-					<span className='text-stone-300/50'> | </span>
-					<SimpleInlineLink
-						text='Backend'
+						text='GitHub Profile'
 						href={GITHUB}
 						showArrow
 					/>

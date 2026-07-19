@@ -1,7 +1,6 @@
-import { CloseIcon, GithubIcon } from '../../../assets';
+import { GithubIcon } from '../../../assets';
 import {
 	ESLintBadge,
-	GradientLinkText,
 	P5JSBadge,
 	PostCSSBadge,
 	ReactBadge,
@@ -27,105 +26,98 @@ import { GH_REPO, GITHUB } from '../../../consts/urls';
  */
 export function SiteInfoWindow() {
 	return (
-		<div className='block p-3'>
-			<div className='flex pb-2'>
-				<div className='flex flex-col h-full'>
-					<h2 className='text-nowrap font-extrabold tracking-tighter text-6xl leading-10'>
-						velvet.dev
-					</h2>
-
-					<div className='flex items-center justify-center mt-2 text-white/50'>
-						<p className='text-2xl tracking-tighter font-extrabold px-1'>
-							source code on:{' '}
-						</p>
-						<a
-							className='inline-flex gap-1 text-blue-500 transition-all duration-100 hover:scale-105 hover:-translate-y-1'
-							target='_blank'
-							rel='noopener noreferrer'
-							href={GH_REPO}>
-							<GithubIcon
-								size='size-12'
-								ariaHidden={true}
-								classes='text-white'
-							/>
-						</a>{' '}
-					</div>
+		<div className='flex h-full min-h-0 flex-col gap-5 p-4 sm:p-5'>
+			<section className='rounded-[28px] border border-white/10 bg-white/[0.03] p-5'>
+				<div className='flex flex-wrap items-start justify-between gap-4'>
 					<div>
-						<h5 className='leading-4.5 font-bold text-white/50  text-center mx-20'>
-							Built With:{' '}
-						</h5>
-						<ul className='my-1'>
-							<TypescriptBadge />
-							<ReactBadge />
-							<ViteBadge />
-							<P5JSBadge />
-							<TailwindCSSBadge />
-							<PostCSSBadge />
-							<ESLintBadge />
-						</ul>
+						<p className='text-xs font-semibold uppercase tracking-[0.3em] text-stone-400'>
+							About This Site
+						</p>
+						<h2 className='mt-2 text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl'>
+							velvet.dev
+						</h2>
+						<p className='mt-3 max-w-3xl text-sm leading-7 text-stone-300 sm:text-base'>
+							This portfolio is designed as a browser-native operating system
+							surface: a draggable desktop on larger screens, an iOS-inspired
+							navigation shell on smaller ones, and a set of demos that stay
+							usable as their window bounds change.
+						</p>
 					</div>
+
+					<a
+						className='inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-medium text-stone-200 transition-transform duration-150 hover:-translate-y-0.5 hover:text-white'
+						target='_blank'
+						rel='noopener noreferrer'
+						href={GH_REPO}>
+						<GithubIcon
+							size='size-6'
+							ariaHidden={true}
+							classes='text-white'
+						/>
+						Source Code
+					</a>
+				</div>
+			</section>
+
+			<section className='grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,0.9fr)]'>
+				<div className='rounded-[28px] border border-white/10 bg-white/[0.03] p-5'>
+					<h3 className='text-xl font-semibold text-white'>Window Controls</h3>
+					<ul className='mt-4 space-y-3 text-sm leading-6 text-stone-300'>
+						<li className='flex gap-3'>
+							<div className='mt-1 flex gap-1.5'>
+								<span className='h-3 w-3 rounded-full bg-rose-500' />
+								<span className='h-3 w-3 rounded-full bg-amber-400' />
+								<span className='h-3 w-3 rounded-full bg-emerald-400' />
+							</div>
+							<span>Use the traffic lights to close, minimize, and zoom windows like a desktop OS.</span>
+						</li>
+						<li className='flex gap-3'>
+							<span className='mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-stone-500' />
+							<span>Drag the title bar to reposition a window, then resize from any edge or corner.</span>
+						</li>
+						<li className='flex gap-3'>
+							<span className='mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-stone-500' />
+							<span>New windows now look for open space instead of opening directly on top of one another.</span>
+						</li>
+						<li className='flex gap-3'>
+							<span className='mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-stone-500' />
+							<span>The dock and menu bar stay context-aware based on the active window.</span>
+						</li>
+					</ul>
 				</div>
 
-				<p className='text-2xl/7.5 font-bold tracking-tighter pl-3 text-pretty flex flex-col justify-center'>
-					<span className='border-b border-stone-300/50'>
-						is the page for engineer
-						<GradientLinkText
-							text='@horaciovelvetine'
-							url={GITHUB}
-							classes='from-rose-500 via-purple-500 to-sky-500 font-extrabold px-1'
-						/>
-					</span>
-					While typically websites consist of pages seperated neatly by URLs,
-					here pages are draggable windows which can be positioned, opened, and
-					closed just like on a desktop. Give it a try - drag me around.
-				</p>
-			</div>
-
-			<div className='tracking-tighter mx-7'>
-				<div className='flex w-full justify-center gap-1'>
-					<h3 className='font-extrabold text-5xl border-white/50 pb-1.5 text-nowrap border-b-2  text-end bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-orange-500 to-rose-500'>
-						Navigate like a desktop:
-					</h3>
+				<div className='rounded-[28px] border border-white/10 bg-white/[0.03] p-5'>
+					<h3 className='text-xl font-semibold text-white'>Built With</h3>
+					<ul className='mt-4 space-y-1'>
+						<TypescriptBadge />
+						<ReactBadge />
+						<ViteBadge />
+						<P5JSBadge />
+						<TailwindCSSBadge />
+						<PostCSSBadge />
+						<ESLintBadge />
+					</ul>
 				</div>
-				<ul className='font-semibold text-2xl list-disc'>
-					<li>
-						Move windows around by clicking and dragging the bar at the top.
-					</li>
-					<li>
-						Use the{' '}
-						<span className='inline-block align-center'>
-							<CloseIcon
-								size='size-4.5'
-								classes='rounded-full bg-red-500 text-stone-800'
-							/>
-						</span>{' '}
-						button at the top left of a window to close it.
-					</li>
-					<li>Click on icons to open pages, applications, and view content.</li>
-					<li>
-						Additional functions can be found in the dropdown menus at the top
-						of the screen. The menus are based on the currently active window.
-					</li>
-				</ul>
-			</div>
-			<div className='flex flex-col min-w-full items-center border-t border-stone-300/30'>
-				<p className='font-bold tracking-tight text-white/50 sm:text-xl/7'>
-					© 2020-{new Date().getFullYear()} -{' '}
-					<span className='font-normal tracking-tighter'>
-						J. Tillman{' '}
-						<SimpleInlineLink
-							href={GITHUB}
-							text='@horaciovelvetine'
-						/>
-					</span>
+			</section>
+
+			<div className='flex flex-wrap items-center justify-between gap-3 border-t border-white/8 pt-4 text-sm text-stone-400'>
+				<p>
+					© 2020-{new Date().getFullYear()} J. Tillman
 				</p>
-				<p className='font-semibold tracking-tight text-xl/5'>
+				<div className='flex flex-wrap gap-4'>
+					<SimpleInlineLink
+						href={GITHUB}
+						text='GitHub'
+						showArrow
+						classes='text-stone-300 hover:text-white'
+					/>
 					<SimpleInlineLink
 						href={GH_REPO}
-						text='Find on Github'
+						text='Repository'
 						showArrow
+						classes='text-stone-300 hover:text-white'
 					/>
-				</p>
+				</div>
 			</div>
 		</div>
 	);

@@ -50,12 +50,12 @@ export function SpriteSetSelector({
 	const focusOutlineClass = TailwindFocusOutlineColors[accentColor];
 
 	return (
-		<Field className='flex items-center justify-between gap-3'>
-			<div className='flex grow flex-col'>
+		<Field className='grid gap-3 rounded-2xl border border-white/8 bg-white/[0.03] px-3 py-3 md:grid-cols-[minmax(0,1fr)_180px] md:items-center'>
+			<div className='flex min-w-0 grow flex-col'>
 				<Label
 					id='set-sprite-set-label'
 					htmlFor='set-sprite-set'
-					className='block text-sm/4 sm:text-base md:text-lg lg:text-xl font-semibold text-white text-nowrap border-b border-stone-300/30'>
+					className='block border-b border-white/8 text-sm/5 font-semibold text-white sm:text-base md:text-lg lg:text-xl'>
 					Set Sprites:
 				</Label>
 				<span
@@ -64,7 +64,7 @@ export function SpriteSetSelector({
 					Pick the sprites you want zooming around the screen
 				</span>
 			</div>
-			<div className={'group relative inline-flex shrink-0 w-1/4'}>
+			<div className='group relative inline-flex shrink-0'>
 				<Listbox
 					value={spriteCharSet}
 					onChange={setSpriteCharSet}>

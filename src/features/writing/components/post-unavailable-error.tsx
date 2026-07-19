@@ -30,7 +30,7 @@ export function PostUnavailableError({
   errorMessage,
 }: PostUnavailableErrorProps) {
   return (
-    <div className='min-h-screen flex items-center justify-center bg-stone-900'>
+    <div className='flex min-h-[280px] items-center justify-center rounded-3xl border border-red-500/20 bg-red-950/10 px-6 py-8'>
       <div className='text-center'>
         <h1 className='text-2xl font-bold text-red-500 mb-4'>
           Error Loading Post

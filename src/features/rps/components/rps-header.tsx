@@ -60,37 +60,37 @@ export function RPSHeader({
 	};
 
 	return (
-		<div className='flex w-full items-center justify-center px-2 md:px-6.5 md:pb-1'>
+		<div className='flex w-full flex-wrap items-center justify-between gap-3 rounded-[18px] border border-white/8 bg-white/[0.03] px-3 py-2'>
 			<h2
-				className={`md:hidden font-extrabold tracking-tighter text-xl xs:text-2xl sm:text-3xl w-full text-nowrap my-0.5 ${sketchIsInitialized ? '' : 'hidden'}`}>
+				className={`w-full min-w-0 text-balance font-extrabold tracking-tighter text-xl xs:text-2xl sm:text-3xl ${sketchIsInitialized ? '' : 'hidden md:block'}`}>
 				Rock, Paper, Scissors
 			</h2>
 
 			<div
-				className={`flex justify-end items-center w-full gap-0.5 ${sketchIsInitialized ? '' : 'hidden'}`}>
+				className={`flex w-full flex-wrap items-center justify-end gap-1 ${sketchIsInitialized ? '' : 'hidden'}`}>
 				<button
 					type='button'
-					title='Show the about menu for Solvedoku'
-					className='md:mt-1.5'
+					title='Show the about menu for Rock, Paper, Scissors'
+					className='rounded-xl border border-white/8 bg-white/[0.03] p-1.5 transition-colors hover:bg-white/[0.08]'
 					onClick={handleShowAboutMenu}>
 					<QuestionMarkIcon
-						size='size-8 xs:size-10 sm:size-12'
+						size='size-7 xs:size-8 sm:size-9'
 						classes='p-0.25'
 					/>
 				</button>
 
 				<button
 					type='button'
-					className='md:mt-1.5'
-					title='Show the settings menu for Solvedoku'
+					className='rounded-xl border border-white/8 bg-white/[0.03] p-1.5 transition-colors hover:bg-white/[0.08]'
+					title='Show the settings menu for Rock, Paper, Scissors'
 					onClick={handleShowSettingsMenu}>
-					<SettingsIcon size='size-8 xs:size-10 sm:size-12.5' />
+					<SettingsIcon size='size-7 xs:size-8 sm:size-9' />
 				</button>
 
 				<button
 					type='button'
 					title='Show the game options menu'
-					className='font-extrabold text-3xl xs:text-4xl sm:text-5xl md:text-5xl leading-0 md:leading-none'
+					className='rounded-xl border border-white/8 bg-white/[0.03] px-3 py-1 text-2xl font-extrabold leading-none transition-colors hover:bg-white/[0.08] xs:text-3xl'
 					onClick={handleShowGameMenu}>
 					...
 				</button>

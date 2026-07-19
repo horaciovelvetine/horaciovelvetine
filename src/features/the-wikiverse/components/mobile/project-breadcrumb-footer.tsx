@@ -30,7 +30,7 @@ import { Link } from '@tanstack/react-router';
 export function ProjectBreadcrumbFooter() {
 	return (
 		<div className='mt-6 pt-4 border-t border-gray-600/30'>
-			<div className='flex items-center gap-2 text-sm sm:text-base md:text-lg text-gray-500'>
+			<div className='flex flex-wrap items-center gap-2 text-sm sm:text-base md:text-lg text-gray-500'>
 				<span className='text-gray-500 hover:text-gray-400 transition-colors duration-200'>
 					{'//'}
 				</span>

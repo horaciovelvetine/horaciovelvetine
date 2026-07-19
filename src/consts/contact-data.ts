@@ -1,3 +1,5 @@
+import { PROFILE_CONTENT } from './site-content';
+
 /**
  * Contact information and availability details
  *
@@ -14,8 +16,9 @@
  * @property {string} availability - Current availability status
  */
 export const CONTACT_DATA = {
-	email: 'horaciovelvetine@gmail.com',
-	github: 'https://github.com/horaciovelvetine/',
-	linkedin: 'https://www.linkedin.com/in/james-p-tillman/',
-	availability: 'Available for freelance projects',
+	email: PROFILE_CONTENT.contact.email,
+	github: PROFILE_CONTENT.contact.github,
+	linkedin: PROFILE_CONTENT.contact.linkedin,
+	availability: PROFILE_CONTENT.availability,
+	preferredMethod: PROFILE_CONTENT.contact.preferredMethod,
 };

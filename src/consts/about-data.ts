@@ -1,44 +1,17 @@
-import { CONTACT_DATA } from './contact-data';
+import { PROFILE_CONTENT } from './site-content';
 
 /**
  * Data used for the About Component/Pages => About @horaciovelvetine
  */
 export const ABOUT_DATA = {
-	location: 'Denver, Colorado',
-	email: CONTACT_DATA.email,
-	github: CONTACT_DATA.github,
-	linkedin: CONTACT_DATA.linkedin,
-	languages: [
-		'C++',
-		'Java',
-		'Python',
-		'Ruby',
-		'JavaScript',
-		'TypeScript',
-		'CSS',
-		'HTML',
-		'SQL',
-	],
-	frameworks: ['SpringBoot', 'React', 'Vue', 'Ruby on Rails', 'Sinatra'],
-	selectedLibraries: [
-		'GTest',
-		'Guava',
-		'JUnit',
-		'vavr',
-		'Wikidata Toolkit',
-		'Tanstack (Router/Query)',
-		'Remark',
-		'OmniAuth',
-		'Devise',
-		'Cypress',
-		'Faker',
-	],
-	visuals: [
-		'P5.js',
-		'TailwindCSS',
-		'Bootstrap',
-		'Figma',
-		'Illustrator',
-		'Photoshop',
-	],
+	location: PROFILE_CONTENT.location,
+	title: PROFILE_CONTENT.title,
+	highlights: PROFILE_CONTENT.highlights,
+	skillGroups: PROFILE_CONTENT.skillGroups,
+	education: PROFILE_CONTENT.education.map(entry =>
+		`${entry.school} - ${entry.degree} (${entry.dates})`
+	),
+	experience: PROFILE_CONTENT.experience.map(entry =>
+		`${entry.role}, ${entry.company} (${entry.dates})`
+	),
 };

@@ -40,13 +40,13 @@ export function RPSGameMenu({
 		windowState.setSketchIsPaused(false);
 	};
 	return (
-		<ul className='flex flex-col w-full tracking-tighter gap-2 px-8 mb-6'>
-			<li className='flex flex-col gap-1 items-center w-full justify-center'>
+		<ul className='mb-2 grid w-full gap-3 tracking-tight'>
+			<li className='grid gap-2'>
 				<button
 					type='button'
 					title='Create an entirely new game, returning to the initialization menu'
 					disabled={!windowState.sketchIsInitialized}
-					className={`border border-stone-300/50 rounded-lg py-0.5 w-full xs:w-1/2 ${TailwindBGs500[siteSettings.accentColor]}`}
+					className={`w-full rounded-2xl border border-white/10 px-4 py-3 font-semibold text-white transition-transform duration-150 hover:-translate-y-0.5 ${TailwindBGs500[siteSettings.accentColor]}`}
 					onClick={() => {
 						windowState.closeWindowCallback();
 					}}>
@@ -56,7 +56,7 @@ export function RPSGameMenu({
 					type='button'
 					title='Reset the game with the current settings'
 					disabled={!windowState.sketchIsInitialized}
-					className={`border border-stone-300/50 rounded-lg py-0.5 w-full xs:w-1/2 ${TailwindBGs500[siteSettings.accentColor]}`}
+					className={`w-full rounded-2xl border border-white/10 px-4 py-3 font-semibold text-white transition-transform duration-150 hover:-translate-y-0.5 ${TailwindBGs500[siteSettings.accentColor]}`}
 					onClick={handleResetClick}>
 					Restart Game
 				</button>

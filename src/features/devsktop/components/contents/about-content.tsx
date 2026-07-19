@@ -1,13 +1,6 @@
-import { ABOUT_DATA } from '../../../../consts/about-data';
-import { CloseBracket, OpenBracket } from '../code-components/brackets';
-import { CodeClass } from '../code-components/code-class';
-import { CodeComment } from '../code-components/code-comment';
-import { CodeKeyword } from '../code-components/code-keyword';
-import { CodeLine } from '../code-components/code-line';
-import { CodeParameter } from '../code-components/code-parameter';
-import { CodePropertyLine } from '../code-components/code-property-line';
-import { CodeSpace } from '../code-components/code-space';
-import { CodeText } from '../code-components/code-text';
+import { PROFILE_CONTENT } from '../../../../consts/site-content';
+import { MAILTO } from '../../../../consts/urls';
+import { SimpleInlineLink } from '../../../../components';
 
 interface AboutContentProps {
   className?: string;
@@ -39,93 +32,126 @@ export function AboutContent({
   spacing = 'space-y-1'
 }: AboutContentProps) {
   return (
-    <div className={`font-mono ${className}`}>
-      <div className={`flex flex-col ${textSize} font-mono ${spacing}`}>
-        {/* Multi-line doc comment */}
+    <div className={className}>
+      <div className={`flex flex-col ${spacing}`}>
         {showDocComment && (
-          <div className='mb-4 rounded-lg p-2 sm:p-4 border-l-4 border-emerald-500/30 w-full'>
-            <div className='break-words'>
-              <CodeLine>
-                <CodeComment text='/**' />
-              </CodeLine>
-              <CodeLine>
-                <CodeComment text=' * Represents a James object - a full-stack developer entity with comprehensive technical capabilities and creative vision.' />
-              </CodeLine>
-              <CodeLine>
-                <CodeComment text=' * This class encapsulates the core attributes and behaviors of a modern software engineer, including technical' />
-              </CodeLine>
-              <CodeLine>
-                <CodeComment text=' * skills, creative tools, and professional location data.' />
-              </CodeLine>
-              <CodeLine>
-                <CodeComment text=' * ' />
-              </CodeLine>
-              <CodeLine>
-                <CodeComment text=' * @constructor Creates a new Developer instance with essential coding fuel, debugging capabilities, and a passion for innovation' />
-              </CodeLine>
-              <CodeLine>
-                <CodeComment text=' * ' />
-              </CodeLine>
-              <CodeLine>
-                <CodeComment text=' * @param {string} dietCoke - Essential fuel for coding, and creative problem-solving' />
-              </CodeLine>
-              <CodeLine>
-                <CodeComment text=' * ' />
-              </CodeLine>
-              <CodeLine>
-                <CodeComment text=' * @returns {Developer} A fully initialized developer instance ready for action, problem-solving, innovation, and building amazing experiences' />
-              </CodeLine>
-              <CodeLine>
-                <CodeComment text=' * ' />
-              </CodeLine>
-              <CodeLine>
-                <CodeComment text=' * @since 2020 - Continuously evolving with new technologies, frameworks, development methodologies, and industry best practices' />
-              </CodeLine>
-              <CodeLine>
-                <CodeComment text=' */' />
-              </CodeLine>
+          <section className='rounded-[28px] border border-white/10 bg-white/[0.03] p-5 sm:p-6'>
+            <p className='text-xs font-semibold uppercase tracking-[0.3em] text-stone-400'>
+              Profile
+            </p>
+            <h2 className='mt-2 text-2xl font-semibold tracking-[-0.04em] text-white sm:text-3xl'>
+              {PROFILE_CONTENT.title}
+            </h2>
+            <p className='mt-3 max-w-3xl text-pretty text-sm leading-7 text-stone-300 sm:text-base'>
+              {PROFILE_CONTENT.intro}
+            </p>
+            <div className='mt-4 flex flex-wrap gap-2 text-sm text-stone-300'>
+              <span className='rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5'>
+                {PROFILE_CONTENT.location}
+              </span>
+              <span className='rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5'>
+                {PROFILE_CONTENT.availability}
+              </span>
             </div>
-          </div>
+          </section>
         )}
 
-        {/* Class declaration */}
-        <CodeLine>
-          <CodeKeyword text='class' />
-          <CodeSpace />
-          <CodeClass text='Developer' />
-          <CodeSpace />
-          <OpenBracket />
-        </CodeLine>
+        <div className='grid gap-5 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]'>
+          <section className='rounded-[28px] border border-white/10 bg-white/[0.03] p-5 sm:p-6'>
+            <div className='flex items-center justify-between gap-3'>
+              <h3 className='text-xl font-semibold text-white'>Experience</h3>
+              <a
+                href={MAILTO}
+                className='text-sm font-medium text-stone-300 transition-transform duration-150 hover:-translate-y-0.5 hover:text-white'>
+                Contact
+              </a>
+            </div>
+            <div className='mt-4 space-y-5'>
+              {PROFILE_CONTENT.experience.map(entry => (
+                <article
+                  key={`${entry.company}-${entry.role}`}
+                  className='border-t border-white/8 pt-4 first:border-t-0 first:pt-0'>
+                  <div className='flex flex-wrap items-baseline justify-between gap-2'>
+                    <div>
+                      <h4 className='text-base font-semibold text-white'>
+                        {entry.role}
+                      </h4>
+                      <p className='text-sm text-stone-400'>{entry.company}</p>
+                    </div>
+                    <p className='text-xs font-medium uppercase tracking-[0.18em] text-stone-500'>
+                      {entry.dates}
+                    </p>
+                  </div>
+                  <ul className='mt-3 space-y-2 text-sm leading-6 text-stone-300'>
+                    {entry.bullets.map(bullet => (
+                      <li key={bullet} className='flex gap-2'>
+                        <span className='mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-stone-500' />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
 
-        {/* Constructor */}
-        <div>
-          <CodeLine indent={1}>
-            <CodeKeyword text='constructor' />
-            <CodeText text='(' />
-            <CodeParameter text='dietCoke' />
-            <CodeText text=') ' />
-            <OpenBracket />
-          </CodeLine>
+          <div className='flex flex-col gap-5'>
+            <section className='rounded-[28px] border border-white/10 bg-white/[0.03] p-5 sm:p-6'>
+              <h3 className='text-xl font-semibold text-white'>Education</h3>
+              <div className='mt-4 space-y-4'>
+                {PROFILE_CONTENT.education.map(entry => (
+                  <article
+                    key={`${entry.school}-${entry.degree}`}
+                    className='rounded-2xl border border-white/8 bg-white/[0.03] p-4'>
+                    <p className='text-sm font-semibold text-white'>{entry.school}</p>
+                    <p className='mt-1 text-sm text-stone-300'>{entry.degree}</p>
+                    <p className='mt-2 text-xs font-medium uppercase tracking-[0.18em] text-stone-500'>
+                      {entry.dates}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </section>
 
-          {/* Properties */}
-          {Object.entries(ABOUT_DATA).map(([key, value]) => (
-            <CodePropertyLine
-              key={key}
-              property={key}
-              value={value}
-            />
-          ))}
-
-          {/* Close constructor */}
-          <CodeLine indent={1}>
-            <CloseBracket />
-          </CodeLine>
+            <section className='rounded-[28px] border border-white/10 bg-white/[0.03] p-5 sm:p-6'>
+              <div className='flex items-center justify-between gap-3'>
+                <h3 className='text-xl font-semibold text-white'>Skills</h3>
+                <div className='flex flex-wrap gap-3 text-sm'>
+                  <SimpleInlineLink
+                    href={PROFILE_CONTENT.contact.github}
+                    text='GitHub'
+                    showArrow
+                    classes='text-stone-300 hover:text-white'
+                  />
+                  <SimpleInlineLink
+                    href={PROFILE_CONTENT.contact.linkedin}
+                    text='LinkedIn'
+                    showArrow
+                    classes='text-stone-300 hover:text-white'
+                  />
+                </div>
+              </div>
+              <div className='mt-4 space-y-4'>
+                {PROFILE_CONTENT.skillGroups.map(group => (
+                  <div key={group.label}>
+                    <p className='mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-stone-500'>
+                      {group.label}
+                    </p>
+                    <div className='flex flex-wrap gap-2'>
+                      {group.items.map(item => (
+                        <span
+                          key={item}
+                          className={`rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 ${textSize} text-stone-200`}>
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
         </div>
-
-        {/* Close class */}
-        <CodeLine>
-          <CloseBracket />
-        </CodeLine>
       </div>
     </div>
   );

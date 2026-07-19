@@ -23,12 +23,12 @@ export const Route = createFileRoute('/about')({
 
 function MobileAboutPage() {
 	return (
-		<div className='min-h-screen  p-4 sm:p-6 lg:p-8'>
-			<div className='max-w-7xl mx-auto'>
-				<div className='bg-gray-900/90 backdrop-blur-sm font-mono rounded-xl border border-gray-600/50 shadow-2xl shadow-black/20 overflow-hidden flex flex-col'>
+		<div className='min-h-screen px-4 py-6 sm:px-6 lg:px-8'>
+			<div className='mx-auto max-w-6xl'>
+				<div className='flex flex-col overflow-hidden rounded-[32px] border border-white/10 bg-zinc-950/92 shadow-2xl shadow-black/30'>
 					{/* Header */}
-					<div className='bg-gray-800/80 border-b border-gray-600/50 px-4 py-3 flex items-center space-x-2'>
-						<div className='text-gray-400 text-lg sm:text-xl leading-relaxed ml-4'>
+					<div className='flex items-center space-x-2 border-b border-white/8 bg-white/[0.03] px-4 py-3'>
+						<div className='ml-4 text-lg leading-relaxed text-stone-400 sm:text-xl'>
 							about
 						</div>
 					</div>
@@ -36,21 +36,18 @@ function MobileAboutPage() {
 					{/* Main Code Content */}
 					<div className='flex-1 overflow-auto'>
 						<div className='p-4 sm:p-6 lg:p-8 xl:p-10'>
-							<div className='overflow-x-auto'>
-								<AboutContent
-									className='min-w-max'
-									showDocComment={true}
-									textSize='text-sm sm:text-base md:text-lg'
-									spacing='space-y-1 sm:space-y-2'
-								/>
-							</div>
+							<AboutContent
+								showDocComment={true}
+								textSize='text-sm sm:text-base'
+								spacing='space-y-5'
+							/>
 						</div>
 					</div>
 
 					{/* Breadcrumb Footer */}
-					<div className='px-4 sm:px-6 lg:px-8 xl:px-10 py-4 border-t border-gray-600/30 bg-gray-900/90'>
+					<div className='bg-white/[0.02] px-4 py-4 sm:px-6 lg:px-8 xl:px-10'>
 						<CodeLine>
-							<div className='flex items-center gap-2 text-xs sm:text-sm text-gray-500'>
+							<div className='flex flex-wrap items-center gap-2 text-xs text-gray-500 sm:text-sm'>
 								<CodeComment text='//' />
 								<CodeComment text='Navigation:' />
 								<CodeText text='/' />

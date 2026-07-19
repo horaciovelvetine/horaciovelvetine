@@ -1,7 +1,4 @@
-// Disable any warnings for React Draggable ref per:
-// https://github.com/react-grid-layout/react-draggable/issues/779
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useRef, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
 import Draggable, {
 	type DraggableData,
 	type DraggableEvent,
@@ -15,6 +12,71 @@ import type {
 } from '../../../../types';
 import { TitleBar } from './title-bar';
 import { useClientDimensionsUpdates } from '../../../../hooks/site';
+import {
+	WINDOW_EDGE_MARGIN,
+	clampWindowPosition,
+	getDesktopBounds,
+} from '../../../../functions';
+
+type ResizeDirection = 'n' | 's' | 'e' | 'w' | 'ne' | 'nw' | 'se' | 'sw';
+
+interface ResizeState {
+	direction: ResizeDirection;
+	startPointer: Position;
+	startPosition: Position;
+	startSize: Dimensions;
+}
+
+const RESIZE_HANDLES: Array<{
+	direction: ResizeDirection;
+	className: string;
+	cursorClass: string;
+}> = [
+	{
+		direction: 'n',
+		className: '-top-1 left-3 right-3 h-2',
+		cursorClass: 'cursor-ns-resize',
+	},
+	{
+		direction: 's',
+		className: '-bottom-1 left-3 right-3 h-2',
+		cursorClass: 'cursor-ns-resize',
+	},
+	{
+		direction: 'e',
+		className: '-right-1 top-3 bottom-3 w-2',
+		cursorClass: 'cursor-ew-resize',
+	},
+	{
+		direction: 'w',
+		className: '-left-1 top-3 bottom-3 w-2',
+		cursorClass: 'cursor-ew-resize',
+	},
+	{
+		direction: 'ne',
+		className: '-right-1 -top-1 size-4',
+		cursorClass: 'cursor-nesw-resize',
+	},
+	{
+		direction: 'nw',
+		className: '-left-1 -top-1 size-4',
+		cursorClass: 'cursor-nwse-resize',
+	},
+	{
+		direction: 'se',
+		className: '-right-1 -bottom-1 size-4',
+		cursorClass: 'cursor-nwse-resize',
+	},
+	{
+		direction: 'sw',
+		className: '-left-1 -bottom-1 size-4',
+		cursorClass: 'cursor-nesw-resize',
+	},
+];
+
+function clampValue(value: number, min: number, max: number) {
+	return Math.min(Math.max(value, min), max);
+}
 
 export interface WindowFrameProps {
 	window: ManagedWindow;
@@ -48,90 +110,227 @@ export function WindowFrame({
 	windowManager,
 	Component,
 }: WindowFrameProps) {
-	const windowRef = useRef<any>(null);
+	const windowRef = useRef<HTMLDivElement>(null);
+	const resizeStateRef = useRef<ResizeState | null>(null);
 	const clientDimensions = useClientDimensionsUpdates();
-	const [size, setSize] = useState<Dimensions | undefined>();
+	const desktopBounds = getDesktopBounds(clientDimensions);
 
-	const [position, setPosition] = useState<Position>(() => {
-		//? center the window width wise if theirs enought space...
-		const x = Math.max(0, clientDimensions.width / 2 - 380);
-		//? slight bump down if theres some space
-		const y = 0;
-		return { x, y };
-	});
-
-	const controlledDrag = (_e: DraggableEvent, ui: DraggableData) => {
+	const handleFocusWindow = useCallback(() => {
 		windowManager.focusWindowByID(window.id);
-		const { x, y } = position;
-		setPosition({ x: x + ui.deltaX, y: y + ui.deltaY });
-	};
+	}, [window.id, windowManager]);
 
-	const handleFocusWindow = () => {
-		windowManager.focusWindowByID(window.id);
-	};
+	const controlledDrag = useCallback(
+		(_event: DraggableEvent, ui: DraggableData) => {
+			if (window.isZoomed) return;
 
-	/**
-	 * ? LAYOUT EFFECTS: These effects keep the window in range if the screen is resized so that the client cannot accidentally resize a window offscreen in a way which is impossible to fix without a hard refresh.
-	 */
-	useLayoutEffect(() => {
-		const updateWindowDimensions = () => {
-			if (windowRef.current) {
-				const currentWindow = windowRef.current as HTMLDivElement;
-				const { width, height } = currentWindow.getBoundingClientRect();
-				setSize({ width, height });
+			handleFocusWindow();
+			window.setPosition(
+				clampWindowPosition(
+					{
+						x: window.position.x + ui.deltaX,
+						y: window.position.y + ui.deltaY,
+					},
+					window.size,
+					desktopBounds
+				)
+			);
+			window.setHasBeenPlaced(true);
+		},
+		[
+			desktopBounds,
+			handleFocusWindow,
+			window,
+		]
+	);
+
+	const stopResize = useCallback(() => {
+		resizeStateRef.current = null;
+		document.body.style.userSelect = '';
+		document.body.style.cursor = '';
+	}, []);
+
+	useEffect(() => {
+		const handlePointerMove = (event: PointerEvent) => {
+			const resizeState = resizeStateRef.current;
+			if (!resizeState) return;
+
+			event.preventDefault();
+
+			const deltaX = event.clientX - resizeState.startPointer.x;
+			const deltaY = event.clientY - resizeState.startPointer.y;
+			const startRight =
+				resizeState.startPosition.x + resizeState.startSize.width;
+			const startBottom =
+				resizeState.startPosition.y + resizeState.startSize.height;
+
+			let nextX = resizeState.startPosition.x;
+			let nextY = resizeState.startPosition.y;
+			let nextWidth = resizeState.startSize.width;
+			let nextHeight = resizeState.startSize.height;
+
+			if (resizeState.direction.includes('e')) {
+				nextWidth = resizeState.startSize.width + deltaX;
 			}
+
+			if (resizeState.direction.includes('s')) {
+				nextHeight = resizeState.startSize.height + deltaY;
+			}
+
+			if (resizeState.direction.includes('w')) {
+				nextWidth = resizeState.startSize.width - deltaX;
+				nextX = resizeState.startPosition.x + deltaX;
+			}
+
+			if (resizeState.direction.includes('n')) {
+				nextHeight = resizeState.startSize.height - deltaY;
+				nextY = resizeState.startPosition.y + deltaY;
+			}
+
+			const maxWidth =
+				Math.max(
+					window.minSize.width,
+					resizeState.direction.includes('w') ?
+					Math.min(
+						window.maxSize?.width ?? Number.POSITIVE_INFINITY,
+						startRight - WINDOW_EDGE_MARGIN
+					)
+				:	Math.min(
+						window.maxSize?.width ?? Number.POSITIVE_INFINITY,
+						desktopBounds.width - WINDOW_EDGE_MARGIN - nextX
+					)
+				);
+			const maxHeight =
+				Math.max(
+					window.minSize.height,
+					resizeState.direction.includes('n') ?
+					Math.min(
+						window.maxSize?.height ?? Number.POSITIVE_INFINITY,
+						startBottom - WINDOW_EDGE_MARGIN
+					)
+				:	Math.min(
+						window.maxSize?.height ?? Number.POSITIVE_INFINITY,
+						desktopBounds.height - WINDOW_EDGE_MARGIN - nextY
+					)
+				);
+
+			const clampedSize = {
+				width: clampValue(nextWidth, window.minSize.width, maxWidth),
+				height: clampValue(nextHeight, window.minSize.height, maxHeight),
+			};
+
+			if (resizeState.direction.includes('w')) {
+				nextX = startRight - clampedSize.width;
+			}
+
+			if (resizeState.direction.includes('n')) {
+				nextY = startBottom - clampedSize.height;
+			}
+
+			window.setSize(clampedSize);
+			window.setPosition(
+				clampWindowPosition(
+					{ x: nextX, y: nextY },
+					clampedSize,
+					desktopBounds
+				)
+			);
 		};
 
-		// Only update dimensions if the window is shown
-		if (window.isShown) {
-			updateWindowDimensions();
-		}
-	}, [window.isShown]);
+		const handlePointerUp = () => {
+			stopResize();
+		};
 
-	useLayoutEffect(() => {
-		if (!size) return;
-		// Ensure window stays within screen bounds when screen size changes (as much as possible)
-		const { x, y } = position;
-		const { width: windowWidth, height: windowHeight } = size;
-		const maxX = Math.max(0, clientDimensions.width - windowWidth);
-		const maxY = Math.max(0, clientDimensions.height - (windowHeight + 36)); //? +36 is for Navbar @ top
+		globalThis.window.addEventListener('pointermove', handlePointerMove);
+		globalThis.window.addEventListener('pointerup', handlePointerUp);
 
-		// Adjust position if window is outside bounds
-		const newX = Math.min(Math.max(0, x), maxX);
-		const newY = Math.min(Math.max(0, y), maxY);
-		if (newX !== x || newY !== y) {
-			setPosition({ x: newX, y: newY });
-		}
-	}, [size, clientDimensions, position, setPosition]);
+		return () => {
+			globalThis.window.removeEventListener('pointermove', handlePointerMove);
+			globalThis.window.removeEventListener('pointerup', handlePointerUp);
+		};
+	}, [desktopBounds, stopResize, window]);
+
+	const handleResizeStart = useCallback(
+		(direction: ResizeDirection) =>
+			(event: ReactPointerEvent<HTMLDivElement>) => {
+				if (window.isZoomed) return;
+
+				event.preventDefault();
+				event.stopPropagation();
+				handleFocusWindow();
+				window.setHasBeenPlaced(true);
+
+				resizeStateRef.current = {
+					direction,
+					startPointer: { x: event.clientX, y: event.clientY },
+					startPosition: window.position,
+					startSize: window.size,
+				};
+
+				document.body.style.userSelect = 'none';
+				document.body.style.cursor = RESIZE_HANDLES.find(
+					handle => handle.direction === direction
+				)?.cursorClass.includes('ns') ?
+					'ns-resize'
+				: RESIZE_HANDLES.find(handle => handle.direction === direction)?.cursorClass.includes(
+						'ew'
+					) ?
+					'ew-resize'
+				: RESIZE_HANDLES.find(handle => handle.direction === direction)?.cursorClass.includes(
+						'nesw'
+					) ?
+					'nesw-resize'
+				:	'nwse-resize';
+			},
+		[handleFocusWindow, window]
+	);
 
 	return (
 		<>
-			{window.isShown && (
+			{window.isShown && !window.isMinimized && (
 				<Draggable
 					nodeRef={windowRef}
 					bounds='#devsktop-bounds'
-					cancel={`.window-content`}
+					handle='.window-drag-handle'
 					onDrag={controlledDrag}
-					position={position}
-					enableUserSelectHack>
+					onStart={handleFocusWindow}
+					position={window.position}
+					disabled={window.isZoomed}
+					enableUserSelectHack={false}>
 					<div
 						id={window.id}
 						ref={windowRef}
 						className='absolute'
-						style={{ zIndex: window.zIndex }}
-						onClick={handleFocusWindow}
+						style={{ zIndex: window.stackOrder + 100 }}
+						onMouseDown={handleFocusWindow}
 						onTouchStart={handleFocusWindow}>
-						<div className='w-[760px] bg-zinc-900/80 backdrop-blur-2xl border border-stone-300/30 rounded-lg flex flex-col overflow-hidden' style={{ height: 'auto', maxHeight: 'calc(100vh - 36px)', minHeight: 'fit-content' }}>
+						<div
+							className={`relative flex flex-col overflow-hidden rounded-[20px] border backdrop-blur-2xl shadow-2xl transition-[border-color,box-shadow,transform] duration-200 ${
+								window.isFocused ?
+									'border-white/15 bg-zinc-900/82 shadow-black/55'
+								:	'border-white/8 bg-zinc-950/80 shadow-black/35'
+							}`}
+							style={{
+								width: `${window.size.width}px`,
+								height: `${window.size.height}px`,
+							}}>
 							<TitleBar
 								window={window}
 								manager={windowManager}
 							/>
-							<div className='window-content flex-1 overflow-hidden'>
+							<div className='window-content relative min-h-0 flex-1 overflow-hidden bg-zinc-950/75'>
 								<Component
 									siteSettings={siteSettings}
 									windowState={window}
 								/>
 							</div>
+							{!window.isZoomed &&
+								RESIZE_HANDLES.map(handle => (
+									<div
+										key={handle.direction}
+										className={`window-resize-handle absolute z-20 touch-none ${handle.className} ${handle.cursorClass}`}
+										onPointerDown={handleResizeStart(handle.direction)}
+									/>
+								))}
 						</div>
 					</div>
 				</Draggable>
@@ -139,5 +338,3 @@ export function WindowFrame({
 		</>
 	);
 }
-// export const originalOverflowStyling =
-// 	'w-[756px] overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-stone-400/80 [&::-webkit-scrollbar-thumb]:bg-stone-600/70 [&::-webkit-scrollbar]:bg-transparent [&::-webkit-scrollbar-track]:bg-transparent';

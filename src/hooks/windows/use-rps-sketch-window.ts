@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { useRPSSketchState } from '../rps/use-rps-sketch-state';
 import type { NavBarMenuParent, WindowIDs, RPSWindowState } from '../../types';
 import { GH_NEW_ISSUES } from '../../consts/urls';
+import { useManagedWindowState } from './use-managed-window-state';
 
 /**
  * Custom hook for managing the Rock, Paper, Scissors sketch window state and functionality
@@ -20,10 +21,14 @@ import { GH_NEW_ISSUES } from '../../consts/urls';
  */
 export function useRPSSketchWindow(): RPSWindowState {
 	const windowID: WindowIDs = 'rps-sketch-window';
-	const title = 'Rock, Paper, Scissors';
-	const [zIndex, setZIndex] = useState('0');
-	const [isFocused, setIsFocused] = useState(false);
-	const [isShown, setIsShown] = useState(false);
+	const managedWindow = useManagedWindowState({
+		id: windowID,
+		title: 'Rock, Paper, Scissors',
+		defaultSize: { width: 920, height: 760 },
+		minSize: { width: 660, height: 520 },
+		preferredPosition: { x: 140, y: 80 },
+	});
+	const { isFocused, isShown } = managedWindow;
 	const sketchState = useRPSSketchState();
 
 	const [showSettingsMenu, setShowSettingsMenu] = useState(false);
@@ -107,7 +112,7 @@ export function useRPSSketchWindow(): RPSWindowState {
 							hoverExplainer:
 								sketchState.sketchIsPaused ?
 									'Resumes the current game'
-								:	'Pauses the current game',
+									: 'Pauses the current game',
 							isDisabled: !sketchState.sketchIsInitialized || !isShown,
 							onClickAction: () => {
 								if (!isShown) openWindowByID('rps-sketch-window');
@@ -264,14 +269,7 @@ export function useRPSSketchWindow(): RPSWindowState {
 	);
 
 	return {
-		id: windowID,
-		title,
-		zIndex,
-		setZIndex,
-		isShown,
-		setIsShown,
-		isFocused,
-		setIsFocused,
+		...managedWindow,
 		navBarMenuItems,
 		showAboutMenu,
 		setShowAboutMenu,

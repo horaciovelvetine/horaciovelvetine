@@ -3,18 +3,13 @@ import fallbackHeadshot from '../../assets/img/fallback-headshot.png';
 
 /**
  * A component that displays a circular video headshot with a fallback image
- * Links to Apple support documentation when clicked
- * Features hover animations and styling
+ * Features subtle hover animations and a fallback image
  *
- * @returns JSX.Element A styled anchor tag containing an autoplay video element
+ * @returns JSX.Element A styled media element containing an autoplay video
  */
 export function VideoHeadshot() {
 	return (
-		<a
-			href='https://support.apple.com/en-us/111115'
-			target='_blank'
-			rel='noreferrer noopener'
-			className='flex border border-stone-300/20 rounded-full transition-all duration-100 hover:scale-105 hover:-translate-y-1 w-32 sm:w-36 md:w-40'>
+		<div className='flex w-32 rounded-full border border-white/10 bg-white/[0.03] transition-transform duration-150 hover:-translate-y-0.5 hover:scale-[1.02] sm:w-36 md:w-40'>
 			<video
 				autoPlay
 				loop
@@ -25,8 +20,11 @@ export function VideoHeadshot() {
 					src={homeHeadshotVideo}
 					type='video/mp4'
 				/>
-				<img src={fallbackHeadshot} />
+				<img
+					src={fallbackHeadshot}
+					alt='James Tillman headshot'
+				/>
 			</video>
-		</a>
+		</div>
 	);
 }

@@ -62,20 +62,21 @@ export function WritingContentBody({
 	markdownContent,
 }: WritingContentBodyProps) {
 	return (
-		<div className='flex-1 overflow-auto px-4 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-stone-400/80 [&::-webkit-scrollbar-thumb]:bg-stone-600/70 [&::-webkit-scrollbar]:bg-transparent [&::-webkit-scrollbar-track]:bg-transparent'>
+		<div className='flex-1 overflow-auto px-4 py-4 sm:px-6 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-stone-400/80 [&::-webkit-scrollbar-thumb]:bg-stone-600/70 [&::-webkit-scrollbar]:bg-transparent [&::-webkit-scrollbar-track]:bg-transparent'>
 			{!selectedPost ?
-				<div className='flex items-center justify-center h-full'>
-					<div className='text-center'>
-						<div className='text-6xl mb-4'>📝</div>
-						<h2 className='text-2xl font-semibold text-white mb-2'>
-							Select a note to view
+				<div className='flex h-full min-h-[280px] items-center justify-center'>
+					<div className='max-w-md rounded-3xl border border-white/8 bg-white/[0.03] px-6 py-8 text-center shadow-xl shadow-black/20'>
+						<div className='mb-4 text-5xl font-light tracking-widest text-white/20' aria-hidden='true'>—</div>
+						<h2 className='mb-2 text-2xl font-semibold text-white'>
+							Choose a post to read
 						</h2>
-						<p className='text-gray-400'>
-							Choose a note from the sidebar to start reading
+						<p className='text-stone-400'>
+							Open an entry from the sidebar to load the full article, source
+							link, and tags here.
 						</p>
 					</div>
 				</div>
-				: <div className='max-w-4xl my-2'>
+				: <div className='mx-auto my-2 w-full max-w-4xl'>
 					{isLoading ?
 						<PostLoading
 							loadingSlug={selectedPost.slug}
